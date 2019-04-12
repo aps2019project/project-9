@@ -56,6 +56,7 @@ public class Player {
     }
 
     public void move(Card card, Cell cell) {
+
     }
 
     public int getMana() {
