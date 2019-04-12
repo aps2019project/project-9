@@ -73,4 +73,10 @@ public class Player {
 
     public void doAiAction() {
     }
+    public void addMana(int number){
+        mana+= number;
+    }
+    public void deleteUsableItem(){
+        usableItem = null;
+    }
 }

@@ -6,12 +6,13 @@ import java.util.ArrayList;
 
 public class Item {
     private static ArrayList<Item> items = new ArrayList<>();
-    private int cost;
-    private String name;
-    private ItemName itemType;
-    private String itemID;
+    protected int cost;
+    protected String name;
+    protected ItemName itemType;
+    protected String itemID;
 
     public String toString() {
         return null;
     }
+    public static ArrayList<Item> getItems(){return items;}
 }
