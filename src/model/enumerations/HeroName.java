@@ -1,6 +1,6 @@
 package model.enumerations;
 
-enum HeroName {
+public enum HeroName {
     WHITE_DEEV,
     SIMORGH,
     EJDEHA,

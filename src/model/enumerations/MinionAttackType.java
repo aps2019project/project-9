@@ -1,6 +1,6 @@
 package model.enumerations;
 
-enum MinionAttackType {
+public enum MinionAttackType {
     RANGED,
     MELEE,
     HYBRID

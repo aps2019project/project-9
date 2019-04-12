@@ -1,6 +1,6 @@
 package model.enumerations;
 
-enum  MinionName {
+public enum  MinionName {
     FARS_KAMANDAR,
     FARS_SHAMSHIRZAN,
     FARS_NEYZEDAR,
