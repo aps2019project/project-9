@@ -2,6 +2,7 @@ package model;
 
 import model.cards.Card;
 import model.cards.Hero;
+import model.cards.Minion;
 import model.items.*;
 
 import java.util.ArrayList;
@@ -78,5 +79,12 @@ public class Player {
     }
     public void deleteUsableItem(){
         usableItem = null;
+    }
+    public Player getOpponent(){return null;}
+    public Hero getHero(){
+        return hero;
+    }
+    public Minion getRandomPower(){
+        return null;
     }
 }
