@@ -1,0 +1,24 @@
+package model.enumerations;
+
+public enum ItemName {
+    TAJ_DANAYEE,
+    NAMOOS_SEPAR,
+    KAMAN_DAMOOL,
+    JOON_BAW,
+    TIR_SESHAKH,
+    PAR_SIMORGH,
+    EKSIR,
+    MAJOON_MANA,
+    MAJOON_ROIEEN,
+    NEFRIN_MARG,
+    RANDOM_DAMAGE,
+    TERROR_HOOD,
+    BLADES_AGILITY,
+    KING_KILLER,
+    ASSASINATION_DAGGER,
+    POISONOUS_DAGGER,
+    SHOCK_HAMMER,
+    SOUL_EATER,
+    GHOSL,
+    CHINESE_SHAMSHIR
+}
