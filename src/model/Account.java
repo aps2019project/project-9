@@ -14,18 +14,19 @@ public class Account {
 
 
     public static Account findAccount(String userName) {
+        return null;
     }
 
     public static boolean isUserNameValid(String userName) {
-
+        return false;
     }
 
     public static boolean isPassWordValid(String passWord) {
-
+        return false;
     }
 
     public static ArrayList<Account> showAllAccounts() {
-
+        return null;
     }
 
     public static void login(String userName, String passWord) {
@@ -44,9 +45,11 @@ public class Account {
     }
 
     public Collection getCollection() {
+        return null;
     }
 
     public static ArrayList<Account> getAccounts() {
+        return null;
     }
 
     public void reduceMoney(int money) {
@@ -59,5 +62,6 @@ public class Account {
     }
 
     public static Deck[] getDecks() {
+        return null;
     }
 }
