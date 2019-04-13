@@ -24,7 +24,7 @@ public class Minion {
     private static ArrayList<Minion> minions;
     protected Battle battle;
     protected ArrayList<Item> activeItems;
-    protected Spell onAttackSpell;
+    protected Item onAttackItem;
     protected Cell cell;
 
     public void putInMap(Cell cell) {
@@ -42,7 +42,7 @@ public class Minion {
     public void alternate(){}
     public void doOnRespawnPower(){}
     public void addBuff(Buff buff){}
-    public void reduceHP(){}
+    public void reduceHP(int number){}
 
     public Battle getBattle() {
         return battle;
@@ -60,7 +60,7 @@ public class Minion {
     public void reduceAP(int number){
         AP-=number;
     }
-    public void setOnAttackSpell(Spell spell){
+    public void setOnAttackItem(Item item){
 
     }
 }

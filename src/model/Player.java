@@ -3,6 +3,7 @@ package model;
 import model.cards.Card;
 import model.cards.Hero;
 import model.cards.Minion;
+import model.cards.Spell;
 import model.items.*;
 
 import java.util.ArrayList;
@@ -87,4 +88,5 @@ public class Player {
     public Minion getRandomPower(){
         return null;
     }
+    public void giveSpellToRandomPower(Spell spell , boolean isForEnemy){}
 }
