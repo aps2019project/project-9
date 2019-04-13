@@ -10,6 +10,7 @@ public class SpellItem extends Usable{
     public void castItem(Player player) {
         if(itemType == ItemName.NAMOOS_SEPAR){
             spell.castSpell(player.getHero().getCell());
+            player.deleteUsableItem();
         }else if (itemType == ItemName.SOUL_EATER){
             player.giveSpellToRandomPower(spell , false);
         }
