@@ -3,6 +3,7 @@ package model.cards;
 import model.Battle;
 import model.Buff;
 import model.Cell;
+import model.Player;
 import model.enumerations.MinionAttackType;
 import model.items.Item;
 
@@ -22,7 +23,7 @@ public class Minion {
     protected SpecialPower specialPower;
     protected boolean isFars;
     private static ArrayList<Minion> minions;
-    protected Battle battle;
+    protected Player player;
     protected ArrayList<Item> activeItems;
     protected Item onAttackItem;
     protected Cell cell;
@@ -44,8 +45,8 @@ public class Minion {
     public void addBuff(Buff buff){}
     public void reduceHP(int number){}
 
-    public Battle getBattle() {
-        return battle;
+    public Player getPlayer() {
+        return player;
     }
     public void receiveAttack(){}
     public int getHP(){
@@ -63,4 +64,8 @@ public class Minion {
     public void setOnAttackItem(Item item){
 
     }
+    public void addAP(int number){AP+=number;}
+    public void addActiveItem(Item item){activeItems.add(item);}
+    public void deleteActiveItem(Item item){activeItems.remove(item);}
+    public Minion getNearRandomOpponentPower(){return null;}
 }

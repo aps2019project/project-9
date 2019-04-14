@@ -10,12 +10,12 @@ import java.util.ArrayList;
 
 public class Player {
     private ArrayList<Buff> activeBuffs;
-    private ArrayList<Card> cardsInPlayGround;
+    private ArrayList<Minion> minionsInPlayGround;
     private int mana;
     private Deck deck;
     private Hand hand;
     private Usable usableItem;
-    private ArrayList<Collectable> collectedItems;
+    private ArrayList<Collectible> collectedItems;
     private Hero hero;
     private Battle battle;
     private ArrayList<Flag> flagsAcheived;
@@ -65,11 +65,7 @@ public class Player {
         return mana;
     }
 
-    public ArrayList<Card> getCardsInPlayGround() {
-        return cardsInPlayGround;
-    }
-
-    public ArrayList<Collectable> getCollectedItems() {
+    public ArrayList<Collectible> getCollectedItems() {
         return collectedItems;
     }
 
@@ -85,8 +81,9 @@ public class Player {
     public Hero getHero(){
         return hero;
     }
-    public Minion getRandomPower(){
+    public Minion getRandomPower(boolean isRangedOrHybrid){
         return null;
     }
     public void giveSpellToRandomPower(Spell spell , boolean isForEnemy){}
+    public ArrayList<Minion> getMinionsInPlayGround(){return minionsInPlayGround;}
 }
