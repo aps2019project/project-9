@@ -1,6 +1,7 @@
 package model.cards;
 
 import model.*;
+import model.buffs.Buff;
 import model.enumerations.SpellName;
 import model.enumerations.SpellTargetType;
 

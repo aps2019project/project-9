@@ -1,5 +1,6 @@
 package model;
 
+import model.buffs.Buff;
 import model.cards.Card;
 import model.cards.Hero;
 import model.cards.Minion;

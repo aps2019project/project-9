@@ -1,17 +1,18 @@
 package model;
 
 import model.cards.Card;
+import model.cards.Minion;
 import model.items.Item;
 
 import java.util.ArrayList;
 
 public class Cell {
-    private Card cardOnIt;
+    private Minion minionOnIt;
     private ArrayList<CellAffect> cellAffects;
     private PlayGround playGround;
     private Item collectableItem;
-    public Card getCardOnIt(){
-        return cardOnIt;
+    public Minion getMinionOnIt(){
+        return minionOnIt;
     }
 
     public PlayGround getPlayGround() {
