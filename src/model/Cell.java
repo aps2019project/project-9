@@ -25,4 +25,9 @@ public class Cell {
     public void addCellAffect(CellAffect cellAffect){
         cellAffects.add(cellAffect);
     }
+    public boolean hasCardOnIt(){
+        if (minionOnIt != null)
+            return true;
+        return false;
+    }
 }
