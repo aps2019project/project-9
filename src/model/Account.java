@@ -55,7 +55,7 @@ public class Account {
     }
 
     public static void sortAccounts() {
-        Collection.sort;
+        /*Collection.sort;*/
     }
 
     public void deleteDeck(Deck deck) {
