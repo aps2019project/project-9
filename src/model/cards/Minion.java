@@ -8,7 +8,7 @@ import model.items.Item;
 
 import java.util.ArrayList;
 
-public class Minion {
+public class Minion extends Card{
     protected ArrayList<Buff> activeBuffs;
     protected boolean canCounterAttack;
 
@@ -149,6 +149,8 @@ public class Minion {
     public void assignCanCounterAttack(boolean assign) {
         canCounterAttack = assign;
     }
-
+    public boolean equals(Minion minion){
+        return this.cardID.equals(minion.cardID);
+    }
 
 }

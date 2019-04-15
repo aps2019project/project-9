@@ -1,7 +1,7 @@
 package model.enumerations;
 
 public enum SpellTargetType {
-    AN_ENEMY_POWER, 
+    AN_ENEMY_POWER,
     TWO_IN_TWO_SQUARE,
     A_FRIENDLY_POWER,
     FRIENDLY_HERO,
@@ -13,5 +13,5 @@ public enum SpellTargetType {
     ALL_ENEMY_IN_COLUMN,
     AN_ENEMY_MINION_IN_EIGHT_HERO,
     A_FRIENDLY_MINION,
-    AN_ENEMY_MIINON,
+    AN_ENEMY_MINION,
 }

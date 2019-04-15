@@ -8,6 +8,8 @@ import model.items.Item;
 import java.util.ArrayList;
 
 public class Cell {
+    private int x;
+    private int y;
     private Minion minionOnIt;
     private ArrayList<CellAffect> cellAffects;
     private PlayGround playGround;
@@ -29,5 +31,8 @@ public class Cell {
         if (minionOnIt != null)
             return true;
         return false;
+    }
+    public boolean equals(Cell cell){
+        return (this.x==cell.x) && (this.y == cell.y);
     }
 }
