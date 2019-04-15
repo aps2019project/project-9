@@ -1,7 +1,6 @@
 package model.cellaffects;
 
 import model.Cell;
-import model.cards.Card;
 import model.cards.Minion;
 import model.enumerations.CellAffectName;
 
