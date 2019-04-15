@@ -2,6 +2,7 @@ package model;
 
 import model.cards.Card;
 import model.cards.Minion;
+import model.cellaffects.CellAffect;
 import model.items.Item;
 
 import java.util.ArrayList;
