@@ -22,4 +22,7 @@ public class Cell {
     public boolean hasCollectableItem(){return false;}
     public void addCard(Card card){}
     public void deleteCard(){}
+    public void addCellAffect(CellAffect cellAffect){
+        cellAffects.add(cellAffect);
+    }
 }
