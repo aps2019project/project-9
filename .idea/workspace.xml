@@ -7,10 +7,14 @@
       <change beforePath="$PROJECT_DIR$/src/model/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Account.java" afterDir="false" />
 =======
     <list default="true" id="49450841-ef54-4919-9902-24866c63d6f4" name="Default Changelist" comment="all enums">
+<<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+=======
       <change beforePath="$PROJECT_DIR$/src/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/items/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/items/Item.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/items/TajeDanayee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/items/TajeDanayee.java" afterDir="false" />
 >>>>>>> 9b8bd8d1a84d03da807de6e1180627dcf3234833
+>>>>>>> 6f21acd3278034c0825b64de13463bc0f54b1cdf
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -62,7 +66,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/model/items/TajeDanayee.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="119">
@@ -70,6 +74,23 @@
               <folding>
                 <element signature="e#110#111#0" expanded="true" />
                 <element signature="e#136#137#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/model/Account.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="12" column="23" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
+              <folding>
+                <element signature="e#386#387#0" expanded="true" />
+                <element signature="e#413#414#0" expanded="true" />
+                <element signature="e#475#476#0" expanded="true" />
+                <element signature="e#503#504#0" expanded="true" />
+                <element signature="e#565#566#0" expanded="true" />
+                <element signature="e#593#594#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -202,6 +223,8 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="model" type="462c0819:PsiDirectoryNode" />
             </path>
+<<<<<<< HEAD
+=======
             <path>
               <item name="project-9" type="b2602c69:ProjectViewProjectNode" />
               <item name="project-9" type="462c0819:PsiDirectoryNode" />
@@ -220,6 +243,7 @@
               <item name="items" type="462c0819:PsiDirectoryNode" />
 >>>>>>> 9b8bd8d1a84d03da807de6e1180627dcf3234833
             </path>
+>>>>>>> 6f21acd3278034c0825b64de13463bc0f54b1cdf
           </expand>
           <select />
         </subPane>
@@ -231,7 +255,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555079899526" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555081069914" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -295,6 +319,12 @@
   </component>
   <component name="TimeTrackingManager">
 <<<<<<< HEAD
+    <option name="totallyTimeSpent" value="10184000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="54" y="-8" width="1320" height="784" extended-state="6" />
+=======
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="6320000" />
 =======
     <option name="totallyTimeSpent" value="8981000" />
@@ -303,6 +333,7 @@
   <component name="ToolWindowManager">
     <frame x="545" y="0" width="998" height="830" extended-state="0" />
     <editor active="true" />
+>>>>>>> 6f21acd3278034c0825b64de13463bc0f54b1cdf
     <layout>
       <window_info id="Designer" order="0" />
       <window_info id="UI Designer" order="1" />
@@ -758,6 +789,8 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+=======
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -828,6 +861,7 @@
         </state>
       </provider>
     </entry>
+>>>>>>> 6f21acd3278034c0825b64de13463bc0f54b1cdf
     <entry file="file://$PROJECT_DIR$/src/model/items/Flag.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -902,6 +936,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/items/TajeDanayee.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="5" lean-forward="true" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
+          <folding>
+            <element signature="e#110#111#0" expanded="true" />
+            <element signature="e#136#137#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/items/Item.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -912,14 +957,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/items/TajeDanayee.java">
+    <entry file="file://$PROJECT_DIR$/src/model/Account.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="5" lean-forward="true" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
+        <state relative-caret-position="204">
+          <caret line="12" column="23" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
           <folding>
+<<<<<<< HEAD
+            <element signature="e#386#387#0" expanded="true" />
+            <element signature="e#413#414#0" expanded="true" />
+            <element signature="e#475#476#0" expanded="true" />
+            <element signature="e#503#504#0" expanded="true" />
+            <element signature="e#565#566#0" expanded="true" />
+            <element signature="e#593#594#0" expanded="true" />
+=======
             <element signature="e#110#111#0" expanded="true" />
             <element signature="e#136#137#0" expanded="true" />
 >>>>>>> 9b8bd8d1a84d03da807de6e1180627dcf3234833
+>>>>>>> 6f21acd3278034c0825b64de13463bc0f54b1cdf
           </folding>
         </state>
       </provider>

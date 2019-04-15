@@ -1,4 +1,4 @@
 package model.cards;
 
-public class  Hero {
+public class  Hero extends Minion{
 }
