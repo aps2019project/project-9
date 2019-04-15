@@ -1,23 +1,25 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Account {
     private Collection myCollection;
     private int money;
     private BattleResult[] battleResults;
-    private Deck[] decks;
+    private ArrayList<Deck> decks;
     private Deck MainDeck;
     private static ArrayList<Account> accounts;
     private String userName;
     private String passWord;
 
-    Account(String userName) {
+    public Account(String userName,String passWord) {
         this.userName = userName;
+        this.passWord = passWord;
     }
 
     public static Account findAccount(String userName) {           //if not valid return null
-        Account temp = new Account("0");
+        Account temp = new Account("0","0");
         for (Account key : accounts) {
             if (key != null && key.userName.equals(userName))
                 temp = key;
@@ -46,25 +48,26 @@ public class Account {
 
     public static ArrayList<Account> showAllAccounts() {         //not complete
         return null;
-    }
+    }   //not complete
 
     public static void login(String userName, String passWord) {    //not complete
 
     }
 
     public static void sortAccounts() {
-
+        Collection.sort;
     }
 
     public void deleteDeck(Deck deck) {
-
+        decks.remove(deck);
     }
 
     public void selectMainDeck(Deck deck) {
+        MainDeck = deck;
     }
 
     public Collection getCollection() {
-        return null;
+        return myCollection;
     }
 
     public static ArrayList<Account> getAccounts() {
@@ -82,7 +85,7 @@ public class Account {
     public void createNewDeck(String name) {
     }
 
-    public Deck[] getDecks() {
+    public ArrayList<Deck> getDecks() {
         return this.decks;
     }
 }
