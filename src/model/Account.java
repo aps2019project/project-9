@@ -1,9 +1,9 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 
-public class Account {
+public class Account implements Comparable<Account> {
     private Collection myCollection;
     private int money;
     private BattleResult[] battleResults;
@@ -12,14 +12,15 @@ public class Account {
     private static ArrayList<Account> accounts;
     private String userName;
     private String passWord;
+    private int numberOfWins = 0;
 
-    public Account(String userName,String passWord) {
+    public Account(String userName, String passWord) {
         this.userName = userName;
         this.passWord = passWord;
     }
 
-    public static Account findAccount(String userName) {           //if not valid return null
-        Account temp = new Account("0","0");
+    private static Account findAccount(String userName) {           //if not valid return null
+        Account temp = new Account("0", "0");
         for (Account key : accounts) {
             if (key != null && key.userName.equals(userName))
                 temp = key;
@@ -31,31 +32,19 @@ public class Account {
     }
 
     public static boolean isUserNameValid(String userName) {
-        for (Account key : accounts) {
-            if (key != null && key.userName.equals(userName))
-                return true;
-        }
-        return false;
+        return (findAccount(userName) != null);
     }
 
-    public static boolean isPassWordValid(String passWord) {
-        for (Account key : accounts) {
-            if (key != null && key.passWord.equals(passWord))
-                return true;
-        }
-        return false;
+    public static boolean isPassWordValid(String userName, String passWord) {
+        return findAccount(userName).passWord.equals(passWord);
     }
 
-    public static ArrayList<Account> showAllAccounts() {         //not complete
-        return null;
-    }   //not complete
-
-    public static void login(String userName, String passWord) {    //not complete
-
+    public static void login(String userName, String passWord) {
+        // i dont know the logic
     }
 
     public static void sortAccounts() {
-        /*Collection.sort;*/
+        Collections.sort(accounts);
     }
 
     public void deleteDeck(Deck deck) {
@@ -64,14 +53,6 @@ public class Account {
 
     public void selectMainDeck(Deck deck) {
         MainDeck = deck;
-    }
-
-    public Collection getCollection() {
-        return myCollection;
-    }
-
-    public static ArrayList<Account> getAccounts() {
-        return accounts;
     }
 
     public void reduceMoney(int money) {
@@ -83,9 +64,31 @@ public class Account {
     }
 
     public void createNewDeck(String name) {
+        //this need deck to be complete
     }
 
     public ArrayList<Deck> getDecks() {
         return this.decks;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public int getNumberOfWins() {
+        return numberOfWins;
+    }
+
+    public static ArrayList<Account> getAccounts() {
+        return accounts;
+    }
+
+    public Collection getCollection() {
+        return myCollection;
+    }
+
+    public int compareTo(Account compare) {
+        int compareQuantity = compare.numberOfWins;
+        return compareQuantity - this.numberOfWins;
     }
 }

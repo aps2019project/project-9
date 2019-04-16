@@ -32,9 +32,7 @@ public class Deck {
     }
 
     public boolean isValid() {
-        if(cards.size() == 20 && hero != null)
-            return true;
-        return false;
+        return (cards.size() == 20 && hero != null);
     }
 
     public String toString() {
@@ -51,15 +49,14 @@ public class Deck {
             string = string + "1 : " + item.toString() +"\n";
         }
         for(Card key : cards){
-            string = string + counter + " : " + key.toString() + "\n";
+            string += counter + " : " + key.toString() + "\n";
         }
         return string;
     }
 
     public Card getCard(String cardID) {      //need card to complete   returns null if not in deck
-        boolean f = true;
         for (Card key : cards){
-            if(key != null && key.getCardID == cardID) {
+            if(key != null){                  ////&& key.getCardID == cardID) {
                 return key;
             }
         }
