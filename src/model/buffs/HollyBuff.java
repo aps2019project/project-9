@@ -8,6 +8,8 @@ public class HollyBuff extends Buff{
     @Override
     public void startBuff(Cell cell) {
         cell.getMinionOnIt().setReductionOfOthersAttack(1);
+        if(this.isContinous)
+            cell.getMinionOnIt().addContinous(this);
     }
 
     @Override

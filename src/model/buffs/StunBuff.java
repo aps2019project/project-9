@@ -9,6 +9,8 @@ public class StunBuff extends Buff{
     public void startBuff(Cell cell) {
         cell.getMinionOnIt().setCanAttack(false);
         cell.getMinionOnIt().setCanMove(false);
+        if(this.isContinous)
+            cell.getMinionOnIt().addContinous(this);
     }
 
     @Override

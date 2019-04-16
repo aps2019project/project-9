@@ -19,6 +19,15 @@ public class Spell extends Card {
     private Player owningPlayer; // the player use it
 
     public static void removeBuffs(Player player, boolean isForPassiveBuffs) {
+        // for Spell Num 2
+        for (Minion friendlyPower : player.getMinionsInPlayGround()) {
+            friendlyPower.dispelNegativeBuffs();
+        }
+        player.getHero().dispelNegativeBuffs();
+        for (Minion enemyPower : player.getOpponent().getMinionsInPlayGround()) {
+            enemyPower.dispelPositiveBuffs();
+        }
+        player.getOpponent().getHero().dispelPositiveBuffs();
     }
 
     public static void attackToEnemy(Card card, int power) {
@@ -35,9 +44,30 @@ public class Spell extends Card {
 
     public void castSpell(Cell inputCell) {
         // description in Visual Paradigm
+        if (isValidTarget(inputCell)) {
+            ArrayList<Cell> targetCells = getCellsToCast(inputCell);
+            if(buffs == null){
+                // it is cellAffect Spell
+                for (Cell targetCell : targetCells) {
+                    cellAffect.putCellAffect(targetCell);
+                }
+            }else if(cellAffect == null){
+                // it is Buff Spell
+                for (Buff castingBuff : buffs) {
+                    for (Cell targetCell : targetCells) {
+                        castingBuff.startBuff(targetCell);
+                    }
+                }
+            }else{
+                // exception Spells
+                removeBuffs(owningPlayer,false);
+            }
+        } else {
+            // send Error
+        }
     }
 
-    public boolean isValidTarget(Cell inputCell, PlayGround playGround) {
+    public boolean isValidTarget(Cell inputCell) {
         switch (targetType) {
             case AN_ENEMY_MINION_IN_EIGHT_HERO:
                 break;
@@ -73,34 +103,34 @@ public class Spell extends Card {
     }
 
 
-    public ArrayList<Cell> cellsToCast(Cell inputCell) {
+    public ArrayList<Cell> getCellsToCast(Cell inputCell) {
         ArrayList<Cell> result = new ArrayList<>();
         if (targetType == SpellTargetType.AN_ENEMY_POWER
-        || targetType == SpellTargetType.AN_ENEMY_MINION
-        || targetType == SpellTargetType.A_FRIENDLY_POWER
-        || targetType == SpellTargetType.A_FRIENDLY_MINION
-        || targetType == SpellTargetType.FRIENDLY_HERO
-        || targetType == SpellTargetType.ENEMY_HERO
-        || targetType == SpellTargetType.A_POWER
+                || targetType == SpellTargetType.AN_ENEMY_MINION
+                || targetType == SpellTargetType.A_FRIENDLY_POWER
+                || targetType == SpellTargetType.A_FRIENDLY_MINION
+                || targetType == SpellTargetType.FRIENDLY_HERO
+                || targetType == SpellTargetType.ENEMY_HERO
+                || targetType == SpellTargetType.A_POWER
         )
             result.add(inputCell);
-        else if( targetType == SpellTargetType.TWO_IN_TWO_SQUARE){
+        else if (targetType == SpellTargetType.TWO_IN_TWO_SQUARE) {
 
-        }else if( targetType == SpellTargetType.THREE_IN_THREE_SQUARE){
+        } else if (targetType == SpellTargetType.THREE_IN_THREE_SQUARE) {
 
-        }else if(targetType == SpellTargetType.ALL_ENEMY_POWERS){
+        } else if (targetType == SpellTargetType.ALL_ENEMY_POWERS) {
             for (Minion enemyMinion : owningPlayer.getOpponent().getMinionsInPlayGround()) {
                 result.add(enemyMinion.getCell());
             }
             result.add(owningPlayer.getOpponent().getHero().getCell());
-        }else if(targetType == SpellTargetType.ALL_FRIENDLY_POWERS){
+        } else if (targetType == SpellTargetType.ALL_FRIENDLY_POWERS) {
             for (Minion friendlyMinion : owningPlayer.getMinionsInPlayGround()) {
                 result.add(friendlyMinion.getCell());
             }
             result.add(owningPlayer.getHero().getCell());
-        }else if( targetType == SpellTargetType.ALL_ENEMY_IN_COLUMN){
+        } else if (targetType == SpellTargetType.ALL_ENEMY_IN_COLUMN) {
 
-        }else if(targetType == SpellTargetType.AN_ENEMY_MINION_IN_EIGHT_HERO){
+        } else if (targetType == SpellTargetType.AN_ENEMY_MINION_IN_EIGHT_HERO) {
             // random
         }
         return result;

@@ -20,6 +20,8 @@ public class PowerBuff extends Buff {
         } else {
             cell.getMinionOnIt().addAP(power);
         }
+        if(this.isContinous)
+            cell.getMinionOnIt().addContinous(this);
     }
 
     @Override

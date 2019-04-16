@@ -9,6 +9,10 @@ import model.items.Item;
 import java.util.ArrayList;
 
 public class Minion extends Card{
+    public ArrayList<Buff> getActiveBuffs() {
+        return activeBuffs;
+    }
+
     protected ArrayList<Buff> activeBuffs;
     protected boolean canCounterAttack;
 
@@ -152,5 +156,13 @@ public class Minion extends Card{
     public boolean equals(Minion minion){
         return this.cardID.equals(minion.cardID);
     }
-
+    public void dispelPositiveBuffs(){
+        // if a buff is continous , it should be deactive just this turn
+    }
+    public void dispelNegativeBuffs(){
+        // if a buff is continous , it should be deactive just this turn
+    }
+    public void addContinous(Buff buff){
+        continuousBuffs.add(buff);
+    }
 }

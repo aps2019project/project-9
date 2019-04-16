@@ -15,6 +15,8 @@ public class WeaknessBuff extends Buff {
             cell.getMinionOnIt().reduceHP(power);
         else
             cell.getMinionOnIt().reduceAP(power);
+        if(this.isContinous)
+            cell.getMinionOnIt().addContinous(this);
     }
 
     @Override
