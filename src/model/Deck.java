@@ -7,21 +7,16 @@ import model.items.Item;
 import java.util.ArrayList;
 
 public class Deck {
-    ArrayList<Card> cards;
-    Hero hero;
-    Item item;
-    String name;
+    private ArrayList<Card> cards;
+    private Hero hero;
+    private Item item;
+    private String name;
 
-    public void sort() {
+    public void sort() {           //not complete
     }
 
     public void addCard(Card card) {
-        for (Card key : cards) {
-            if (key == null) {
-                key = card;
-                break;
-            }
-        }
+        cards.add(card);
     }
 
     public void addItem(Item item) {
@@ -29,20 +24,45 @@ public class Deck {
     }
 
     public void removeCard(Card card) {
-        if (cards.contains(card))
-            cards.remove(card);
+        cards.remove(card);
     }
 
-    public void removeItem(Item item) {        //not compelete
+    public void removeItem(Item item) {
         item = null;
     }
-    public boolean isValid(){
+
+    public boolean isValid() {
+        if(cards.size() == 20 && hero != null)
+            return true;
         return false;
-    }              //I have no idea
-    public String toString(){
-        return null;
     }
-    public Card getCard(String cardID){      //need card to complete
-        return  null;
+
+    public String toString() {
+        int counter = 1;
+        String string = new String("Heroes : \n\t\t\t");
+        if(hero == null)
+            string = string +"\n";
+        else{
+            string = string + "1 : " + hero.toString() +"\n";
+        }
+        if(item == null)
+            string = string +"\n";
+        else{
+            string = string + "1 : " + item.toString() +"\n";
+        }
+        for(Card key : cards){
+            string = string + counter + " : " + key.toString() + "\n";
+        }
+        return string;
+    }
+
+    public Card getCard(String cardID) {      //need card to complete   returns null if not in deck
+        boolean f = true;
+        for (Card key : cards){
+            if(key != null && key.getCardID == cardID) {
+                return key;
+            }
+        }
+        return null;
     }
 }
