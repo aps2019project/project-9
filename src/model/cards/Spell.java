@@ -18,7 +18,7 @@ public class Spell extends Card {
     private SpellName spellName;
     private Player owningPlayer; // the player use it
 
-    public static void removeBuffs(Player player, boolean isForPassiveBuffs) {
+    public static void removeBuffs(Player player) {
         // for Spell Num 2
         for (Minion friendlyPower : player.getMinionsInPlayGround()) {
             friendlyPower.dispelNegativeBuffs();
@@ -30,37 +30,48 @@ public class Spell extends Card {
         player.getOpponent().getHero().dispelPositiveBuffs();
     }
 
-    public static void attackToEnemy(Card card, int power) {
+    public static void removeBuffs(Player player , ArrayList<Cell> cellsToCast){
+        for (Cell cell : cellsToCast) {
+            if(cell.hasCardOnIt()){
+                if(player.getMinionsInPlayGround().contains(cell.getMinionOnIt()))
+                    cell.getMinionOnIt().dispelNegativeBuffs();
+                else
+                    cell.getMinionOnIt().dispelPositiveBuffs();
+
+            }
+        }
     }
 
-    public static void sacrifice(Card card) {
+    public static void killEnemyMinion(ArrayList<Cell> targetCells) {
+        for (Cell targetCell : targetCells) {
+            targetCell.getMinionOnIt().reduceHP(targetCell.getMinionOnIt().getHP());
+        }
     }
 
-    public static void killEnemyMinion() {
-    }
 
-    public static void dispel(Cell cell) {
-    }
 
     public void castSpell(Cell inputCell) {
         // description in Visual Paradigm
         if (isValidTarget(inputCell)) {
             ArrayList<Cell> targetCells = getCellsToCast(inputCell);
-            if(buffs == null){
+            if (buffs == null) {
                 // it is cellAffect Spell
                 for (Cell targetCell : targetCells) {
                     cellAffect.putCellAffect(targetCell);
                 }
-            }else if(cellAffect == null){
+            } else if (cellAffect == null) {
                 // it is Buff Spell
                 for (Buff castingBuff : buffs) {
                     for (Cell targetCell : targetCells) {
                         castingBuff.startBuff(targetCell);
                     }
                 }
-            }else{
+            } else {
                 // exception Spells
-                removeBuffs(owningPlayer,false);
+                if (spellName == SpellName.DISPEL || spellName == SpellName.AREA_DISPEL)
+                    removeBuffs(owningPlayer,targetCells);
+                else if(spellName == SpellName.KINGS_GUARD)
+                    killEnemyMinion(targetCells);
             }
         } else {
             // send Error

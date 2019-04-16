@@ -2,13 +2,27 @@ package model.buffs;
 
 import model.Cell;
 import model.cards.Minion;
+import model.enumerations.BuffName;
 
 public class WeaknessBuff extends Buff {
     private int power;
     private boolean isForHP;
-    public WeaknessBuff(){
-        // ...
+
+    public WeaknessBuff(int turnsActive) {
+        this.buffName = BuffName.WEAKNESS;
+        this.turnsActive = turnsActive;
+        this.isPositive = false;
     }
+
+    public WeaknessBuff(boolean isForAllTurns , boolean isContinuous){
+        if(isContinuous)
+            turnsActive = 1;
+        else
+            this.isForAllTurns = isForAllTurns;
+        this.buffName = BuffName.WEAKNESS;
+        this.isPositive = false;
+    }
+
     @Override
     public void startBuff(Cell cell) {
         if (isForHP)
@@ -16,7 +30,7 @@ public class WeaknessBuff extends Buff {
         else
             cell.getMinionOnIt().reduceAP(power);
         if(this.isContinous)
-            cell.getMinionOnIt().addContinous(this);
+            cell.getMinionOnIt().addContinuous(this);
     }
 
     @Override

@@ -12,17 +12,22 @@ public class DisarmBuff extends Buff {
         this.isPositive = false;
     }
 
-    public DisarmBuff(boolean isForAllTurns){
+    public DisarmBuff(boolean isForAllTurns , boolean isContinuous){
+        if(isContinuous)
+            turnsActive = 1;
+        else
+            this.isForAllTurns = isForAllTurns;
         this.buffName = BuffName.DISARM;
-        this.isForAllTurns = isForAllTurns;
         this.isPositive = false;
     }
+
+
 
     @Override
     public void startBuff(Cell cell) {
         cell.getMinionOnIt().assignCanCounterAttack(false);
         if(this.isContinous)
-            cell.getMinionOnIt().addContinous(this);
+            cell.getMinionOnIt().addContinuous(this);
     }
 
     @Override

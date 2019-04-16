@@ -9,9 +9,6 @@ import model.items.Item;
 import java.util.ArrayList;
 
 public class Minion extends Card{
-    public ArrayList<Buff> getActiveBuffs() {
-        return activeBuffs;
-    }
 
     protected ArrayList<Buff> activeBuffs;
     protected boolean canCounterAttack;
@@ -73,6 +70,11 @@ public class Minion extends Card{
     public void castPassiveSpecialPower() {
     }
 
+    public ArrayList<Buff> getActiveBuffs() {
+        return activeBuffs;
+    }
+
+
     public Cell getCell() {
         return cell;
     }
@@ -94,7 +96,9 @@ public class Minion extends Card{
     public void doOnRespawnPower() {
     }
 
-    public void addBuff(Buff buff) {
+    public void addActiveBuff(Buff buff) {
+        if(!activeBuffs.contains(buff))
+            activeBuffs.add(buff);
     }
 
     public void reduceHP(int number) {
@@ -124,6 +128,8 @@ public class Minion extends Card{
 
     public void reduceAP(int number) {
         AP -= number;
+        if(HP <= 0)
+            killed();
     }
 
     public void setOnAttackItem(Item item) {
@@ -162,7 +168,7 @@ public class Minion extends Card{
     public void dispelNegativeBuffs(){
         // if a buff is continous , it should be deactive just this turn
     }
-    public void addContinous(Buff buff){
+    public void addContinuous(Buff buff){
         continuousBuffs.add(buff);
     }
 }

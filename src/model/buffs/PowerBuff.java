@@ -2,17 +2,30 @@ package model.buffs;
 
 
 import model.Cell;
-import model.cards.Card;
 import model.cards.Minion;
+import model.enumerations.BuffName;
 import model.enumerations.PowerType;
 
 public class PowerBuff extends Buff {
     private int power;
     private boolean isForHP;
     private PowerType powerType = PowerType.INTEGER;
-    public PowerBuff(){
-        // ...
+
+    public PowerBuff(int turnsActive) {
+        this.buffName = BuffName.POWER;
+        this.turnsActive = turnsActive;
+        this.isPositive = false;
     }
+
+    public PowerBuff(boolean isForAllTurns , boolean isContinuous){
+        if(isContinuous)
+            turnsActive = 1;
+        else
+            this.isForAllTurns = isForAllTurns;
+        this.buffName = BuffName.POWER;
+        this.isPositive = false;
+    }
+
     @Override
     public void startBuff(Cell cell) {
         if (isForHP) {
@@ -21,7 +34,7 @@ public class PowerBuff extends Buff {
             cell.getMinionOnIt().addAP(power);
         }
         if(this.isContinous)
-            cell.getMinionOnIt().addContinous(this);
+            cell.getMinionOnIt().addContinuous(this);
     }
 
     @Override
