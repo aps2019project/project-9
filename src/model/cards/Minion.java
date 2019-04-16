@@ -5,6 +5,7 @@ import model.Cell;
 import model.Player;
 import model.enumerations.MinionAttackType;
 import model.items.Item;
+import model.specialPower.SpecialPower;
 
 import java.util.ArrayList;
 
@@ -37,6 +38,7 @@ public class Minion extends Card{
     protected ArrayList<Item> activeItems;
     protected Item onAttackItem;
     protected Cell cell;
+    protected boolean canComboAttack;
 
     public int getReductionOfOthersAttack() {
         return reductionOfOthersAttack;

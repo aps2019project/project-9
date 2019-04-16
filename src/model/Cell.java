@@ -8,7 +8,16 @@ import model.items.Item;
 import java.util.ArrayList;
 
 public class Cell {
+    public int getX() {
+        return x;
+    }
+
     private int x;
+
+    public int getY() {
+        return y;
+    }
+
     private int y;
     private Minion minionOnIt;
     private ArrayList<CellAffect> cellAffects;
