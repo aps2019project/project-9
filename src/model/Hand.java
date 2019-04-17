@@ -16,8 +16,12 @@ public class Hand {
 
     }
 
-    public String toString() {
-        return null;
+    public String toString() {               //need Card to be complete
+        String string = "";
+        for (Card key : cards) {
+            string += key.getCardID;
+        }
+        return string;
     }
 
     public void deleteCard(Card card) {
