@@ -64,7 +64,7 @@ public class Account implements Comparable<Account> {
     }
 
     public void createNewDeck(String name) {
-        //this need deck to be complete
+        decks.add(new Deck(name));
     }
 
     public ArrayList<Deck> getDecks() {
