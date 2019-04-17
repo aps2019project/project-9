@@ -15,6 +15,6 @@ public class PlayGround {
         return null;
     }
     public ArrayList<Cell> getTwoDistanceCells(Cell currentCell){
-        
+        return null;
     }
 }
