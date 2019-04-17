@@ -62,4 +62,7 @@ public class Deck {
         }
         return null;
     }
+    Deck (String name){
+        this.name = name;
+    }
 }
