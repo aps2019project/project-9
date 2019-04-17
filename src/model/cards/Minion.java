@@ -173,4 +173,7 @@ public class Minion extends Card{
     public void addContinuous(Buff buff){
         continuousBuffs.add(buff);
     }
+    public boolean hasActiveHollyBuff(){
+        return false;
+    }
 }

@@ -15,9 +15,16 @@ public class BuffSpecialPower extends SpecialPower {
 
     @Override
     public void castSpecialPower(Cell cell) {
-        // if EAGLE , cell is Minion current Cell
+        // current minion cell
+        // if EAGLE , cell is Minion
         for (Buff buff : buffs) {
             buff.startBuff(cell);
         }
+        // for SHIR DARANDE
+        if(cell.getMinionOnIt().hasActiveHollyBuff()){
+            cell.getMinionOnIt().reduceHP(1);
+        }
+        // for GHOOL SNAKE
+
     }
 }
