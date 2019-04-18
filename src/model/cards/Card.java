@@ -10,4 +10,5 @@ public class Card {
     protected String name;
     protected String desc;
     public static void createID(Card card){}
+    public CardType getCardType(){return cardType;  }
 }

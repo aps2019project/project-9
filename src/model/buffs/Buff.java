@@ -16,7 +16,12 @@ public abstract class Buff {
     protected boolean isDisabledThisTurn = false;
     protected boolean isPositive;
     protected boolean isContinous;
+    public BuffName getBuffName(){
+        return buffName;
+    }
     public abstract void startBuff(Cell cell);
     public abstract void endBuff(Minion minion);
-
+    public boolean isPositiveBuff(){
+        return isPositive;
+    }
 }

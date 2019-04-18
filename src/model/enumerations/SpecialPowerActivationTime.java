@@ -1,10 +1,10 @@
 package model.enumerations;
 
 public enum SpecialPowerActivationTime {
-    ON_RESPAWN,
+    ON_SPAWN,
     PASSIVE,
     ON_DEATH,
     ON_ATTACK,
     ON_DEFEND,
-    ON_COMBO
+    COMBO
 }

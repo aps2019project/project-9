@@ -3,8 +3,13 @@ package model.cards;
 import model.buffs.Buff;
 import model.Cell;
 import model.Player;
+import model.enumerations.CardType;
 import model.enumerations.MinionAttackType;
+import model.enumerations.MinionName;
+import model.enumerations.SpecialPowerActivationTime;
 import model.items.Item;
+import model.specialPower.OnDefendSpecialPower;
+import model.specialPower.OnDefendType;
 import model.specialPower.SpecialPower;
 
 import java.util.ArrayList;
@@ -23,7 +28,7 @@ public class Minion extends Card{
     public void setCanMove(boolean canMove) {
         this.canMove = canMove;
     }
-
+    protected MinionName minionName;
     protected boolean canMove;
     protected boolean isHolly;
     protected MinionAttackType attackType;
@@ -40,6 +45,10 @@ public class Minion extends Card{
     protected Cell cell;
     protected boolean canComboAttack;
 
+    public SpecialPower getSpecialPower(){
+        return specialPower;
+    }
+    public MinionName getMinionName(){return minionName;}
     public int getReductionOfOthersAttack() {
         return reductionOfOthersAttack;
     }
@@ -59,7 +68,39 @@ public class Minion extends Card{
     public void killed() {
     }
 
+    public int getAP(){
+        return AP;
+    }
+
+    public boolean defend(Card attackingCard , Buff buff){
+        // this method should be called while this minion is being attacked or a Spell is being casted on it
+        if(specialPower.getSpecialPowerActivationTime() != SpecialPowerActivationTime.ON_DEFEND)
+            return true;
+        // special Power is ONDEFEND
+        OnDefendSpecialPower onDefend = (OnDefendSpecialPower)specialPower;
+        if(attackingCard.getCardType() == CardType.SPELL){
+            if(((OnDefendSpecialPower) specialPower).getOnDefendType() == OnDefendType.BUFF){
+                if(((OnDefendSpecialPower) specialPower).getDeactivatedBuff() == buff.getBuffName())
+                    return false;
+            } else if (((OnDefendSpecialPower) specialPower).getOnDefendType() == OnDefendType.NOT_NEGATIVE){
+                if(!buff.isPositiveBuff())
+                    return false;
+            }
+        }else if(attackingCard.getCardType() == CardType.MINION){
+            if(((OnDefendSpecialPower) specialPower).getOnDefendType() == OnDefendType.NOT_NEGATIVE)
+                return false;
+            else if(((OnDefendSpecialPower) specialPower).getOnDefendType() == OnDefendType.NOT_ATTACK_FROM_WEAK){
+                Minion attackingMinion = (Minion)attackingCard;
+                if(attackingMinion.getAP() < this.AP){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     public void counterAttack(Cell cell) {
+
     }
 
     public boolean isValidCell(Cell cell) {
@@ -104,6 +145,7 @@ public class Minion extends Card{
     }
 
     public void reduceHP(int number) {
+        // if HP bellow the 0 , killed()
     }
 
     public Player getPlayer() {

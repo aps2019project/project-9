@@ -3,6 +3,7 @@ package model.cards;
 import model.*;
 import model.buffs.Buff;
 import model.cellaffects.CellAffect;
+import model.enumerations.SpecialPowerActivationTime;
 import model.enumerations.SpellName;
 import model.enumerations.SpellTargetType;
 
@@ -17,7 +18,8 @@ public class Spell extends Card {
     private static ArrayList<Spell> itemSpells;
     private SpellName spellName;
     private Player owningPlayer; // the player use it
-
+    public ArrayList<Buff> getBuffs(){return buffs;}
+    private static ArrayList<Spell> specialPowerSpells = new ArrayList<>();
     public static void removeBuffs(Player player) {
         // for Spell Num 2
         for (Minion friendlyPower : player.getMinionsInPlayGround()) {
@@ -30,10 +32,10 @@ public class Spell extends Card {
         player.getOpponent().getHero().dispelPositiveBuffs();
     }
 
-    public static void removeBuffs(Player player , ArrayList<Cell> cellsToCast){
+    public static void removeBuffs(Player player, ArrayList<Cell> cellsToCast) {
         for (Cell cell : cellsToCast) {
-            if(cell.hasCardOnIt()){
-                if(player.getMinionsInPlayGround().contains(cell.getMinionOnIt()))
+            if (cell.hasCardOnIt()) {
+                if (player.getMinionsInPlayGround().contains(cell.getMinionOnIt()))
                     cell.getMinionOnIt().dispelNegativeBuffs();
                 else
                     cell.getMinionOnIt().dispelPositiveBuffs();
@@ -49,7 +51,6 @@ public class Spell extends Card {
     }
 
 
-
     public void castSpell(Cell inputCell) {
         // description in Visual Paradigm
         if (isValidTarget(inputCell)) {
@@ -63,14 +64,15 @@ public class Spell extends Card {
                 // it is Buff Spell
                 for (Buff castingBuff : buffs) {
                     for (Cell targetCell : targetCells) {
-                        castingBuff.startBuff(targetCell);
+                        if (targetCell.hasCardOnIt() && targetCell.getMinionOnIt().defend(this,castingBuff))
+                            castingBuff.startBuff(targetCell);
                     }
                 }
             } else {
                 // exception Spells
                 if (spellName == SpellName.DISPEL || spellName == SpellName.AREA_DISPEL)
-                    removeBuffs(owningPlayer,targetCells);
-                else if(spellName == SpellName.KINGS_GUARD)
+                    removeBuffs(owningPlayer, targetCells);
+                else if (spellName == SpellName.KINGS_GUARD)
                     killEnemyMinion(targetCells);
             }
         } else {
