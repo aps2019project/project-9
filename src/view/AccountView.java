@@ -12,7 +12,7 @@ public class AccountView {
     public static AccountView getInstance(){return ACCOUNT_VIEW;}
 
     public void printError(AccountErrorType errorType){
-
+        System.out.println(errorType.getMessage());
     }
 
     public void showLeaderBoards(){

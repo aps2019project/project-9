@@ -33,7 +33,7 @@ public class AccountRequest {
     }
 
     public void getNewCommand() {
-        this.command = scanner.nextLine();
+        this.command = scanner.nextLine().toLowerCase();
     }
 
     public boolean isValid() {
