@@ -1,5 +1,7 @@
 package model;
 
+import model.items.Collectible;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -17,21 +19,19 @@ public class Account implements Comparable<Account> {
     public Account(String userName, String passWord) {
         this.userName = userName;
         this.passWord = passWord;
+        accounts.add(this);
     }
 
-    private static Account findAccount(String userName) {           //if not valid return null
-        Account temp = new Account("0", "0");
+    public static Account findAccount(String userName) {           //if not valid return null
+        Account temp = null;
         for (Account key : accounts) {
             if (key != null && key.userName.equals(userName))
                 temp = key;
         }
-        if (isUserNameValid(userName))
-            return temp;
-        else
-            return null;
+        return temp;
     }
 
-    public static boolean isUserNameValid(String userName) {
+    public static boolean isUserNameToken(String userName) {
         return (findAccount(userName) != null);
     }
 
@@ -80,6 +80,7 @@ public class Account implements Comparable<Account> {
     }
 
     public static ArrayList<Account> getAccounts() {
+        sortAccounts();
         return accounts;
     }
 
