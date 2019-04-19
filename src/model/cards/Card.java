@@ -11,4 +11,9 @@ public class Card {
     protected String desc;
     public static void createID(Card card){}
     public CardType getCardType(){return cardType;  }
+    public String getName(){return name; }
+
+    public String getCardID() {
+        return cardID;
+    }
 }

@@ -16,4 +16,12 @@ public class Item {
         return null;
     }
     public static ArrayList<Item> getItems(){return items;}
+
+    public String getName() {
+        return name;
+    }
+
+    public String getItemID() {
+        return itemID;
+    }
 }

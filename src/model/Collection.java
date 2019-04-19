@@ -28,6 +28,36 @@ public class Collection {
         return null;
     }
 
+    public Card searchCardByName(String cardName){
+        for (Card card : cards) {
+            if(card.getName().equals(cardName))
+                return card;
+        }
+        return null;
+    }
+
+    public Card searchCardByID(String cardID){
+        for (Card card : cards) {
+            if(card.getCardID().equals(cardID))
+                return card;
+        }
+        return null;
+    }
+    public Item searchItemByID(String itemID){
+        for (Item item : items) {
+            if(item.getItemID().equals(itemID))
+                return item;
+        }
+        return null;
+    }
+    public Item searchItemByName(String itemName){
+        for (Item item : items) {
+            if(item.getName().equals(itemName))
+                return item;
+        }
+        return null;
+    }
+
     public void addCard(Card card) {
         cards.add(card);
     }
@@ -43,6 +73,10 @@ public class Collection {
 
     public void removeItem(Item item) {
         items.remove(item);
+    }
+
+    public String toString(){
+        return null;
     }
 
 }

@@ -44,6 +44,7 @@ public class Minion extends Card{
     protected Item onAttackItem;
     protected Cell cell;
     protected boolean canComboAttack;
+    protected boolean isHero = false;
 
     public SpecialPower getSpecialPower(){
         return specialPower;
@@ -217,5 +218,9 @@ public class Minion extends Card{
     }
     public boolean hasActiveHollyBuff(){
         return false;
+    }
+
+    public boolean getIsHero() {
+        return isHero;
     }
 }

@@ -10,7 +10,7 @@ public class Account implements Comparable<Account> {
     private int money;
     private BattleResult[] battleResults;
     private ArrayList<Deck> decks;
-    private Deck MainDeck;
+    private Deck mainDeck;
     private static ArrayList<Account> accounts;
     private String userName;
     private String passWord;
@@ -47,12 +47,12 @@ public class Account implements Comparable<Account> {
         Collections.sort(accounts);
     }
 
-    public void deleteDeck(Deck deck) {
-        decks.remove(deck);
+    public void deleteDeck(String deckName) {
+        decks.remove(findDeckByName(deckName));
     }
 
     public void selectMainDeck(Deck deck) {
-        MainDeck = deck;
+        mainDeck = deck;
     }
 
     public void reduceMoney(int money) {
@@ -64,13 +64,14 @@ public class Account implements Comparable<Account> {
     }
 
     public void createNewDeck(String name) {
+
         decks.add(new Deck(name));
     }
 
     public ArrayList<Deck> getDecks() {
         return this.decks;
     }
-
+    public Deck getMainDeck(){return mainDeck;}
     public String getUserName() {
         return userName;
     }
@@ -91,5 +92,12 @@ public class Account implements Comparable<Account> {
     public int compareTo(Account compare) {
         int compareQuantity = compare.numberOfWins;
         return compareQuantity - this.numberOfWins;
+    }
+    public Deck findDeckByName(String name){
+        for (Deck deck : decks) {
+            if(deck.getName().equals(name))
+                return deck;
+        }
+        return null;
     }
 }

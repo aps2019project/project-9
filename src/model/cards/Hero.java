@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class Hero extends Minion {
     public Hero(HeroTargetType heroTargetType) {
         this.spellTargetType = heroTargetType;
+        this.isHero = true;
     }
 
     private static ArrayList<Hero> heroes;
