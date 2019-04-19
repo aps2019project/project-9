@@ -124,7 +124,7 @@ public class CollectionController {
         }
     }
 
-    private void search(String cardOrItemName) { // card or item name
+    public void search(String cardOrItemName) { // card or item name
         if (loggedInAccount.getCollection().searchCardByName(cardOrItemName) != null) {
             view.showCardID(loggedInAccount.getCollection().searchCardByName(cardOrItemName));
         } else if (loggedInAccount.getCollection().searchItemByName(cardOrItemName) != null) {

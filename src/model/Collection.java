@@ -28,34 +28,43 @@ public class Collection {
         return null;
     }
 
-    public Card searchCardByName(String cardName){
+    public ArrayList<Card> searchCardByName(String cardName) {
+        ArrayList<Card> result = new ArrayList<>();
         for (Card card : cards) {
-            if(card.getName().equals(cardName))
+            if (card.getName().equals(cardName))
+                result.add(card);
+        }
+        if (result.size() == 0)
+            return null;
+        return result;
+    }
+
+    public Card searchCardByID(String cardID) {
+        for (Card card : cards) {
+            if (card.getCardID().equals(cardID))
                 return card;
         }
         return null;
     }
 
-    public Card searchCardByID(String cardID){
-        for (Card card : cards) {
-            if(card.getCardID().equals(cardID))
-                return card;
-        }
-        return null;
-    }
-    public Item searchItemByID(String itemID){
+    public Item searchItemByID(String itemID) {
         for (Item item : items) {
-            if(item.getItemID().equals(itemID))
+            if (item.getItemID().equals(itemID))
                 return item;
         }
         return null;
     }
-    public Item searchItemByName(String itemName){
+
+    public ArrayList<Item> searchItemByName(String itemName) {
+        ArrayList<Item> result = new ArrayList<>();
         for (Item item : items) {
-            if(item.getName().equals(itemName))
-                return item;
+            if (item.getName().equals(itemName))
+                result.add(item);
         }
-        return null;
+        if (result.size() == 0)
+            return null;
+        else
+            return result;
     }
 
     public void addCard(Card card) {
@@ -75,7 +84,7 @@ public class Collection {
         items.remove(item);
     }
 
-    public String toString(){
+    public String toString() {
         return null;
     }
 

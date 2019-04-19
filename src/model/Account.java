@@ -100,4 +100,8 @@ public class Account implements Comparable<Account> {
         }
         return null;
     }
+
+    public int getMoney() {
+        return money;
+    }
 }

@@ -46,14 +46,18 @@ public class CollectionView {
         }
     }
 
-    public void showCardID(Card card){
-        System.out.println("Card ID :");
-        System.out.println(card.getCardID());
+    public void showCardID(ArrayList<Card> cards){
+        for (Card card : cards) {
+            System.out.print("Card ID :");
+            System.out.println(card.getCardID());
+        }
     }
 
-    public void showItemID(Item item){
-        System.out.println("Item ID :");
-        System.out.println(item.getItemID());
+    public void showItemID(ArrayList<Item> items){
+        for (Item item : items) {
+            System.out.println("Item ID :");
+            System.out.println(item.getItemID());
+        }
     }
 
     public void showCollection(Collection collection){

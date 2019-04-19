@@ -24,4 +24,8 @@ public class Item {
     public String getItemID() {
         return itemID;
     }
+
+    public int getCost() {
+        return cost;
+    }
 }

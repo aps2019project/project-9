@@ -16,4 +16,8 @@ public class Card {
     public String getCardID() {
         return cardID;
     }
+
+    public int getCost() {
+        return cost;
+    }
 }

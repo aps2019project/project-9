@@ -27,10 +27,11 @@ public class MainMenuRequest {
 
     public boolean isValid(){
         MainMenuRequestType requestType = getType();
-        if(requestType == null)
-            return false;
-        else {
+        if(requestType == null) {
             errorType = MainMenuErrorType.INVALID_COMMAND;
+            return false;
+        }
+        else {
             return true;
         }
     }
