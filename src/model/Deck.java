@@ -2,6 +2,9 @@ package model;
 
 import model.cards.Card;
 import model.cards.Hero;
+import model.cards.Minion;
+import model.cards.Spell;
+import model.enumerations.CardType;
 import model.items.Item;
 
 import java.util.ArrayList;
@@ -45,19 +48,24 @@ public class Deck {
 
     public String toString() {
         int counter = 1;
-        String string = new String("Heroes : \n\t\t\t");
-        if (hero == null)
-            string = string + "\n";
-        else {
-            string = string + "1 : " + hero.toString() + "\n";
-        }
-        if (item == null)
-            string = string + "\n";
-        else {
-            string = string + "1 : " + item.toString() + "\n";
-        }
+        String string = "Heroes : \n";
+        if (hero != null)
+            string += "\t\t\t1 : " + hero.toString() + "\n";
+
+        string += "Items : ";
+        if (item != null)
+            string += "\t\t\t1 : " + item.toString() + "\n";
+
+        string += "Cards : ";
         for (Card key : cards) {
-            string += counter + " : " + key.toString() + "\n";
+            if(key.getCardType() == CardType.MINION) {
+                Minion minion = (Minion)key;
+                string += "\t\t\t" + counter + " : " + minion.toString() + "\n";
+            }
+            else{
+                Spell spell = (Spell) key;
+                string += "\t\t\t" + counter + " : " + spell.toString() + "\n";
+            }
         }
         return string;
     }
