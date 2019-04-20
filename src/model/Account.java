@@ -39,9 +39,6 @@ public class Account implements Comparable<Account> {
         return findAccount(userName).passWord.equals(passWord);
     }
 
-    public static void login(String userName, String passWord) {
-        // i dont know the logic
-    }
 
     public static void sortAccounts() {
         Collections.sort(accounts);

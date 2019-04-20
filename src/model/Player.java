@@ -54,7 +54,7 @@ public class Player {
 
     public void insertCard(Card card, Cell cell) {
         if (card.getCardType() == CardType.MINION) {
-            Minion currentMinion = (Minion)card;
+            Minion currentMinion = (Minion) card;
             currentMinion.putInMap(cell);
         } else {
             Spell currentSpell = (Spell) card;
@@ -62,7 +62,11 @@ public class Player {
             hand.deleteCard(card);
         }
     }
-    public Hand getHand(){return hand;}
+
+    public Hand getHand() {
+        return hand;
+    }
+
     public void collectItem(Item item) {
         collectedItems.add((Collectible) item);
     }
@@ -161,5 +165,9 @@ public class Player {
 
     public ArrayList<Minion> getMinionsInPlayGround() {
         return minionsInPlayGround;
+    }
+
+    public Deck getDeck() {
+        return deck;
     }
 }
