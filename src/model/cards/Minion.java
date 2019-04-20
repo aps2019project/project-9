@@ -84,6 +84,9 @@ public class Minion extends Card {
     }
 
     public void killed() {
+        // if it has flag in game mode two , put the flag in playGround
+        // ( the Cell field is the minion last cell ( before kill ) )
+        player.getBattle().checkWinner();
     }
 
     public int getAP() {
@@ -142,18 +145,6 @@ public class Minion extends Card {
         return cell;
     }
 
-    /*public void castSpecialPower() {
-
-    }
-
-    public boolean canCastSpell(Spell spell) {
-        return false;
-    }
-
-    public boolean canAttackFrom(Card card) {
-        return false;
-    }*/
-
 
     public void addActiveBuff(Buff buff) {
         if (!activeBuffs.contains(buff))
@@ -163,6 +154,7 @@ public class Minion extends Card {
     public void reduceHP(int number) {
         // if HP bellow the 0 , killed()
         if((HP - number) <= 0){
+            HP = 0;
             killed();
         }else
             HP-=number;
