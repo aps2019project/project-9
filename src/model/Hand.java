@@ -7,21 +7,20 @@ import java.util.ArrayList;
 public class Hand {
     private ArrayList<Card> cards;
     private Deck deck;
-
+    private int numberOfCardFromDeck;
     public Card getNext() {
         return null;
     }
 
     public void addCardFromDeck() {
-
+        if(cards.size() < 5){
+            cards.add(deck.getCards().get(numberOfCardFromDeck++));
+        }
     }
 
-    public String toString() {               //need Card to be complete
-        String string = "";
-        for (Card key : cards) {
-            string += key.getCardID;
-        }
-        return string;
+    public String toString() {
+        return null;
+        // also show next turn card ( that will be added to hand )
     }
 
     public void deleteCard(Card card) {

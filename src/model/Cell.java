@@ -38,9 +38,11 @@ public class Cell {
     }
 
     public void addCard(Card card) {
+        minionOnIt = (Minion)card;
     }
 
     public void deleteCard() {
+        minionOnIt = null;
     }
 
     public void addCellAffect(CellAffect cellAffect) {
@@ -57,4 +59,10 @@ public class Cell {
         return (this.x == cell.x) && (this.y == cell.y);
     }
 
+    public ArrayList<CellAffect> getCellAffects() {
+        return cellAffects;
+    }
+    public boolean hasCellAffect(){
+        return cellAffects.size() > 0;
+    }
 }

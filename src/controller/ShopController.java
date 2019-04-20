@@ -46,7 +46,10 @@ public class ShopController {
                     break;
                 case SHOW:
                     view.show();
+                    break;
                 case HELP:
+                    view.help();
+                    break;
             }
         } while (!isFinished);
     }

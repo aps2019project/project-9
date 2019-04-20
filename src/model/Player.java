@@ -5,9 +5,15 @@ import model.cards.Card;
 import model.cards.Hero;
 import model.cards.Minion;
 import model.cards.Spell;
+import model.cellaffects.CellAffect;
+import model.enumerations.CardType;
+import model.enumerations.ItemName;
+import model.enumerations.MinionAttackType;
+import model.enumerations.SpellTargetType;
 import model.items.*;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Player {
     private ArrayList<Buff> activeBuffs;
@@ -26,12 +32,20 @@ public class Player {
     private GraveYard graveYard;
 
     public void attack(Cell cell, Card card) {
+
     }
 
     public void comboAttack(Cell cell, ArrayList<Card> cards) {
+
     }
 
     public void castUsableItem() {
+        ItemName usableName = usableItem.getItemType();
+        if (usableName == ItemName.ASSASINATION_DAGGER
+                || usableName == ItemName.TERROR_HOOD
+                || usableName == ItemName.POISONOUS_DAGGER)
+            return; // except for these items
+        usableItem.castItem(this);
     }
 
     public Battle getBattle() {
@@ -39,9 +53,17 @@ public class Player {
     }
 
     public void insertCard(Card card, Cell cell) {
+        if (card.getCardType() == CardType.MINION) {
+            hand.deleteCard(card);
+        } else {
+            Spell currentSpell = (Spell) card;
+            currentSpell.castSpell(cell);
+            hand.deleteCard(card);
+        }
     }
 
-    public void collectItem(Card card, Item item) {
+    public void collectItem(Item item) {
+        collectedItems.add((Collectible) item);
     }
 
     public String getName() {
@@ -49,6 +71,8 @@ public class Player {
     }
 
     public void endTurn() {
+        hand.addCardFromDeck();
+        battle.nextTurn();
     }
 
     public void reduceMana(int number) {
@@ -56,10 +80,24 @@ public class Player {
     }
 
     public void useCollectableItem(Item item, Cell cell) {
+        Collectible collectibleItem = (Collectible) item;
+        collectibleItem.useItem();
+        collectedItems.remove(collectibleItem);
     }
 
-    public void move(Card card, Cell cell) {
-
+    public void move(Minion minion, Cell cell) {
+        for (CellAffect cellAffect : minion.getCell().getCellAffects()) {
+            cellAffect.expireCellAffect();
+        }
+        minion.getCell().deleteCard();
+        if (!cell.hasCardOnIt()) {
+            if (cell.hasCellAffect()) {
+                for (CellAffect cellAffect : cell.getCellAffects()) {
+                    cellAffect.castCellAffect(minion);
+                }
+            }
+        }
+        cell.addCard(minion);
     }
 
     public int getMana() {
@@ -71,20 +109,56 @@ public class Player {
     }
 
     public void doAiAction() {
+        // ...
     }
-    public void addMana(int number){
-        mana+= number;
+
+    public void addMana(int number) {
+        mana += number;
     }
-    public void deleteUsableItem(){
+
+    public void deleteUsableItem() {
         usableItem = null;
     }
-    public Player getOpponent(){return null;}
-    public Hero getHero(){
+
+    public Player getOpponent() {
+        if (battle.getFirstPlayer().equals(this))
+            return battle.getSecondPlayer();
+        else
+            return battle.getFirstPlayer();
+    }
+
+    public Hero getHero() {
         return hero;
     }
-    public Minion getRandomPower(boolean isRangedOrHybrid){
-        return null;
+
+    public Minion getRandomPower(boolean isRangedOrHybrid) {
+        if (isRangedOrHybrid) {
+            ArrayList<Minion> rangedHybridMinionsInPlayGround = new ArrayList<>();
+            for (Minion minion : minionsInPlayGround) {
+                if (minion.getAttackType() == MinionAttackType.HYBRID
+                        || minion.getAttackType() == MinionAttackType.RANGED)
+                    rangedHybridMinionsInPlayGround.add(minion);
+            }
+            Random rand = new Random();
+            return rangedHybridMinionsInPlayGround.get(rand.nextInt(rangedHybridMinionsInPlayGround.size()));
+        } else {
+            Random rand = new Random();
+            return minionsInPlayGround.get(rand.nextInt(minionsInPlayGround.size()));
+        }
     }
-    public void giveSpellToRandomPower(Spell spell , boolean isForEnemy){}
-    public ArrayList<Minion> getMinionsInPlayGround(){return minionsInPlayGround;}
+
+    public void giveSpellToRandomPower(Spell spell, boolean isForEnemy) { // spells target shouldn't conflict
+        if (isForEnemy) {
+            Player opponent = getOpponent();
+            opponent.giveSpellToRandomPower(spell, false);
+        } else {
+            Random rand = new Random();
+            Minion randomMinion = minionsInPlayGround.get(rand.nextInt(minionsInPlayGround.size()));
+            spell.castSpell(randomMinion.getCell());
+        }
+    }
+
+    public ArrayList<Minion> getMinionsInPlayGround() {
+        return minionsInPlayGround;
+    }
 }

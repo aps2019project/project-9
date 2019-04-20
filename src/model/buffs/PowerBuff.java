@@ -33,6 +33,7 @@ public class PowerBuff extends Buff {
         } else {
             cell.getMinionOnIt().addAP(power);
         }
+        cell.getMinionOnIt().addActiveBuff(this);
         if(this.isContinous)
             cell.getMinionOnIt().addContinuous(this);
     }

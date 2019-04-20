@@ -98,4 +98,8 @@ public class Deck {
     public void setHero(Hero hero) {
         this.hero = hero;
     }
+
+    public ArrayList<Card> getCards() {
+        return cards;
+    }
 }

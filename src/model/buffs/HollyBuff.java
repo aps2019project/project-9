@@ -24,6 +24,7 @@ public class HollyBuff extends Buff{
     @Override
     public void startBuff(Cell cell) {
         cell.getMinionOnIt().setReductionOfOthersAttack(1);
+        cell.getMinionOnIt().addActiveBuff(this);
         if(this.isContinous)
             cell.getMinionOnIt().addContinuous(this);
     }

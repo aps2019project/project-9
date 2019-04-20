@@ -64,8 +64,9 @@ public class Spell extends Card {
                 // it is Buff Spell
                 for (Buff castingBuff : buffs) {
                     for (Cell targetCell : targetCells) {
-                        if (targetCell.hasCardOnIt() && targetCell.getMinionOnIt().defend(this,castingBuff))
+                        if (targetCell.hasCardOnIt() && targetCell.getMinionOnIt().defend(this,castingBuff)) {
                             castingBuff.startBuff(targetCell);
+                        }
                     }
                 }
             } else {
@@ -152,5 +153,9 @@ public class Spell extends Card {
 
     public String toString() {
         return null;
+    }
+
+    public SpellTargetType getTargetType() {
+        return targetType;
     }
 }

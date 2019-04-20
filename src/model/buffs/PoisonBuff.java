@@ -24,6 +24,7 @@ public class PoisonBuff extends Buff{
         if(this.isContinous)
             cell.getMinionOnIt().addContinuous(this);
         cell.getMinionOnIt().reduceHP(1);
+        cell.getMinionOnIt().addActiveBuff(this);
     }
 
     @Override

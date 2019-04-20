@@ -28,4 +28,8 @@ public class Item {
     public int getCost() {
         return cost;
     }
+
+    public ItemName getItemType() {
+        return itemType;
+    }
 }

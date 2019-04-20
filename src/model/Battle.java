@@ -3,10 +3,12 @@ package model;
 import model.enumerations.GameMode;
 
 public class Battle {
-    private int turn;
-    private PlayGround playGround;
-    private GameMode gameMode;
-    private int whoseTurn;
+    protected int turn;
+    protected PlayGround playGround;
+    protected GameMode gameMode;
+    protected int whoseTurn;
+    protected Player firstPlayer;
+    protected Player secondPlayer;
     public void nextTurn(){}
     public void endBattle(){}
     public PlayGround getPlayGround(){return playGround;}
@@ -16,4 +18,12 @@ public class Battle {
     public void setGameMode(GameMode mode){}
     public void setNumberOfFlags(int number){}
     public int getTurn(){return turn;}
+
+    public Player getFirstPlayer() {
+        return firstPlayer;
+    }
+
+    public Player getSecondPlayer() {
+        return secondPlayer;
+    }
 }

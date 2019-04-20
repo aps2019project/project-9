@@ -26,6 +26,7 @@ public class DisarmBuff extends Buff {
     @Override
     public void startBuff(Cell cell) {
         cell.getMinionOnIt().assignCanCounterAttack(false);
+        cell.getMinionOnIt().addActiveBuff(this);
         if(this.isContinous)
             cell.getMinionOnIt().addContinuous(this);
     }

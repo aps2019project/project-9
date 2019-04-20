@@ -1,6 +1,7 @@
 package controller;
 
 import model.Account;
+import model.enumerations.MainMenuErrorType;
 import model.enumerations.MainMenuRequestType;
 import view.MainMenuRequest;
 import view.MainMenuView;
@@ -49,8 +50,12 @@ public class MainMenuController {
     }
 
     public void goBattleMenu(Account loggedInAccount) {
-        BattleMenuController battleMenuController = new BattleMenuController(loggedInAccount);
-        battleMenuController.main();
+        // checking the validation of main deck
+        if(loggedInAccount.getMainDeck().isValid()) {
+            BattleMenuController battleMenuController = new BattleMenuController(loggedInAccount);
+            battleMenuController.main();
+        }else
+            mainMenuView.printError(MainMenuErrorType.SELECTED_DECK_INVALID);
     }
 
     public void goShopMenu(Account loggedInAccount) {

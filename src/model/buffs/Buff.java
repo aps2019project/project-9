@@ -24,4 +24,10 @@ public abstract class Buff {
     public boolean isPositiveBuff(){
         return isPositive;
     }
+    public void addAffectingCard(Card card){
+        this.affectingCard = card;
+    }
+    public boolean getIsContinuous(){
+        return isContinous;
+    }
 }
