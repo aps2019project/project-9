@@ -11,9 +11,10 @@ public class Item {
     protected String name;
     protected ItemName itemType;
     protected String itemID;
+    protected String desc;
 
     public String toString() {
-        return null;
+        return "Name : " + name + " - Desc: " + desc;
     }
     public static ArrayList<Item> getItems(){return items;}
 
