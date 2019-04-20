@@ -265,7 +265,7 @@ public class Minion extends Card {
     }
 
     public String toString() {
-        return null;
+        return "Type : Minion - Name : " + getName() + " - MP : " + MP + " - Desc: " + getDesc();
     }
 
     public int getAttackRange(){
