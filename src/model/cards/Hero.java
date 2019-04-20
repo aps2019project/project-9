@@ -32,4 +32,5 @@ public class Hero extends Minion {
     public String toString() {
         return null;
     }
+
 }
