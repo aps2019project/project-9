@@ -1,6 +1,9 @@
 package model;
 
 import model.cards.Card;
+import model.cards.Minion;
+import model.cards.Spell;
+import model.enumerations.CardType;
 import model.items.Item;
 
 import java.util.ArrayList;
@@ -58,6 +61,26 @@ public class Shop {
 
     public ArrayList<Item> getItems() {
         return allItems;
+    }
+
+    public String toString(){
+        String string = "";
+        for(Item item : allItems){
+            string += item.toString();
+            string += "\n";
+        }
+        for(Card card : allCards){
+            if(card.getCardType() == CardType.MINION){
+                Minion minion = (Minion) card;
+                string += minion.toString() + minion.getCost();
+            }
+            else {
+                Spell spell = (Spell) card;
+                string += spell.toString() + spell.getCost();
+            }
+            string += "\n";
+        }
+        return string;
     }
 
 }
