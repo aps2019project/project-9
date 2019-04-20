@@ -54,14 +54,15 @@ public class Player {
 
     public void insertCard(Card card, Cell cell) {
         if (card.getCardType() == CardType.MINION) {
-            hand.deleteCard(card);
+            Minion currentMinion = (Minion)card;
+            currentMinion.putInMap(cell);
         } else {
             Spell currentSpell = (Spell) card;
             currentSpell.castSpell(cell);
             hand.deleteCard(card);
         }
     }
-
+    public Hand getHand(){return hand;}
     public void collectItem(Item item) {
         collectedItems.add((Collectible) item);
     }

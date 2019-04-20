@@ -1,5 +1,7 @@
 package model;
 
+import model.enumerations.MinionAttackType;
+
 import java.util.ArrayList;
 
 public class PlayGround {
@@ -22,14 +24,26 @@ public class PlayGround {
 
     public ArrayList<Cell> getAroundCells(Cell centerCell) {
         ArrayList<Cell> result = new ArrayList<>();
-        result.add(getCell(centerCell.getX()-1,centerCell.getY()));
-        result.add(getCell(centerCell.getX(),centerCell.getY()-1));
-        result.add(getCell(centerCell.getX()-1,centerCell.getY()-1));
-        result.add(getCell())
+        result.add(getCell(centerCell.getX() - 1, centerCell.getY()));
+        result.add(getCell(centerCell.getX() + 1, centerCell.getY()));
+        result.add(getCell(centerCell.getX(), centerCell.getY() - 1));
+        result.add(getCell(centerCell.getX(), centerCell.getY() + 1));
+        result.add(getCell(centerCell.getX() - 1, centerCell.getY() - 1));
+        result.add(getCell(centerCell.getX() + 1, centerCell.getY() - 1));
+        result.add(getCell(centerCell.getX() - 1, centerCell.getY() + 1));
+        result.add(getCell(centerCell.getX() + 1, centerCell.getY() + 1));
+        return result;
     }
 
     public ArrayList<Cell> getTwoDistanceCells(Cell currentCell) {
-        return null;
+        ArrayList<Cell> result = new ArrayList<>();
+        for (Cell[] rowCells : cells) {
+            for (Cell cell : rowCells) {
+                if (getManhatanDistance(cell, currentCell) == 2)
+                    result.add(cell);
+            }
+        }
+        return result;
     }
 
     public int getManhatanDistance(Cell firstCell, Cell secondCell) {
@@ -37,7 +51,21 @@ public class PlayGround {
                 java.lang.Math.abs((firstCell.getY() - secondCell.getY())));
     }
 
-    public boolean isValidForMelee(Cell minionCell, Cell targetCell) {
-        return getAroundCells(minionCell).contains(targetCell);
+    public boolean isValid(Cell minionCell, Cell targetCell, MinionAttackType attackType) {
+        switch (attackType) {
+            case MELEE:
+                return getAroundCells(minionCell).contains(targetCell);
+            case HYBRID:
+                return true;
+            case RANGED:
+                if (getAroundCells(minionCell).contains(targetCell))
+                    return false;
+                else if (getManhatanDistance(minionCell, targetCell) <= minionCell.getMinionOnIt().getAttackRange()) {
+                    return true;
+                } else
+                    return false;
+        }
+        return false;
     }
+
 }

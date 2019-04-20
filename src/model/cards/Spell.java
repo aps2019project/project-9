@@ -76,8 +76,6 @@ public class Spell extends Card {
                 else if (spellName == SpellName.KINGS_GUARD)
                     killEnemyMinion(targetCells);
             }
-        } else {
-            // send Error
         }
     }
 

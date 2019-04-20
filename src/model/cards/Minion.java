@@ -4,6 +4,7 @@ import model.PlayGround;
 import model.buffs.Buff;
 import model.Cell;
 import model.Player;
+import model.cellaffects.CellAffect;
 import model.enumerations.CardType;
 import model.enumerations.MinionAttackType;
 import model.enumerations.MinionName;
@@ -36,7 +37,7 @@ public class Minion extends Card {
     protected MinionAttackType attackType;
     protected int HP;
     protected int AP;
-    protected int attackRange;
+    protected int attackRange; // for RANGED Type
     protected ArrayList<Buff> continuousBuffs;
     protected SpecialPower specialPower;
     protected boolean isFars;
@@ -67,6 +68,16 @@ public class Minion extends Card {
     protected int reductionOfOthersAttack = 0;
 
     public void putInMap(Cell cell) {
+        // check validation of cell
+        if(isValidCell(cell)){
+            player.getHand().deleteCard(this);
+            cell.addCard(this);
+            if(cell.hasCellAffect()){
+                for (CellAffect cellAffect : cell.getCellAffects()) {
+                    cellAffect.castCellAffect(this);
+                }
+            }
+        }
     }
 
     public void attack(Cell cell) {
@@ -112,15 +123,8 @@ public class Minion extends Card {
     }
 
     public boolean isValidCell(Cell cell) {
-        // for the target cell that this wants to attack to
-        switch (attackType){
-            case RANGED:
-
-            case HYBRID:
-
-            case MELEE:
-
-        }
+        // for the target cell that this wants to attack ( or Counter Attack ) to
+        return player.getBattle().getPlayGround().isValid(getCell(),cell,attackType);
     }
 
     public void comboAttack(Cell cell, ArrayList<Card> participatingCards) {
@@ -158,7 +162,10 @@ public class Minion extends Card {
 
     public void reduceHP(int number) {
         // if HP bellow the 0 , killed()
-        if((HP - number) <= 0)
+        if((HP - number) <= 0){
+            killed();
+        }else
+            HP-=number;
     }
 
     public Player getPlayer() {
@@ -259,5 +266,9 @@ public class Minion extends Card {
 
     public String toString() {
         return null;
+    }
+
+    public int getAttackRange(){
+        return attackRange;
     }
 }
