@@ -76,6 +76,7 @@ public class Deck {
                 Spell spell = (Spell) key;
                 string += "\t\t\t" + counter + " : " + spell.toString() + "\n";
             }
+            counter++;
         }
         return string;
     }

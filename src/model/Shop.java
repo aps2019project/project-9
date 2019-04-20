@@ -1,6 +1,7 @@
 package model;
 
 import model.cards.Card;
+import model.cards.Hero;
 import model.cards.Minion;
 import model.cards.Spell;
 import model.enumerations.CardType;
@@ -64,7 +65,18 @@ public class Shop {
     }
 
     public String toString(){
-        String string = "";
+        String string = "Heroes : \n";
+        int counter = 1;
+        for(Card card : allCards){
+            if(card.getCardType() == CardType.MINION){
+                Minion minion = (Minion) card;
+                if(minion.getIsHero()){
+                    Hero hero = (Hero) minion;
+                    string += "\t\t\t" + counter + " : " + hero.toString() + " - Buy Cost : " + hero.getCost() ;
+                    counter++;
+                }
+            }
+        }
         for(Item item : allItems){
             string += item.toString();
             string += "\n";
@@ -72,11 +84,11 @@ public class Shop {
         for(Card card : allCards){
             if(card.getCardType() == CardType.MINION){
                 Minion minion = (Minion) card;
-                string += minion.toString() + minion.getCost();
+                string += minion.toString() + " - Sell Cost : " + minion.getCost();
             }
             else {
                 Spell spell = (Spell) card;
-                string += spell.toString() + spell.getCost();
+                string += spell.toString() + " - Sell Cost : " + spell.getCost();
             }
             string += "\n";
         }

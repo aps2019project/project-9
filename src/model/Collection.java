@@ -89,6 +89,7 @@ public class Collection {
         int counter = 1;
         for(Deck deck : ownerAccount.getDecks()){
             string += counter + " : " + deck.getName() + " :\n" + deck.toString(true);
+            counter++;
         }
         return string;
     }
