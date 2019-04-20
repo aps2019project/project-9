@@ -9,9 +9,17 @@ public class Card {
     protected String cardID;
     protected String name;
     protected String desc;
-    public static void createID(Card card){}
-    public CardType getCardType(){return cardType;  }
-    public String getName(){return name; }
+
+    public static void createID(Card card) {
+    }
+
+    public CardType getCardType() {
+        return cardType;
+    }
+
+    public String getName() {
+        return name;
+    }
 
     public String getCardID() {
         return cardID;
@@ -19,5 +27,9 @@ public class Card {
 
     public int getCost() {
         return cost;
+    }
+
+    public String getDesc() {
+        return desc;
     }
 }
