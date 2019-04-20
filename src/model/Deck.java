@@ -46,23 +46,33 @@ public class Deck {
         return (cards.size() == 20 && hero != null);
     }
 
-    public String toString() {
+    public String toString(boolean forCollection) {
         int counter = 1;
-        String string = "Heroes : \n";
-        if (hero != null)
+        String string = "";
+        if (forCollection)
+            string += "\t\t";
+        string += "Heroes : \n";
+        if (hero != null) {
+            if (forCollection)
+                string += "\t\t";
             string += "\t\t\t1 : " + hero.toString() + "\n";
-
+        }
+        if (forCollection)
+            string += "\t\t";
         string += "Items : ";
-        if (item != null)
+        if (item != null) {
+            if (forCollection)
+                string += "\t\t";
             string += "\t\t\t1 : " + item.toString() + "\n";
-
+        }
         string += "Cards : ";
         for (Card key : cards) {
-            if(key.getCardType() == CardType.MINION) {
-                Minion minion = (Minion)key;
+            if (forCollection)
+                string += "\t\t";
+            if (key.getCardType() == CardType.MINION) {
+                Minion minion = (Minion) key;
                 string += "\t\t\t" + counter + " : " + minion.toString() + "\n";
-            }
-            else{
+            } else {
                 Spell spell = (Spell) key;
                 string += "\t\t\t" + counter + " : " + spell.toString() + "\n";
             }

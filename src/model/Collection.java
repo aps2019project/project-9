@@ -12,7 +12,7 @@ public class Collection {
 
     public Card getCard(String cardID) {
         for (Card key : cards) {
-            if (key != null) {     //&& key.getcardID
+            if (key != null && key.getCardID().equals(cardID)) {
                 return key;
             }
         }
@@ -21,7 +21,7 @@ public class Collection {
 
     public Item getItem(String itemID) {
         for (Item key : items) {
-            if (key != null) {     //&& key.getItemID
+            if (key != null && key.getItemID().equals(itemID)) {
                 return key;
             }
         }
@@ -85,7 +85,12 @@ public class Collection {
     }
 
     public String toString() {
-        return null;
+        String string = "";
+        int counter = 1;
+        for(Deck deck : ownerAccount.getDecks()){
+            string += counter + " : " + deck.getName() + " :\n" + deck.toString(true);
+        }
+        return string;
     }
 
 }
