@@ -3,6 +3,7 @@ package model;
 import model.cards.Card;
 import model.cards.Minion;
 import model.cellaffects.CellAffect;
+import model.items.Flag;
 import model.items.Item;
 
 import java.util.ArrayList;
@@ -24,6 +25,8 @@ public class Cell {
 
     private PlayGround playGround;
     private Item collectableItem;
+
+    private Flag flag = null; // if it had flag this wouldn't be null
 
     public Minion getMinionOnIt() {
         return minionOnIt;
@@ -64,5 +67,12 @@ public class Cell {
     }
     public boolean hasCellAffect(){
         return cellAffects.size() > 0;
+    }
+
+    public Flag getFlag() {
+        return flag;
+    }
+    public void setFlag(Flag flag){
+        this.flag = flag;
     }
 }

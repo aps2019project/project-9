@@ -1,12 +1,13 @@
 package model;
 
 import model.enumerations.MinionAttackType;
+import model.items.Flag;
 
 import java.util.ArrayList;
 
 public class PlayGround {
     private Cell[][] cells = new Cell[5][9];
-
+    private ArrayList<Flag> flags ; // for mode three
     public boolean isForEnemyMinion(Cell cell, Player player) {
         return false;
     }
@@ -68,4 +69,11 @@ public class PlayGround {
         return false;
     }
 
+    public ArrayList<Flag> getFlags() {
+        return flags;
+    }
+
+    public void setFlags(ArrayList<Flag> flags) {
+        this.flags = flags;
+    }
 }

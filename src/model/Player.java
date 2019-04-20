@@ -6,10 +6,7 @@ import model.cards.Hero;
 import model.cards.Minion;
 import model.cards.Spell;
 import model.cellaffects.CellAffect;
-import model.enumerations.CardType;
-import model.enumerations.ItemName;
-import model.enumerations.MinionAttackType;
-import model.enumerations.SpellTargetType;
+import model.enumerations.*;
 import model.items.*;
 
 import java.util.ArrayList;
@@ -26,6 +23,7 @@ public class Player {
     private Hero hero;
     private Battle battle;
     private ArrayList<Flag> flagsAcheived;
+    private Flag modeTwoFlag;
     private String name;
     private Card selectedCard;
     private Item selectedCollectableItem;
@@ -53,6 +51,9 @@ public class Player {
     }
 
     public void insertCard(Card card, Cell cell) {
+        // check the target cell having flags
+        //
+        //
         if (card.getCardType() == CardType.MINION) {
             Minion currentMinion = (Minion) card;
             currentMinion.putInMap(cell);
@@ -91,18 +92,34 @@ public class Player {
     }
 
     public void move(Minion minion, Cell cell) {
-        for (CellAffect cellAffect : minion.getCell().getCellAffects()) {
-            cellAffect.expireCellAffect();
-        }
-        minion.getCell().deleteCard();
         if (!cell.hasCardOnIt()) {
+            for (CellAffect cellAffect : minion.getCell().getCellAffects()) {
+                cellAffect.expireCellAffect();
+            }
+            minion.getCell().deleteCard();
+
             if (cell.hasCellAffect()) {
                 for (CellAffect cellAffect : cell.getCellAffects()) {
                     cellAffect.castCellAffect(minion);
                 }
             }
+            cell.addCard(minion);
+
+
+            if (battle.getGameMode() == GameMode.ONE_FLAG) {
+                if (cell.getFlag() != null) {
+                    modeTwoFlag = cell.getFlag();
+                    // assign the flag to this player and to this minion
+                    //
+                    //
+                }
+            }
+            if (battle.getGameMode() == GameMode.FLAGS) {
+                // check having flag
+                //
+                //
+            }
         }
-        cell.addCard(minion);
     }
 
     public int getMana() {
@@ -169,5 +186,9 @@ public class Player {
 
     public Deck getDeck() {
         return deck;
+    }
+
+    public ArrayList<Flag> getFlagsAcheived() {
+        return flagsAcheived;
     }
 }
