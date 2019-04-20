@@ -31,7 +31,7 @@ public class Hero extends Minion {
 
     public String toString() {
         String string = "Name : " + getName() + " - AP : " + getAP() + " - HP : " + getHP() + " - Class : "
-                + getAttackType() + " - Special power: ";
+                + getAttackType() + " - Special power: " + getDesc();
         return string;
     }
 }
