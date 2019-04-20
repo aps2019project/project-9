@@ -158,4 +158,12 @@ public class Spell extends Card {
     public SpellTargetType getTargetType() {
         return targetType;
     }
+
+    public String description(){
+        String string = "";
+        switch(spellName){
+            case ALL_DISARM:
+
+        }
+    }
 }
