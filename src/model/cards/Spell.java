@@ -18,7 +18,7 @@ public class Spell extends Card {
     private static ArrayList<Spell> itemSpells;
     private SpellName spellName;
     private Player owningPlayer; // the player use it
-    public ArrayList<Buff> getBuffs(){return buffs;}
+    public ArrayList<Buff> getBuffs() { return buffs; }
     private static ArrayList<Spell> specialPowerSpells = new ArrayList<>();
     public static void removeBuffs(Player player) {
         // for Spell Num 2
@@ -64,7 +64,7 @@ public class Spell extends Card {
                 // it is Buff Spell
                 for (Buff castingBuff : buffs) {
                     for (Cell targetCell : targetCells) {
-                        if (targetCell.hasCardOnIt() && targetCell.getMinionOnIt().defend(this,castingBuff)) {
+                        if (targetCell.hasCardOnIt() && targetCell.getMinionOnIt().defend(this, castingBuff)) {
                             castingBuff.startBuff(targetCell);
                         }
                     }
@@ -157,11 +157,23 @@ public class Spell extends Card {
         return targetType;
     }
 
-    public String description(){
+    /*public String description() {
         String string = "";
-        switch(spellName){
+        switch (spellName) {
             case ALL_DISARM:
-
+                string = "Disarm";
+                break;
+            case AREA_DISPEL:
+                string = "remove positive buff of enemies and negative buff of our troops";
+                break;
+            case EMPOWER:
+                string = "Add 2 unit to a troop AP";
+                break;
+            case FIREBALL:
+                string = "Attack 4 unit to an enemy";
+                break;
+            case GOD_STRENGTH:
+                string = "Add 4 unit "
         }
-    }
+    }*/
 }
