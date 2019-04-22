@@ -191,4 +191,8 @@ public class Player {
     public ArrayList<Flag> getFlagsAcheived() {
         return flagsAcheived;
     }
+
+    public Item getSelectedCollectableItem() {
+        return selectedCollectableItem;
+    }
 }

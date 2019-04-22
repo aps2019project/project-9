@@ -63,4 +63,10 @@ public class Battle {
     public GameMode getGameMode() {
         return gameMode;
     }
+    public Player getCurrenPlayer(){
+        if (whoseTurn == 1)
+            return firstPlayer;
+        else
+            return secondPlayer;
+    }
 }
