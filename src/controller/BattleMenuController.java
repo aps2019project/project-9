@@ -1,6 +1,7 @@
 package controller;
 
 import model.Account;
+import model.SinglePlayerBattle;
 import model.enumerations.BattleMenuErrorType;
 import model.enumerations.BattleMenuRequestType;
 import view.BattleMenuRequest;
@@ -93,13 +94,19 @@ public class BattleMenuController {
         }
     }
 
-    public void startCustomGame(String deckName,String mode , String numberOfFlags){
+    public void startCustomGame(String deckName,String mode , String numberOfFlags){ // still remaining
         if(loggedInAccount.findDeckByName(deckName) == null)
             view.printError(BattleMenuErrorType.DECK_NAME_NOT_VALID);
         else if(!loggedInAccount.findDeckByName(deckName).isValid())
             view.printError(BattleMenuErrorType.DECK_NOT_VALID);
         else {
-            // start custom game
+            if(mode.equals("3")){
+
+            }else if(mode.equals("2")){
+
+            }else if(mode.equals("1")){
+
+            }
         }
     }
     public void multiPlayerMenu() {
@@ -114,13 +121,13 @@ public class BattleMenuController {
             else if (request.getTypeMultiPlayer() == BattleMenuRequestType.START_GAME) {
                 // start multiplayer game
             } else if (request.getTypeMultiPlayer() == BattleMenuRequestType.SELECT_USER) {
-                if (isDeckNameVaild(request.getUserName())) {
+                if (isDeckNameValid(request.getUserName())) {
                     view.printError(BattleMenuErrorType.OPPONENT_SUCCESSFULLY);
                 }
             }
         }
     }
-    public boolean isDeckNameVaild(String userName){
+    public boolean isDeckNameValid(String userName){
         if(Account.findAccount(userName) == null){
             view.printError(BattleMenuErrorType.INVALID_USERNAME);
             return false;

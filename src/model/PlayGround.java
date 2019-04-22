@@ -1,5 +1,6 @@
 package model;
 
+import model.enumerations.GameMode;
 import model.enumerations.MinionAttackType;
 import model.items.Flag;
 
@@ -9,6 +10,10 @@ public class PlayGround {
     private Cell[][] cells = new Cell[5][9];
     private ArrayList<Flag> flags ; // for mode three
     private Flag flag; // for mode two
+
+    public PlayGround(GameMode mode){
+        // remaining
+    }
     public boolean isForEnemyMinion(Cell cell, Player player) {
         return false;
     }

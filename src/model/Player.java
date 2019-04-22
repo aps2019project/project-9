@@ -29,6 +29,18 @@ public class Player {
     private Item selectedCollectableItem;
     private GraveYard graveYard;
 
+    public Player(Account account){
+        activeBuffs = new ArrayList<>();
+        minionsInPlayGround = new ArrayList<>();
+        // mana
+        // copy the deck
+        // copy usable item from deck
+        flagsAcheived = new ArrayList<>();
+
+    }
+    public Player(int level){ // for computer AI
+
+    }
     public void attack(Cell cell, Card card) {
 
     }

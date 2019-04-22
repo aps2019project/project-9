@@ -3,6 +3,10 @@ package model;
 import model.enumerations.GameMode;
 
 public class Battle {
+    protected static final Deck FIRST_LEVEL_DECK = new Deck("first level");
+    protected static final Deck SECOND_LEVEL_DECK = new Deck("second level");
+    protected static final Deck THIRD_LEVEL_DECK = new Deck("third level");
+
     protected int turn;
     protected PlayGround playGround;
     protected GameMode gameMode;
@@ -10,6 +14,7 @@ public class Battle {
     protected Player firstPlayer;
     protected Player secondPlayer;
     protected int numberOfFlags;
+
     public void nextTurn(){
 
     }

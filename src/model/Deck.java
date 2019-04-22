@@ -102,6 +102,13 @@ public class Deck {
 
     Deck(String name) {
         this.name = name;
+        if(name.equals("first level")){
+            //
+        }else if(name.equals("second level")){
+            //
+        }else if(name.equals("third level")){
+            //
+        }
     }
 
     public boolean equals(Deck deck) {
@@ -118,5 +125,13 @@ public class Deck {
 
     public ArrayList<Card> getCards() {
         return cards;
+    }
+
+    public Deck getCopy(){
+        // deckname
+        // deck cards
+        // deck item
+        // deck hero
+        return null;
     }
 }

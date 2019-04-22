@@ -63,10 +63,11 @@ public class BattleMenuRequest {
 
     public BattleMenuRequestType getTypeOfCustomGame() {
         String[] commands = command.split(" ");
-        if (commands.length == 5 && commands[0].equals("start") && commands[1].equals("game")) {
-            numberOfFlags = commands[4];
+        if (command.matches(START_GAME) && commands.length >= 4) {
             deckName = commands[2];
             mode = commands[3];
+            if(mode.equals("3"))
+                numberOfFlags = commands[4];
             if (numberOfFlags.matches("[0-9]{2}") && mode.matches("[1-3]"))
                 return BattleMenuRequestType.START_GAME;
             else
@@ -104,7 +105,7 @@ public class BattleMenuRequest {
             mode = command.split(" ")[3];
             numberOfFlags = command.split(" ")[4];
             return BattleMenuRequestType.START_GAME;
-        }else if(command.matches(EXIT))
+        } else if (command.matches(EXIT))
             return BattleMenuRequestType.EXIT;
         else
             return null;
