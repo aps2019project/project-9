@@ -207,4 +207,12 @@ public class Player {
     public Item getSelectedCollectableItem() {
         return selectedCollectableItem;
     }
+
+    public Card getSelectedCard() {
+        return selectedCard;
+    }
+
+    public GraveYard getGraveYard() {
+        return graveYard;
+    }
 }

@@ -3,7 +3,6 @@ package view;
 import model.enumerations.InGameErrorType;
 import model.enumerations.InGameRequestType;
 
-import javax.imageio.plugins.tiff.ExifInteroperabilityTagSet;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -80,8 +79,8 @@ public class InGameRequest {
         command = scanner.nextLine().toLowerCase();
     }
 
-    public boolean isValid(){
-        return getType() != null ;
+    public boolean isValid() {
+        return getType() != null;
     }
 
     public InGameRequestType getType() {
@@ -117,31 +116,31 @@ public class InGameRequest {
             x = Integer.parseInt(command.split(" ")[3]);
             y = Integer.parseInt(command.split(" ")[4]);
             return InGameRequestType.USE_SPECIAL_POWER;
-        }else if(command.matches(SHOW_HAND))
+        } else if (command.matches(SHOW_HAND))
             return InGameRequestType.SHOW_HAND;
-        else if(command.substring(0,6).matches(INSERT) && checkInsertCommand(command))
+        else if (command.substring(0, 6).matches(INSERT) && checkInsertCommand(command))
             return InGameRequestType.INSERT;
         else if (command.matches(END_TURN))
             return InGameRequestType.END_TUNN;
         else if (command.matches(SHOW_COLLETIBLES))
             return InGameRequestType.SHOW_COLLECTIBLES;
-        else if(command.matches(SELECT_ITEM)){
+        else if (command.matches(SELECT_ITEM)) {
             collectibleID = command.split(" ")[1];
             return InGameRequestType.SELCET_ITEM;
-        }else if (command.matches(SHOW_INFO))
+        } else if (command.matches(SHOW_INFO))
             return InGameRequestType.SHOW_INFO;
-        else if(command.matches(USE_ITEM) && command.split(" ").length == 3
-        && checkItemUsecommand(command)){
+        else if (command.matches(USE_ITEM) && command.split(" ").length == 3
+                && checkItemUsecommand(command)) {
             x = Integer.parseInt(command.split(" ")[1]);
             y = Integer.parseInt(command.split(" ")[2]);
             return InGameRequestType.USE;
-        }else if (command.matches(SHOW_NEXT_CARD))
+        } else if (command.matches(SHOW_NEXT_CARD))
             return InGameRequestType.SHOW_NEXT_CARD;
-        else if(command.matches(ENTER_GRAVEYARD))
+        else if (command.matches(ENTER_GRAVEYARD))
             return InGameRequestType.ENTER_GRAVEYARD;
         else if (command.matches(HELP))
             return InGameRequestType.HELP;
-        else if(command.matches("exit"))
+        else if (command.matches("exit"))
             return InGameRequestType.EXIT;
         else if (command.matches(SHOW_MENU))
             return InGameRequestType.SHOW_MENU;
@@ -162,10 +161,10 @@ public class InGameRequest {
         }
     }
 
-    private boolean checkInsertCommand(String command){
+    private boolean checkInsertCommand(String command) {
         if (command.split(" ").length == 5
                 && command.split(" ")[3].matches("[1-5]")
-                && command.split(" ")[4].matches("[1-9]")){
+                && command.split(" ")[4].matches("[1-9]")) {
             cardName = command.split(" ")[1];
             x = Integer.parseInt(command.split(" ")[3]);
             y = Integer.parseInt(command.split(" ")[4]);
@@ -174,7 +173,7 @@ public class InGameRequest {
         return false;
     }
 
-    private boolean checkItemUsecommand(String command){
+    private boolean checkItemUsecommand(String command) {
         return command.matches("use [1-5] [1-9]");
     }
 }

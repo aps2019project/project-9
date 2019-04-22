@@ -6,7 +6,8 @@ public class Card {
     protected int cost;
     protected int MP;
     protected CardType cardType;
-    protected String cardID;
+    protected int cardID;
+    protected String BattleID;
     protected String name;
     protected String desc;
 
@@ -21,7 +22,7 @@ public class Card {
         return name;
     }
 
-    public String getCardID() {
+    public int getCardID() {
         return cardID;
     }
 
@@ -33,5 +34,15 @@ public class Card {
         return desc;
     }
 
+    public String getBattleID() {
+        return BattleID;
+    }
 
+    public void setCardID(int cardID) {
+        this.cardID = cardID;
+    }
+
+    public void setBattleID(String battleID) {
+        BattleID = battleID;
+    }
 }

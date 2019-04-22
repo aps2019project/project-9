@@ -31,7 +31,11 @@ public class InGameController {
                     break;
                 case USE:
                 case ATTACK:
-                case INSERT:
+                case INSERT:                                                            //not complete
+                    battle.getCurrenPlayer().getSelectedCard().setBattleID(
+                          battle.getCurrenPlayer().getName() +"_"+ battle.getCurrenPlayer().getSelectedCard().getName()
+                    + "_" + numberOfUseInBattle(battle));
+                    break;
                 case MOVE_TO:
                 case END_GAME:
                 case END_TUNN:
@@ -72,5 +76,19 @@ public class InGameController {
     }
     private void selectCard(String cardID){
         //
+    }
+    private int numberOfUseInBattle(Battle battle){
+        int ID = 0;
+        for (Card key : battle.getCurrenPlayer().getGraveYard().getCards()) {
+            if(key.getBattleID().split("_")[0].equals(battle.getCurrenPlayer().getName()) &&
+                    key.getBattleID().split("_")[1].equals(battle.getCurrenPlayer().getSelectedCard().getName()))
+                ID++;
+        }
+        for (Card key : battle.getCurrenPlayer().getMinionsInPlayGround()) {
+            if(key.getBattleID().split("_")[0].equals(battle.getCurrenPlayer().getName()) &&
+                    key.getBattleID().split("_")[1].equals(battle.getCurrenPlayer().getSelectedCard().getName()))
+                ID++;
+        }
+        return ID;
     }
 }

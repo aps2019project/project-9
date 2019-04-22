@@ -14,6 +14,7 @@ public class Shop {
 
     private ArrayList<Card> allCards;
     private ArrayList<Item> allItems;
+    private int uniqeID = 0;
 
     public static Shop getInstance(){
         return SHOP;
@@ -36,22 +37,26 @@ public class Shop {
         return null;
     }
 
-    public void buy(Card card, Account account) {          //need card to be complete
+    public void buy(Card card, Account account) {
+        card.setCardID(uniqeID++);
         account.getCollection().addCard(card);
         account.reduceMoney(card.getCost());
     }
 
-    public void buy(Item item, Account account) {           //need item to be complete
+    public void buy(Item item, Account account) {
+        item.setItemID(uniqeID++);
         account.getCollection().addItem(item);
         account.reduceMoney(item.getCost());
     }
 
-    public void sell(Card currentCard, Account loggedInAccount) {      //need card to be complete
+    public void sell(Card currentCard, Account loggedInAccount) {
+        currentCard.setCardID(uniqeID++);
         loggedInAccount.getCollection().removeCard(currentCard);
         loggedInAccount.addMoney(currentCard.getCost());
     }
 
-    public void sell(Item currentItem, Account loggedInAccount) {            //need item to be complete
+    public void sell(Item currentItem, Account loggedInAccount) {
+        currentItem.setItemID(uniqeID++);
         loggedInAccount.getCollection().removeItem(currentItem);
         loggedInAccount.addMoney(currentItem.getCost());
     }

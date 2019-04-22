@@ -10,7 +10,7 @@ public class Item {
     protected int cost;
     protected String name;
     protected ItemName itemType;
-    protected String itemID;
+    protected int itemID;
     protected String desc;
 
     public String toString() {
@@ -22,7 +22,7 @@ public class Item {
         return name;
     }
 
-    public String getItemID() {
+    public int getItemID() {
         return itemID;
     }
 
@@ -32,5 +32,9 @@ public class Item {
 
     public ItemName getItemType() {
         return itemType;
+    }
+
+    public void setItemID(int itemID) {
+        this.itemID = itemID;
     }
 }

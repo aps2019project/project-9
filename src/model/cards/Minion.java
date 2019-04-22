@@ -228,7 +228,7 @@ public class Minion extends Card {
     }
 
     public boolean equals(Minion minion) {
-        return this.cardID.equals(minion.cardID);
+        return (this.cardID == (minion.cardID));
     }
 
     public void dispelPositiveBuffs() {
