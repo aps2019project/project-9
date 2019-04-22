@@ -37,7 +37,7 @@ public class Cell {
     }
 
     public boolean hasCollectableItem() {
-        return false;
+        return collectableItem != null;
     }
 
     public void addCard(Card card) {

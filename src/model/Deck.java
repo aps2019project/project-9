@@ -15,9 +15,6 @@ public class Deck {
     private Item item;
     private String name; // used in accounts
 
-    public void sort() {           //not complete
-    }
-
     public boolean canAddCard() {
         return cards.size() < 20;
     }
@@ -39,7 +36,8 @@ public class Deck {
     }
 
     public void removeItem(Item item) {
-        item = null;
+        if (this.item.getName().equals(item.getName()))
+            this.item = null;
     }
 
     public boolean isValid() {

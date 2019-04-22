@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class PlayGround {
     private Cell[][] cells = new Cell[5][9];
     private ArrayList<Flag> flags ; // for mode three
+    private Flag flag; // for mode two
     public boolean isForEnemyMinion(Cell cell, Player player) {
         return false;
     }
@@ -75,5 +76,13 @@ public class PlayGround {
 
     public void setFlags(ArrayList<Flag> flags) {
         this.flags = flags;
+    }
+
+    public Flag getFlag(){
+        return flag;
+    }
+
+    public void setFlag(Flag flag){
+        this.flag = flag;
     }
 }

@@ -5,11 +5,16 @@ import model.cards.Card;
 import java.util.ArrayList;
 
 public class Hand {
+    public Hand(Deck deck){ // deck should be sorted in start game methods
+        numberOfCardFromDeck = 0;
+        this.deck = deck;
+        this.cards = (ArrayList<Card>)deck.getCards().subList(0,5);
+    }
     private ArrayList<Card> cards;
     private Deck deck;
     private int numberOfCardFromDeck;
     public Card getNext() {
-        return null;
+        return deck.getCards().get(numberOfCardFromDeck++);
     }
 
     public void addCardFromDeck() {
