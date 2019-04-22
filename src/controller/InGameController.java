@@ -71,7 +71,6 @@ public class InGameController {
         }
     }
     private void selectCard(String cardID){
-
-        battle.getCurrenPlayer().getMinionsInPlayGround().
+        //
     }
 }
