@@ -20,8 +20,5 @@ public class MultiPlayerBattle extends Battle {
         this.firstPlayer = new Player(firstPlayer);
         this.secondPlayer = new Player(secondAccount);
     }
-    public void doTheSecondPlayerAction(){
-        // the ai for the second player
 
-    }
 }
