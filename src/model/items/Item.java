@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public class Item {
     private static ArrayList<Item> items = new ArrayList<>();
+
     protected int cost;
     protected String name;
     protected ItemName itemType;

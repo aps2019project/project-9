@@ -17,10 +17,10 @@ public class Hero extends Minion {
     private HeroTargetType spellTargetType; // for spell
     private HeroName heroName;
 
-    public Hero(int cost, int MP, CardType cardType, int cardID, String name, String desc, MinionAttackType attackType, int HP, int AP,
-                int attackRange, SpecialPower specialPower, boolean isFars, int cooldown, Spell heroSpell,
+    public Hero(int cost, int MP, int cardID, String name, String desc, MinionAttackType attackType, int HP, int AP,
+                int attackRange, boolean isFars, int cooldown, Spell heroSpell,
                 HeroTargetType spellTargetType, HeroName heroName) {
-        super(cost, MP, cardType, cardID, name, desc, null, attackType, HP, AP, attackRange, specialPower, isFars);
+        super(cost, MP, CardType.MINION, cardID, name, desc, null, attackType, HP, AP, attackRange, null, isFars);
         this.cooldown = cooldown;
         this.heroSpell = heroSpell;
         this.spellTargetType = spellTargetType;
@@ -28,8 +28,8 @@ public class Hero extends Minion {
     }
 
     public Hero copy() {
-        Hero copyHero = new Hero();
-
+        return new Hero(cost, MP, cardID, name, desc, attackType, HP, AP, attackRange
+                , isFars, cooldown, heroSpell, spellTargetType, heroName);
     }
 
     public boolean isSpellReady() {

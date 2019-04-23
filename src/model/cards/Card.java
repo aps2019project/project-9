@@ -3,6 +3,7 @@ package model.cards;
 import model.enumerations.CardType;
 
 public class Card {
+
     protected int cost;
     protected int MP;
     protected CardType cardType;
@@ -21,8 +22,6 @@ public class Card {
         this.desc = desc;
     }
 
-    public static void createID(Card card) {
-    }
 
     public CardType getCardType() {
         return cardType;

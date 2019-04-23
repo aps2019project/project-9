@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public abstract class Buff {
     protected BuffName buffName;
     protected int turnsActive;
+    protected int turnsRemained;
     private static ArrayList<Buff> buffs = new ArrayList<>();
     protected boolean isForAllTurns;
     protected Card affectingCard; // the card that this buff has affect on

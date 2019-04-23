@@ -3,6 +3,7 @@ package model.cards;
 import model.*;
 import model.buffs.Buff;
 import model.cellaffects.CellAffect;
+import model.enumerations.CardType;
 import model.enumerations.SpecialPowerActivationTime;
 import model.enumerations.SpellName;
 import model.enumerations.SpellTargetType;
@@ -10,16 +11,31 @@ import model.enumerations.SpellTargetType;
 import java.util.ArrayList;
 
 public class Spell extends Card {
-    private ArrayList<Buff> buffs;
-    private SpellTargetType targetType;
     private static ArrayList<Spell> spells;
-    private CellAffect cellAffect;
     private static ArrayList<Spell> heroSpells;
     private static ArrayList<Spell> itemSpells;
+    private ArrayList<Buff> buffs;
+    private SpellTargetType targetType;
+    private CellAffect cellAffect;
     private SpellName spellName;
     private Player owningPlayer; // the player use it
-    public ArrayList<Buff> getBuffs() { return buffs; }
+
+    public Spell(int cost, int MP, CardType cardType, int cardID, String name,
+                 String desc, ArrayList<Buff> buffs, SpellTargetType targetType,
+                 CellAffect cellAffect, SpellName spellName) {
+        super(cost, MP, cardType, cardID, name, desc);
+        this.buffs = buffs;
+        this.targetType = targetType;
+        this.cellAffect = cellAffect;
+        this.spellName = spellName;
+    }
+
+    public ArrayList<Buff> getBuffs() {
+        return buffs;
+    }
+
     private static ArrayList<Spell> specialPowerSpells = new ArrayList<>();
+
     public static void removeBuffs(Player player) {
         // for Spell Num 2
         for (Minion friendlyPower : player.getMinionsInPlayGround()) {
@@ -176,4 +192,5 @@ public class Spell extends Card {
                 string = "Add 4 unit "
         }
     }*/
+
 }

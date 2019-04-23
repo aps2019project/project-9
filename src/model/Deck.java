@@ -28,7 +28,7 @@ public class Deck {
 
     public Deck getCopy(){
         Deck copyOfThis = new Deck(name);
-
+        // remained
     }
 
     public boolean canAddCard() {
