@@ -15,6 +15,22 @@ public class Deck {
     private Item item;
     private String name; // used in accounts
 
+    public Deck(String name) {
+        this.name = name;
+        if(name.equals("first level")){
+            //
+        }else if(name.equals("second level")){
+            //
+        }else if(name.equals("third level")){
+            //
+        }
+    }
+
+    public Deck getCopy(){
+        Deck copyOfThis = new Deck(name);
+
+    }
+
     public boolean canAddCard() {
         return cards.size() < 20;
     }
@@ -100,16 +116,6 @@ public class Deck {
         return name;
     }
 
-    Deck(String name) {
-        this.name = name;
-        if(name.equals("first level")){
-            //
-        }else if(name.equals("second level")){
-            //
-        }else if(name.equals("third level")){
-            //
-        }
-    }
 
     public boolean equals(Deck deck) {
         return this.name.equals(deck.getName());
@@ -127,11 +133,5 @@ public class Deck {
         return cards;
     }
 
-    public Deck getCopy(){
-        // deckname
-        // deck cards
-        // deck item
-        // deck hero
-        return null;
-    }
+
 }

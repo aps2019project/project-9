@@ -21,7 +21,7 @@ public class OnDefendSpecialPower extends SpecialPower {
     }
     @Override
     public void castSpecialPower(Cell cell) {
-
+        // the buff not cast on it
     }
 }
 

@@ -20,18 +20,8 @@ public class Minion extends Card {
 
     protected ArrayList<Buff> activeBuffs;
     protected boolean canCounterAttack;
-
-    public void setCanAttack(boolean canAttack) {
-        this.canAttack = canAttack;
-    }
-
     protected boolean canAttack;
-
-    public void setCanMove(boolean canMove) {
-        this.canMove = canMove;
-    }
-
-    protected MinionName minionName;
+    private MinionName minionName;
     protected boolean canMove;
     protected boolean isHolly;
     protected MinionAttackType attackType;
@@ -49,8 +39,31 @@ public class Minion extends Card {
     protected boolean canComboAttack;
     protected boolean isHero = false;
 
+    public Minion(int cost, int MP, CardType cardType, int cardID, String name, String desc,
+                  MinionName minionName, MinionAttackType attackType,
+                  int HP, int AP, int attackRange, SpecialPower specialPower, boolean isFars) {
+        super(cost, MP, cardType, cardID, name, desc);
+        this.minionName = minionName;
+        this.attackType = attackType;
+        this.HP = HP;
+        this.AP = AP;
+        this.attackRange = attackRange;
+        this.specialPower = specialPower;
+        this.isFars = isFars;
+        this.isHero = false;
+    }
+
+
+    public void setCanAttack(boolean canAttack) {
+        this.canAttack = canAttack;
+    }
+
     public SpecialPower getSpecialPower() {
         return specialPower;
+    }
+
+    public void setCanMove(boolean canMove) {
+        this.canMove = canMove;
     }
 
     public MinionName getMinionName() {
@@ -69,10 +82,10 @@ public class Minion extends Card {
 
     public void putInMap(Cell cell) {
         // check validation of cell
-        if(isValidCell(cell)){
+        if (isValidCell(cell)) {
             player.getHand().deleteCard(this);
             cell.addCard(this);
-            if(cell.hasCellAffect()){
+            if (cell.hasCellAffect()) {
                 for (CellAffect cellAffect : cell.getCellAffects()) {
                     cellAffect.castCellAffect(this);
                 }
@@ -127,7 +140,7 @@ public class Minion extends Card {
 
     public boolean isValidCell(Cell cell) {
         // for the target cell that this wants to attack ( or Counter Attack ) to
-        return player.getBattle().getPlayGround().isValid(getCell(),cell,attackType);
+        return player.getBattle().getPlayGround().isValid(getCell(), cell, attackType);
     }
 
     public void comboAttack(Cell cell, ArrayList<Card> participatingCards) {
@@ -153,11 +166,11 @@ public class Minion extends Card {
 
     public void reduceHP(int number) {
         // if HP bellow the 0 , killed()
-        if((HP - number) <= 0){
+        if ((HP - number) <= 0) {
             HP = 0;
             killed();
-        }else
-            HP-=number;
+        } else
+            HP -= number;
     }
 
     public Player getPlayer() {
@@ -261,7 +274,16 @@ public class Minion extends Card {
                 " - HP : " + HP + " - MP : " + MP + " - Special power : " + desc;
     }
 
-    public int getAttackRange(){
+    public int getAttackRange() {
         return attackRange;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public Minion getCopy() {
+        return new Minion(cost, MP, cardType, cardID, name, desc, minionName, attackType
+                , HP, AP, attackRange, specialPower, isFars);
     }
 }

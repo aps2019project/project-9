@@ -11,6 +11,16 @@ public class Card {
     protected String name;
     protected String desc;
 
+    public Card(int cost, int MP, CardType cardType,
+                int cardID, String name, String desc) {
+        this.cost = cost;
+        this.MP = MP;
+        this.cardType = cardType;
+        this.cardID = cardID;
+        this.name = name;
+        this.desc = desc;
+    }
+
     public static void createID(Card card) {
     }
 
@@ -45,4 +55,5 @@ public class Card {
     public void setBattleID(String battleID) {
         BattleID = battleID;
     }
+
 }
