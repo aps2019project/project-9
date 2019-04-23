@@ -15,6 +15,11 @@ public class Battle {
     protected Player secondPlayer;
     protected int numberOfFlags;
 
+    public void startBattle(){
+        // buffs and cellAffects turns remained should be equal to turnsActive
+        // just minions and heros should be copied
+    }
+
     public void nextTurn(){
 
     }

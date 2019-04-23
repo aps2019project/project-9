@@ -3,6 +3,7 @@ package model.cards;
 import model.enumerations.CardType;
 
 public class Card {
+
     protected int cost;
     protected int MP;
     protected CardType cardType;
@@ -11,8 +12,16 @@ public class Card {
     protected String name;
     protected String desc;
 
-    public static void createID(Card card) {
+    public Card(int cost, int MP, CardType cardType,
+                int cardID, String name, String desc) {
+        this.cost = cost;
+        this.MP = MP;
+        this.cardType = cardType;
+        this.cardID = cardID;
+        this.name = name;
+        this.desc = desc;
     }
+
 
     public CardType getCardType() {
         return cardType;
@@ -45,4 +54,5 @@ public class Card {
     public void setBattleID(String battleID) {
         BattleID = battleID;
     }
+
 }

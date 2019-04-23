@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public abstract class CellAffect {
     protected CellAffectName name;
     protected int turnsActive;
+    protected int turnsRemained;
     private static ArrayList<CellAffect> cellAffects = new ArrayList<>();
     protected Cell affectedCell;// in map
 
