@@ -12,9 +12,9 @@ public class GraveYard {
         return cards;
     }
 
-    public Card getCard(String cardID) {
+    public Card getCard(int cardID) {
         for (Card card : cards) {
-            if (card.getCardID().equals(cardID))
+            if (card.getCardID() == cardID)
                 return card;
         }
         return null;
