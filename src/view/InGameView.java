@@ -7,11 +7,12 @@ import model.cards.Hero;
 import model.cards.Minion;
 import model.cards.Spell;
 import model.enumerations.InGameErrorType;
+import model.enumerations.MinionName;
 import model.items.Collectible;
 import model.items.Flag;
 
-import java.io.ByteArrayInputStream;
-import java.io.CharArrayReader;
+import java.util.ArrayList;
+
 
 public class InGameView {
     private static final InGameView IN_GAME_VIEW = new InGameView();
@@ -94,7 +95,7 @@ public class InGameView {
     }
 
     public void cardCantAttack(Card card) {
-        System.out.printf("Card with %s can't attack\n", card.getCardID());
+        System.out.printf("Card with %s can't attack\n", card.getBattleID());
     }
 
     public void cardInserted(Card card, int x, int y) {
@@ -115,8 +116,28 @@ public class InGameView {
     public void showCardName(Card card){
         System.out.println(card.getName());
     }
-    public void help(){
-        //
+
+    public void help(Player player){
+        ArrayList<Minion> canMove = new ArrayList<>();
+        ArrayList<Minion> opponentMinions = player.getOpponent().getMinionsInPlayGround();
+        System.out.println("Cards In Hand :");
+        for (Card card : player.getHand().getCards()) {
+            System.out.printf("card name : %s\n" , card.getName());
+        }
+        for (Minion minion : player.getMinionsInPlayGround()) {
+            if(minion.isCanMove())
+                canMove.add(minion);
+        }
+        System.out.println("Friendly Minions That Can Move :");
+        for (Minion minion : canMove) {
+            System.out.printf("Battle ID = %s , current cell:( %d , %d )\n" , minion.getBattleID(),
+                    minion.getCell().getX(),minion.getCell().getY());
+        }
+        System.out.println("All opponent minions :");
+        for (Minion minion : opponentMinions) {
+            System.out.printf("Battle ID = %s -> current cell : ( %d , %d )\n" , minion.getBattleID(),
+                    minion.getCell().getX(),minion.getCell().getY());
+        }
     }
 
 }

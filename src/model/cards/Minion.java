@@ -285,4 +285,12 @@ public class Minion extends Card {
     public Minion getCopy() {
         return null;
     }
+
+    public boolean isCanMove() {
+        return canMove;
+    }
+
+    public boolean isCanAttack() {
+        return canAttack;
+    }
 }

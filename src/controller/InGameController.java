@@ -2,39 +2,53 @@ package controller;
 
 
 import model.Battle;
+import model.Cell;
+import model.Player;
 import model.cards.Card;
+import model.cards.Minion;
 import model.enumerations.InGameErrorType;
 import model.enumerations.InGameRequestType;
+import model.items.Collectible;
 import view.InGameRequest;
 import view.InGameView;
 
 public class InGameController {
     private Battle battle;
     private InGameView inGameView = InGameView.getInstance();
-    public InGameController(Battle battle){
+
+    public InGameController(Battle battle) {
         this.battle = battle;
     }
-    public void main(){
+
+    public void main() {
         boolean isFinished = false;
         do {
             InGameRequest request = new InGameRequest();
             request.getNewCommand();
-            if(request.getType()== InGameRequestType.EXIT)
+            if (request.getType() == InGameRequestType.EXIT) {
+                inGameView.printfError(InGameErrorType.EXIT_IN_THE_MIDDLE);
                 isFinished = true;
-            if(!request.isValid()){
+            }
+            if (!request.isValid()) {
                 inGameView.printfError(InGameErrorType.INVALID_COMMAND);
                 continue;
             }
-            switch (request.getType()){
+            switch (request.getType()) {
                 case HELP:
-                    inGameView.help();
+                    inGameView.help(battle.getCurrenPlayer());
                     break;
                 case USE:
+                    use(battle.getCurrenPlayer(),request.getX(),request.getY());
+                    break;
                 case ATTACK:
-                case INSERT:                                                            //not complete
+                    attack(battle.getCurrenPlayer(),request.getOpponentCardID());
+                    break;
+                case INSERT:
+                    // ID assigning ( battle ID )
                     battle.getCurrenPlayer().getSelectedCard().setBattleID(
-                          battle.getCurrenPlayer().getName() +"_"+ battle.getCurrenPlayer().getSelectedCard().getName()
-                    + "_" + numberOfUseInBattle(battle));
+                            battle.getCurrenPlayer().getName() + "_" + battle.getCurrenPlayer().getSelectedCard().getName()
+                                    + "_" + numberOfUseInBattle(battle));
+
                     break;
                 case MOVE_TO:
                 case END_GAME:
@@ -63,32 +77,67 @@ public class InGameController {
                     inGameView.showMinions(battle.getCurrenPlayer().getOpponent());
                     break;
             }
-        }while (!isFinished);
+        } while (!isFinished);
     }
 
-    private void showCardInfo(String cardID){
+    private void showCardInfo(String cardID) {
         Card card = battle.getCurrenPlayer().getDeck().getCardByID(cardID);
-        if(card == null)
+        if (card == null)
             inGameView.printfError(InGameErrorType.INVALID_CARD_ID);
-        else{
+        else {
             inGameView.showCardInfo(card);
         }
     }
-    private void selectCard(String cardID){
+
+    private void selectCard(String cardID) {
         //
     }
-    private int numberOfUseInBattle(Battle battle){
+
+    private int numberOfUseInBattle(Battle battle) { // ali
         int ID = 0;
         for (Card key : battle.getCurrenPlayer().getGraveYard().getCards()) {
-            if(key.getBattleID().split("_")[0].equals(battle.getCurrenPlayer().getName()) &&
+            if (key.getBattleID().split("_")[0].equals(battle.getCurrenPlayer().getName()) &&
                     key.getBattleID().split("_")[1].equals(battle.getCurrenPlayer().getSelectedCard().getName()))
                 ID++;
         }
         for (Card key : battle.getCurrenPlayer().getMinionsInPlayGround()) {
-            if(key.getBattleID().split("_")[0].equals(battle.getCurrenPlayer().getName()) &&
+            if (key.getBattleID().split("_")[0].equals(battle.getCurrenPlayer().getName()) &&
                     key.getBattleID().split("_")[1].equals(battle.getCurrenPlayer().getSelectedCard().getName()))
                 ID++;
         }
         return ID;
+    }
+
+    private void use(Player player, int x, int y) {
+        Cell cell = player.getBattle().getPlayGround().getCell(x, y);
+        if (player.getSelectedCollectableItem() == null) {
+            inGameView.printfError(InGameErrorType.NO_SELECTED_ITEM);
+        } else {
+            if (!((Collectible) player.getSelectedCollectableItem()).isValidCell(cell))
+                inGameView.printfError(InGameErrorType.INVALID_TARGET);
+            else
+                ((Collectible) player.getSelectedCollectableItem()).useItem();
+        }
+    }
+
+    private void attack(Player currentPlayer , String opponentCardId){
+        // opponentId is the battle id of the opponent card
+        if(currentPlayer.getSelectedCard() == null){
+            inGameView.printfError(InGameErrorType.NO_SELECTED_CARD);
+        }else if(currentPlayer.getOpponent().findMinionByIdInPlayGround(opponentCardId)==null) {
+            inGameView.printfError(InGameErrorType.INVALID_CARD_ID);
+        }else{
+            Minion opponentMinion = currentPlayer.getOpponent().findMinionByIdInPlayGround(opponentCardId);
+            if(!((Minion)currentPlayer.getSelectedCard()).isValidCell(opponentMinion.getCell())){
+                inGameView.printfError(InGameErrorType.UNAVAILABLE_FOR_ATTACK);
+            }else if(!((Minion)currentPlayer.getSelectedCard()).isCanAttack()){
+                inGameView.cardCantAttack(currentPlayer.getSelectedCard());
+            }else{
+                ((Minion)currentPlayer.getSelectedCard()).attack(opponentMinion.getCell());
+            }
+        }
+    }
+    private void insert(String cardName , int x , int y){
+
     }
 }

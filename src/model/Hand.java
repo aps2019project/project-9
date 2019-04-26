@@ -31,4 +31,8 @@ public class Hand {
     public void deleteCard(Card card) {
         cards.remove(card);
     }
+
+    public ArrayList<Card> getCards() {
+        return cards;
+    }
 }

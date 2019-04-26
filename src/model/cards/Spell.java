@@ -143,9 +143,9 @@ public class Spell extends Card {
         )
             result.add(inputCell);
         else if (targetType == SpellTargetType.TWO_IN_TWO_SQUARE) {
-
+            // not complete
         } else if (targetType == SpellTargetType.THREE_IN_THREE_SQUARE) {
-
+            // not complete
         } else if (targetType == SpellTargetType.ALL_ENEMY_POWERS) {
             for (Minion enemyMinion : owningPlayer.getOpponent().getMinionsInPlayGround()) {
                 result.add(enemyMinion.getCell());
@@ -157,7 +157,7 @@ public class Spell extends Card {
             }
             result.add(owningPlayer.getHero().getCell());
         } else if (targetType == SpellTargetType.ALL_ENEMY_IN_COLUMN) {
-
+            // not complete
         } else if (targetType == SpellTargetType.AN_ENEMY_MINION_IN_EIGHT_HERO) {
             // random
         }

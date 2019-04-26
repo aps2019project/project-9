@@ -215,4 +215,12 @@ public class Player {
     public GraveYard getGraveYard() {
         return graveYard;
     }
+
+    public Minion findMinionByIdInPlayGround(String battleId){
+        for (Minion minion : getMinionsInPlayGround()) {
+            if(minion.getBattleID().equals(battleId))
+                return minion;
+        }
+        return null;
+    }
 }
