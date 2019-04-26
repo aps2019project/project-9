@@ -6,6 +6,7 @@ import model.Cell;
 import model.Player;
 import model.cards.Card;
 import model.cards.Minion;
+import model.cards.Spell;
 import model.enumerations.InGameErrorType;
 import model.enumerations.InGameRequestType;
 import model.items.Collectible;
@@ -38,19 +39,20 @@ public class InGameController {
                     inGameView.help(battle.getCurrenPlayer());
                     break;
                 case USE:
-                    use(battle.getCurrenPlayer(),request.getX(),request.getY());
+                    use(battle.getCurrenPlayer(), request.getX(), request.getY());
                     break;
                 case ATTACK:
-                    attack(battle.getCurrenPlayer(),request.getOpponentCardID());
+                    attack(battle.getCurrenPlayer(), request.getOpponentCardID());
                     break;
                 case INSERT:
                     // ID assigning ( battle ID )
                     battle.getCurrenPlayer().getSelectedCard().setBattleID(
                             battle.getCurrenPlayer().getName() + "_" + battle.getCurrenPlayer().getSelectedCard().getName()
                                     + "_" + numberOfUseInBattle(battle));
-
+                    insert(request.getCardName(),request.getX(),request.getY());
                     break;
                 case MOVE_TO:
+                    /////////////////////////////////
                 case END_GAME:
                 case END_TUNN:
                 case GAME_INFO:
@@ -120,24 +122,50 @@ public class InGameController {
         }
     }
 
-    private void attack(Player currentPlayer , String opponentCardId){
+    private void attack(Player currentPlayer, String opponentCardId) {
         // opponentId is the battle id of the opponent card
-        if(currentPlayer.getSelectedCard() == null){
+        if (currentPlayer.getSelectedCard() == null) {
             inGameView.printfError(InGameErrorType.NO_SELECTED_CARD);
-        }else if(currentPlayer.getOpponent().findMinionByIdInPlayGround(opponentCardId)==null) {
+        } else if (currentPlayer.getOpponent().findMinionByIdInPlayGround(opponentCardId) == null) {
             inGameView.printfError(InGameErrorType.INVALID_CARD_ID);
-        }else{
+        } else {
             Minion opponentMinion = currentPlayer.getOpponent().findMinionByIdInPlayGround(opponentCardId);
-            if(!((Minion)currentPlayer.getSelectedCard()).isValidCell(opponentMinion.getCell())){
+            if (!((Minion) currentPlayer.getSelectedCard()).isValidCell(opponentMinion.getCell())) {
                 inGameView.printfError(InGameErrorType.UNAVAILABLE_FOR_ATTACK);
-            }else if(!((Minion)currentPlayer.getSelectedCard()).isCanAttack()){
+            } else if (!((Minion) currentPlayer.getSelectedCard()).isCanAttack()) {
                 inGameView.cardCantAttack(currentPlayer.getSelectedCard());
-            }else{
-                ((Minion)currentPlayer.getSelectedCard()).attack(opponentMinion.getCell());
+            } else {
+                ((Minion) currentPlayer.getSelectedCard()).attack(opponentMinion.getCell());
             }
         }
     }
-    private void insert(String cardName , int x , int y){
 
+    private void insert(String cardName, int x, int y) {
+        if (battle.getCurrenPlayer().getHand().getCardByName(cardName) == null) {
+            inGameView.printfError(InGameErrorType.INVALID_CARD_NAME);
+        } else {
+            Cell cell = battle.getPlayGround().getCell(x, y);
+            Player player = battle.getCurrenPlayer();
+            Card friendlyCard = battle.getCurrenPlayer().getHand().getCardByName(cardName);
+            if (player.getMana() < friendlyCard.getMP()) {
+                inGameView.printfError(InGameErrorType.NOT_HAVE_ENOUGH_MANA);
+            } else if (friendlyCard instanceof Minion) {
+                if (!player.getCellsToInsertMinion().contains(cell)
+                        || !((Minion) friendlyCard).isValidCell(cell)) {
+                    inGameView.printfError(InGameErrorType.INVALID_TARGET);
+                } else {
+                    ((Minion) friendlyCard).putInMap(cell);
+                    player.reduceMana(friendlyCard.getMP());
+                }
+            } else {
+                if (!((Spell) friendlyCard).isValidTarget(cell))
+                    inGameView.printfError(InGameErrorType.INVALID_TARGET);
+                else {
+                    ((Spell)friendlyCard).castSpell(cell);
+                    player.reduceMana(friendlyCard.getMP());
+                }
+            }
+        }
     }
+
 }

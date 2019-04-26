@@ -1,5 +1,6 @@
 package model.cards;
 
+import model.MultiPlayerBattle;
 import model.enumerations.CardType;
 
 public class Card {
@@ -55,4 +56,7 @@ public class Card {
         BattleID = battleID;
     }
 
+    public int getMP() {
+        return MP;
+    }
 }

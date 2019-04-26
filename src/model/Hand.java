@@ -35,4 +35,12 @@ public class Hand {
     public ArrayList<Card> getCards() {
         return cards;
     }
+
+    public Card getCardByName(String cardName){
+        for (Card card : cards) {
+            if(card.getName().equals(cardName))
+                return card;
+        }
+        return null;
+    }
 }

@@ -223,4 +223,10 @@ public class Player {
         }
         return null;
     }
+
+    public ArrayList<Cell> getCellsToInsertMinion(){
+        // for inserting minions from deck , the target should be beside the hero or other minions in play ground
+        // not complete
+        return null;
+    }
 }

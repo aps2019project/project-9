@@ -95,7 +95,7 @@ public class Spell extends Card {
         }
     }
 
-    public boolean isValidTarget(Cell inputCell) {
+    public boolean isValidTarget(Cell inputCell) { // not completed
         switch (targetType) {
             case AN_ENEMY_MINION_IN_EIGHT_HERO:
                 break;
