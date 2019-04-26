@@ -39,10 +39,10 @@ public class Minion extends Card {
     protected boolean canComboAttack;
     protected boolean isHero = false;
 
-    public Minion(int cost, int MP, CardType cardType, int cardID, String desc,
+    public Minion(int cost, int MP, CardType cardType,String name, int cardID, String desc,
                   MinionName minionName, MinionAttackType attackType,
                   int HP, int AP, int attackRange, SpecialPower specialPower, boolean isFars) {
-        super(cost, MP, cardType, cardID, desc);
+        super(cost, MP, cardType, cardID,name, desc);
         this.minionName = minionName;
         this.attackType = attackType;
         this.HP = HP;
@@ -283,7 +283,7 @@ public class Minion extends Card {
     }
 
     public Minion getCopy() {
-        return new Minion(cost, MP, cardType, cardID, name, desc, minionName, attackType
+        return new Minion(cost, MP, cardType, cardID,desc, minionName, attackType
                 , HP, AP, attackRange, specialPower, isFars);
     }
 }

@@ -11,8 +11,14 @@ public class Collection {
     private Account ownerAccount;
 
     public Card getCard(String cardID) {
+        int mainCardId;
+        try {
+            mainCardId = Integer.parseInt(cardID);
+        }catch (NumberFormatException e){
+            return null;
+        }
         for (Card key : cards) {
-            if (key != null && key.getCardID().equals(cardID)) {
+            if (key != null && key.getCardID()==(mainCardId)) {
                 return key;
             }
         }
@@ -20,8 +26,14 @@ public class Collection {
     }   //returns null if not in collection
 
     public Item getItem(String itemID) {
+        int mainItemId;
+        try {
+            mainItemId = Integer.parseInt(itemID);
+        }catch (NumberFormatException e){
+            return null;
+        }
         for (Item key : items) {
-            if (key != null && key.getItemID().equals(itemID)) {
+            if (key != null && key.getItemID()==(mainItemId)) {
                 return key;
             }
         }
