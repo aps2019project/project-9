@@ -24,4 +24,12 @@ public class GraveYard {
         // card id to be set
         cards.add(card);
     }
+
+    public Card getCardByID(String battleID){
+        for (Card card : cards) {
+            if(card.getBattleID().equals(battleID))
+                return card;
+        }
+        return null;
+    }
 }
