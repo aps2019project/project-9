@@ -9,7 +9,11 @@ import model.enumerations.MinionName;
 import java.util.HashMap;
 
 public class DefaultCards {
-    HashMap<String,Minion> minionHashMap = new HashMap<>();
+    public static Minion getMinion(MinionName name){
+        return null;
+    }
+
+    HashMap<MinionName,Minion> minionHashMap = new HashMap<>();
     // minions
     private static Gson gson = new Gson();
     private static final String FARS_KAMANDAR = gson.toJson(new Minion(300,2, CardType.MINION,
