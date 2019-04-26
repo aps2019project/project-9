@@ -13,6 +13,8 @@ import model.items.Collectible;
 import view.InGameRequest;
 import view.InGameView;
 
+import java.util.ArrayList;
+
 public class InGameController {
     private Battle battle;
     private InGameView inGameView = InGameView.getInstance();
@@ -73,22 +75,36 @@ public class InGameController {
                     inGameView.showItemInfo(battle.getCurrenPlayer());
                     break;
                 case SHOW_MENU:
-
+                    inGameView.showMenu();
                     break;
                 case SELCET_CARD:
-
+                    selectCard(request.getCardID());
+                    break;
                 case SELCET_ITEM:
+                    selectItem(request.getCollectibleID());
+                    break;
                 case COMBO_ATTACK:
+                    comboAttack(battle.getCurrenPlayer(), request.getComboCardIds(), request.getOpponentCardID());
+                    break;
                 case SHOW_CARD_INFO:
                     showCardInfo(request.getCardID());
                     break;
                 case SHOW_NEXT_CARD:
+                    inGameView.showCardInfo(battle.getCurrenPlayer().getHand().getNext());
+                    break;
                 case ENTER_GRAVEYARD:
+                    GraveYardController graveYardController = new GraveYardController();
+                    graveYardController.main();
+                    break;
                 case SHOW_MY_MINIONS:
                     inGameView.showMinions(battle.getCurrenPlayer());
                     break;
                 case SHOW_COLLECTIBLES:
+                    inGameView.showCollectibles(battle.getCurrenPlayer());
+                    break;
                 case USE_SPECIAL_POWER:
+                    useSpecialPower(request.getX(),request.getY());
+                    break;
                 case SHOW_OPPONENT_MINIONS:
                     inGameView.showMinions(battle.getCurrenPlayer().getOpponent());
                     break;
@@ -107,6 +123,14 @@ public class InGameController {
 
     private void selectCard(String battleID) {
         // from play ground
+        Player player = battle.getCurrenPlayer();
+        for (Minion minion : player.getMinionsInPlayGround()) {
+            if (minion.getBattleID().equals(battleID)) {
+                player.setSelectedCard(minion);
+                return;
+            }
+        }
+        inGameView.printfError(InGameErrorType.INVALID_CARD_ID);
     }
 
     private int numberOfUseInBattle(Battle battle) { // ali
@@ -173,6 +197,7 @@ public class InGameController {
                 } else {
                     ((Minion) friendlyCard).putInMap(cell);
                     player.reduceMana(friendlyCard.getMP());
+                    inGameView.cardInserted(friendlyCard, x, y);
                 }
             } else {
                 if (!((Spell) friendlyCard).isValidTarget(cell))
@@ -180,6 +205,7 @@ public class InGameController {
                 else {
                     ((Spell) friendlyCard).castSpell(cell);
                     player.reduceMana(friendlyCard.getMP());
+                    inGameView.cardInserted(friendlyCard, x, y);
                 }
             }
         }
@@ -203,4 +229,69 @@ public class InGameController {
         }
     }
 
+    private void selectItem(String itemID) {
+        Player player = battle.getCurrenPlayer();
+        int id;
+        try {
+            id = Integer.parseInt(itemID);
+        } catch (NumberFormatException e) {
+            inGameView.printfError(InGameErrorType.INVALID_COLLECTIBLE_ID);
+            return;
+        }
+        for (Collectible collectedItem : player.getCollectedItems()) {
+            if (collectedItem.getItemID() == id) {
+                player.setSelectedCollectableItem(collectedItem);
+                return;
+            }
+        }
+        inGameView.printfError(InGameErrorType.INVALID_COLLECTIBLE_ID);
+    }
+
+    private void comboAttack(Player player, ArrayList<String> cards, String opponentCardId) {
+        Player opponent = player.getOpponent();
+        Minion opponentMinion = opponent.findMinionByIdInPlayGround(opponentCardId);
+        if (opponentMinion == null) {
+            inGameView.printfError(InGameErrorType.INVALID_OPPONENT_CARD_ID);
+            return;
+        }
+        ArrayList<Minion> friendlyMinions = new ArrayList<>();
+        for (String card : cards) {
+            if (player.findMinionByIdInPlayGround(card) != null)
+                friendlyMinions.add(player.findMinionByIdInPlayGround(card));
+            else {
+                inGameView.printfError(InGameErrorType.INVALID_CARD_ID);
+                return;
+            }
+        }
+        // opponent minion and friendly minions all are ok
+        Cell targetCell = opponentMinion.getCell();
+        for (Minion friendlyMinion : friendlyMinions) {
+            if (!friendlyMinion.isValidCell(targetCell)) {
+                inGameView.printfError(InGameErrorType.UNAVAILABLE_FOR_ATTACK);
+                return;
+            }
+            if (!friendlyMinion.isCanAttack()) {
+                inGameView.cardCantAttack(friendlyMinion);
+                return;
+            }
+        }
+        // all can attack and all is in range
+        player.comboAttack(targetCell, friendlyMinions);
+    }
+
+    private void useSpecialPower(int x, int y) {
+        Cell targetCell = battle.getPlayGround().getCell(x, y);
+        Player player = battle.getCurrenPlayer();
+        if (player.getHero().getHeroSpell() == null) {
+            inGameView.printfError(InGameErrorType.HERO_NOT_HAVE_SPELL);
+        } else if (player.getMana() < player.getHero().getHeroSpell().getMP()) {
+            inGameView.printfError(InGameErrorType.NOT_HAVE_ENOUGH_MANA);
+        } else if (!player.getHero().getHeroSpell().isValidTarget(targetCell)) {
+            inGameView.printfError(InGameErrorType.INVALID_TARGET);
+        } else if (!player.getHero().canCastSpell()) {
+            inGameView.printfError(InGameErrorType.HERO_COOL_DOWN);
+        } else {
+            player.getHero().getHeroSpell().castSpell(targetCell);
+        }
+    }
 }

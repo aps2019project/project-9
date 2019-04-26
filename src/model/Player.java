@@ -45,8 +45,8 @@ public class Player {
 
     }
 
-    public void comboAttack(Cell cell, ArrayList<Card> cards) {
-
+    public void comboAttack(Cell cell, ArrayList<Minion> minions) {
+        //
     }
 
     public void castUsableItem() {

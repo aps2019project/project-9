@@ -20,8 +20,8 @@ public class InGameRequest {
     private static final String SHOW_HAND = "show hand";
     private static final String INSERT = "insert";
     private static final String END_TURN = "end turn";
-    private static final String SHOW_COLLETIBLES = "show collectibles";
-    private static final String SELECT_ITEM = "select";
+    private static final String SHOW_COLLECTIBLES = "show collectibles";
+    private static final String SELECT_ITEM = "select item";
     private static final String SHOW_INFO = "show info"; // item
     private static final String USE_ITEM = "use";
     private static final String SHOW_NEXT_CARD = "show next card";
@@ -36,11 +36,11 @@ public class InGameRequest {
     private String collectibleID;
     private String cardName;
     private String opponentCardID;
-    private ArrayList<String> myCardIds; // for combo attack
+    private ArrayList<String> comboCardIds; // for combo attack
     private String command;
 
-    public ArrayList<String> getMyCardIds() {
-        return myCardIds;
+    public ArrayList<String> getComboCardIds() {
+        return comboCardIds;
     }
 
     public String getOpponentCardID() {
@@ -122,10 +122,10 @@ public class InGameRequest {
             return InGameRequestType.INSERT;
         else if (command.matches(END_TURN))
             return InGameRequestType.END_TURN;
-        else if (command.matches(SHOW_COLLETIBLES))
+        else if (command.matches(SHOW_COLLECTIBLES))
             return InGameRequestType.SHOW_COLLECTIBLES;
-        else if (command.matches(SELECT_ITEM)) {
-            collectibleID = command.split(" ")[1];
+        else if (command.substring(0,11).matches(SELECT_ITEM)) {
+            collectibleID = command.split(" ")[2];
             return InGameRequestType.SELCET_ITEM;
         } else if (command.matches(SHOW_INFO))
             return InGameRequestType.SHOW_INFO;
@@ -155,9 +155,9 @@ public class InGameRequest {
     private void getCommandOfComboAttack(String command) {
         String[] commands = command.split(" ");
         opponentCardID = commands[2];
-        myCardIds = new ArrayList<>();
+        comboCardIds = new ArrayList<>();
         for (int i = 3; i < commands.length; i++) {
-            myCardIds.add(commands[i]);
+            comboCardIds.add(commands[i]);
         }
     }
 

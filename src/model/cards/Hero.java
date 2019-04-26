@@ -1,6 +1,7 @@
 package model.cards;
 
 import model.Cell;
+import model.Player;
 import model.enumerations.CardType;
 import model.enumerations.HeroName;
 import model.enumerations.MinionAttackType;
@@ -13,6 +14,7 @@ public class Hero extends Minion {
     // hero does not have minion name ( not use the minion name that inherit )
     private static ArrayList<Hero> heroes;
     private int cooldown;
+    private int turnsRemained; // for cool down
     private Spell heroSpell;
     private HeroTargetType spellTargetType; // for spell
     private HeroName heroName;
@@ -27,19 +29,16 @@ public class Hero extends Minion {
         this.heroName = heroName;
     }
 
-    public Hero copy() {
-        return new Hero(cost, MP, cardID, name, desc, attackType, HP, AP, attackRange
-                , isFars, cooldown, heroSpell, spellTargetType, heroName);
-    }
-
     public boolean isSpellReady() {
         return false;
     }
 
-    public void castSpell(Cell cell) {
+    public void useSpecialPower(Cell cell) { // cast spell
+
     }
 
-    public void useSpecialPower(Cell cell) {
+    public boolean canCastSpell(){ // cool down
+        return turnsRemained==0;
     }
 
     public HeroTargetType getSpellTargetType() {
@@ -50,5 +49,9 @@ public class Hero extends Minion {
         String string = "Name : " + getName() + " - AP : " + getAP() + " - HP : " + getHP() + " - Class : "
                 + getAttackType() + " - Special power: " + getDesc();
         return string;
+    }
+
+    public Spell getHeroSpell() {
+        return heroSpell;
     }
 }

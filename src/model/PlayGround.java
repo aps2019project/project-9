@@ -1,5 +1,6 @@
 package model;
 
+import model.cards.Card;
 import model.enumerations.GameMode;
 import model.enumerations.MinionAttackType;
 import model.items.Flag;
@@ -105,4 +106,5 @@ public class PlayGround {
         } else
             return true;
     }
+
 }

@@ -71,10 +71,10 @@ public class InGameView {
     public void showMinions(Player player) {
         for (Minion minion : player.getMinionsInPlayGround()) {
             System.out.printf("%s : %s, health: %d, location: %d , %d ,power : %d\n",
-                    minion.getCardID(), minion.getMinionName(), minion.getHP(), minion.getCell().getX()
+                    minion.getBattleID(), minion.getMinionName(), minion.getHP(), minion.getCell().getX()
                     , minion.getCell().getY(), minion.getAP());
         }
-    }
+    } // ones in the play ground
 
     public void showCardInfo(Card card) {
         if (card instanceof Minion) {
@@ -103,14 +103,9 @@ public class InGameView {
         System.out.printf("%s with %s inserted to %d %d\n", card.getName(), card.getCardID(), x, y);
     }
 
-    public void showCollectibles(Player player, boolean isForAll) {
-        if (isForAll) {
-            for (Collectible collectedItem : player.getCollectedItems()) {
-                System.out.printf("ItemName : %s ItemID : %s\n", collectedItem.getName(), collectedItem.getItemID());
-            }
-        } else {
-            System.out.printf("ItemName : %s ItemId : %s", player.getSelectedCollectableItem().getName()
-                    , player.getSelectedCollectableItem().getItemID());
+    public void showCollectibles(Player player) {
+        for (Collectible collectedItem : player.getCollectedItems()) {
+            System.out.printf("ItemName : %s ItemID : %s\n", collectedItem.getName(), collectedItem.getItemID());
         }
     }
 
@@ -168,9 +163,27 @@ public class InGameView {
                     , player.getSelectedCollectableItem().getName());
     }
 
-    public void showMenu(){
-        System.out.printf("Menu Commands :\n" +
+    public void showMenu() {
+        System.out.print("Menu Commands :\n" +
                 "Game info\n" + "show my minions\n"
-        + "show opponent minions\n" + "show card info [card id]");
+                + "show opponent minions\n" + "show card info [card id]\n" +
+                "select [card id]\n" +
+                "move to x y\n" +
+                "attack [opponent card id]\n" +
+                "Attack combo [opponent card id] [my card id] [my card id] [...]\n" +
+                "Use special power x y\n" +
+                "show hand\n" +
+                "insert [card name] in x y\n" +
+                "end turn\n" +
+                "show collectibles\n" +
+                "select item [collectible id]\n" +
+                "show info\n" +
+                "use x y\n" +
+                "show next card\n" +
+                "enter graveyard\n" +
+                "help\n" +
+                "end game\n" +
+                "exit\n" +
+                "show menu\n");
     }
 }
