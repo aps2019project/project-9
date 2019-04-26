@@ -283,7 +283,6 @@ public class Minion extends Card {
     }
 
     public Minion getCopy() {
-        return new Minion(cost, MP, cardType, cardID,desc, minionName, attackType
-                , HP, AP, attackRange, specialPower, isFars);
+        return null;
     }
 }

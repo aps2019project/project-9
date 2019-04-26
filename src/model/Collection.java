@@ -14,11 +14,11 @@ public class Collection {
         int mainCardId;
         try {
             mainCardId = Integer.parseInt(cardID);
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             return null;
         }
         for (Card key : cards) {
-            if (key != null && key.getCardID()==(mainCardId)) {
+            if (key != null && key.getCardID() == (mainCardId)) {
                 return key;
             }
         }
@@ -29,11 +29,11 @@ public class Collection {
         int mainItemId;
         try {
             mainItemId = Integer.parseInt(itemID);
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             return null;
         }
         for (Item key : items) {
-            if (key != null && key.getItemID()==(mainItemId)) {
+            if (key != null && key.getItemID() == (mainItemId)) {
                 return key;
             }
         }
@@ -52,16 +52,28 @@ public class Collection {
     }
 
     public Card searchCardByID(String cardID) {
+        int mainCardId;
+        try {
+            mainCardId = Integer.parseInt(cardID);
+        } catch (NumberFormatException e) {
+            return null;
+        }
         for (Card card : cards) {
-            if (card.getCardID().equals(cardID))
+            if (card.getCardID() == mainCardId)
                 return card;
         }
         return null;
     }
 
     public Item searchItemByID(String itemID) {
+        int mainItemId;
+        try {
+            mainItemId = Integer.parseInt(itemID);
+        } catch (NumberFormatException e) {
+            return null;
+        }
         for (Item item : items) {
-            if (item.getItemID().equals(itemID))
+            if (item.getItemID() == mainItemId)
                 return item;
         }
         return null;
@@ -99,7 +111,7 @@ public class Collection {
     public String toString() {
         String string = "";
         int counter = 1;
-        for(Deck deck : ownerAccount.getDecks()){
+        for (Deck deck : ownerAccount.getDecks()) {
             string += counter + " : " + deck.getName() + " :\n" + deck.toString(true);
             counter++;
         }

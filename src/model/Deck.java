@@ -17,16 +17,16 @@ public class Deck {
 
     public Deck(String name) {
         this.name = name;
-        if(name.equals("first level")){
+        if (name.equals("first level")) {
             //
-        }else if(name.equals("second level")){
+        } else if (name.equals("second level")) {
             //
-        }else if(name.equals("third level")){
+        } else if (name.equals("third level")) {
             //
         }
     }
 
-    public Deck getCopy(){
+    public Deck getCopy() {
         Deck copyOfThis = new Deck(name);
         // remained
         return null;
@@ -97,17 +97,29 @@ public class Deck {
     }
 
     public Card getCardByID(String cardID) { // also hero
+        int mainCardId;
+        try {
+            mainCardId = Integer.parseInt(cardID);
+        } catch (NumberFormatException e) {
+            return null;
+        }
         for (Card key : cards) {
-            if (key.getCardID().equals(cardID))
+            if (key.getCardID() == mainCardId)
                 return key;
         }
-        if (hero.getCardID().equals(cardID))
+        if (hero.getCardID() == mainCardId)
             return hero;
         return null;
     }
 
     public Item getItemByID(String itemID) {
-        if (item.getItemID().equals(itemID))
+        int mainItemId;
+        try {
+            mainItemId = Integer.parseInt(itemID);
+        } catch (NumberFormatException e) {
+            return null;
+        }
+        if (item.getItemID() == mainItemId)
             return item;
         else
             return null;
