@@ -39,10 +39,10 @@ public class Minion extends Card {
     protected boolean canComboAttack;
     protected boolean isHero = false;
 
-    public Minion(int cost, int MP, CardType cardType, int cardID, String name, String desc,
+    public Minion(int cost, int MP, CardType cardType, int cardID, String desc,
                   MinionName minionName, MinionAttackType attackType,
                   int HP, int AP, int attackRange, SpecialPower specialPower, boolean isFars) {
-        super(cost, MP, cardType, cardID, name, desc);
+        super(cost, MP, cardType, cardID, desc);
         this.minionName = minionName;
         this.attackType = attackType;
         this.HP = HP;

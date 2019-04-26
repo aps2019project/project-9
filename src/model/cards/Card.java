@@ -9,26 +9,20 @@ public class Card {
     protected CardType cardType;
     protected int cardID;
     protected String BattleID;
-    protected String name;
     protected String desc;
 
     public Card(int cost, int MP, CardType cardType,
-                int cardID, String name, String desc) {
+                int cardID, String desc) {
         this.cost = cost;
         this.MP = MP;
         this.cardType = cardType;
         this.cardID = cardID;
-        this.name = name;
         this.desc = desc;
     }
 
 
     public CardType getCardType() {
         return cardType;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public int getCardID() {
