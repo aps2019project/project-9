@@ -14,6 +14,7 @@ public class Battle {
     protected Player firstPlayer;
     protected Player secondPlayer;
     protected int numberOfFlags;
+    protected int battlePrize; // should be initialized at Constructor()
 
     public void startBattle(){
         // buffs and cellAffects turns remained should be equal to turnsActive
@@ -21,7 +22,8 @@ public class Battle {
     }
 
     public void nextTurn(){
-
+        // fill hands
+        // change whose turn
     }
     public void endBattle(Player winner){
 

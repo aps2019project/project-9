@@ -131,6 +131,8 @@ public class Player {
                 //
                 //
             }
+
+            minion.setCanMove(false);
         }
     }
 
@@ -228,5 +230,13 @@ public class Player {
         // for inserting minions from deck , the target should be beside the hero or other minions in play ground
         // not complete
         return null;
+    }
+
+    public void setSelectedCollectableItem(Item selectedCollectableItem) {
+        this.selectedCollectableItem = selectedCollectableItem;
+    }
+
+    public void setSelectedCard(Card selectedCard) {
+        this.selectedCard = selectedCard;
     }
 }

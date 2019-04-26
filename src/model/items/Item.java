@@ -38,4 +38,8 @@ public class Item {
     public void setItemID(int itemID) {
         this.itemID = itemID;
     }
+
+    public String getDesc() {
+        return desc;
+    }
 }

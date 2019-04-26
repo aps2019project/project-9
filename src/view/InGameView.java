@@ -1,6 +1,7 @@
 package view;
 
 import model.Battle;
+import model.Hand;
 import model.Player;
 import model.cards.Card;
 import model.cards.Hero;
@@ -91,7 +92,7 @@ public class InGameView {
     }
 
     public void cardMoved(Card card, int x, int y) {
-        System.out.printf("%s moved to %d %d\n", card.getCardID(), x, y);
+        System.out.printf("%s moved to %d %d\n", card.getBattleID(), x, y);
     }
 
     public void cardCantAttack(Card card) {
@@ -113,31 +114,63 @@ public class InGameView {
         }
     }
 
-    public void showCardName(Card card){
+    public void showCardName(Card card) {
         System.out.println(card.getName());
     }
 
-    public void help(Player player){
+    public void help(Player player) {
         ArrayList<Minion> canMove = new ArrayList<>();
         ArrayList<Minion> opponentMinions = player.getOpponent().getMinionsInPlayGround();
         System.out.println("Cards In Hand :");
         for (Card card : player.getHand().getCards()) {
-            System.out.printf("card name : %s\n" , card.getName());
+            System.out.printf("card name : %s\n", card.getName());
         }
         for (Minion minion : player.getMinionsInPlayGround()) {
-            if(minion.isCanMove())
+            if (minion.isCanMove())
                 canMove.add(minion);
         }
         System.out.println("Friendly Minions That Can Move :");
         for (Minion minion : canMove) {
-            System.out.printf("Battle ID = %s , current cell:( %d , %d )\n" , minion.getBattleID(),
-                    minion.getCell().getX(),minion.getCell().getY());
+            System.out.printf("Battle ID = %s , current cell:( %d , %d )\n", minion.getBattleID(),
+                    minion.getCell().getX(), minion.getCell().getY());
         }
         System.out.println("All opponent minions :");
         for (Minion minion : opponentMinions) {
-            System.out.printf("Battle ID = %s -> current cell : ( %d , %d )\n" , minion.getBattleID(),
-                    minion.getCell().getX(),minion.getCell().getY());
+            System.out.printf("Battle ID = %s -> current cell : ( %d , %d )\n", minion.getBattleID(),
+                    minion.getCell().getX(), minion.getCell().getY());
         }
     }
 
+    public void endGameOutput(Player winner, int prize) {
+        System.out.printf("Winner : %s\nThe Prize of winner is %d derick\n", winner.getName(), prize);
+    }
+
+    public void showHand(Hand hand) {
+        int counter = 1;
+        System.out.println("Cards In Hand :");
+        for (Card card : hand.getCards()) {
+            if (card instanceof Spell)
+                System.out.printf("%d . %s ( Spell )\n", counter++, card.getName());
+            else
+                System.out.printf("%d . %s ( Minion )\n", counter++, card.getName());
+        }
+        System.out.println("Next Card in Hand :");
+        System.out.println(hand.getNext().getName() +
+                ((hand.getNext() instanceof Spell) ? ("( Spell )") : ("( Minion )")));
+    }
+
+    public void showItemInfo(Player player) {
+        if (player.getSelectedCollectableItem() == null)
+            System.out.println("No Item Selected");
+        else
+            System.out.printf("Item Name : %s , Description : %s",
+                    player.getSelectedCollectableItem().getDesc()
+                    , player.getSelectedCollectableItem().getName());
+    }
+
+    public void showMenu(){
+        System.out.printf("Menu Commands :\n" +
+                "Game info\n" + "show my minions\n"
+        + "show opponent minions\n" + "show card info [card id]");
+    }
 }

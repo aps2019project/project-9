@@ -17,7 +17,7 @@ public class DefaultCards {
     // minions
     private static Gson gson = new Gson();
     private static final String FARS_KAMANDAR = gson.toJson(new Minion(300, 2, CardType.MINION
-            , "kamandar fars",
+            , "kamandar_fars",
             0, "", MinionName.FARS_KAMANDAR, MinionAttackType.RANGED,
             6, 4, 7, null, true));
 

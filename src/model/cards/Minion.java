@@ -39,10 +39,10 @@ public class Minion extends Card {
     protected boolean canComboAttack;
     protected boolean isHero = false;
 
-    public Minion(int cost, int MP, CardType cardType,String name, int cardID, String desc,
+    public Minion(int cost, int MP, CardType cardType, String name, int cardID, String desc,
                   MinionName minionName, MinionAttackType attackType,
                   int HP, int AP, int attackRange, SpecialPower specialPower, boolean isFars) {
-        super(cost, MP, cardType, cardID,name, desc);
+        super(cost, MP, cardType, cardID, name, desc);
         this.minionName = minionName;
         this.attackType = attackType;
         this.HP = HP;
@@ -94,6 +94,7 @@ public class Minion extends Card {
     }
 
     public void attack(Cell cell) {
+        // receiveAttack() of opponent
     }
 
     public void killed() {
@@ -178,7 +179,7 @@ public class Minion extends Card {
     }
 
     public void receiveAttack() {
-
+        // should be used in attack() of the attacker minion
     }
 
     public int getHP() {
@@ -292,5 +293,21 @@ public class Minion extends Card {
 
     public boolean isCanAttack() {
         return canAttack;
+    }
+
+    /*public void move(Cell targetCell) { // validation of target Cell is checked in InGameController
+        cell.deleteCard();
+        targetCell.addCard(this);
+        cell = targetCell;
+        canMove = false;
+    }*/
+
+    public boolean isValidCellForMove(Cell targetCell) {
+        if (player.getBattle().getPlayGround().getManhatanDistance(this.cell, targetCell) > 2
+                || targetCell.hasCardOnIt()
+                || !player.getBattle().getPlayGround().canMoveThroughPath(this.cell, targetCell)){
+            return false;
+        }
+        return true;
     }
 }

@@ -47,20 +47,34 @@ public class InGameController {
                 case INSERT:
                     // ID assigning ( battle ID )
                     battle.getCurrenPlayer().getSelectedCard().setBattleID(
-                            battle.getCurrenPlayer().getName() + "_" + battle.getCurrenPlayer().getSelectedCard().getName()
+                            battle.getCurrenPlayer().getName() + "_"
+                                    + battle.getCurrenPlayer().getSelectedCard().getName()
                                     + "_" + numberOfUseInBattle(battle));
-                    insert(request.getCardName(),request.getX(),request.getY());
+                    insert(request.getCardName(), request.getX(), request.getY());
                     break;
                 case MOVE_TO:
-                    /////////////////////////////////
+                    move(battle.getCurrenPlayer(), request.getX(), request.getY());
+                    break;
                 case END_GAME:
-                case END_TUNN:
+                    // not complete .....
+                    // inGameView.endGameOutput();
+                    isFinished = true;
+                    break;
+                case END_TURN:
+                    battle.nextTurn();
+                    break;
                 case GAME_INFO:
                     inGameView.showGameInfo(battle);
                     break;
                 case SHOW_HAND:
-                case SHOW_INFO:
+                    inGameView.showHand(battle.getCurrenPlayer().getHand());
+                    break;
+                case SHOW_INFO: // for selected collectible item information
+                    inGameView.showItemInfo(battle.getCurrenPlayer());
+                    break;
                 case SHOW_MENU:
+
+                    break;
                 case SELCET_CARD:
 
                 case SELCET_ITEM:
@@ -91,8 +105,8 @@ public class InGameController {
         }
     }
 
-    private void selectCard(String cardID) {
-        //
+    private void selectCard(String battleID) {
+        // from play ground
     }
 
     private int numberOfUseInBattle(Battle battle) { // ali
@@ -117,8 +131,10 @@ public class InGameController {
         } else {
             if (!((Collectible) player.getSelectedCollectableItem()).isValidCell(cell))
                 inGameView.printfError(InGameErrorType.INVALID_TARGET);
-            else
+            else {
                 ((Collectible) player.getSelectedCollectableItem()).useItem();
+                player.setSelectedCollectableItem(null);
+            }
         }
     }
 
@@ -136,6 +152,7 @@ public class InGameController {
                 inGameView.cardCantAttack(currentPlayer.getSelectedCard());
             } else {
                 ((Minion) currentPlayer.getSelectedCard()).attack(opponentMinion.getCell());
+                currentPlayer.setSelectedCard(null);
             }
         }
     }
@@ -161,9 +178,27 @@ public class InGameController {
                 if (!((Spell) friendlyCard).isValidTarget(cell))
                     inGameView.printfError(InGameErrorType.INVALID_TARGET);
                 else {
-                    ((Spell)friendlyCard).castSpell(cell);
+                    ((Spell) friendlyCard).castSpell(cell);
                     player.reduceMana(friendlyCard.getMP());
                 }
+            }
+        }
+    }
+
+    private void move(Player player, int x, int y) {
+        if (player.getSelectedCard() == null)
+            inGameView.printfError(InGameErrorType.NO_SELECTED_CARD);
+        else if (!((Minion) player.getSelectedCard()).isCanMove())
+            inGameView.printfError(InGameErrorType.CAN_NOT_MOVE);
+        else {
+            Minion selectedMinion = (Minion) player.getSelectedCard();
+            Cell targetCell = battle.getPlayGround().getCell(x, y);
+            if (!selectedMinion.isValidCellForMove(targetCell))
+                inGameView.printfError(InGameErrorType.INVALID_TARGET);
+            else {
+                player.move(selectedMinion, targetCell);
+                player.setSelectedCard(null);
+                inGameView.cardMoved(selectedMinion, x, y);
             }
         }
     }

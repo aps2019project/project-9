@@ -12,7 +12,7 @@ public enum InGameRequestType {
     USE_SPECIAL_POWER,
     SHOW_HAND,
     INSERT,
-    END_TUNN,
+    END_TURN,
     SHOW_COLLECTIBLES,
     SELCET_ITEM,
     SHOW_INFO,

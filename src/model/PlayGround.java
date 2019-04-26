@@ -8,12 +8,13 @@ import java.util.ArrayList;
 
 public class PlayGround {
     private Cell[][] cells = new Cell[5][9];
-    private ArrayList<Flag> flags ; // for mode three
+    private ArrayList<Flag> flags; // for mode three
     private Flag flag; // for mode two
 
-    public PlayGround(GameMode mode){
+    public PlayGround(GameMode mode) {
         // remaining
     }
+
     public boolean isForEnemyMinion(Cell cell, Player player) {
         return false;
     }
@@ -58,7 +59,7 @@ public class PlayGround {
                 java.lang.Math.abs((firstCell.getY() - secondCell.getY())));
     }
 
-    public boolean isValid(Cell minionCell, Cell targetCell, MinionAttackType attackType) {
+    public boolean isValid(Cell minionCell, Cell targetCell, MinionAttackType attackType) { // for minion attack
         switch (attackType) {
             case MELEE:
                 return getAroundCells(minionCell).contains(targetCell);
@@ -83,11 +84,25 @@ public class PlayGround {
         this.flags = flags;
     }
 
-    public Flag getFlag(){
+    public Flag getFlag() {
         return flag;
     }
 
-    public void setFlag(Flag flag){
+    public void setFlag(Flag flag) {
         this.flag = flag;
+    }
+
+    public boolean canMoveThroughPath(Cell firstCell, Cell secondCell) {
+    /*two cell with manhatan distance 2 ,
+     if there are no power in the middle
+     of their path , return true;*/
+        if (getManhatanDistance(firstCell, secondCell) > 2)
+            return false;
+        if (java.lang.Math.abs(firstCell.getY() - secondCell.getY()) == 2
+                || java.lang.Math.abs(firstCell.getX() - secondCell.getX()) == 2) {
+            return !getCell((firstCell.getX() + secondCell.getX()) / 2,
+                    (firstCell.getY() + secondCell.getY()) / 2).hasCardOnIt();
+        } else
+            return true;
     }
 }

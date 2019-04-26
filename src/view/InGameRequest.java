@@ -121,7 +121,7 @@ public class InGameRequest {
         else if (command.substring(0, 6).matches(INSERT) && checkInsertCommand(command))
             return InGameRequestType.INSERT;
         else if (command.matches(END_TURN))
-            return InGameRequestType.END_TUNN;
+            return InGameRequestType.END_TURN;
         else if (command.matches(SHOW_COLLETIBLES))
             return InGameRequestType.SHOW_COLLECTIBLES;
         else if (command.matches(SELECT_ITEM)) {
@@ -130,7 +130,7 @@ public class InGameRequest {
         } else if (command.matches(SHOW_INFO))
             return InGameRequestType.SHOW_INFO;
         else if (command.matches(USE_ITEM) && command.split(" ").length == 3
-                && checkItemUsecommand(command)) {
+                && checkItemUseCommand(command)) {
             x = Integer.parseInt(command.split(" ")[1]);
             y = Integer.parseInt(command.split(" ")[2]);
             return InGameRequestType.USE;
@@ -173,7 +173,7 @@ public class InGameRequest {
         return false;
     }
 
-    private boolean checkItemUsecommand(String command) {
+    private boolean checkItemUseCommand(String command) {
         return command.matches("use [1-5] [1-9]");
     }
 }
