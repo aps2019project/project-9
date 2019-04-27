@@ -20,9 +20,8 @@ public class Spell extends Card {
     private SpellName spellName;
     private Player owningPlayer; // the player use it
 
-    public Spell(int cost, int MP, CardType cardType, int cardID, String name,
-                 String desc, ArrayList<Buff> buffs, SpellTargetType targetType,
-                 CellAffect cellAffect, SpellName spellName) {
+    public Spell(String name, int cost, int MP,  SpellTargetType targetType, CardType cardType, int cardID,
+                 String desc, ArrayList<Buff> buffs, CellAffect cellAffect, SpellName spellName) {
         super(cost, MP, cardType, cardID, name, desc);
         this.buffs = buffs;
         this.targetType = targetType;

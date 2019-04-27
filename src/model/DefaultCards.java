@@ -245,7 +245,5 @@ public class DefaultCards {
 
 
     //SPELL
-
-
-
+    //private static final
 }
