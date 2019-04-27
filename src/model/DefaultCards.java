@@ -5,10 +5,8 @@ import model.cards.Hero;
 import model.cards.HeroTargetType;
 import model.cards.Minion;
 import model.cards.Spell;
-import model.enumerations.CardType;
-import model.enumerations.HeroName;
-import model.enumerations.MinionAttackType;
-import model.enumerations.MinionName;
+import model.cellaffects.CellAffect;
+import model.enumerations.*;
 
 import java.util.HashMap;
 
@@ -245,5 +243,63 @@ public class DefaultCards {
 
 
     //SPELL
-    //private static final
+    private static final String TOTAL_DISARM = gson.toJson(new Spell("total_disarm",1000,0,
+            SpellTargetType.AN_ENEMY_POWER,0,
+            "disarm until last of match",
+            null, null, SpellName.TOTAL_DISARM));
+    private static final String AREA_DISPEL = gson.toJson(new Spell("area_dispel",1500,2,
+            SpellTargetType.TWO_IN_TWO_SQUARE,0,
+            "remove positive buff of enemy units and negative buff of friendly units",
+            null, null, SpellName.AREA_DISPEL));
+    private static final String EMPOWER = gson.toJson(new Spell("empower",250,1,
+            SpellTargetType.A_FRIENDLY_POWER,0,
+            "add 2 to a unit power",
+            null, null, SpellName.EMPOWER));
+    private static final String FIREBALL = gson.toJson(new Spell("fireball",400,1,
+            SpellTargetType.AN_ENEMY_POWER,0,
+            "attack 4 unit to a unit",
+            null, null, SpellName.FIREBALL));
+    private static final String GOD_STRENGTH = gson.toJson(new Spell("god_strength",450,2,
+            SpellTargetType.FRIENDLY_HERO,0,
+            "add 4 unit to hero health",
+            null, null, SpellName.GOD_STRENGTH));
+    private static final String HELLFIRE = gson.toJson(new Spell("hellfire",600,3,
+            SpellTargetType.TWO_IN_TWO_SQUARE,0,
+            "make a cell on fire for two turns",
+            null, null, SpellName.HELLFIRE));
+    private static final String LIGHTING_BOLT = gson.toJson(new Spell("lighting_bolt",1250,2,
+            SpellTargetType.ENEMY_HERO,0,
+            "attack 4 unit to enemy hero",
+            null, null, SpellName.LIGHTING_BOLT));
+    private static final String POISON_LAKE = gson.toJson(new Spell("poison_lake",900,5,
+            SpellTargetType.THREE_IN_THREE_SQUARE,0,
+            "meke all target cells poisoned for one round",
+            null, null, SpellName.POISON_LAKE));
+    private static final String MADNESS = gson.toJson(new Spell("madness",650,0,
+            SpellTargetType.A_FRIENDLY_POWER,0,
+            "add 4 unit to a unit power but disarm it",
+            null, null, SpellName.MADNESS));
+    private static final String ALL_DISARM = gson.toJson(new Spell("all_disarm",2000,9,
+            SpellTargetType.ALL_ENEMY_POWERS,0,
+            "disarm all enemy units",
+            null, null, SpellName.ALL_DISARM));
+    private static final String ALL_POISON = gson.toJson(new Spell("all_poison",1500,8,
+            SpellTargetType.ALL_ENEMY_POWERS,0,
+            "poison all enemy unit for 4 turns",
+            null, null, SpellName.ALL_POISON));
+    private static final String DISPEL = gson.toJson(new Spell("dispel",2100,0,
+            SpellTargetType.A_POWER,0,
+            "remove positive buff of enemy or negative buff of friendly",
+            null, null, SpellName.DISPEL));
+
+
+
+
+
+
+
+
+
+
+
 }

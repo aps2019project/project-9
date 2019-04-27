@@ -8,6 +8,7 @@ public enum SpellName {
     GOD_STRENGTH,
     HELLFIRE,
     LIGHTING_BOLT,
+    POISON_LAKE,
     MADNESS,
     ALL_DISARM,
     ALL_POISON,
