@@ -15,8 +15,25 @@ public class DefaultCards {
         return null;
     }
 
-    HashMap<MinionName, Minion> minionHashMap = new HashMap<>();
+    private static HashMap<MinionName, String> minionHashMap = new HashMap<>();
 
+    {
+        minionHashMap.put(MinionName.FARS_KAMANDAR,FARS_KAMANDAR);
+        minionHashMap.put(MinionName.FARS_SHAMSHIRZAN,FARS_SHAMSHIRZAN);
+        minionHashMap.put(MinionName.FARS_NEYZEDAR,FARS_NEYZEDAR);
+        minionHashMap.put(MinionName.FARS_ASBSAVAR,FARS_ASBSAVAR);
+        minionHashMap.put(MinionName.FARS_PAHLAVAN,FARS_PAHLAVAN);
+        minionHashMap.put(MinionName.FARS_SEPAHSALAR,FARS_SEPAHSALAR);
+        minionHashMap.put(MinionName.TOORANEE_KAMANDAR,TOORANEE_KAMANDAR);
+        minionHashMap.put(MinionName.TOORANEE_GHOLABSANG,TOORANEE_GHOLABSANG);
+        minionHashMap.put(MinionName.TOORANEE_NEYZEDAR,TOORANEE_NEYZEDAR);
+        minionHashMap.put(MinionName.TOORANE_JASOS,TOORANEE_JASOS);
+        minionHashMap.put(MinionName.TOORANEE_GORZDAR,TOORANEE_GORZDAR);
+        minionHashMap.put(MinionName.TOORANEE_SHAHZADE,TOORANEE_SHAHZADE);
+        minionHashMap.put(MinionName.BLACK_DEEV,BLACK_DEEV);
+        minionHashMap.put(MinionName.SANGANDAZ_GHOLL,SANGANDAZ_GHOLL);
+        minionHashMap.put(MinionName.EAGLE,EAGLE);
+    }
     //-------------------------------------minions-------------------------------------------------------
     private static Gson gson = new Gson();
     private static final String FARS_KAMANDAR = gson.toJson(new Minion("fars_kamandar", 300, 2, 6,
@@ -62,7 +79,7 @@ public class DefaultCards {
     private static final String TOORANEE_GORZDAR = gson.toJson(new Minion("toorane_gorzdar", 450, 2,
             3, 10, MinionAttackType.MELEE, 0, null, CardType.MINION, 0,
             "",
-            MinionName.TOORANEE_GORAZ, false));
+            MinionName.TOORANEE_GORZDAR, false));
     private static final String TOORANEE_SHAHZADE = gson.toJson(new Minion("toorane_shahzade", 800, 6,
             6, 10, MinionAttackType.MELEE, 0, null, CardType.MINION, 0,
             "Combo",
