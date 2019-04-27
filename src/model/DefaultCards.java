@@ -1,8 +1,12 @@
 package model;
 
 import com.google.gson.Gson;
+import model.cards.Hero;
+import model.cards.HeroTargetType;
 import model.cards.Minion;
+import model.cards.Spell;
 import model.enumerations.CardType;
+import model.enumerations.HeroName;
 import model.enumerations.MinionAttackType;
 import model.enumerations.MinionName;
 
@@ -181,6 +185,67 @@ public class DefaultCards {
 
 
 
+
+
+
     //HERO
+    private static final String WHITE_DEEV = gson.toJson(new Hero(HeroName.WHITE_DEEV,8000,50,
+            4,MinionAttackType.MELEE,0, null,1,2,0,
+            "white_deev",
+            "active a power buff with 4 unit streghnt on him",
+             false, HeroTargetType.ITSELF));
+    private static final String SIMORG = gson.toJson(new Hero(HeroName.SIMORGH,9000,50,
+            4,MinionAttackType.MELEE,0, null,5,8,0,
+            "simorgh",
+            "stun all of enemy units for one turn",
+            false, HeroTargetType.ALL_ENEMY_POWERS));
+    private static final String EJDEHA = gson.toJson(new Hero(HeroName.EJDEHA,8000,50,
+            4,MinionAttackType.MELEE,0, null,0,1,0,
+            "ejdeha_haft_sar",
+            "disarm one unit",
+            false, HeroTargetType.A_CARD));
+    private static final String RAKHSH = gson.toJson(new Hero(HeroName.RAKHSH,8000,50,
+            4,MinionAttackType.MELEE,0, null,1,2,0,
+            "rakhsh",
+            "stun one enemy unit for one turn",
+            false, HeroTargetType.AN_ENEMY_POWER));
+    private static final String ZAHAK = gson.toJson(new Hero(HeroName.ZAHAK,10000,50,
+            2,MinionAttackType.MELEE,0, null,0,0,0,
+            "zahak",
+            "when attack poisen unit for 3 turn",
+            false, HeroTargetType.ON_ATTACK));
+    private static final String KAVE = gson.toJson(new Hero(HeroName.KAVE,8000,50,
+            4,MinionAttackType.MELEE,0, null,1,3,0,
+            "kave",
+            "make a cell hly for 3 turns",
+            false, HeroTargetType.A_CELL));
+    private static final String ARASH = gson.toJson(new Hero(HeroName.ARASH,10000,30,
+            2,MinionAttackType.RANGED,6, null,2,2,0,
+            "arash",
+            "attack every enemy in hero row",
+            false, HeroTargetType.ALL_POWERS_IN_ROW));
+    private static final String AFSANE = gson.toJson(new Hero(HeroName.AFSANE,11000,40,
+            3,MinionAttackType.RANGED,3, null,1,2,0,
+            "afsane",
+            "dispel an enemy",
+            false, HeroTargetType.AN_ENEMY_POWER));
+    private static final String ESFANDIAR = gson.toJson(new Hero(HeroName.ESFANDIAR,12000,35,
+            3,MinionAttackType.HYBRID,3, null,0,0,0,
+            "esfandiar",
+            "have 3 hly buff continuously",
+            false, HeroTargetType.ITSELF));
+    private static final String ROSTAM = gson.toJson(new Hero(HeroName.ROSTAM,8000,55,
+            7,MinionAttackType.HYBRID,4, null,0,0,0,
+            "rostam",
+            "",
+            false, null));
+
+
+
+
+
+    //SPELL
+
+
 
 }

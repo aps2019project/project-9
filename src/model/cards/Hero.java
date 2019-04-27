@@ -22,7 +22,8 @@ public class Hero extends Minion {
     public Hero(HeroName heroName, int cost, int HP, int AP,  MinionAttackType attackType, int attackRange,
                 Spell heroSpell, int MP,  int cooldown, int cardID, String name, String desc, boolean isFars,
                 HeroTargetType spellTargetType) {
-        super(heroName, cost, MP, HP, AP, attackType, attackRange, heroSpell, CardType.MINION,cardID,desc,heroName,isFars);    //not complete
+        super(name, cost, MP, HP, AP, attackType, attackRange, null, CardType.MINION,cardID,desc,
+                null, isFars);    //not complete
         this.cooldown = cooldown;
         this.heroSpell = heroSpell;
         this.spellTargetType = spellTargetType;
