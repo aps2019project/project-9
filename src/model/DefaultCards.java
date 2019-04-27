@@ -1,7 +1,6 @@
 package model;
 
 import com.google.gson.Gson;
-import model.cards.Hero;
 import model.cards.Minion;
 import model.enumerations.CardType;
 import model.enumerations.MinionAttackType;

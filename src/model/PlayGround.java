@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class PlayGround {
     private Cell[][] cells = new Cell[5][9];
     private ArrayList<Flag> flags; // for mode three
-    private Flag flag; // for mode two
+    private Flag flag; // for mode two ( one flag )
 
     public PlayGround(GameMode mode) {
         // remaining

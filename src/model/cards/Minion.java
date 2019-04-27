@@ -95,10 +95,13 @@ public class Minion extends Card {
 
     public void attack(Cell cell) {
         // receiveAttack() of opponent
+        // if opponent has flag , get it ( in mode -> one flag )
+        canAttack = false;
     }
 
     public void killed() {
         // if it has flag in game mode two , put the flag in playGround
+        // player.minions in battle ground -> delete
         // ( the Cell field is the minion last cell ( before kill ) )
         player.getBattle().checkWinner();
     }
@@ -309,5 +312,9 @@ public class Minion extends Card {
             return false;
         }
         return true;
+    }
+
+    public void setCell(Cell cell) {
+        this.cell = cell;
     }
 }
