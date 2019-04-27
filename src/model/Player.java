@@ -29,24 +29,60 @@ public class Player {
     private Item selectedCollectableItem;
     private GraveYard graveYard;
 
-    public Player(Account account){
+    public Player(Account account) {
         activeBuffs = new ArrayList<>();
         minionsInPlayGround = new ArrayList<>();
         // mana
         // copy the deck
         // copy usable item from deck
         flagsAcheived = new ArrayList<>();
+    }
+
+    public Player(int level) { // for computer AI
 
     }
-    public Player(int level){ // for computer AI
 
+    public static void enterNewCell(Cell target, Minion minion, Player player) { // not attack to cell
+        // entering new cell
+        if (target.getFlag() != null) {
+            player.collectFlag(target.getFlag(), minion);
+        }
+        if (target.getCollectableItem() != null) {
+            player.collectItem(target.getCollectableItem());
+        }
+        if (target.getCellAffects().size() > 0) {
+            for (CellAffect cellAffect : target.getCellAffects()) {
+                cellAffect.castCellAffect(minion);
+            }
+        }
     }
+
+    public static void leavingACell(Minion minion, Player player, Cell previousCell) {
+        if (previousCell.getCellAffects().size() > 0) {
+            for (CellAffect cellAffect : previousCell.getCellAffects()) {
+                cellAffect.expireCellAffect();
+            }
+        }
+        if (previousCell.getFlag() != null) {
+            if (player.getBattle().getGameMode() == GameMode.FLAGS) {
+                Flag flag = previousCell.getFlag();
+                flag.setOwningPlayer(null);
+                flag.setOwningMinion(null);
+                player.getFlagsAcheived().remove(flag);
+            }
+        }
+    }
+
     public void attack(Cell cell, Card card) {
-
+        if (card instanceof Minion) {
+            ((Minion) card).attack(cell);
+        }
     }
 
     public void comboAttack(Cell cell, ArrayList<Minion> minions) {
-        //
+        for (Minion minion : minions) {
+            minion.attack(cell);
+        }
     }
 
     public void castUsableItem() {
@@ -63,10 +99,8 @@ public class Player {
     }
 
     public void insertCard(Card card, Cell cell) {
-        // check the target cell having flags
-        // check the cell affects
-        // check collectible items
         if (card.getCardType() == CardType.MINION) {
+            enterNewCell(cell, (Minion) card, this);
             Minion currentMinion = (Minion) card;
             currentMinion.putInMap(cell);
             reduceMana(card.getMP());
@@ -78,12 +112,44 @@ public class Player {
         }
     }
 
+
     public Hand getHand() {
         return hand;
     }
 
     public void collectItem(Item item) {
         collectedItems.add((Collectible) item);
+    }
+
+    public void collectFlag(Flag flag, Minion owningMinion) {
+        if (battle.getGameMode() == GameMode.FLAGS) {
+            // flags mode
+            flagsAcheived.add(flag);
+            flag.setOwningPlayer(this);
+            flag.setOwningMinion(owningMinion);
+            battle.checkWinner();
+        } else {
+            // one flag mode
+            modeTwoFlag = flag;
+            flag.setOwningMinion(owningMinion);
+            flag.setOwningPlayer(this);
+            flag.setTurnsOwned(0);
+        }
+    }
+
+    public void missFlag(Minion owningMinion, Cell previousCell) { // opposite of above
+        Flag flag = previousCell.getFlag();
+        if (battle.getGameMode() == GameMode.ONE_FLAG) {
+            modeTwoFlag = null;
+            flag.setOwningPlayer(null);
+            flag.setOwningMinion(null);
+            flag.setTurnsOwned(0);
+        } else {
+            flag.setOwningMinion(null);
+            flag.setOwningPlayer(null);
+            flagsAcheived.remove(flag);
+        }
+
     }
 
     public String getName() {
@@ -108,32 +174,34 @@ public class Player {
 
     public void move(Minion minion, Cell cell) {
         // check collectable items
+        Cell previous = minion.getCell();
         if (!cell.hasCardOnIt()) {
             for (CellAffect cellAffect : minion.getCell().getCellAffects()) {
                 cellAffect.expireCellAffect();
             }
-            minion.getCell().deleteCard();
-
             if (cell.hasCellAffect()) {
                 for (CellAffect cellAffect : cell.getCellAffects()) {
                     cellAffect.castCellAffect(minion);
                 }
             }
+            previous.deleteCard();
             cell.addCard(minion);
-
-
             if (battle.getGameMode() == GameMode.ONE_FLAG) {
                 if (cell.getFlag() != null) {
                     modeTwoFlag = cell.getFlag();
-                    // assign the flag to this player and to this minion
-                    //
-                    //
+                    collectFlag(cell.getFlag(), minion);
+                }
+                if (previous.getFlag() != null) {
+                    previous.deleteFlag();
                 }
             }
             if (battle.getGameMode() == GameMode.FLAGS) {
-                // check having flag
-                //
-                //
+                if (previous.getFlag() != null) {
+                    missFlag(minion, previous);
+                }
+                if (cell.getFlag() != null) {
+                    collectFlag(cell.getFlag(), minion);
+                }
             }
 
             minion.setCanMove(false);
@@ -222,18 +290,24 @@ public class Player {
         return graveYard;
     }
 
-    public Minion findMinionByIdInPlayGround(String battleId){
+    public Minion findMinionByIdInPlayGround(String battleId) {
         for (Minion minion : getMinionsInPlayGround()) {
-            if(minion.getBattleID().equals(battleId))
+            if (minion.getBattleID().equals(battleId))
                 return minion;
         }
         return null;
     }
 
-    public ArrayList<Cell> getCellsToInsertMinion(){
+    public ArrayList<Cell> getCellsToInsertMinion() {
         // for inserting minions from deck , the target should be beside the hero or other minions in play ground
-        // not complete
-        return null;
+        PlayGround playGround = battle.getPlayGround();
+        ArrayList<Cell> cells = new ArrayList<>();
+        for (Minion minion : minionsInPlayGround) {
+            for (Cell aroundCell : playGround.getAroundCells(minion.getCell())) {
+                cells.add(aroundCell);
+            }
+        }
+        return cells;
     }
 
     public void setSelectedCollectableItem(Item selectedCollectableItem) {
@@ -243,4 +317,10 @@ public class Player {
     public void setSelectedCard(Card selectedCard) {
         this.selectedCard = selectedCard;
     }
+
+    public Flag getModeTwoFlag() {
+        return modeTwoFlag;
+    }
+
+
 }

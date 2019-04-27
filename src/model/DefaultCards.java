@@ -16,6 +16,7 @@ public class DefaultCards {
     HashMap<MinionName, Minion> minionHashMap = new HashMap<>();
     // minions
     private static Gson gson = new Gson();
+
     private static final String FARS_KAMANDAR = gson.toJson(new Minion(300, 2, CardType.MINION
             , "kamandar_fars",
             0, "", MinionName.FARS_KAMANDAR, MinionAttackType.RANGED,

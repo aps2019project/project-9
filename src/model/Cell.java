@@ -21,7 +21,7 @@ public class Cell {
 
     private int y;
     private Minion minionOnIt;
-    private ArrayList<CellAffect> cellAffects;
+    private ArrayList<CellAffect> cellAffects = new ArrayList<>();
 
     private PlayGround playGround;
     private Item collectableItem;
@@ -74,5 +74,12 @@ public class Cell {
     }
     public void setFlag(Flag flag){
         this.flag = flag;
+    }
+
+    public Item getCollectableItem() {
+        return collectableItem;
+    }
+    public void deleteFlag(){
+        flag = null;
     }
 }

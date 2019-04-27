@@ -191,10 +191,9 @@ public class InGameController {
                 inGameView.printfError(InGameErrorType.NOT_HAVE_ENOUGH_MANA);
             } else if (friendlyCard instanceof Minion) {
                 if (!player.getCellsToInsertMinion().contains(cell)
-                        || !((Minion) friendlyCard).isValidCell(cell)) {
+                        || cell.hasCardOnIt()) {
                     inGameView.printfError(InGameErrorType.INVALID_TARGET);
                 } else {
-                    /*((Minion) friendlyCard).putInMap(cell);*/
                     player.insertCard(friendlyCard,cell);
                     inGameView.cardInserted(friendlyCard, x, y);
                 }

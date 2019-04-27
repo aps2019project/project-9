@@ -5,9 +5,10 @@ import model.Player;
 import model.cards.Minion;
 
 public class Flag extends Item{
-    Cell currentCell;
-    Player owningPlayer;
-    Minion owningMinion;
+    private Cell currentCell;
+    private Player owningPlayer;
+    private Minion owningMinion;
+    private int turnsOwned;
 
     public Minion getOwningMinion() {
         return owningMinion;
@@ -17,7 +18,23 @@ public class Flag extends Item{
         return owningPlayer;
     }
 
+    public void setOwningPlayer(Player owningPlayer) {
+        this.owningPlayer = owningPlayer;
+    }
+
+    public void setOwningMinion(Minion owningMinion) {
+        this.owningMinion = owningMinion;
+    }
+
     public Cell getCurrentCell() {
         return currentCell;
+    }
+
+    public void setTurnsOwned(int turnsOwned) {
+        this.turnsOwned = turnsOwned;
+    }
+
+    public int getTurnsOwned() {
+        return turnsOwned;
     }
 }
