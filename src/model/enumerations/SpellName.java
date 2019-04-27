@@ -14,7 +14,7 @@ public enum SpellName {
     ALL_POISON,
     DISPEL,
     HEALTH_WITH_PROFIT,
-    GHAZA_BOKHOR,
+    POWER_UP,
     ALL_POWER,
     ALL_ATTACK,
     WEAKENING,
