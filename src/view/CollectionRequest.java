@@ -92,23 +92,23 @@ public class CollectionRequest {
                 return CollectionRequestType.SHOW;
             else
                 return null;
-        } else if (command.substring(0, 6).matches(SEARCH))
+        } else if (command.length() > 6 && command.substring(0, 6).matches(SEARCH))
             return CollectionRequestType.SEARCH;
-        else if (command.substring(0, 11).matches(CREATE_DECK))
+        else if (command.length() > 11 && command.substring(0, 11).matches(CREATE_DECK))
             return CollectionRequestType.CREATE_DECK;
-        else if (command.substring(0, 11).matches(DELETE_DECK))
+        else if (command.length() > 11 && command.substring(0, 11).matches(DELETE_DECK))
             return CollectionRequestType.DELETE_DECK;
-        else if (command.substring(0, 3).matches(ADD))
+        else if (command.length() > 3 && command.substring(0, 3).matches(ADD))
             return CollectionRequestType.ADD;
-        else if (command.substring(0, 6).matches(REMOVE))
+        else if (command.length() > 6 && command.substring(0, 6).matches(REMOVE))
             return CollectionRequestType.REMOVE;
-        else if (command.substring(0, 13).matches(VALIDATE))
+        else if (command.length() > 13 && command.substring(0, 13).matches(VALIDATE))
             return CollectionRequestType.VALIDATE_DECK;
-        else if (command.substring(0, 11).matches(SELECT_DECK))
+        else if (command.length() > 11 && command.substring(0, 11).matches(SELECT_DECK))
             return CollectionRequestType.SELECT_DECK;
-        else if (command.substring(0, 14).matches(SHOW_ALL_DECKS))
+        else if (command.length() > 14 && command.substring(0, 14).matches(SHOW_ALL_DECKS))
             return CollectionRequestType.SHOW_ALL_DECKS;
-        else if (command.substring(0, 9).matches(SHOW_DECK))
+        else if (command.length() > 9 && command.substring(0, 9).matches(SHOW_DECK))
             return CollectionRequestType.SHOW_DECK;
         else
             return null;
