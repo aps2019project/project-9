@@ -19,10 +19,10 @@ public class Hero extends Minion {
     private HeroTargetType spellTargetType; // for spell
     private HeroName heroName;
 
-    public Hero(int cost, int MP, int cardID, String name, String desc, MinionAttackType attackType, int HP, int AP,
-                int attackRange, boolean isFars, int cooldown, Spell heroSpell,
-                HeroTargetType spellTargetType, HeroName heroName) {
-        super(cost, MP, CardType.MINION, name,cardID, desc, null, attackType, HP, AP, attackRange, null, isFars);
+    public Hero(HeroName heroName, int cost, int HP, int AP,  MinionAttackType attackType, int attackRange,
+                Spell heroSpell, int MP,  int cooldown, int cardID, String name, String desc, boolean isFars,
+                HeroTargetType spellTargetType) {
+        super(heroName, cost, MP, HP, AP, attackType, attackRange, heroSpell, CardType.MINION,cardID,desc,heroName,isFars);    //not complete
         this.cooldown = cooldown;
         this.heroSpell = heroSpell;
         this.spellTargetType = spellTargetType;

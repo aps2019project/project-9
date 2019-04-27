@@ -10,6 +10,7 @@ public enum  MinionName {
     TOORANEE_KAMANDAR,
     TOORANEE_GHOLABSANG,
     TOORANEE_NEYZEDAR,
+    TOORANE_JASOS,
     TOORANEE_GORAZ,
     TOORANEE_SHAHZADE,
     BLACK_DEEV,
@@ -18,7 +19,7 @@ public enum  MinionName {
     GORAZ_DEEV,
     ONE_EYE_GHOOL,
     POISON_SNAKE,
-    EJDEHA_FIRE,
+    DRAGON_FIRE,
     DARANDE_SHIR,
     GHOOL_SNAKE,
     WHITE_WOLF,
@@ -37,7 +38,7 @@ public enum  MinionName {
     DOSAR_GHOOL,
     NANE_SARMA,
     FOOLAD_ZEREH,
-    SIAVASH,
+    SIAVOSH,
     SHAH_GOOL,
     ARJANG_DEEV
 }
