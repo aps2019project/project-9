@@ -21,7 +21,6 @@ public class GraveYard {
     }
 
     public void addCard(Card card) {
-        // card id to be set
         cards.add(card);
     }
 

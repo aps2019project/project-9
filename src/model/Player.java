@@ -64,15 +64,17 @@ public class Player {
 
     public void insertCard(Card card, Cell cell) {
         // check the target cell having flags
-        //
-        //
+        // check the cell affects
+        // check collectible items
         if (card.getCardType() == CardType.MINION) {
             Minion currentMinion = (Minion) card;
             currentMinion.putInMap(cell);
+            reduceMana(card.getMP());
         } else {
             Spell currentSpell = (Spell) card;
             currentSpell.castSpell(cell);
             hand.deleteCard(card);
+            reduceMana(card.getMP());
         }
     }
 
@@ -97,13 +99,15 @@ public class Player {
         mana -= number;
     }
 
-    public void useCollectableItem(Item item, Cell cell) {
+    public void useCollectableItem() {
+        Item item = selectedCollectableItem;
         Collectible collectibleItem = (Collectible) item;
         collectibleItem.useItem();
         collectedItems.remove(collectibleItem);
     }
 
     public void move(Minion minion, Cell cell) {
+        // check collectable items
         if (!cell.hasCardOnIt()) {
             for (CellAffect cellAffect : minion.getCell().getCellAffects()) {
                 cellAffect.expireCellAffect();

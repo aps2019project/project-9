@@ -6,7 +6,7 @@ import model.enumerations.ItemName;
 
 public class RandomAffect extends Collectible {
     @Override
-    public void useItem(Cell cell) {
+    public void useItem() {
         if(itemType == ItemName.NOOSH_DAROO){
             owningPlayer.getRandomPower(false).addHP(6);
         }else if(itemType == ItemName.TIR_DOSHAKH){

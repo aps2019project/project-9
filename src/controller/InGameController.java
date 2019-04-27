@@ -63,7 +63,7 @@ public class InGameController {
                     isFinished = true;
                     break;
                 case END_TURN:
-                    battle.nextTurn();
+                    battle.getCurrenPlayer().endTurn();
                     break;
                 case GAME_INFO:
                     inGameView.showGameInfo(battle);
@@ -156,8 +156,7 @@ public class InGameController {
             if (!((Collectible) player.getSelectedCollectableItem()).isValidCell(cell))
                 inGameView.printfError(InGameErrorType.INVALID_TARGET);
             else {
-                ((Collectible) player.getSelectedCollectableItem()).useItem();
-                player.setSelectedCollectableItem(null);
+                player.useCollectableItem();
             }
         }
     }
@@ -195,16 +194,15 @@ public class InGameController {
                         || !((Minion) friendlyCard).isValidCell(cell)) {
                     inGameView.printfError(InGameErrorType.INVALID_TARGET);
                 } else {
-                    ((Minion) friendlyCard).putInMap(cell);
-                    player.reduceMana(friendlyCard.getMP());
+                    /*((Minion) friendlyCard).putInMap(cell);*/
+                    player.insertCard(friendlyCard,cell);
                     inGameView.cardInserted(friendlyCard, x, y);
                 }
             } else {
                 if (!((Spell) friendlyCard).isValidTarget(cell))
                     inGameView.printfError(InGameErrorType.INVALID_TARGET);
                 else {
-                    ((Spell) friendlyCard).castSpell(cell);
-                    player.reduceMana(friendlyCard.getMP());
+                    player.insertCard(friendlyCard,cell);
                     inGameView.cardInserted(friendlyCard, x, y);
                 }
             }
