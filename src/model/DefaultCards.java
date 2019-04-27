@@ -5,11 +5,9 @@ import model.cards.Hero;
 import model.cards.HeroTargetType;
 import model.cards.Minion;
 import model.cards.Spell;
-import model.cellaffects.CellAffect;
 import model.enumerations.*;
 import model.items.Item;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class DefaultCards {
@@ -19,7 +17,7 @@ public class DefaultCards {
 
     HashMap<MinionName, Minion> minionHashMap = new HashMap<>();
 
-    // minions
+    //-------------------------------------minions-------------------------------------------------------
     private static Gson gson = new Gson();
     private static final String FARS_KAMANDAR = gson.toJson(new Minion("fars_kamandar", 300, 2, 6,
             4, MinionAttackType.RANGED, 7, null, CardType.MINION, 0, "",
