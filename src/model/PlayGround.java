@@ -6,6 +6,7 @@ import model.enumerations.MinionAttackType;
 import model.items.Flag;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class PlayGround {
     private Cell[][] cells = new Cell[5][9];
@@ -17,7 +18,10 @@ public class PlayGround {
     }
 
     public boolean isForEnemyMinion(Cell cell, Player player) {
-        return false;
+        if (!cell.hasCardOnIt())
+            return false;
+        return player.getMinionsInPlayGround().contains(cell.getMinionOnIt()) ||
+                player.getHero().getCell().equals(cell);
     }
 
     public boolean isForFriendlyMinion(Cell cell, Player player) {
@@ -107,25 +111,50 @@ public class PlayGround {
             return true;
     }
 
-    public ArrayList<Cell> cellsInColumn(Cell cell){
+    public ArrayList<Cell> enemyInColumn(Cell cell, Player player) {
         ArrayList<Cell> result = new ArrayList<>();
         for (Cell[] cell1 : cells) {
             for (Cell cell2 : cell1) {
-                if(cell2.getY() == cell.getY())
-                    result.add(cell2);
-            }
-        }
-        return result;
-    }
-    public ArrayList<Cell> cellsInRow (Cell cell){
-        ArrayList<Cell> result = new ArrayList<>();
-        for (Cell[] cell1 : cells) {
-            for (Cell cell2 : cell1) {
-                if(cell2.getX() == cell.getX())
-                    result.add(cell2);
+                if (cell2.getY() == cell.getY()) {
+                    if (cell2.hasCardOnIt() &&
+                            !isForFriendlyMinion(cell2.getMinionOnIt().getCell(), player))
+                        result.add(cell2);
+                }
             }
         }
         return result;
     }
 
+    public ArrayList<Cell> enemyInRow(Cell cell , Player player) {
+        ArrayList<Cell> result = new ArrayList<>();
+        for (Cell[] cell1 : cells) {
+            for (Cell cell2 : cell1) {
+                if (cell2.getX() == cell.getX())
+                    if (cell2.hasCardOnIt() &&
+                            !isForFriendlyMinion(cell2.getMinionOnIt().getCell(), player))
+                        result.add(cell2);
+            }
+        }
+        return result;
+    }
+
+    public ArrayList<Cell> getSquareCells(Cell cell, int squareSize) {
+        ArrayList<Cell> result = new ArrayList<>();
+        for (int i = cell.getX(); i < squareSize; i++) {
+            for (int j = cell.getY(); j < squareSize; j++) {
+                if (i < 5 && j < 9) {
+                    result.add(getCell(i, j));
+                }
+            }
+        }
+        return result;
+    }
+
+    public Cell getRandomCell(){
+        Random first = new Random();
+        Random second = new Random();
+        int row = first.nextInt(5);
+        int col = second.nextInt(9);
+        return getCell(row,col);
+    }
 }

@@ -36,7 +36,6 @@ public class Minion extends Card {
     protected ArrayList<Item> activeItems;
     protected Item onAttackItem;
     protected Cell cell;
-    protected boolean canComboAttack;
     protected boolean isHero = false;
 
     public Minion( String name,int cost, int MP, int HP, int AP, MinionAttackType attackType,

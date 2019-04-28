@@ -9,6 +9,17 @@ import model.items.Item;
 import java.util.ArrayList;
 
 public class Cell {
+    public Cell(int x, int y,
+                PlayGround playGround, Flag flag) {
+        this.x = x;
+        this.y = y;
+        this.minionOnIt = null;
+        this.cellAffects = new ArrayList<>();
+        this.playGround = playGround;
+        this.collectableItem = null;
+        this.flag = flag;
+    }
+
     public int getX() {
         return x;
     }

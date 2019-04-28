@@ -28,19 +28,21 @@ public class Battle {
     public void startBattle() {
         // buffs and cellAffects turns remained should be equal to turnsActive
         // just minions and heros should be copied
-        for (Card card : firstPlayer.getDeck().getCards()) {
+        initializeOwningPlayerOfCards(firstPlayer);
+        initializeOwningPlayerOfCards(secondPlayer);
+    }
+
+    private void initializeOwningPlayerOfCards(Player player){
+        for (Card card : player.getDeck().getCards()) {
             if(card instanceof Spell){
-                ((Spell)card).setOwningPlayer(firstPlayer);
-            }
-        }
-        for (Card card : secondPlayer.getDeck().getCards()) {
-            if(card instanceof Spell){
-                ((Spell)card).setOwningPlayer(secondPlayer);
+                ((Spell)card).setOwningPlayer(player);
+            }else if(card instanceof Minion){
+                ((Minion)card).setPlayer(player);
             }
         }
     }
 
-    public void checkBuffs(Player player){
+    private void checkBuffs(Player player){
         for (Minion minion : player.getMinionsInPlayGround()) {
             ArrayList<Buff> buffsToDelete = new ArrayList<>();
             for (Buff buff : minion.getActiveBuffs()) {
