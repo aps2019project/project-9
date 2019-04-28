@@ -11,8 +11,18 @@ import model.items.Item;
 import java.util.HashMap;
 
 public class DefaultCards {
+
     public static Minion getMinion(MinionName name) {
-        return null;
+        return gson.fromJson(minionHashMap.get(name) , Minion.class);
+    }
+    public static Item getItem(ItemName name){
+        return gson.fromJson(itemHashMap.get(name) , Item.class);
+    }
+    public static Spell getSpell(SpellName name){
+        return gson.fromJson(spellHashMap.get(name),Spell.class);
+    }
+    public static Hero getHero (HeroName name){
+        return gson.fromJson(heroHashMap.get(name) , Hero.class);
     }
 
     private static HashMap<MinionName, String> minionHashMap = new HashMap<>();
