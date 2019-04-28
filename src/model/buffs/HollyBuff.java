@@ -6,19 +6,9 @@ import model.enumerations.BuffName;
 
 public class HollyBuff extends Buff{
 
-    public HollyBuff(int turnsActive) {
-        this.buffName = BuffName.HOLLY;
-        this.turnsActive = turnsActive;
-        this.isPositive = false;
-    }
-
-    public HollyBuff(boolean isForAllTurns , boolean isContinuous){
-        if(isContinuous)
-            turnsActive = 1;
-        else
-            this.isForAllTurns = isForAllTurns;
-        this.buffName = BuffName.HOLLY;
-        this.isPositive = false;
+    public HollyBuff(int turnsActive,
+                     boolean isForAllTurns, boolean isContinous) {
+        super(BuffName.HOLLY, turnsActive, isForAllTurns, true, isContinous);
     }
 
     @Override
@@ -32,6 +22,5 @@ public class HollyBuff extends Buff{
     @Override
     public void endBuff(Minion minion) {
         minion.setReductionOfOthersAttack(0);
-        minion.deleteActiveBuff(this);
     }
 }

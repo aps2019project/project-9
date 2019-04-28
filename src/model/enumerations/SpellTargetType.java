@@ -14,4 +14,7 @@ public enum SpellTargetType {
     AN_ENEMY_MINION_IN_EIGHT_HERO,
     A_FRIENDLY_MINION,
     AN_ENEMY_MINION,
+    A_CELL,
+    IT_SELF,
+    ALL_ENEMY_IN_ROW,
 }

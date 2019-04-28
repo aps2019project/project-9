@@ -10,13 +10,27 @@ import java.util.ArrayList;
 public abstract class Buff {
     protected BuffName buffName;
     protected int turnsActive;
+
+    public Buff(BuffName buffName, int turnsActive,
+                boolean isForAllTurns, boolean isPositive,
+                boolean isContinous) {
+        this.buffName = buffName;
+        this.turnsActive = turnsActive;
+        this.turnsRemained = turnsActive;
+        this.isForAllTurns = isForAllTurns;
+        this.isPositive = isPositive;
+        this.isContinous = isContinous;
+        if(isContinous)
+            this.isForAllTurns = false;
+        else if(isForAllTurns)
+            this.isContinous = false;
+    }
+
     protected int turnsRemained;
     private static ArrayList<Buff> buffs = new ArrayList<>();
-    protected boolean isForAllTurns;
-    protected Card affectingCard; // the card that this buff has affect on
-    protected boolean isDisabledThisTurn = false;
+    protected boolean isForAllTurns; // means : DAEMI
     protected boolean isPositive;
-    protected boolean isContinous;
+    protected boolean isContinous; // means : continous
     public BuffName getBuffName(){
         return buffName;
     }
@@ -25,10 +39,20 @@ public abstract class Buff {
     public boolean isPositiveBuff(){
         return isPositive;
     }
-    public void addAffectingCard(Card card){
-        this.affectingCard = card;
-    }
     public boolean getIsContinuous(){
         return isContinous;
+    }
+
+    public void reduceTurnsRemained() {
+        if(turnsRemained != 0)
+            turnsRemained--;
+    }
+
+    public int getTurnsRemained() {
+        return turnsRemained;
+    }
+
+    public boolean isForAllTurns() {
+        return isForAllTurns;
     }
 }

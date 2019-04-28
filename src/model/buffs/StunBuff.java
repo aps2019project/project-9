@@ -6,19 +6,9 @@ import model.enumerations.BuffName;
 
 public class StunBuff extends Buff{
 
-    public StunBuff(int turnsActive) {
-        this.buffName = BuffName.STUN;
-        this.turnsActive = turnsActive;
-        this.isPositive = false;
-    }
 
-    public StunBuff(boolean isForAllTurns , boolean isContinuous){
-        if(isContinuous)
-            turnsActive = 1;
-        else
-            this.isForAllTurns = isForAllTurns;
-        this.buffName = BuffName.STUN;
-        this.isPositive = false;
+    public StunBuff(int turnsActive, boolean isForAllTurns, boolean isContinous) {
+        super(BuffName.STUN, turnsActive, isForAllTurns, false, isContinous);
     }
 
     @Override
@@ -34,6 +24,5 @@ public class StunBuff extends Buff{
     public void endBuff(Minion minion) {
         minion.setCanMove(true);
         minion.setCanAttack(true);
-        minion.deleteActiveBuff(this);
     }
 }

@@ -285,10 +285,10 @@ public class InGameController {
             inGameView.printfError(InGameErrorType.NOT_HAVE_ENOUGH_MANA);
         } else if (!player.getHero().getHeroSpell().isValidTarget(targetCell)) {
             inGameView.printfError(InGameErrorType.INVALID_TARGET);
-        } else if (!player.getHero().canCastSpell()) {
+        } else if (!player.getHero().isSpellReady()) {
             inGameView.printfError(InGameErrorType.HERO_COOL_DOWN);
         } else {
-            player.getHero().getHeroSpell().castSpell(targetCell);
+            player.getHero().useSpecialPower(targetCell);
         }
     }
 }

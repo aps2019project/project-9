@@ -58,11 +58,6 @@ public class Player {
     }
 
     public static void leavingACell(Minion minion, Player player, Cell previousCell) {
-        if (previousCell.getCellAffects().size() > 0) {
-            for (CellAffect cellAffect : previousCell.getCellAffects()) {
-                cellAffect.expireCellAffect();
-            }
-        }
         if (previousCell.getFlag() != null) {
             if (player.getBattle().getGameMode() == GameMode.FLAGS) {
                 Flag flag = previousCell.getFlag();
@@ -176,9 +171,6 @@ public class Player {
         // check collectable items
         Cell previous = minion.getCell();
         if (!cell.hasCardOnIt()) {
-            for (CellAffect cellAffect : minion.getCell().getCellAffects()) {
-                cellAffect.expireCellAffect();
-            }
             if (cell.hasCellAffect()) {
                 for (CellAffect cellAffect : cell.getCellAffects()) {
                     cellAffect.castCellAffect(minion);

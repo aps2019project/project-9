@@ -28,7 +28,7 @@ public class Minion extends Card {
     protected int HP;
     protected int AP;
     protected int attackRange; // for RANGED Type
-    protected ArrayList<Buff> continuousBuffs;
+    protected ArrayList<Buff> continuousBuffs = new ArrayList<>();
     protected SpecialPower specialPower;
     protected boolean isFars;
     private static ArrayList<Minion> minions;
@@ -96,6 +96,11 @@ public class Minion extends Card {
     public void attack(Cell cell) {
         // receiveAttack() of opponent
         // if opponent has flag , get it ( in mode -> one flag )
+        if(this instanceof Hero){
+            if(((Hero)this).getSpellTargetType() == HeroTargetType.ON_ATTACK &&
+                    ((Hero)this).isSpecialPowerActivated())
+                ((Hero)this).useSpecialPower(cell);
+        }
         canAttack = false;
     }
 
@@ -139,7 +144,9 @@ public class Minion extends Card {
 
     public void counterAttack(Cell cell) {
         // check isValidCell() again
+        if(canCounterAttack){
 
+        }
     }
 
     public boolean isValidCell(Cell cell) {
@@ -250,19 +257,30 @@ public class Minion extends Card {
 
     public void dispelPositiveBuffs() {
         // if a buff is continous , it should be deactive just this turn
+        ArrayList<Buff> toDelete = new ArrayList<>();
         for (Buff activeBuff : activeBuffs) {
-            if (activeBuff.isPositiveBuff())
+            if (activeBuff.isPositiveBuff()) {
+                toDelete.add(activeBuff);
                 activeBuff.endBuff(this);
+            }
+        }
+        for (Buff buff : toDelete) {
+            activeBuffs.remove(buff);
         }
     }
 
     public void dispelNegativeBuffs() {
         // if a buff is continous , it should be deactive just this turn
+        ArrayList<Buff> toDelete = new ArrayList<>();
         for (Buff buff : activeBuffs) {
-            if (!buff.isPositiveBuff())
+            if (!buff.isPositiveBuff()) {
+                toDelete.add(buff);
                 buff.endBuff(this);
+            }
         }
-        // continouous should start on nextTurn() in Battle
+        for (Buff buff : toDelete) {
+            activeBuffs.remove(buff);
+        }
     }
 
     public void addContinuous(Buff buff) {
@@ -298,12 +316,6 @@ public class Minion extends Card {
         return canAttack;
     }
 
-    /*public void move(Cell targetCell) { // validation of target Cell is checked in InGameController
-        cell.deleteCard();
-        targetCell.addCard(this);
-        cell = targetCell;
-        canMove = false;
-    }*/
 
     public boolean isValidCellForMove(Cell targetCell) {
         if (player.getBattle().getPlayGround().getManhatanDistance(this.cell, targetCell) > 2
@@ -316,5 +328,13 @@ public class Minion extends Card {
 
     public void setCell(Cell cell) {
         this.cell = cell;
+    }
+
+    public ArrayList<Buff> getContinuousBuffs() {
+        return continuousBuffs;
+    }
+
+    public void buffDeactivated(Buff buff){ // just remove from list of buffs
+        activeBuffs.remove(buff);
     }
 }

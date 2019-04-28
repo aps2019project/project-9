@@ -5,20 +5,12 @@ import model.cards.Minion;
 import model.enumerations.BuffName;
 
 public class PoisonBuff extends Buff{
-    public PoisonBuff(int turnsActive) {
-        this.buffName = BuffName.POISON;
-        this.turnsActive = turnsActive;
-        this.isPositive = false;
+    public PoisonBuff(int turnsActive,
+                      boolean isForAllTurns,boolean isContinous) {
+        super(BuffName.POISON, turnsActive, isForAllTurns, false, isContinous);
     }
 
-    public PoisonBuff(boolean isForAllTurns , boolean isContinuous){
-        if(isContinuous)
-            turnsActive = 1;
-        else
-            this.isForAllTurns = isForAllTurns;
-        this.buffName = BuffName.POISON;
-        this.isPositive = false;
-    }
+
     @Override
     public void startBuff(Cell cell) {
         if(this.isContinous)
@@ -29,6 +21,5 @@ public class PoisonBuff extends Buff{
 
     @Override
     public void endBuff(Minion minion) {
-        minion.deleteActiveBuff(this);
     }
 }

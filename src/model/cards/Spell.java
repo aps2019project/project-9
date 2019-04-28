@@ -11,9 +11,9 @@ import model.enumerations.SpellTargetType;
 import java.util.ArrayList;
 
 public class Spell extends Card {
-    private static ArrayList<Spell> spells;
-    private static ArrayList<Spell> heroSpells;
-    private static ArrayList<Spell> itemSpells;
+    private static ArrayList<Spell> spells = new ArrayList<>();
+    private static ArrayList<Spell> heroSpells = new ArrayList<>();
+    private static ArrayList<Spell> itemSpells = new ArrayList<>();
     private ArrayList<Buff> buffs;
     private SpellTargetType targetType;
     private CellAffect cellAffect;
@@ -47,7 +47,8 @@ public class Spell extends Card {
         player.getOpponent().getHero().dispelPositiveBuffs();
     }
 
-    public static void removeBuffs(Player player, ArrayList<Cell> cellsToCast) {
+    public static void removeBuffs(Player player, ArrayList<Cell> cellsToCast) { // remove negative of friendly , and positive of
+        // enemy
         for (Cell cell : cellsToCast) {
             if (cell.hasCardOnIt()) {
                 if (player.getMinionsInPlayGround().contains(cell.getMinionOnIt()))
@@ -62,6 +63,7 @@ public class Spell extends Card {
     public static void killEnemyMinion(ArrayList<Cell> targetCells) {
         for (Cell targetCell : targetCells) {
             targetCell.getMinionOnIt().reduceHP(targetCell.getMinionOnIt().getHP());
+            targetCell.getMinionOnIt().killed();
         }
     }
 
@@ -125,6 +127,10 @@ public class Spell extends Card {
                 return owningPlayer.getBattle().getPlayGround().isForFriendlyMinion(inputCell, owningPlayer);
             case ALL_FRIENDLY_POWERS:
                 break;
+            case A_CELL:
+                return true;
+            case IT_SELF:
+                return true;
         }
         return true;
     }
@@ -139,6 +145,8 @@ public class Spell extends Card {
                 || targetType == SpellTargetType.FRIENDLY_HERO
                 || targetType == SpellTargetType.ENEMY_HERO
                 || targetType == SpellTargetType.A_POWER
+                || targetType == SpellTargetType.IT_SELF
+                || targetType == SpellTargetType.A_CELL
         )
             result.add(inputCell);
         else if (targetType == SpellTargetType.TWO_IN_TWO_SQUARE) {
@@ -156,9 +164,11 @@ public class Spell extends Card {
             }
             result.add(owningPlayer.getHero().getCell());
         } else if (targetType == SpellTargetType.ALL_ENEMY_IN_COLUMN) {
-            // not complete
+            result = owningPlayer.getBattle().getPlayGround().cellsInColumn(inputCell);
         } else if (targetType == SpellTargetType.AN_ENEMY_MINION_IN_EIGHT_HERO) {
             // random
+        } else if(targetType == SpellTargetType.ALL_ENEMY_IN_ROW){
+            result = owningPlayer.getBattle().getPlayGround().cellsInRow(inputCell);
         }
         return result;
     }
@@ -172,24 +182,7 @@ public class Spell extends Card {
         return targetType;
     }
 
-    /*public String description() {
-        String string = "";
-        switch (spellName) {
-            case ALL_DISARM:
-                string = "Disarm";
-                break;
-            case AREA_DISPEL:
-                string = "remove positive buff of enemies and negative buff of our troops";
-                break;
-            case EMPOWER:
-                string = "Add 2 unit to a troop AP";
-                break;
-            case FIREBALL:
-                string = "Attack 4 unit to an enemy";
-                break;
-            case GOD_STRENGTH:
-                string = "Add 4 unit "
-        }
-    }*/
-
+    public void setOwningPlayer(Player owningPlayer) {
+        this.owningPlayer = owningPlayer;
+    }
 }

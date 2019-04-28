@@ -107,4 +107,25 @@ public class PlayGround {
             return true;
     }
 
+    public ArrayList<Cell> cellsInColumn(Cell cell){
+        ArrayList<Cell> result = new ArrayList<>();
+        for (Cell[] cell1 : cells) {
+            for (Cell cell2 : cell1) {
+                if(cell2.getY() == cell.getY())
+                    result.add(cell2);
+            }
+        }
+        return result;
+    }
+    public ArrayList<Cell> cellsInRow (Cell cell){
+        ArrayList<Cell> result = new ArrayList<>();
+        for (Cell[] cell1 : cells) {
+            for (Cell cell2 : cell1) {
+                if(cell2.getX() == cell.getX())
+                    result.add(cell2);
+            }
+        }
+        return result;
+    }
+
 }

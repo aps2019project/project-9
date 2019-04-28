@@ -1,6 +1,14 @@
 package model;
 
+import model.buffs.Buff;
+import model.buffs.DisarmBuff;
+import model.cards.Card;
+import model.cards.Minion;
+import model.cards.Spell;
+import model.cellaffects.CellAffect;
 import model.enumerations.GameMode;
+
+import java.util.ArrayList;
 
 public class Battle {
     protected static final Deck FIRST_LEVEL_DECK = new Deck("first level");
@@ -20,14 +28,68 @@ public class Battle {
     public void startBattle() {
         // buffs and cellAffects turns remained should be equal to turnsActive
         // just minions and heros should be copied
+        for (Card card : firstPlayer.getDeck().getCards()) {
+            if(card instanceof Spell){
+                ((Spell)card).setOwningPlayer(firstPlayer);
+            }
+        }
+        for (Card card : secondPlayer.getDeck().getCards()) {
+            if(card instanceof Spell){
+                ((Spell)card).setOwningPlayer(secondPlayer);
+            }
+        }
     }
+
+    public void checkBuffs(Player player){
+        for (Minion minion : player.getMinionsInPlayGround()) {
+            ArrayList<Buff> buffsToDelete = new ArrayList<>();
+            for (Buff buff : minion.getActiveBuffs()) {
+                if(!buff.isForAllTurns()) {
+                    buff.reduceTurnsRemained();
+                    if (buff.getTurnsRemained() == 0) {
+                        buff.endBuff(minion);
+                        buffsToDelete.add(buff);
+                    }
+                }
+            }
+            for (Buff buff : buffsToDelete) {
+                minion.buffDeactivated(buff);
+            }
+            for (Buff buff : minion.getContinuousBuffs()) {
+                buff.startBuff(minion.getCell());
+            }
+        }
+    }
+
+
 
     public void nextTurn() {
         // fill hands
         // change whose turn
         // one flag mode turnsOwned ( flag field ) ++
+        firstPlayer.getHero().setTurnsRemainedForNextTurn();
+        secondPlayer.getHero().setTurnsRemainedForNextTurn();
+        checkBuffs(firstPlayer);
+        checkBuffs(secondPlayer);
+        checkCellAffects(playGround);
     }
 
+    private void checkCellAffects(PlayGround playGround){
+        ArrayList<CellAffect> cellAffectsToDelete = new ArrayList<>();
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 5; j++) {
+                Cell cell = playGround.getCell(j,i);
+                for (CellAffect cellAffect : cell.getCellAffects()) {
+                    cellAffect.nextTurn();
+                    if(cellAffect.getTurnsRemained() == 0)
+                        cellAffectsToDelete.add(cellAffect);
+                }
+            }
+        }
+        for (CellAffect cellAffect : cellAffectsToDelete) {
+            cellAffect.getAffectedCell().removeCellAffect(cellAffect);
+        }
+    }
     public void endBattle(Player winner) {
 
     }

@@ -82,4 +82,8 @@ public class Cell {
     public void deleteFlag(){
         flag = null;
     }
+
+    public void removeCellAffect(CellAffect affect){
+        cellAffects.remove(affect);
+    }
 }

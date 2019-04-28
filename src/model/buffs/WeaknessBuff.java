@@ -6,22 +6,15 @@ import model.enumerations.BuffName;
 
 public class WeaknessBuff extends Buff {
     private int power;
-    private boolean isForHP;
+    private boolean isForHP; // is for reducing HP or reducing AP
 
-    public WeaknessBuff(int turnsActive) {
-        this.buffName = BuffName.WEAKNESS;
-        this.turnsActive = turnsActive;
-        this.isPositive = false;
+    public WeaknessBuff(int turnsActive, int turnsRemained,
+                        boolean isForAllTurns, boolean isContinous, int power, boolean isForHP) {
+        super(BuffName.WEAKNESS, turnsActive,isForAllTurns, false, isContinous);
+        this.power = power;
+        this.isForHP = isForHP;
     }
 
-    public WeaknessBuff(boolean isForAllTurns , boolean isContinuous){
-        if(isContinuous)
-            turnsActive = 1;
-        else
-            this.isForAllTurns = isForAllTurns;
-        this.buffName = BuffName.WEAKNESS;
-        this.isPositive = false;
-    }
 
     @Override
     public void startBuff(Cell cell) {
@@ -40,6 +33,5 @@ public class WeaknessBuff extends Buff {
             minion.addHP(power);
         else
             minion.addAP(power);
-        minion.deleteActiveBuff(this);
     }
 }
