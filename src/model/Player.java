@@ -102,6 +102,9 @@ public class Player {
             currentMinion.putInMap(cell);
             ((Minion) card).setCell(cell);
             reduceMana(card.getMP());
+            if(currentMinion.getSpecialPower().getSpecialPowerActivationTime() == SpecialPowerActivationTime.ON_SPAWN){
+                currentMinion.getSpecialPower().castSpecialPower(cell);
+            }
         } else {
             Spell currentSpell = (Spell) card;
             currentSpell.castSpell(cell);

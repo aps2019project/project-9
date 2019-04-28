@@ -184,18 +184,9 @@ public class Minion extends Card {
         return player.getBattle().getPlayGround().isValid(getCell(), cell, attackType);
     }
 
-    public void comboAttack(Cell cell, ArrayList<Card> participatingCards) {
-
-    }
-
-    public void castPassiveSpecialPower() {
-
-    }
-
     public ArrayList<Buff> getActiveBuffs() {
         return activeBuffs;
     }
-
 
     public Cell getCell() {
         return cell;

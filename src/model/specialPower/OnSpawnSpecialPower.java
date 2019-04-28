@@ -2,16 +2,17 @@ package model.specialPower;
 
 import model.Cell;
 import model.buffs.Buff;
+import model.cards.Minion;
 import model.enumerations.SpecialPowerActivationTime;
 
-public class OnSpawnSpecialPower extends SpecialPower {
+public class OnSpawnSpecialPower extends SpecialPower { // ON TURN is also ON SPAWN
     private Buff castingBuff;
     private OnSpawnTargetCell targetCell;
 
-    public OnSpawnSpecialPower(OnSpawnTargetCell targetCell, Buff castingBuff) {
-        this.targetCell = targetCell;
+    public OnSpawnSpecialPower(Buff castingBuff, OnSpawnTargetCell targetCell) {
+        super(SpecialPowerActivationTime.ON_SPAWN);
         this.castingBuff = castingBuff;
-        this.specialPowerActivationTime = SpecialPowerActivationTime.ON_SPAWN;
+        this.targetCell = targetCell;
     }
 
     @Override
@@ -36,6 +37,11 @@ public class OnSpawnSpecialPower extends SpecialPower {
             case A_RANDOM_ENEMY_MINION:
                 // or can be a buff insteadOF reduce HP
                 minion.getPlayer().getOpponent().getRandomPower(false).reduceHP(16);
+                break;
+            case ALL_FRIENDLY_MINIONS:
+                for (Minion minion1 : minion.getPlayer().getMinionsInPlayGround()) {
+                    castingBuff.startBuff(minion1.getCell());
+                }
                 break;
         }
     }

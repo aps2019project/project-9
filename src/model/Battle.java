@@ -7,6 +7,7 @@ import model.cards.Minion;
 import model.cards.Spell;
 import model.cellaffects.CellAffect;
 import model.enumerations.GameMode;
+import model.enumerations.SpecialPowerActivationTime;
 
 import java.util.ArrayList;
 
@@ -74,9 +75,17 @@ public class Battle {
         checkBuffs(firstPlayer);
         checkBuffs(secondPlayer);
         checkCellAffects(playGround);
-
+        handlePassiveSpecialPowers(firstPlayer);
+        handlePassiveSpecialPowers(secondPlayer);
     }
 
+    private void handlePassiveSpecialPowers(Player player){
+        for (Minion minion : player.getMinionsInPlayGround()) {
+            if(minion.getSpecialPower().getSpecialPowerActivationTime() == SpecialPowerActivationTime.PASSIVE){
+                minion.getSpecialPower().castSpecialPower(minion.getCell());
+            }
+        }
+    }
     private void checkCellAffects(PlayGround playGround){
         ArrayList<CellAffect> cellAffectsToDelete = new ArrayList<>();
         for (int i = 0; i < 9; i++) {

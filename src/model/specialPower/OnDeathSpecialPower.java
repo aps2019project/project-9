@@ -6,10 +6,13 @@ import model.enumerations.SpecialPowerActivationTime;
 public class OnDeathSpecialPower extends SpecialPower{
     private int attackPower;
     private OnDeathTargetType targetType;
-    public OnDeathSpecialPower(int attackPower){
-        this.specialPowerActivationTime = SpecialPowerActivationTime.ON_DEATH;
+
+    public OnDeathSpecialPower(int attackPower, OnDeathTargetType targetType) {
+        super(SpecialPowerActivationTime.ON_DEATH);
         this.attackPower = attackPower;
+        this.targetType = targetType;
     }
+
     @Override
     public void castSpecialPower(Cell cell) {
         // minion current cell ( last cell it was alive )
