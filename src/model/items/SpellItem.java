@@ -6,6 +6,10 @@ import model.enumerations.ItemName;
 
 public class SpellItem extends Usable{
     private Spell spell;
+
+    SpellItem(String name, ItemName itemName, String desc){
+        super(name,itemName,desc);
+    }
     @Override
     public void castItem(Player player) {
         if(itemType == ItemName.NAMOOS_SEPAR){

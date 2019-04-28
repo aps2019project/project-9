@@ -1,6 +1,5 @@
 package model.items;
 
-import model.cards.Card;
 import model.enumerations.ItemName;
 
 import java.util.ArrayList;
@@ -14,10 +13,21 @@ public class Item {
     protected int itemID;
     protected String desc;
 
+    public Item(int cost, String name, ItemName itemType, int itemID, String desc) {
+        this.cost = cost;
+        this.name = name;
+        this.itemType = itemType;
+        this.itemID = itemID;
+        this.desc = desc;
+    }
+
     public String toString() {
         return "Name : " + name + " - Desc: " + desc;
     }
-    public static ArrayList<Item> getItems(){return items;}
+
+    public static ArrayList<Item> getItems() {
+        return items;
+    }
 
     public String getName() {
         return name;
