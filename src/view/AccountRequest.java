@@ -56,9 +56,9 @@ public class AccountRequest {
             return AccountRequestType.LOGIN;
         } else if (command.length() >= 16 && command.substring(0, 16).matches(SHOW_LEADERBOARD) && (command.split(" ").length == 2))
             return AccountRequestType.SHOW_LEADERBOARDS;
-        else if (command.length() >= 4 && command.substring(0, 4).matches(HELP) && (command.split(" ").length == 1))
+        else if (command.length() >= 4 && command.substring(0, 4).matches(HELP))
             return AccountRequestType.HELP;
-        else if (command.length() >= 4 && command.substring(0, 4).matches(EXIT) && (command.split(" ").length == 1))
+        else if (command.length() >= 4 && command.substring(0, 4).matches(EXIT))
             return AccountRequestType.EXIT;
         else
             return null;

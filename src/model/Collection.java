@@ -10,6 +10,12 @@ public class Collection {
     private ArrayList<Item> items;
     private Account ownerAccount;
 
+    public Collection(){
+        cards = new ArrayList<>();
+        items = new ArrayList<>();
+    }
+
+
     public Card getCard(String cardID) {
         int mainCardId;
         try {
@@ -118,4 +124,7 @@ public class Collection {
         return string;
     }
 
+    public void setOwnerAccount(Account ownerAccount) {
+        this.ownerAccount = ownerAccount;
+    }
 }

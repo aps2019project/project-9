@@ -37,7 +37,7 @@ public class MainMenuRequest {
     }
 
     public MainMenuRequestType getType(){
-        if(command.substring(0,5).matches(ENTER) && (command.split(" ").length == 2)){
+        if(command.length() >= 5 && command.substring(0,5).matches(ENTER) && (command.split(" ").length == 2)){
             String[] commands = command.split(" ");
             if(commands[1].matches(BATTLE))
                 return MainMenuRequestType.BATTLE;
@@ -45,13 +45,12 @@ public class MainMenuRequest {
                 return MainMenuRequestType.SHOP;
             else if(commands[1].matches(COLLECTION))
                 return MainMenuRequestType.COLLECTION;
-            else if(commands[1].matches(EXIT))
-                return MainMenuRequestType.EXIT;
-            else if(commands[1].matches(HELP))
-                return MainMenuRequestType.HELP;
             else
                 return null;
-        }
+        } else if (command.matches(EXIT))
+            return MainMenuRequestType.EXIT;
+        else if(command.matches(HELP))
+            return MainMenuRequestType.HELP;
         return null;
     }
 }
