@@ -74,6 +74,7 @@ public class Battle {
         checkBuffs(firstPlayer);
         checkBuffs(secondPlayer);
         checkCellAffects(playGround);
+
     }
 
     private void checkCellAffects(PlayGround playGround){

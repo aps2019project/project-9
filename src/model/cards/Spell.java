@@ -4,7 +4,6 @@ import model.*;
 import model.buffs.Buff;
 import model.cellaffects.CellAffect;
 import model.enumerations.CardType;
-import model.enumerations.SpecialPowerActivationTime;
 import model.enumerations.SpellName;
 import model.enumerations.SpellTargetType;
 
@@ -79,7 +78,7 @@ public class Spell extends Card {
                 // it is Buff Spell
                 for (Buff castingBuff : buffs) {
                     for (Cell targetCell : targetCells) {
-                        if (targetCell.hasCardOnIt() && targetCell.getMinionOnIt().defend(this, castingBuff)) {
+                        if (targetCell.hasCardOnIt() && targetCell.getMinionOnIt().canDefend(this, castingBuff)) {
                             castingBuff.startBuff(targetCell);
                         }
                     }

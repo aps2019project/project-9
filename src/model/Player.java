@@ -14,7 +14,7 @@ import java.util.Random;
 
 public class Player {
     private ArrayList<Buff> activeBuffs;
-    private ArrayList<Minion> minionsInPlayGround;
+    private ArrayList<Minion> minionsInPlayGround = new ArrayList<>();
     private int mana;
     private Deck deck;
     private Hand hand;
@@ -35,11 +35,13 @@ public class Player {
         // mana
         // copy the deck
         // copy usable item from deck
+        // initialize hero
         flagsAcheived = new ArrayList<>();
+        minionsInPlayGround.add(hero);
     }
 
     public Player(int level) { // for computer AI
-
+        // like above
     }
 
     public static void enterNewCell(Cell target, Minion minion, Player player) { // not attack to cell
@@ -98,6 +100,7 @@ public class Player {
             enterNewCell(cell, (Minion) card, this);
             Minion currentMinion = (Minion) card;
             currentMinion.putInMap(cell);
+            ((Minion) card).setCell(cell);
             reduceMana(card.getMP());
         } else {
             Spell currentSpell = (Spell) card;
@@ -132,8 +135,7 @@ public class Player {
         }
     }
 
-    public void missFlag(Minion owningMinion, Cell previousCell) { // opposite of above
-        Flag flag = previousCell.getFlag();
+    public void missFlag(Flag flag) { // opposite of above
         if (battle.getGameMode() == GameMode.ONE_FLAG) {
             modeTwoFlag = null;
             flag.setOwningPlayer(null);
@@ -189,7 +191,7 @@ public class Player {
             }
             if (battle.getGameMode() == GameMode.FLAGS) {
                 if (previous.getFlag() != null) {
-                    missFlag(minion, previous);
+                    missFlag(previous.getFlag());
                 }
                 if (cell.getFlag() != null) {
                     collectFlag(cell.getFlag(), minion);
@@ -314,5 +316,12 @@ public class Player {
         return modeTwoFlag;
     }
 
+    public void addMinionInPlayGroundMinions(Minion minion){
+        minionsInPlayGround.add(minion);
+    }
+
+    public void minionDead(Minion minion){
+        minionsInPlayGround.remove(minion);
+    }
 
 }

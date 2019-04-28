@@ -97,4 +97,8 @@ public class Cell {
     public void removeCellAffect(CellAffect affect){
         cellAffects.remove(affect);
     }
+
+    public void setMinionOnIt(Minion minionOnIt) {
+        this.minionOnIt = minionOnIt;
+    }
 }

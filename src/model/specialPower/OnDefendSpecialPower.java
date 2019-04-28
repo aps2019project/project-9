@@ -6,13 +6,20 @@ import model.enumerations.SpecialPowerActivationTime;
 
 public class OnDefendSpecialPower extends SpecialPower {
     private OnDefendType onDefendType;
-    private BuffName deactivatedBuff;
-    public OnDefendSpecialPower(OnDefendType onDefendType ,BuffName deactivatedBuff){
+    private BuffName deactivatedBuff; // the buff that should be deactivated on target minion
+    /*public OnDefendSpecialPower(OnDefendType onDefendType ,BuffName deactivatedBuff){
         this.onDefendType = onDefendType;
         if(onDefendType == OnDefendType.BUFF)
             this.deactivatedBuff = deactivatedBuff;
         specialPowerActivationTime = SpecialPowerActivationTime.ON_DEFEND;
+    }*/
+
+    public OnDefendSpecialPower(OnDefendType onDefendType, BuffName deactivatedBuff) {
+        super(SpecialPowerActivationTime.ON_DEFEND);
+        this.onDefendType = onDefendType;
+        this.deactivatedBuff = deactivatedBuff;
     }
+
     public BuffName getDeactivatedBuff(){
         return deactivatedBuff;
     }

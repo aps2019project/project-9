@@ -125,7 +125,7 @@ public class PlayGround {
         return result;
     }
 
-    public ArrayList<Cell> enemyInRow(Cell cell , Player player) {
+    public ArrayList<Cell> enemyInRow(Cell cell, Player player) {
         ArrayList<Cell> result = new ArrayList<>();
         for (Cell[] cell1 : cells) {
             for (Cell cell2 : cell1) {
@@ -150,11 +150,11 @@ public class PlayGround {
         return result;
     }
 
-    public Cell getRandomCell(){
+    public Cell getRandomCell() {
         Random first = new Random();
         Random second = new Random();
         int row = first.nextInt(5);
         int col = second.nextInt(9);
-        return getCell(row,col);
+        return getCell(row, col);
     }
 }
