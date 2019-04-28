@@ -11,7 +11,8 @@ public class OnAttackSpell extends Usable {
     private boolean isAssignedToTarget = false;
     private boolean isSpellForOpponent = false;
 
-    public OnAttackSpell(ItemName itemName) {
+    public OnAttackSpell(String name, ItemName itemName, String desc) {
+        super(name,itemName,desc);
         switch (itemName) {
             case TERROR_HOOD:
                 isSpellForOpponent = true;

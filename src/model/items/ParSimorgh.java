@@ -1,11 +1,13 @@
 package model.items;
 
 import model.Player;
+import model.enumerations.ItemName;
 import model.enumerations.ItemTarget;
 import model.enumerations.MinionAttackType;
 
 public class ParSimorgh extends Usable {
-    public ParSimorgh() {
+    public ParSimorgh(String name, ItemName itemName, String desc) {
+        super(name, itemName, desc);
         cost = 3500;
         target = ItemTarget.RANGED_OR_HYBRID;
     }

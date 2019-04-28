@@ -4,11 +4,8 @@ import model.Player;
 import model.enumerations.ItemName;
 
 public class ManaItems extends Usable {
-    public ManaItems(ItemName name) {
-        if (name == ItemName.TAJ_DANAYEE)
-            cost = 300;
-        else
-            cost = 9000;
+    public ManaItems(String name, ItemName itemName, String desc){
+        super(name,itemName,desc);
     }
 
     @Override
