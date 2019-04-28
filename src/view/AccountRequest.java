@@ -40,26 +40,25 @@ public class AccountRequest {
     public boolean isValid() {
         AccountRequestType requestType = getType();
         if (requestType == null) {
-            errorType = AccountErrorType.INVALID_COMMAND;
             return false;
         }
         return true;
     }
 
     public AccountRequestType getType() {
-        if (command.length() > 14 && command.substring(0, 14).matches(CREATE_ACCOUNT)
+        if (command.length() >= 14 && command.substring(0, 14).matches(CREATE_ACCOUNT)
                 && (command.split(" ").length == 3)) {
             userName = command.split(" ")[2];
             return AccountRequestType.CREATE_ACCOUNT;
-        } else if (command.length() > 5 && command.substring(0, 5).matches(LOGIN)
+        } else if (command.length() >= 5 && command.substring(0, 5).matches(LOGIN)
                 && (command.split(" ").length == 2)) {
             userName = command.split(" ")[1];
             return AccountRequestType.LOGIN;
-        } else if (command.length() > 16 && command.substring(0, 16).matches(SHOW_LEADERBOARD) && (command.split(" ").length == 2))
+        } else if (command.length() >= 16 && command.substring(0, 16).matches(SHOW_LEADERBOARD) && (command.split(" ").length == 2))
             return AccountRequestType.SHOW_LEADERBOARDS;
-        else if (command.length() > 4 && command.substring(0, 4).matches(HELP) && (command.split(" ").length == 1))
+        else if (command.length() >= 4 && command.substring(0, 4).matches(HELP) && (command.split(" ").length == 1))
             return AccountRequestType.HELP;
-        else if (command.length() > 4 && command.substring(0, 4).matches(EXIT) && (command.split(" ").length == 1))
+        else if (command.length() >= 4 && command.substring(0, 4).matches(EXIT) && (command.split(" ").length == 1))
             return AccountRequestType.EXIT;
         else
             return null;

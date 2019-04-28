@@ -14,10 +14,11 @@ public class AccountController {
         do {
             AccountRequest request = new AccountRequest();
             request.getNewCommand();
-            if (request.getType() == AccountRequestType.EXIT)
+            if (request.getType() == AccountRequestType.EXIT) {
                 isFinished = true;
+            }
             if (!request.isValid()) {
-                accountView.printError(request.getErrorType());
+                accountView.printError(AccountErrorType.INVALID_COMMAND);
                 continue;
             }
             switch (request.getType()) {

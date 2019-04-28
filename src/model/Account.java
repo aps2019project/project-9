@@ -11,7 +11,7 @@ public class Account implements Comparable<Account> {
     private BattleResult[] battleResults;
     private ArrayList<Deck> decks;
     private Deck mainDeck;
-    private static ArrayList<Account> accounts;
+    private static ArrayList<Account> accounts = new ArrayList<>();
     private String userName;
     private String passWord;
     private int numberOfWins = 0;
