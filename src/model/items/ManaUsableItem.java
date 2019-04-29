@@ -3,9 +3,9 @@ package model.items;
 import model.Player;
 import model.enumerations.ItemName;
 
-public class ManaItems extends Usable {
+public class ManaUsableItem extends Usable {
 
-    public ManaItems(int cost, String name, ItemName itemType, int itemID, String desc) {
+    public ManaUsableItem(int cost, String name, ItemName itemType, int itemID, String desc) {
         super(cost, name, itemType, itemID, desc);
     }
 

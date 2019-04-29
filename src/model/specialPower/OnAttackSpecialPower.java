@@ -2,11 +2,8 @@ package model.specialPower;
 
 import model.Cell;
 import model.buffs.Buff;
-import model.cards.Minion;
-import model.cards.Spell;
 import model.enumerations.MinionName;
 import model.enumerations.SpecialPowerActivationTime;
-import model.items.ManaItems;
 
 import java.util.ArrayList;
 

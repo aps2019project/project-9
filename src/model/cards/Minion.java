@@ -7,7 +7,7 @@ import model.Player;
 import model.cellaffects.CellAffect;
 import model.enumerations.*;
 import model.items.Item;
-import model.items.OnAttackSpell;
+import model.items.OnAttackSpellUsable;
 import model.items.OnDeathUsableItem;
 import model.specialPower.OnAttackSpecialPower;
 import model.specialPower.OnDefendSpecialPower;
@@ -95,7 +95,7 @@ public class Minion extends Card {
         // receiveAttack() of opponent
         // if opponent has flag , get it ( in mode -> one flag )
         if (onAttackItem != null) {
-            ((OnAttackSpell)onAttackItem).doOnAttack(cell);
+            ((OnAttackSpellUsable)onAttackItem).doOnAttack(cell);
         }
         if (canAttack && isValidCell(cell)) {
             if (this instanceof Hero) {
@@ -155,7 +155,7 @@ public class Minion extends Card {
             player.castUsableItem();
         }
         if (player.getUsableItem()!= null && (player.getUsableItem() instanceof OnDeathUsableItem)){
-            player.castUsableItem();
+            ((OnDeathUsableItem)player.getUsableItem()).doOnDeathAction(player);
         }
     }
 

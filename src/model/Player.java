@@ -1,7 +1,6 @@
 package model;
 
 import model.buffs.Buff;
-import model.buffs.HollyBuff;
 import model.cards.Card;
 import model.cards.Hero;
 import model.cards.Minion;
@@ -108,9 +107,8 @@ public class Player {
             if (currentMinion.getSpecialPower().getSpecialPowerActivationTime() == SpecialPowerActivationTime.ON_SPAWN) {
                 currentMinion.getSpecialPower().castSpecialPower(cell);
             }
-            if (usableItem != null && usableItem.getItemType() == ItemName.GHOSL) {
-                HollyBuff buff = new HollyBuff(2,false,false,false);
-                buff.startBuff(cell);
+            if (usableItem != null && usableItem instanceof OnSpawnUsableItem) {
+                ((OnSpawnUsableItem)usableItem).doOnSpawnAction(this,currentMinion);
             }
         } else {
             Spell currentSpell = (Spell) card;
@@ -339,7 +337,7 @@ public class Player {
         return usableItem;
     }
 
-    public void setOnAttackItemForAllPlayers(OnAttackSpell item) {
+    public void setOnAttackItemForAllPlayers(OnAttackSpellUsable item) {
         for (Minion minion : minionsInPlayGround) {
             minion.setOnAttackItem(item);
         }

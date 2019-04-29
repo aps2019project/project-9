@@ -3,6 +3,7 @@ package model.items;
 import model.Player;
 import model.cards.Spell;
 import model.enumerations.ItemName;
+import model.items.itemEnumerations.OnDeathTarget;
 
 public class OnDeathUsableItem extends Usable{
     private OnDeathTarget target;
@@ -17,6 +18,10 @@ public class OnDeathUsableItem extends Usable{
 
     @Override
     public void castItem(Player player) {
+        // no thing
+    }
+
+    public void doOnDeathAction(Player player){
         switch (target){
             case A_FRIENDLY_POWER:
                 player.giveSpellToRandomPower(spell,false);

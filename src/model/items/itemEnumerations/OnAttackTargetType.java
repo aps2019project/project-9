@@ -1,4 +1,4 @@
-package model.items;
+package model.items.itemEnumerations;
 
 public enum OnAttackTargetType {
     OPPONENT_CELL, // in attack()
