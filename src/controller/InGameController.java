@@ -58,8 +58,7 @@ public class InGameController {
                     move(battle.getCurrenPlayer(), request.getX(), request.getY());
                     break;
                 case END_GAME:
-                    // not complete .....
-                    // inGameView.endGameOutput();
+                    // after view.endGameOutput called
                     isFinished = true;
                     break;
                 case END_TURN:

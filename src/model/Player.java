@@ -263,6 +263,9 @@ public class Player {
         mana += number;
     }
 
+    public void assignMana(int mana){
+        this.mana = mana;
+    }
     public void deleteUsableItem() {
         usableItem = null;
     }

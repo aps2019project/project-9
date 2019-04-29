@@ -1,6 +1,7 @@
 package view;
 
 import model.Battle;
+import model.BattleResult;
 import model.Hand;
 import model.Player;
 import model.cards.Card;
@@ -136,8 +137,9 @@ public class InGameView {
         }
     }
 
-    public void endGameOutput(Player winner, int prize) {
-        System.out.printf("Winner : %s\nThe Prize of winner is %d derick\n", winner.getName(), prize);
+    public void endGameOutput(BattleResult result) {
+        System.out.printf("Winner : %s\nThe Prize of winner is %d derick\n", result.getWinner(), result.getPrize());
+        System.out.println("Enter :\nEND GAME");
     }
 
     public void showHand(Hand hand) {

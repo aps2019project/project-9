@@ -8,14 +8,13 @@ import model.cards.Spell;
 import model.cellaffects.CellAffect;
 import model.enumerations.GameMode;
 import model.enumerations.SpecialPowerActivationTime;
+import view.InGameView;
 
 import java.util.ArrayList;
 
 public class Battle {
-    protected static final Deck FIRST_LEVEL_DECK = new Deck("first level");
-    protected static final Deck SECOND_LEVEL_DECK = new Deck("second level");
-    protected static final Deck THIRD_LEVEL_DECK = new Deck("third level");
-
+    protected int firstPlayerMana;
+    protected int secondPlayerMana;
     protected int turn;
     protected PlayGround playGround;
     protected GameMode gameMode;
@@ -25,12 +24,13 @@ public class Battle {
     protected int numberOfFlags;
     protected int turnsToWon; // for one flag mode , turns that a flag is in position of winner
     protected int battlePrize; // should be initialized at Constructor()
+    protected int level; // for single player games ( in battle result )
 
-    // constructor
 
     public void startBattle() {
-        // buffs and cellAffects turns remained should be equal to turnsActive and specialPowers
-        // just minions and heros should be copied
+        // ..........
+        firstPlayerMana = 2;
+        secondPlayerMana = 2;
         initializeOwningPlayerOfCards(firstPlayer);
         initializeOwningPlayerOfCards(secondPlayer);
     }
@@ -82,8 +82,19 @@ public class Battle {
         handleUsableItems(secondPlayer);// cast them
         handleManaCollectibleItem(firstPlayer);
         handleManaCollectibleItem(secondPlayer);
+        assignMana();
         whoseTurn = (whoseTurn == 1) ? (2) : (1);
         turn++;
+    }
+
+    private void assignMana() {
+        if (whoseTurn == 1) {
+            secondPlayerMana++;
+            secondPlayer.assignMana(secondPlayerMana);
+        } else {
+            firstPlayerMana++;
+            firstPlayer.assignMana(firstPlayerMana);
+        }
     }
 
     private void handleManaCollectibleItem(Player player) {
@@ -123,7 +134,16 @@ public class Battle {
     }
 
     public void endBattle(Player winner) {
-
+        BattleResult battleResult = new BattleResult(firstPlayer, secondPlayer, winner, level , battlePrize);
+        if (Account.findAccount(firstPlayer.getName()) != null) {
+            Account.findAccount(firstPlayer.getName()).addBattleResult(battleResult);
+        }
+        battleResult = new BattleResult(secondPlayer, firstPlayer, winner, level , battlePrize);
+        if (Account.findAccount(secondPlayer.getName()) != null) {
+            Account.findAccount(secondPlayer.getName()).addBattleResult(battleResult);
+        }
+        InGameView view = InGameView.getInstance();
+        view.endGameOutput(battleResult);
     }
 
     public PlayGround getPlayGround() {
@@ -158,13 +178,6 @@ public class Battle {
         }
     }
 
-    public void assignMana(Player player, int number) {
-        player.addMana(number);
-    }
-
-    public boolean hasValidDeck(Player player) {
-        return player.getDeck().isValid();
-    }
 
     public void setGameMode(GameMode mode) {
         this.gameMode = mode;
