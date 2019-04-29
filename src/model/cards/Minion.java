@@ -8,6 +8,7 @@ import model.cellaffects.CellAffect;
 import model.enumerations.*;
 import model.items.Item;
 import model.items.OnAttackSpell;
+import model.items.OnDeathUsableItem;
 import model.specialPower.OnAttackSpecialPower;
 import model.specialPower.OnDefendSpecialPower;
 import model.specialPower.OnDefendType;
@@ -151,6 +152,9 @@ public class Minion extends Card {
         player.minionDead(this);
         player.getBattle().checkWinner();
         if (player.getUsableItem().getItemType() == ItemName.SOUL_EATER) {
+            player.castUsableItem();
+        }
+        if (player.getUsableItem()!= null && (player.getUsableItem() instanceof OnDeathUsableItem)){
             player.castUsableItem();
         }
     }

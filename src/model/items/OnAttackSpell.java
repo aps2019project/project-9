@@ -7,7 +7,7 @@ import model.cards.Spell;
 import model.enumerations.ItemName;
 import model.enumerations.MinionAttackType;
 
-public class OnAttackSpell extends Usable { // KAMAN_DAMOOL , TERROR_HOOD , POISONOUS_DAGGER
+public class OnAttackSpell extends Usable { // KAMAN_DAMOOL , TERROR_HOOD , POISONOUS_DAGGER , SHOCK_HAMMER
     private Spell spell;
     private OnAttackTargetType targetType;
 

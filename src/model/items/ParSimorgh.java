@@ -6,10 +6,9 @@ import model.enumerations.ItemTarget;
 import model.enumerations.MinionAttackType;
 
 public class ParSimorgh extends Usable {
-    public ParSimorgh(String name, ItemName itemName, String desc) {
-        super(name, itemName, desc);
-        cost = 3500;
-        target = ItemTarget.RANGED_OR_HYBRID;
+
+    public ParSimorgh(int cost, String name, int itemID, String desc) {
+        super(cost, name, ItemName.PAR_SIMORGH, itemID, desc);
     }
 
     @Override
