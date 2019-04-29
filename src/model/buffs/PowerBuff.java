@@ -10,8 +10,7 @@ public class PowerBuff extends Buff {
     private int power;
     private boolean isForHP; // for HP or AP
 
-    public PowerBuff(int turnsActive, int turnsRemained, boolean isForAllTurns,
-                      boolean isContinous, int power, boolean isForHP) {
+    public PowerBuff(int turnsActive,boolean isForAllTurns, boolean isContinous, int power, boolean isForHP) {
         super(BuffName.POWER, turnsActive,isForAllTurns, true, isContinous);
         this.power = power;
         this.isForHP = isForHP;
