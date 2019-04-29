@@ -41,7 +41,7 @@ public class AccountController {
 
     private void login(String userName , AccountRequest request) {
         if(Account.isUserNameToken(userName)){
-            // we want a "Please enter your pass word here
+            accountView.printError(AccountErrorType.ENTER_PASSWORD);
             request.getNewCommand();
             if(Account.isPassWordValid(userName,request.getCommand())){
                 goNextMenu(Account.findAccount(userName));

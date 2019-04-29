@@ -21,11 +21,9 @@ public class CollectionView {
     }
 
     public void help() {
-        System.out.println("Commands :");
-        System.out.println("exit");
+        System.out.println("<<---- Collection Menu ---->>");
         System.out.println("show ( show Collection Items or Cards )");
         System.out.println("Search [card name | item name]");
-        System.out.println("save");
         System.out.println("create deck [ deck name ]");
         System.out.println("delete deck [ deck name ]");
         System.out.println("add [card id] to deck [deck name]");
@@ -33,7 +31,9 @@ public class CollectionView {
         System.out.println("validate deck [deck name]");
         System.out.println("show all decks");
         System.out.println("show deck [deck name]");
+        System.out.println("save");
         System.out.println("help");
+        System.out.println("exit");
     }
 
     public void showAllDecks(ArrayList<Deck> decks, Deck mainDeck) {
@@ -42,7 +42,7 @@ public class CollectionView {
             allDecks.remove(mainDeck);
         }
         for (Deck deck : allDecks) {
-            System.out.println(deck.toString());
+            System.out.println(deck.getName());
         }
     }
 

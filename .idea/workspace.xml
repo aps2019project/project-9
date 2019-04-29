@@ -2,17 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1a59e9ca-3371-4528-a623-2f61f2c20424" name="Default Changelist" comment="changes in Request Classes">
-      <change beforePath="$PROJECT_DIR$/src/model/items/Collectible.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/items/Collectible.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/items/Flag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/items/Flag.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/items/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/items/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/items/ManaUsableItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/items/ManaUsableItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/items/OnAttackSpellUsable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/items/OnAttackSpellUsable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/items/OnDeathCollectibleItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/items/OnDeathCollectibleItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/items/OnDeathUsableItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/items/OnDeathUsableItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/items/OnSpawnUsableItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/items/OnSpawnUsableItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/items/SpellCollectible.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/items/SpellCollectible.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/items/Usable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/items/Usable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/items/addMana.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/items/addMana.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/AccountController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Deck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Deck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/CollectionView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/CollectionView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/MainMenuView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MainMenuView.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -36,116 +31,7 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/model/items/Item.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="314">
-              <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
-              <folding>
-                <element signature="e#739#740#0" expanded="true" />
-                <element signature="e#766#767#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/model/items/ManaUsableItem.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="7" column="66" selection-start-line="7" selection-start-column="66" selection-end-line="7" selection-end-column="66" />
-              <folding>
-                <element signature="e#208#209#0" expanded="true" />
-                <element signature="e#257#258#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/model/items/OnAttackSpellUsable.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="15" column="71" selection-start-line="15" selection-start-column="71" selection-end-line="15" selection-end-column="71" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/model/items/OnDeathCollectibleItem.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="10" column="74" selection-start-line="10" selection-start-column="74" selection-end-line="10" selection-end-column="74" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/model/items/OnDeathUsableItem.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="11" column="70" selection-start-line="11" selection-start-column="70" selection-end-line="11" selection-end-column="70" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/model/items/OnSpawnUsableItem.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="14" column="69" selection-start-line="14" selection-start-column="69" selection-end-line="14" selection-end-column="69" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/model/items/SpellCollectible.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="19" column="34" selection-start-line="19" selection-start-column="34" selection-end-line="19" selection-end-column="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/model/items/Usable.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="8" column="58" selection-start-line="8" selection-start-column="58" selection-end-line="8" selection-end-column="58" />
-              <folding>
-                <element signature="e#241#242#0" expanded="true" />
-                <element signature="e#290#291#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/model/items/addMana.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="9" column="60" selection-start-line="9" selection-start-column="60" selection-end-line="9" selection-end-column="60" />
-              <folding>
-                <element signature="e#236#237#0" expanded="true" />
-                <element signature="e#285#286#0" expanded="true" />
-                <element signature="e#349#350#0" expanded="true" />
-                <element signature="e#402#403#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/model/items/Flag.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -161,11 +47,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/model/specialPower/OnDefendSpecialPower.java" />
-        <option value="$PROJECT_DIR$/src/model/specialPower/ComboSpecialPower.java" />
-        <option value="$PROJECT_DIR$/src/model/specialPower/OnDeathSpecialPower.java" />
-        <option value="$PROJECT_DIR$/src/model/specialPower/OnSpawnTargetCell.java" />
-        <option value="$PROJECT_DIR$/src/model/specialPower/OnSpawnSpecialPower.java" />
         <option value="$PROJECT_DIR$/src/model/specialPower/PassiveTargetType.java" />
         <option value="$PROJECT_DIR$/src/model/specialPower/OnAttackSpecialPower.java" />
         <option value="$PROJECT_DIR$/src/model/DefaultCards.java" />
@@ -189,7 +70,6 @@
         <option value="$PROJECT_DIR$/src/model/enumerations/ItemTarget.java" />
         <option value="$PROJECT_DIR$/src/model/cards/Spell.java" />
         <option value="$PROJECT_DIR$/src/model/GraveYard.java" />
-        <option value="$PROJECT_DIR$/src/model/Deck.java" />
         <option value="$PROJECT_DIR$/src/model/enumerations/BattleMenuErrorType.java" />
         <option value="$PROJECT_DIR$/src/view/BattleMenuRequest.java" />
         <option value="$PROJECT_DIR$/src/controller/BattleMenuController.java" />
@@ -212,6 +92,12 @@
         <option value="$PROJECT_DIR$/src/model/items/OnDeathUsableItem.java" />
         <option value="$PROJECT_DIR$/src/model/items/OnSpawnUsableItem.java" />
         <option value="$PROJECT_DIR$/src/model/items/SpellCollectible.java" />
+        <option value="$PROJECT_DIR$/src/model/items/SpellUsableItem.java" />
+        <option value="$PROJECT_DIR$/src/Main.java" />
+        <option value="$PROJECT_DIR$/src/view/MainMenuView.java" />
+        <option value="$PROJECT_DIR$/src/controller/AccountController.java" />
+        <option value="$PROJECT_DIR$/src/view/CollectionView.java" />
+        <option value="$PROJECT_DIR$/src/model/Deck.java" />
       </list>
     </option>
   </component>
@@ -244,19 +130,6 @@
               <item name="project-9" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="project-9" type="b2602c69:ProjectViewProjectNode" />
-              <item name="project-9" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="project-9" type="b2602c69:ProjectViewProjectNode" />
-              <item name="project-9" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-              <item name="items" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -267,7 +140,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556554825190" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556557338862" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -308,7 +181,7 @@
       <workItem from="1556358499345" duration="1360000" />
       <workItem from="1556360260110" duration="32977000" />
       <workItem from="1556547051250" duration="68000" />
-      <workItem from="1556547342966" duration="7187000" />
+      <workItem from="1556547342966" duration="9549000" />
     </task>
     <task id="LOCAL-00001" summary="passive special power">
       <created>1556519036088</created>
@@ -320,11 +193,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17175000" />
+    <option name="totallyTimeSpent" value="19537000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="54" y="-8" width="1320" height="784" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18253969" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -335,7 +207,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3794163" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.2780338" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -365,31 +237,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/model/specialPower/PassiveSpecialPower.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="14" column="41" lean-forward="true" selection-start-line="14" selection-start-column="41" selection-end-line="14" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/buffs/HollyBuff.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="19" column="13" lean-forward="true" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/buffs/WeaknessBuff.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="30" column="13" lean-forward="true" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/items/OnAttackSpellItemOwningMinionType.java" />
-    <entry file="file://$PROJECT_DIR$/src/model/items/Ghosl.java" />
-    <entry file="file://$PROJECT_DIR$/src/model/items/ParSimorgh.java" />
-    <entry file="file://$PROJECT_DIR$/src/model/items/itemEnumerations/OnAttackOwningMinionType.java" />
     <entry file="file://$PROJECT_DIR$/src/model/items/itemEnumerations/OnAttackTargetType.java" />
     <entry file="file://$PROJECT_DIR$/src/model/items/itemEnumerations/SpellItemTarget.java" />
     <entry file="file://$PROJECT_DIR$/src/model/items/itemEnumerations/OnSpawnItemTarget.java" />
@@ -401,24 +248,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/model/items/itemEnumerations/OnDeathTarget.java" />
-    <entry file="file://$PROJECT_DIR$/src/model/items/SpellUsableItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="37" column="75" lean-forward="true" selection-start-line="37" selection-start-column="75" selection-end-line="37" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/cards/Minion.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="501">
-          <caret line="162" column="16" lean-forward="true" selection-start-line="162" selection-start-column="16" selection-end-line="162" selection-end-column="16" />
-          <folding>
-            <element signature="e#13385#13386#0" expanded="true" />
-            <element signature="e#13430#13431#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/enumerations/ItemTarget.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -428,19 +257,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/model/items/RandomAffect.java" />
     <entry file="file://$PROJECT_DIR$/src/model/items/ChineseShamshir.java" />
-    <entry file="file://$PROJECT_DIR$/src/model/Deck.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
-          <folding>
-            <element signature="e#4377#4378#0" expanded="true" />
-            <element signature="e#4404#4405#0" expanded="true" />
-            <element signature="e#4433#4434#0" expanded="true" />
-            <element signature="e#4460#4461#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/GraveYard.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -510,13 +326,6 @@
             <element signature="e#1215#1216#0" expanded="true" />
             <element signature="e#1256#1257#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/InGameController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="60" column="44" lean-forward="true" selection-start-line="60" selection-start-column="44" selection-end-line="60" selection-end-column="44" />
         </state>
       </provider>
     </entry>
@@ -602,13 +411,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/DefaultCards.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="103">
@@ -643,17 +445,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/items/Item.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
-          <folding>
-            <element signature="e#739#740#0" expanded="true" />
-            <element signature="e#766#767#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/items/Usable.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -662,6 +453,48 @@
             <element signature="e#241#242#0" expanded="true" />
             <element signature="e#290#291#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/items/SpellUsableItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="19" column="42" lean-forward="true" selection-start-line="19" selection-start-column="42" selection-end-line="19" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/items/SpellCollectible.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="17" column="68" selection-start-line="17" selection-start-column="68" selection-end-line="17" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/items/OnSpawnUsableItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="14" column="69" selection-start-line="14" selection-start-column="69" selection-end-line="14" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/items/OnDeathUsableItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="11" column="70" selection-start-line="11" selection-start-column="70" selection-end-line="11" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/items/OnDeathCollectibleItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="10" column="74" selection-start-line="10" selection-start-column="74" selection-end-line="10" selection-end-column="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/items/OnAttackSpellUsable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="15" column="71" selection-start-line="15" selection-start-column="71" selection-end-line="15" selection-end-column="71" />
         </state>
       </provider>
     </entry>
@@ -676,38 +509,120 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/items/OnAttackSpellUsable.java">
+    <entry file="file://$PROJECT_DIR$/src/model/items/Item.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="314">
+          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+          <folding>
+            <element signature="e#739#740#0" expanded="true" />
+            <element signature="e#766#767#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/AccountController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="403">
+          <caret line="63" column="46" lean-forward="true" selection-start-line="63" selection-start-column="46" selection-end-line="63" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/enumerations/AccountErrorType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="40" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/InGameController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="175" column="63" selection-start-line="175" selection-start-column="63" selection-end-line="175" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/cards/Minion.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-22">
+          <caret line="96" column="38" lean-forward="true" selection-start-line="96" selection-start-column="38" selection-end-line="96" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/CollectionView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="59">
+          <caret line="23" column="57" selection-start-line="23" selection-start-column="57" selection-end-line="23" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/cards/Card.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
-          <caret line="15" column="71" selection-start-line="15" selection-start-column="71" selection-end-line="15" selection-end-column="71" />
+          <caret line="10" column="12" lean-forward="true" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="24" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/items/OnDeathCollectibleItem.java">
+    <entry file="file://$PROJECT_DIR$/src/model/Collection.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="10" column="74" selection-start-line="10" selection-start-column="74" selection-end-line="10" selection-end-column="74" />
+        <state relative-caret-position="208">
+          <caret line="73" column="16" selection-start-line="73" selection-start-column="16" selection-end-line="73" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/items/OnDeathUsableItem.java">
+    <entry file="file://$PROJECT_DIR$/src/controller/CollectionController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="11" column="70" selection-start-line="11" selection-start-column="70" selection-end-line="11" selection-end-column="70" />
+        <state relative-caret-position="225">
+          <caret line="161" column="56" lean-forward="true" selection-start-line="161" selection-start-column="56" selection-end-line="161" selection-end-column="56" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/items/OnSpawnUsableItem.java">
+    <entry file="file://$PROJECT_DIR$/src/view/AccountView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="14" column="69" selection-start-line="14" selection-start-column="69" selection-end-line="14" selection-end-column="69" />
+        <state relative-caret-position="195">
+          <caret line="13" column="37" selection-start-line="13" selection-start-column="37" selection-end-line="13" selection-end-column="37" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/items/SpellCollectible.java">
+    <entry file="file://$PROJECT_DIR$/src/controller/MainMenuController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="19" column="34" selection-start-line="19" selection-start-column="34" selection-end-line="19" selection-end-column="34" />
+        <state>
+          <caret line="18" column="12" lean-forward="true" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/MainMenuView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="14" column="23" lean-forward="true" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="33" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Deck.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="12" column="52" selection-start-line="12" selection-start-column="52" selection-end-line="12" selection-end-column="52" />
+          <folding>
+            <element signature="e#1977#1978#0" expanded="true" />
+            <element signature="e#2036#2037#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-11.0.2/lib/src.zip!/java.base/java/lang/Object.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="244" column="18" selection-start-line="244" selection-start-column="18" selection-end-line="244" selection-end-column="18" />
+          <folding>
+            <element signature="e#10225#10226#0" expanded="true" />
+            <element signature="e#10308#10309#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

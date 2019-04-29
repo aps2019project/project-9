@@ -10,7 +10,7 @@ import model.items.Item;
 import java.util.ArrayList;
 
 public class Deck {
-    private ArrayList<Card> cards;
+    private ArrayList<Card> cards = new ArrayList<>();
     private Hero hero;
     private Item item;
     private String name; // used in accounts
