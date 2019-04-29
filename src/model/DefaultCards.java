@@ -8,6 +8,8 @@ import model.cards.Hero;
 import model.cards.HeroTargetType;
 import model.cards.Minion;
 import model.cards.Spell;
+import model.cellaffects.FireCellAffect;
+import model.cellaffects.PoisonCellAffect;
 import model.enumerations.*;
 import model.items.Item;
 import model.specialPower.*;
@@ -211,6 +213,104 @@ public class DefaultCards {
     }
 
     private static void setSpellCellAffectOrBuffs(Spell spell, SpellName name) {
+        ArrayList<Buff> buffs;
+        switch (name){
+            case TOTAL_DISARM:
+                DisarmBuff buff = new DisarmBuff(400,true,false);
+                buffs = new ArrayList<>();
+                buffs.add(buff);
+                spell.setBuffs(buffs);
+                break;
+            case AREA_DISPEL:
+                break;
+            case EMPOWER:
+                buffs = new ArrayList<>();
+                buffs.add(new PowerBuff(400,true,false,2,false));
+                spell.setBuffs(buffs);
+                break;
+            case FIREBALL:
+                buffs = new ArrayList<>();
+                buffs.add(new WeaknessBuff(400,true,false,4,true,false,null));
+                spell.setBuffs(buffs);
+                break;
+            case GOD_STRENGTH:
+                buffs = new ArrayList<>();
+                buffs.add(new PowerBuff(400,true,false,4,false));
+                spell.setBuffs(buffs);
+                break;
+            case HELLFIRE:
+                FireCellAffect cellAffect = new FireCellAffect(2);
+                spell.setCellAffect(cellAffect);
+                break;
+            case LIGHTING_BOLT:
+                buffs = new ArrayList<>();
+                buffs.add(new WeaknessBuff(400,true,false,8,true,false,null));
+                spell.setBuffs(buffs);
+                break;
+            case POISON_LAKE:
+                PoisonCellAffect cellAffect1 = new PoisonCellAffect(1);
+                spell.setCellAffect(cellAffect1);
+                break;
+            case MADNESS:
+                buffs = new ArrayList<>();
+                buffs.add(new PowerBuff(3,false,false,4,false));
+                buffs.add(new DisarmBuff(3,false,false));
+                spell.setBuffs(buffs);
+                break;
+            case ALL_DISARM:
+                buffs = new ArrayList<>();
+                buffs.add(new DisarmBuff(1,false,false));
+                spell.setBuffs(buffs);
+                break;
+            case ALL_POISON:
+                buffs = new ArrayList<>();
+                buffs.add(new PoisonBuff(4,false,false));
+                spell.setBuffs(buffs);
+                break;
+            case DISPEL:
+                break;
+            case HEALTH_WITH_PROFIT:
+                buffs = new ArrayList<>();
+                buffs.add(new WeaknessBuff(400,true,false,6,true,false,null));
+                buffs.add(new HollyBuff(3,false,false,false));
+                spell.setBuffs(buffs);
+                break;
+            case POWER_UP:
+                buffs = new ArrayList<>();
+                buffs.add(new PowerBuff(400,true,false,6,false));
+                spell.setBuffs(buffs);
+                break;
+            case ALL_POWER:
+                buffs = new ArrayList<>();
+                buffs.add(new PowerBuff(400,true,false,2,false));
+                spell.setBuffs(buffs);
+                break;
+            case ALL_ATTACK:
+                buffs = new ArrayList<>();
+                buffs.add(new WeaknessBuff(400,true,false,6,true,false,null));
+                spell.setBuffs(buffs);
+                break;
+            case WEAKENING:
+                buffs = new ArrayList<>();
+                buffs.add(new WeaknessBuff(400,true,false,4,false,false,null));
+                spell.setBuffs(buffs);
+                spell.setBuffs(buffs);
+                break;
+            case SACRIFICE:
+                buffs = new ArrayList<>();
+                buffs.add(new WeaknessBuff(400,true,false,6,true,false,null));
+                buffs.add(new PowerBuff(400,true,false,8,false));
+                spell.setBuffs(buffs);
+                break;
+            case KINGS_GUARD:
+                break;
+            case SHOCK:
+                buffs = new ArrayList<>();
+                buffs.add(new StunBuff(2,false,false));
+                spell.setBuffs(buffs);
+                break;
+        }
+
 
     }
 
