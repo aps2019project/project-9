@@ -146,6 +146,9 @@ public class Minion extends Card {
         getCell().setMinionOnIt(null);
         player.minionDead(this);
         player.getBattle().checkWinner();
+        if(player.getUsableItem().getItemType() == ItemName.SOUL_EATER){
+            player.castUsableItem();
+        }
     }
 
     public int getAP() {

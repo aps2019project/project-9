@@ -4,8 +4,9 @@ import model.Player;
 import model.enumerations.ItemName;
 
 public class Ghosl extends Usable {
-    Ghosl(String name, ItemName itemName, String desc) {
-        super(name, itemName, desc);
+
+    public Ghosl(int cost, String name, ItemName itemType, int itemID, String desc) {
+        super(cost, name, itemType, itemID, desc);
     }
 
     @Override

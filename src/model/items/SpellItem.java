@@ -1,22 +1,35 @@
 package model.items;
 
+import model.Cell;
 import model.Player;
+import model.buffs.Buff;
 import model.cards.Spell;
 import model.enumerations.ItemName;
+import model.enumerations.SpellTargetType;
 
-public class SpellItem extends Usable{
-    private Spell spell;
+import java.util.ArrayList;
 
-    SpellItem(String name, ItemName itemName, String desc){
-        super(name,itemName,desc);
+public class SpellItem extends Usable {
+    private ArrayList<Buff> buffs;
+
+    public SpellItem(int cost, String name, ItemName itemType, int itemID, String desc, ArrayList<Buff> buffs) {
+        super(cost, name, itemType, itemID, desc);
+        this.buffs = buffs;
     }
+
     @Override
     public void castItem(Player player) {
-        if(itemType == ItemName.NAMOOS_SEPAR){
-            spell.castSpell(player.getHero().getCell());
+        if (itemType == ItemName.NAMOOS_SEPAR) {
+            /*spell.castSpell(player.getHero().getCell());*/
+            Cell cell = player.getHero().getCell();
+            for (Buff buff : buffs) {
+                buff.startBuff(cell);
+            }
             player.deleteUsableItem();
-        }else if (itemType == ItemName.SOUL_EATER){
-            player.giveSpellToRandomPower(spell , false);
+        } else if (itemType == ItemName.SOUL_EATER) {
+            Spell spell = new Spell(null, 0, 0, SpellTargetType.A_POWER, 0, "", buffs
+                    , null, null);
+            player.giveSpellToRandomPower(spell, false);
         }
     }
 }
