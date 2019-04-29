@@ -19,7 +19,10 @@ public class Shop {
     public static Shop getInstance(){
         return SHOP;
     }
-    private Shop(){}
+    private Shop(){
+        // initialize shop
+
+    }
 
     public Card searchCardByName(String cardName) {
         for (Card card : allCards) {

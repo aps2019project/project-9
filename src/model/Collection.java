@@ -1,6 +1,10 @@
 package model;
 
 import model.cards.Card;
+import model.enumerations.HeroName;
+import model.enumerations.ItemName;
+import model.enumerations.MinionName;
+import model.enumerations.SpellName;
 import model.items.Item;
 
 import java.util.ArrayList;
@@ -13,23 +17,10 @@ public class Collection {
     public Collection(){
         cards = new ArrayList<>();
         items = new ArrayList<>();
+        initializeCollections();
     }
 
 
-    public Card getCard(String cardID) {
-        int mainCardId;
-        try {
-            mainCardId = Integer.parseInt(cardID);
-        } catch (NumberFormatException e) {
-            return null;
-        }
-        for (Card key : cards) {
-            if (key != null && key.getCardID() == (mainCardId)) {
-                return key;
-            }
-        }
-        return null;
-    }   //returns null if not in collection
 
     public Item getItem(String itemID) {
         int mainItemId;
@@ -126,5 +117,37 @@ public class Collection {
 
     public void setOwnerAccount(Account ownerAccount) {
         this.ownerAccount = ownerAccount;
+    }
+
+    private void initializeCollections(){
+        // initializing by level one in index doc
+        // minions : 1,9,11,13,17,,18,21,22,26,38,36,40
+        // spells : 1,7,10,11,12,18,20
+        // hero : 1
+        // item : 1
+        // --------------Minions---------------
+        cards.add(DefaultCards.getMinion(MinionName.FARS_KAMANDAR));
+        cards.add(DefaultCards.getMinion(MinionName.TOORANEE_NEYZEDAR));
+        cards.add(DefaultCards.getMinion(MinionName.TOORANEE_GORZDAR));
+        cards.add(DefaultCards.getMinion(MinionName.BLACK_DEEV));
+        cards.add(DefaultCards.getMinion(MinionName.ONE_EYE_GHOOL));
+        cards.add(DefaultCards.getMinion(MinionName.POISON_SNAKE));
+        cards.add(DefaultCards.getMinion(MinionName.GHOOL_SNAKE));
+        cards.add(DefaultCards.getMinion(MinionName.WHITE_WOLF));
+        cards.add(DefaultCards.getMinion(MinionName.JADOOGAR_AZAM));
+        cards.add(DefaultCards.getMinion(MinionName.SIAVOSH));
+        cards.add(DefaultCards.getMinion(MinionName.NANE_SARMA));
+        cards.add(DefaultCards.getMinion(MinionName.ARJANG_DEEV));
+        //------------Spells-------------------
+        cards.add(DefaultCards.getSpell(SpellName.TOTAL_DISARM));
+        cards.add(DefaultCards.getSpell(SpellName.LIGHTING_BOLT));
+        cards.add(DefaultCards.getSpell(SpellName.ALL_DISARM));
+        cards.add(DefaultCards.getSpell(SpellName.ALL_POISON));
+        cards.add(DefaultCards.getSpell(SpellName.SACRIFICE));
+        cards.add(DefaultCards.getSpell(SpellName.SHOCK));
+        //--------------Hero---------------------
+        cards.add(DefaultCards.getHero(HeroName.WHITE_DEEV));
+        //------------------item----------------
+        items.add(DefaultCards.getItem(ItemName.TAJ_DANAYEE));
     }
 }
