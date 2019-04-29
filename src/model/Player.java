@@ -332,4 +332,10 @@ public class Player {
     public Usable getUsableItem() {
         return usableItem;
     }
+
+    public void setOnAttackItemForAllPlayers(OnAttackSpell item){
+        for (Minion minion : minionsInPlayGround) {
+            minion.setOnAttackItem(item);
+        }
+    }
 }
