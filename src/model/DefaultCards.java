@@ -1,28 +1,37 @@
 package model;
 
 import com.google.gson.Gson;
+import model.buffs.*;
 import model.cards.Hero;
 import model.cards.HeroTargetType;
 import model.cards.Minion;
 import model.cards.Spell;
 import model.enumerations.*;
 import model.items.Item;
+import model.specialPower.ComboSpecialPower;
+import model.specialPower.OnAttackSpecialPower;
+import model.specialPower.PassiveSpecialPower;
+import model.specialPower.SpecialPower;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class DefaultCards {
 
     public static Minion getMinion(MinionName name) {
-        return gson.fromJson(minionHashMap.get(name) , Minion.class);
+        return gson.fromJson(minionHashMap.get(name), Minion.class);
     }
-    public static Item getItem(ItemName name){
-        return gson.fromJson(itemHashMap.get(name) , Item.class);
+
+    public static Item getItem(ItemName name) {
+        return gson.fromJson(itemHashMap.get(name), Item.class);
     }
-    public static Spell getSpell(SpellName name){
-        return gson.fromJson(spellHashMap.get(name),Spell.class);
+
+    public static Spell getSpell(SpellName name) {
+        return gson.fromJson(spellHashMap.get(name), Spell.class);
     }
-    public static Hero getHero (HeroName name){
-        return gson.fromJson(heroHashMap.get(name) , Hero.class);
+
+    public static Hero getHero(HeroName name) {
+        return gson.fromJson(heroHashMap.get(name), Hero.class);
     }
 
     private static HashMap<MinionName, String> minionHashMap = new HashMap<>();
@@ -135,8 +144,17 @@ public class DefaultCards {
             4, MinionAttackType.RANGED, 7, null, CardType.MINION, 0, "",
             MinionName.FARS_KAMANDAR, true));
 
+    static ArrayList<Buff> buffs;
+    static SpecialPower temp;
+
+    {
+        temp = new OnAttackSpecialPower(buffs, false, false);
+        buffs = new ArrayList<>();
+        buffs.add(new StunBuff(1, false, false));
+    }
+
     private static final String FARS_SHAMSHIRZAN = gson.toJson(new Minion("fars_shamshirzan", 400, 2,
-            6, 4, MinionAttackType.MELEE, 0, null, CardType.MINION, 0,
+            6, 4, MinionAttackType.MELEE, 0, temp, CardType.MINION, 0,
             "Stun opponent for 1 turn on attack",
             MinionName.FARS_SHAMSHIRZAN, true));
     private static final String FARS_NEYZEDAR = gson.toJson(new Minion("fars_NEYZEDAR", 500, 1,
@@ -147,12 +165,25 @@ public class DefaultCards {
             10, 6, MinionAttackType.MELEE, 0, null, CardType.MINION, 0,
             "",
             MinionName.FARS_ASBSAVAR, true));
+
+    {
+        buffs = new ArrayList<>();
+        buffs.add(new WeaknessBuff(1, false, false, 5, true, false
+                , null));
+        temp = new OnAttackSpecialPower(buffs, false, false);
+    }
+
     private static final String FARS_PAHLAVAN = gson.toJson(new Minion("fars_pahlavan", 600, 9,
-            24, 6, MinionAttackType.MELEE, 0, null, CardType.MINION, 0,
+            24, 6, MinionAttackType.MELEE, 0, temp, CardType.MINION, 0,
             "attack 5 more unit than that attack to a unit",
             MinionName.FARS_PAHLAVAN, true));
+
+    {
+        temp = new ComboSpecialPower();
+    }
+
     private static final String FARS_SEPAHSALAR = gson.toJson(new Minion("fars_sepahsalar", 800, 7,
-            12, 4, MinionAttackType.MELEE, 0, null, CardType.MINION, 0,
+            12, 4, MinionAttackType.MELEE, 0, temp, CardType.MINION, 0,
             "Combo",
             MinionName.FARS_SEPAHSALAR, true));
     private static final String TOORANEE_KAMANDAR = gson.toJson(new Minion("toorane_kamandar", 500, 1,
@@ -167,16 +198,27 @@ public class DefaultCards {
             4, 4, MinionAttackType.HYBRID, 3, null, CardType.MINION, 0,
             "",
             MinionName.TOORANEE_NEYZEDAR, false));
+
+    {
+        temp = new OnAttackSpecialPower(buffs, false, false);
+        buffs = new ArrayList<>();
+        buffs.add(new DisarmBuff(1, false, false));
+        buffs.add(new PoisonBuff(4, false, false));
+    }
+
     private static final String TOORANEE_JASOS = gson.toJson(new Minion("toorane_jasos", 700, 4,
-            6, 6, MinionAttackType.MELEE, 0, null, CardType.MINION, 0,
+            6, 6, MinionAttackType.MELEE, 0, temp, CardType.MINION, 0,
             "Disarm enemy unit for 1 turn and posoined for 4 turn",
             MinionName.TOORANE_JASOS, false));
     private static final String TOORANEE_GORZDAR = gson.toJson(new Minion("toorane_gorzdar", 450, 2,
             3, 10, MinionAttackType.MELEE, 0, null, CardType.MINION, 0,
             "",
             MinionName.TOORANEE_GORZDAR, false));
+    {
+        temp = new ComboSpecialPower();
+    }
     private static final String TOORANEE_SHAHZADE = gson.toJson(new Minion("toorane_shahzade", 800, 6,
-            6, 10, MinionAttackType.MELEE, 0, null, CardType.MINION, 0,
+            6, 10, MinionAttackType.MELEE, 0, temp, CardType.MINION, 0,
             "Combo",
             MinionName.TOORANEE_SHAHZADE, false));
     private static final String BLACK_DEEV = gson.toJson(new Minion("black_deev", 300, 9,
@@ -187,6 +229,12 @@ public class DefaultCards {
             12, 12, MinionAttackType.RANGED, 7, null, CardType.MINION, 0,
             "",
             MinionName.SANGANDAZ_GHOLL, false));
+    {
+        //temp = new PassiveSpecialPower();
+        buffs = new ArrayList<>();
+        buffs.add(new DisarmBuff(1, false, false));
+        buffs.add(new PoisonBuff(4, false, false));
+    }
     private static final String EAGLE = gson.toJson(new Minion("eagle", 200, 2,
             0, 2, MinionAttackType.RANGED, 3, null, CardType.MINION, 0,
             "have 10 power buff passive",

@@ -11,8 +11,7 @@ public class WeaknessBuff extends Buff {
     private int[] powers;
     private int turn; // for delay buff
 
-    public WeaknessBuff(int turnsActive, int turnsRemained,
-                        boolean isForAllTurns, boolean isContinous, int power, boolean isForHP
+    public WeaknessBuff(int turnsActive, boolean isForAllTurns, boolean isContinous, int power, boolean isForHP
             , boolean isDelayBuff, int[] powers) {
         super(BuffName.WEAKNESS, turnsActive, isForAllTurns, false, isContinous);
         this.power = power;
