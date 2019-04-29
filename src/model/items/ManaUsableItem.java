@@ -5,8 +5,8 @@ import model.enumerations.ItemName;
 
 public class ManaUsableItem extends Usable {
 
-    public ManaUsableItem(int cost, String name, ItemName itemType, int itemID, String desc) {
-        super(cost, name, itemType, itemID, desc);
+    public ManaUsableItem(int cost, String name, ItemName itemType, String desc) {
+        super(cost, name, itemType, desc);
     }
 
     @Override

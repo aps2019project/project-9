@@ -9,9 +9,9 @@ public class OnDeathUsableItem extends Usable{
     private OnDeathTarget target;
     private Spell spell;
 
-    public OnDeathUsableItem(int cost, String name, ItemName itemType, int itemID,
+    public OnDeathUsableItem(int cost, String name, ItemName itemType,
                              String desc, OnDeathTarget target, Spell spell) {
-        super(cost, name, itemType, itemID, desc);
+        super(cost, name, itemType, desc);
         this.target = target;
         this.spell = spell;
     }

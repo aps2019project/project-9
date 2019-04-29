@@ -17,7 +17,7 @@ public class SpellUsableItem extends Usable { // simply just casts a spell ( arr
 
     public SpellUsableItem(int cost, String name, ItemName itemType, int itemID,
                            String desc, ArrayList<Buff> buffs, SpellItemTarget target) {
-        super(cost, name, itemType, itemID, desc);
+        super(cost, name, itemType, desc);
         this.buffs = buffs;
         this.target = target;
     }

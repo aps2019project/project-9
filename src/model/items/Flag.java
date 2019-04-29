@@ -15,7 +15,7 @@ public class Flag extends Item {
 
 
     Flag() {
-        super(0, "flag", null, 0, "flag");
+        super(0, "flag", null, "flag");
     }
 
     public Minion getOwningMinion() {

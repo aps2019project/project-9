@@ -12,9 +12,9 @@ import model.specialPower.OnSpawnTargetCell;
 public class OnSpawnUsableItem extends Usable {
     private OnSpawnItemTarget target;
 
-    public OnSpawnUsableItem(int cost, String name, ItemName itemType, int itemID,
+    public OnSpawnUsableItem(int cost, String name, ItemName itemType,
                              String desc, OnSpawnItemTarget target) {
-        super(cost, name, itemType, itemID, desc);
+        super(cost, name, itemType, desc);
         this.target = target;
     }
 

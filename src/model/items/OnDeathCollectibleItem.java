@@ -8,8 +8,8 @@ import model.enumerations.ItemTarget;
 public class OnDeathCollectibleItem extends Collectible { // NEFRIN MARG
     private Minion ownedMinion;
 
-    public OnDeathCollectibleItem(int cost, String name, ItemName itemType, int itemID, String desc) {
-        super(cost, name, itemType, itemID, desc);
+    public OnDeathCollectibleItem(int cost, String name, ItemName itemType, String desc) {
+        super(cost, name, itemType, desc);
     }
 
 

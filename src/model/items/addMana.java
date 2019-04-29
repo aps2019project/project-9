@@ -7,8 +7,8 @@ import model.enumerations.ItemTarget;
 public class addMana extends Collectible {
 
 
-    public addMana(int cost, String name, ItemName itemType, int itemID, String desc) {
-        super(cost, name, itemType, itemID, desc);
+    public addMana(int cost, String name, ItemName itemType, String desc) {
+        super(cost, name, itemType, desc);
     }
 
 

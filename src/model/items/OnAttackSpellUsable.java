@@ -13,9 +13,9 @@ public class OnAttackSpellUsable extends Usable { // KAMAN_DAMOOL , TERROR_HOOD 
     private OnAttackTargetType targetType;
     private OnAttackOwningMinionType minionType;
 
-    public OnAttackSpellUsable(int cost, String name, ItemName itemType, int itemID, String desc,
+    public OnAttackSpellUsable(int cost, String name, ItemName itemType, String desc,
                                Spell spell, OnAttackTargetType targetType, OnAttackOwningMinionType minionType) {
-        super(cost, name, itemType, itemID, desc);
+        super(cost, name, itemType, desc);
         this.spell = spell;
         this.targetType = targetType;
         this.minionType = minionType;

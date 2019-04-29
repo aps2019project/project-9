@@ -15,9 +15,9 @@ public class SpellCollectible extends Collectible {
     protected ItemTarget target;
 
 
-    public SpellCollectible(int cost, String name, ItemName itemType, int itemID,
+    public SpellCollectible(int cost, String name, ItemName itemType,
                             String desc, ArrayList<Buff> buffs, ItemTarget target) {
-        super(cost, name, itemType, itemID, desc);
+        super(cost, name, itemType, desc);
         this.buffs = buffs;
         this.target = target;
     }

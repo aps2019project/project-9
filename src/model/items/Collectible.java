@@ -11,8 +11,8 @@ public abstract class Collectible extends Item {
     protected Player owningPlayer; // player that has it
 
     public Collectible(int cost, String name, ItemName itemType,
-                       int itemID, String desc) {
-        super(cost, name, itemType, itemID, desc);
+                       String desc) {
+        super(cost, name, itemType, desc);
     }
 
     public abstract void useItem();
