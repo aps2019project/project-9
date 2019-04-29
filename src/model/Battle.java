@@ -79,7 +79,16 @@ public class Battle {
         handlePassiveSpecialPowers(secondPlayer);
         handleUsableItems(firstPlayer); // cast them
         handleUsableItems(secondPlayer);// cast them
+        handleManaCollectibleItem(firstPlayer);
+        handleManaCollectibleItem(secondPlayer);
     }
+
+    private void handleManaCollectibleItem(Player player){
+        if(player.getUsedManaItem()){
+            player.addMana(3);
+            player.setUsedAddManaItem(false);
+        }
+    } // for item num 8
 
     private void handleUsableItems(Player player){
         player.castUsableItem();

@@ -2,17 +2,19 @@ package model.items;
 
 import model.Cell;
 import model.enumerations.ItemName;
+import model.enumerations.ItemTarget;
 
 public class addMana extends Collectible {
-    private boolean isUsed = false;
 
-    addMana(String name, ItemName itemName, String desc) {
-        super(name, itemName, desc);
+
+    public addMana(int cost, String name, ItemName itemType, int itemID, String desc) {
+        super(cost, name, itemType, itemID, desc);
     }
+
+
 
     @Override
     public void useItem() {
-        if (itemType == ItemName.MAJOON_MANA)
-            isUsed = true;
+        owningPlayer.setUsedAddManaItem(true);
     }
 }

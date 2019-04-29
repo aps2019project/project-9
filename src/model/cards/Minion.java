@@ -8,6 +8,7 @@ import model.cellaffects.CellAffect;
 import model.enumerations.*;
 import model.items.Item;
 import model.items.OnAttackSpellUsable;
+import model.items.OnDeathCollectibleItem;
 import model.items.OnDeathUsableItem;
 import model.specialPower.OnAttackSpecialPower;
 import model.specialPower.OnDefendSpecialPower;
@@ -37,6 +38,7 @@ public class Minion extends Card {
     protected boolean isHero;
     protected int reductionOfOthersAttack = 0;
     protected boolean hasHollyBuff;
+    protected OnDeathCollectibleItem onDeathCollectibleItem;
 
     public Minion(String name, int cost, int MP, int HP, int AP, MinionAttackType attackType,
                   int attackRange, SpecialPower specialPower, CardType cardType, int cardID,
@@ -156,6 +158,9 @@ public class Minion extends Card {
         }
         if (player.getUsableItem()!= null && (player.getUsableItem() instanceof OnDeathUsableItem)){
             ((OnDeathUsableItem)player.getUsableItem()).doOnDeathAction(player);
+        }
+        if(onDeathCollectibleItem != null){
+            onDeathCollectibleItem.castItem();
         }
     }
 
@@ -375,5 +380,14 @@ public class Minion extends Card {
 
     public void missedHollyBuff() { // for DARANDE_SHIR
         hasHollyBuff = false;
+    }
+
+    public void setOnDeathCollectibleItem(OnDeathCollectibleItem onDeathCollectibleItem) {
+        this.onDeathCollectibleItem = onDeathCollectibleItem;
+        onDeathCollectibleItem.setOwnedMinion(this);
+    }
+
+    public void deleteOnDeathCollectible(){
+        onDeathCollectibleItem = null;
     }
 }

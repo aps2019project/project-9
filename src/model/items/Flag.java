@@ -6,10 +6,13 @@ import model.cards.Minion;
 import model.enumerations.ItemName;
 
 public class Flag extends Item {
+
+
     private Cell currentCell;
     private Player owningPlayer;
     private Minion owningMinion;
     private int turnsOwned;
+
 
     Flag() {
         super(0, "flag", null, 0, "flag");
@@ -43,4 +46,7 @@ public class Flag extends Item {
         return turnsOwned;
     }
 
+    public void setCurrentCell(Cell currentCell) {
+        this.currentCell = currentCell;
+    }
 }

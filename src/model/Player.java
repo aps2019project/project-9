@@ -28,6 +28,7 @@ public class Player {
     private Card selectedCard;
     private Item selectedCollectableItem;
     private GraveYard graveYard;
+    private boolean usedAddManaItem = false; // for item num 8
 
     public Player(Account account) {
         activeBuffs = new ArrayList<>();
@@ -126,6 +127,7 @@ public class Player {
 
     public void collectItem(Item item) {
         collectedItems.add((Collectible) item);
+        ((Collectible)item).collect(this);
     }
 
     public void collectFlag(Flag flag, Minion owningMinion) {
@@ -341,5 +343,12 @@ public class Player {
         for (Minion minion : minionsInPlayGround) {
             minion.setOnAttackItem(item);
         }
+    }
+
+    public void setUsedAddManaItem(boolean usedAddManaItem){
+        this.usedAddManaItem = usedAddManaItem;
+    }
+    public boolean getUsedManaItem(){
+        return usedAddManaItem;
     }
 }

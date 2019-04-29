@@ -3,28 +3,28 @@ package model.items;
 
 import model.Cell;
 import model.Player;
-import model.cards.Spell;
 import model.enumerations.ItemName;
 import model.enumerations.ItemTarget;
+import model.enumerations.MinionAttackType;
 
 public abstract class Collectible extends Item {
-    protected Cell cell;
-    protected Spell spell;
-    protected ItemTarget target;
     protected Player owningPlayer; // player that has it
+
+    public Collectible(int cost, String name, ItemName itemType,
+                       int itemID, String desc) {
+        super(cost, name, itemType, itemID, desc);
+    }
 
     public abstract void useItem();
 
     public boolean isValidCell(Cell cell) {
-        // switch on target and ItemTarget enum
-        return false;
+        return true;
     }
 
     public void collect(Player player) {
         owningPlayer = player;
-    }
+    }//set owning player
 
-    Collectible(String name, ItemName itemName, String desc){
-        super(0,name,itemName,0,desc);
-    }
+    // 8
+
 }

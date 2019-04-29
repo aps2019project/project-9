@@ -25,7 +25,9 @@ public class PlayGround {
     }
 
     public boolean isForFriendlyMinion(Cell cell, Player player) {
-        return false;
+        return (cell.hasCardOnIt() &&
+                player.getMinionsInPlayGround().contains(cell.getMinionOnIt()))
+                || cell.equals(player.getHero().getCell());
     }
 
     public Cell getCell(int x, int y) {
