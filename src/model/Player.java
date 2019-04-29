@@ -66,6 +66,19 @@ public class Player {
         graveYard = new GraveYard(this);
     }
 
+    public Player(Deck deck , Battle battle){
+        this.deck = deck;
+        if (deck.getItem() != null)
+            usableItem = (Usable) deck.getItem();
+        else
+            usableItem = null;
+        hero = deck.getHero();
+        this.battle = battle;
+        minionsInPlayGround.add(hero);
+        graveYard = new GraveYard(this);
+        name = "CustomOpponent";
+    }
+
     public static void enterNewCell(Cell target, Minion minion, Player player) { // not attack to cell
         // entering new cell
         if (target.getFlag() != null) {

@@ -1,6 +1,7 @@
 package controller;
 
 import model.Account;
+import model.Deck;
 import model.MultiPlayerBattle;
 import model.SinglePlayerBattle;
 import model.enumerations.BattleMenuErrorType;
@@ -70,15 +71,28 @@ public class BattleMenuController {
                 break;
             else if (request.getTypeStoryMode() == null)
                 view.printError(BattleMenuErrorType.INVALID_COMMAND);
-            switch (request.getTypeStoryMode()) {
-                case FIRST_LEVEL:
-                    // start story mode game
-                case SECOND_LEVEL:
-                    // ...
-                case THIRD_LEVEL:
-                    // ...
+            else {
+                switch (request.getTypeStoryMode()) {
+                    case FIRST_LEVEL:
+                        startStoryModeGame(1);
+                        break;
+                    case SECOND_LEVEL:
+                        startStoryModeGame(2);
+                        break;
+                    case THIRD_LEVEL:
+                        startStoryModeGame(3);
+                        break;
+                }
+                return;
             }
         }
+    }
+
+    private void startStoryModeGame(int level){
+        SinglePlayerBattle singlePlayerBattle = new SinglePlayerBattle(level,loggedInAccount);
+        singlePlayerBattle.startBattle();
+        InGameController inGameController = new InGameController(singlePlayerBattle);
+        inGameController.main();
     }
 
     private void customGameMenu() {
@@ -90,26 +104,34 @@ public class BattleMenuController {
                 view.printError(BattleMenuErrorType.INVALID_COMMAND);
             else if (request.getTypeOfCustomGame() == BattleMenuRequestType.EXIT)
                 break;
-            else {
+            else { // START GAME
                 startCustomGame(request.getDeckName(), request.getMode(), request.getNumberOfFlags());
             }
         }
     }
 
-    private void startCustomGame(String deckName, String mode, String numberOfFlags) { // still remaining
+    private void startCustomGame(String deckName, String mode, String numberOfFlags) {
         if (loggedInAccount.findDeckByName(deckName) == null)
             view.printError(BattleMenuErrorType.DECK_NAME_NOT_VALID);
+        else if (!loggedInAccount.getMainDeck().isValid())
+            view.printError(BattleMenuErrorType.YOUR_MAIN_DECK_NOT_VALID);
         else if (!loggedInAccount.findDeckByName(deckName).isValid())
             view.printError(BattleMenuErrorType.DECK_NOT_VALID);
         else {
-            if (mode.equals("3")) {
-
-            } else if (mode.equals("2")) {
-
-            } else if (mode.equals("1")) {
-
-            }
+            Deck customOpponentDeck = loggedInAccount.findDeckByName(deckName);
+            int modeInt = Integer.parseInt(mode);
+            startSinglePlayer(modeInt,customOpponentDeck,numberOfFlags);
         }
+    }
+
+    private void startSinglePlayer(int mode , Deck customOpponentDeck , String numberOfFlags){
+        if(mode != 3)
+            numberOfFlags = "0";
+        SinglePlayerBattle singlePlayerBattle = new SinglePlayerBattle(3, customOpponentDeck, loggedInAccount
+                ,Integer.parseInt(numberOfFlags));
+        singlePlayerBattle.startBattle();
+        InGameController inGameController = new InGameController(singlePlayerBattle);
+        inGameController.main();
     }
 
     private void multiPlayerMenu() {
@@ -128,6 +150,7 @@ public class BattleMenuController {
                 multiPlayerBattle.startBattle();
                 InGameController inGameController = new InGameController(multiPlayerBattle);
                 inGameController.main();
+                break;
             } else if (request.getTypeMultiPlayer() == BattleMenuRequestType.SELECT_USER) {
                 if (isDeckNameValid(request.getUserName())) {
                     view.printError(BattleMenuErrorType.OPPONENT_SUCCESSFULLY);

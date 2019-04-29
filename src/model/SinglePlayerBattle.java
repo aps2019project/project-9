@@ -26,7 +26,24 @@ public class SinglePlayerBattle extends Battle {
         secondPlayer = new Player(level , this); // computer
     }
     public SinglePlayerBattle(int mode , Deck deck , Account firstPlayerAccount , int numberOfFlags){ // for custom game
-        //
+        switch (mode){
+            case 1:
+                playGround = new PlayGround(GameMode.HERO_KILL);
+                gameMode = GameMode.HERO_KILL;
+                break;
+            case 2:
+                playGround = new PlayGround(GameMode.ONE_FLAG);
+                gameMode = GameMode.ONE_FLAG;
+                break;
+            case 3:
+                playGround = new PlayGround(GameMode.FLAGS);
+                gameMode = GameMode.FLAGS;
+                break;
+        }
+        turn = 0;
+        whoseTurn = 1;
+        firstPlayer = new Player(firstPlayerAccount,this);
+        secondPlayer = new Player(deck,this);
     }
 
 }

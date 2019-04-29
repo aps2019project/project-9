@@ -26,6 +26,8 @@ public class Battle {
     protected int turnsToWon; // for one flag mode , turns that a flag is in position of winner
     protected int battlePrize; // should be initialized at Constructor()
 
+    // constructor
+
     public void startBattle() {
         // buffs and cellAffects turns remained should be equal to turnsActive and specialPowers
         // just minions and heros should be copied
@@ -33,21 +35,21 @@ public class Battle {
         initializeOwningPlayerOfCards(secondPlayer);
     }
 
-    private void initializeOwningPlayerOfCards(Player player){
+    private void initializeOwningPlayerOfCards(Player player) {
         for (Card card : player.getDeck().getCards()) {
-            if(card instanceof Spell){
-                ((Spell)card).setOwningPlayer(player);
-            }else if(card instanceof Minion){
-                ((Minion)card).setPlayer(player);
+            if (card instanceof Spell) {
+                ((Spell) card).setOwningPlayer(player);
+            } else if (card instanceof Minion) {
+                ((Minion) card).setPlayer(player);
             }
         }
     }
 
-    private void checkBuffs(Player player){
+    private void checkBuffs(Player player) {
         for (Minion minion : player.getMinionsInPlayGround()) {
             ArrayList<Buff> buffsToDelete = new ArrayList<>();
             for (Buff buff : minion.getActiveBuffs()) {
-                if(!buff.isForAllTurns()) {
+                if (!buff.isForAllTurns()) {
                     buff.reduceTurnsRemained();
                     if (buff.getTurnsRemained() == 0) {
                         buff.endBuff(minion);
@@ -65,7 +67,6 @@ public class Battle {
     }
 
 
-
     public void nextTurn() {
         // fill hands
         // change whose turn
@@ -81,34 +82,37 @@ public class Battle {
         handleUsableItems(secondPlayer);// cast them
         handleManaCollectibleItem(firstPlayer);
         handleManaCollectibleItem(secondPlayer);
+        whoseTurn = (whoseTurn == 1) ? (2) : (1);
+        turn++;
     }
 
-    private void handleManaCollectibleItem(Player player){
-        if(player.getUsedManaItem()){
+    private void handleManaCollectibleItem(Player player) {
+        if (player.getUsedManaItem()) {
             player.addMana(3);
             player.setUsedAddManaItem(false);
         }
     } // for item num 8
 
-    private void handleUsableItems(Player player){
+    private void handleUsableItems(Player player) {
         player.castUsableItem();
     }
 
-    private void handlePassiveSpecialPowers(Player player){
+    private void handlePassiveSpecialPowers(Player player) {
         for (Minion minion : player.getMinionsInPlayGround()) {
-            if(minion.getSpecialPower().getSpecialPowerActivationTime() == SpecialPowerActivationTime.PASSIVE){
+            if (minion.getSpecialPower().getSpecialPowerActivationTime() == SpecialPowerActivationTime.PASSIVE) {
                 minion.getSpecialPower().castSpecialPower(minion.getCell());
             }
         }
     }
-    private void checkCellAffects(PlayGround playGround){
+
+    private void checkCellAffects(PlayGround playGround) {
         ArrayList<CellAffect> cellAffectsToDelete = new ArrayList<>();
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 5; j++) {
-                Cell cell = playGround.getCell(j,i);
+                Cell cell = playGround.getCell(j, i);
                 for (CellAffect cellAffect : cell.getCellAffects()) {
                     cellAffect.nextTurn();
-                    if(cellAffect.getTurnsRemained() == 0)
+                    if (cellAffect.getTurnsRemained() == 0)
                         cellAffectsToDelete.add(cellAffect);
                 }
             }
@@ -117,6 +121,7 @@ public class Battle {
             cellAffect.getAffectedCell().removeCellAffect(cellAffect);
         }
     }
+
     public void endBattle(Player winner) {
 
     }

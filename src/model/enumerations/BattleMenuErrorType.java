@@ -7,7 +7,8 @@ public enum BattleMenuErrorType {
     DECK_NOT_VALID("Selected Deck is not Valid"),
     INVALID_USERNAME("Invalid UserName"),
     OPPONENT_SUCCESSFULLY("Your Opponent Successfully Selected ..." +
-            "\nNow Enter : Start multiplayer game [mode] [number of flags]");
+            "\nNow Enter : Start multiplayer game [mode] [number of flags]"),
+    YOUR_MAIN_DECK_NOT_VALID("Your Main Deck Is not Valid");
     private String message;
     BattleMenuErrorType(String message){
         this.message = message;

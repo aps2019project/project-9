@@ -68,7 +68,7 @@ public class BattleMenuRequest {
         if (command.matches(START_GAME) && commands.length >= 4) {
             deckName = commands[2];
             mode = commands[3];
-            if(mode.equals("3"))
+            if (mode.equals("3"))
                 numberOfFlags = commands[4];
             if (numberOfFlags.matches("[0-9]{2}") && mode.matches("[1-3]"))
                 return BattleMenuRequestType.START_GAME;
@@ -106,10 +106,13 @@ public class BattleMenuRequest {
                 && command.substring(0, 22).matches("start multiplayer game")) {
             mode = command.split(" ")[3];
             numberOfFlags = command.split(" ")[4];
-            try{
+            try {
                 modeInt = Integer.parseInt(mode);
-                numberOfFlagsInt = Integer.parseInt(numberOfFlags);
-            } catch (NumberFormatException e){
+                if (modeInt == 3)
+                    numberOfFlagsInt = Integer.parseInt(numberOfFlags);
+                else
+                    numberOfFlagsInt = 0;
+            } catch (NumberFormatException e) {
                 return null;
             }
             return BattleMenuRequestType.START_GAME;
