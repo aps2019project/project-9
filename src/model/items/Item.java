@@ -13,10 +13,11 @@ public class Item {
     protected int itemID;
     protected String desc;
 
-    public Item(int cost, String name, ItemName itemType, String desc) {
+    public Item(int cost, String name, ItemName itemType, int itemID, String desc) {
         this.cost = cost;
         this.name = name;
         this.itemType = itemType;
+        this.itemID = itemID;
         this.desc = desc;
     }
 
