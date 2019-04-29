@@ -395,8 +395,7 @@ public class DefaultCards {
             4, MinionAttackType.RANGED, 7, null, CardType.MINION, 0, "",
             MinionName.FARS_KAMANDAR, true));
 
-    private static ArrayList<Buff> buffs;
-    private static SpecialPower specialPower;
+
 
 
     private static final String FARS_SHAMSHIRZAN = gson.toJson(new Minion("fars_shamshirzan", 400, 2,
@@ -767,71 +766,6 @@ public class DefaultCards {
             ItemName.GHOSL, "every minion get two holy buff on spawn"));
     private static final String CHINESE_SHAMSHIR = gson.toJson(new Item(0, "chinese_shamshir",
             ItemName.CHINESE_SHAMSHIR, "for meelees add 5 power unit"));
-
-    static {
-        buffs = new ArrayList<>();
-        buffs.add(new PowerBuff(1, false, false, 10, true));
-        specialPower = new PassiveSpecialPower(buffs, PassiveTargetType.CURRENT_CELL);
-    }
-
-    static {
-        specialPower = new OnDeathSpecialPower(2, OnDeathTargetType.EIGHT_AROUND_MINIONS);
-    }
-
-    static {
-        buffs = new ArrayList<>();
-        buffs.add(new PoisonBuff(3, false, false));
-        specialPower = new OnAttackSpecialPower(buffs, false, false);
-    }
-
-    static {
-        buffs = new ArrayList<>();
-        specialPower = new OnSpawnSpecialPower(new HollyBuff(400, true, false,
-                true), OnSpawnTargetCell.TWO_DISTANCE_CELLS);
-    }
-
-    static {
-        buffs = new ArrayList<>();
-        int[] powers = {6, 4};
-        buffs.add(new WeaknessBuff(3, false, false, 0, true, true,
-                powers));
-        specialPower = new OnAttackSpecialPower(buffs, false, false);
-    }
-
-    static {
-        buffs = new ArrayList<>();
-        int[] powers = {0, 8};
-        buffs.add(new WeaknessBuff(3, false, false, 0, true, true,
-                powers));
-        specialPower = new OnAttackSpecialPower(buffs, false, false);
-    }
-
-    static {
-        buffs = new ArrayList<>();
-        int[] powers = {0, 6};
-        buffs.add(new WeaknessBuff(3, false, false, 0, true, true,
-                powers));
-        specialPower = new OnAttackSpecialPower(buffs, false, false);
-    }
-
-    static {
-        buffs = new ArrayList<>();
-        buffs.add(new PowerBuff(1, false, false, 2, false));
-        buffs.add(new WeaknessBuff(1, false, false, 1, true,
-                true, null));
-        specialPower = new PassiveSpecialPower(buffs, PassiveTargetType.CURRENT_AND_EIGHT_FRIENDLY_AROUND);
-    }
-
-    static {
-        buffs = new ArrayList<>();
-        buffs.add(new PowerBuff(1, false, true, 2, false));
-        buffs.add(new HollyBuff(1, false, true, false));
-        specialPower = new PassiveSpecialPower(buffs, PassiveTargetType.CURRENT_AND_EIGHT_FRIENDLY_AROUND);
-    }
-
-    static {
-        specialPower = new OnDefendSpecialPower(OnDefendType.BUFF, BuffName.DISARM);
-    }
 
 
     //------------------------------hash map initializing------------------------------
