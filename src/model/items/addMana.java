@@ -4,7 +4,7 @@ import model.Cell;
 import model.enumerations.ItemName;
 
 public class addMana extends Collectible {
-    public boolean isUsed = false;
+    private boolean isUsed = false;
 
     addMana(String name, ItemName itemName, String desc) {
         super(name, itemName, desc);
