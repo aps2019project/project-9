@@ -1,6 +1,8 @@
 package model;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.annotations.Expose;
 import model.buffs.*;
 import model.cards.Hero;
 import model.cards.HeroTargetType;
@@ -13,10 +15,14 @@ import model.specialPower.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+
 public class DefaultCards {
 
     public static Minion getMinion(MinionName name) {
-        return gson.fromJson(minionHashMap.get(name), Minion.class);
+        //return gson.fromJson(minionHashMap.get(name), Minion.class);
+        System.out.println(FARS_SHAMSHIRZAN);
+        gson.fromJson(FARS_SHAMSHIRZAN,Minion.class);
+        return null;
     }
 
     public static Item getItem(ItemName name) {
@@ -36,107 +42,10 @@ public class DefaultCards {
     private static HashMap<ItemName, String> itemHashMap = new HashMap<>();
     private static HashMap<SpellName, String> spellHashMap = new HashMap<>();
 
-    {
-        minionHashMap.put(MinionName.FARS_KAMANDAR, FARS_KAMANDAR);
-        minionHashMap.put(MinionName.FARS_SHAMSHIRZAN, FARS_SHAMSHIRZAN);
-        minionHashMap.put(MinionName.FARS_NEYZEDAR, FARS_NEYZEDAR);
-        minionHashMap.put(MinionName.FARS_ASBSAVAR, FARS_ASBSAVAR);
-        minionHashMap.put(MinionName.FARS_PAHLAVAN, FARS_PAHLAVAN);
-        minionHashMap.put(MinionName.FARS_SEPAHSALAR, FARS_SEPAHSALAR);
-        minionHashMap.put(MinionName.TOORANEE_KAMANDAR, TOORANEE_KAMANDAR);
-        minionHashMap.put(MinionName.TOORANEE_GHOLABSANG, TOORANEE_GHOLABSANG);
-        minionHashMap.put(MinionName.TOORANEE_NEYZEDAR, TOORANEE_NEYZEDAR);
-        minionHashMap.put(MinionName.TOORANE_JASOS, TOORANEE_JASOS);
-        minionHashMap.put(MinionName.TOORANEE_GORZDAR, TOORANEE_GORZDAR);
-        minionHashMap.put(MinionName.TOORANEE_SHAHZADE, TOORANEE_SHAHZADE);
-        minionHashMap.put(MinionName.BLACK_DEEV, BLACK_DEEV);
-        minionHashMap.put(MinionName.SANGANDAZ_GHOLL, SANGANDAZ_GHOLL);
-        minionHashMap.put(MinionName.EAGLE, EAGLE);
-        minionHashMap.put(MinionName.GORAZ_DEEV, GORAZ_DEEV);
-        minionHashMap.put(MinionName.ONE_EYE_GHOOL, ONE_EYE_GHOOL);
-        minionHashMap.put(MinionName.POISON_SNAKE, POISON_SNAKE);
-        minionHashMap.put(MinionName.DRAGON_FIRE, DRAGON_FIRE);
-        minionHashMap.put(MinionName.DARANDE_SHIR, DARANDE_SHIR);
-        minionHashMap.put(MinionName.GHOOL_SNAKE, GHOOL_SNAKE);
-        minionHashMap.put(MinionName.WHITE_WOLF, WHITE_WOLF);
-        minionHashMap.put(MinionName.PALANG, PALANG);
-        minionHashMap.put(MinionName.WOLF, WOLF);
-        minionHashMap.put(MinionName.JADOOGAR, JADOOGAR);
-        minionHashMap.put(MinionName.JADOOGAR_AZAM, JADOOGAR_AZAM);
-        minionHashMap.put(MinionName.JEN, JEN);
-        minionHashMap.put(MinionName.WILD_GORAZ, WILD_GORAZ);
-        minionHashMap.put(MinionName.PIRAN, PIRAN);
-        minionHashMap.put(MinionName.GEEV, GEEV);
-        minionHashMap.put(MinionName.BAHMAN, BAHMAN);
-        minionHashMap.put(MinionName.ASHKBOOS, ASHKBOS);
-        minionHashMap.put(MinionName.EERAG, EERAG);
-        minionHashMap.put(MinionName.BIG_GHOOL, BIG_GHOOL);
-        minionHashMap.put(MinionName.DOSAR_GHOOL, DOSAR_GHOOL);
-        minionHashMap.put(MinionName.NANE_SARMA, NANE_SARMA);
-        minionHashMap.put(MinionName.FOOLAD_ZEREH, FOOLAD_ZEREH);
-        minionHashMap.put(MinionName.SIAVOSH, SIYAVOSH);
-        minionHashMap.put(MinionName.SHAH_GOOL, SHAH_GHOOL);
-        minionHashMap.put(MinionName.ARJANG_DEEV, ARJANG_DEEV);
 
-
-        heroHashMap.put(HeroName.WHITE_DEEV, WHITE_DEEV);
-        heroHashMap.put(HeroName.SIMORGH, SIMORG);
-        heroHashMap.put(HeroName.EJDEHA, EJDEHA);
-        heroHashMap.put(HeroName.RAKHSH, RAKHSH);
-        heroHashMap.put(HeroName.ZAHAK, ZAHAK);
-        heroHashMap.put(HeroName.KAVE, KAVE);
-        heroHashMap.put(HeroName.ARASH, ARASH);
-        heroHashMap.put(HeroName.AFSANE, AFSANE);
-        heroHashMap.put(HeroName.ESFANDIAR, ESFANDIAR);
-        heroHashMap.put(HeroName.ROSTAM, ROSTAM);
-
-
-        itemHashMap.put(ItemName.TAJ_DANAYEE, TAJ_DANAYEE);
-        itemHashMap.put(ItemName.NAMOOS_SEPAR, NAMOOS_SEPAR);
-        itemHashMap.put(ItemName.KAMAN_DAMOOL, KAMAN_DAMOL);
-        itemHashMap.put(ItemName.NOOSH_DAROO, NOOSH_DARO);
-        itemHashMap.put(ItemName.TIR_DOSHAKH, TIR_DOSHAKH);
-        itemHashMap.put(ItemName.PAR_SIMORGH, PAR_SIMORGH);
-        itemHashMap.put(ItemName.EKSIR, EKSIR);
-        itemHashMap.put(ItemName.MAJOON_MANA, MAJOON_MANA);
-        itemHashMap.put(ItemName.MAJOON_ROIEEN, MAJOON_ROIEEN);
-        itemHashMap.put(ItemName.NEFRIN_MARG, NEFRIN_MARG);
-        itemHashMap.put(ItemName.RANDOM_DAMAGE, RANDOM_DAMAGE);
-        itemHashMap.put(ItemName.TERROR_HOOD, TERROR_HOOD);
-        itemHashMap.put(ItemName.BLADES_AGILITY, BLADES_AGILITY);
-        itemHashMap.put(ItemName.KING_WISDOM, KING_WISDOM);
-        itemHashMap.put(ItemName.ASSASINATION_DAGGER, ASSASINATION_DAGGER);
-        itemHashMap.put(ItemName.POISONOUS_DAGGER, POISONOUS_DAGGER);
-        itemHashMap.put(ItemName.SHOCK_HAMMER, SHOCK_HAMMER);
-        itemHashMap.put(ItemName.SOUL_EATER, SOUL_EATER);
-        itemHashMap.put(ItemName.GHOSL, GHOSL);
-        itemHashMap.put(ItemName.CHINESE_SHAMSHIR, CHINESE_SHAMSHIR);
-
-
-        spellHashMap.put(SpellName.TOTAL_DISARM, TOTAL_DISARM);
-        spellHashMap.put(SpellName.AREA_DISPEL, AREA_DISPEL);
-        spellHashMap.put(SpellName.EMPOWER, EMPOWER);
-        spellHashMap.put(SpellName.FIREBALL, FIREBALL);
-        spellHashMap.put(SpellName.GOD_STRENGTH, GOD_STRENGTH);
-        spellHashMap.put(SpellName.HELLFIRE, HELLFIRE);
-        spellHashMap.put(SpellName.LIGHTING_BOLT, LIGHTING_BOLT);
-        spellHashMap.put(SpellName.POISON_LAKE, POISON_LAKE);
-        spellHashMap.put(SpellName.MADNESS, MADNESS);
-        spellHashMap.put(SpellName.ALL_DISARM, ALL_DISARM);
-        spellHashMap.put(SpellName.ALL_POISON, ALL_POISON);
-        spellHashMap.put(SpellName.DISPEL, DISPEL);
-        spellHashMap.put(SpellName.HEALTH_WITH_PROFIT, HEALTH_WITH_PROFIT);
-        spellHashMap.put(SpellName.POWER_UP, POWER_UP);
-        spellHashMap.put(SpellName.ALL_ATTACK, ALL_ATTACK);
-        spellHashMap.put(SpellName.WEAKENING, WEAKENING);
-        spellHashMap.put(SpellName.SACRIFICE, SACRIFICE);
-        spellHashMap.put(SpellName.KINGS_GUARD, KINGS_GUARD);
-        spellHashMap.put(SpellName.SHOCK, SHOCK);
-        spellHashMap.put(SpellName.ALL_POWER, ALL_POWER);
-    }
 
     //-------------------------------------minions-------------------------------------------------------
-    private static Gson gson = new Gson();
+    private static Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
     private static final String FARS_KAMANDAR = gson.toJson(new Minion("fars_kamandar", 300, 2, 6,
             4, MinionAttackType.RANGED, 7, null, CardType.MINION, 0, "",
             MinionName.FARS_KAMANDAR, true));
@@ -646,5 +555,105 @@ public class DefaultCards {
         specialPower = new OnDefendSpecialPower(OnDefendType.BUFF, BuffName.DISARM);
     }
 
+
+    //------------------------------hash map initializing------------------------------
+    static {
+        minionHashMap.put(MinionName.FARS_KAMANDAR, FARS_KAMANDAR);
+        minionHashMap.put(MinionName.FARS_SHAMSHIRZAN, FARS_SHAMSHIRZAN);
+        minionHashMap.put(MinionName.FARS_NEYZEDAR, FARS_NEYZEDAR);
+        minionHashMap.put(MinionName.FARS_ASBSAVAR, FARS_ASBSAVAR);
+        minionHashMap.put(MinionName.FARS_PAHLAVAN, FARS_PAHLAVAN);
+        minionHashMap.put(MinionName.FARS_SEPAHSALAR, FARS_SEPAHSALAR);
+        minionHashMap.put(MinionName.TOORANEE_KAMANDAR, TOORANEE_KAMANDAR);
+        minionHashMap.put(MinionName.TOORANEE_GHOLABSANG, TOORANEE_GHOLABSANG);
+        minionHashMap.put(MinionName.TOORANEE_NEYZEDAR, TOORANEE_NEYZEDAR);
+        minionHashMap.put(MinionName.TOORANE_JASOS, TOORANEE_JASOS);
+        minionHashMap.put(MinionName.TOORANEE_GORZDAR, TOORANEE_GORZDAR);
+        minionHashMap.put(MinionName.TOORANEE_SHAHZADE, TOORANEE_SHAHZADE);
+        minionHashMap.put(MinionName.BLACK_DEEV, BLACK_DEEV);
+        minionHashMap.put(MinionName.SANGANDAZ_GHOLL, SANGANDAZ_GHOLL);
+        minionHashMap.put(MinionName.EAGLE, EAGLE);
+        minionHashMap.put(MinionName.GORAZ_DEEV, GORAZ_DEEV);
+        minionHashMap.put(MinionName.ONE_EYE_GHOOL, ONE_EYE_GHOOL);
+        minionHashMap.put(MinionName.POISON_SNAKE, POISON_SNAKE);
+        minionHashMap.put(MinionName.DRAGON_FIRE, DRAGON_FIRE);
+        minionHashMap.put(MinionName.DARANDE_SHIR, DARANDE_SHIR);
+        minionHashMap.put(MinionName.GHOOL_SNAKE, GHOOL_SNAKE);
+        minionHashMap.put(MinionName.WHITE_WOLF, WHITE_WOLF);
+        minionHashMap.put(MinionName.PALANG, PALANG);
+        minionHashMap.put(MinionName.WOLF, WOLF);
+        minionHashMap.put(MinionName.JADOOGAR, JADOOGAR);
+        minionHashMap.put(MinionName.JADOOGAR_AZAM, JADOOGAR_AZAM);
+        minionHashMap.put(MinionName.JEN, JEN);
+        minionHashMap.put(MinionName.WILD_GORAZ, WILD_GORAZ);
+        minionHashMap.put(MinionName.PIRAN, PIRAN);
+        minionHashMap.put(MinionName.GEEV, GEEV);
+        minionHashMap.put(MinionName.BAHMAN, BAHMAN);
+        minionHashMap.put(MinionName.ASHKBOOS, ASHKBOS);
+        minionHashMap.put(MinionName.EERAG, EERAG);
+        minionHashMap.put(MinionName.BIG_GHOOL, BIG_GHOOL);
+        minionHashMap.put(MinionName.DOSAR_GHOOL, DOSAR_GHOOL);
+        minionHashMap.put(MinionName.NANE_SARMA, NANE_SARMA);
+        minionHashMap.put(MinionName.FOOLAD_ZEREH, FOOLAD_ZEREH);
+        minionHashMap.put(MinionName.SIAVOSH, SIYAVOSH);
+        minionHashMap.put(MinionName.SHAH_GOOL, SHAH_GHOOL);
+        minionHashMap.put(MinionName.ARJANG_DEEV, ARJANG_DEEV);
+
+
+        heroHashMap.put(HeroName.WHITE_DEEV, WHITE_DEEV);
+        heroHashMap.put(HeroName.SIMORGH, SIMORG);
+        heroHashMap.put(HeroName.EJDEHA, EJDEHA);
+        heroHashMap.put(HeroName.RAKHSH, RAKHSH);
+        heroHashMap.put(HeroName.ZAHAK, ZAHAK);
+        heroHashMap.put(HeroName.KAVE, KAVE);
+        heroHashMap.put(HeroName.ARASH, ARASH);
+        heroHashMap.put(HeroName.AFSANE, AFSANE);
+        heroHashMap.put(HeroName.ESFANDIAR, ESFANDIAR);
+        heroHashMap.put(HeroName.ROSTAM, ROSTAM);
+
+
+        itemHashMap.put(ItemName.TAJ_DANAYEE, TAJ_DANAYEE);
+        itemHashMap.put(ItemName.NAMOOS_SEPAR, NAMOOS_SEPAR);
+        itemHashMap.put(ItemName.KAMAN_DAMOOL, KAMAN_DAMOL);
+        itemHashMap.put(ItemName.NOOSH_DAROO, NOOSH_DARO);
+        itemHashMap.put(ItemName.TIR_DOSHAKH, TIR_DOSHAKH);
+        itemHashMap.put(ItemName.PAR_SIMORGH, PAR_SIMORGH);
+        itemHashMap.put(ItemName.EKSIR, EKSIR);
+        itemHashMap.put(ItemName.MAJOON_MANA, MAJOON_MANA);
+        itemHashMap.put(ItemName.MAJOON_ROIEEN, MAJOON_ROIEEN);
+        itemHashMap.put(ItemName.NEFRIN_MARG, NEFRIN_MARG);
+        itemHashMap.put(ItemName.RANDOM_DAMAGE, RANDOM_DAMAGE);
+        itemHashMap.put(ItemName.TERROR_HOOD, TERROR_HOOD);
+        itemHashMap.put(ItemName.BLADES_AGILITY, BLADES_AGILITY);
+        itemHashMap.put(ItemName.KING_WISDOM, KING_WISDOM);
+        itemHashMap.put(ItemName.ASSASINATION_DAGGER, ASSASINATION_DAGGER);
+        itemHashMap.put(ItemName.POISONOUS_DAGGER, POISONOUS_DAGGER);
+        itemHashMap.put(ItemName.SHOCK_HAMMER, SHOCK_HAMMER);
+        itemHashMap.put(ItemName.SOUL_EATER, SOUL_EATER);
+        itemHashMap.put(ItemName.GHOSL, GHOSL);
+        itemHashMap.put(ItemName.CHINESE_SHAMSHIR, CHINESE_SHAMSHIR);
+
+
+        spellHashMap.put(SpellName.TOTAL_DISARM, TOTAL_DISARM);
+        spellHashMap.put(SpellName.AREA_DISPEL, AREA_DISPEL);
+        spellHashMap.put(SpellName.EMPOWER, EMPOWER);
+        spellHashMap.put(SpellName.FIREBALL, FIREBALL);
+        spellHashMap.put(SpellName.GOD_STRENGTH, GOD_STRENGTH);
+        spellHashMap.put(SpellName.HELLFIRE, HELLFIRE);
+        spellHashMap.put(SpellName.LIGHTING_BOLT, LIGHTING_BOLT);
+        spellHashMap.put(SpellName.POISON_LAKE, POISON_LAKE);
+        spellHashMap.put(SpellName.MADNESS, MADNESS);
+        spellHashMap.put(SpellName.ALL_DISARM, ALL_DISARM);
+        spellHashMap.put(SpellName.ALL_POISON, ALL_POISON);
+        spellHashMap.put(SpellName.DISPEL, DISPEL);
+        spellHashMap.put(SpellName.HEALTH_WITH_PROFIT, HEALTH_WITH_PROFIT);
+        spellHashMap.put(SpellName.POWER_UP, POWER_UP);
+        spellHashMap.put(SpellName.ALL_ATTACK, ALL_ATTACK);
+        spellHashMap.put(SpellName.WEAKENING, WEAKENING);
+        spellHashMap.put(SpellName.SACRIFICE, SACRIFICE);
+        spellHashMap.put(SpellName.KINGS_GUARD, KINGS_GUARD);
+        spellHashMap.put(SpellName.SHOCK, SHOCK);
+        spellHashMap.put(SpellName.ALL_POWER, ALL_POWER);
+    }
 
 }

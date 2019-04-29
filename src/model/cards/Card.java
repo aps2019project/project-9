@@ -1,17 +1,24 @@
 package model.cards;
 
-import com.google.gson.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.gson.annotations.Expose;
 import model.enumerations.CardType;
 
 public class Card {
 
+    @Expose
     protected int cost;
+    @Expose
     protected int MP;
+    @Expose
     protected CardType cardType;
+    @Expose
     protected int cardID;
-    @
     protected String BattleID;
+    @Expose
     protected String name;
+    @Expose
     protected String desc;
 
     public Card(int cost, int MP, CardType cardType,

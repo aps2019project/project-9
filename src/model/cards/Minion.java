@@ -1,5 +1,7 @@
 package model.cards;
 
+
+import com.google.gson.annotations.Expose;
 import model.PlayGround;
 import model.buffs.Buff;
 import model.Cell;
@@ -18,18 +20,26 @@ import model.specialPower.SpecialPower;
 import java.util.ArrayList;
 
 public class Minion extends Card {
+
     private static ArrayList<Minion> minions;
     protected ArrayList<Buff> activeBuffs;
     protected boolean canCounterAttack;
     protected boolean canAttack;
+    @Expose
     private MinionName minionName;
     protected boolean canMove;
+    @Expose
     protected MinionAttackType attackType;
+    @Expose
     protected int HP;
+    @Expose
     protected int AP;
+    @Expose
     protected int attackRange; // for RANGED Type
     protected ArrayList<Buff> continuousBuffs = new ArrayList<>();
+    @Expose
     protected SpecialPower specialPower;
+    @Expose
     protected boolean isFars;
     protected Player player;
     protected ArrayList<Item> activeItems;
