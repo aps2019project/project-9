@@ -6,9 +6,7 @@ import model.enumerations.BuffName;
 
 public class DisarmBuff extends Buff {
 
-    public DisarmBuff(int turnsActive,
-                      int turnsRemained, boolean isForAllTurns,
-                      boolean isContinous) {
+    public DisarmBuff(int turnsActive, boolean isForAllTurns, boolean isContinous) {
         super(BuffName.DISARM, turnsActive,
                 isForAllTurns, false, isContinous);
     }
