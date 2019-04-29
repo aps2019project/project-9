@@ -82,13 +82,15 @@ public class Player {
         }
     }
 
-    public void castUsableItem() {
-        ItemName usableName = usableItem.getItemType();
-        if (usableName == ItemName.ASSASINATION_DAGGER
-                || usableName == ItemName.TERROR_HOOD
-                || usableName == ItemName.POISONOUS_DAGGER)
-            return; // except for these items
-        usableItem.castItem(this);
+    public void castUsableItem() { // every turn should be called
+        if (usableItem != null) {
+            ItemName usableName = usableItem.getItemType();
+            if (usableName == ItemName.ASSASINATION_DAGGER
+                    || usableName == ItemName.TERROR_HOOD
+                    || usableName == ItemName.POISONOUS_DAGGER)
+                return; // except for these items
+            usableItem.castItem(this);
+        }
     }
 
     public Battle getBattle() {
@@ -102,7 +104,7 @@ public class Player {
             currentMinion.putInMap(cell);
             ((Minion) card).setCell(cell);
             reduceMana(card.getMP());
-            if(currentMinion.getSpecialPower().getSpecialPowerActivationTime() == SpecialPowerActivationTime.ON_SPAWN){
+            if (currentMinion.getSpecialPower().getSpecialPowerActivationTime() == SpecialPowerActivationTime.ON_SPAWN) {
                 currentMinion.getSpecialPower().castSpecialPower(cell);
             }
         } else {
@@ -319,12 +321,15 @@ public class Player {
         return modeTwoFlag;
     }
 
-    public void addMinionInPlayGroundMinions(Minion minion){
+    public void addMinionInPlayGroundMinions(Minion minion) {
         minionsInPlayGround.add(minion);
     }
 
-    public void minionDead(Minion minion){
+    public void minionDead(Minion minion) {
         minionsInPlayGround.remove(minion);
     }
 
+    public Usable getUsableItem() {
+        return usableItem;
+    }
 }

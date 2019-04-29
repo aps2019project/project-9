@@ -77,7 +77,8 @@ public class Battle {
         checkCellAffects(playGround);
         handlePassiveSpecialPowers(firstPlayer);
         handlePassiveSpecialPowers(secondPlayer);
-
+        handleUsableItems(firstPlayer);
+        handleUsableItems(secondPlayer);
     }
 
     private void handleUsableItems(Player player){
