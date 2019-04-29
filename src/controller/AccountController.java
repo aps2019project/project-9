@@ -12,12 +12,14 @@ public class AccountController {
     public void main() {
         boolean isFinished = false;
         do {
+            accountView.showHelp();
             AccountRequest request = new AccountRequest();
             request.getNewCommand();
-            if (request.getType() == AccountRequestType.EXIT)
+            if (request.getType() == AccountRequestType.EXIT) {
                 isFinished = true;
+            }
             if (!request.isValid()) {
-                accountView.printError(request.getErrorType());
+                accountView.printError(AccountErrorType.INVALID_COMMAND);
                 continue;
             }
             switch (request.getType()) {
@@ -31,7 +33,6 @@ public class AccountController {
                     showLeaderBoards();
                     break;
                 case HELP:
-                    accountView.showHelp();
                     break;
             }
 
@@ -51,6 +52,7 @@ public class AccountController {
 
     private void createAccount(String userName , AccountRequest request) {
         if (isUserNameValid(userName,request)) {
+            accountView.printError(AccountErrorType.ENTER_PASSWORD);
             request.getNewCommand();
             Account newAccount = new Account(userName , request.getCommand());
             goNextMenu(newAccount);

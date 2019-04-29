@@ -8,22 +8,13 @@ import model.enumerations.PowerType;
 
 public class PowerBuff extends Buff {
     private int power;
-    private boolean isForHP;
-    private PowerType powerType = PowerType.INTEGER;
+    private boolean isForHP; // for HP or AP
 
-    public PowerBuff(int turnsActive) {
-        this.buffName = BuffName.POWER;
-        this.turnsActive = turnsActive;
-        this.isPositive = false;
-    }
-
-    public PowerBuff(boolean isForAllTurns , boolean isContinuous){
-        if(isContinuous)
-            turnsActive = 1;
-        else
-            this.isForAllTurns = isForAllTurns;
-        this.buffName = BuffName.POWER;
-        this.isPositive = false;
+    public PowerBuff(int turnsActive, int turnsRemained, boolean isForAllTurns,
+                      boolean isContinous, int power, boolean isForHP) {
+        super(BuffName.POWER, turnsActive,isForAllTurns, true, isContinous);
+        this.power = power;
+        this.isForHP = isForHP;
     }
 
     @Override
@@ -44,6 +35,5 @@ public class PowerBuff extends Buff {
             minion.reduceHP(power);
         else
             minion.reduceAP(power);
-        minion.deleteActiveBuff(this);
     }
 }

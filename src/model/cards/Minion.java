@@ -5,11 +5,9 @@ import model.buffs.Buff;
 import model.Cell;
 import model.Player;
 import model.cellaffects.CellAffect;
-import model.enumerations.CardType;
-import model.enumerations.MinionAttackType;
-import model.enumerations.MinionName;
-import model.enumerations.SpecialPowerActivationTime;
+import model.enumerations.*;
 import model.items.Item;
+import model.specialPower.OnAttackSpecialPower;
 import model.specialPower.OnDefendSpecialPower;
 import model.specialPower.OnDefendType;
 import model.specialPower.SpecialPower;
@@ -17,31 +15,30 @@ import model.specialPower.SpecialPower;
 import java.util.ArrayList;
 
 public class Minion extends Card {
-
+    private static ArrayList<Minion> minions;
     protected ArrayList<Buff> activeBuffs;
     protected boolean canCounterAttack;
     protected boolean canAttack;
     private MinionName minionName;
     protected boolean canMove;
-    protected boolean isHolly;
     protected MinionAttackType attackType;
     protected int HP;
     protected int AP;
     protected int attackRange; // for RANGED Type
-    protected ArrayList<Buff> continuousBuffs;
+    protected ArrayList<Buff> continuousBuffs = new ArrayList<>();
     protected SpecialPower specialPower;
     protected boolean isFars;
-    private static ArrayList<Minion> minions;
     protected Player player;
     protected ArrayList<Item> activeItems;
     protected Item onAttackItem;
     protected Cell cell;
-    protected boolean canComboAttack;
-    protected boolean isHero = false;
+    protected boolean isHero;
+    protected int reductionOfOthersAttack = 0;
+    protected boolean hasHollyBuff;
 
-    public Minion( String name,int cost, int MP, int HP, int AP, MinionAttackType attackType,
-                  int attackRange, SpecialPower specialPower, CardType cardType,int cardID,
-                  String desc,MinionName minionName, boolean isFars) {
+    public Minion(String name, int cost, int MP, int HP, int AP, MinionAttackType attackType,
+                  int attackRange, SpecialPower specialPower, CardType cardType, int cardID,
+                  String desc, MinionName minionName, boolean isFars) {
         super(cost, MP, cardType, cardID, name, desc);
         this.minionName = minionName;
         this.attackType = attackType;
@@ -51,6 +48,8 @@ public class Minion extends Card {
         this.specialPower = specialPower;
         this.isFars = isFars;
         this.isHero = false;
+        specialPower.setMinion(this);
+        hasHollyBuff = false;
     }
 
 
@@ -78,31 +77,74 @@ public class Minion extends Card {
         this.reductionOfOthersAttack = reductionOfOthersAttack;
     }
 
-    protected int reductionOfOthersAttack = 0;
-
-    public void putInMap(Cell cell) {
-        // check validation of cell
-        if (isValidCell(cell)) {
-            player.getHand().deleteCard(this);
-            cell.addCard(this);
-            if (cell.hasCellAffect()) {
-                for (CellAffect cellAffect : cell.getCellAffects()) {
-                    cellAffect.castCellAffect(this);
-                }
+    public void putInMap(Cell cell) { // the validation of cell is checked in controller
+        player.getHand().deleteCard(this);
+        player.addMinionInPlayGroundMinions(this);
+        cell.addCard(this);
+        if (cell.hasCellAffect()) {
+            for (CellAffect cellAffect : cell.getCellAffects()) {
+                cellAffect.castCellAffect(this);
             }
         }
     }
 
     public void attack(Cell cell) {
+        // this minion attacking to the cell ( the minion on the cell )
         // receiveAttack() of opponent
         // if opponent has flag , get it ( in mode -> one flag )
-        canAttack = false;
+        if (canAttack && isValidCell(cell)) {
+            if (this instanceof Hero) {
+                if (((Hero) this).getSpellTargetType() == HeroTargetType.ON_ATTACK &&
+                        ((Hero) this).isSpecialPowerActivated())
+                    ((Hero) this).useSpecialPower(cell);
+            }
+            if (cell.hasCardOnIt()) {
+                Minion opponent = cell.getMinionOnIt();
+                if (player.getBattle().getGameMode() == GameMode.ONE_FLAG
+                        && player.getBattle().getPlayGround().getFlag().getCurrentCell().equals(opponent.getCell())) {
+                    // opponent had flag
+                    player.collectFlag(player.getBattle().getPlayGround().getFlag(), this);
+                }
+                if (opponent.canDefend(this, null)) { // reduce HP
+                    if (specialPower.getSpecialPowerActivationTime() == SpecialPowerActivationTime.ON_ATTACK
+                            && ((OnAttackSpecialPower) specialPower).isAntiHolly()
+                            && opponent.hasHollyBuff) {
+                        opponent.reduceHP(this.AP);
+                    } else
+                        opponent.reduceHP(this.AP - opponent.getReductionOfOthersAttack());
+                    if (opponent.canCounterAttack && opponent.isValidCell(this.getCell())) {
+                        this.reduceHP(opponent.AP - this.getReductionOfOthersAttack());
+                    }
+                }
+            }
+            if (specialPower != null
+                    && specialPower.getSpecialPowerActivationTime() == SpecialPowerActivationTime.ON_ATTACK) {
+                if(((OnAttackSpecialPower)specialPower).isDispel()){
+                    if(cell.getMinionOnIt() != null)
+                        cell.getMinionOnIt().dispelPositiveBuffs();
+                }
+                specialPower.castSpecialPower(cell);
+            }
+            canAttack = false;
+            player.getBattle().checkWinner();
+        }
     }
 
     public void killed() {
         // if it has flag in game mode two , put the flag in playGround
         // player.minions in battle ground -> delete
         // ( the Cell field is the minion last cell ( before kill ) )
+        if (player.getBattle().getGameMode() == GameMode.ONE_FLAG) {
+            if (player.getBattle().getPlayGround().getFlag().getOwningMinion().equals(this)) {
+                player.missFlag(player.getBattle().getPlayGround().getFlag());
+            }
+        } else if (player.getBattle().getGameMode() == GameMode.FLAGS) {
+            if (getCell().getFlag() != null) {
+                player.missFlag(getCell().getFlag());
+            }
+        }
+        getCell().setMinionOnIt(null);
+        player.minionDead(this);
         player.getBattle().checkWinner();
     }
 
@@ -110,12 +152,11 @@ public class Minion extends Card {
         return AP;
     }
 
-    public boolean defend(Card attackingCard, Buff buff) {
+    public boolean canDefend(Card attackingCard, Buff buff) {
         // this method should be called while this minion is being attacked or a Spell is being casted on it
         if (specialPower.getSpecialPowerActivationTime() != SpecialPowerActivationTime.ON_DEFEND)
             return true;
         // special Power is ONDEFEND
-        OnDefendSpecialPower onDefend = (OnDefendSpecialPower) specialPower;
         if (attackingCard.getCardType() == CardType.SPELL) {
             if (((OnDefendSpecialPower) specialPower).getOnDefendType() == OnDefendType.BUFF) {
                 if (((OnDefendSpecialPower) specialPower).getDeactivatedBuff() == buff.getBuffName())
@@ -137,26 +178,15 @@ public class Minion extends Card {
         return true;
     }
 
-    public void counterAttack(Cell cell) {
-        // check isValidCell() again
-
-    }
 
     public boolean isValidCell(Cell cell) {
         // for the target cell that this wants to attack ( or Counter Attack ) to
         return player.getBattle().getPlayGround().isValid(getCell(), cell, attackType);
     }
 
-    public void comboAttack(Cell cell, ArrayList<Card> participatingCards) {
-    }
-
-    public void castPassiveSpecialPower() {
-    }
-
     public ArrayList<Buff> getActiveBuffs() {
         return activeBuffs;
     }
-
 
     public Cell getCell() {
         return cell;
@@ -164,8 +194,16 @@ public class Minion extends Card {
 
 
     public void addActiveBuff(Buff buff) {
-        if (!activeBuffs.contains(buff))
-            activeBuffs.add(buff);
+        if (!activeBuffs.contains(buff)) {
+            if (!(specialPower.getSpecialPowerActivationTime() == SpecialPowerActivationTime.ON_DEFEND
+                    && ((OnDefendSpecialPower) specialPower).getOnDefendType() == OnDefendType.BUFF
+                    && ((OnDefendSpecialPower) specialPower).getDeactivatedBuff() == buff.getBuffName())) {
+                if (!(specialPower.getSpecialPowerActivationTime() == SpecialPowerActivationTime.ON_DEFEND
+                        && ((OnDefendSpecialPower) specialPower).getOnDefendType() == OnDefendType.NOT_NEGATIVE
+                        && !buff.isPositiveBuff()))
+                    activeBuffs.add(buff);
+            }
+        }
     }
 
     public void reduceHP(int number) {
@@ -179,10 +217,6 @@ public class Minion extends Card {
 
     public Player getPlayer() {
         return player;
-    }
-
-    public void receiveAttack() {
-        // should be used in attack() of the attacker minion
     }
 
     public int getHP() {
@@ -200,8 +234,8 @@ public class Minion extends Card {
 
     public void reduceAP(int number) {
         AP -= number;
-        if (HP <= 0)
-            killed();
+        if (AP < 0)
+            AP = 0;
     }
 
     public void setOnAttackItem(Item item) {
@@ -236,9 +270,6 @@ public class Minion extends Card {
         return targetMinion;
     }
 
-    public void deleteActiveBuff(Buff buff) {
-        activeBuffs.remove(buff);
-    }
 
     public void assignCanCounterAttack(boolean assign) {
         canCounterAttack = assign;
@@ -250,19 +281,30 @@ public class Minion extends Card {
 
     public void dispelPositiveBuffs() {
         // if a buff is continous , it should be deactive just this turn
+        ArrayList<Buff> toDelete = new ArrayList<>();
         for (Buff activeBuff : activeBuffs) {
-            if (activeBuff.isPositiveBuff())
+            if (activeBuff.isPositiveBuff()) {
+                toDelete.add(activeBuff);
                 activeBuff.endBuff(this);
+            }
+        }
+        for (Buff buff : toDelete) {
+            activeBuffs.remove(buff);
         }
     }
 
     public void dispelNegativeBuffs() {
         // if a buff is continous , it should be deactive just this turn
+        ArrayList<Buff> toDelete = new ArrayList<>();
         for (Buff buff : activeBuffs) {
-            if (!buff.isPositiveBuff())
+            if (!buff.isPositiveBuff()) {
+                toDelete.add(buff);
                 buff.endBuff(this);
+            }
         }
-        // continouous should start on nextTurn() in Battle
+        for (Buff buff : toDelete) {
+            activeBuffs.remove(buff);
+        }
     }
 
     public void addContinuous(Buff buff) {
@@ -286,10 +328,6 @@ public class Minion extends Card {
         this.player = player;
     }
 
-    public Minion getCopy() {
-        return null;
-    }
-
     public boolean isCanMove() {
         return canMove;
     }
@@ -298,17 +336,11 @@ public class Minion extends Card {
         return canAttack;
     }
 
-    /*public void move(Cell targetCell) { // validation of target Cell is checked in InGameController
-        cell.deleteCard();
-        targetCell.addCard(this);
-        cell = targetCell;
-        canMove = false;
-    }*/
 
     public boolean isValidCellForMove(Cell targetCell) {
         if (player.getBattle().getPlayGround().getManhatanDistance(this.cell, targetCell) > 2
                 || targetCell.hasCardOnIt()
-                || !player.getBattle().getPlayGround().canMoveThroughPath(this.cell, targetCell)){
+                || !player.getBattle().getPlayGround().canMoveThroughPath(this.cell, targetCell)) {
             return false;
         }
         return true;
@@ -316,5 +348,21 @@ public class Minion extends Card {
 
     public void setCell(Cell cell) {
         this.cell = cell;
+    }
+
+    public ArrayList<Buff> getContinuousBuffs() {
+        return continuousBuffs;
+    }
+
+    public void buffDeactivated(Buff buff) { // just remove from list of buffs
+        activeBuffs.remove(buff);
+    }
+
+    public void gotHollyBuff() { // for DARANDE_SHIR
+        hasHollyBuff = true;
+    }
+
+    public void missedHollyBuff() { // for DARANDE_SHIR
+        hasHollyBuff = false;
     }
 }

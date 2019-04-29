@@ -1,6 +1,15 @@
 package model;
 
+import model.buffs.Buff;
+import model.buffs.DisarmBuff;
+import model.cards.Card;
+import model.cards.Minion;
+import model.cards.Spell;
+import model.cellaffects.CellAffect;
 import model.enumerations.GameMode;
+import model.enumerations.SpecialPowerActivationTime;
+
+import java.util.ArrayList;
 
 public class Battle {
     protected static final Deck FIRST_LEVEL_DECK = new Deck("first level");
@@ -20,14 +29,79 @@ public class Battle {
     public void startBattle() {
         // buffs and cellAffects turns remained should be equal to turnsActive
         // just minions and heros should be copied
+        initializeOwningPlayerOfCards(firstPlayer);
+        initializeOwningPlayerOfCards(secondPlayer);
     }
+
+    private void initializeOwningPlayerOfCards(Player player){
+        for (Card card : player.getDeck().getCards()) {
+            if(card instanceof Spell){
+                ((Spell)card).setOwningPlayer(player);
+            }else if(card instanceof Minion){
+                ((Minion)card).setPlayer(player);
+            }
+        }
+    }
+
+    private void checkBuffs(Player player){
+        for (Minion minion : player.getMinionsInPlayGround()) {
+            ArrayList<Buff> buffsToDelete = new ArrayList<>();
+            for (Buff buff : minion.getActiveBuffs()) {
+                if(!buff.isForAllTurns()) {
+                    buff.reduceTurnsRemained();
+                    if (buff.getTurnsRemained() == 0) {
+                        buff.endBuff(minion);
+                        buffsToDelete.add(buff);
+                    }
+                }
+            }
+            for (Buff buff : buffsToDelete) {
+                minion.buffDeactivated(buff);
+            }
+            for (Buff buff : minion.getContinuousBuffs()) {
+                buff.startBuff(minion.getCell());
+            }
+        }
+    }
+
+
 
     public void nextTurn() {
         // fill hands
         // change whose turn
         // one flag mode turnsOwned ( flag field ) ++
+        firstPlayer.getHero().setTurnsRemainedForNextTurn();
+        secondPlayer.getHero().setTurnsRemainedForNextTurn();
+        checkBuffs(firstPlayer);
+        checkBuffs(secondPlayer);
+        checkCellAffects(playGround);
+        handlePassiveSpecialPowers(firstPlayer);
+        handlePassiveSpecialPowers(secondPlayer);
     }
 
+    private void handlePassiveSpecialPowers(Player player){
+        for (Minion minion : player.getMinionsInPlayGround()) {
+            if(minion.getSpecialPower().getSpecialPowerActivationTime() == SpecialPowerActivationTime.PASSIVE){
+                minion.getSpecialPower().castSpecialPower(minion.getCell());
+            }
+        }
+    }
+    private void checkCellAffects(PlayGround playGround){
+        ArrayList<CellAffect> cellAffectsToDelete = new ArrayList<>();
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 5; j++) {
+                Cell cell = playGround.getCell(j,i);
+                for (CellAffect cellAffect : cell.getCellAffects()) {
+                    cellAffect.nextTurn();
+                    if(cellAffect.getTurnsRemained() == 0)
+                        cellAffectsToDelete.add(cellAffect);
+                }
+            }
+        }
+        for (CellAffect cellAffect : cellAffectsToDelete) {
+            cellAffect.getAffectedCell().removeCellAffect(cellAffect);
+        }
+    }
     public void endBattle(Player winner) {
 
     }

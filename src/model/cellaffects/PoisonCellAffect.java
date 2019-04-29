@@ -1,18 +1,18 @@
 package model.cellaffects;
 
 import model.cards.Minion;
+import model.enumerations.CellAffectName;
 
 public class PoisonCellAffect extends CellAffect{
-    public PoisonCellAffect(){
-        turnsActive = 3;
+
+    public PoisonCellAffect(int turnsActive) {
+        super(CellAffectName.POISON, turnsActive);
     }
+
     @Override
     public void castCellAffect(Minion minion) {
         minion.reduceHP(1);
     }
 
-    @Override
-    public void expireCellAffect() {
-        affectedCell.getMinionOnIt().addHP(1);
-    }
+
 }

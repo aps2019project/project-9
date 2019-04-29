@@ -17,6 +17,7 @@ public class MainMenuController {
     public void main() {
         boolean isFinished = false;
         do {
+            mainMenuView.help();
             MainMenuRequest request = new MainMenuRequest();
             request.getNewCommand();
             if (request.getType() == MainMenuRequestType.EXIT) {
@@ -37,7 +38,6 @@ public class MainMenuController {
                     goShopMenu(loggedInAccount);
                     break;
                 case HELP:
-                    mainMenuView.help();
                     break;
             }
         } while (!isFinished);
@@ -51,11 +51,12 @@ public class MainMenuController {
 
     public void goBattleMenu(Account loggedInAccount) {
         // checking the validation of main deck
-        if(loggedInAccount.getMainDeck().isValid()) {
+        if(loggedInAccount.getMainDeck() == null || !loggedInAccount.getMainDeck().isValid()) {
+            mainMenuView.printError(MainMenuErrorType.SELECTED_DECK_INVALID);
+        }else {
             BattleMenuController battleMenuController = new BattleMenuController(loggedInAccount);
             battleMenuController.main();
-        }else
-            mainMenuView.printError(MainMenuErrorType.SELECTED_DECK_INVALID);
+        }
     }
 
     public void goShopMenu(Account loggedInAccount) {

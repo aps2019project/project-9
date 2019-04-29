@@ -90,24 +90,24 @@ public class InGameRequest {
             return InGameRequestType.SHOW_MY_MINIONS;
         else if (command.matches(SHOW_OPPONENT_MINION))
             return InGameRequestType.SHOW_OPPONENT_MINIONS;
-        else if (command.length() > 14 && command.substring(0, 14).matches(SHOW_CARD_INFO)
+        else if (command.length() >= 14 && command.substring(0, 14).matches(SHOW_CARD_INFO)
                 && command.split(" ").length == 4) {
             cardID = command.split(" ")[3];
             return InGameRequestType.SHOW_CARD_INFO;
-        } else if (command.length() > 6 && command.substring(0, 6).matches(SELECT)
+        } else if (command.length() >= 6 && command.substring(0, 6).matches(SELECT)
                 && command.split(" ").length == 2) {
             cardID = command.split(" ")[1];
             return InGameRequestType.SELCET_CARD;
-        } else if (command.length() > 7 && command.substring(0, 7).matches(MOVE)
+        } else if (command.length() >= 7 && command.substring(0, 7).matches(MOVE)
                 && command.split(" ").length == 4
                 && checkMoveSyntax(command)) {
             x = Integer.parseInt(command.split(" ")[2]);
             y = Integer.parseInt(command.split(" ")[3]);
             return InGameRequestType.MOVE_TO;
-        } else if (command.length() > 6 && command.substring(0, 6).matches(ATTACK) && command.split(" ").length == 2) {
+        } else if (command.length() >= 6 && command.substring(0, 6).matches(ATTACK) && command.split(" ").length == 2) {
             opponentCardID = command.split(" ")[1];
             return InGameRequestType.ATTACK;
-        } else if (command.length() > 12 && command.substring(0, 12).matches(COMBO_ATTACK)) {
+        } else if (command.length() >= 12 && command.substring(0, 12).matches(COMBO_ATTACK)) {
             getCommandOfComboAttack(command);
             return InGameRequestType.COMBO_ATTACK;
         } else if (command.length() > 17 && command.substring(0, 17).matches(USE_SPECIAL_POWER)
@@ -118,13 +118,13 @@ public class InGameRequest {
             return InGameRequestType.USE_SPECIAL_POWER;
         } else if (command.matches(SHOW_HAND))
             return InGameRequestType.SHOW_HAND;
-        else if (command.length() > 6 && command.substring(0, 6).matches(INSERT) && checkInsertCommand(command))
+        else if (command.length() >= 6 && command.substring(0, 6).matches(INSERT) && checkInsertCommand(command))
             return InGameRequestType.INSERT;
         else if (command.matches(END_TURN))
             return InGameRequestType.END_TURN;
         else if (command.matches(SHOW_COLLECTIBLES))
             return InGameRequestType.SHOW_COLLECTIBLES;
-        else if (command.length() > 11 && command.substring(0, 11).matches(SELECT_ITEM)) {
+        else if (command.length() >= 11 && command.substring(0, 11).matches(SELECT_ITEM)) {
             collectibleID = command.split(" ")[2];
             return InGameRequestType.SELCET_ITEM;
         } else if (command.matches(SHOW_INFO))

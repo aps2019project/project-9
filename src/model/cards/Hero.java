@@ -1,45 +1,47 @@
 package model.cards;
 
 import model.Cell;
-import model.Player;
 import model.enumerations.CardType;
 import model.enumerations.HeroName;
 import model.enumerations.MinionAttackType;
-import model.enumerations.MinionName;
-import model.specialPower.SpecialPower;
 
 import java.util.ArrayList;
 
 public class Hero extends Minion {
     // hero does not have minion name ( not use the minion name that inherit )
-    private static ArrayList<Hero> heroes;
-    private int cooldown;
+    private static ArrayList<Hero> heroes = new ArrayList<>();
+    private int coolDown;
     private int turnsRemained; // for cool down
     private Spell heroSpell;
     private HeroTargetType spellTargetType; // for spell
     private HeroName heroName;
+    private boolean isSpecialPowerActivated = false;
 
-    public Hero(HeroName heroName, int cost, int HP, int AP,  MinionAttackType attackType, int attackRange,
-                Spell heroSpell, int MP,  int cooldown, int cardID, String name, String desc, boolean isFars,
+    public Hero(HeroName heroName, int cost, int HP, int AP, MinionAttackType attackType, int attackRange,
+                Spell heroSpell, int MP, int coolDown, int cardID, String name, String desc, boolean isFars,
                 HeroTargetType spellTargetType) {
         super(name, cost, MP, HP, AP, attackType, attackRange, null, CardType.MINION,cardID,desc,
                 null, isFars);    //not complete
-        this.cooldown = cooldown;
+        this.coolDown = coolDown;
         this.heroSpell = heroSpell;
         this.spellTargetType = spellTargetType;
         this.heroName = heroName;
     }
 
     public boolean isSpellReady() {
-        return false;
+        return turnsRemained == 0;
     }
 
     public void useSpecialPower(Cell cell) { // cast spell
-
-    }
-
-    public boolean canCastSpell(){ // cool down
-        return turnsRemained==0;
+        turnsRemained = coolDown;
+        if(spellTargetType == HeroTargetType.ON_ATTACK)
+            isSpecialPowerActivated = true;
+        else if (spellTargetType == HeroTargetType.ITSELF)
+            heroSpell.castSpell(getCell());
+        else if(spellTargetType == HeroTargetType.ALL_POWERS_IN_ROW)
+            heroSpell.castSpell(getCell());
+        else
+            heroSpell.castSpell(cell);
     }
 
     public HeroTargetType getSpellTargetType() {
@@ -54,5 +56,19 @@ public class Hero extends Minion {
 
     public Spell getHeroSpell() {
         return heroSpell;
+    }
+
+    public void setTurnsRemainedForNextTurn(){// every turn ( in nextTurn() )
+        if(turnsRemained != 0){
+            turnsRemained--;
+        }
+    }
+
+    public HeroName getHeroName() {
+        return heroName;
+    }
+
+    public boolean isSpecialPowerActivated() {
+        return isSpecialPowerActivated;
     }
 }

@@ -24,6 +24,7 @@ public class AccountView {
     }
 
     public void showHelp(){
+        System.out.println("<<----- Account Menu ----->>");
         System.out.println("create account [username] ( creating a new account by entering a username and password )" );
         System.out.println("login [username] ( login to your account by entering username and password )");
         System.out.println("show leaderboards");

@@ -11,11 +11,31 @@ public abstract class CellAffect {
     protected int turnsActive;
     protected int turnsRemained;
     private static ArrayList<CellAffect> cellAffects = new ArrayList<>();
-    protected Cell affectedCell;// in map
+    protected Cell affectedCell;
 
-    public abstract void castCellAffect(Minion minion);
-    public abstract void expireCellAffect();
-    public void putCellAffect(Cell cell){
+    public CellAffect(CellAffectName name, int turnsActive) {
+        this.name = name;
+        this.turnsActive = turnsActive;
+        this.turnsRemained = turnsActive;
+    }
+
+    public abstract void castCellAffect(Minion minion); // when minion comes on it
+
+    public void putCellAffect(Cell cell) {
         cell.addCellAffect(this);
+        affectedCell = cell;
+    }
+
+    public void nextTurn(){
+        if(turnsRemained!=0)
+            turnsRemained--;
+    }
+
+    public int getTurnsRemained() {
+        return turnsRemained;
+    }
+
+    public Cell getAffectedCell() {
+        return affectedCell;
     }
 }

@@ -9,8 +9,8 @@ public class PassiveSpecialPower extends SpecialPower {
     private PassiveTargetType targetType;
 
     public PassiveSpecialPower(Spell specialPowerSpell, PassiveTargetType targetType) {
+        super(SpecialPowerActivationTime.PASSIVE);
         this.specialPowerSpell = specialPowerSpell;
-        this.specialPowerActivationTime = SpecialPowerActivationTime.PASSIVE;
         this.targetType = targetType;
     }
 

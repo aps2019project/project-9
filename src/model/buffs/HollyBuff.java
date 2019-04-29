@@ -4,34 +4,30 @@ import model.Cell;
 import model.cards.Minion;
 import model.enumerations.BuffName;
 
-public class HollyBuff extends Buff{
+public class HollyBuff extends Buff {
+    private boolean isNegative; // just for minion GHOOL PEYKAR SNAKE it should be true
 
-    public HollyBuff(int turnsActive) {
-        this.buffName = BuffName.HOLLY;
-        this.turnsActive = turnsActive;
-        this.isPositive = false;
-    }
-
-    public HollyBuff(boolean isForAllTurns , boolean isContinuous){
-        if(isContinuous)
-            turnsActive = 1;
-        else
-            this.isForAllTurns = isForAllTurns;
-        this.buffName = BuffName.HOLLY;
-        this.isPositive = false;
+    public HollyBuff(int turnsActive,
+                     boolean isForAllTurns, boolean isContinous, boolean isNegative) {
+        super(BuffName.HOLLY, turnsActive, isForAllTurns, true, isContinous);
+        this.isNegative = isNegative;
     }
 
     @Override
     public void startBuff(Cell cell) {
-        cell.getMinionOnIt().setReductionOfOthersAttack(1);
-        cell.getMinionOnIt().addActiveBuff(this);
-        if(this.isContinous)
-            cell.getMinionOnIt().addContinuous(this);
+        if (!isNegative) {
+            cell.getMinionOnIt().setReductionOfOthersAttack(1);
+            cell.getMinionOnIt().addActiveBuff(this);
+            cell.getMinionOnIt().gotHollyBuff();
+            if (this.isContinous)
+                cell.getMinionOnIt().addContinuous(this);
+        } else
+            cell.getMinionOnIt().setReductionOfOthersAttack(-1);
     }
 
     @Override
     public void endBuff(Minion minion) {
         minion.setReductionOfOthersAttack(0);
-        minion.deleteActiveBuff(this);
+        minion.missedHollyBuff();
     }
 }

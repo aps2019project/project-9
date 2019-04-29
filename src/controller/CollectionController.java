@@ -23,6 +23,7 @@ public class CollectionController {
     public void main() {
         boolean isFinished = false;
         do {
+            view.help();
             CollectionRequest request = new CollectionRequest();
             request.getNewCommand();
             if (request.getType() == CollectionRequestType.EXIT) {
@@ -67,7 +68,6 @@ public class CollectionController {
                     add(request.getDeckName(),request.getCardOrItamName());
                     break;
                 case HELP:
-                    view.help();
                     break;
             }
         } while (!isFinished);

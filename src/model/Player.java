@@ -14,7 +14,7 @@ import java.util.Random;
 
 public class Player {
     private ArrayList<Buff> activeBuffs;
-    private ArrayList<Minion> minionsInPlayGround;
+    private ArrayList<Minion> minionsInPlayGround = new ArrayList<>();
     private int mana;
     private Deck deck;
     private Hand hand;
@@ -35,11 +35,13 @@ public class Player {
         // mana
         // copy the deck
         // copy usable item from deck
+        // initialize hero
         flagsAcheived = new ArrayList<>();
+        minionsInPlayGround.add(hero);
     }
 
     public Player(int level) { // for computer AI
-
+        // like above
     }
 
     public static void enterNewCell(Cell target, Minion minion, Player player) { // not attack to cell
@@ -58,11 +60,6 @@ public class Player {
     }
 
     public static void leavingACell(Minion minion, Player player, Cell previousCell) {
-        if (previousCell.getCellAffects().size() > 0) {
-            for (CellAffect cellAffect : previousCell.getCellAffects()) {
-                cellAffect.expireCellAffect();
-            }
-        }
         if (previousCell.getFlag() != null) {
             if (player.getBattle().getGameMode() == GameMode.FLAGS) {
                 Flag flag = previousCell.getFlag();
@@ -103,7 +100,11 @@ public class Player {
             enterNewCell(cell, (Minion) card, this);
             Minion currentMinion = (Minion) card;
             currentMinion.putInMap(cell);
+            ((Minion) card).setCell(cell);
             reduceMana(card.getMP());
+            if(currentMinion.getSpecialPower().getSpecialPowerActivationTime() == SpecialPowerActivationTime.ON_SPAWN){
+                currentMinion.getSpecialPower().castSpecialPower(cell);
+            }
         } else {
             Spell currentSpell = (Spell) card;
             currentSpell.castSpell(cell);
@@ -137,8 +138,7 @@ public class Player {
         }
     }
 
-    public void missFlag(Minion owningMinion, Cell previousCell) { // opposite of above
-        Flag flag = previousCell.getFlag();
+    public void missFlag(Flag flag) { // opposite of above
         if (battle.getGameMode() == GameMode.ONE_FLAG) {
             modeTwoFlag = null;
             flag.setOwningPlayer(null);
@@ -176,9 +176,6 @@ public class Player {
         // check collectable items
         Cell previous = minion.getCell();
         if (!cell.hasCardOnIt()) {
-            for (CellAffect cellAffect : minion.getCell().getCellAffects()) {
-                cellAffect.expireCellAffect();
-            }
             if (cell.hasCellAffect()) {
                 for (CellAffect cellAffect : cell.getCellAffects()) {
                     cellAffect.castCellAffect(minion);
@@ -197,7 +194,7 @@ public class Player {
             }
             if (battle.getGameMode() == GameMode.FLAGS) {
                 if (previous.getFlag() != null) {
-                    missFlag(minion, previous);
+                    missFlag(previous.getFlag());
                 }
                 if (cell.getFlag() != null) {
                     collectFlag(cell.getFlag(), minion);
@@ -322,5 +319,12 @@ public class Player {
         return modeTwoFlag;
     }
 
+    public void addMinionInPlayGroundMinions(Minion minion){
+        minionsInPlayGround.add(minion);
+    }
+
+    public void minionDead(Minion minion){
+        minionsInPlayGround.remove(minion);
+    }
 
 }

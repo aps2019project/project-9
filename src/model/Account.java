@@ -8,10 +8,10 @@ import java.util.Collections;
 public class Account implements Comparable<Account> {
     private Collection myCollection;
     private int money;
-    private BattleResult[] battleResults;
-    private ArrayList<Deck> decks;
+    private ArrayList<BattleResult> battleResults = new ArrayList<>();
+    private ArrayList<Deck> decks = new ArrayList<>();
     private Deck mainDeck;
-    private static ArrayList<Account> accounts;
+    private static ArrayList<Account> accounts = new ArrayList<>();
     private String userName;
     private String passWord;
     private int numberOfWins = 0;
@@ -20,6 +20,8 @@ public class Account implements Comparable<Account> {
         this.userName = userName;
         this.passWord = passWord;
         accounts.add(this);
+        myCollection = new Collection();
+        myCollection.setOwnerAccount(this);
     }
 
     public static Account findAccount(String userName) {           //if not valid return null
