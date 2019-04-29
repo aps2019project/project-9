@@ -1,5 +1,6 @@
 package model.cards;
 
+import com.google.gson.annotations.Expose;
 import model.Cell;
 import model.enumerations.CardType;
 import model.enumerations.HeroName;
@@ -10,10 +11,14 @@ import java.util.ArrayList;
 public class Hero extends Minion {
     // hero does not have minion name ( not use the minion name that inherit )
     private static ArrayList<Hero> heroes = new ArrayList<>();
+    @Expose
     private int coolDown;
     private int turnsRemained; // for cool down
+    @Expose
     private Spell heroSpell;
+    @Expose
     private HeroTargetType spellTargetType; // for spell
+    @Expose
     private HeroName heroName;
     private boolean isSpecialPowerActivated = false;
 
@@ -70,5 +75,9 @@ public class Hero extends Minion {
 
     public boolean isSpecialPowerActivated() {
         return isSpecialPowerActivated;
+    }
+
+    public void setHeroSpell(Spell heroSpell) {
+        this.heroSpell = heroSpell;
     }
 }

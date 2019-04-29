@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1a59e9ca-3371-4528-a623-2f61f2c20424" name="Default Changelist" comment="changes in Request Classes">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/org_codehaus_jackson_jackson_asl_0_9_5.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-9.iml" beforeDir="false" afterPath="$PROJECT_DIR$/project-9.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Collection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Collection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/DefaultCards.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/DefaultCards.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/cards/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/cards/Card.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/cards/Minion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/cards/Minion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/specialPower/SpecialPower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/specialPower/SpecialPower.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -56,7 +51,7 @@
         <entry file="file://$PROJECT_DIR$/src/model/DefaultCards.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="153">
-              <caret line="22" column="45" lean-forward="true" selection-start-line="22" selection-start-column="45" selection-end-line="22" selection-end-column="45" />
+              <caret line="40" column="14" selection-start-line="40" selection-start-column="14" selection-end-line="40" selection-end-column="14" />
               <folding>
                 <element signature="e#737#738#0" expanded="true" />
                 <element signature="e#808#809#0" expanded="true" />
@@ -64,6 +59,8 @@
                 <element signature="e#933#934#0" expanded="true" />
                 <element signature="e#982#983#0" expanded="true" />
                 <element signature="e#1053#1054#0" expanded="true" />
+                <element signature="e#1039#1040#0" expanded="true" />
+                <element signature="e#1063#1064#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -72,8 +69,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/model/cards/Minion.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="236">
-              <caret line="42" column="29" lean-forward="true" selection-start-line="42" selection-start-column="29" selection-end-line="42" selection-end-column="29" />
+            <state relative-caret-position="204">
+              <caret line="28" column="34" lean-forward="true" selection-start-line="28" selection-start-column="34" selection-end-line="28" selection-end-column="34" />
+              <folding>
+                <element signature="e#13663#13664#0" expanded="true" />
+                <element signature="e#13711#13712#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -208,10 +209,10 @@
         <option value="$PROJECT_DIR$/src/model/Shop.java" />
         <option value="$PROJECT_DIR$/src/model/cards/Card.java" />
         <option value="$PROJECT_DIR$/src/model/specialPower/SpecialPower.java" />
-        <option value="$PROJECT_DIR$/src/model/cards/Minion.java" />
         <option value="$PROJECT_DIR$/src/model/Collection.java" />
-        <option value="$PROJECT_DIR$/src/model/DefaultCards.java" />
         <option value="$PROJECT_DIR$/src/Main.java" />
+        <option value="$PROJECT_DIR$/src/model/cards/Minion.java" />
+        <option value="$PROJECT_DIR$/src/model/DefaultCards.java" />
       </list>
     </option>
   </component>
@@ -262,7 +263,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556569665406" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556570431656" />
     <property name="last_opened_file_path" value="$USER_HOME$/Downloads/Compressed/jar_files.zip!/" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
@@ -307,7 +308,7 @@
       <workItem from="1556358499345" duration="1360000" />
       <workItem from="1556360260110" duration="32977000" />
       <workItem from="1556547051250" duration="68000" />
-      <workItem from="1556547342966" duration="17051000" />
+      <workItem from="1556547342966" duration="17758000" />
     </task>
     <task id="LOCAL-00001" summary="passive special power">
       <created>1556519036088</created>
@@ -319,7 +320,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27039000" />
+    <option name="totallyTimeSpent" value="27746000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="54" y="-8" width="1320" height="784" extended-state="6" />
@@ -722,13 +723,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/cards/Minion.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="42" column="29" lean-forward="true" selection-start-line="42" selection-start-column="29" selection-end-line="42" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/specialPower/SpecialPower.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -757,10 +751,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/cards/Minion.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="28" column="34" lean-forward="true" selection-start-line="28" selection-start-column="34" selection-end-line="28" selection-end-column="34" />
+          <folding>
+            <element signature="e#13663#13664#0" expanded="true" />
+            <element signature="e#13711#13712#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/DefaultCards.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
-          <caret line="22" column="45" lean-forward="true" selection-start-line="22" selection-start-column="45" selection-end-line="22" selection-end-column="45" />
+          <caret line="40" column="14" selection-start-line="40" selection-start-column="14" selection-end-line="40" selection-end-column="14" />
           <folding>
             <element signature="e#737#738#0" expanded="true" />
             <element signature="e#808#809#0" expanded="true" />
@@ -768,6 +773,8 @@
             <element signature="e#933#934#0" expanded="true" />
             <element signature="e#982#983#0" expanded="true" />
             <element signature="e#1053#1054#0" expanded="true" />
+            <element signature="e#1039#1040#0" expanded="true" />
+            <element signature="e#1063#1064#0" expanded="true" />
           </folding>
         </state>
       </provider>

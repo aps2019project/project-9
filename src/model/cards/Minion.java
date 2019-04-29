@@ -401,4 +401,8 @@ public class Minion extends Card {
     public void deleteOnDeathCollectible() {
         onDeathCollectibleItem = null;
     }
+
+    public void setSpecialPower(SpecialPower specialPower) {
+        this.specialPower = specialPower;
+    }
 }

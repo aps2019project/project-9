@@ -1,16 +1,20 @@
 package model.items;
 
+import com.google.gson.annotations.Expose;
 import model.enumerations.ItemName;
 
 import java.util.ArrayList;
 
 public class Item {
     private static ArrayList<Item> items = new ArrayList<>();
-
+    @Expose
     protected int cost;
+    @Expose
     protected String name;
+    @Expose
     protected ItemName itemType;
     protected int itemID;
+    @Expose
     protected String desc;
 
     public Item(int cost, String name, ItemName itemType,String desc) {

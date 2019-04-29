@@ -127,10 +127,7 @@ public class Collection {
         // hero : 1
         // item : 1
         // --------------Minions---------------
-        Minion minion = DefaultCards.getMinion(MinionName.FARS_SHAMSHIRZAN);
-        /*System.out.println(minion.getMinionName());
-        System.out.println(minion.getSpecialPower().getSpecialPowerActivationTime());
-        System.out.println(minion.getAttackType());*/
+       cards.add(DefaultCards.getMinion(MinionName.FARS_SHAMSHIRZAN));
         /*cards.add(DefaultCards.getMinion(MinionName.TOORANEE_NEYZEDAR));
         cards.add(DefaultCards.getMinion(MinionName.TOORANEE_GORZDAR));
         cards.add(DefaultCards.getMinion(MinionName.BLACK_DEEV));

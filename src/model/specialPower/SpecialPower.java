@@ -7,7 +7,6 @@ import model.enumerations.SpecialPowerActivationTime;
 
 public abstract class SpecialPower { // FARS_PAHLAVAN remaining
 
-    @Expose
     protected SpecialPowerActivationTime specialPowerActivationTime;
     protected Minion minion;
     public SpecialPowerActivationTime getSpecialPowerActivationTime(){return specialPowerActivationTime;}

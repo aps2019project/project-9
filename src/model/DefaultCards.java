@@ -18,25 +18,82 @@ import java.util.HashMap;
 
 public class DefaultCards {
 
-    public static Minion getMinion(MinionName name) {
-        //return gson.fromJson(minionHashMap.get(name), Minion.class);
-        System.out.println(FARS_SHAMSHIRZAN);
-        gson.fromJson(FARS_SHAMSHIRZAN,Minion.class);
-        return null;
+    public static Minion getMinion(MinionName name) { // special powers = null
+        Minion minion = gson.fromJson(minionHashMap.get(name), Minion.class);
+        setMinionSpecialPower(minion,name);
+        return minion;
     }
 
     public static Item getItem(ItemName name) {
         return gson.fromJson(itemHashMap.get(name), Item.class);
     }
 
-    public static Spell getSpell(SpellName name) {
-        return gson.fromJson(spellHashMap.get(name), Spell.class);
+    public static Spell getSpell(SpellName name) { // cellaffects and buffs = null
+        Spell spell = gson.fromJson(spellHashMap.get(name), Spell.class);
+        setSpellCellAffectOrBuffs(spell,name);
+        return spell;
     }
 
-    public static Hero getHero(HeroName name) {
-        return gson.fromJson(heroHashMap.get(name), Hero.class);
+    public static Hero getHero(HeroName name) { // hero spell = null
+        Hero hero = gson.fromJson(heroHashMap.get(name), Hero.class);
+        setHeroSpell(hero,name);
+        return hero;
     }
 
+    private static void setMinionSpecialPower(Minion minion , MinionName name){
+        switch (name){
+            case FARS_KAMANDAR:
+                minion.setSpecialPower(null);
+                break;
+            case FARS_SHAMSHIRZAN:
+            case FARS_NEYZEDAR:
+            case FARS_ASBSAVAR:
+            case FARS_PAHLAVAN:
+            case FARS_SEPAHSALAR:
+            case TOORANEE_KAMANDAR:
+            case TOORANEE_GHOLABSANG:
+            case TOORANEE_NEYZEDAR:
+            case TOORANE_JASOS:
+            case TOORANEE_GORZDAR:
+            case TOORANEE_SHAHZADE:
+            case BLACK_DEEV:
+            case SANGANDAZ_GHOLL:
+            case EAGLE:
+            case GORAZ_DEEV:
+            case ONE_EYE_GHOOL:
+            case POISON_SNAKE:
+            case DRAGON_FIRE:
+            case DARANDE_SHIR:
+            case GHOOL_SNAKE:
+            case WHITE_WOLF:
+            case PALANG:
+            case WOLF:
+            case JADOOGAR:
+            case JADOOGAR_AZAM:
+            case JEN:
+            case WILD_GORAZ:
+            case PIRAN:
+            case GEEV:
+            case BAHMAN:
+            case ASHKBOOS:
+            case EERAG:
+            case BIG_GHOOL:
+            case DOSAR_GHOOL:
+            case NANE_SARMA:
+            case FOOLAD_ZEREH:
+            case SIAVOSH:
+            case SHAH_GOOL:
+            case ARJANG_DEEV:
+        }
+    }
+
+    private static void setSpellCellAffectOrBuffs(Spell spell , SpellName name){
+
+    }
+
+    private static void setHeroSpell(Hero hero , HeroName name){
+
+    }
     private static HashMap<MinionName, String> minionHashMap = new HashMap<>();
     private static HashMap<HeroName, String> heroHashMap = new HashMap<>();
     private static HashMap<ItemName, String> itemHashMap = new HashMap<>();

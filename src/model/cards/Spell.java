@@ -1,5 +1,6 @@
 package model.cards;
 
+import com.google.gson.annotations.Expose;
 import model.*;
 import model.buffs.Buff;
 import model.cellaffects.CellAffect;
@@ -14,9 +15,13 @@ public class Spell extends Card {
     private static ArrayList<Spell> heroSpells = new ArrayList<>();
     private static ArrayList<Spell> itemSpells = new ArrayList<>();
     private static ArrayList<Spell> specialPowerSpells = new ArrayList<>();
+    @Expose
     private ArrayList<Buff> buffs;
+    @Expose
     private SpellTargetType targetType;
+    @Expose
     private CellAffect cellAffect;
+    @Expose
     private SpellName spellName;
     private Player owningPlayer; // the player use it
 
@@ -189,5 +194,13 @@ public class Spell extends Card {
 
     public SpellName getSpellName() {
         return spellName;
+    }
+
+    public void setBuffs(ArrayList<Buff> buffs) {
+        this.buffs = buffs;
+    }
+
+    public void setCellAffect(CellAffect cellAffect) {
+        this.cellAffect = cellAffect;
     }
 }
