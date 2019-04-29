@@ -19,6 +19,8 @@ public class BattleMenuRequest {
     private String numberOfFlags;
     private String command;
     private String userName;
+    private int modeInt;
+    private int numberOfFlagsInt;
 
     public void getNewCommand() {
         command = scanner.nextLine().toLowerCase();
@@ -104,10 +106,24 @@ public class BattleMenuRequest {
                 && command.substring(0, 22).matches("start multiplayer game")) {
             mode = command.split(" ")[3];
             numberOfFlags = command.split(" ")[4];
+            try{
+                modeInt = Integer.parseInt(mode);
+                numberOfFlagsInt = Integer.parseInt(numberOfFlags);
+            } catch (NumberFormatException e){
+                return null;
+            }
             return BattleMenuRequestType.START_GAME;
         } else if (command.matches(EXIT))
             return BattleMenuRequestType.EXIT;
         else
             return null;
+    }
+
+    public int getModeInt() {
+        return modeInt;
+    }
+
+    public int getNumberOfFlagsInt() {
+        return numberOfFlagsInt;
     }
 }

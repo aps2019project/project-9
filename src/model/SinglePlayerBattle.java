@@ -22,8 +22,8 @@ public class SinglePlayerBattle extends Battle {
         }
         turn = 0;
         whoseTurn = 1;
-        firstPlayer = new Player(firstPlayerAccount);
-        secondPlayer = new Player(level); // computer
+        firstPlayer = new Player(firstPlayerAccount , this);
+        secondPlayer = new Player(level , this); // computer
     }
     public SinglePlayerBattle(int mode , Deck deck , Account firstPlayerAccount , int numberOfFlags){ // for custom game
         //

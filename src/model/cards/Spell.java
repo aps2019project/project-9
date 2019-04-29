@@ -186,4 +186,8 @@ public class Spell extends Card {
     public void setOwningPlayer(Player owningPlayer) {
         this.owningPlayer = owningPlayer;
     }
+
+    public SpellName getSpellName() {
+        return spellName;
+    }
 }

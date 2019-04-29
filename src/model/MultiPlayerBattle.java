@@ -17,8 +17,8 @@ public class MultiPlayerBattle extends Battle {
         whoseTurn = 1;
         if(mode == 3)
             numberOfFlags = flags;
-        this.firstPlayer = new Player(firstPlayer);
-        this.secondPlayer = new Player(secondAccount);
+        this.firstPlayer = new Player(firstPlayer , this);
+        this.secondPlayer = new Player(secondAccount , this);
     }
 
 }

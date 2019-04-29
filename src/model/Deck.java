@@ -17,19 +17,36 @@ public class Deck {
 
     public Deck(String name) {
         this.name = name;
-        if (name.equals("first level")) {
-            //
-        } else if (name.equals("second level")) {
-            //
-        } else if (name.equals("third level")) {
-            //
+        if (name.equals("first_level")) {
+
+        } else if (name.equals("second_level")) {
+
+        } else if (name.equals("third_level")) {
+
         }
     }
 
+    public Deck(ArrayList<Card> cards, Hero hero, Item item, String name) {
+        this.cards = cards;
+        this.hero = hero;
+        this.item = item;
+        this.name = name;
+    }
+
     public Deck getCopy() {
-        Deck copyOfThis = new Deck(name);
-        // remained
-        return null;
+        ArrayList<Card> secondCards = new ArrayList<>();
+        for (Card card : cards) {
+            if(card instanceof Minion) {
+                Minion copy = DefaultCards.getMinion(((Minion)card).getMinionName());
+                secondCards.add(copy);
+            }else if(card instanceof Spell){
+                Spell copy = DefaultCards.getSpell(((Spell)card).getSpellName());
+                secondCards.add(copy);
+            }
+        }
+        Hero secondHero = DefaultCards.getHero(hero.getHeroName());
+        Item secondItem = DefaultCards.getItem(item.getItemType());
+        return new Deck(secondCards,secondHero,secondItem,name);
     }
 
     public boolean canAddCard() {
@@ -146,5 +163,11 @@ public class Deck {
         return cards;
     }
 
+    public Item getItem() {
+        return item;
+    }
 
+    public Hero getHero() {
+        return hero;
+    }
 }

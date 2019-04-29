@@ -13,16 +13,15 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Player {
-    private ArrayList<Buff> activeBuffs;
     private ArrayList<Minion> minionsInPlayGround = new ArrayList<>();
     private int mana;
     private Deck deck;
     private Hand hand;
     private Usable usableItem;
-    private ArrayList<Collectible> collectedItems;
+    private ArrayList<Collectible> collectedItems = new ArrayList<>();
     private Hero hero;
     private Battle battle;
-    private ArrayList<Flag> flagsAcheived;
+    private ArrayList<Flag> flagsAcheived = new ArrayList<>();
     private Flag modeTwoFlag;
     private String name;
     private Card selectedCard;
@@ -30,19 +29,41 @@ public class Player {
     private GraveYard graveYard;
     private boolean usedAddManaItem = false; // for item num 8
 
-    public Player(Account account) {
-        activeBuffs = new ArrayList<>();
-        minionsInPlayGround = new ArrayList<>();
-        // mana
-        // copy the deck
-        // copy usable item from deck
-        // initialize hero
-        flagsAcheived = new ArrayList<>();
+    public Player(Account account , Battle battle) {
+        this.deck = account.getMainDeck().getCopy();
+        if (deck.getItem() != null)
+            usableItem = (Usable) deck.getItem();
+        else
+            usableItem = null;
+        hero = deck.getHero();
+        this.battle = battle;
+        this.name = account.getUserName();
         minionsInPlayGround.add(hero);
+        graveYard = new GraveYard(this);
     }
 
-    public Player(int level) { // for computer AI
-        // like above
+    public Player(int level , Battle battle) { // for computer AI
+        name = "first_level";
+        switch (level){
+            case 1:
+                name = "first_level";
+                break;
+            case 2:
+                name = "second_level";
+                break;
+            case 3:
+                name = "third_level";
+                break;
+        }
+        this.deck = new Deck(name);
+        if (deck.getItem() != null)
+            usableItem = (Usable) deck.getItem();
+        else
+            usableItem = null;
+        hero = deck.getHero();
+        this.battle = battle;
+        minionsInPlayGround.add(hero);
+        graveYard = new GraveYard(this);
     }
 
     public static void enterNewCell(Cell target, Minion minion, Player player) { // not attack to cell
@@ -109,7 +130,7 @@ public class Player {
                 currentMinion.getSpecialPower().castSpecialPower(cell);
             }
             if (usableItem != null && usableItem instanceof OnSpawnUsableItem) {
-                ((OnSpawnUsableItem)usableItem).doOnSpawnAction(this,currentMinion);
+                ((OnSpawnUsableItem) usableItem).doOnSpawnAction(this, currentMinion);
             }
         } else {
             Spell currentSpell = (Spell) card;
@@ -127,7 +148,7 @@ public class Player {
 
     public void collectItem(Item item) {
         collectedItems.add((Collectible) item);
-        ((Collectible)item).collect(this);
+        ((Collectible) item).collect(this);
     }
 
     public void collectFlag(Flag flag, Minion owningMinion) {
@@ -345,10 +366,11 @@ public class Player {
         }
     }
 
-    public void setUsedAddManaItem(boolean usedAddManaItem){
+    public void setUsedAddManaItem(boolean usedAddManaItem) {
         this.usedAddManaItem = usedAddManaItem;
     }
-    public boolean getUsedManaItem(){
+
+    public boolean getUsedManaItem() {
         return usedAddManaItem;
     }
 }

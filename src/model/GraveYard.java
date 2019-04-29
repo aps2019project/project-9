@@ -6,7 +6,11 @@ import java.util.ArrayList;
 
 public class GraveYard {
     private Player player;
-    private ArrayList<Card> cards;
+    private ArrayList<Card> cards = new ArrayList<>();
+
+    public GraveYard(Player player){
+        this.player = player;
+    }
 
     public ArrayList<Card> getCards() {
         return cards;

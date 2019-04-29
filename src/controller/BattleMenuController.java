@@ -1,6 +1,7 @@
 package controller;
 
 import model.Account;
+import model.MultiPlayerBattle;
 import model.SinglePlayerBattle;
 import model.enumerations.BattleMenuErrorType;
 import model.enumerations.BattleMenuRequestType;
@@ -10,6 +11,7 @@ import view.BattleMenuView;
 public class BattleMenuController {
     private Account loggedInAccount;
     private BattleMenuView view = BattleMenuView.getInstance();
+
     public BattleMenuController(Account loggedInAccount) {
         this.loggedInAccount = loggedInAccount;
     }
@@ -20,12 +22,12 @@ public class BattleMenuController {
             view.showSingleMultiPlayerMenu();
             BattleMenuRequest request = new BattleMenuRequest();
             request.getNewCommand();
-            if(request.getTypeInSingleMultiPlayerMenu() == null){
+            if (request.getTypeInSingleMultiPlayerMenu() == null) {
                 view.printError(BattleMenuErrorType.INVALID_COMMAND);
             }
-            if(request.getTypeInSingleMultiPlayerMenu() == BattleMenuRequestType.EXIT)
+            if (request.getTypeInSingleMultiPlayerMenu() == BattleMenuRequestType.EXIT)
                 isFinished = true;
-            switch (request.getTypeInSingleMultiPlayerMenu()){
+            switch (request.getTypeInSingleMultiPlayerMenu()) {
                 case MUTLI_PLAYER:
                     singlePlayerMenu();
                     break;
@@ -37,18 +39,18 @@ public class BattleMenuController {
         } while (!isFinished);
     }
 
-    public void singlePlayerMenu() {
+    private void singlePlayerMenu() {
         boolean isFinished = false;
         do {
             view.showSinglePlayerMenu();
             BattleMenuRequest request = new BattleMenuRequest();
             request.getNewCommand();
-            if(request.getTypeSinglePlayerMenu() == BattleMenuRequestType.EXIT)
+            if (request.getTypeSinglePlayerMenu() == BattleMenuRequestType.EXIT)
                 isFinished = true;
-            else if(request.getTypeSinglePlayerMenu() == null){
+            else if (request.getTypeSinglePlayerMenu() == null) {
                 view.printError(BattleMenuErrorType.INVALID_COMMAND);
             }
-            switch (request.getTypeSinglePlayerMenu()){
+            switch (request.getTypeSinglePlayerMenu()) {
                 case CUSTOM_GAME:
                     customGameMenu();
                     break;
@@ -56,19 +58,19 @@ public class BattleMenuController {
                     storyMenu();
                     break;
             }
-        }while (!isFinished);
+        } while (!isFinished);
     }
 
-    public void storyMenu() {
-        while (true){
+    private void storyMenu() {
+        while (true) {
             view.showStoryMenu();
             BattleMenuRequest request = new BattleMenuRequest();
             request.getNewCommand();
-            if(request.getTypeStoryMode() == BattleMenuRequestType.EXIT)
+            if (request.getTypeStoryMode() == BattleMenuRequestType.EXIT)
                 break;
-            else if(request.getTypeStoryMode() == null)
+            else if (request.getTypeStoryMode() == null)
                 view.printError(BattleMenuErrorType.INVALID_COMMAND);
-            switch (request.getTypeStoryMode()){
+            switch (request.getTypeStoryMode()) {
                 case FIRST_LEVEL:
                     // start story mode game
                 case SECOND_LEVEL:
@@ -79,14 +81,14 @@ public class BattleMenuController {
         }
     }
 
-    public void customGameMenu() {
+    private void customGameMenu() {
         while (true) {
             view.showCustomGameMenu(loggedInAccount);
             BattleMenuRequest request = new BattleMenuRequest();
             request.getNewCommand();
             if (request.getTypeOfCustomGame() == null)
                 view.printError(BattleMenuErrorType.INVALID_COMMAND);
-            else if(request.getTypeOfCustomGame() == BattleMenuRequestType.EXIT)
+            else if (request.getTypeOfCustomGame() == BattleMenuRequestType.EXIT)
                 break;
             else {
                 startCustomGame(request.getDeckName(), request.getMode(), request.getNumberOfFlags());
@@ -94,22 +96,23 @@ public class BattleMenuController {
         }
     }
 
-    public void startCustomGame(String deckName,String mode , String numberOfFlags){ // still remaining
-        if(loggedInAccount.findDeckByName(deckName) == null)
+    private void startCustomGame(String deckName, String mode, String numberOfFlags) { // still remaining
+        if (loggedInAccount.findDeckByName(deckName) == null)
             view.printError(BattleMenuErrorType.DECK_NAME_NOT_VALID);
-        else if(!loggedInAccount.findDeckByName(deckName).isValid())
+        else if (!loggedInAccount.findDeckByName(deckName).isValid())
             view.printError(BattleMenuErrorType.DECK_NOT_VALID);
         else {
-            if(mode.equals("3")){
+            if (mode.equals("3")) {
 
-            }else if(mode.equals("2")){
+            } else if (mode.equals("2")) {
 
-            }else if(mode.equals("1")){
+            } else if (mode.equals("1")) {
 
             }
         }
     }
-    public void multiPlayerMenu() {
+
+    private void multiPlayerMenu() {
         while (true) {
             view.showUserNames();
             BattleMenuRequest request = new BattleMenuRequest();
@@ -119,7 +122,12 @@ public class BattleMenuController {
             else if (request.getTypeMultiPlayer() == BattleMenuRequestType.EXIT)
                 break;
             else if (request.getTypeMultiPlayer() == BattleMenuRequestType.START_GAME) {
-                // start multiplayer game
+                // start multi player game
+                MultiPlayerBattle multiPlayerBattle = new MultiPlayerBattle(loggedInAccount, request.getUserName()
+                        , request.getModeInt(), request.getNumberOfFlagsInt());
+                multiPlayerBattle.startBattle();
+                InGameController inGameController = new InGameController(multiPlayerBattle);
+                inGameController.main();
             } else if (request.getTypeMultiPlayer() == BattleMenuRequestType.SELECT_USER) {
                 if (isDeckNameValid(request.getUserName())) {
                     view.printError(BattleMenuErrorType.OPPONENT_SUCCESSFULLY);
@@ -127,11 +135,12 @@ public class BattleMenuController {
             }
         }
     }
-    public boolean isDeckNameValid(String userName){
-        if(Account.findAccount(userName) == null){
+
+    public boolean isDeckNameValid(String userName) {
+        if (Account.findAccount(userName) == null) {
             view.printError(BattleMenuErrorType.INVALID_USERNAME);
             return false;
-        }else if(!Account.findAccount(userName).getMainDeck().isValid()){
+        } else if (!Account.findAccount(userName).getMainDeck().isValid()) {
             view.printError(BattleMenuErrorType.SELECTED_DECK_FOR_SECOND_PLAYER_INVALID);
             return false;
         }
