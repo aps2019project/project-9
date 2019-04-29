@@ -5,11 +5,11 @@ import model.enumerations.ItemName;
 import model.enumerations.ItemTarget;
 
 public abstract class Usable extends Item{
-    protected ItemTarget target;
+
+    public Usable(int cost, String name, ItemName itemType, int itemID, String desc) {
+        super(cost, name, itemType, itemID, desc);
+    }
 
     public abstract void castItem(Player player);
 
-    Usable(String name, ItemName itemName, String desc){
-        super(0,name,itemName,0,desc);
-    }
 }

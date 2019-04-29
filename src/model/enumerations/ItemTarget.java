@@ -5,5 +5,6 @@ public enum ItemTarget {
     ANYCARD,
     HERO,
     EIGHT_AROUND_HERO,
-    MELEE
+    MELEE,
+    PLAYER
 }

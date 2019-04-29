@@ -27,7 +27,7 @@ public class Battle {
     protected int battlePrize; // should be initialized at Constructor()
 
     public void startBattle() {
-        // buffs and cellAffects turns remained should be equal to turnsActive
+        // buffs and cellAffects turns remained should be equal to turnsActive and specialPowers
         // just minions and heros should be copied
         initializeOwningPlayerOfCards(firstPlayer);
         initializeOwningPlayerOfCards(secondPlayer);
@@ -77,6 +77,11 @@ public class Battle {
         checkCellAffects(playGround);
         handlePassiveSpecialPowers(firstPlayer);
         handlePassiveSpecialPowers(secondPlayer);
+
+    }
+
+    private void handleUsableItems(Player player){
+        player.castUsableItem();
     }
 
     private void handlePassiveSpecialPowers(Player player){
