@@ -7,6 +7,8 @@ import model.Player;
 import model.cellaffects.CellAffect;
 import model.enumerations.*;
 import model.items.Item;
+import model.items.OnAttackSpell;
+import model.items.OnDeathUsableItem;
 import model.specialPower.OnAttackSpecialPower;
 import model.specialPower.OnDefendSpecialPower;
 import model.specialPower.OnDefendType;
@@ -92,6 +94,9 @@ public class Minion extends Card {
         // this minion attacking to the cell ( the minion on the cell )
         // receiveAttack() of opponent
         // if opponent has flag , get it ( in mode -> one flag )
+        if (onAttackItem != null) {
+            ((OnAttackSpell)onAttackItem).doOnAttack(cell);
+        }
         if (canAttack && isValidCell(cell)) {
             if (this instanceof Hero) {
                 if (((Hero) this).getSpellTargetType() == HeroTargetType.ON_ATTACK &&
@@ -119,8 +124,8 @@ public class Minion extends Card {
             }
             if (specialPower != null
                     && specialPower.getSpecialPowerActivationTime() == SpecialPowerActivationTime.ON_ATTACK) {
-                if(((OnAttackSpecialPower)specialPower).isDispel()){
-                    if(cell.getMinionOnIt() != null)
+                if (((OnAttackSpecialPower) specialPower).isDispel()) {
+                    if (cell.getMinionOnIt() != null)
                         cell.getMinionOnIt().dispelPositiveBuffs();
                 }
                 specialPower.castSpecialPower(cell);
@@ -146,7 +151,10 @@ public class Minion extends Card {
         getCell().setMinionOnIt(null);
         player.minionDead(this);
         player.getBattle().checkWinner();
-        if(player.getUsableItem().getItemType() == ItemName.SOUL_EATER){
+        if (player.getUsableItem().getItemType() == ItemName.SOUL_EATER) {
+            player.castUsableItem();
+        }
+        if (player.getUsableItem()!= null && (player.getUsableItem() instanceof OnDeathUsableItem)){
             player.castUsableItem();
         }
     }
