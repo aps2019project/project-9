@@ -25,6 +25,6 @@ public abstract class Collectible extends Item {
     }
 
     Collectible(String name, ItemName itemName, String desc){
-        super(0,name,itemName,0,desc);
+        super(0, name, itemName, desc);
     }
 }

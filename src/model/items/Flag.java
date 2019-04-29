@@ -12,7 +12,7 @@ public class Flag extends Item {
     private int turnsOwned;
 
     Flag() {
-        super(0, "flag", null, 0, "flag");
+        super(0, "flag", null, "flag");
     }
 
     public Minion getOwningMinion() {

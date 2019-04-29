@@ -4,8 +4,8 @@ import model.Player;
 import model.enumerations.ItemName;
 
 public class Assassination extends Usable {
-    public Assassination(String name, ItemName itemName, String desc) {
-        super(name,itemName,desc);
+    public Assassination(String name, ItemName itemName, String desc, int cost) {
+        super(cost, name, itemName, desc);
         this.cost = 15000;
     }
 

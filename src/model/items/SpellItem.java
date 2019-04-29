@@ -12,8 +12,8 @@ import java.util.ArrayList;
 public class SpellItem extends Usable {
     private ArrayList<Buff> buffs;
 
-    public SpellItem(int cost, String name, ItemName itemType, int itemID, String desc, ArrayList<Buff> buffs) {
-        super(cost, name, itemType, itemID, desc);
+    public SpellItem(int cost, String name, ItemName itemType, String desc, ArrayList<Buff> buffs) {
+        super(cost, name, itemType, desc);
         this.buffs = buffs;
     }
 
