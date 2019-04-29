@@ -5,6 +5,8 @@ import model.cards.Hero;
 import model.cards.Minion;
 import model.cards.Spell;
 import model.enumerations.CardType;
+import model.enumerations.MinionName;
+import model.enumerations.SpellName;
 import model.items.Item;
 
 import java.util.ArrayList;
@@ -12,8 +14,8 @@ import java.util.ArrayList;
 public class Shop {
     private static final Shop SHOP = new Shop();
 
-    private ArrayList<Card> allCards;
-    private ArrayList<Item> allItems;
+    private ArrayList<Card> allCards = new ArrayList<>();
+    private ArrayList<Item> allItems = new ArrayList<>();
     private int uniqeID = 0;
 
     public static Shop getInstance(){
@@ -21,7 +23,13 @@ public class Shop {
     }
     private Shop(){
         // initialize shop
-
+        for (MinionName minionName : MinionName.values()) {
+            allCards.add(DefaultCards.getMinion(minionName));
+        }
+        for (SpellName spellName : SpellName.values()) {
+            allCards.add(DefaultCards.getSpell(spellName));
+        }
+        // items remaining
     }
 
     public Card searchCardByName(String cardName) {

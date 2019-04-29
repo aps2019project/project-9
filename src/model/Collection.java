@@ -1,6 +1,7 @@
 package model;
 
 import model.cards.Card;
+import model.cards.Minion;
 import model.enumerations.HeroName;
 import model.enumerations.ItemName;
 import model.enumerations.MinionName;
@@ -126,7 +127,8 @@ public class Collection {
         // hero : 1
         // item : 1
         // --------------Minions---------------
-        cards.add(DefaultCards.getMinion(MinionName.FARS_KAMANDAR));
+        Minion minion = DefaultCards.getMinion(MinionName.FARS_KAMANDAR);
+        /*cards.add(DefaultCards.getMinion(MinionName.FARS_KAMANDAR));
         cards.add(DefaultCards.getMinion(MinionName.TOORANEE_NEYZEDAR));
         cards.add(DefaultCards.getMinion(MinionName.TOORANEE_GORZDAR));
         cards.add(DefaultCards.getMinion(MinionName.BLACK_DEEV));
@@ -148,6 +150,6 @@ public class Collection {
         //--------------Hero---------------------
         cards.add(DefaultCards.getHero(HeroName.WHITE_DEEV));
         //------------------item----------------
-        items.add(DefaultCards.getItem(ItemName.TAJ_DANAYEE));
+        items.add(DefaultCards.getItem(ItemName.TAJ_DANAYEE));*/
     }
 }

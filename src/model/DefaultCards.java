@@ -141,10 +141,10 @@ public class DefaultCards {
             4, MinionAttackType.RANGED, 7, null, CardType.MINION, 0, "",
             MinionName.FARS_KAMANDAR, true));
 
-    static ArrayList<Buff> buffs;
-    static SpecialPower specialPower;
+    private static ArrayList<Buff> buffs;
+    private static SpecialPower specialPower;
 
-    {
+    static {
         buffs = new ArrayList<>();
         buffs.add(new StunBuff(1, false, false));
         specialPower = new OnAttackSpecialPower(buffs, false, false);
@@ -163,7 +163,7 @@ public class DefaultCards {
             "",
             MinionName.FARS_ASBSAVAR, true));
 
-    {
+    static {
         buffs = new ArrayList<>();
         buffs.add(new WeaknessBuff(1, false, false, 5, true, false
                 , null));
@@ -175,7 +175,7 @@ public class DefaultCards {
             "attack 5 more unit than that attack to a unit",
             MinionName.FARS_PAHLAVAN, true));
 
-    {
+    static {
         specialPower = new ComboSpecialPower();
     }
 
@@ -260,7 +260,7 @@ public class DefaultCards {
             "",
             MinionName.DRAGON_FIRE, false));
 
-    {
+    static {
         specialPower = new OnAttackSpecialPower(null, true, false);
     }
 
@@ -313,7 +313,7 @@ public class DefaultCards {
             "give itself and 8 around minion one power with 2 strength and one holy buff continus passively",
             MinionName.JADOOGAR_AZAM, false));
 
-    {
+    static {
         ///============================= on turn =======================================
     }
 
@@ -378,43 +378,43 @@ public class DefaultCards {
             "combo",
             MinionName.ARJANG_DEEV, false));
 
-    {
+    static {
         specialPower = new OnDefendSpecialPower(OnDefendType.BUFF, BuffName.POISON);
     }
 
-    {
+    static {
         specialPower = new OnDefendSpecialPower(OnDefendType.NOT_NEGATIVE, null);     //be checked
     }
 
-    {
+    static {
         specialPower = new OnSpawnSpecialPower(new WeaknessBuff(1, false, false,
                 16, true, false, null), OnSpawnTargetCell.A_RANDOM_ENEMY_MINION);
     }
 
-    {
+    static {
         specialPower = new OnDefendSpecialPower(OnDefendType.NOT_ATTACK_FROM_WEAK, null);   //be checked
     }
 
-    {
+    static {
         specialPower = new OnAttackSpecialPower(null, false, true);   //be checked
     }
 
-    {
+    static {
         specialPower = new OnSpawnSpecialPower(new StunBuff(1, false, false),
                 OnSpawnTargetCell.EIGHT_AROUND);
     }
 
-    {
+    static {
         buffs = new ArrayList<>();
         buffs.add(new HollyBuff(400, false, true, false)); //be checked
         specialPower = new PassiveSpecialPower(buffs, PassiveTargetType.CURRENT_CELL);
     }
 
-    {
+    static {
         specialPower = new OnDeathSpecialPower(6, OnDeathTargetType.ENEMY_HERO);
     }
 
-    {
+    static {
         specialPower = new ComboSpecialPower();
     }
 
@@ -581,29 +581,29 @@ public class DefaultCards {
     private static final String CHINESE_SHAMSHIR = gson.toJson(new Item(0, "chinese_shamshir",
             ItemName.CHINESE_SHAMSHIR, "for meelees add 5 power unit"));
 
-    {
+    static {
         buffs = new ArrayList<>();
         buffs.add(new PowerBuff(1, false, false, 10, true));
         specialPower = new PassiveSpecialPower(buffs, PassiveTargetType.CURRENT_CELL);
     }
 
-    {
+    static {
         specialPower = new OnDeathSpecialPower(2, OnDeathTargetType.EIGHT_AROUND_MINIONS);
     }
 
-    {
+    static {
         buffs = new ArrayList<>();
         buffs.add(new PoisonBuff(3, false, false));
         specialPower = new OnAttackSpecialPower(buffs, false, false);
     }
 
-    {
+    static {
         buffs = new ArrayList<>();
         specialPower = new OnSpawnSpecialPower(new HollyBuff(400, true, false,
                 true), OnSpawnTargetCell.TWO_DISTANCE_CELLS);
     }
 
-    {
+    static {
         buffs = new ArrayList<>();
         int[] powers = {6, 4};
         buffs.add(new WeaknessBuff(3, false, false, 0, true, true,
@@ -611,7 +611,7 @@ public class DefaultCards {
         specialPower = new OnAttackSpecialPower(buffs, false, false);
     }
 
-    {
+    static {
         buffs = new ArrayList<>();
         int[] powers = {0, 8};
         buffs.add(new WeaknessBuff(3, false, false, 0, true, true,
@@ -619,7 +619,7 @@ public class DefaultCards {
         specialPower = new OnAttackSpecialPower(buffs, false, false);
     }
 
-    {
+    static {
         buffs = new ArrayList<>();
         int[] powers = {0, 6};
         buffs.add(new WeaknessBuff(3, false, false, 0, true, true,
@@ -627,7 +627,7 @@ public class DefaultCards {
         specialPower = new OnAttackSpecialPower(buffs, false, false);
     }
 
-    {
+    static {
         buffs = new ArrayList<>();
         buffs.add(new PowerBuff(1, false, false, 2, false));
         buffs.add(new WeaknessBuff(1, false, false, 1, true,
@@ -635,14 +635,14 @@ public class DefaultCards {
         specialPower = new PassiveSpecialPower(buffs, PassiveTargetType.CURRENT_AND_EIGHT_FRIENDLY_AROUND);
     }
 
-    {
+    static {
         buffs = new ArrayList<>();
         buffs.add(new PowerBuff(1, false, true, 2, false));
         buffs.add(new HollyBuff(1, false, true, false));
         specialPower = new PassiveSpecialPower(buffs, PassiveTargetType.CURRENT_AND_EIGHT_FRIENDLY_AROUND);
     }
 
-    {
+    static {
         specialPower = new OnDefendSpecialPower(OnDefendType.BUFF, BuffName.DISARM);
     }
 

@@ -52,7 +52,8 @@ public class Minion extends Card {
         this.specialPower = specialPower;
         this.isFars = isFars;
         this.isHero = false;
-        specialPower.setMinion(this);
+        if (specialPower != null)
+            specialPower.setMinion(this);
         hasHollyBuff = false;
     }
 
@@ -97,7 +98,7 @@ public class Minion extends Card {
         // receiveAttack() of opponent
         // if opponent has flag , get it ( in mode -> one flag )
         if (onAttackItem != null) {
-            ((OnAttackSpellUsable)onAttackItem).doOnAttack(cell);
+            ((OnAttackSpellUsable) onAttackItem).doOnAttack(cell);
         }
         if (canAttack && isValidCell(cell)) {
             if (this instanceof Hero) {
@@ -156,10 +157,10 @@ public class Minion extends Card {
         if (player.getUsableItem().getItemType() == ItemName.SOUL_EATER) {
             player.castUsableItem();
         }
-        if (player.getUsableItem()!= null && (player.getUsableItem() instanceof OnDeathUsableItem)){
-            ((OnDeathUsableItem)player.getUsableItem()).doOnDeathAction(player);
+        if (player.getUsableItem() != null && (player.getUsableItem() instanceof OnDeathUsableItem)) {
+            ((OnDeathUsableItem) player.getUsableItem()).doOnDeathAction(player);
         }
-        if(onDeathCollectibleItem != null){
+        if (onDeathCollectibleItem != null) {
             onDeathCollectibleItem.castItem();
         }
     }
@@ -387,7 +388,7 @@ public class Minion extends Card {
         onDeathCollectibleItem.setOwnedMinion(this);
     }
 
-    public void deleteOnDeathCollectible(){
+    public void deleteOnDeathCollectible() {
         onDeathCollectibleItem = null;
     }
 }
