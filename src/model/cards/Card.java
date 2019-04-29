@@ -1,6 +1,6 @@
 package model.cards;
 
-import model.MultiPlayerBattle;
+import com.google.gson.*;
 import model.enumerations.CardType;
 
 public class Card {
@@ -9,6 +9,7 @@ public class Card {
     protected int MP;
     protected CardType cardType;
     protected int cardID;
+    @
     protected String BattleID;
     protected String name;
     protected String desc;

@@ -127,9 +127,8 @@ public class Collection {
         // hero : 1
         // item : 1
         // --------------Minions---------------
-        Minion minion = DefaultCards.getMinion(MinionName.FARS_KAMANDAR);
-        /*cards.add(DefaultCards.getMinion(MinionName.FARS_KAMANDAR));
-        cards.add(DefaultCards.getMinion(MinionName.TOORANEE_NEYZEDAR));
+        cards.add(DefaultCards.getMinion(MinionName.FARS_KAMANDAR));
+        /*cards.add(DefaultCards.getMinion(MinionName.TOORANEE_NEYZEDAR));
         cards.add(DefaultCards.getMinion(MinionName.TOORANEE_GORZDAR));
         cards.add(DefaultCards.getMinion(MinionName.BLACK_DEEV));
         cards.add(DefaultCards.getMinion(MinionName.ONE_EYE_GHOOL));
