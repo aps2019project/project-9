@@ -2,13 +2,14 @@ package model;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.annotations.Expose;
 import model.buffs.*;
 import model.cards.Hero;
 import model.cards.HeroTargetType;
 import model.cards.Minion;
 import model.cards.Spell;
+import model.cellaffects.CellAffect;
 import model.cellaffects.FireCellAffect;
+import model.cellaffects.HollyCellAffect;
 import model.cellaffects.PoisonCellAffect;
 import model.enumerations.*;
 import model.items.Item;
@@ -38,7 +39,7 @@ public class DefaultCards {
 
     public static Hero getHero(HeroName name) { // hero spell = null
         Hero hero = gson.fromJson(heroHashMap.get(name), Hero.class);
-        setHeroSpell(hero, name);
+        setHeroBuffsOrCellAffect(hero, name);
         return hero;
     }
 
@@ -63,7 +64,8 @@ public class DefaultCards {
                 break;
             case FARS_PAHLAVAN:
                 ArrayList<Buff> buffs1 = new ArrayList<>();
-                WeaknessBuff buff1 = new WeaknessBuff(400, true, false, 5, true, false, null);
+                WeaknessBuff buff1 = new WeaknessBuff(400, true,
+                        false, 5, true, false, null);
                 buffs1.add(buff1);
                 minion.setSpecialPower(new OnAttackSpecialPower(buffs1, false, false));
                 break;
@@ -123,36 +125,44 @@ public class DefaultCards {
                 break;
             case WHITE_WOLF:
                 int[] powers = {6, 4};
-                WeaknessBuff buff5 = new WeaknessBuff(3, false, false, 0, true, true, powers);
+                WeaknessBuff buff5 = new WeaknessBuff(3, false,
+                        false, 0, true, true, powers);
                 buffs = new ArrayList<>();
                 buffs.add(buff5);
                 minion.setSpecialPower(new OnAttackSpecialPower(buffs, false, false));
                 break;
             case PALANG:
                 int[] powers1 = {8};
-                buff5 = new WeaknessBuff(2, false, false, 0, true, true, powers1);
+                buff5 = new WeaknessBuff(2, false, false,
+                        0, true, true, powers1);
                 buffs = new ArrayList<>();
                 buffs.add(buff5);
                 minion.setSpecialPower(new OnAttackSpecialPower(buffs, false, false));
                 break;
             case WOLF:
                 int[] powers2 = {6};
-                buff5 = new WeaknessBuff(2, false, false, 0, true, true, powers2);
+                buff5 = new WeaknessBuff(2, false, false,
+                        0, true, true, powers2);
                 buffs = new ArrayList<>();
                 buffs.add(buff5);
                 minion.setSpecialPower(new OnAttackSpecialPower(buffs, false, false));
                 break;
             case JADOOGAR:
-                PowerBuff buff6 = new PowerBuff(1, false, false, 2, false);
-                WeaknessBuff buff7 = new WeaknessBuff(1, false, false, 1, true, false, null);
+                PowerBuff buff6 = new PowerBuff(1, false,
+                        false, 2, false);
+                WeaknessBuff buff7 = new WeaknessBuff(1, false, false,
+                        1, true, false, null);
                 buffs = new ArrayList<>();
                 buffs.add(buff6);
                 buffs.add(buff7);
-                minion.setSpecialPower(new PassiveSpecialPower(buffs, PassiveTargetType.CURRENT_AND_EIGHT_FRIENDLY_AROUND));
+                minion.setSpecialPower(new PassiveSpecialPower(buffs,
+                        PassiveTargetType.CURRENT_AND_EIGHT_FRIENDLY_AROUND));
                 break;
             case JADOOGAR_AZAM:
-                buff6 = new PowerBuff(400, false, true, 2, false);
-                HollyBuff buff8 = new HollyBuff(400, false, true, false);
+                buff6 = new PowerBuff(400, false,
+                        true, 2, false);
+                HollyBuff buff8 = new HollyBuff(400, false,
+                        true, false);
                 buffs = new ArrayList<>();
                 buffs.add(buff6);
                 buffs.add(buff8);
@@ -174,7 +184,8 @@ public class DefaultCards {
                 minion.setSpecialPower(new OnDefendSpecialPower(OnDefendType.NOT_NEGATIVE, null));
                 break;
             case BAHMAN:
-                WeaknessBuff buff9 = new WeaknessBuff(400, true, false, 16, true, false, null);
+                WeaknessBuff buff9 = new WeaknessBuff(400, true,
+                        false, 16, true, false, null);
                 minion.setSpecialPower(new OnSpawnSpecialPower(buff9, OnSpawnTargetCell.A_RANDOM_ENEMY_MINION));
                 break;
             case ASHKBOOS:
@@ -200,7 +211,8 @@ public class DefaultCards {
                 break;
             case SIAVOSH:
                 buffs = new ArrayList<>();
-                buffs.add(new WeaknessBuff(400,true,false,6,true,false,null));
+                buffs.add(new WeaknessBuff(400,true,false,
+                        6,true,false,null));
                 minion.setSpecialPower(new OnAttackSpecialPower(buffs,false,false));
                 break;
             case SHAH_GOOL:
@@ -230,7 +242,8 @@ public class DefaultCards {
                 break;
             case FIREBALL:
                 buffs = new ArrayList<>();
-                buffs.add(new WeaknessBuff(400,true,false,4,true,false,null));
+                buffs.add(new WeaknessBuff(400,true,false,
+                        4,true,false,null));
                 spell.setBuffs(buffs);
                 break;
             case GOD_STRENGTH:
@@ -244,7 +257,8 @@ public class DefaultCards {
                 break;
             case LIGHTING_BOLT:
                 buffs = new ArrayList<>();
-                buffs.add(new WeaknessBuff(400,true,false,8,true,false,null));
+                buffs.add(new WeaknessBuff(400,true,false,
+                        8,true,false,null));
                 spell.setBuffs(buffs);
                 break;
             case POISON_LAKE:
@@ -271,7 +285,8 @@ public class DefaultCards {
                 break;
             case HEALTH_WITH_PROFIT:
                 buffs = new ArrayList<>();
-                buffs.add(new WeaknessBuff(400,true,false,6,true,false,null));
+                buffs.add(new WeaknessBuff(400,true,false,
+                        6,true,false,null));
                 buffs.add(new HollyBuff(3,false,false,false));
                 spell.setBuffs(buffs);
                 break;
@@ -287,18 +302,21 @@ public class DefaultCards {
                 break;
             case ALL_ATTACK:
                 buffs = new ArrayList<>();
-                buffs.add(new WeaknessBuff(400,true,false,6,true,false,null));
+                buffs.add(new WeaknessBuff(400,true,false,
+                        6,true,false,null));
                 spell.setBuffs(buffs);
                 break;
             case WEAKENING:
                 buffs = new ArrayList<>();
-                buffs.add(new WeaknessBuff(400,true,false,4,false,false,null));
+                buffs.add(new WeaknessBuff(400,true,false,
+                        4,false,false,null));
                 spell.setBuffs(buffs);
                 spell.setBuffs(buffs);
                 break;
             case SACRIFICE:
                 buffs = new ArrayList<>();
-                buffs.add(new WeaknessBuff(400,true,false,6,true,false,null));
+                buffs.add(new WeaknessBuff(400,true,false,
+                        6,true,false,null));
                 buffs.add(new PowerBuff(400,true,false,8,false));
                 spell.setBuffs(buffs);
                 break;
@@ -314,8 +332,55 @@ public class DefaultCards {
 
     }
 
-    private static void setHeroSpell(Hero hero, HeroName name) {
-
+    private static void setHeroBuffsOrCellAffect(Hero hero, HeroName name) {
+        ArrayList<Buff> buffs;
+        switch (name){
+            case WHITE_DEEV:
+                buffs = new ArrayList<>();
+                buffs.add(new PowerBuff(400,true,false,4,false));
+                hero.setBuffs(buffs);
+                break;
+            case SIMORGH:
+                buffs = new ArrayList<>();
+                buffs.add(new StunBuff(1,false,false));
+                hero.setBuffs(buffs);
+                break;
+            case EJDEHA:
+                buffs = new ArrayList<>();
+                buffs.add(new DisarmBuff(400,true,false));
+                hero.setBuffs(buffs);
+                break;
+            case RAKHSH:
+                buffs = new ArrayList<>();
+                buffs.add(new StunBuff(1,false,false));
+                hero.setBuffs(buffs);
+                break;
+            case ZAHAK:
+                buffs = new ArrayList<>();
+                buffs.add(new PoisonBuff(3,false,false));
+                hero.setBuffs(buffs);
+                break;
+            case KAVE:
+                CellAffect cellAffect = new HollyCellAffect(3);
+                hero.setCellAffect(cellAffect);
+                break;
+            case ARASH:
+                buffs = new ArrayList<>();
+                buffs.add(new WeaknessBuff(400,true,false,4,true,false,null));
+                hero.setBuffs(buffs);
+                break;
+            case AFSANE:
+                break;
+            case ESFANDIAR:
+                buffs = new ArrayList<>();
+                for (int i = 0; i < 3; i++) {
+                    buffs.add(new HollyBuff(400,false,true,false));
+                }
+                hero.setBuffs(buffs);
+                break;
+            case ROSTAM:
+                break;
+        }
     }
 
     private static HashMap<MinionName, String> minionHashMap = new HashMap<>();
@@ -546,52 +611,52 @@ public class DefaultCards {
             4, MinionAttackType.MELEE, 0, null, 1, 2, 0,
             "white_deev",
             "active a power buff with 4 unit streghnt on him",
-            false, HeroTargetType.ITSELF));
+            false, HeroTargetType.ITSELF,null));
     private static final String SIMORG = gson.toJson(new Hero(HeroName.SIMORGH, 9000, 50,
             4, MinionAttackType.MELEE, 0, null, 5, 8, 0,
             "simorgh",
             "stun all of enemy units for one turn",
-            false, HeroTargetType.ALL_ENEMY_POWERS));
+            false, HeroTargetType.ALL_ENEMY_POWERS,null));
     private static final String EJDEHA = gson.toJson(new Hero(HeroName.EJDEHA, 8000, 50,
             4, MinionAttackType.MELEE, 0, null, 0, 1, 0,
             "ejdeha_haft_sar",
             "disarm one unit",
-            false, HeroTargetType.A_CARD));
+            false, HeroTargetType.AN_ENEMY_POWER,null));
     private static final String RAKHSH = gson.toJson(new Hero(HeroName.RAKHSH, 8000, 50,
             4, MinionAttackType.MELEE, 0, null, 1, 2, 0,
             "rakhsh",
             "stun one enemy unit for one turn",
-            false, HeroTargetType.AN_ENEMY_POWER));
+            false, HeroTargetType.AN_ENEMY_POWER,null));
     private static final String ZAHAK = gson.toJson(new Hero(HeroName.ZAHAK, 10000, 50,
             2, MinionAttackType.MELEE, 0, null, 0, 0, 0,
             "zahak",
             "when attack poisen unit for 3 turn",
-            false, HeroTargetType.ON_ATTACK));
+            false, HeroTargetType.ON_ATTACK,null));
     private static final String KAVE = gson.toJson(new Hero(HeroName.KAVE, 8000, 50,
             4, MinionAttackType.MELEE, 0, null, 1, 3, 0,
             "kave",
             "make a cell hly for 3 turns",
-            false, HeroTargetType.A_CELL));
+            false, HeroTargetType.A_CELL,null));
     private static final String ARASH = gson.toJson(new Hero(HeroName.ARASH, 10000, 30,
             2, MinionAttackType.RANGED, 6, null, 2, 2, 0,
             "arash",
             "attack every enemy in hero row",
-            false, HeroTargetType.ALL_POWERS_IN_ROW));
+            false, HeroTargetType.ALL_POWERS_IN_ROW,null));
     private static final String AFSANE = gson.toJson(new Hero(HeroName.AFSANE, 11000, 40,
             3, MinionAttackType.RANGED, 3, null, 1, 2, 0,
             "afsane",
             "dispel an enemy",
-            false, HeroTargetType.AN_ENEMY_POWER));
+            false, HeroTargetType.AN_ENEMY_POWER,null));
     private static final String ESFANDIAR = gson.toJson(new Hero(HeroName.ESFANDIAR, 12000, 35,
             3, MinionAttackType.HYBRID, 3, null, 0, 0, 0,
             "esfandiar",
             "have 3 hly buff continuously",
-            false, HeroTargetType.ITSELF));
+            false, HeroTargetType.ITSELF,null));
     private static final String ROSTAM = gson.toJson(new Hero(HeroName.ROSTAM, 8000, 55,
             7, MinionAttackType.HYBRID, 4, null, 0, 0, 0,
             "rostam",
             "",
-            false, null));
+            false, null,null));
 
 
     //-------------------------------------------------SPELL--------------------------------------------------//

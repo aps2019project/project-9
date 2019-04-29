@@ -112,7 +112,7 @@ public class Minion extends Card {
         }
         if (canAttack && isValidCell(cell)) {
             if (this instanceof Hero) {
-                if (((Hero) this).getSpellTargetType() == HeroTargetType.ON_ATTACK &&
+                if (((Hero) this).getBuffsTargetType() == HeroTargetType.ON_ATTACK &&
                         ((Hero) this).isSpecialPowerActivated())
                     ((Hero) this).useSpecialPower(cell);
             }

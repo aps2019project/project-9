@@ -2,6 +2,8 @@ package model.cards;
 
 import com.google.gson.annotations.Expose;
 import model.Cell;
+import model.buffs.Buff;
+import model.cellaffects.CellAffect;
 import model.enumerations.CardType;
 import model.enumerations.HeroName;
 import model.enumerations.MinionAttackType;
@@ -15,22 +17,25 @@ public class Hero extends Minion {
     private int coolDown;
     private int turnsRemained; // for cool down
     @Expose
-    private Spell heroSpell;
+    private ArrayList<Buff> buffs;
     @Expose
-    private HeroTargetType spellTargetType; // for spell
+    private CellAffect cellAffect;
+    @Expose
+    private HeroTargetType buffsTargetType; // for spell
     @Expose
     private HeroName heroName;
     private boolean isSpecialPowerActivated = false;
 
     public Hero(HeroName heroName, int cost, int HP, int AP, MinionAttackType attackType, int attackRange,
-                Spell heroSpell, int MP, int coolDown, int cardID, String name, String desc, boolean isFars,
-                HeroTargetType spellTargetType) {
+                ArrayList<Buff> buffs, int MP, int coolDown, int cardID, String name, String desc, boolean isFars,
+                HeroTargetType buffsTargetType , CellAffect cellAffect) {
         super(name, cost, MP, HP, AP, attackType, attackRange, null, CardType.MINION,cardID,desc,
                 null, isFars);    //not complete
         this.coolDown = coolDown;
-        this.heroSpell = heroSpell;
-        this.spellTargetType = spellTargetType;
+        this.buffs = buffs;
+        this.buffsTargetType = buffsTargetType;
         this.heroName = heroName;
+        this.cellAffect = cellAffect;
     }
 
     public boolean isSpellReady() {
@@ -39,18 +44,51 @@ public class Hero extends Minion {
 
     public void useSpecialPower(Cell cell) { // cast spell
         turnsRemained = coolDown;
-        if(spellTargetType == HeroTargetType.ON_ATTACK)
+        if(buffsTargetType == HeroTargetType.ON_ATTACK)
             isSpecialPowerActivated = true;
-        else if (spellTargetType == HeroTargetType.ITSELF)
-            heroSpell.castSpell(getCell());
-        else if(spellTargetType == HeroTargetType.ALL_POWERS_IN_ROW)
-            heroSpell.castSpell(getCell());
-        else
-            heroSpell.castSpell(cell);
+        else if (buffsTargetType == HeroTargetType.ITSELF) {
+            if(buffs != null) {
+                for (Buff buff : buffs) {
+                    buff.startBuff(getCell());
+                }
+            }
+        }else if(buffsTargetType == HeroTargetType.ALL_POWERS_IN_ROW){
+            if(buffs != null){
+                for (Cell cell1 : player.getBattle().getPlayGround().enemyInRow(getCell(), player.getOpponent())) {
+                    for (Buff buff : buffs) {
+                        buff.startBuff(cell1);
+                    }
+                }
+            }
+        } else if(buffsTargetType == HeroTargetType.AN_ENEMY_POWER){
+            if(buffs != null) {
+                Cell target = player.getBattle().getPlayGround().getRandomPowerCell(player);
+                for (Buff buff : buffs) {
+                    buff.startBuff(target);
+                }
+            }else if(heroName == HeroName.AFSANE){
+                Cell target = player.getBattle().getPlayGround().getRandomPowerCell(player.getOpponent());
+                target.getMinionOnIt().dispelPositiveBuffs();
+            }
+        } else if(buffsTargetType == HeroTargetType.A_CELL){
+            if(cellAffect != null) {
+                Cell target = player.getBattle().getPlayGround().getRandomCell();
+                cellAffect.putCellAffect(target);
+            }
+        }
+        else if(buffsTargetType == HeroTargetType.ALL_ENEMY_POWERS){
+            if(buffs != null) {
+                for (Minion minion : player.getOpponent().getMinionsInPlayGround()) {
+                    for (Buff buff : buffs) {
+                        buff.startBuff(minion.getCell());
+                    }
+                }
+            }
+        }
     }
 
-    public HeroTargetType getSpellTargetType() {
-        return spellTargetType;
+    public HeroTargetType getBuffsTargetType() {
+        return buffsTargetType;
     }
 
     public String toString() {
@@ -59,8 +97,8 @@ public class Hero extends Minion {
         return string;
     }
 
-    public Spell getHeroSpell() {
-        return heroSpell;
+    public ArrayList<Buff> getBuffs() {
+        return buffs;
     }
 
     public void setTurnsRemainedForNextTurn(){// every turn ( in nextTurn() )
@@ -77,7 +115,15 @@ public class Hero extends Minion {
         return isSpecialPowerActivated;
     }
 
-    public void setHeroSpell(Spell heroSpell) {
-        this.heroSpell = heroSpell;
+    public void setBuffs(ArrayList<Buff> buffs) {
+        this.buffs = buffs;
+    }
+
+    public void setCellAffect(CellAffect cellAffect) {
+        this.cellAffect = cellAffect;
+    }
+
+    public CellAffect getCellAffect() {
+        return cellAffect;
     }
 }

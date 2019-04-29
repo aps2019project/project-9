@@ -159,4 +159,9 @@ public class PlayGround {
         int col = second.nextInt(9);
         return getCell(row, col);
     }
+
+    public Cell getRandomPowerCell(Player player){
+        Random r = new Random();
+        return player.getMinionsInPlayGround().get(r.nextInt(player.getMinionsInPlayGround().size())).getCell();
+    }
 }
