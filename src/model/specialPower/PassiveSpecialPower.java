@@ -2,6 +2,7 @@ package model.specialPower;
 
 import model.Cell;
 import model.buffs.Buff;
+import model.cards.Minion;
 import model.cards.Spell;
 import model.enumerations.SpecialPowerActivationTime;
 
@@ -38,6 +39,13 @@ public class PassiveSpecialPower extends SpecialPower {
                         for (Buff buff : buffs) {
                             buff.startBuff(aroundCell);
                         }
+                }
+                break;
+            case ALL_FRIENDLY_MINIONS:
+                for (Minion minion1 : minion.getPlayer().getMinionsInPlayGround()) {
+                    for (Buff buff : buffs) {
+                        buff.startBuff(minion1.getCell());
+                    }
                 }
                 break;
         }

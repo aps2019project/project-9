@@ -20,7 +20,7 @@ public class DefaultCards {
 
     public static Minion getMinion(MinionName name) { // special powers = null
         Minion minion = gson.fromJson(minionHashMap.get(name), Minion.class);
-        setMinionSpecialPower(minion,name);
+        setMinionSpecialPower(minion, name);
         return minion;
     }
 
@@ -30,75 +30,198 @@ public class DefaultCards {
 
     public static Spell getSpell(SpellName name) { // cellaffects and buffs = null
         Spell spell = gson.fromJson(spellHashMap.get(name), Spell.class);
-        setSpellCellAffectOrBuffs(spell,name);
+        setSpellCellAffectOrBuffs(spell, name);
         return spell;
     }
 
     public static Hero getHero(HeroName name) { // hero spell = null
         Hero hero = gson.fromJson(heroHashMap.get(name), Hero.class);
-        setHeroSpell(hero,name);
+        setHeroSpell(hero, name);
         return hero;
     }
 
-    private static void setMinionSpecialPower(Minion minion , MinionName name){
-        switch (name){
+    private static void setMinionSpecialPower(Minion minion, MinionName name) {
+        switch (name) {
             case FARS_KAMANDAR:
                 minion.setSpecialPower(null);
                 break;
             case FARS_SHAMSHIRZAN:
+                StunBuff buff = new StunBuff(1, false, false);
+                ArrayList<Buff> buffs = new ArrayList<>();
+                buffs.add(buff);
+                OnAttackSpecialPower specialPower =
+                        new OnAttackSpecialPower(buffs, false, false);
+                minion.setSpecialPower(specialPower);
+                break;
             case FARS_NEYZEDAR:
+                minion.setSpecialPower(null);
+                break;
             case FARS_ASBSAVAR:
+                minion.setSpecialPower(null);
+                break;
             case FARS_PAHLAVAN:
+                ArrayList<Buff> buffs1 = new ArrayList<>();
+                WeaknessBuff buff1 = new WeaknessBuff(400, true, false, 5, true, false, null);
+                buffs1.add(buff1);
+                minion.setSpecialPower(new OnAttackSpecialPower(buffs1, false, false));
+                break;
             case FARS_SEPAHSALAR:
+                minion.setSpecialPower(new ComboSpecialPower());
+                break;
             case TOORANEE_KAMANDAR:
+                minion.setSpecialPower(null);
+                break;
             case TOORANEE_GHOLABSANG:
+                minion.setSpecialPower(null);
+                break;
             case TOORANEE_NEYZEDAR:
+                minion.setSpecialPower(null);
+                break;
             case TOORANE_JASOS:
+                buffs = new ArrayList<>();
+                DisarmBuff buff2 = new DisarmBuff(1, false, false);
+                PoisonBuff buff3 = new PoisonBuff(4, false, false);
+                buffs.add(buff2);
+                buffs.add(buff3);
+                minion.setSpecialPower(new OnAttackSpecialPower(buffs, false, false));
+                break;
             case TOORANEE_GORZDAR:
+                minion.setSpecialPower(null);
+                break;
             case TOORANEE_SHAHZADE:
+                minion.setSpecialPower(new ComboSpecialPower());
+                break;
             case BLACK_DEEV:
+                break;
             case SANGANDAZ_GHOLL:
+                break;
             case EAGLE:
+                buffs = new ArrayList<>();
+                buffs.add(new PowerBuff(400, true, false, 10, true));
+                minion.setSpecialPower(new PassiveSpecialPower(buffs, PassiveTargetType.CURRENT_CELL));
+                break;
             case GORAZ_DEEV:
+                break;
             case ONE_EYE_GHOOL:
+                minion.setSpecialPower(new OnDeathSpecialPower(2, OnDeathTargetType.EIGHT_AROUND_MINIONS));
+                break;
             case POISON_SNAKE:
+                buffs = new ArrayList<>();
+                buffs.add(new PoisonBuff(3, false, false));
+                minion.setSpecialPower(new OnAttackSpecialPower(buffs, false, false));
+                break;
             case DRAGON_FIRE:
+                break;
             case DARANDE_SHIR:
+                minion.setSpecialPower(new OnAttackSpecialPower(null, true, false));
+                break;
             case GHOOL_SNAKE:
+                HollyBuff buff4 = new HollyBuff(400, true, false, true);
+                minion.setSpecialPower(new OnSpawnSpecialPower(buff4, OnSpawnTargetCell.TWO_DISTANCE_CELLS));
+                break;
             case WHITE_WOLF:
+                int[] powers = {6, 4};
+                WeaknessBuff buff5 = new WeaknessBuff(3, false, false, 0, true, true, powers);
+                buffs = new ArrayList<>();
+                buffs.add(buff5);
+                minion.setSpecialPower(new OnAttackSpecialPower(buffs, false, false));
+                break;
             case PALANG:
+                int[] powers1 = {8};
+                buff5 = new WeaknessBuff(2, false, false, 0, true, true, powers1);
+                buffs = new ArrayList<>();
+                buffs.add(buff5);
+                minion.setSpecialPower(new OnAttackSpecialPower(buffs, false, false));
+                break;
             case WOLF:
+                int[] powers2 = {6};
+                buff5 = new WeaknessBuff(2, false, false, 0, true, true, powers2);
+                buffs = new ArrayList<>();
+                buffs.add(buff5);
+                minion.setSpecialPower(new OnAttackSpecialPower(buffs, false, false));
+                break;
             case JADOOGAR:
+                PowerBuff buff6 = new PowerBuff(1, false, false, 2, false);
+                WeaknessBuff buff7 = new WeaknessBuff(1, false, false, 1, true, false, null);
+                buffs = new ArrayList<>();
+                buffs.add(buff6);
+                buffs.add(buff7);
+                minion.setSpecialPower(new PassiveSpecialPower(buffs, PassiveTargetType.CURRENT_AND_EIGHT_FRIENDLY_AROUND));
+                break;
             case JADOOGAR_AZAM:
+                buff6 = new PowerBuff(400, false, true, 2, false);
+                HollyBuff buff8 = new HollyBuff(400, false, true, false);
+                buffs = new ArrayList<>();
+                buffs.add(buff6);
+                buffs.add(buff8);
+                minion.setSpecialPower(new PassiveSpecialPower(buffs, PassiveTargetType.CURRENT_AND_EIGHT_FRIENDLY_AROUND));
+                break;
             case JEN:
+                buff6 = new PowerBuff(400, false, true, 1, false);
+                buffs = new ArrayList<>();
+                buffs.add(buff6);
+                minion.setSpecialPower(new PassiveSpecialPower(buffs, PassiveTargetType.ALL_FRIENDLY_MINIONS));
+                break;
             case WILD_GORAZ:
+                minion.setSpecialPower(new OnDefendSpecialPower(OnDefendType.BUFF, BuffName.DISARM));
+                break;
             case PIRAN:
+                minion.setSpecialPower(new OnDefendSpecialPower(OnDefendType.BUFF, BuffName.POISON));
+                break;
             case GEEV:
+                minion.setSpecialPower(new OnDefendSpecialPower(OnDefendType.NOT_NEGATIVE, null));
+                break;
             case BAHMAN:
+                WeaknessBuff buff9 = new WeaknessBuff(400, true, false, 16, true, false, null);
+                minion.setSpecialPower(new OnSpawnSpecialPower(buff9, OnSpawnTargetCell.A_RANDOM_ENEMY_MINION));
+                break;
             case ASHKBOOS:
+                minion.setSpecialPower(new OnDefendSpecialPower(OnDefendType.NOT_ATTACK_FROM_WEAK,null));
+                break;
             case EERAG:
+                break;
             case BIG_GHOOL:
+                break;
             case DOSAR_GHOOL:
+                minion.setSpecialPower(new OnAttackSpecialPower(null,false,true));
+                break;
             case NANE_SARMA:
+                StunBuff buff10 = new StunBuff(1,false,false);
+                minion.setSpecialPower(new OnSpawnSpecialPower(buff10,OnSpawnTargetCell.EIGHT_AROUND));
+                break;
             case FOOLAD_ZEREH:
+                buffs = new ArrayList<>();
+                for (int i = 0; i < 12; i++) {
+                    buffs.add(new HollyBuff(400,false,true,false));
+                }
+                minion.setSpecialPower(new PassiveSpecialPower(buffs,PassiveTargetType.CURRENT_CELL));
+                break;
             case SIAVOSH:
+                buffs = new ArrayList<>();
+                buffs.add(new WeaknessBuff(400,true,false,6,true,false,null));
+                minion.setSpecialPower(new OnAttackSpecialPower(buffs,false,false));
+                break;
             case SHAH_GOOL:
+                minion.setSpecialPower(new ComboSpecialPower());
+                break;
             case ARJANG_DEEV:
+                minion.setSpecialPower(new ComboSpecialPower());
+                break;
         }
     }
 
-    private static void setSpellCellAffectOrBuffs(Spell spell , SpellName name){
+    private static void setSpellCellAffectOrBuffs(Spell spell, SpellName name) {
 
     }
 
-    private static void setHeroSpell(Hero hero , HeroName name){
+    private static void setHeroSpell(Hero hero, HeroName name) {
 
     }
+
     private static HashMap<MinionName, String> minionHashMap = new HashMap<>();
     private static HashMap<HeroName, String> heroHashMap = new HashMap<>();
     private static HashMap<ItemName, String> itemHashMap = new HashMap<>();
     private static HashMap<SpellName, String> spellHashMap = new HashMap<>();
-
 
 
     //-------------------------------------minions-------------------------------------------------------
@@ -110,14 +233,9 @@ public class DefaultCards {
     private static ArrayList<Buff> buffs;
     private static SpecialPower specialPower;
 
-    static {
-        buffs = new ArrayList<>();
-        buffs.add(new StunBuff(1, false, false));
-        specialPower = new OnAttackSpecialPower(buffs, false, false);
-    }
 
     private static final String FARS_SHAMSHIRZAN = gson.toJson(new Minion("fars_shamshirzan", 400, 2,
-            6, 4, MinionAttackType.MELEE, 0, specialPower, CardType.MINION, 0,
+            6, 4, MinionAttackType.MELEE, 0, null, CardType.MINION, 0,
             "Stun opponent for 1 turn on attack",
             MinionName.FARS_SHAMSHIRZAN, true));
     private static final String FARS_NEYZEDAR = gson.toJson(new Minion("fars_NEYZEDAR", 500, 1,
@@ -129,24 +247,16 @@ public class DefaultCards {
             "",
             MinionName.FARS_ASBSAVAR, true));
 
-    static {
-        buffs = new ArrayList<>();
-        buffs.add(new WeaknessBuff(1, false, false, 5, true, false
-                , null));
-        specialPower = new OnAttackSpecialPower(buffs, false, false);
-    }
 
     private static final String FARS_PAHLAVAN = gson.toJson(new Minion("fars_pahlavan", 600, 9,
-            24, 6, MinionAttackType.MELEE, 0, specialPower, CardType.MINION, 0,
+            24, 6, MinionAttackType.MELEE, 0, null, CardType.MINION, 0,
             "attack 5 more unit than that attack to a unit",
             MinionName.FARS_PAHLAVAN, true));
 
-    static {
-        specialPower = new ComboSpecialPower();
-    }
+
 
     private static final String FARS_SEPAHSALAR = gson.toJson(new Minion("fars_sepahsalar", 800, 7,
-            12, 4, MinionAttackType.MELEE, 0, specialPower, CardType.MINION, 0,
+            12, 4, MinionAttackType.MELEE, 0, null, CardType.MINION, 0,
             "Combo",
             MinionName.FARS_SEPAHSALAR, true));
     private static final String TOORANEE_KAMANDAR = gson.toJson(new Minion("toorane_kamandar", 500, 1,
@@ -162,15 +272,10 @@ public class DefaultCards {
             "",
             MinionName.TOORANEE_NEYZEDAR, false));
 
-    {
-        buffs = new ArrayList<>();
-        buffs.add(new DisarmBuff(1, false, false));
-        buffs.add(new PoisonBuff(4, false, false));
-        specialPower = new OnAttackSpecialPower(buffs, false, false);
-    }
+
 
     private static final String TOORANEE_JASOS = gson.toJson(new Minion("toorane_jasos", 700, 4,
-            6, 6, MinionAttackType.MELEE, 0, specialPower, CardType.MINION, 0,
+            6, 6, MinionAttackType.MELEE, 0, null, CardType.MINION, 0,
             "Disarm enemy unit for 1 turn and posoined for 4 turn",
             MinionName.TOORANE_JASOS, false));
     private static final String TOORANEE_GORZDAR = gson.toJson(new Minion("toorane_gorzdar", 450, 2,
@@ -178,12 +283,9 @@ public class DefaultCards {
             "",
             MinionName.TOORANEE_GORZDAR, false));
 
-    {
-        specialPower = new ComboSpecialPower();
-    }
 
     private static final String TOORANEE_SHAHZADE = gson.toJson(new Minion("toorane_shahzade", 800, 6,
-            6, 10, MinionAttackType.MELEE, 0, specialPower, CardType.MINION, 0,
+            6, 10, MinionAttackType.MELEE, 0, null, CardType.MINION, 0,
             "Combo",
             MinionName.TOORANEE_SHAHZADE, false));
     private static final String BLACK_DEEV = gson.toJson(new Minion("black_deev", 300, 9,
@@ -199,7 +301,7 @@ public class DefaultCards {
             ItemName.TAJ_DANAYEE, "add one mana in first three turn"));
 
     private static final String EAGLE = gson.toJson(new Minion("eagle", 200, 2,
-            0, 2, MinionAttackType.RANGED, 3, specialPower, CardType.MINION, 0,
+            0, 2, MinionAttackType.RANGED, 3, null, CardType.MINION, 0,
             "have 10 power buff passive",
             MinionName.EAGLE, false));    ///helth is a mystyry
     private static final String GORAZ_DEEV = gson.toJson(new Minion("goraz_deev", 300, 6,
@@ -210,7 +312,7 @@ public class DefaultCards {
             ItemName.NAMOOS_SEPAR, "active 12 holy buff in friendly hero"));
 
     private static final String ONE_EYE_GHOOL = gson.toJson(new Minion("one_eye_ghool", 500, 7,
-            12, 11, MinionAttackType.HYBRID, 3, specialPower, CardType.MINION, 0,
+            12, 11, MinionAttackType.HYBRID, 3, null, CardType.MINION, 0,
             "Attack 2 unit to minions around him on death",
             MinionName.ONE_EYE_GHOOL, false));
     private static final String KAMAN_DAMOL = gson.toJson(new Item(30000, "kaman_damol",
@@ -218,7 +320,7 @@ public class DefaultCards {
             "that attack it for onr turn"));
 
     private static final String POISON_SNAKE = gson.toJson(new Minion("poison_snake", 300, 4,
-            5, 6, MinionAttackType.RANGED, 4, specialPower, CardType.MINION, 0,
+            5, 6, MinionAttackType.RANGED, 4, null, CardType.MINION, 0,
             "poison enemy unit 3 turn on attack",
             MinionName.POISON_SNAKE, false));
     private static final String DRAGON_FIRE = gson.toJson(new Minion("dragon_fire", 250, 5,
@@ -226,33 +328,30 @@ public class DefaultCards {
             "",
             MinionName.DRAGON_FIRE, false));
 
-    static {
-        specialPower = new OnAttackSpecialPower(null, true, false);
-    }
 
     private static final String DARANDE_SHIR = gson.toJson(new Minion("darande_shir", 600, 2,
-            1, 8, MinionAttackType.MELEE, 0, specialPower, CardType.MINION, 0,
+            1, 8, MinionAttackType.MELEE, 0, null, CardType.MINION, 0,
             "holy buff doesn't have effect on this card on attack",
             MinionName.DARANDE_SHIR, false));
     private static final String NOOSH_DARO = gson.toJson(new Item(0, "noosh_daro",
             ItemName.NOOSH_DAROO, "add 6 unit to a random unit health"));
 
     private static final String GHOOL_SNAKE = gson.toJson(new Minion("ghool_snake", 500, 8,
-            14, 7, MinionAttackType.RANGED, 5, specialPower, CardType.MINION, 0,
+            14, 7, MinionAttackType.RANGED, 5, null, CardType.MINION, 0,
             "Reverse holy buff on spawn on around minions",
             MinionName.GHOOL_SNAKE, false));
     private static final String TIR_DOSHAKH = gson.toJson(new Item(0, "tir_doshakh",
             ItemName.TIR_DOSHAKH, "add 2 unit to a random hybrid or ranged unit"));
 
     private static final String WHITE_WOLF = gson.toJson(new Minion("white_wolf", 400, 5,
-            8, 2, MinionAttackType.MELEE, 0, specialPower, CardType.MINION, 0,
+            8, 2, MinionAttackType.MELEE, 0, null, CardType.MINION, 0,
             "when attack a minion reduce 6 unit in next turn and 4 unit in next 2 turn of health",
             MinionName.WHITE_WOLF, false));
     private static final String PAR_SIMORGH = gson.toJson(new Item(3500, "par_simorgh",
             ItemName.PAR_SIMORGH, "if enemy hero is hybrid or ranged reduce two unit of it attack power"));
 
     private static final String PALANG = gson.toJson(new Minion("palang", 400, 4,
-            6, 2, MinionAttackType.MELEE, 0, specialPower, CardType.MINION, 0,
+            6, 2, MinionAttackType.MELEE, 0, null, CardType.MINION, 0,
             "when attack a minion next turn its health reduce 8 unit",
             MinionName.PALANG, false));
     private static final String EKSIR = gson.toJson(new Item(0, "eksir",
@@ -260,14 +359,14 @@ public class DefaultCards {
             "increase on random minion"));
 
     private static final String WOLF = gson.toJson(new Minion("wolf", 400, 3,
-            6, 1, MinionAttackType.MELEE, 0, specialPower, CardType.MINION, 0,
+            6, 1, MinionAttackType.MELEE, 0, null, CardType.MINION, 0,
             "when attack a minion next turn its health reduce 6 unit",
             MinionName.WOLF, false));
     private static final String MAJOON_MANA = gson.toJson(new Item(0, "majoon_mana",
             ItemName.MAJOON_MANA, "increase 3 mana on next turn"));
 
     private static final String JADOOGAR = gson.toJson(new Minion("jadoogar", 550, 4,
-            5, 4, MinionAttackType.RANGED, 3, specialPower, CardType.MINION, 0,
+            5, 4, MinionAttackType.RANGED, 3, null, CardType.MINION, 0,
             "give itself and around friendly minions one power with 2 strength and one weakness with 1 strength" +
                     "for one turn",
             MinionName.JADOOGAR, false));
@@ -275,13 +374,10 @@ public class DefaultCards {
             ItemName.MAJOON_ROIEEN, "active 10 holy buffs in a random friendly unit for 2 turns"));
 
     private static final String JADOOGAR_AZAM = gson.toJson(new Minion("jadoogar_azam", 550, 6,
-            6, 6, MinionAttackType.RANGED, 5, specialPower, CardType.MINION, 0,
+            6, 6, MinionAttackType.RANGED, 5, null, CardType.MINION, 0,
             "give itself and 8 around minion one power with 2 strength and one holy buff continus passively",
             MinionName.JADOOGAR_AZAM, false));
 
-    static {
-        ///============================= on turn =======================================
-    }
 
     private static final String JEN = gson.toJson(new Minion("jen", 500, 5,
             10, 4, MinionAttackType.RANGED, 4, null, CardType.MINION, 0,
@@ -292,39 +388,39 @@ public class DefaultCards {
             " on death"));
 
     private static final String WILD_GORAZ = gson.toJson(new Minion("wild_goraz", 500, 6,
-            10, 14, MinionAttackType.MELEE, 0, specialPower, CardType.MINION, 0,
+            10, 14, MinionAttackType.MELEE, 0, null, CardType.MINION, 0,
             "can't be disarm",
             MinionName.WILD_GORAZ, false));
     private static final String PIRAN = gson.toJson(new Minion("piran", 400, 8,
-            20, 12, MinionAttackType.MELEE, 0, specialPower, CardType.MINION, 0,
+            20, 12, MinionAttackType.MELEE, 0, null, CardType.MINION, 0,
             "can't be poisened",
             MinionName.PIRAN, false));
     private static final String GEEV = gson.toJson(new Minion("geev", 450, 4,
-            5, 7, MinionAttackType.RANGED, 5, specialPower, CardType.MINION, 0,
+            5, 7, MinionAttackType.RANGED, 5, null, CardType.MINION, 0,
             "dont take negative effects",
             MinionName.GEEV, false));
     private static final String BAHMAN = gson.toJson(new Minion("bahman", 450, 8,
-            16, 9, MinionAttackType.MELEE, 0, specialPower, CardType.MINION, 0,
+            16, 9, MinionAttackType.MELEE, 0, null, CardType.MINION, 0,
             "randomly hit a enemy minion with 16 power on spawn",
             MinionName.BAHMAN, false));
     private static final String ASHKBOS = gson.toJson(new Minion("ashkbos", 400, 7,
-            14, 8, MinionAttackType.MELEE, 0, specialPower, CardType.MINION, 0,
+            14, 8, MinionAttackType.MELEE, 0, null, CardType.MINION, 0,
             "units with lower attack power can't attack him",
             MinionName.ASHKBOOS, false));
     private static final String DOSAR_GHOOL = gson.toJson(new Minion("dosar_ghool", 550, 4,
-            10, 4, MinionAttackType.MELEE, 0, specialPower, CardType.MINION, 0,
+            10, 4, MinionAttackType.MELEE, 0, null, CardType.MINION, 0,
             "when attack a unit remove every positive buff that is active on it",
             MinionName.DOSAR_GHOOL, false));
     private static final String NANE_SARMA = gson.toJson(new Minion("nane_sarma", 400, 3,
-            3, 4, MinionAttackType.RANGED, 5, specialPower, CardType.MINION, 0,
+            3, 4, MinionAttackType.RANGED, 5, null, CardType.MINION, 0,
             "stun minions around her for 1 turn on spawn",
             MinionName.NANE_SARMA, false));
     private static final String FOOLAD_ZEREH = gson.toJson(new Minion("foolad_zereh", 650, 3,
-            1, 1, MinionAttackType.MELEE, 0, specialPower, CardType.MINION, 0,
+            1, 1, MinionAttackType.MELEE, 0, null, CardType.MINION, 0,
             "have 12 holy buff passively",
             MinionName.FOOLAD_ZEREH, false));
     private static final String SIYAVOSH = gson.toJson(new Minion("siyavosh", 350, 4,
-            8, 5, MinionAttackType.MELEE, 0, specialPower, CardType.MINION, 0,
+            8, 5, MinionAttackType.MELEE, 0, null, CardType.MINION, 0,
             "hit enemy hero with 6 strenght on death",
             MinionName.SIAVOSH, false));
     private static final String EERAG = gson.toJson(new Minion("eerag", 500, 4,
@@ -336,53 +432,13 @@ public class DefaultCards {
             "",
             MinionName.BIG_GHOOL, false));
     private static final String SHAH_GHOOL = gson.toJson(new Minion("shah_ghool", 600, 5,
-            10, 4, MinionAttackType.MELEE, 0, specialPower, CardType.MINION, 0,
+            10, 4, MinionAttackType.MELEE, 0, null, CardType.MINION, 0,
             "combo",
             MinionName.SHAH_GOOL, false));
     private static final String ARJANG_DEEV = gson.toJson(new Minion("arjang_deev", 600, 3,
-            6, 6, MinionAttackType.MELEE, 0, specialPower, CardType.MINION, 0,
+            6, 6, MinionAttackType.MELEE, 0, null, CardType.MINION, 0,
             "combo",
             MinionName.ARJANG_DEEV, false));
-
-    static {
-        specialPower = new OnDefendSpecialPower(OnDefendType.BUFF, BuffName.POISON);
-    }
-
-    static {
-        specialPower = new OnDefendSpecialPower(OnDefendType.NOT_NEGATIVE, null);     //be checked
-    }
-
-    static {
-        specialPower = new OnSpawnSpecialPower(new WeaknessBuff(1, false, false,
-                16, true, false, null), OnSpawnTargetCell.A_RANDOM_ENEMY_MINION);
-    }
-
-    static {
-        specialPower = new OnDefendSpecialPower(OnDefendType.NOT_ATTACK_FROM_WEAK, null);   //be checked
-    }
-
-    static {
-        specialPower = new OnAttackSpecialPower(null, false, true);   //be checked
-    }
-
-    static {
-        specialPower = new OnSpawnSpecialPower(new StunBuff(1, false, false),
-                OnSpawnTargetCell.EIGHT_AROUND);
-    }
-
-    static {
-        buffs = new ArrayList<>();
-        buffs.add(new HollyBuff(400, false, true, false)); //be checked
-        specialPower = new PassiveSpecialPower(buffs, PassiveTargetType.CURRENT_CELL);
-    }
-
-    static {
-        specialPower = new OnDeathSpecialPower(6, OnDeathTargetType.ENEMY_HERO);
-    }
-
-    static {
-        specialPower = new ComboSpecialPower();
-    }
 
 
     //-------------------------------------------HERO----------------------------------------------------------//
