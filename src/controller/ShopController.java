@@ -21,6 +21,7 @@ public class ShopController {
         boolean isFinished = false;
         do {
             ShopRequest request = new ShopRequest();
+            ShopView.getInstance().help();
             request.getNewCommand();
             if (request.getType() == ShopRequestType.EXIT)
                 isFinished = true;

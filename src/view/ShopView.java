@@ -15,7 +15,11 @@ public class ShopView {
         System.out.println(errorType.getMessage());
     }
     public void help(){
-
+        System.out.println("<<---- Shop Menu ---->>");
+        System.out.println("1 . show Collection\n2 . search [item name|card name]\n3 . search collection [item name|" +
+                "card name]\n4 . buy [item name|card name]\n5 . sell [item name|card name]\n6 . show (print cards" +
+                " and items that is available in shop)\n7 . exit\n8 . help");
+        System.out.println("enter [option] ( except for Help and Exit )");
     }
 
     public void showCollection(Collection collection){
