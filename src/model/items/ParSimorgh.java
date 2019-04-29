@@ -7,8 +7,8 @@ import model.enumerations.MinionAttackType;
 
 public class ParSimorgh extends Usable {
 
-    public ParSimorgh(int cost, String name, int itemID, String desc) {
-        super(cost, name, ItemName.PAR_SIMORGH, itemID, desc);
+    public ParSimorgh(int cost, String name, String desc) {
+        super(cost, name, ItemName.PAR_SIMORGH, desc);
     }
 
     @Override
