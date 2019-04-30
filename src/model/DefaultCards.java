@@ -13,6 +13,8 @@ import model.cellaffects.HollyCellAffect;
 import model.cellaffects.PoisonCellAffect;
 import model.enumerations.*;
 import model.items.Item;
+import model.items.ManaUsableItem;
+import model.items.SpellUsableItem;
 import model.specialPower.*;
 
 import java.util.ArrayList;
@@ -27,10 +29,6 @@ public class DefaultCards {
         return minion;
     }
 
-    public static Item getItem(ItemName name) {
-        return gson.fromJson(itemHashMap.get(name), Item.class);
-    }
-
     public static Spell getSpell(SpellName name) { // cellaffects and buffs = null
         Spell spell = gson.fromJson(spellHashMap.get(name), Spell.class);
         setSpellCellAffectOrBuffs(spell, name);
@@ -41,6 +39,16 @@ public class DefaultCards {
         Hero hero = gson.fromJson(heroHashMap.get(name), Hero.class);
         setHeroBuffsOrCellAffect(hero, name);
         return hero;
+    }
+
+    public static Item getItem(ItemName name) {
+        switch (name){
+            case TAJ_DANAYEE:
+                return new ManaUsableItem();
+            case NAMOOS_SEPAR:
+                return new SpellUsableItem();
+            case KAMAN_DAMOOL:
+        }
     }
 
     private static void setMinionSpecialPower(Minion minion, MinionName name) {
