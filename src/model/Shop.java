@@ -5,6 +5,7 @@ import model.cards.Hero;
 import model.cards.Minion;
 import model.cards.Spell;
 import model.enumerations.CardType;
+import model.enumerations.ItemName;
 import model.enumerations.MinionName;
 import model.enumerations.SpellName;
 import model.items.Item;
@@ -29,7 +30,9 @@ public class Shop {
         for (SpellName spellName : SpellName.values()) {
             allCards.add(DefaultCards.getSpell(spellName));
         }
-        // items remaining
+        for(ItemName itemName : ItemName.values()){
+            allItems.add(DefaultCards.getItem(itemName));
+        }
     }
 
     public Card searchCardByName(String cardName) {
