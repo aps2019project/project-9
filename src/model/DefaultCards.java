@@ -43,13 +43,13 @@ public class DefaultCards {
     }
 
     public static Item getItem(ItemName name) {
-        switch (name) {
+        /*switch (name) {
             case TAJ_DANAYEE:
                 return new ManaUsableItem();
             case NAMOOS_SEPAR:
                 return new SpellUsableItem();
             case KAMAN_DAMOOL:
-        }
+        }*/
     }
 
 
