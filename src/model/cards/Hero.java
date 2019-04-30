@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 public class Hero extends Minion {
     // hero does not have minion name ( not use the minion name that inherit )
+    // for hero MP is the buffs cost
     private static ArrayList<Hero> heroes = new ArrayList<>();
     @Expose
     private int coolDown;
@@ -93,7 +94,7 @@ public class Hero extends Minion {
 
     public String toString() {
         String string = "Name : " + getName() + " - AP : " + getAP() + " - HP : " + getHP() + " - Class : "
-                + getAttackType() + " - Special power: " + getDesc();
+                + getAttackType() + " - Special power: " + getDesc() + " - cost : " + getCost();
         return string;
     }
 

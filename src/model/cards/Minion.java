@@ -344,7 +344,7 @@ public class Minion extends Card {
 
     public String toString() {
         return "Type : Minion - Name : " + getName() + " - Class: " + attackType + " - AP : " + AP +
-                " - HP : " + HP + " - MP : " + MP + " - Special power : " + desc;
+                " - HP : " + HP + " - MP : " + MP + " - Special power : " + desc + " - cost : " + getCost();
     }
 
     public int getAttackRange() {

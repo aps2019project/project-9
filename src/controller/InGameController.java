@@ -275,15 +275,13 @@ public class InGameController {
         player.comboAttack(targetCell, friendlyMinions);
     }
 
-    private void useSpecialPower(int x, int y) {
+    private void useSpecialPower(int x, int y) { // not important where the cell is
         Cell targetCell = battle.getPlayGround().getCell(x, y);
         Player player = battle.getCurrenPlayer();
-        if (player.getHero().getHeroSpell() == null) {
+        if (player.getHero().getBuffs() == null) {
             inGameView.printfError(InGameErrorType.HERO_NOT_HAVE_SPELL);
-        } else if (player.getMana() < player.getHero().getHeroSpell().getMP()) {
+        } else if (player.getMana() < player.getHero().getMP()) {
             inGameView.printfError(InGameErrorType.NOT_HAVE_ENOUGH_MANA);
-        } else if (!player.getHero().getHeroSpell().isValidTarget(targetCell)) {
-            inGameView.printfError(InGameErrorType.INVALID_TARGET);
         } else if (!player.getHero().isSpellReady()) {
             inGameView.printfError(InGameErrorType.HERO_COOL_DOWN);
         } else {

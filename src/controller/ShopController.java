@@ -12,7 +12,7 @@ import view.ShopView;
 public class ShopController {
     private ShopView view = ShopView.getInstance();
     private Account loggedInAccount;
-
+    private Shop shop = Shop.getInstance();
     public ShopController(Account loggedInAccount) {
         this.loggedInAccount = loggedInAccount;
     }
@@ -46,7 +46,7 @@ public class ShopController {
                     search(request.getItemOrCardName());
                     break;
                 case SHOW:
-                    view.show();
+                    view.show(shop);
                     break;
                 case HELP:
                     view.help();
@@ -78,7 +78,6 @@ public class ShopController {
     }
 
     private void buy(String itemOrCardName) {
-        Shop shop = Shop.getInstance();
         if (shop.searchCardByName(itemOrCardName) == null
                 && shop.searchItemByName(itemOrCardName) == null)
             view.printError(ShopErrorType.CARD_OR_ITEM_NOT_IN_SHOP);
@@ -101,8 +100,7 @@ public class ShopController {
         }
     }
 
-    public void search(String itemOrCardName) {
-        Shop shop = Shop.getInstance();
+    private void search(String itemOrCardName) {
         if (shop.searchCardByName(itemOrCardName) == null
                 && shop.searchItemByName(itemOrCardName) == null)
             view.printError(ShopErrorType.CARD_OR_ITEM_NOT_IN_SHOP);

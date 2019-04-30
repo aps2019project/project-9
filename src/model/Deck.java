@@ -4,12 +4,60 @@ import model.cards.Card;
 import model.cards.Hero;
 import model.cards.Minion;
 import model.cards.Spell;
-import model.enumerations.CardType;
+import model.enumerations.*;
 import model.items.Item;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Deck {
+    // 1,9,11,25,13,17,18,21,22,26,38,36,40
+    private static final MinionName[] FIRST_LEVEL_MINIONS =
+            {MinionName.FARS_KAMANDAR,MinionName.TOORANEE_NEYZEDAR,
+            MinionName.TOORANEE_GORZDAR,MinionName.JADOOGAR,MinionName.BLACK_DEEV,
+            MinionName.ONE_EYE_GHOOL,MinionName.POISON_SNAKE,MinionName.GHOOL_SNAKE,
+            MinionName.WHITE_WOLF,MinionName.JADOOGAR_AZAM,MinionName.SIAVOSH,
+            MinionName.NANE_SARMA,MinionName.ARJANG_DEEV};
+    // 1,7,10,11,12,18,20
+    private static final SpellName[] FIRST_LEVEL_SPELLS =
+            {SpellName.TOTAL_DISARM,SpellName.LIGHTING_BOLT,SpellName.ALL_DISARM,
+            SpellName.ALL_POISON,SpellName.DISPEL,SpellName.SACRIFICE,SpellName.SHOCK};
+    // 1
+    private static final HeroName FIRST_LEVEL_HERO = HeroName.WHITE_DEEV;
+    // 1
+    private static final ItemName FIRST_LEVEL_ITEM = ItemName.TAJ_DANAYEE;
+    // 2,3,5,8,12,15,19,23,27,30,33,39,25
+    private static final MinionName[] SECOND_LEVEL_MINIONS =
+            {MinionName.FARS_SHAMSHIRZAN,MinionName.FARS_NEYZEDAR,MinionName.FARS_PAHLAVAN,
+            MinionName.TOORANEE_GHOLABSANG,MinionName.TOORANEE_SHAHZADE,MinionName.EAGLE,
+            MinionName.DRAGON_FIRE,MinionName.PALANG,MinionName.JEN,MinionName.GEEV,
+            MinionName.EERAG,MinionName.SHAH_GOOL,MinionName.JADOOGAR_AZAM};
+    // 2,3,5,9,8,13,19
+    private static final SpellName[] SECOND_LEVEL_SPELLS =
+            {SpellName.AREA_DISPEL,SpellName.EMPOWER,SpellName.GOD_STRENGTH,
+            SpellName.POISON_LAKE,SpellName.MADNESS,SpellName.HEALTH_WITH_PROFIT,
+            SpellName.KINGS_GUARD};
+    // 2
+    private static final HeroName SECOND_LEVEL_HERO = HeroName.SIMORGH;
+    // 18
+    private static final ItemName SECOND_LEVEL_ITEM = ItemName.SOUL_EATER;
+    // 6,7,10,14,16,18,20,24,25,28,29,31,34
+    private static final MinionName[] THIRD_LEVEL_MINIONS =
+            {MinionName.FARS_SEPAHSALAR,MinionName.TOORANEE_KAMANDAR,
+            MinionName.TOORANE_JASOS,MinionName.SANGANDAZ_GHOLL,
+            MinionName.GORAZ_DEEV,MinionName.POISON_SNAKE,
+            MinionName.DARANDE_SHIR,MinionName.WOLF,MinionName.JADOOGAR,
+            MinionName.WILD_GORAZ,MinionName.PIRAN,MinionName.BAHMAN,
+            MinionName.BIG_GHOOL};
+    // 6,10,12,14,15,16,1
+    private static final SpellName[] THIRD_LEVEL_SPELLS =
+            {SpellName.HELLFIRE,SpellName.ALL_DISARM,SpellName.DISPEL,
+            SpellName.POWER_UP,SpellName.ALL_POWER,SpellName.ALL_ATTACK,
+            SpellName.TOTAL_DISARM};
+    // 3
+    private static final HeroName THIRD_LEVEL_HERO = HeroName.EJDEHA;
+    // 12
+    private static final ItemName THIRD_LEVEL_ITEM = ItemName.TERROR_HOOD;
     private ArrayList<Card> cards = new ArrayList<>();
     private Hero hero;
     private Item item;
@@ -18,11 +66,32 @@ public class Deck {
     public Deck(String name) {
         this.name = name;
         if (name.equals("first_level")) {
-
+            for (MinionName minion : FIRST_LEVEL_MINIONS) {
+                cards.add(DefaultCards.getMinion(minion));
+            }
+            for (SpellName spell : FIRST_LEVEL_SPELLS) {
+                cards.add(DefaultCards.getSpell(spell));
+            }
+            hero = DefaultCards.getHero(FIRST_LEVEL_HERO);
+            item = DefaultCards.getItem(FIRST_LEVEL_ITEM);
         } else if (name.equals("second_level")) {
-
+            for (MinionName minion : SECOND_LEVEL_MINIONS) {
+                cards.add(DefaultCards.getMinion(minion));
+            }
+            for (SpellName spell : SECOND_LEVEL_SPELLS) {
+                cards.add(DefaultCards.getSpell(spell));
+            }
+            hero = DefaultCards.getHero(SECOND_LEVEL_HERO);
+            item = DefaultCards.getItem(SECOND_LEVEL_ITEM);
         } else if (name.equals("third_level")) {
-
+            for (MinionName minion : THIRD_LEVEL_MINIONS) {
+                cards.add(DefaultCards.getMinion(minion));
+            }
+            for (SpellName spell : THIRD_LEVEL_SPELLS) {
+                cards.add(DefaultCards.getSpell(spell));
+            }
+            hero = DefaultCards.getHero(THIRD_LEVEL_HERO);
+            item = DefaultCards.getItem(THIRD_LEVEL_ITEM);
         }
     }
 
@@ -36,17 +105,17 @@ public class Deck {
     public Deck getCopy() {
         ArrayList<Card> secondCards = new ArrayList<>();
         for (Card card : cards) {
-            if(card instanceof Minion) {
-                Minion copy = DefaultCards.getMinion(((Minion)card).getMinionName());
+            if (card instanceof Minion) {
+                Minion copy = DefaultCards.getMinion(((Minion) card).getMinionName());
                 secondCards.add(copy);
-            }else if(card instanceof Spell){
-                Spell copy = DefaultCards.getSpell(((Spell)card).getSpellName());
+            } else if (card instanceof Spell) {
+                Spell copy = DefaultCards.getSpell(((Spell) card).getSpellName());
                 secondCards.add(copy);
             }
         }
         Hero secondHero = DefaultCards.getHero(hero.getHeroName());
         Item secondItem = DefaultCards.getItem(item.getItemType());
-        return new Deck(secondCards,secondHero,secondItem,name);
+        return new Deck(secondCards, secondHero, secondItem, name);
     }
 
     public boolean canAddCard() {
@@ -78,39 +147,18 @@ public class Deck {
         return (cards.size() == 20 && hero != null);
     }
 
-    public String toString(boolean forCollection) {
-        int counter = 1;
-        String string = "";
-        if (forCollection)
-            string += "\t\t";
-        string += "Heroes : \n";
-        if (hero != null) {
-            if (forCollection)
-                string += "\t\t";
-            string += "\t\t\t1 : " + hero.toString() + "\n";
+    public String toString() {
+        ArrayList<Card> theCards = new ArrayList<>();
+        for (Card card : cards) {
+            theCards.add(card);
         }
-        if (forCollection)
-            string += "\t\t";
-        string += "Items : ";
-        if (item != null) {
-            if (forCollection)
-                string += "\t\t";
-            string += "\t\t\t1 : " + item.toString() + "\n";
-        }
-        string += "Cards : ";
-        for (Card key : cards) {
-            if (forCollection)
-                string += "\t\t";
-            if (key.getCardType() == CardType.MINION) {
-                Minion minion = (Minion) key;
-                string += "\t\t\t" + counter + " : " + minion.toString() + "\n";
-            } else {
-                Spell spell = (Spell) key;
-                string += "\t\t\t" + counter + " : " + spell.toString() + "\n";
-            }
-            counter++;
-        }
-        return string;
+        theCards.add(hero);
+        ArrayList<Item> items = new ArrayList<>();
+        items.add(item);
+        if (item != null)
+            return Collection.showArraylistOfCardsAndItems(theCards, items);
+        else
+            return Collection.showArraylistOfCardsAndItems(theCards, null);
     }
 
     public Card getCardByID(String cardID) { // also hero
@@ -124,7 +172,7 @@ public class Deck {
             if (key.getCardID() == mainCardId)
                 return key;
         }
-        if (hero.getCardID() == mainCardId)
+        if (hero != null && hero.getCardID() == mainCardId)
             return hero;
         return null;
     }
@@ -136,7 +184,7 @@ public class Deck {
         } catch (NumberFormatException e) {
             return null;
         }
-        if (item.getItemID() == mainItemId)
+        if (item != null && item.getItemID() == mainItemId)
             return item;
         else
             return null;

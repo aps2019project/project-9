@@ -50,6 +50,7 @@ public class DefaultCards {
                 return new SpellUsableItem();
             case KAMAN_DAMOOL:
         }*/
+        return null;
     }
 
 

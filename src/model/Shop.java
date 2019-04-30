@@ -1,10 +1,6 @@
 package model;
 
 import model.cards.Card;
-import model.cards.Hero;
-import model.cards.Minion;
-import model.cards.Spell;
-import model.enumerations.CardType;
 import model.enumerations.MinionName;
 import model.enumerations.SpellName;
 import model.items.Item;
@@ -16,7 +12,7 @@ public class Shop {
 
     private ArrayList<Card> allCards = new ArrayList<>();
     private ArrayList<Item> allItems = new ArrayList<>();
-    private int uniqeID = 0;
+    private static int uniqueID = 1;
 
     public static Shop getInstance(){
         return SHOP;
@@ -49,25 +45,25 @@ public class Shop {
     }
 
     public void buy(Card card, Account account) {
-        card.setCardID(uniqeID++);
+        card.setCardID(uniqueID++);
         account.getCollection().addCard(card);
         account.reduceMoney(card.getCost());
     }
 
     public void buy(Item item, Account account) {
-        item.setItemID(uniqeID++);
+        item.setItemID(uniqueID++);
         account.getCollection().addItem(item);
         account.reduceMoney(item.getCost());
     }
 
     public void sell(Card currentCard, Account loggedInAccount) {
-        currentCard.setCardID(uniqeID++);
+        currentCard.setCardID(uniqueID++);
         loggedInAccount.getCollection().removeCard(currentCard);
         loggedInAccount.addMoney(currentCard.getCost());
     }
 
     public void sell(Item currentItem, Account loggedInAccount) {
-        currentItem.setItemID(uniqeID++);
+        currentItem.setItemID(uniqueID++);
         loggedInAccount.getCollection().removeItem(currentItem);
         loggedInAccount.addMoney(currentItem.getCost());
     }
@@ -81,34 +77,7 @@ public class Shop {
     }
 
     public String toString(){
-        String string = "Heroes : \n";
-        int counter = 1;
-        for(Card card : allCards){
-            if(card.getCardType() == CardType.MINION){
-                Minion minion = (Minion) card;
-                if(minion.getIsHero()){
-                    Hero hero = (Hero) minion;
-                    string += "\t\t\t" + counter + " : " + hero.toString() + " - Buy Cost : " + hero.getCost() ;
-                    counter++;
-                }
-            }
-        }
-        for(Item item : allItems){
-            string += item.toString();
-            string += "\n";
-        }
-        for(Card card : allCards){
-            if(card.getCardType() == CardType.MINION){
-                Minion minion = (Minion) card;
-                string += minion.toString() + " - Sell Cost : " + minion.getCost();
-            }
-            else {
-                Spell spell = (Spell) card;
-                string += spell.toString() + " - Sell Cost : " + spell.getCost();
-            }
-            string += "\n";
-        }
-        return string;
+        return Collection.showArraylistOfCardsAndItems(allCards,allItems);
     }
 
 }

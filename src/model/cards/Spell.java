@@ -181,7 +181,7 @@ public class Spell extends Card {
 
 
     public String toString() {
-        return "Type : Spell - Name : " + getName() + " - MP : " + MP + " - Desc:" + desc;
+        return "Type : Spell - Name : " + getName() + " - MP : " + MP + " - Desc:" + desc + " - cost : " + getCost();
     }
 
     public SpellTargetType getTargetType() {
