@@ -11,13 +11,14 @@ import model.enumerations.SpellName;
 import model.items.Item;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Shop {
     private static final Shop SHOP = new Shop();
 
     private ArrayList<Card> allCards = new ArrayList<>();
     private ArrayList<Item> allItems = new ArrayList<>();
-    private static int uniqueID = 1;
+    private static int uniqueID = 1; // for shop
 
     public static Shop getInstance(){
         return SHOP;
@@ -25,13 +26,21 @@ public class Shop {
     private Shop(){
         // initialize shop
         for (MinionName minionName : MinionName.values()) {
-            allCards.add(DefaultCards.getMinion(minionName));
+            Minion minion = DefaultCards.getMinion(minionName);
+            minion.setCardID(uniqueID++);
+            allCards.add(minion);
         }
         for (SpellName spellName : SpellName.values()) {
-            allCards.add(DefaultCards.getSpell(spellName));
+            Spell spell = DefaultCards.getSpell(spellName);
+            spell.setCardID(uniqueID++);
+            allCards.add(spell);
         }
         for(ItemName itemName : ItemName.values()){
-            allItems.add(DefaultCards.getItem(itemName));
+            Item item = DefaultCards.getItem(itemName);
+            if(item != null) {
+                item.setItemID(uniqueID++);
+                allItems.add(item);
+            }
         }
     }
 
@@ -52,13 +61,11 @@ public class Shop {
     }
 
     public void buy(Card card, Account account) {
-        card.setCardID(uniqueID++);
         account.getCollection().addCard(card);
         account.reduceMoney(card.getCost());
     }
 
     public void buy(Item item, Account account) {
-        item.setItemID(uniqueID++);
         account.getCollection().addItem(item);
         account.reduceMoney(item.getCost());
     }

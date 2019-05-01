@@ -137,6 +137,7 @@ public class Collection {
     }
 
     public void addItem(Item item) {
+        item.setItemID(uniqueID++);
         items.add(item);
     }
 
@@ -189,5 +190,9 @@ public class Collection {
         addCard(DefaultCards.getHero(HeroName.WHITE_DEEV));
         //------------------item----------------
         addItem(DefaultCards.getItem(ItemName.TAJ_DANAYEE));
+    }
+
+    public int getNumberOfItems(){
+        return items.size();
     }
 }

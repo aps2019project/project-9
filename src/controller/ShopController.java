@@ -93,6 +93,9 @@ public class ShopController {
             Item currentItem = shop.searchItemByName(itemOrCardName);
             if (loggedInAccount.getMoney() < currentItem.getCost())
                 view.printError(ShopErrorType.NOT_ENOUGH_MONEY);
+            else if(loggedInAccount.getCollection().getNumberOfItems() == 3){
+                view.printError(ShopErrorType.YOUR_COLLECTION_HAS_THREE_ITEMS);
+            }
             else {
                 shop.buy(currentItem, loggedInAccount);
                 view.printError(ShopErrorType.BOUGHT_SUCCESSFUL);
