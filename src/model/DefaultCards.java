@@ -12,9 +12,8 @@ import model.cellaffects.FireCellAffect;
 import model.cellaffects.HollyCellAffect;
 import model.cellaffects.PoisonCellAffect;
 import model.enumerations.*;
-import model.items.Item;
-import model.items.ManaUsableItem;
-import model.items.SpellUsableItem;
+import model.items.*;
+import model.items.itemEnumerations.*;
 import model.specialPower.*;
 
 import java.util.ArrayList;
@@ -43,13 +42,90 @@ public class DefaultCards {
     }
 
     public static Item getItem(ItemName name) {
-        /*switch (name) {
+        switch (name) {
             case TAJ_DANAYEE:
-                return new ManaUsableItem();
+                return new ManaUsableItem(300, "taj_danayee", ItemName.TAJ_DANAYEE,
+                        "add one mana in first three turn");
             case NAMOOS_SEPAR:
-                return new SpellUsableItem();
-            case KAMAN_DAMOOL:
-        }*/
+                ArrayList<Buff> buffs = new ArrayList<>();
+                for (int i = 0; i < 12; i++) {
+                    buffs.add(new HollyBuff(1, false, false, false));
+                }
+                return new SpellUsableItem(4000, "namoos_separ", ItemName.NAMOOS_SEPAR,
+                        "active 12 holy buff in friendly hero", buffs, SpellItemTarget.FRINEDLY_HERO);
+            case KAMAN_DAMOOL:              //be checked
+                return null;
+            case NOOSH_DAROO:
+                ArrayList<Buff> buffs2 = new ArrayList<>();
+                for (int i = 0; i < 6; i++)
+                    buffs2.add(new HollyBuff(1, false, false, false));
+                return new SpellCollectible(0, "noosh_daro", ItemName.NOOSH_DAROO,
+                        "add 6 unit to a random unit health", buffs2, ItemTarget.RANDOM_FRIENDLY_CARD);
+            case TIR_DOSHAKH:
+                ArrayList<Buff> buffs3 = new ArrayList<>();
+                buffs3.add(new PowerBuff(1, false, false, 2, false));
+                return new SpellCollectible(0, "tir_doshakh", ItemName.TIR_DOSHAKH,
+                        "add 2 unit to a random hybrid or ranged unit", buffs3, ItemTarget.RANDOM_RANGED_OR_HYBRID);
+            case PAR_SIMORGH:
+                ArrayList<Buff> buffs4 = new ArrayList<>();
+                buffs4.add(new PowerBuff(1, false, false, 2, false));
+                return new SpellUsableItem(3500, "par_simorgh", ItemName.PAR_SIMORGH,
+                        "if enemy hero is hybrid or ranged reduce two unit of it attack power", buffs4
+                        , SpellItemTarget.ENEMY_HERO_RANGED_OR_HYBRID);
+            case EKSIR:
+                ArrayList<Buff> buf = new ArrayList<>();
+                buf.add(new PowerBuff(1, false, false, 3, true));
+                buf.add(new PowerBuff(1, false, false, 3, false));
+                return new SpellCollectible(0, "eksir", ItemName.EKSIR, "add 3 unit to health " +
+                        "power & give a powerbuff with 3 power increase on random minion"
+                        , buf, ItemTarget.RANDOM_FRIENDLY_CARD);
+            case MAJOON_MANA:       //be checked
+                return new addMana(0, "majoon_mana", ItemName.MAJOON_MANA, "increase 3 mana on next turn");
+            case MAJOON_ROIEEN:
+                ArrayList<Buff> buf1 = new ArrayList<>();
+                for (int i = 0; i < 10; i++) {
+                    buf1.add(new HollyBuff(2, false, false, false));
+                }
+                return new SpellCollectible(0, "majoon_roieen", ItemName.MAJOON_ROIEEN,
+                        "active 10 holy buffs in a random friendly unit for 2 turns", buf1,
+                        ItemTarget.RANDOM_FRIENDLY_CARD);
+            case NEFRIN_MARG:                                //be checked
+                return new OnDeathCollectibleItem(0, "nefrin_marg", ItemName.NEFRIN_MARG,
+                        "give a minion an ability that can hit a near unit of it with 8 power on death");
+            case RANDOM_DAMAGE:
+                ArrayList<Buff> b = new ArrayList<>();
+                b.add(new PowerBuff(1, false, false, 2, false));
+                return new SpellCollectible(0, "random_damage", ItemName.RANDOM_DAMAGE,
+                        "give a random unit 2 power unit", b, ItemTarget.RANDOM_FRIENDLY_CARD);
+            case TERROR_HOOD:    //be ckecked
+                return null;
+            case BLADES_AGILITY:
+                ArrayList<Buff> b1 = new ArrayList<>();
+                b1.add(new PowerBuff(1, false, false, 6, false));
+                return new SpellCollectible(0, "blades_agility", ItemName.BLADES_AGILITY,
+                        "give a random unit 6 power unit", b1, ItemTarget.RANDOM_FRIENDLY_CARD);
+            case KING_WISDOM:          //be checked
+                return null;
+            case ASSASINATION_DAGGER:
+                return new OnSpawnUsableItem(15000, "assasination_dagger", ItemName.ASSASINATION_DAGGER,
+                        "on landing every unit hit enemy hero with one unit", OnSpawnItemTarget.ENEMY_HERO);
+            case POISONOUS_DAGGER:     //be checked
+                return null;
+            case SHOCK_HAMMER:          //be checked
+                return null;
+            case SOUL_EATER:          //be checked
+                return new OnDeathUsableItem(25000, "soul_eater", ItemName.SOUL_EATER,
+                        "on death of every friendly unit give a power buff with 1 to a friendly unit",
+                        OnDeathTarget.A_FRIENDLY_POWER, null);
+            case GHOSL:
+                return new OnSpawnUsableItem(20000, "ghosl_tamid", ItemName.GHOSL,
+                        "every minion get two holy buff on spawn", OnSpawnItemTarget.EVERY_MINION);
+            case CHINESE_SHAMSHIR:
+                ArrayList<Buff> b2 = new ArrayList<>();
+                b2.add(new PowerBuff(1,false,false,5,false));
+                return new SpellCollectible(0, "chinese_shamshir", ItemName.CHINESE_SHAMSHIR,
+                        "for meelees add 5 power unit",b2,ItemTarget.MELEE);
+        }
         return null;
     }
 
@@ -468,9 +544,6 @@ public class DefaultCards {
             "",
             MinionName.SANGANDAZ_GHOLL, false));
 
-    private static final String TAJ_DANAYEE = gson.toJson(new Item(300, "taj_danayee",
-            ItemName.TAJ_DANAYEE, "add one mana in first three turn"));
-
     private static final String EAGLE = gson.toJson(new Minion("eagle", 200, 2,
             0, 2, MinionAttackType.RANGED, 3, null, CardType.MINION, 0,
             "have 10 power buff passive",
@@ -479,16 +552,11 @@ public class DefaultCards {
             16, 8, MinionAttackType.MELEE, 0, null, CardType.MINION, 0,
             "",
             MinionName.GORAZ_DEEV, false));
-    private static final String NAMOOS_SEPAR = gson.toJson(new Item(4000, "namoos_separ",
-            ItemName.NAMOOS_SEPAR, "active 12 holy buff in friendly hero"));
 
     private static final String ONE_EYE_GHOOL = gson.toJson(new Minion("one_eye_ghool", 500, 7,
             12, 11, MinionAttackType.HYBRID, 3, null, CardType.MINION, 0,
             "Attack 2 unit to minions around him on death",
             MinionName.ONE_EYE_GHOOL, false));
-    private static final String KAMAN_DAMOL = gson.toJson(new Item(30000, "kaman_damol",
-            ItemName.KAMAN_DAMOOL, "Only for ranged and hybrids : friendly hero disarm unit" +
-            "that attack it for onr turn"));
 
     private static final String POISON_SNAKE = gson.toJson(new Minion("poison_snake", 300, 4,
             5, 6, MinionAttackType.RANGED, 4, null, CardType.MINION, 0,
@@ -504,60 +572,38 @@ public class DefaultCards {
             1, 8, MinionAttackType.MELEE, 0, null, CardType.MINION, 0,
             "holy buff doesn't have effect on this card on attack",
             MinionName.DARANDE_SHIR, false));
-    private static final String NOOSH_DARO = gson.toJson(new Item(0, "noosh_daro",
-            ItemName.NOOSH_DAROO, "add 6 unit to a random unit health"));
 
     private static final String GHOOL_SNAKE = gson.toJson(new Minion("ghool_snake", 500, 8,
             14, 7, MinionAttackType.RANGED, 5, null, CardType.MINION, 0,
             "Reverse holy buff on spawn on around minions",
             MinionName.GHOOL_SNAKE, false));
-    private static final String TIR_DOSHAKH = gson.toJson(new Item(0, "tir_doshakh",
-            ItemName.TIR_DOSHAKH, "add 2 unit to a random hybrid or ranged unit"));
 
     private static final String WHITE_WOLF = gson.toJson(new Minion("white_wolf", 400, 5,
             8, 2, MinionAttackType.MELEE, 0, null, CardType.MINION, 0,
             "when attack a minion reduce 6 unit in next turn and 4 unit in next 2 turn of health",
             MinionName.WHITE_WOLF, false));
-    private static final String PAR_SIMORGH = gson.toJson(new Item(3500, "par_simorgh",
-            ItemName.PAR_SIMORGH, "if enemy hero is hybrid or ranged reduce two unit of it attack power"));
 
     private static final String PALANG = gson.toJson(new Minion("palang", 400, 4,
             6, 2, MinionAttackType.MELEE, 0, null, CardType.MINION, 0,
             "when attack a minion next turn its health reduce 8 unit",
             MinionName.PALANG, false));
-    private static final String EKSIR = gson.toJson(new Item(0, "eksir",
-            ItemName.EKSIR, "add 3 unit to health power & give a powerbuff with 3 power" +
-            "increase on random minion"));
-
     private static final String WOLF = gson.toJson(new Minion("wolf", 400, 3,
             6, 1, MinionAttackType.MELEE, 0, null, CardType.MINION, 0,
             "when attack a minion next turn its health reduce 6 unit",
             MinionName.WOLF, false));
-    private static final String MAJOON_MANA = gson.toJson(new Item(0, "majoon_mana",
-            ItemName.MAJOON_MANA, "increase 3 mana on next turn"));
-
     private static final String JADOOGAR = gson.toJson(new Minion("jadoogar", 550, 4,
             5, 4, MinionAttackType.RANGED, 3, null, CardType.MINION, 0,
             "give itself and around friendly minions one power with 2 strength and one weakness with 1 strength" +
                     "for one turn",
             MinionName.JADOOGAR, false));
-    private static final String MAJOON_ROIEEN = gson.toJson(new Item(0, "majoon_roieen",
-            ItemName.MAJOON_ROIEEN, "active 10 holy buffs in a random friendly unit for 2 turns"));
-
     private static final String JADOOGAR_AZAM = gson.toJson(new Minion("jadoogar_azam", 550, 6,
             6, 6, MinionAttackType.RANGED, 5, null, CardType.MINION, 0,
             "give itself and 8 around minion one power with 2 strength and one holy buff continus passively",
             MinionName.JADOOGAR_AZAM, false));
-
-
     private static final String JEN = gson.toJson(new Minion("jen", 500, 5,
             10, 4, MinionAttackType.RANGED, 4, null, CardType.MINION, 0,
             "give every friendly minion 1 power buff continus on turn",
             MinionName.JEN, false));
-    private static final String NEFRIN_MARG = gson.toJson(new Item(0, "nefrin_marg",
-            ItemName.NEFRIN_MARG, "give a minion an ability that can hit a near unit of it with 8 power" +
-            " on death"));
-
     private static final String WILD_GORAZ = gson.toJson(new Minion("wild_goraz", 500, 6,
             10, 14, MinionAttackType.MELEE, 0, null, CardType.MINION, 0,
             "can't be disarm",
@@ -751,6 +797,29 @@ public class DefaultCards {
 
 
     //-----------------------------------------ITEM-------------------------------------------//
+    private static final String TAJ_DANAYEE = gson.toJson(new Item(300, "taj_danayee",
+            ItemName.TAJ_DANAYEE, "add one mana in first three turn"));
+    private static final String NAMOOS_SEPAR = gson.toJson(new Item(4000, "namoos_separ",
+            ItemName.NAMOOS_SEPAR, "active 12 holy buff in friendly hero"));
+    private static final String KAMAN_DAMOL = gson.toJson(new Item(30000, "kaman_damol",
+            ItemName.KAMAN_DAMOOL, "Only for ranged and hybrids : friendly hero disarm unit" +
+            "that attack it for onr turn"));
+    private static final String NOOSH_DARO = gson.toJson(new Item(0, "noosh_daro",
+            ItemName.NOOSH_DAROO, "add 6 unit to a random unit health"));
+    private static final String TIR_DOSHAKH = gson.toJson(new Item(0, "tir_doshakh",
+            ItemName.TIR_DOSHAKH, "add 2 unit to a random hybrid or ranged unit"));
+    private static final String PAR_SIMORGH = gson.toJson(new Item(3500, "par_simorgh",
+            ItemName.PAR_SIMORGH, "if enemy hero is hybrid or ranged reduce two unit of it attack power"));
+    private static final String EKSIR = gson.toJson(new Item(0, "eksir",
+            ItemName.EKSIR, "add 3 unit to health power & give a powerbuff with 3 power" +
+            "increase on random minion"));
+    private static final String MAJOON_MANA = gson.toJson(new Item(0, "majoon_mana",
+            ItemName.MAJOON_MANA, "increase 3 mana on next turn"));
+    private static final String MAJOON_ROIEEN = gson.toJson(new Item(0, "majoon_roieen",
+            ItemName.MAJOON_ROIEEN, "active 10 holy buffs in a random friendly unit for 2 turns"));
+    private static final String NEFRIN_MARG = gson.toJson(new Item(0, "nefrin_marg",
+            ItemName.NEFRIN_MARG, "give a minion an ability that can hit a near unit of it with 8 power" +
+            " on death"));
     private static final String RANDOM_DAMAGE = gson.toJson(new Item(0, "random_damage",
             ItemName.RANDOM_DAMAGE, "give a random unit 2 power unit"));
     private static final String TERROR_HOOD = gson.toJson(new Item(5000, "terror_hood",
