@@ -25,7 +25,7 @@ public class Item {
     }
 
     public String toString() {
-        return "Name : " + name + " - Desc: " + desc;
+        return "Name : " + name + " - Desc: " + desc + " - cost : " + cost;
     }
 
     public static ArrayList<Item> getItems() {

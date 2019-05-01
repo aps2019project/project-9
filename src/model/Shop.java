@@ -8,6 +8,7 @@ import model.enumerations.CardType;
 import model.enumerations.ItemName;
 import model.enumerations.MinionName;
 import model.enumerations.SpellName;
+import model.items.Collectible;
 import model.items.Item;
 
 import java.util.ArrayList;
@@ -37,13 +38,15 @@ public class Shop {
         }
         for(ItemName itemName : ItemName.values()){
             Item item = DefaultCards.getItem(itemName);
-            if(item != null) {
-                item.setItemID(uniqueID++);
-                allItems.add(item);
+            if(!(item instanceof Collectible)) {
+                if(item != null) {
+                    item.setItemID(uniqueID++);
+                    allItems.add(item);
+                }
             }
         }
     }
-
+    // total_disarm , all_disam , all_poison , ghool_snake
     public Card searchCardByName(String cardName) {
         for (Card card : allCards) {
             if(card.getName().equals(cardName))

@@ -17,7 +17,7 @@ public class ShopView {
     public void help(){
         System.out.println("<<---- Shop Menu ---->>");
         System.out.println("1 . show Collection\n2 . search [item name|card name]\n3 . search collection [item name|" +
-                "card name]\n4 . buy [item name|card name]\n5 . sell [item name|card name]\n6 . show (print cards" +
+                "card name]\n4 . buy [item name|card name]\n5 . sell [item id|card id]\n6 . show (print cards" +
                 " and items that is available in shop)\n7 . exit\n8 . help");
     }
 
@@ -31,9 +31,9 @@ public class ShopView {
     }
 
     public void showCardID(Card card){
-        System.out.println(card.getCardID());
+        System.out.println("card ID : " + card.getCardID());
     }
     public void showItemID(Item item){
-        System.out.println(item.getItemID());
+        System.out.println("item ID : " + item.getItemID());
     }
 }

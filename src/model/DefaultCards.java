@@ -41,7 +41,7 @@ public class DefaultCards {
         return hero;
     }
 
-    private static Item getItem(ItemName name) {
+    public static Item getItem(ItemName name) {
         switch (name) {
             case TAJ_DANAYEE:
                 return new ManaUsableItem(300, "taj_danayee", ItemName.TAJ_DANAYEE,
