@@ -37,30 +37,32 @@ public class CollectionView {
     }
 
     public void showAllDecks(ArrayList<Deck> decks, Deck mainDeck) {
-        ArrayList<Deck> allDecks = decks;
         if (mainDeck != null) {
-            allDecks.remove(mainDeck);
+            System.out.println("Your Main Deck :");
+            System.out.println(mainDeck.getName());
         }
-        for (Deck deck : allDecks) {
-            System.out.println(deck.getName());
+        System.out.println("Other Decks :");
+        for (Deck deck : decks) {
+            if (!deck.equals(mainDeck))
+                System.out.println(deck.getName());
         }
     }
 
-    public void showCardID(ArrayList<Card> cards){
+    public void showCardID(ArrayList<Card> cards) {
         for (Card card : cards) {
             System.out.print("Card ID :");
             System.out.println(card.getCardID());
         }
     }
 
-    public void showItemID(ArrayList<Item> items){
+    public void showItemID(ArrayList<Item> items) {
         for (Item item : items) {
             System.out.println("Item ID :");
             System.out.println(item.getItemID());
         }
     }
 
-    public void showCollection(Collection collection){
+    public void showCollection(Collection collection) {
         System.out.println(collection.toString());
     }
 }

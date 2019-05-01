@@ -23,6 +23,7 @@ public class Account implements Comparable<Account> {
         myCollection = new Collection();
         myCollection.setOwnerAccount(this);
         mainDeck = new Deck("first_level"); // initialized deck
+        decks.add(mainDeck);
     }
 
     public static Account findAccount(String userName) {           //if not valid return null
