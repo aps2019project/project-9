@@ -149,7 +149,7 @@ public class InGameRequest {
     }
 
     private boolean checkMoveSyntax(String command) {
-        return command.matches("move to [1-5] [1-9]");
+        return command.matches("move to [0-4] [0-8]");
     }
 
     private void getCommandOfComboAttack(String command) {

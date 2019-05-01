@@ -160,6 +160,13 @@ public class Deck {
         else
             return Collection.showArraylistOfCardsAndItems(theCards, null);
     }
+    public Card getCardByBattleID(String battleID){
+        for (Card card : cards) {
+            if(card.getBattleID().equals(battleID))
+                return card;
+        }
+        return null;
+    }
 
     public Card getCardByID(String cardID) { // also hero
         int mainCardId;

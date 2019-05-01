@@ -1,7 +1,6 @@
 package model;
 
 import model.buffs.Buff;
-import model.buffs.DisarmBuff;
 import model.cards.Card;
 import model.cards.Minion;
 import model.cards.Spell;
@@ -33,11 +32,16 @@ public class Battle {
         secondPlayerMana = 2;
         initializeOwningPlayerOfCards(firstPlayer);
         initializeOwningPlayerOfCards(secondPlayer);
-
+        initializeHeroAttributes();
     }
 
-    private void initializeHand(Player player){
-
+    private void initializeHeroAttributes(){
+        firstPlayer.getHero().setCell(playGround.getCell(2,0));
+        secondPlayer.getHero().setCell(playGround.getCell(2,8));
+        firstPlayer.getHero().setBattleID(firstPlayer.getName() + "_" + firstPlayer.getHero().getName()
+        + "_" +"1");
+        secondPlayer.getHero().setBattleID(secondPlayer.getName() + "_" + secondPlayer.getHero().getName()
+                + "_" +"1");
     }
 
     private void initializeOwningPlayerOfCards(Player player) {

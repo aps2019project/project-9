@@ -14,7 +14,17 @@ public class PlayGround {
     private Flag flag; // for mode two ( one flag )
 
     public PlayGround(GameMode mode) {
-        // remaining
+        if(mode == GameMode.HERO_KILL) {
+            for (int i = 0; i < 5; i++) {
+                for (int j = 0; j < 9; j++) {
+                    cells[i][j] = new Cell(i, j, this, null);
+                }
+            }
+        }else if(mode == GameMode.ONE_FLAG){
+
+        }else{
+
+        }
     }
 
     public boolean isForEnemyMinion(Cell cell, Player player) {
@@ -31,8 +41,8 @@ public class PlayGround {
     }
 
     public Cell getCell(int x, int y) {
-        if ((x - 1) >= 0 && (y - 1) >= 0 && (x - 1) <= 4 && (y - 1) <= 8)
-            return cells[x - 1][y - 1];
+        if ((x ) >= 0 && (y ) >= 0 && (x) <= 4 && (y) <= 8)
+            return cells[x][y];
         else
             return null;
     }

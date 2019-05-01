@@ -65,6 +65,9 @@ public class Minion extends Card {
         if (specialPower != null)
             specialPower.setMinion(this);
         hasHollyBuff = false;
+        canCounterAttack = true;
+        canAttack = true;
+        canMove = true;
     }
 
 

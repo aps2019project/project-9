@@ -40,6 +40,7 @@ public class Player {
         this.name = account.getUserName();
         minionsInPlayGround.add(hero);
         graveYard = new GraveYard(this);
+        hand = new Hand(deck);
     }
 
     public Player(int level , Battle battle) { // for computer AI
