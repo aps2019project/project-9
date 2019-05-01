@@ -14,7 +14,8 @@ public enum InGameErrorType {
     CAN_NOT_MOVE("This Card Can not Move"),
     INVALID_COLLECTIBLE_ID("Invalid ID"),
     HERO_NOT_HAVE_SPELL("Your Hero does not have Special Power"),
-    HERO_COOL_DOWN("Your Hero is in Cool Down");
+    HERO_COOL_DOWN("Your Hero is in Cool Down"),
+    GAME_STARTED("Game Started : ");
     private String message;
     public String getMessage() {
         return message;

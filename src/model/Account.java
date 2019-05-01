@@ -109,4 +109,8 @@ public class Account implements Comparable<Account> {
     public void addBattleResult(BattleResult result){
         battleResults.add(result);
     }
+
+    public void wins(){
+        numberOfWins++;
+    }
 }

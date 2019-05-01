@@ -16,6 +16,7 @@ public class BattleMenuView {
     }
 
     public void showSingleMultiPlayerMenu() {
+        System.out.println("<<------Battle Menu----->>");
         System.out.println("1 . Single Player");
         System.out.println("2 . Multi Player");
         System.out.println("3 . Exit");
@@ -49,11 +50,12 @@ public class BattleMenuView {
         System.out.println(errorType.getMessage());
     }
 
-    public void showUserNames() {
+    public void showUserNames(Account loggedAccount) {
         int counter = 1;
         System.out.println("Available Accounts :");
         for (Account account : Account.getAccounts()) {
-            System.out.println(counter++ + " . " + account.getUserName());
+            if (!account.getUserName().equals(loggedAccount.getUserName()))
+                System.out.println(counter++ + " . " + account.getUserName());
         }
         System.out.println("Enter : \nSelect user [ username ]");
     }

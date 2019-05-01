@@ -33,6 +33,11 @@ public class Battle {
         secondPlayerMana = 2;
         initializeOwningPlayerOfCards(firstPlayer);
         initializeOwningPlayerOfCards(secondPlayer);
+
+    }
+
+    private void initializeHand(Player player){
+
     }
 
     private void initializeOwningPlayerOfCards(Player player) {
@@ -85,6 +90,9 @@ public class Battle {
         assignMana();
         whoseTurn = (whoseTurn == 1) ? (2) : (1);
         turn++;
+        if(this instanceof SinglePlayerBattle){
+            secondPlayer.doAiAction();
+        }
     }
 
     private void assignMana() {
@@ -144,6 +152,11 @@ public class Battle {
         }
         InGameView view = InGameView.getInstance();
         view.endGameOutput(battleResult);
+        if(firstPlayer.equals(winner)){
+            Account.findAccount(firstPlayer.getName()).wins();
+        }else if(!(this instanceof SinglePlayerBattle)){
+            Account.findAccount(secondPlayer.getName()).wins();
+        }
     }
 
     public PlayGround getPlayGround() {

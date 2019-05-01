@@ -242,7 +242,6 @@ public class Player {
                     collectFlag(cell.getFlag(), minion);
                 }
             }
-
             minion.setCanMove(false);
         }
     }
@@ -256,7 +255,8 @@ public class Player {
     }
 
     public void doAiAction() {
-        // ...
+        // ... ( complete here )
+        endTurn();
     }
 
     public void addMana(int number) {

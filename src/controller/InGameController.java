@@ -24,6 +24,7 @@ public class InGameController {
     }
 
     public void main() {
+        inGameView.printfError(InGameErrorType.GAME_STARTED);
         boolean isFinished = false;
         do {
             InGameRequest request = new InGameRequest();

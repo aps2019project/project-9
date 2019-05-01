@@ -30,10 +30,10 @@ public class BattleMenuController {
                 isFinished = true;
             switch (request.getTypeInSingleMultiPlayerMenu()) {
                 case MUTLI_PLAYER:
-                    singlePlayerMenu();
+                    multiPlayerMenu();
                     break;
                 case SINGLE_PLAYER:
-                    multiPlayerMenu();
+                    singlePlayerMenu();
                     break;
             }
 
@@ -88,8 +88,8 @@ public class BattleMenuController {
         }
     }
 
-    private void startStoryModeGame(int level){
-        SinglePlayerBattle singlePlayerBattle = new SinglePlayerBattle(level,loggedInAccount);
+    private void startStoryModeGame(int level) {
+        SinglePlayerBattle singlePlayerBattle = new SinglePlayerBattle(level, loggedInAccount);
         singlePlayerBattle.startBattle();
         InGameController inGameController = new InGameController(singlePlayerBattle);
         inGameController.main();
@@ -120,23 +120,25 @@ public class BattleMenuController {
         else {
             Deck customOpponentDeck = loggedInAccount.findDeckByName(deckName);
             int modeInt = Integer.parseInt(mode);
-            startSinglePlayer(modeInt,customOpponentDeck,numberOfFlags);
+            startSinglePlayer(modeInt, customOpponentDeck, numberOfFlags);
         }
     }
 
-    private void startSinglePlayer(int mode , Deck customOpponentDeck , String numberOfFlags){
-        if(mode != 3)
+    private void startSinglePlayer(int mode, Deck customOpponentDeck, String numberOfFlags) {
+        if (mode != 3)
             numberOfFlags = "0";
         SinglePlayerBattle singlePlayerBattle = new SinglePlayerBattle(3, customOpponentDeck, loggedInAccount
-                ,Integer.parseInt(numberOfFlags));
+                , Integer.parseInt(numberOfFlags));
         singlePlayerBattle.startBattle();
         InGameController inGameController = new InGameController(singlePlayerBattle);
         inGameController.main();
     }
 
     private void multiPlayerMenu() {
+        int counter = 0;
         while (true) {
-            view.showUserNames();
+            if (counter == 0)
+                view.showUserNames(loggedInAccount);
             BattleMenuRequest request = new BattleMenuRequest();
             request.getNewCommand();
             if (request.getTypeMultiPlayer() == null)
@@ -154,6 +156,7 @@ public class BattleMenuController {
             } else if (request.getTypeMultiPlayer() == BattleMenuRequestType.SELECT_USER) {
                 if (isDeckNameValid(request.getUserName())) {
                     view.printError(BattleMenuErrorType.OPPONENT_SUCCESSFULLY);
+                    counter = 1;
                 }
             }
         }

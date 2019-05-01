@@ -18,7 +18,7 @@ public class BattleMenuRequest {
     private String mode;
     private String numberOfFlags;
     private String command;
-    private String userName;
+    private static String userName;
     private int modeInt;
     private int numberOfFlagsInt;
 
@@ -27,7 +27,7 @@ public class BattleMenuRequest {
     }
 
     public BattleMenuRequestType getTypeInSingleMultiPlayerMenu() {
-        if (command.substring(0, 5).matches(ENTER) && command.split(" ").length == 3) {
+        if (command.length() >= 5 && command.substring(0, 5).matches(ENTER) && command.split(" ").length == 3) {
             if (command.matches(SINGLE_PLAYER))
                 return BattleMenuRequestType.SINGLE_PLAYER;
             else
@@ -40,7 +40,7 @@ public class BattleMenuRequest {
     }
 
     public BattleMenuRequestType getTypeSinglePlayerMenu() {
-        if (command.substring(0, 5).matches(ENTER) && command.split(" ").length == 3) {
+        if (command.length() >= 5 && command.substring(0, 5).matches(ENTER) && command.split(" ").length == 3) {
             if (command.matches(CUSTOM_GAME))
                 return BattleMenuRequestType.CUSTOM_GAME;
             else
@@ -100,12 +100,16 @@ public class BattleMenuRequest {
         // for select user [ username ] and Start MultiPlayer game
         if (command.split(" ").length == 3
                 && command.substring(0, 11).matches("select user")) {
-            userName = command.split("")[2];
+            userName = command.split(" ")[2];
             return BattleMenuRequestType.SELECT_USER;
-        } else if (command.split(" ").length == 5
+        } else if (command.split(" ").length >= 4
                 && command.substring(0, 22).matches("start multiplayer game")) {
             mode = command.split(" ")[3];
-            numberOfFlags = command.split(" ")[4];
+            if (!mode.equals("1")) {
+                if(command.split(" ").length != 5)
+                    return null;
+                numberOfFlags = command.split(" ")[4];
+            }
             try {
                 modeInt = Integer.parseInt(mode);
                 if (modeInt == 3)
