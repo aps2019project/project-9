@@ -24,7 +24,8 @@ public class Collection {
     }
 
 
-    public static String showArraylistOfCardsAndItems(ArrayList<Card> cards, ArrayList<Item> items) { // used in shop and collection toString()
+    public static String showArraylistOfCardsAndItems(ArrayList<Card> cards, ArrayList<Item> items) {
+        // used in shop and collection toString()
         String string = "";
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("\nHeroes :\n\n");
@@ -187,6 +188,6 @@ public class Collection {
         //--------------Hero---------------------
         addCard(DefaultCards.getHero(HeroName.WHITE_DEEV));
         //------------------item----------------
-
+        addItem(DefaultCards.getItem(ItemName.TAJ_DANAYEE));
     }
 }
