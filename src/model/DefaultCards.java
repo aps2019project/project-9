@@ -41,7 +41,7 @@ public class DefaultCards {
         return hero;
     }
 
-    public static Item getItem(ItemName name) {
+    private static Item getItem(ItemName name) {
         switch (name) {
             case TAJ_DANAYEE:
                 return new ManaUsableItem(300, "taj_danayee", ItemName.TAJ_DANAYEE,
@@ -54,7 +54,11 @@ public class DefaultCards {
                 return new SpellUsableItem(4000, "namoos_separ", ItemName.NAMOOS_SEPAR,
                         "active 12 holy buff in friendly hero", buffs, SpellItemTarget.FRINEDLY_HERO);
             case KAMAN_DAMOOL:              //be checked
-                return null;
+                buffs = new ArrayList<>();
+                buffs.add(new DisarmBuff(1, false, false));
+                return new OnAttackSpellUsable(30000, "kaman_damool", ItemName.KAMAN_DAMOOL
+                        , "for RANGED and HYBRID : friendly hero on attack gives a disarm buff to enemy"
+                        , buffs, OnAttackTargetType.OPPONENT_CELL, OnAttackOwningMinionType.RANGED_HYBRID_HERO);
             case NOOSH_DAROO:
                 ArrayList<Buff> buffs2 = new ArrayList<>();
                 for (int i = 0; i < 6; i++)
@@ -98,33 +102,50 @@ public class DefaultCards {
                 return new SpellCollectible(0, "random_damage", ItemName.RANDOM_DAMAGE,
                         "give a random unit 2 power unit", b, ItemTarget.RANDOM_FRIENDLY_CARD);
             case TERROR_HOOD:    //be ckecked
-                return null;
+                buffs = new ArrayList<>();
+                buffs.add(new WeaknessBuff(1, false, false, 2,
+                        false, false, null));
+                return new OnAttackSpellUsable(5000, "terror_hood", ItemName.TERROR_HOOD
+                        , "on attack : gives weakness buff with power 2 to a random enemy", buffs
+                        , OnAttackTargetType.RANDOM_ENEMY, OnAttackOwningMinionType.ALL_FRIENDLY_POWERS);
             case BLADES_AGILITY:
                 ArrayList<Buff> b1 = new ArrayList<>();
                 b1.add(new PowerBuff(1, false, false, 6, false));
                 return new SpellCollectible(0, "blades_agility", ItemName.BLADES_AGILITY,
                         "give a random unit 6 power unit", b1, ItemTarget.RANDOM_FRIENDLY_CARD);
             case KING_WISDOM:          //be checked
-                return null;
+                return new ManaUsableItem(9000, "king_wisdom", ItemName.KING_WISDOM
+                        , "Every Turn mana increases");
             case ASSASINATION_DAGGER:
                 return new OnSpawnUsableItem(15000, "assasination_dagger", ItemName.ASSASINATION_DAGGER,
                         "on landing every unit hit enemy hero with one unit", OnSpawnItemTarget.ENEMY_HERO);
             case POISONOUS_DAGGER:     //be checked
-                return null;
+                buffs = new ArrayList<>();
+                buffs.add(new PoisonBuff(1, false, false));
+                return new OnAttackSpellUsable(7000, "poisonous_dagger", ItemName.POISONOUS_DAGGER
+                        , "friendly power on attack gives poison buff to random enemy", buffs
+                        , OnAttackTargetType.RANDOM_ENEMY
+                        , OnAttackOwningMinionType.ALL_FRIENDLY_POWERS);
             case SHOCK_HAMMER:          //be checked
-                return null;
+                buffs = new ArrayList<>();
+                buffs.add(new DisarmBuff(1, false, false));
+                return new OnAttackSpellUsable(15000, "shock_hammer", ItemName.SHOCK_HAMMER
+                        , "friendly hero on attack gives disarm buff to enemy", buffs, OnAttackTargetType.OPPONENT_CELL
+                        , OnAttackOwningMinionType.FRIENDLY_HERO);
             case SOUL_EATER:          //be checked
+                buffs = new ArrayList<>();
+                buffs.add(new PowerBuff(400, true, false, 1, false));
                 return new OnDeathUsableItem(25000, "soul_eater", ItemName.SOUL_EATER,
                         "on death of every friendly unit give a power buff with 1 to a friendly unit",
-                        OnDeathTarget.A_FRIENDLY_POWER, null);
+                        OnDeathTarget.A_FRIENDLY_POWER, buffs);
             case GHOSL:
                 return new OnSpawnUsableItem(20000, "ghosl_tamid", ItemName.GHOSL,
                         "every minion get two holy buff on spawn", OnSpawnItemTarget.EVERY_MINION);
             case CHINESE_SHAMSHIR:
                 ArrayList<Buff> b2 = new ArrayList<>();
-                b2.add(new PowerBuff(1,false,false,5,false));
+                b2.add(new PowerBuff(1, false, false, 5, false));
                 return new SpellCollectible(0, "chinese_shamshir", ItemName.CHINESE_SHAMSHIR,
-                        "for meelees add 5 power unit",b2,ItemTarget.MELEE);
+                        "for meelees add 5 power unit", b2, ItemTarget.MELEE);
         }
         return null;
     }
@@ -472,7 +493,6 @@ public class DefaultCards {
 
     private static HashMap<MinionName, String> minionHashMap = new HashMap<>();
     private static HashMap<HeroName, String> heroHashMap = new HashMap<>();
-    private static HashMap<ItemName, String> itemHashMap = new HashMap<>();
     private static HashMap<SpellName, String> spellHashMap = new HashMap<>();
 
 
@@ -796,7 +816,7 @@ public class DefaultCards {
             null, null, SpellName.SHOCK));
 
 
-    //-----------------------------------------ITEM-------------------------------------------//
+    /*//-----------------------------------------ITEM-------------------------------------------//
     private static final String TAJ_DANAYEE = gson.toJson(new Item(300, "taj_danayee",
             ItemName.TAJ_DANAYEE, "add one mana in first three turn"));
     private static final String NAMOOS_SEPAR = gson.toJson(new Item(4000, "namoos_separ",
@@ -843,7 +863,7 @@ public class DefaultCards {
     private static final String CHINESE_SHAMSHIR = gson.toJson(new Item(0, "chinese_shamshir",
             ItemName.CHINESE_SHAMSHIR, "for meelees add 5 power unit"));
 
-
+*/
     //------------------------------hash map initializing------------------------------
     static {
         minionHashMap.put(MinionName.FARS_KAMANDAR, FARS_KAMANDAR);
@@ -900,7 +920,7 @@ public class DefaultCards {
         heroHashMap.put(HeroName.ROSTAM, ROSTAM);
 
 
-        itemHashMap.put(ItemName.TAJ_DANAYEE, TAJ_DANAYEE);
+        /*itemHashMap.put(ItemName.TAJ_DANAYEE, TAJ_DANAYEE);
         itemHashMap.put(ItemName.NAMOOS_SEPAR, NAMOOS_SEPAR);
         itemHashMap.put(ItemName.KAMAN_DAMOOL, KAMAN_DAMOL);
         itemHashMap.put(ItemName.NOOSH_DAROO, NOOSH_DARO);
@@ -919,7 +939,7 @@ public class DefaultCards {
         itemHashMap.put(ItemName.SHOCK_HAMMER, SHOCK_HAMMER);
         itemHashMap.put(ItemName.SOUL_EATER, SOUL_EATER);
         itemHashMap.put(ItemName.GHOSL, GHOSL);
-        itemHashMap.put(ItemName.CHINESE_SHAMSHIR, CHINESE_SHAMSHIR);
+        itemHashMap.put(ItemName.CHINESE_SHAMSHIR, CHINESE_SHAMSHIR);*/
 
 
         spellHashMap.put(SpellName.TOTAL_DISARM, TOTAL_DISARM);

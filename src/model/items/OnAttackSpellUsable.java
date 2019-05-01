@@ -2,21 +2,25 @@ package model.items;
 
 import model.Cell;
 import model.Player;
+import model.buffs.Buff;
 import model.cards.Spell;
 import model.enumerations.ItemName;
 import model.enumerations.MinionAttackType;
 import model.items.itemEnumerations.OnAttackOwningMinionType;
 import model.items.itemEnumerations.OnAttackTargetType;
 
+import javax.swing.plaf.basic.BasicButtonUI;
+import java.util.ArrayList;
+
 public class OnAttackSpellUsable extends Usable { // KAMAN_DAMOOL , TERROR_HOOD , POISONOUS_DAGGER , SHOCK_HAMMER
-    private Spell spell;
+    private ArrayList<Buff> buffs;
     private OnAttackTargetType targetType;
     private OnAttackOwningMinionType minionType;
 
     public OnAttackSpellUsable(int cost, String name, ItemName itemType, String desc,
-                               Spell spell, OnAttackTargetType targetType, OnAttackOwningMinionType minionType) {
+                               ArrayList<Buff> buffs, OnAttackTargetType targetType, OnAttackOwningMinionType minionType) {
         super(cost, name, itemType, desc);
-        this.spell = spell;
+        this.buffs = buffs;
         this.targetType = targetType;
         this.minionType = minionType;
     }
@@ -47,10 +51,15 @@ public class OnAttackSpellUsable extends Usable { // KAMAN_DAMOOL , TERROR_HOOD 
         // cell that attacks
         switch (targetType){
             case RANDOM_ENEMY:
-                cell.getMinionOnIt().getPlayer().giveSpellToRandomPower(spell,true);
+                Cell target = cell.getMinionOnIt().getPlayer().getRandomPower(false).getCell();
+                for (Buff buff : buffs) {
+                    buff.startBuff(target);
+                }
                 break;
             case OPPONENT_CELL:
-                spell.castSpell(cell);
+                for (Buff buff : buffs) {
+                    buff.startBuff(cell);
+                }
                 break;
         }
     }
