@@ -19,7 +19,7 @@ public class Hand {
     private Deck deck;
     private int numberOfCardFromDeck;
     public Card getNext() {
-        return deck.getCards().get(numberOfCardFromDeck++);
+        return deck.getCards().get(numberOfCardFromDeck);
     }
 
 

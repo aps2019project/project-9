@@ -15,7 +15,7 @@ public class Collection {
     private ArrayList<Card> cards;
     private ArrayList<Item> items;
     private Account ownerAccount;
-    private static int uniqueID = 1;
+    static int uniqueID = 1;
 
     public Collection() {
         cards = new ArrayList<>();
