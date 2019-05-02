@@ -14,7 +14,7 @@ public class Flag extends Item {
     private int turnsOwned;
 
 
-    Flag() {
+    public Flag() {
         super(0, "flag", null, "flag");
     }
 

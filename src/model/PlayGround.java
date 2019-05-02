@@ -13,17 +13,40 @@ public class PlayGround {
     private ArrayList<Flag> flags; // for mode three
     private Flag flag; // for mode two ( one flag )
 
-    public PlayGround(GameMode mode) {
-        if(mode == GameMode.HERO_KILL) {
+    public PlayGround(GameMode mode, int numberOfFlags) {
+        if (mode == GameMode.HERO_KILL) {
             for (int i = 0; i < 5; i++) {
                 for (int j = 0; j < 9; j++) {
                     cells[i][j] = new Cell(i, j, this, null);
                 }
             }
-        }else if(mode == GameMode.ONE_FLAG){
+        } else if (mode == GameMode.ONE_FLAG) {
+            placeFlags();
+        } else {
+            for (int z = 0; z < numberOfFlags; z++) {
+                placeFlags();
+            }
+        }
+    }
 
-        }else{
+    private int randomIntGenarator() {
+        Random random = new Random();
+        int a = random.nextInt();
+        if (a < 0)
+            a = -a;
+        return a;
+    }
 
+    private void placeFlags() {
+        int randomColoumn = randomIntGenarator() % 5;
+        int randomSatr = randomIntGenarator() % 9;
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (i == randomColoumn && j == randomSatr)
+                    cells[i][j] = new Cell(i, j, this, new Flag());
+                else
+                    cells[i][j] = new Cell(i, j, this, null);
+            }
         }
     }
 
@@ -41,7 +64,7 @@ public class PlayGround {
     }
 
     public Cell getCell(int x, int y) {
-        if ((x ) >= 0 && (y ) >= 0 && (x) <= 4 && (y) <= 8)
+        if ((x) >= 0 && (y) >= 0 && (x) <= 4 && (y) <= 8)
             return cells[x][y];
         else
             return null;
@@ -170,7 +193,7 @@ public class PlayGround {
         return getCell(row, col);
     }
 
-    public Cell getRandomPowerCell(Player player){
+    public Cell getRandomPowerCell(Player player) {
         Random r = new Random();
         return player.getMinionsInPlayGround().get(r.nextInt(player.getMinionsInPlayGround().size())).getCell();
     }

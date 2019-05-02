@@ -10,13 +10,13 @@ public class MultiPlayerBattle extends Battle {
             gameMode = GameMode.HERO_KILL;
         else if(mode == 2)
             gameMode = GameMode.ONE_FLAG;
-        else
+        else {
             gameMode = GameMode.FLAGS;
-        turn  = 0;
-        playGround = new PlayGround(gameMode);
-        whoseTurn = 1;
-        if(mode == 3)
             numberOfFlags = flags;
+        }
+        turn  = 0;
+        playGround = new PlayGround(gameMode,flags);
+        whoseTurn = 1;
         this.firstPlayer = new Player(firstPlayer , this);
         this.secondPlayer = new Player(secondAccount , this);
         turn = 0;
