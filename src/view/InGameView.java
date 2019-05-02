@@ -45,6 +45,7 @@ public class InGameView {
     }
 
     private void printHeroKillGameInfo(Battle battle) {
+        printMana(battle);
         System.out.println("First Player Hero Health :");
         System.out.println(battle.getFirstPlayer().getHero().getHP());
         System.out.println("Second Player Hero Health :");
@@ -52,6 +53,7 @@ public class InGameView {
     }
 
     private void printOneFlagInfo(Battle battle) {
+        printMana(battle);
         System.out.println("The Flag Position : [ x , y ]");
         System.out.println(battle.getPlayGround().getFlag().getCurrentCell().getX());
         System.out.println(battle.getPlayGround().getFlag().getCurrentCell().getY());
@@ -63,15 +65,23 @@ public class InGameView {
 
     private void printMoreFlagsInfo(Battle battle) {
         int counter = 1;
+        printMana(battle);
         for (Flag flag : battle.getPlayGround().getFlags()) {
             System.out.printf("%s ( Minion ) Has A Flag From Player %s\n",
                     flag.getOwningMinion().getMinionName(), flag.getOwningPlayer().getName());
         }
     }
 
+    private void printMana(Battle battle) {
+        System.out.println("First Player Mana :");
+        System.out.println(battle.getFirstPlayer().getMana());
+        System.out.println("Second Player Mana :");
+        System.out.println(battle.getSecondPlayer().getMana());
+    }
+
     public void showMinions(Player player) {
         for (Minion minion : player.getMinionsInPlayGround()) {
-            if(minion != null) {
+            if (minion != null) {
                 System.out.printf("Battle ID : %s , name : %s, health: %d, location: %d , %d ,power : %d\n",
                         minion.getBattleID(), minion.getName(), minion.getHP(), minion.getCell().getX()
                         , minion.getCell().getY(), minion.getAP());
@@ -119,7 +129,7 @@ public class InGameView {
     public void help(Player player) {
         ArrayList<Minion> canMove = new ArrayList<>();
         ArrayList<Minion> opponentMinions = player.getOpponent().getMinionsInPlayGround();
-        if(player.getHero().isCanMove())
+        if (player.getHero().isCanMove())
             canMove.add(player.getHero());
         System.out.println("Cards In Hand :");
         for (Card card : player.getHand().getCards()) {
@@ -151,9 +161,9 @@ public class InGameView {
         System.out.println("Cards In Hand :");
         for (Card card : hand.getCards()) {
             if (card instanceof Spell)
-                System.out.printf("%d . %s ( Spell ) - cardID : %d\n", counter++, card.getName(),card.getCardID());
+                System.out.printf("%d . %s ( Spell ) - cardID : %d\n", counter++, card.getName(), card.getCardID());
             else
-                System.out.printf("%d . %s ( Minion ) - cardID : %d\n", counter++, card.getName(),card.getCardID());
+                System.out.printf("%d . %s ( Minion ) - cardID : %d\n", counter++, card.getName(), card.getCardID());
         }
         System.out.println("Next Card in Hand :");
         System.out.println(hand.getNext().getName() +
