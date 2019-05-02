@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="429eadbd-36e3-4fa5-93ef-05e24885aef0" name="Default Changelist" comment="some things">
+    <list default="true" id="429eadbd-36e3-4fa5-93ef-05e24885aef0" name="Default Changelist" comment="debuging">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/project-9/model/PlayGround.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/PlayGround.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/project-9/model/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/Player.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/BattleMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/BattleMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/BattleMenuRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/BattleMenuRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/BattleMenuView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/BattleMenuView.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -55,20 +52,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/controller/BattleMenuController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="389">
               <caret line="76" column="38" lean-forward="true" selection-start-line="76" selection-start-column="38" selection-end-line="76" selection-end-column="38" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/view/BattleMenuRequest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="60" column="53" lean-forward="true" selection-start-line="60" selection-start-column="53" selection-end-line="60" selection-end-column="53" />
             </state>
           </provider>
         </entry>
@@ -170,7 +158,7 @@
     <option name="IS_UNIT_TEST_ENABLED" value="true" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="621" />
+    <option name="x" value="620" />
     <option name="width" value="1305" />
     <option name="height" value="1040" />
   </component>
@@ -211,7 +199,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556820086861" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556820372633" />
     <property name="last_opened_file_path" value="$USER_HOME$/IdeaProjects/B2_test" />
     <property name="restartRequiresConfirmation" value="false" />
   </component>
@@ -253,7 +241,7 @@
       <updated>1556730254952</updated>
       <workItem from="1556730263417" duration="11379000" />
       <workItem from="1556771938380" duration="1861000" />
-      <workItem from="1556815845809" duration="3760000" />
+      <workItem from="1556815845809" duration="4053000" />
     </task>
     <task id="LOCAL-00001" summary="playground constructor">
       <created>1556773131449</created>
@@ -276,11 +264,18 @@
       <option name="project" value="LOCAL" />
       <updated>1556816426665</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="debuging">
+      <created>1556820289878</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1556820289878</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17002000" />
+    <option name="totallyTimeSpent" value="17295000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -293,6 +288,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.2536913" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -303,7 +299,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.5495751" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.5495751" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -332,7 +328,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="playground constructor" />
     <MESSAGE value="some things" />
-    <option name="LAST_COMMIT_MESSAGE" value="some things" />
+    <MESSAGE value="debuging" />
+    <option name="LAST_COMMIT_MESSAGE" value="debuging" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/model/cards/Spell.java">
@@ -762,17 +759,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/BattleMenuRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="105" selection-start-line="105" selection-end-line="105" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/BattleMenuController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="389">
           <caret line="76" column="38" lean-forward="true" selection-start-line="76" selection-start-column="38" selection-end-line="76" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/BattleMenuRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="60" column="53" lean-forward="true" selection-start-line="60" selection-start-column="53" selection-end-line="60" selection-end-column="53" />
         </state>
       </provider>
     </entry>
