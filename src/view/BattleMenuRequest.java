@@ -53,11 +53,11 @@ public class BattleMenuRequest {
     }
 
     public BattleMenuRequestType getTypeStoryMode() {
-        if (command.matches("1")) {
+        if (command.matches("enter 1")) {
             return BattleMenuRequestType.FIRST_LEVEL;
-        } else if (command.matches("2")) {
+        } else if (command.matches("enter 2")) {
             return BattleMenuRequestType.SECOND_LEVEL;
-        } else if (command.matches("3")) {
+        } else if (command.matches("enter 3")) {
             return BattleMenuRequestType.THIRD_LEVEL;
         } else
             return null;
@@ -106,7 +106,7 @@ public class BattleMenuRequest {
                 && command.substring(0, 22).matches("start multiplayer game")) {
             mode = command.split(" ")[3];
             if (!mode.equals("1")) {
-                if(command.split(" ").length != 5)
+                if (command.split(" ").length != 5)
                     return null;
                 numberOfFlags = command.split(" ")[4];
             }

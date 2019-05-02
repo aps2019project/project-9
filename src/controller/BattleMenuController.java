@@ -25,6 +25,7 @@ public class BattleMenuController {
             request.getNewCommand();
             if (request.getTypeInSingleMultiPlayerMenu() == null) {
                 view.printError(BattleMenuErrorType.INVALID_COMMAND);
+                continue;
             }
             if (request.getTypeInSingleMultiPlayerMenu() == BattleMenuRequestType.EXIT)
                 isFinished = true;
@@ -50,6 +51,7 @@ public class BattleMenuController {
                 isFinished = true;
             else if (request.getTypeSinglePlayerMenu() == null) {
                 view.printError(BattleMenuErrorType.INVALID_COMMAND);
+                continue;
             }
             switch (request.getTypeSinglePlayerMenu()) {
                 case CUSTOM_GAME:

@@ -24,7 +24,7 @@ public class BattleMenuView {
     }
 
     public void showSinglePlayerMenu() {
-        System.out.println("1 . Story\n2 . Custom Game");
+        System.out.println("1 . Story Game\n2 . Custom Game");
         System.out.println("to enter an option : Enter [ Option ]");
     }
 
