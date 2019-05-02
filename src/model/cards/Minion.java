@@ -71,6 +71,7 @@ public class Minion extends Card {
         canCounterAttack = true;
         canAttack = true;
         canMove = true;
+        activeBuffs = new ArrayList<>();
     }
 
 
@@ -179,6 +180,7 @@ public class Minion extends Card {
         if (onDeathCollectibleItem != null) {
             onDeathCollectibleItem.castItem();
         }
+        player.getGraveYard().addCard(this);
     }
 
     public int getAP() {
@@ -415,5 +417,13 @@ public class Minion extends Card {
 
     public void setSpecialPower(SpecialPower specialPower) {
         this.specialPower = specialPower;
+    }
+
+    public void setActiveBuffs(ArrayList<Buff> activeBuffs) {
+        this.activeBuffs = activeBuffs;
+    }
+
+    public void setContinuousBuffs(ArrayList<Buff> continuousBuffs) {
+        this.continuousBuffs = continuousBuffs;
     }
 }

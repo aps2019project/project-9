@@ -25,6 +25,8 @@ public class DefaultCards {
 
     public static Minion getMinion(MinionName name) { // special powers = null
         Minion minion = gson.fromJson(minionHashMap.get(name), Minion.class);
+        minion.setActiveBuffs(new ArrayList<>());
+        minion.setContinuousBuffs(new ArrayList<>());
         setMinionSpecialPower(minion, name);
         return minion;
     }
@@ -37,6 +39,8 @@ public class DefaultCards {
 
     public static Hero getHero(HeroName name) { // hero spell = null
         Hero hero = gson.fromJson(heroHashMap.get(name), Hero.class);
+        hero.setActiveBuffs(new ArrayList<>());
+        hero.setContinuousBuffs(new ArrayList<>());
         setHeroBuffsOrCellAffect(hero, name);
         return hero;
     }

@@ -150,10 +150,14 @@ public class InGameView {
         int counter = 1;
         System.out.println("Cards In Hand :");
         for (Card card : hand.getCards()) {
-            if (card instanceof Spell)
-                System.out.printf("%d . %s ( Spell ) - cardID : %d\n", counter++, card.getName(),card.getCardID());
-            else
-                System.out.printf("%d . %s ( Minion ) - cardID : %d\n", counter++, card.getName(),card.getCardID());
+            if (card instanceof Spell) {
+                System.out.printf("%d . %s ( Spell ) - cardID : %d\n", counter++, card.getName(), card.getCardID());
+                System.out.println(card.toString());
+            }
+            else {
+                System.out.printf("%d . %s ( Minion ) - cardID : %d\n", counter++, card.getName(), card.getCardID());
+                System.out.println(card.toString());
+            }
         }
         System.out.println("Next Card in Hand :");
         System.out.println(hand.getNext().getName() +
