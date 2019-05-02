@@ -120,16 +120,8 @@ public class PlayGround {
         return flags;
     }
 
-    public void setFlags(ArrayList<Flag> flags) {
-        this.flags = flags;
-    }
-
     public Flag getFlag() {
         return flag;
-    }
-
-    public void setFlag(Flag flag) {
-        this.flag = flag;
     }
 
     public boolean canMoveThroughPath(Cell firstCell, Cell secondCell) {
