@@ -29,7 +29,7 @@ public class Player {
     private GraveYard graveYard;
     private boolean usedAddManaItem = false; // for item num 8
 
-    public Player(Account account , Battle battle) {
+    public Player(Account account, Battle battle) {
         this.deck = account.getMainDeck().getCopy();
         if (deck.getItem() != null)
             usableItem = (Usable) deck.getItem();
@@ -43,9 +43,9 @@ public class Player {
         hand = new Hand(deck);
     }
 
-    public Player(int level , Battle battle) { // for computer AI
+    public Player(int level, Battle battle) { // for computer AI
         name = "first_level";
-        switch (level){
+        switch (level) {
             case 1:
                 name = "first_level";
                 break;
@@ -67,7 +67,7 @@ public class Player {
         graveYard = new GraveYard(this);
     }
 
-    public Player(Deck deck , Battle battle){
+    public Player(Deck deck, Battle battle) {
         this.deck = deck;
         if (deck.getItem() != null)
             usableItem = (Usable) deck.getItem();
@@ -80,8 +80,7 @@ public class Player {
         name = "CustomOpponent";
     }
 
-    public static void enterNewCell(Cell target, Minion minion, Player player) { // not attack to cell
-        // entering new cell
+    public static void enterNewCell(Cell target, Minion minion, Player player) { //not attack to cell entering new cell
         if (target.getFlag() != null) {
             player.collectFlag(target.getFlag(), minion);
         }
@@ -265,9 +264,10 @@ public class Player {
         mana += number;
     }
 
-    public void assignMana(int mana){
+    public void assignMana(int mana) {
         this.mana = mana;
     }
+
     public void deleteUsableItem() {
         usableItem = null;
     }
