@@ -62,36 +62,54 @@ public class Deck {
     private Hero hero;
     private Item item;
     private String name; // used in accounts
-
+    private int uniqueID = 10;
     public Deck(String name) {
         this.name = name;
         if (name.equals("first_level")) {
             for (MinionName minion : FIRST_LEVEL_MINIONS) {
-                cards.add(DefaultCards.getMinion(minion));
+                Minion minion1 = DefaultCards.getMinion(minion);
+                minion1.setCardID(uniqueID++);
+                cards.add(minion1);
             }
             for (SpellName spell : FIRST_LEVEL_SPELLS) {
-                cards.add(DefaultCards.getSpell(spell));
+                Spell spell1 = DefaultCards.getSpell(spell);
+                spell1.setCardID(uniqueID++);
+                cards.add(spell1);
             }
             hero = DefaultCards.getHero(FIRST_LEVEL_HERO);
+            hero.setCardID(uniqueID++);
             item = DefaultCards.getItem(FIRST_LEVEL_ITEM);
+            item.setItemID(uniqueID++);
         } else if (name.equals("second_level")) {
             for (MinionName minion : SECOND_LEVEL_MINIONS) {
-                cards.add(DefaultCards.getMinion(minion));
+                Minion minion1 = DefaultCards.getMinion(minion);
+                minion1.setCardID(uniqueID++);
+                cards.add(minion1);
             }
             for (SpellName spell : SECOND_LEVEL_SPELLS) {
-                cards.add(DefaultCards.getSpell(spell));
+                Spell spell1 = DefaultCards.getSpell(spell);
+                spell1.setCardID(uniqueID++);
+                cards.add(spell1);
             }
             hero = DefaultCards.getHero(SECOND_LEVEL_HERO);
+            hero.setCardID(uniqueID++);
             item = DefaultCards.getItem(SECOND_LEVEL_ITEM);
+            item.setItemID(uniqueID++);
         } else if (name.equals("third_level")) {
             for (MinionName minion : THIRD_LEVEL_MINIONS) {
-                cards.add(DefaultCards.getMinion(minion));
+                Minion minion1 = DefaultCards.getMinion(minion);
+                minion1.setCardID(uniqueID++);
+                cards.add(minion1);
             }
             for (SpellName spell : THIRD_LEVEL_SPELLS) {
-                cards.add(DefaultCards.getSpell(spell));
+                Spell spell1 = DefaultCards.getSpell(spell);
+                spell1.setCardID(uniqueID++);
+                cards.add(spell1);
             }
             hero = DefaultCards.getHero(THIRD_LEVEL_HERO);
+            hero.setCardID(uniqueID++);
             item = DefaultCards.getItem(THIRD_LEVEL_ITEM);
+            item.setItemID(uniqueID++);
         }
     }
 
@@ -107,14 +125,18 @@ public class Deck {
         for (Card card : cards) {
             if (card instanceof Minion) {
                 Minion copy = DefaultCards.getMinion(((Minion) card).getMinionName());
+                copy.setCardID(card.getCardID());
                 secondCards.add(copy);
             } else if (card instanceof Spell) {
                 Spell copy = DefaultCards.getSpell(((Spell) card).getSpellName());
+                copy.setCardID(card.getCardID());
                 secondCards.add(copy);
             }
         }
         Hero secondHero = DefaultCards.getHero(hero.getHeroName());
+        secondHero.setCardID(hero.getCardID());
         Item secondItem = DefaultCards.getItem(item.getItemType());
+        secondItem.setItemID(item.getItemID());
         return new Deck(secondCards, secondHero, secondItem, name);
     }
 

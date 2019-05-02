@@ -133,7 +133,7 @@ public class InGameController {
         inGameView.printfError(InGameErrorType.INVALID_CARD_ID);
     }
 
-    private int numberOfUseInBattle(Battle battle) { // ali
+    private int numberOfUseInBattle(Battle battle) {
         int ID = 0;
         for (Card key : battle.getCurrenPlayer().getGraveYard().getCards()) {
             if (key.getBattleID().split("_")[0].equals(battle.getCurrenPlayer().getName()) &&
@@ -211,13 +211,16 @@ public class InGameController {
     private void move(Player player, int x, int y) {
         if (player.getSelectedCard() == null)
             inGameView.printfError(InGameErrorType.NO_SELECTED_CARD);
-        else if (!((Minion) player.getSelectedCard()).isCanMove())
+        else if (!((Minion) player.getSelectedCard()).isCanMove()) {
             inGameView.printfError(InGameErrorType.CAN_NOT_MOVE);
+        }
         else {
             Minion selectedMinion = (Minion) player.getSelectedCard();
             Cell targetCell = battle.getPlayGround().getCell(x, y);
-            if (!selectedMinion.isValidCellForMove(targetCell))
+            if (!selectedMinion.isValidCellForMove(targetCell)) {
+
                 inGameView.printfError(InGameErrorType.INVALID_TARGET);
+            }
             else {
                 player.move(selectedMinion, targetCell);
                 player.setSelectedCard(null);

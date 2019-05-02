@@ -23,10 +23,13 @@ public class Minion extends Card {
 
     private static ArrayList<Minion> minions;
     protected ArrayList<Buff> activeBuffs;
-    protected boolean canCounterAttack;
-    protected boolean canAttack;
+    @Expose
+    protected boolean canCounterAttack ;
+    @Expose
+    protected boolean canAttack ;
     @Expose
     private MinionName minionName;
+    @Expose
     protected boolean canMove;
     @Expose
     protected MinionAttackType attackType;
@@ -368,6 +371,11 @@ public class Minion extends Card {
 
 
     public boolean isValidCellForMove(Cell targetCell) {
+        /*//
+        System.out.println(player);
+        System.out.println(player.getBattle());
+        System.out.println(player.getBattle().getPlayGround());
+        //*/
         if (player.getBattle().getPlayGround().getManhatanDistance(this.cell, targetCell) > 2
                 || targetCell.hasCardOnIt()
                 || !player.getBattle().getPlayGround().canMoveThroughPath(this.cell, targetCell)) {
