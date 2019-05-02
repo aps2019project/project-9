@@ -52,6 +52,7 @@ public class Battle {
                 ((Minion) card).setPlayer(player);
             }
         }
+        player.getDeck().getHero().setPlayer(player);
     }
 
     private void checkBuffs(Player player) {

@@ -244,6 +244,7 @@ public class Player {
                 }
             }
             minion.setCanMove(false);
+            minion.setCell(cell);
         }
     }
 
