@@ -71,7 +71,7 @@ public class InGameView {
 
     public void showMinions(Player player) {
         for (Minion minion : player.getMinionsInPlayGround()) {
-            if(minion != null) {
+            if (minion != null) {
                 System.out.printf("Battle ID : %s , name : %s, health: %d, location: %d , %d ,power : %d\n",
                         minion.getBattleID(), minion.getName(), minion.getHP(), minion.getCell().getX()
                         , minion.getCell().getY(), minion.getAP());
@@ -119,7 +119,7 @@ public class InGameView {
     public void help(Player player) {
         ArrayList<Minion> canMove = new ArrayList<>();
         ArrayList<Minion> opponentMinions = player.getOpponent().getMinionsInPlayGround();
-        if(player.getHero().isCanMove())
+        if (player.getHero().isCanMove())
             canMove.add(player.getHero());
         System.out.println("Cards In Hand :");
         for (Card card : player.getHand().getCards()) {
