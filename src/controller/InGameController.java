@@ -49,10 +49,7 @@ public class InGameController {
                     break;
                 case INSERT:
                     // ID assigning ( battle ID )
-                    battle.getCurrenPlayer().getSelectedCard().setBattleID(
-                            battle.getCurrenPlayer().getName() + "_"
-                                    + battle.getCurrenPlayer().getSelectedCard().getName()
-                                    + "_" + numberOfUseInBattle(battle));
+
                     insert(request.getCardName(), request.getX(), request.getY());
                     break;
                 case MOVE_TO:
@@ -201,6 +198,12 @@ public class InGameController {
                 if (!((Spell) friendlyCard).isValidTarget(cell))
                     inGameView.printfError(InGameErrorType.INVALID_TARGET);
                 else {
+                    // ID assigning
+                    friendlyCard.setBattleID(
+                            battle.getCurrenPlayer().getName() + "_"
+                                    + friendlyCard.getName()
+                                    + "_" + numberOfUseInBattle(battle));
+                    //
                     player.insertCard(friendlyCard,cell);
                     inGameView.cardInserted(friendlyCard, x, y);
                 }

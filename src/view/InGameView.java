@@ -45,7 +45,6 @@ public class InGameView {
     }
 
     private void printHeroKillGameInfo(Battle battle) {
-        printMana(battle);
         System.out.println("First Player Hero Health :");
         System.out.println(battle.getFirstPlayer().getHero().getHP());
         System.out.println("Second Player Hero Health :");
@@ -53,7 +52,6 @@ public class InGameView {
     }
 
     private void printOneFlagInfo(Battle battle) {
-        printMana(battle);
         System.out.println("The Flag Position : [ x , y ]");
         System.out.println(battle.getPlayGround().getFlag().getCurrentCell().getX());
         System.out.println(battle.getPlayGround().getFlag().getCurrentCell().getY());
@@ -65,18 +63,10 @@ public class InGameView {
 
     private void printMoreFlagsInfo(Battle battle) {
         int counter = 1;
-        printMana(battle);
         for (Flag flag : battle.getPlayGround().getFlags()) {
             System.out.printf("%s ( Minion ) Has A Flag From Player %s\n",
                     flag.getOwningMinion().getMinionName(), flag.getOwningPlayer().getName());
         }
-    }
-
-    private void printMana(Battle battle) {
-        System.out.println("First Player Mana :");
-        System.out.println(battle.getFirstPlayer().getMana());
-        System.out.println("Second Player Mana :");
-        System.out.println(battle.getSecondPlayer().getMana());
     }
 
     public void showMinions(Player player) {
@@ -160,10 +150,14 @@ public class InGameView {
         int counter = 1;
         System.out.println("Cards In Hand :");
         for (Card card : hand.getCards()) {
-            if (card instanceof Spell)
+            if (card instanceof Spell) {
                 System.out.printf("%d . %s ( Spell ) - cardID : %d\n", counter++, card.getName(), card.getCardID());
-            else
+                System.out.println(card.toString());
+            }
+            else {
                 System.out.printf("%d . %s ( Minion ) - cardID : %d\n", counter++, card.getName(), card.getCardID());
+                System.out.println(card.toString());
+            }
         }
         System.out.println("Next Card in Hand :");
         System.out.println(hand.getNext().getName() +

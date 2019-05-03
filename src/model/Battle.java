@@ -123,7 +123,8 @@ public class Battle {
 
     private void handlePassiveSpecialPowers(Player player) {
         for (Minion minion : player.getMinionsInPlayGround()) {
-            if (minion.getSpecialPower().getSpecialPowerActivationTime() == SpecialPowerActivationTime.PASSIVE) {
+            if (minion.getSpecialPower()!=null &&
+                    minion.getSpecialPower().getSpecialPowerActivationTime() == SpecialPowerActivationTime.PASSIVE) {
                 minion.getSpecialPower().castSpecialPower(minion.getCell());
             }
         }
