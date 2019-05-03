@@ -10,6 +10,7 @@ import model.enumerations.*;
 import model.items.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 public class Player {
@@ -257,8 +258,48 @@ public class Player {
     }
 
     public void doAiAction() {
+        if (battle.getPlayGround().getManhatanDistance(getOpponent().getHero().getCell(), hero.getCell()) > 2) {
+            moveHeroAI();
+        }
 
         endTurn();
+    }
+
+    private void moveHeroAI() {
+        int xFirst = hero.getCell().getX();
+        int yFirst = hero.getCell().getY();
+        int X1 = xFirst - 1;
+        int X2 = xFirst + 1;
+        int Y1 = yFirst - 1;
+        int Y2 = yFirst + 1;
+        int dX1 = manhatanint(X1, yFirst);
+        int dX2 = manhatanint(X2, yFirst);
+        int dY1 = manhatanint(xFirst, Y1);
+        int dY2 = manhatanint(xFirst, Y2);
+        ArrayList<Integer> distanses = new ArrayList<>();
+        distanses.add(dX1);
+        distanses.add(dX2);
+        distanses.add(dY1);
+        distanses.add(dY2);
+        int min = Collections.min(distanses);
+        if (min == dX1)
+            move(hero, battle.getPlayGround().getCell(X1, yFirst));
+        else if (min == dX2)
+            move(hero, battle.getPlayGround().getCell(X2, yFirst));
+        else if (min == dY1)
+            move(hero, battle.getPlayGround().getCell(xFirst, Y1));
+        else if (min == dY2)
+            move(hero, battle.getPlayGround().getCell(xFirst, Y2));
+    }
+
+    private int minManaInHand() {
+        Hand hand = getHand();
+
+    }
+
+    public int manhatanint(int x, int y) {
+        return battle.getPlayGround().getManhatanDistance(getOpponent().hero.getCell()
+                , battle.getPlayGround().getCell(x, y));
     }
 
     public void addMana(int number) {
