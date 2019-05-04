@@ -8,6 +8,7 @@ import model.cards.Spell;
 import model.cellaffects.CellAffect;
 import model.enumerations.*;
 import model.items.*;
+import model.items.itemEnumerations.SpellItemTarget;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -263,7 +264,8 @@ public class Player {
         if (battle.getPlayGround().getManhatanDistance(getOpponent().getHero().getCell(), hero.getCell()) > 2) {
             moveHeroAI();
         }
-
+        insertMinionOrSpellAI();
+        moveMinionsAI();
         endTurn();
     }
 
@@ -294,9 +296,52 @@ public class Player {
             move(hero, battle.getPlayGround().getCell(xFirst, Y2));
     }
 
-    private int minManaInHand() {
-        Hand hand = getHand();
+    private void insertMinionOrSpellAI() {
+        if (minManaCardInHand() instanceof Minion) {
+            if (mana <= minManaCardInHand().getMP() && !battle.getPlayGround().getCell(hero.getCell().getX() - 1,
+                    hero.getCell().getY() - 1).hasCardOnIt()) {
+                insertCard(minManaCardInHand(), battle.getPlayGround().getCell(hero.getCell().getX() - 1,
+                        hero.getCell().getY() - 1));
+            } else if (mana <= minManaCardInHand().getMP() && !battle.getPlayGround().getCell(hero.getCell().getX() - 1,
+                    hero.getCell().getY()).hasCardOnIt()) {
+                insertCard(minManaCardInHand(), battle.getPlayGround().getCell(hero.getCell().getX() - 1,
+                        hero.getCell().getY()));
+            }
+        } else {
+            Spell spell = (Spell) minManaCardInHand();
+            if (spell.getTargetType().equals(SpellItemTarget.FRINEDLY_HERO)) {
+                insertCard(spell, hero.getCell());
+            } else if (spell.getTargetType().equals(SpellItemTarget.ENEMY_HERO_RANGED_OR_HYBRID) && (
+                    getOpponent().getHero().getAttackType().equals(MinionAttackType.RANGED) ||
+                            getOpponent().getHero().getAttackType().equals(MinionAttackType.HYBRID))) {
+                insertCard(spell, hero.getCell());
+            }
+        }
+    }
 
+    private void moveMinionsAI() {
+        for (Minion key : minionsInPlayGround) {
+            if (key.isCanMove()) {
+                move(key, battle.getPlayGround().getCell(key.getCell().getX() - 1, key.getCell().getY()));
+            }
+            if (key.getAttackType().equals(MinionAttackType.RANGED) ||
+                    key.getAttackType().equals(MinionAttackType.HYBRID)) {
+                key.attack(getOpponent().getHero().getCell());
+            }
+        }
+    }
+
+    private Card minManaCardInHand() {
+        Hand hand = getHand();
+        ArrayList<Integer> minMana = new ArrayList<>();
+        for (Card key : hand.getCards()) {
+            minMana.add(key.getMP());
+        }
+        for (Card key : hand.getCards()) {
+            if (key.getMP() == Collections.min(minMana))
+                return key;
+        }
+        return null;
     }
 
     public int manhatanint(int x, int y) {
@@ -438,9 +483,9 @@ public class Player {
 
     @Override
     public boolean equals(Object obj) {
-        if((obj instanceof Player)){
-            return this.name.equals(((Player)obj).getName());
-        }else
+        if ((obj instanceof Player)) {
+            return this.name.equals(((Player) obj).getName());
+        } else
             return false;
     }
 }
