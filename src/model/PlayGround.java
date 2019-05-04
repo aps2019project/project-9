@@ -6,6 +6,7 @@ import model.enumerations.MinionAttackType;
 import model.items.Flag;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Random;
 
 public class PlayGround {
@@ -54,12 +55,12 @@ public class PlayGround {
         if (!cell.hasCardOnIt())
             return false;
         return player.getMinionsInPlayGround().contains(cell.getMinionOnIt()) ||
-                player.getHero().getCell().equals(cell);
+                player.getOpponent().getHero().getCell().equals(cell);
     }
 
     public boolean isForFriendlyMinion(Cell cell, Player player) {
         return (cell.hasCardOnIt() &&
-                player.getMinionsInPlayGround().contains(cell.getMinionOnIt()))
+                player.getOpponent().getMinionsInPlayGround().contains(cell.getMinionOnIt()))
                 || cell.equals(player.getHero().getCell());
     }
 
@@ -72,14 +73,22 @@ public class PlayGround {
 
     public ArrayList<Cell> getAroundCells(Cell centerCell) {
         ArrayList<Cell> result = new ArrayList<>();
-        result.add(getCell(centerCell.getX() - 1, centerCell.getY()));
-        result.add(getCell(centerCell.getX() + 1, centerCell.getY()));
-        result.add(getCell(centerCell.getX(), centerCell.getY() - 1));
-        result.add(getCell(centerCell.getX(), centerCell.getY() + 1));
-        result.add(getCell(centerCell.getX() - 1, centerCell.getY() - 1));
-        result.add(getCell(centerCell.getX() + 1, centerCell.getY() - 1));
-        result.add(getCell(centerCell.getX() - 1, centerCell.getY() + 1));
-        result.add(getCell(centerCell.getX() + 1, centerCell.getY() + 1));
+        if (getCell(centerCell.getX() - 1, centerCell.getY()) != null)
+            result.add(getCell(centerCell.getX() - 1, centerCell.getY()));
+        if (getCell(centerCell.getX() + 1, centerCell.getY()) != null)
+            result.add(getCell(centerCell.getX() + 1, centerCell.getY()));
+        if (getCell(centerCell.getX(), centerCell.getY() - 1) != null)
+            result.add(getCell(centerCell.getX(), centerCell.getY() - 1));
+        if (getCell(centerCell.getX(), centerCell.getY() + 1) != null)
+            result.add(getCell(centerCell.getX(), centerCell.getY() + 1));
+        if (getCell(centerCell.getX() - 1, centerCell.getY() - 1) != null)
+            result.add(getCell(centerCell.getX() - 1, centerCell.getY() - 1));
+        if (getCell(centerCell.getX() + 1, centerCell.getY() - 1) != null)
+            result.add(getCell(centerCell.getX() + 1, centerCell.getY() - 1));
+        if (getCell(centerCell.getX() - 1, centerCell.getY() + 1) != null)
+            result.add(getCell(centerCell.getX() - 1, centerCell.getY() + 1));
+        if (getCell(centerCell.getX() + 1, centerCell.getY() + 1) != null)
+            result.add(getCell(centerCell.getX() + 1, centerCell.getY() + 1));
         return result;
     }
 

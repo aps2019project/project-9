@@ -163,8 +163,8 @@ public class InGameRequest {
 
     private boolean checkInsertCommand(String command) {
         if (command.split(" ").length == 5
-                && command.split(" ")[3].matches("[1-5]")
-                && command.split(" ")[4].matches("[1-9]")) {
+                && command.split(" ")[3].matches("[0-4]")
+                && command.split(" ")[4].matches("[0-8]")) {
             cardName = command.split(" ")[1];
             x = Integer.parseInt(command.split(" ")[3]);
             y = Integer.parseInt(command.split(" ")[4]);
@@ -174,6 +174,6 @@ public class InGameRequest {
     }
 
     private boolean checkItemUseCommand(String command) {
-        return command.matches("use [1-5] [1-9]");
+        return command.matches("use [0-4] [0-8]");
     }
 }

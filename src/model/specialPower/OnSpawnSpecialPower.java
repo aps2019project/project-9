@@ -21,7 +21,7 @@ public class OnSpawnSpecialPower extends SpecialPower { // ON TURN is also ON SP
         switch (targetCell) {
             case EIGHT_AROUND:
                 for (Cell aroundCell : cell.getPlayGround().getAroundCells(cell)) {
-                    if (aroundCell.hasCardOnIt() &&
+                    if (aroundCell!= null && aroundCell.hasCardOnIt() &&
                             aroundCell.getMinionOnIt().getPlayer().equals(minion.getPlayer().getOpponent())) {
                         castingBuff.startBuff(aroundCell);
                     }

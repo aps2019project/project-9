@@ -16,7 +16,7 @@ public class StunBuff extends Buff{
         cell.getMinionOnIt().setCanAttack(false);
         cell.getMinionOnIt().setCanMove(false);
         cell.getMinionOnIt().addActiveBuff(this);
-        if(this.isContinous)
+        if (this.isContinous && !cell.getMinionOnIt().getContinuousBuffs().contains(this))
             cell.getMinionOnIt().addContinuous(this);
     }
 

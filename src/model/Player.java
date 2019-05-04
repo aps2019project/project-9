@@ -140,6 +140,8 @@ public class Player {
             currentMinion.putInMap(cell);
             ((Minion) card).setCell(cell);
             reduceMana(card.getMP());
+            currentMinion.setCanMove(false);
+            currentMinion.setCanAttack(false);
             if (currentMinion.getSpecialPower() != null
                     && currentMinion.getSpecialPower().getSpecialPowerActivationTime() == SpecialPowerActivationTime.ON_SPAWN) {
                 currentMinion.getSpecialPower().castSpecialPower(cell);
@@ -432,5 +434,13 @@ public class Player {
 
     public boolean getUsedManaItem() {
         return usedAddManaItem;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if((obj instanceof Player)){
+            return this.name.equals(((Player)obj).getName());
+        }else
+            return false;
     }
 }

@@ -35,7 +35,7 @@ public class WeaknessBuff extends Buff {
             else
                 cell.getMinionOnIt().reduceAP(power);
             cell.getMinionOnIt().addActiveBuff(this);
-            if (this.isContinous)
+            if (this.isContinous && !cell.getMinionOnIt().getContinuousBuffs().contains(this))
                 cell.getMinionOnIt().addContinuous(this);
         }
     }

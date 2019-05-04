@@ -19,7 +19,7 @@ public class HollyBuff extends Buff {
             cell.getMinionOnIt().setReductionOfOthersAttack(1);
             cell.getMinionOnIt().addActiveBuff(this);
             cell.getMinionOnIt().gotHollyBuff();
-            if (this.isContinous)
+            if (this.isContinous && !cell.getMinionOnIt().getContinuousBuffs().contains(this))
                 cell.getMinionOnIt().addContinuous(this);
         } else
             cell.getMinionOnIt().setReductionOfOthersAttack(-1);

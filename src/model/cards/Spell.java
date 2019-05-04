@@ -203,4 +203,8 @@ public class Spell extends Card {
     public void setCellAffect(CellAffect cellAffect) {
         this.cellAffect = cellAffect;
     }
+
+    public Player getOwningPlayer() {
+        return owningPlayer;
+    }
 }

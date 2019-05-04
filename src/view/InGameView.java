@@ -45,6 +45,7 @@ public class InGameView {
     }
 
     private void printHeroKillGameInfo(Battle battle) {
+        System.out.println("Your Mana : " + battle.getCurrenPlayer().getMana());
         System.out.println("First Player Hero Health :");
         System.out.println(battle.getFirstPlayer().getHero().getHP());
         System.out.println("Second Player Hero Health :");
@@ -52,6 +53,7 @@ public class InGameView {
     }
 
     private void printOneFlagInfo(Battle battle) {
+        System.out.println("Your Mana : " + battle.getCurrenPlayer().getMana());
         System.out.println("The Flag Position : [ x , y ]");
         System.out.println(battle.getPlayGround().getFlag().getCurrentCell().getX());
         System.out.println(battle.getPlayGround().getFlag().getCurrentCell().getY());
@@ -62,6 +64,7 @@ public class InGameView {
     }
 
     private void printMoreFlagsInfo(Battle battle) {
+        System.out.println("Your Mana : " + battle.getCurrenPlayer().getMana());
         int counter = 1;
         for (Flag flag : battle.getPlayGround().getFlags()) {
             System.out.printf("%s ( Minion ) Has A Flag From Player %s\n",
@@ -70,13 +73,35 @@ public class InGameView {
     }
 
     public void showMinions(Player player) {
+        int[][] places = new int[5][9];
         for (Minion minion : player.getMinionsInPlayGround()) {
             if (minion != null) {
-                System.out.printf("Battle ID : %s , name : %s, health: %d, location: %d , %d ,power : %d\n",
+                System.out.printf("Battle ID : %s , name : %s, health: %d, location: %d , %d ,power : %d ,card ID : %d\n",
                         minion.getBattleID(), minion.getName(), minion.getHP(), minion.getCell().getX()
-                        , minion.getCell().getY(), minion.getAP());
+                        , minion.getCell().getY(), minion.getAP() , minion.getCardID());
+                places[minion.getCell().getX()][minion.getCell().getY()]=1;
             }
         }
+        //TODO adding special show for minions ( graphical )
+        for (Minion minion : player.getOpponent().getMinionsInPlayGround()) {
+            places[minion.getCell().getX()][minion.getCell().getY()] = -1;
+        }
+        System.out.println("F : Friendly Hero or Minion\nE : Enemy Hero or Minion");
+        for (int i = 0; i < 5; i++) {
+            System.out.print("|");
+            for (int j = 0; j < 9; j++) {
+                if(places[i][j] == 0){
+                    System.out.print("_");
+                }else if(places[i][j]==1){
+                    System.out.print("F");
+                }else{
+                    System.out.print("E");
+                }
+                System.out.print("|");
+            }
+            System.out.println();
+        }
+
     } // ones in the play ground
 
     public void showCardInfo(Card card) {
@@ -103,7 +128,7 @@ public class InGameView {
     }
 
     public void cardInserted(Card card, int x, int y) {
-        System.out.printf("%s with %s inserted to %d %d\n", card.getName(), card.getCardID(), x, y);
+        System.out.printf("%s with card ID : %s inserted to %d %d\n", card.getName(), card.getCardID(), x, y);
     }
 
     public void showCollectibles(Player player) {
@@ -175,7 +200,7 @@ public class InGameView {
 
     public void showMenu() {
         System.out.print("Menu Commands :\n" +
-                "Game info\n" + "show my minions\n"
+                "Game info ( also showing manas )\n" + "show my minions\n"
                 + "show opponent minions\n" + "show card info [card id]\n" +
                 "select [card id]\n" +
                 "move to x y\n" +

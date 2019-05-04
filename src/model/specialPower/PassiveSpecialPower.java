@@ -34,8 +34,8 @@ public class PassiveSpecialPower extends SpecialPower {
                 }
                 for (Cell aroundCell : cell.getPlayGround().getAroundCells(cell)) {
                     if (aroundCell.hasCardOnIt()
-                            && minion.getPlayer().getMinionsInPlayGround().contains(aroundCell.getMinionOnIt()))
-                        //specialPowerSpell.castSpell(aroundCell);
+                            && (minion.getPlayer().getMinionsInPlayGround().contains(aroundCell.getMinionOnIt())
+                            || aroundCell.equals(minion.getPlayer().getHero().getCell())))
                         for (Buff buff : buffs) {
                             buff.startBuff(aroundCell);
                         }

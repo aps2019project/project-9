@@ -33,8 +33,20 @@ public class Battle {
         initializeOwningPlayerOfCards(firstPlayer);
         initializeOwningPlayerOfCards(secondPlayer);
         initializeHeroAttributes();
+        firstPlayer.assignMana(2);
+        secondPlayer.assignMana(2);
+        /*initializeSpecialPowersMinions(firstPlayer);
+        initializeSpecialPowersMinions(secondPlayer);*/
     }
 
+    /*private void initializeSpecialPowersMinions(Player player){
+        for (Card card : player.getDeck().getCards()) {
+            if(card instanceof Minion){
+                Minion minion = (Minion)card;
+                minion.getSpecialPower().setMinion(minion);
+            }
+        }
+    }*/
     private void initializeHeroAttributes(){
         firstPlayer.getHero().setCell(playGround.getCell(2,0));
         secondPlayer.getHero().setCell(playGround.getCell(2,8));
@@ -70,7 +82,11 @@ public class Battle {
             for (Buff buff : buffsToDelete) {
                 minion.buffDeactivated(buff);
             }
+            ArrayList<Buff> buffsToAdd = new ArrayList<>(); // for exception handling
             for (Buff buff : minion.getContinuousBuffs()) {
+                buffsToAdd.add(buff);
+            }
+            for (Buff buff : buffsToAdd) {
                 buff.startBuff(minion.getCell());
             }
         }
@@ -98,8 +114,16 @@ public class Battle {
         if(this instanceof SinglePlayerBattle){
             secondPlayer.doAiAction();
         }
+        handleCanMoveCanAttack(firstPlayer);
+        handleCanMoveCanAttack(secondPlayer);
     }
 
+    private void handleCanMoveCanAttack(Player player){
+        for (Minion minion : player.getMinionsInPlayGround()) {
+            minion.setCanMove(true);
+            minion.setCanAttack(true);
+        }
+    }
     private void assignMana() {
         if (whoseTurn == 1) {
             secondPlayerMana++;
