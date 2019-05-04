@@ -131,7 +131,7 @@ public class Minion extends Card {
                     player.collectFlag(player.getBattle().getPlayGround().getFlag(), this);
                 }
                 if (opponent.canDefend(this, null)) { // reduce HP
-                    if (specialPower.getSpecialPowerActivationTime() == SpecialPowerActivationTime.ON_ATTACK
+                    if (specialPower!= null && specialPower.getSpecialPowerActivationTime() == SpecialPowerActivationTime.ON_ATTACK
                             && ((OnAttackSpecialPower) specialPower).isAntiHolly()
                             && opponent.hasHollyBuff) {
                         opponent.reduceHP(this.AP);
@@ -232,13 +232,15 @@ public class Minion extends Card {
 
     public void addActiveBuff(Buff buff) {
         if (!activeBuffs.contains(buff)) {
-            if (!(specialPower.getSpecialPowerActivationTime() == SpecialPowerActivationTime.ON_DEFEND
-                    && ((OnDefendSpecialPower) specialPower).getOnDefendType() == OnDefendType.BUFF
-                    && ((OnDefendSpecialPower) specialPower).getDeactivatedBuff() == buff.getBuffName())) {
+            if(specialPower != null) {
                 if (!(specialPower.getSpecialPowerActivationTime() == SpecialPowerActivationTime.ON_DEFEND
-                        && ((OnDefendSpecialPower) specialPower).getOnDefendType() == OnDefendType.NOT_NEGATIVE
-                        && !buff.isPositiveBuff()))
-                    activeBuffs.add(buff);
+                        && ((OnDefendSpecialPower) specialPower).getOnDefendType() == OnDefendType.BUFF
+                        && ((OnDefendSpecialPower) specialPower).getDeactivatedBuff() == buff.getBuffName())) {
+                    if (!(specialPower.getSpecialPowerActivationTime() == SpecialPowerActivationTime.ON_DEFEND
+                            && ((OnDefendSpecialPower) specialPower).getOnDefendType() == OnDefendType.NOT_NEGATIVE
+                            && !buff.isPositiveBuff()))
+                        activeBuffs.add(buff);
+                }
             }
         }
     }

@@ -50,6 +50,8 @@ public class Battle {
     private void initializeHeroAttributes(){
         firstPlayer.getHero().setCell(playGround.getCell(2,0));
         secondPlayer.getHero().setCell(playGround.getCell(2,8));
+        playGround.getCell(2,0).setMinionOnIt(firstPlayer.getHero());
+        playGround.getCell(2,8).setMinionOnIt(secondPlayer.getHero());
         firstPlayer.getHero().setBattleID(firstPlayer.getName() + "_" + firstPlayer.getHero().getName()
         + "_" +"1");
         secondPlayer.getHero().setBattleID(secondPlayer.getName() + "_" + secondPlayer.getHero().getName()
@@ -68,7 +70,12 @@ public class Battle {
     }
 
     private void checkBuffs(Player player) {
+        ArrayList<Minion> minions = new ArrayList<>();
         for (Minion minion : player.getMinionsInPlayGround()) {
+            minions.add(minion);
+        }
+        minions.add(player.getHero());
+        for (Minion minion : minions) {
             ArrayList<Buff> buffsToDelete = new ArrayList<>();
             for (Buff buff : minion.getActiveBuffs()) {
                 if (!buff.isForAllTurns()) {
