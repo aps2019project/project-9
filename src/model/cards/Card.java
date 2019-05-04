@@ -61,7 +61,7 @@ public class Card {
     }
 
     public void setBattleID(String battleID) {
-        BattleID = battleID;
+        this.BattleID = battleID;
     }
 
     public int getMP() {

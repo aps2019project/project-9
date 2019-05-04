@@ -33,6 +33,10 @@ public class Battle {
         initializeOwningPlayerOfCards(firstPlayer);
         initializeOwningPlayerOfCards(secondPlayer);
         initializeHeroAttributes();
+        //
+        firstPlayer.assignMana(2);
+        secondPlayer.assignMana(2);
+        //
     }
 
     private void initializeHeroAttributes(){

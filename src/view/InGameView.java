@@ -45,6 +45,8 @@ public class InGameView {
     }
 
     private void printHeroKillGameInfo(Battle battle) {
+        System.out.println("First Player Mana : " + battle.getFirstPlayer().getMana());
+        System.out.println("Second Player Mana : " + battle.getSecondPlayer().getMana());
         System.out.println("First Player Hero Health :");
         System.out.println(battle.getFirstPlayer().getHero().getHP());
         System.out.println("Second Player Hero Health :");
@@ -72,9 +74,9 @@ public class InGameView {
     public void showMinions(Player player) {
         for (Minion minion : player.getMinionsInPlayGround()) {
             if (minion != null) {
-                System.out.printf("Battle ID : %s , name : %s, health: %d, location: %d , %d ,power : %d\n",
+                System.out.printf("Battle ID : %s , name : %s, health: %d, location: %d , %d ,power : %d ,card ID : %d\n",
                         minion.getBattleID(), minion.getName(), minion.getHP(), minion.getCell().getX()
-                        , minion.getCell().getY(), minion.getAP());
+                        , minion.getCell().getY(), minion.getAP() , minion.getCardID());
             }
         }
     } // ones in the play ground
@@ -103,7 +105,7 @@ public class InGameView {
     }
 
     public void cardInserted(Card card, int x, int y) {
-        System.out.printf("%s with %s inserted to %d %d\n", card.getName(), card.getCardID(), x, y);
+        System.out.printf("%s with card ID : %s inserted to %d %d\n", card.getName(), card.getCardID(), x, y);
     }
 
     public void showCollectibles(Player player) {
@@ -175,7 +177,7 @@ public class InGameView {
 
     public void showMenu() {
         System.out.print("Menu Commands :\n" +
-                "Game info\n" + "show my minions\n"
+                "Game info ( also showing manas )\n" + "show my minions\n"
                 + "show opponent minions\n" + "show card info [card id]\n" +
                 "select [card id]\n" +
                 "move to x y\n" +

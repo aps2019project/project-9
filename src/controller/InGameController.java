@@ -130,16 +130,16 @@ public class InGameController {
         inGameView.printfError(InGameErrorType.INVALID_CARD_ID);
     }
 
-    private int numberOfUseInBattle(Battle battle) {
-        int ID = 0;
+    private int numberOfUseInBattle(Battle battle,Card friendlyCard) {
+        int ID = 1;
         for (Card key : battle.getCurrenPlayer().getGraveYard().getCards()) {
             if (key.getBattleID().split("_")[0].equals(battle.getCurrenPlayer().getName()) &&
-                    key.getBattleID().split("_")[1].equals(battle.getCurrenPlayer().getSelectedCard().getName()))
+                    key.getBattleID().split("_")[1].equals(friendlyCard.getName()))
                 ID++;
         }
         for (Card key : battle.getCurrenPlayer().getMinionsInPlayGround()) {
-            if (key.getBattleID().split("_")[0].equals(battle.getCurrenPlayer().getName()) &&
-                    key.getBattleID().split("_")[1].equals(battle.getCurrenPlayer().getSelectedCard().getName()))
+            if (key.getBattleID()!= null && key.getBattleID().split("_")[0].equals(battle.getCurrenPlayer().getName()) &&
+                    key.getBattleID().split("_")[1].equals(friendlyCard.getName()))
                 ID++;
         }
         return ID;
@@ -191,24 +191,26 @@ public class InGameController {
                         || cell.hasCardOnIt()) {
                     inGameView.printfError(InGameErrorType.INVALID_TARGET);
                 } else {
-                    player.insertCard(friendlyCard,cell);
-                    inGameView.cardInserted(friendlyCard, x, y);
+                    // ID assigning
+                    finalThingsInInsertingCard(friendlyCard,player,cell,x,y);
                 }
             } else {
                 if (!((Spell) friendlyCard).isValidTarget(cell))
                     inGameView.printfError(InGameErrorType.INVALID_TARGET);
                 else {
                     // ID assigning
-                    friendlyCard.setBattleID(
-                            battle.getCurrenPlayer().getName() + "_"
-                                    + friendlyCard.getName()
-                                    + "_" + numberOfUseInBattle(battle));
-                    //
-                    player.insertCard(friendlyCard,cell);
-                    inGameView.cardInserted(friendlyCard, x, y);
+                    finalThingsInInsertingCard(friendlyCard,player,cell,x,y);
                 }
             }
         }
+    }
+    private void finalThingsInInsertingCard(Card friendlyCard , Player player,Cell cell,int x , int y){
+        String Id =  player.getName() + "_"
+                + friendlyCard.getName()
+                + "_" + numberOfUseInBattle(battle,friendlyCard);
+        friendlyCard.setBattleID(Id);
+        player.insertCard(friendlyCard,cell);
+        inGameView.cardInserted(friendlyCard, x, y);
     }
 
     private void move(Player player, int x, int y) {

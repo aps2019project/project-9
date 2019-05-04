@@ -72,14 +72,22 @@ public class PlayGround {
 
     public ArrayList<Cell> getAroundCells(Cell centerCell) {
         ArrayList<Cell> result = new ArrayList<>();
-        result.add(getCell(centerCell.getX() - 1, centerCell.getY()));
-        result.add(getCell(centerCell.getX() + 1, centerCell.getY()));
-        result.add(getCell(centerCell.getX(), centerCell.getY() - 1));
-        result.add(getCell(centerCell.getX(), centerCell.getY() + 1));
-        result.add(getCell(centerCell.getX() - 1, centerCell.getY() - 1));
-        result.add(getCell(centerCell.getX() + 1, centerCell.getY() - 1));
-        result.add(getCell(centerCell.getX() - 1, centerCell.getY() + 1));
-        result.add(getCell(centerCell.getX() + 1, centerCell.getY() + 1));
+        if (getCell(centerCell.getX() - 1, centerCell.getY()) != null)
+            result.add(getCell(centerCell.getX() - 1, centerCell.getY()));
+        if (getCell(centerCell.getX() + 1, centerCell.getY()) != null)
+            result.add(getCell(centerCell.getX() + 1, centerCell.getY()));
+        if (getCell(centerCell.getX(), centerCell.getY() - 1) != null)
+            result.add(getCell(centerCell.getX(), centerCell.getY() - 1));
+        if (getCell(centerCell.getX(), centerCell.getY() + 1) != null)
+            result.add(getCell(centerCell.getX(), centerCell.getY() + 1));
+        if (getCell(centerCell.getX() - 1, centerCell.getY() - 1) != null)
+            result.add(getCell(centerCell.getX() - 1, centerCell.getY() - 1));
+        if (getCell(centerCell.getX() + 1, centerCell.getY() - 1) != null)
+            result.add(getCell(centerCell.getX() + 1, centerCell.getY() - 1));
+        if (getCell(centerCell.getX() - 1, centerCell.getY() + 1) != null)
+            result.add(getCell(centerCell.getX() - 1, centerCell.getY() + 1));
+        if (getCell(centerCell.getX() + 1, centerCell.getY() + 1) != null)
+            result.add(getCell(centerCell.getX() + 1, centerCell.getY() + 1));
         return result;
     }
 
