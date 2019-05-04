@@ -55,12 +55,12 @@ public class PlayGround {
         if (!cell.hasCardOnIt())
             return false;
         return player.getMinionsInPlayGround().contains(cell.getMinionOnIt()) ||
-                player.getHero().getCell().equals(cell);
+                player.getOpponent().getHero().getCell().equals(cell);
     }
 
     public boolean isForFriendlyMinion(Cell cell, Player player) {
         return (cell.hasCardOnIt() &&
-                player.getMinionsInPlayGround().contains(cell.getMinionOnIt()))
+                player.getOpponent().getMinionsInPlayGround().contains(cell.getMinionOnIt()))
                 || cell.equals(player.getHero().getCell());
     }
 

@@ -82,7 +82,11 @@ public class Battle {
             for (Buff buff : buffsToDelete) {
                 minion.buffDeactivated(buff);
             }
+            ArrayList<Buff> buffsToAdd = new ArrayList<>(); // for exception handling
             for (Buff buff : minion.getContinuousBuffs()) {
+                buffsToAdd.add(buff);
+            }
+            for (Buff buff : buffsToAdd) {
                 buff.startBuff(minion.getCell());
             }
         }
@@ -110,6 +114,8 @@ public class Battle {
         if(this instanceof SinglePlayerBattle){
             secondPlayer.doAiAction();
         }
+        handleCanMoveCanAttack(firstPlayer);
+        handleCanMoveCanAttack(secondPlayer);
     }
 
     private void handleCanMoveCanAttack(Player player){

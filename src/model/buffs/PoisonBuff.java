@@ -13,7 +13,7 @@ public class PoisonBuff extends Buff{
 
     @Override
     public void startBuff(Cell cell) {
-        if(this.isContinous)
+        if (this.isContinous && !cell.getMinionOnIt().getContinuousBuffs().contains(this))
             cell.getMinionOnIt().addContinuous(this);
         cell.getMinionOnIt().reduceHP(1);
         cell.getMinionOnIt().addActiveBuff(this);

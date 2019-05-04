@@ -24,7 +24,7 @@ public class PowerBuff extends Buff {
             cell.getMinionOnIt().addAP(power);
         }
         cell.getMinionOnIt().addActiveBuff(this);
-        if(this.isContinous)
+        if (this.isContinous && !cell.getMinionOnIt().getContinuousBuffs().contains(this))
             cell.getMinionOnIt().addContinuous(this);
     }
 
