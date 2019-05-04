@@ -24,9 +24,9 @@ public class Minion extends Card {
     private static ArrayList<Minion> minions;
     protected ArrayList<Buff> activeBuffs;
     @Expose
-    protected boolean canCounterAttack ;
+    protected boolean canCounterAttack;
     @Expose
-    protected boolean canAttack ;
+    protected boolean canAttack;
     @Expose
     private MinionName minionName;
     @Expose
@@ -189,6 +189,8 @@ public class Minion extends Card {
 
     public boolean canDefend(Card attackingCard, Buff buff) {
         // this method should be called while this minion is being attacked or a Spell is being casted on it
+        if (specialPower == null)
+            return true;
         if (specialPower.getSpecialPowerActivationTime() != SpecialPowerActivationTime.ON_DEFEND)
             return true;
         // special Power is ONDEFEND
@@ -417,6 +419,8 @@ public class Minion extends Card {
 
     public void setSpecialPower(SpecialPower specialPower) {
         this.specialPower = specialPower;
+        if (specialPower != null)
+            specialPower.setMinion(this);
     }
 
     public void setActiveBuffs(ArrayList<Buff> activeBuffs) {

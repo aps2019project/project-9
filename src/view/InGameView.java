@@ -45,8 +45,7 @@ public class InGameView {
     }
 
     private void printHeroKillGameInfo(Battle battle) {
-        System.out.println("First Player Mana : " + battle.getFirstPlayer().getMana());
-        System.out.println("Second Player Mana : " + battle.getSecondPlayer().getMana());
+        System.out.println("Your Mana : " + battle.getCurrenPlayer().getMana());
         System.out.println("First Player Hero Health :");
         System.out.println(battle.getFirstPlayer().getHero().getHP());
         System.out.println("Second Player Hero Health :");
@@ -54,6 +53,7 @@ public class InGameView {
     }
 
     private void printOneFlagInfo(Battle battle) {
+        System.out.println("Your Mana : " + battle.getCurrenPlayer().getMana());
         System.out.println("The Flag Position : [ x , y ]");
         System.out.println(battle.getPlayGround().getFlag().getCurrentCell().getX());
         System.out.println(battle.getPlayGround().getFlag().getCurrentCell().getY());
@@ -64,6 +64,7 @@ public class InGameView {
     }
 
     private void printMoreFlagsInfo(Battle battle) {
+        System.out.println("Your Mana : " + battle.getCurrenPlayer().getMana());
         int counter = 1;
         for (Flag flag : battle.getPlayGround().getFlags()) {
             System.out.printf("%s ( Minion ) Has A Flag From Player %s\n",
