@@ -31,7 +31,7 @@ public class Hero extends Minion {
                 ArrayList<Buff> buffs, int MP, int coolDown, int cardID, String name, String desc, boolean isFars,
                 HeroTargetType buffsTargetType , CellAffect cellAffect) {
         super(name, cost, MP, HP, AP, attackType, attackRange, null, CardType.MINION,cardID,desc,
-                null, isFars);    //not complete
+                null, isFars);
         this.coolDown = coolDown;
         this.buffs = buffs;
         this.buffsTargetType = buffsTargetType;

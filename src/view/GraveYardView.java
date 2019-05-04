@@ -1,5 +1,6 @@
 package view;
 
+import model.Player;
 import model.cards.Card;
 import model.enumerations.GraveYardErrorType;
 
@@ -17,11 +18,16 @@ public class GraveYardView {
 
         public void showCards(ArrayList<Card> cards){
             for (Card card : cards) {
-                System.out.println("card name : " + card.getName() + " decs : " + card.getDesc());
+                System.out.println(card.toString());
             }
         }
 
         public void showCardInfo(Card card){
             System.out.printf("card name : %s\ndescription : %s" , card.getName() , card.getDesc());
+        }
+
+        public void help(Player player){
+            System.out.printf("<<-------GraveYard for Player : %s--------->>\n",player.getName());
+            System.out.println("show info\nshow cards\nexit");
         }
 }

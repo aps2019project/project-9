@@ -144,6 +144,8 @@ public class InGameRequest {
             return InGameRequestType.EXIT;
         else if (command.matches(SHOW_MENU))
             return InGameRequestType.SHOW_MENU;
+        else if (command.matches(END_GAME))
+            return InGameRequestType.END_GAME;
         else
             return null;
     }
