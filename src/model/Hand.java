@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Hand {
-    public Hand(Deck deck){ // deck should be sorted in start game methods
+    public Hand(Deck deck) { // deck should be sorted in start game methods
         numberOfCardFromDeck = 0;
         this.deck = deck;
         Collections.shuffle(deck.getCards());
@@ -15,24 +15,31 @@ public class Hand {
         }
         numberOfCardFromDeck = 5;
     }
+
     private ArrayList<Card> cards = new ArrayList<>(5);
     private Deck deck;
     private int numberOfCardFromDeck;
+
     public Card getNext() {
         return deck.getCards().get(numberOfCardFromDeck);
     }
 
 
     public void addCardFromDeck() {
-        if(cards.size() < 5){
+        if (cards.size() < 5) {
             cards.add(deck.getCards().get(numberOfCardFromDeck++));
         }
     }
 
-    /*public String toString() {
-        return null;
-        // also show next turn card ( that will be added to hand )
-    }*/
+    public String toString() {
+        String string = "";
+        for (Card key : cards) {
+            string = string.concat(key.getName() + key.getCardID() + ":" + key.getDesc() + "\n");
+        }
+        string = string.concat("Next Card :\n");
+        string = string.concat(getNext().getName() + getNext().getCardID() + ":" + getNext().getDesc() + "\n");
+        return string;
+    }
 
     public void deleteCard(Card card) {
         cards.remove(card);
@@ -42,9 +49,9 @@ public class Hand {
         return cards;
     }
 
-    public Card getCardByName(String cardName){
+    public Card getCardByName(String cardName) {
         for (Card card : cards) {
-            if(card.getName().equals(cardName))
+            if (card.getName().equals(cardName))
                 return card;
         }
         return null;
