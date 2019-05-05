@@ -22,7 +22,14 @@ public class PlayGround {
                 }
             }
         } else if (mode == GameMode.ONE_FLAG) {
-            placeFlags();
+            for (int i = 0; i < 5; i++) {
+                for (int j = 0; j < 9; j++) {
+                    if (i == 2 && j == 4)
+                        cells[i][j] = new Cell(i, j, this, new Flag());
+                    else
+                        cells[i][j] = new Cell(i, j, this, null);
+                }
+            }
         } else {
             for (int z = 0; z < numberOfFlags; z++) {
                 placeFlags();
