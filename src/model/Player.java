@@ -307,11 +307,13 @@ public class Player {
     private void insertMinionOrSpellAI() {
         if (minManaCardInHand() instanceof Minion) {
             if (mana <= minManaCardInHand().getMP() && !battle.getPlayGround().getCell(hero.getCell().getX() - 1,
-                    hero.getCell().getY() - 1).hasCardOnIt()) {
+                    hero.getCell().getY() - 1).hasCardOnIt() && battle.getPlayGround().getCell(hero.getCell()
+                    .getX() - 1, hero.getCell().getY() - 1) != null) {
                 insertCard(minManaCardInHand(), battle.getPlayGround().getCell(hero.getCell().getX() - 1,
                         hero.getCell().getY() - 1));
-            } else if (mana <= minManaCardInHand().getMP() && !battle.getPlayGround().getCell(hero.getCell().getX() - 1,
-                    hero.getCell().getY()).hasCardOnIt()) {
+            } else if (mana <= minManaCardInHand().getMP() && !battle.getPlayGround().getCell(hero.getCell().getX()
+                    - 1, hero.getCell().getY()).hasCardOnIt() && battle.getPlayGround().getCell(hero.getCell().getX()
+                    - 1, hero.getCell().getY()) != null) {
                 insertCard(minManaCardInHand(), battle.getPlayGround().getCell(hero.getCell().getX() - 1,
                         hero.getCell().getY()));
             }
@@ -329,11 +331,14 @@ public class Player {
 
     private void moveMinionsAI() {
         for (Minion key : minionsInPlayGround) {
-            if (key.isCanMove()) {
+            if (key.isCanMove() && battle.getPlayGround().getCell(key.getCell().getX() - 1, key.getCell().getY())
+                    != null){
                 move(key, battle.getPlayGround().getCell(key.getCell().getX() - 1, key.getCell().getY()));
             }
-            if (key.getAttackType().equals(MinionAttackType.RANGED) ||
-                    key.getAttackType().equals(MinionAttackType.HYBRID)) {
+            if ((key.getAttackType().equals(MinionAttackType.RANGED) ||
+                    key.getAttackType().equals(MinionAttackType.HYBRID)
+            ) && battle.getPlayGround().getManhatanDistance(key.getCell(),getOpponent().getHero().getCell()) <
+                    key.getAttackRange()){
                 key.attack(getOpponent().getHero().getCell());
             }
         }
