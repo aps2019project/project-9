@@ -264,7 +264,9 @@ public class Player {
         if (battle.getPlayGround().getManhatanDistance(getOpponent().getHero().getCell(), hero.getCell()) > 2) {
             moveHeroAI();
         }
-        insertMinionOrSpellAI();
+        for (int i = 0; i < 3; i++) {
+            insertMinionOrSpellAI();
+        }
         moveMinionsAI();
         endTurn();
     }
@@ -314,7 +316,7 @@ public class Player {
             } else if (spell.getTargetType().equals(SpellItemTarget.ENEMY_HERO_RANGED_OR_HYBRID) && (
                     getOpponent().getHero().getAttackType().equals(MinionAttackType.RANGED) ||
                             getOpponent().getHero().getAttackType().equals(MinionAttackType.HYBRID))) {
-                insertCard(spell, hero.getCell());
+                insertCard(spell,getOpponent().getHero().getCell());
             }
         }
     }
