@@ -22,7 +22,7 @@ public class InGameView {
     public static InGameView getInstance() {
         return IN_GAME_VIEW;
     }
-
+    public boolean isFinished = false;
     private InGameView() {
     }
 
@@ -168,7 +168,8 @@ public class InGameView {
 
     public void endGameOutput(BattleResult result) {
         System.out.printf("Winner : %s\nThe Prize of winner is %d derick\n", result.getWinner(), result.getPrize());
-        System.out.println("Enter :\nEND GAME");
+        /*System.out.println("Enter :\nEND GAME");*/
+        isFinished = true;
     }
 
     public void showHand(Hand hand) {

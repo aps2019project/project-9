@@ -49,6 +49,7 @@ public class PlayGround {
                     cells[i][j] = new Cell(i, j, this, null);
             }
         }
+        flag = cells[randomColoumn][randomSatr].getFlag();
     }
 
     public boolean isForEnemyMinion(Cell cell, Player player) {

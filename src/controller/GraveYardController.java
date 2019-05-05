@@ -18,6 +18,7 @@ public class GraveYardController {
     public void main() {
         boolean isFinished = false;
         do {
+            view.help(player);
             GraveYardRequest request = new GraveYardRequest();
             request.getNewCommand();
             if (request.getType() == null) {

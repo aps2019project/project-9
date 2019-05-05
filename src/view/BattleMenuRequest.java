@@ -105,7 +105,7 @@ public class BattleMenuRequest {
         } else if (command.split(" ").length >= 4
                 && command.substring(0, 22).matches("start multiplayer game")) {
             mode = command.split(" ")[3];
-            if (!mode.equals("1")) {
+            if (mode.equals("3")) {
                 if (command.split(" ").length != 5)
                     return null;
                 numberOfFlags = command.split(" ")[4];

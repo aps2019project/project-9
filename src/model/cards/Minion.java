@@ -151,7 +151,8 @@ public class Minion extends Card {
                 specialPower.castSpecialPower(cell);
             }
             canAttack = false;
-            player.getBattle().checkWinner();
+            canMove = false;
+            //player.getBattle().checkWinner(); -> will be checked in killed()
         }
     }
 

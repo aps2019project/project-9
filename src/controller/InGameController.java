@@ -10,6 +10,7 @@ import model.cards.Spell;
 import model.enumerations.InGameErrorType;
 import model.enumerations.InGameRequestType;
 import model.items.Collectible;
+import view.BattleMenuView;
 import view.InGameRequest;
 import view.InGameView;
 
@@ -26,9 +27,12 @@ public class InGameController {
     public void main() {
         inGameView.printfError(InGameErrorType.GAME_STARTED);
         boolean isFinished = false;
-        do {
+        main : do {
             InGameRequest request = new InGameRequest();
             request.getNewCommand();
+            if(inGameView.isFinished){
+                break;
+            }
             if (request.getType() == InGameRequestType.EXIT) {
                 inGameView.printfError(InGameErrorType.EXIT_IN_THE_MIDDLE);
                 isFinished = true;
@@ -57,8 +61,10 @@ public class InGameController {
                     break;
                 case END_GAME:
                     // after view.endGameOutput called
+                    BattleMenuView view = new BattleMenuView();
+                    view.showSingleMultiPlayerMenu();
                     isFinished = true;
-                    break;
+                    break main;
                 case END_TURN:
                     battle.getCurrenPlayer().endTurn();
                     break;
