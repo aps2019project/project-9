@@ -22,7 +22,9 @@ public class InGameView {
     public static InGameView getInstance() {
         return IN_GAME_VIEW;
     }
+
     public boolean isFinished = false;
+
     private InGameView() {
     }
 
@@ -55,12 +57,16 @@ public class InGameView {
     private void printOneFlagInfo(Battle battle) {
         System.out.println("Your Mana : " + battle.getCurrenPlayer().getMana());
         System.out.println("The Flag Position : [ x , y ]");
-        System.out.println(battle.getPlayGround().getFlag().getCurrentCell().getX());
-        System.out.println(battle.getPlayGround().getFlag().getCurrentCell().getY());
+        System.out.printf("[ %d , %d ]\n", battle.getPlayGround().getFlag().getCurrentCell().getX(),
+                battle.getPlayGround().getFlag().getCurrentCell().getY());
         System.out.println("The Player Owning Flag :");
-        System.out.println(battle.getPlayGround().getFlag().getOwningPlayer().getName());
+        if (battle.getPlayGround().getFlag().getOwningPlayer() != null)
+            System.out.println(battle.getPlayGround().getFlag().getOwningPlayer().getName());
         System.out.println("The minion owning the Flag : ");
-        System.out.println(battle.getPlayGround().getFlag().getOwningMinion().getMinionName());
+        if (battle.getPlayGround().getFlag().getOwningMinion() != null)
+            System.out.println(battle.getPlayGround().getFlag().getOwningMinion().getName());
+        System.out.println("Turns Owning Minions :");
+        System.out.println(battle.getPlayGround().getFlag().getTurnsOwned());
     }
 
     private void printMoreFlagsInfo(Battle battle) {
@@ -78,8 +84,8 @@ public class InGameView {
             if (minion != null) {
                 System.out.printf("Battle ID : %s , name : %s, health: %d, location: %d , %d ,power : %d ,card ID : %d\n",
                         minion.getBattleID(), minion.getName(), minion.getHP(), minion.getCell().getX()
-                        , minion.getCell().getY(), minion.getAP() , minion.getCardID());
-                places[minion.getCell().getX()][minion.getCell().getY()]=1;
+                        , minion.getCell().getY(), minion.getAP(), minion.getCardID());
+                places[minion.getCell().getX()][minion.getCell().getY()] = 1;
             }
         }
         //TODO adding special show for minions ( graphical )
@@ -90,11 +96,11 @@ public class InGameView {
         for (int i = 0; i < 5; i++) {
             System.out.print("|");
             for (int j = 0; j < 9; j++) {
-                if(places[i][j] == 0){
+                if (places[i][j] == 0) {
                     System.out.print("_");
-                }else if(places[i][j]==1){
+                } else if (places[i][j] == 1) {
                     System.out.print("F");
-                }else{
+                } else {
                     System.out.print("E");
                 }
                 System.out.print("|");
@@ -179,8 +185,7 @@ public class InGameView {
             if (card instanceof Spell) {
                 System.out.printf("%d . %s ( Spell ) - cardID : %d\n", counter++, card.getName(), card.getCardID());
                 System.out.println(card.toString());
-            }
-            else {
+            } else {
                 System.out.printf("%d . %s ( Minion ) - cardID : %d\n", counter++, card.getName(), card.getCardID());
                 System.out.println(card.toString());
             }

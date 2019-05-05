@@ -13,6 +13,10 @@ public class Flag extends Item {
     private Minion owningMinion;
     private int turnsOwned;
 
+    public Flag(Cell currentCell) {
+        super(0, "",null, "");
+        this.currentCell = currentCell;
+    }
 
     public Flag() {
         super(0, "flag", null, "flag");
@@ -48,5 +52,9 @@ public class Flag extends Item {
 
     public void setCurrentCell(Cell currentCell) {
         this.currentCell = currentCell;
+    }
+
+    public void nextTurn(){
+        turnsOwned++;
     }
 }

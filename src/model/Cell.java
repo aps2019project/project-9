@@ -18,6 +18,8 @@ public class Cell {
         this.playGround = playGround;
         this.collectableItem = null;
         this.flag = flag;
+        if (flag != null)
+            flag.setCurrentCell(this);
     }
 
     public int getX() {
@@ -52,7 +54,7 @@ public class Cell {
     }
 
     public void addCard(Card card) {
-        minionOnIt = (Minion)card;
+        minionOnIt = (Minion) card;
     }
 
     public void deleteCard() {
@@ -76,25 +78,28 @@ public class Cell {
     public ArrayList<CellAffect> getCellAffects() {
         return cellAffects;
     }
-    public boolean hasCellAffect(){
+
+    public boolean hasCellAffect() {
         return cellAffects.size() > 0;
     }
 
     public Flag getFlag() {
         return flag;
     }
-    public void setFlag(Flag flag){
+
+    public void setFlag(Flag flag) {
         this.flag = flag;
     }
 
     public Item getCollectableItem() {
         return collectableItem;
     }
-    public void deleteFlag(){
+
+    public void deleteFlag() {
         flag = null;
     }
 
-    public void removeCellAffect(CellAffect affect){
+    public void removeCellAffect(CellAffect affect) {
         cellAffects.remove(affect);
     }
 
