@@ -100,7 +100,7 @@ public class InGameController {
                     inGameView.showCollectibles(battle.getCurrenPlayer());
                     break;
                 case USE_SPECIAL_POWER:
-                    useSpecialPower(request.getX(),request.getY());
+                    useSpecialPower(request.getX(), request.getY());
                     break;
                 case SHOW_OPPONENT_MINIONS:
                     inGameView.showMinions(battle.getCurrenPlayer().getOpponent());
@@ -130,7 +130,7 @@ public class InGameController {
         inGameView.printfError(InGameErrorType.INVALID_CARD_ID);
     }
 
-    private int numberOfUseInBattle(Battle battle,Card friendlyCard) {
+    private int numberOfUseInBattle(Battle battle, Card friendlyCard) {
         int ID = 1;
         for (Card key : battle.getCurrenPlayer().getGraveYard().getCards()) {
             if (key.getBattleID().split("_")[0].equals(battle.getCurrenPlayer().getName()) &&
@@ -138,7 +138,7 @@ public class InGameController {
                 ID++;
         }
         for (Card key : battle.getCurrenPlayer().getMinionsInPlayGround()) {
-            if (key.getBattleID()!= null && key.getBattleID().split("_")[0].equals(battle.getCurrenPlayer().getName()) &&
+            if (key.getBattleID() != null && key.getBattleID().split("_")[0].equals(battle.getCurrenPlayer().getName()) &&
                     key.getBattleID().split("_")[1].equals(friendlyCard.getName()))
                 ID++;
         }
@@ -192,24 +192,25 @@ public class InGameController {
                     inGameView.printfError(InGameErrorType.INVALID_TARGET);
                 } else {
                     // ID assigning
-                    finalThingsInInsertingCard(friendlyCard,player,cell,x,y);
+                    finalThingsInInsertingCard(friendlyCard, player, cell, x, y);
                 }
             } else {
                 if (!((Spell) friendlyCard).isValidTarget(cell))
                     inGameView.printfError(InGameErrorType.INVALID_TARGET);
                 else {
                     // ID assigning
-                    finalThingsInInsertingCard(friendlyCard,player,cell,x,y);
+                    finalThingsInInsertingCard(friendlyCard, player, cell, x, y);
                 }
             }
         }
     }
-    private void finalThingsInInsertingCard(Card friendlyCard , Player player,Cell cell,int x , int y){
-        String Id =  player.getName() + "_"
+
+    private void finalThingsInInsertingCard(Card friendlyCard, Player player, Cell cell, int x, int y) {
+        String Id = player.getName() + "_"
                 + friendlyCard.getName()
-                + "_" + numberOfUseInBattle(battle,friendlyCard);
+                + "_" + numberOfUseInBattle(battle, friendlyCard);
         friendlyCard.setBattleID(Id);
-        player.insertCard(friendlyCard,cell);
+        player.insertCard(friendlyCard, cell);
         inGameView.cardInserted(friendlyCard, x, y);
     }
 
@@ -218,15 +219,13 @@ public class InGameController {
             inGameView.printfError(InGameErrorType.NO_SELECTED_CARD);
         else if (!((Minion) player.getSelectedCard()).isCanMove()) {
             inGameView.printfError(InGameErrorType.CAN_NOT_MOVE);
-        }
-        else {
+        } else {
             Minion selectedMinion = (Minion) player.getSelectedCard();
             Cell targetCell = battle.getPlayGround().getCell(x, y);
             if (!selectedMinion.isValidCellForMove(targetCell)) {
 
                 inGameView.printfError(InGameErrorType.INVALID_TARGET);
-            }
-            else {
+            } else {
                 player.move(selectedMinion, targetCell);
                 player.setSelectedCard(null);
                 inGameView.cardMoved(selectedMinion, x, y);
