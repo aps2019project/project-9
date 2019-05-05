@@ -53,11 +53,11 @@ public class BattleMenuRequest {
     }
 
     public BattleMenuRequestType getTypeStoryMode() {
-        if (command.matches("enter 1")) {
+        if (command.matches("1")) {
             return BattleMenuRequestType.FIRST_LEVEL;
-        } else if (command.matches("enter 2")) {
+        } else if (command.matches("2")) {
             return BattleMenuRequestType.SECOND_LEVEL;
-        } else if (command.matches("enter 3")) {
+        } else if (command.matches("3")) {
             return BattleMenuRequestType.THIRD_LEVEL;
         } else
             return null;
