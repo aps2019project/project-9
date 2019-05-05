@@ -32,6 +32,11 @@ public class PlayGround {
             }
             flag = cells[2][4].getFlag();
         } else {
+            for (int i = 0; i < 5; i++) {
+                for (int j = 0; j < 9; j++) {
+                    cells[i][j] = new Cell(i , j,this,null);
+                }
+            }
             for (int z = 0; z < numberOfFlags; z++) {
                 placeFlags();
             }
@@ -53,14 +58,11 @@ public class PlayGround {
             for (int j = 0; j < 9; j++) {
                 if (i == randomColoumn && j == randomSatr) {
                     Flag flag = new Flag(cells[i][j]);
-                    cells[i][j] = new Cell(i, j, this, flag);
+                    cells[i][j].setFlag(flag);
                     flags.add(flag);
                 }
-                else
-                    cells[i][j] = new Cell(i, j, this, null);
             }
         }
-        flag = cells[randomColoumn][randomSatr].getFlag();
     }
 
     public boolean isForEnemyMinion(Cell cell, Player player) {

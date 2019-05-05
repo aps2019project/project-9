@@ -225,9 +225,10 @@ public class Battle {
                     endBattle(secondPlayer);
                 break;
             case FLAGS:
-                if (firstPlayer.getFlagsAcheived().size() >= numberOfFlags / 2) {
+                int checkingInt = (numberOfFlags%2==0)?(numberOfFlags/2):((numberOfFlags+1)/2);
+                if (firstPlayer.getFlagsAcheived().size() >= checkingInt) {
                     endBattle(firstPlayer);
-                } else if (secondPlayer.getFlagsAcheived().size() >= numberOfFlags / 2) {
+                } else if (secondPlayer.getFlagsAcheived().size() >= checkingInt) {
                     endBattle(secondPlayer);
                 }
                 break;

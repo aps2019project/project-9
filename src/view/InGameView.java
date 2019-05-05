@@ -73,8 +73,13 @@ public class InGameView {
         System.out.println("Your Mana : " + battle.getCurrenPlayer().getMana());
         int counter = 1;
         for (Flag flag : battle.getPlayGround().getFlags()) {
-            System.out.printf("%s ( Minion ) Has A Flag From Player %s\n",
-                    flag.getOwningMinion().getMinionName(), flag.getOwningPlayer().getName());
+            if (flag.getOwningMinion() != null) {
+                System.out.printf("%d . %s ( Minion ) Has Flag in [ %d , %d ] , From Player %s\n", counter++,
+                        flag.getOwningMinion().getName(), flag.getCurrentCell().getX()
+                        , flag.getCurrentCell().getY(), flag.getOwningPlayer().getName());
+            } else
+                System.out.printf("The Flag number %d is in [ %d , %d ]\n", counter++,
+                        flag.getCurrentCell().getX(), flag.getCurrentCell().getY());
         }
     }
 
