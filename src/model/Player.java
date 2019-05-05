@@ -67,6 +67,7 @@ public class Player {
         this.battle = battle;
         minionsInPlayGround.add(hero);
         graveYard = new GraveYard(this);
+        hand = new Hand(deck);
     }
 
     public Player(Deck deck, Battle battle) {
@@ -339,7 +340,6 @@ public class Player {
     }
 
     private Card minManaCardInHand() {
-        Hand hand = getHand();
         ArrayList<Integer> minMana = new ArrayList<>();
         for (Card key : hand.getCards()) {
             minMana.add(key.getMP());
