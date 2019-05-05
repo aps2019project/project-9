@@ -118,7 +118,7 @@ public class Battle {
         assignMana();
         whoseTurn = (whoseTurn == 1) ? (2) : (1);
         turn++;
-        if(this instanceof SinglePlayerBattle){
+        if(this instanceof SinglePlayerBattle && whoseTurn == 2){
             secondPlayer.doAiAction();
         }
         handleCanMoveCanAttack(firstPlayer);
