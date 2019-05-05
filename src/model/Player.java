@@ -278,10 +278,15 @@ public class Player {
         int X2 = xFirst + 1;
         int Y1 = yFirst - 1;
         int Y2 = yFirst + 1;
-        int dX1 = manhatanint(X1, yFirst);
-        int dX2 = manhatanint(X2, yFirst);
-        int dY1 = manhatanint(xFirst, Y1);
-        int dY2 = manhatanint(xFirst, Y2);
+        int dX1 = 40, dX2 = 40, dY1 = 40, dY2 = 40;
+        if (X1 >= 0 && X1 <= 5)
+            dX1 = manhatanint(X1, yFirst);
+        if (X2 >= 0 && X2 <= 5)
+            dX2 = manhatanint(X2, yFirst);
+        if (Y1 >= 0 && Y1 <= 7)
+            dY1 = manhatanint(xFirst, Y1);
+        if (Y2 >= 0 && Y2 <= 7)
+            dY2 = manhatanint(xFirst, Y2);
         ArrayList<Integer> distanses = new ArrayList<>();
         distanses.add(dX1);
         distanses.add(dX2);
@@ -316,7 +321,7 @@ public class Player {
             } else if (spell.getTargetType().equals(SpellItemTarget.ENEMY_HERO_RANGED_OR_HYBRID) && (
                     getOpponent().getHero().getAttackType().equals(MinionAttackType.RANGED) ||
                             getOpponent().getHero().getAttackType().equals(MinionAttackType.HYBRID))) {
-                insertCard(spell,getOpponent().getHero().getCell());
+                insertCard(spell, getOpponent().getHero().getCell());
             }
         }
     }

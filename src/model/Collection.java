@@ -30,11 +30,11 @@ public class Collection {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("\nHeroes :\n\n");
         int counter = 1;
-        if (cards != null && cards.size()>0) {
+        if (cards != null && cards.size() > 0) {
             for (Card card : cards) {
                 if (card instanceof Hero) {
-                    if(card != null) {
-                        string = counter++ + "\t\t" + card.toString() + "\n";
+                    if (card != null) {
+                        string = counter++ + "\t\t" + card.toString() + "\tHero ID : " + card.getCardID() + "\n";
                         stringBuilder.append(string);
                     }
                 }
@@ -44,19 +44,19 @@ public class Collection {
         stringBuilder.append("\nItems :\n\n");
         if (items != null) {
             for (Item item : items) {
-                if(item != null) {
-                    string = counter++ + "\t\t" + item.toString() + "\n";
+                if (item != null) {
+                    string = counter++ + "\t\t" + item.toString() + "\tItem ID : " + item.getItemID() + "\n";
                     stringBuilder.append(string);
                 }
             }
         }
         counter = 1;
         stringBuilder.append("\nCards :\n\n");
-        if (cards != null && cards.size()>0) {
+        if (cards != null && cards.size() > 0) {
             for (Card card : cards) {
                 if (!(card instanceof Hero)) {
-                    if(card != null) {
-                        string = counter++ + "\t\t" + card.toString() + "\n";
+                    if (card != null) {
+                        string = counter++ + "\t\t" + card.toString() + "Card ID : " + card.getCardID() + "\n";
                         stringBuilder.append(string);
                     }
                 }
@@ -192,7 +192,7 @@ public class Collection {
         addItem(DefaultCards.getItem(ItemName.TAJ_DANAYEE));
     }
 
-    public int getNumberOfItems(){
+    public int getNumberOfItems() {
         return items.size();
     }
 }
