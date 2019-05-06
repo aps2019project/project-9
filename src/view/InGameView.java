@@ -1,9 +1,6 @@
 package view;
 
-import model.Battle;
-import model.BattleResult;
-import model.Hand;
-import model.Player;
+import model.*;
 import model.cards.Card;
 import model.cards.Hero;
 import model.cards.Minion;
@@ -44,6 +41,22 @@ public class InGameView {
                 printMoreFlagsInfo(battle);
                 break;
         }
+        showCollectibles(battle);
+    }
+
+    private void showCollectibles(Battle battle) {
+        PlayGround playGround = battle.getPlayGround();
+        int counter = 1;
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 9; j++) {
+                Cell cell = playGround.getCell(i, j);
+                if (cell.getCollectableItem() != null) {
+                    System.out.printf("Collectible Item %s is in [ %d , %d ]\n", cell.getCollectableItem().getName()
+                            , cell.getX(), cell.getY());
+                }
+            }
+        }
+
     }
 
     private void printHeroKillGameInfo(Battle battle) {
@@ -204,7 +217,7 @@ public class InGameView {
         if (player.getSelectedCollectableItem() == null)
             System.out.println("No Item Selected");
         else
-            System.out.printf("Item Name : %s , Description : %s",
+            System.out.printf("Item Name : %s , Description : %s\n",
                     player.getSelectedCollectableItem().getDesc()
                     , player.getSelectedCollectableItem().getName());
     }

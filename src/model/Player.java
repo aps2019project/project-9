@@ -30,6 +30,7 @@ public class Player {
     private Item selectedCollectableItem;
     private GraveYard graveYard;
     private boolean usedAddManaItem = false; // for item num 8
+    private static int uniqueItemID = 100;
 
     public Player(Account account, Battle battle) {
         this.deck = account.getMainDeck().getCopy();
@@ -89,6 +90,7 @@ public class Player {
         }
         if (target.getCollectableItem() != null) {
             player.collectItem(target.getCollectableItem());
+            target.setCollectableItem(null);
         }
         if (target.getCellAffects().size() > 0) {
             for (CellAffect cellAffect : target.getCellAffects()) {
@@ -168,6 +170,16 @@ public class Player {
     public void collectItem(Item item) {
         collectedItems.add((Collectible) item);
         ((Collectible) item).collect(this);
+        item.setItemID(uniqueItemID++);
+        PlayGround playGround = battle.getPlayGround();
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (playGround.getCell(i, j).getCollectableItem() != null
+                        && playGround.getCell(i, j).getCollectableItem().getName().equals(item.getName())) {
+                    playGround.getCell(i,j).setCollectableItem(null);
+                }
+            }
+        }
     }
 
     public void collectFlag(Cell targetCell, Minion owningMinion) {
@@ -220,12 +232,25 @@ public class Player {
         Collectible collectibleItem = (Collectible) item;
         collectibleItem.useItem();
         collectedItems.remove(collectibleItem);
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (battle.getPlayGround().getCell(i, j).getCollectableItem() != null
+                        && battle.getPlayGround().getCell(i, j).getCollectableItem()
+                        .getName().equals(collectibleItem.getName())) {
+                    battle.getPlayGround().getCell(i, j).setCollectableItem(null);
+                    return;
+                }
+            }
+        }
     }
 
     public void move(Minion minion, Cell cell) {
         // check collectable items
         Cell previous = minion.getCell();
         if (!cell.hasCardOnIt()) {
+            if (cell.getCollectableItem() != null) {
+                collectItem(cell.getCollectableItem());
+            }
             if (cell.hasCellAffect()) {
                 for (CellAffect cellAffect : cell.getCellAffects()) {
                     cellAffect.castCellAffect(minion);
@@ -336,13 +361,13 @@ public class Player {
     private void moveMinionsAI() {
         for (Minion key : minionsInPlayGround) {
             if (key.isCanMove() && battle.getPlayGround().getCell(key.getCell().getX() - 1, key.getCell().getY())
-                    != null){
+                    != null) {
                 move(key, battle.getPlayGround().getCell(key.getCell().getX() - 1, key.getCell().getY()));
             }
             if ((key.getAttackType().equals(MinionAttackType.RANGED) ||
                     key.getAttackType().equals(MinionAttackType.HYBRID)
-            ) && battle.getPlayGround().getManhatanDistance(key.getCell(),getOpponent().getHero().getCell()) <
-                    key.getAttackRange()){
+            ) && battle.getPlayGround().getManhatanDistance(key.getCell(), getOpponent().getHero().getCell()) <
+                    key.getAttackRange()) {
                 key.attack(getOpponent().getHero().getCell());
             }
         }

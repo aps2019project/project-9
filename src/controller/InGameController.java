@@ -46,7 +46,7 @@ public class InGameController {
                     inGameView.help(battle.getCurrenPlayer());
                     break;
                 case USE:
-                    use(battle.getCurrenPlayer(), request.getX(), request.getY());
+                    use(battle.getCurrenPlayer(), request.getX(), request.getY()); // for collectible item
                     break;
                 case ATTACK:
                     attack(battle.getCurrenPlayer(), request.getOpponentCardID());

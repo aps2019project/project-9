@@ -129,7 +129,7 @@ public class InGameRequest {
             return InGameRequestType.SELCET_ITEM;
         } else if (command.matches(SHOW_INFO))
             return InGameRequestType.SHOW_INFO;
-        else if (command.matches(USE_ITEM) && command.split(" ").length == 3
+        else if (command.split(" ")[0].matches(USE_ITEM) && command.split(" ").length == 3
                 && checkItemUseCommand(command)) {
             x = Integer.parseInt(command.split(" ")[1]);
             y = Integer.parseInt(command.split(" ")[2]);

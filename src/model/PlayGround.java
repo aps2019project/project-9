@@ -2,7 +2,9 @@ package model;
 
 import model.cards.Card;
 import model.enumerations.GameMode;
+import model.enumerations.ItemName;
 import model.enumerations.MinionAttackType;
+import model.items.Collectible;
 import model.items.Flag;
 
 import java.util.ArrayList;
@@ -13,6 +15,7 @@ public class PlayGround {
     private Cell[][] cells = new Cell[5][9];
     private ArrayList<Flag> flags = new ArrayList<>(); // for mode three
     private Flag flag; // for mode two ( one flag )
+    private ArrayList<Collectible> collectibles = new ArrayList<>();
 
     public PlayGround(GameMode mode, int numberOfFlags) {
         if (mode == GameMode.HERO_KILL) {
@@ -41,6 +44,20 @@ public class PlayGround {
                 placeFlags();
             }
         }
+        for (int i = 0; i < 3; i++) {
+            assignCollectibleItem();
+        }
+    }
+
+    private void assignCollectibleItem(){
+        Cell cell = getRandomCell();
+        Collectible collectible = getRandomCollectibleItem();
+        collectibles.add(collectible);
+        cell.setCollectableItem(collectible);
+    }
+
+    public ArrayList<Collectible> getCollectibles() {
+        return collectibles;
     }
 
     private int randomIntGenarator() {
@@ -63,6 +80,22 @@ public class PlayGround {
                 }
             }
         }
+    }
+
+    protected Collectible getRandomCollectibleItem(){
+        Random r = new Random();
+        ArrayList<Collectible> collectibles = new ArrayList<>();
+        collectibles.add((Collectible)DefaultCards.getItem(ItemName.NOOSH_DAROO));
+        collectibles.add((Collectible)DefaultCards.getItem(ItemName.TIR_DOSHAKH));
+        collectibles.add((Collectible)DefaultCards.getItem(ItemName.EKSIR));
+        collectibles.add((Collectible)DefaultCards.getItem(ItemName.MAJOON_MANA));
+        collectibles.add((Collectible)DefaultCards.getItem(ItemName.MAJOON_ROIEEN));
+        collectibles.add((Collectible)DefaultCards.getItem(ItemName.NEFRIN_MARG));
+        collectibles.add((Collectible)DefaultCards.getItem(ItemName.RANDOM_DAMAGE));
+        collectibles.add((Collectible)DefaultCards.getItem(ItemName.BLADES_AGILITY));
+        collectibles.add((Collectible)DefaultCards.getItem(ItemName.CHINESE_SHAMSHIR));
+        int y = r.nextInt(collectibles.size());
+        return collectibles.get(y);
     }
 
     public boolean isForEnemyMinion(Cell cell, Player player) {

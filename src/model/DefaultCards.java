@@ -1,7 +1,6 @@
 package model;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.google.gson.*;
 import model.buffs.*;
 import model.cards.Hero;
 import model.cards.HeroTargetType;
@@ -16,6 +15,7 @@ import model.items.*;
 import model.items.itemEnumerations.*;
 import model.specialPower.*;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -968,4 +968,21 @@ public class DefaultCards {
         spellHashMap.put(SpellName.ALL_POWER, ALL_POWER);
     }
 
+
+    /*{
+        JsonSerializer<SpecialPower> serializer = new JsonSerializer<SpecialPower>() {
+            @Override
+            public JsonElement serialize(SpecialPower specialPower, Type type, JsonSerializationContext jsonSerializationContext) {
+                JsonObject object = jsonSerializationContext.serialize(specialPower).getAsJsonObject();
+                object.addProperty("type",specialPower.getClass().getName());
+                return object;
+            }
+        };
+        JsonDeserializer<SpecialPower> deserializer = new JsonDeserializer<SpecialPower>() {
+            @Override
+            public SpecialPower deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
+                jsonDeserializationContext.deserialize()
+            }
+        }
+    }*/
 }

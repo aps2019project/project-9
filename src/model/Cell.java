@@ -106,4 +106,8 @@ public class Cell {
     public void setMinionOnIt(Minion minionOnIt) {
         this.minionOnIt = minionOnIt;
     }
+
+    public void setCollectableItem(Item collectableItem) {
+        this.collectableItem = collectableItem;
+    }
 }
