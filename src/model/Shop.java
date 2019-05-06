@@ -4,10 +4,7 @@ import model.cards.Card;
 import model.cards.Hero;
 import model.cards.Minion;
 import model.cards.Spell;
-import model.enumerations.CardType;
-import model.enumerations.ItemName;
-import model.enumerations.MinionName;
-import model.enumerations.SpellName;
+import model.enumerations.*;
 import model.items.Collectible;
 import model.items.Item;
 
@@ -44,6 +41,9 @@ public class Shop {
                     allItems.add(item);
                 }
             }
+        }
+        for (HeroName value : HeroName.values()) {
+            allCards.add(DefaultCards.getHero(value));
         }
     }
     // total_disarm , all_disam , all_poison , ghool_snake

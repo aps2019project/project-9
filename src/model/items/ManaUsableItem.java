@@ -12,8 +12,9 @@ public class ManaUsableItem extends Usable {
     @Override
     public void castItem(Player player) {
         if (itemType == ItemName.TAJ_DANAYEE) {
-            if (player.getBattle().getTurn() <= 3)
+            if (player.getBattle().getTurn() <= 3) {
                 player.addMana(1);
+            }
         }else if(itemType == ItemName.KING_WISDOM){
             player.addMana(1);
         }

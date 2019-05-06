@@ -38,10 +38,10 @@ public class BattleMenuView {
 
     public void showCustomGameMenu(Account loggedInAccount) {
         System.out.println("Your Main Deck :");
-        System.out.println(loggedInAccount.getMainDeck().toString());
+        System.out.println(loggedInAccount.getMainDeck().getName());
         System.out.println("Your Other Decks :");
         for (Deck deck : loggedInAccount.getDecks()) {
-            System.out.println(deck.toString());
+            System.out.println(deck.getName());
         }
         System.out.println("To Start Enter This Format:\nStart game [deck name] [mode] [number of flags]");
     }

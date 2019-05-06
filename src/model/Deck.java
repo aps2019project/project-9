@@ -13,47 +13,47 @@ import java.util.Collections;
 public class Deck {
     // 1,9,11,25,13,17,18,21,22,26,38,36,40
     private static final MinionName[] FIRST_LEVEL_MINIONS =
-            {MinionName.FARS_KAMANDAR,MinionName.TOORANEE_NEYZEDAR,
-            MinionName.TOORANEE_GORZDAR,MinionName.JADOOGAR,MinionName.BLACK_DEEV,
-            MinionName.ONE_EYE_GHOOL,MinionName.POISON_SNAKE,MinionName.GHOOL_SNAKE,
-            MinionName.WHITE_WOLF,MinionName.JADOOGAR_AZAM,MinionName.SIAVOSH,
-            MinionName.NANE_SARMA,MinionName.ARJANG_DEEV};
+            {MinionName.FARS_KAMANDAR, MinionName.TOORANEE_NEYZEDAR,
+                    MinionName.TOORANEE_GORZDAR, MinionName.JADOOGAR, MinionName.BLACK_DEEV,
+                    MinionName.ONE_EYE_GHOOL, MinionName.POISON_SNAKE, MinionName.GHOOL_SNAKE,
+                    MinionName.WHITE_WOLF, MinionName.JADOOGAR_AZAM, MinionName.SIAVOSH,
+                    MinionName.NANE_SARMA, MinionName.ARJANG_DEEV};
     // 1,7,10,11,12,18,20
     private static final SpellName[] FIRST_LEVEL_SPELLS =
-            {SpellName.TOTAL_DISARM,SpellName.LIGHTING_BOLT,SpellName.ALL_DISARM,
-            SpellName.ALL_POISON,SpellName.DISPEL,SpellName.SACRIFICE,SpellName.SHOCK};
+            {SpellName.TOTAL_DISARM, SpellName.LIGHTING_BOLT, SpellName.ALL_DISARM,
+                    SpellName.ALL_POISON, SpellName.DISPEL, SpellName.SACRIFICE, SpellName.SHOCK};
     // 1
     private static final HeroName FIRST_LEVEL_HERO = HeroName.WHITE_DEEV;
     // 1
     private static final ItemName FIRST_LEVEL_ITEM = ItemName.TAJ_DANAYEE;
     // 2,3,5,8,12,15,19,23,27,30,33,39,25
     private static final MinionName[] SECOND_LEVEL_MINIONS =
-            {MinionName.FARS_SHAMSHIRZAN,MinionName.FARS_NEYZEDAR,MinionName.FARS_PAHLAVAN,
-            MinionName.TOORANEE_GHOLABSANG,MinionName.TOORANEE_SHAHZADE,MinionName.EAGLE,
-            MinionName.DRAGON_FIRE,MinionName.PALANG,MinionName.JEN,MinionName.GEEV,
-            MinionName.EERAG,MinionName.SHAH_GOOL,MinionName.JADOOGAR_AZAM};
+            {MinionName.FARS_SHAMSHIRZAN, MinionName.FARS_NEYZEDAR, MinionName.FARS_PAHLAVAN,
+                    MinionName.TOORANEE_GHOLABSANG, MinionName.TOORANEE_SHAHZADE, MinionName.EAGLE,
+                    MinionName.DRAGON_FIRE, MinionName.PALANG, MinionName.JEN, MinionName.GEEV,
+                    MinionName.EERAG, MinionName.SHAH_GOOL, MinionName.JADOOGAR_AZAM};
     // 2,3,5,9,8,13,19
     private static final SpellName[] SECOND_LEVEL_SPELLS =
-            {SpellName.AREA_DISPEL,SpellName.EMPOWER,SpellName.GOD_STRENGTH,
-            SpellName.POISON_LAKE,SpellName.MADNESS,SpellName.HEALTH_WITH_PROFIT,
-            SpellName.KINGS_GUARD};
+            {SpellName.AREA_DISPEL, SpellName.EMPOWER, SpellName.GOD_STRENGTH,
+                    SpellName.POISON_LAKE, SpellName.MADNESS, SpellName.HEALTH_WITH_PROFIT,
+                    SpellName.KINGS_GUARD};
     // 2
     private static final HeroName SECOND_LEVEL_HERO = HeroName.SIMORGH;
     // 18
     private static final ItemName SECOND_LEVEL_ITEM = ItemName.SOUL_EATER;
     // 6,7,10,14,16,18,20,24,25,28,29,31,34
     private static final MinionName[] THIRD_LEVEL_MINIONS =
-            {MinionName.FARS_SEPAHSALAR,MinionName.TOORANEE_KAMANDAR,
-            MinionName.TOORANE_JASOS,MinionName.SANGANDAZ_GHOLL,
-            MinionName.GORAZ_DEEV,MinionName.POISON_SNAKE,
-            MinionName.DARANDE_SHIR,MinionName.WOLF,MinionName.JADOOGAR,
-            MinionName.WILD_GORAZ,MinionName.PIRAN,MinionName.BAHMAN,
-            MinionName.BIG_GHOOL};
+            {MinionName.FARS_SEPAHSALAR, MinionName.TOORANEE_KAMANDAR,
+                    MinionName.TOORANE_JASOS, MinionName.SANGANDAZ_GHOLL,
+                    MinionName.GORAZ_DEEV, MinionName.POISON_SNAKE,
+                    MinionName.DARANDE_SHIR, MinionName.WOLF, MinionName.JADOOGAR,
+                    MinionName.WILD_GORAZ, MinionName.PIRAN, MinionName.BAHMAN,
+                    MinionName.BIG_GHOOL};
     // 6,10,12,14,15,16,1
     private static final SpellName[] THIRD_LEVEL_SPELLS =
-            {SpellName.HELLFIRE,SpellName.ALL_DISARM,SpellName.DISPEL,
-            SpellName.POWER_UP,SpellName.ALL_POWER,SpellName.ALL_ATTACK,
-            SpellName.TOTAL_DISARM};
+            {SpellName.HELLFIRE, SpellName.ALL_DISARM, SpellName.DISPEL,
+                    SpellName.POWER_UP, SpellName.ALL_POWER, SpellName.ALL_ATTACK,
+                    SpellName.TOTAL_DISARM};
     // 3
     private static final HeroName THIRD_LEVEL_HERO = HeroName.EJDEHA;
     // 12
@@ -62,7 +62,8 @@ public class Deck {
     private Hero hero;
     private Item item;
     private String name; // used in accounts
-    private int uniqueID = 10;
+    private int uniqueID = 150;
+
     public Deck(String name) {
         this.name = name;
         if (name.equals("first_level")) {
@@ -145,7 +146,11 @@ public class Deck {
     }
 
     public void addCard(Card card) {
-        cards.add(card);
+        if (card instanceof Hero)
+            hero = (Hero) card;
+        else
+            cards.add(card);
+
     } // not hero
 
     public void addItem(Item item) {
@@ -157,7 +162,12 @@ public class Deck {
     }
 
     public void removeCard(Card card) {
-        cards.remove(card);
+        if (card instanceof Hero && hero.getName().equals(card.getName())) {
+            hero = null;
+            cards.remove(card);//TODO
+        }
+        else
+            cards.remove(card);
     }
 
     public void removeItem(Item item) {
@@ -182,9 +192,10 @@ public class Deck {
         else
             return Collection.showArraylistOfCardsAndItems(theCards, null);
     }
-    public Card getCardByBattleID(String battleID){
+
+    public Card getCardByBattleID(String battleID) {
         for (Card card : cards) {
-            if(card.getBattleID().equals(battleID))
+            if (card.getBattleID().equals(battleID))
                 return card;
         }
         return null;
@@ -197,12 +208,13 @@ public class Deck {
         } catch (NumberFormatException e) {
             return null;
         }
+        if (hero != null && hero.getCardID() == mainCardId)
+            return hero;
         for (Card key : cards) {
             if (key.getCardID() == mainCardId)
                 return key;
         }
-        if (hero != null && hero.getCardID() == mainCardId)
-            return hero;
+
         return null;
     }
 
