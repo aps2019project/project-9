@@ -11,7 +11,7 @@ import java.util.Random;
 
 public class PlayGround {
     private Cell[][] cells = new Cell[5][9];
-    private ArrayList<Flag> flags; // for mode three
+    private ArrayList<Flag> flags = new ArrayList<>(); // for mode three
     private Flag flag; // for mode two ( one flag )
 
     public PlayGround(GameMode mode, int numberOfFlags) {
@@ -25,12 +25,18 @@ public class PlayGround {
             for (int i = 0; i < 5; i++) {
                 for (int j = 0; j < 9; j++) {
                     if (i == 2 && j == 4)
-                        cells[i][j] = new Cell(i, j, this, new Flag());
+                        cells[i][j] = new Cell(i, j, this, new Flag(cells[i][j]));
                     else
                         cells[i][j] = new Cell(i, j, this, null);
                 }
             }
+            flag = cells[2][4].getFlag();
         } else {
+            for (int i = 0; i < 5; i++) {
+                for (int j = 0; j < 9; j++) {
+                    cells[i][j] = new Cell(i , j,this,null);
+                }
+            }
             for (int z = 0; z < numberOfFlags; z++) {
                 placeFlags();
             }
@@ -50,13 +56,13 @@ public class PlayGround {
         int randomSatr = randomIntGenarator() % 9;
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 9; j++) {
-                if (i == randomColoumn && j == randomSatr)
-                    cells[i][j] = new Cell(i, j, this, new Flag());
-                else
-                    cells[i][j] = new Cell(i, j, this, null);
+                if (i == randomColoumn && j == randomSatr) {
+                    Flag flag = new Flag(cells[i][j]);
+                    cells[i][j].setFlag(flag);
+                    flags.add(flag);
+                }
             }
         }
-        flag = cells[randomColoumn][randomSatr].getFlag();
     }
 
     public boolean isForEnemyMinion(Cell cell, Player player) {

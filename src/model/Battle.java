@@ -47,15 +47,15 @@ public class Battle {
             }
         }
     }*/
-    private void initializeHeroAttributes(){
-        firstPlayer.getHero().setCell(playGround.getCell(2,0));
-        secondPlayer.getHero().setCell(playGround.getCell(2,8));
-        playGround.getCell(2,0).setMinionOnIt(firstPlayer.getHero());
-        playGround.getCell(2,8).setMinionOnIt(secondPlayer.getHero());
+    private void initializeHeroAttributes() {
+        firstPlayer.getHero().setCell(playGround.getCell(2, 0));
+        secondPlayer.getHero().setCell(playGround.getCell(2, 8));
+        playGround.getCell(2, 0).setMinionOnIt(firstPlayer.getHero());
+        playGround.getCell(2, 8).setMinionOnIt(secondPlayer.getHero());
         firstPlayer.getHero().setBattleID(firstPlayer.getName() + "_" + firstPlayer.getHero().getName()
-        + "_" +"1");
+                + "_" + "1");
         secondPlayer.getHero().setBattleID(secondPlayer.getName() + "_" + secondPlayer.getHero().getName()
-                + "_" +"1");
+                + "_" + "1");
     }
 
     private void initializeOwningPlayerOfCards(Player player) {
@@ -104,6 +104,11 @@ public class Battle {
         // fill hands
         // change whose turn
         // one flag mode turnsOwned ( flag field ) ++
+        if (gameMode == GameMode.ONE_FLAG) {
+            if (playGround.getFlag().getOwningMinion() != null)
+                playGround.getFlag().nextTurn();
+            checkWinner();
+        }
         firstPlayer.getHero().setTurnsRemainedForNextTurn();
         secondPlayer.getHero().setTurnsRemainedForNextTurn();
         checkBuffs(firstPlayer);
@@ -118,19 +123,20 @@ public class Battle {
         assignMana();
         whoseTurn = (whoseTurn == 1) ? (2) : (1);
         turn++;
-        if(this instanceof SinglePlayerBattle && whoseTurn == 2){
+        if (this instanceof SinglePlayerBattle && whoseTurn == 2) {
             secondPlayer.doAiAction();
         }
         handleCanMoveCanAttack(firstPlayer);
         handleCanMoveCanAttack(secondPlayer);
     }
 
-    private void handleCanMoveCanAttack(Player player){
+    private void handleCanMoveCanAttack(Player player) {
         for (Minion minion : player.getMinionsInPlayGround()) {
             minion.setCanMove(true);
             minion.setCanAttack(true);
         }
     }
+
     private void assignMana() {
         if (whoseTurn == 1) {
             secondPlayerMana++;
@@ -154,7 +160,7 @@ public class Battle {
 
     private void handlePassiveSpecialPowers(Player player) {
         for (Minion minion : player.getMinionsInPlayGround()) {
-            if (minion.getSpecialPower()!=null &&
+            if (minion.getSpecialPower() != null &&
                     minion.getSpecialPower().getSpecialPowerActivationTime() == SpecialPowerActivationTime.PASSIVE) {
                 minion.getSpecialPower().castSpecialPower(minion.getCell());
             }
@@ -179,19 +185,19 @@ public class Battle {
     }
 
     public void endBattle(Player winner) {
-        BattleResult battleResult = new BattleResult(firstPlayer, secondPlayer, winner, level , battlePrize);
+        BattleResult battleResult = new BattleResult(firstPlayer, secondPlayer, winner, level, battlePrize);
         if (Account.findAccount(firstPlayer.getName()) != null) {
             Account.findAccount(firstPlayer.getName()).addBattleResult(battleResult);
         }
-        battleResult = new BattleResult(secondPlayer, firstPlayer, winner, level , battlePrize);
+        battleResult = new BattleResult(secondPlayer, firstPlayer, winner, level, battlePrize);
         if (Account.findAccount(secondPlayer.getName()) != null) {
             Account.findAccount(secondPlayer.getName()).addBattleResult(battleResult);
         }
         InGameView view = InGameView.getInstance();
         view.endGameOutput(battleResult);
-        if(firstPlayer.equals(winner)){
+        if (firstPlayer.equals(winner)) {
             Account.findAccount(firstPlayer.getName()).wins();
-        }else if(!(this instanceof SinglePlayerBattle)){
+        } else if (!(this instanceof SinglePlayerBattle)) {
             Account.findAccount(secondPlayer.getName()).wins();
         }
     }
@@ -219,9 +225,10 @@ public class Battle {
                     endBattle(secondPlayer);
                 break;
             case FLAGS:
-                if (firstPlayer.getFlagsAcheived().size() >= numberOfFlags / 2) {
+                int checkingInt = (numberOfFlags%2==0)?(numberOfFlags/2):((numberOfFlags+1)/2);
+                if (firstPlayer.getFlagsAcheived().size() >= checkingInt) {
                     endBattle(firstPlayer);
-                } else if (secondPlayer.getFlagsAcheived().size() >= numberOfFlags / 2) {
+                } else if (secondPlayer.getFlagsAcheived().size() >= checkingInt) {
                     endBattle(secondPlayer);
                 }
                 break;

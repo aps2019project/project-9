@@ -66,7 +66,6 @@ public class BattleMenuController {
 
     private void storyMenu() {
         while (true) {
-            view.showStoryMenu();
             BattleMenuRequest request = new BattleMenuRequest();
             request.getNewCommand();
             if (request.getTypeStoryMode() == BattleMenuRequestType.EXIT)
@@ -87,6 +86,7 @@ public class BattleMenuController {
                 }
                 return;
             }
+            view.showStoryMenu();
         }
     }
 

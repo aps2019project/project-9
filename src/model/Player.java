@@ -85,7 +85,7 @@ public class Player {
 
     public static void enterNewCell(Cell target, Minion minion, Player player) { //not attack to cell entering new cell
         if (target.getFlag() != null) {
-            player.collectFlag(target.getFlag(), minion);
+            player.collectFlag(target, minion);
         }
         if (target.getCollectableItem() != null) {
             player.collectItem(target.getCollectableItem());
@@ -170,7 +170,8 @@ public class Player {
         ((Collectible) item).collect(this);
     }
 
-    public void collectFlag(Flag flag, Minion owningMinion) {
+    public void collectFlag(Cell targetCell, Minion owningMinion) {
+        Flag flag = targetCell.getFlag();
         if (battle.getGameMode() == GameMode.FLAGS) {
             // flags mode
             flagsAcheived.add(flag);
@@ -182,6 +183,7 @@ public class Player {
             modeTwoFlag = flag;
             flag.setOwningMinion(owningMinion);
             flag.setOwningPlayer(this);
+            flag.setCurrentCell(targetCell);
             flag.setTurnsOwned(0);
         }
     }
@@ -234,9 +236,11 @@ public class Player {
             if (battle.getGameMode() == GameMode.ONE_FLAG) {
                 if (cell.getFlag() != null) {
                     modeTwoFlag = cell.getFlag();
-                    collectFlag(cell.getFlag(), minion);
+                    collectFlag(cell, minion);
                 }
                 if (previous.getFlag() != null) {
+                    previous.getFlag().setCurrentCell(cell);
+                    cell.setFlag(previous.getFlag());
                     previous.deleteFlag();
                 }
             }
@@ -245,7 +249,7 @@ public class Player {
                     missFlag(previous.getFlag());
                 }
                 if (cell.getFlag() != null) {
-                    collectFlag(cell.getFlag(), minion);
+                    collectFlag(cell, minion);
                 }
             }
             minion.setCanMove(false);

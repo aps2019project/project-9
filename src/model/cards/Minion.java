@@ -128,10 +128,11 @@ public class Minion extends Card {
                 if (player.getBattle().getGameMode() == GameMode.ONE_FLAG
                         && player.getBattle().getPlayGround().getFlag().getCurrentCell().equals(opponent.getCell())) {
                     // opponent had flag
-                    player.collectFlag(player.getBattle().getPlayGround().getFlag(), this);
+                    if ((this.AP - opponent.reductionOfOthersAttack) >= opponent.HP)
+                        player.collectFlag(player.getBattle().getPlayGround().getFlag().getCurrentCell(), this);
                 }
                 if (opponent.canDefend(this, null)) { // reduce HP
-                    if (specialPower!= null && specialPower.getSpecialPowerActivationTime() == SpecialPowerActivationTime.ON_ATTACK
+                    if (specialPower != null && specialPower.getSpecialPowerActivationTime() == SpecialPowerActivationTime.ON_ATTACK
                             && ((OnAttackSpecialPower) specialPower).isAntiHolly()
                             && opponent.hasHollyBuff) {
                         opponent.reduceHP(this.AP);
@@ -233,7 +234,7 @@ public class Minion extends Card {
 
     public void addActiveBuff(Buff buff) {
         if (!activeBuffs.contains(buff)) {
-            if(specialPower != null) {
+            if (specialPower != null) {
                 if (!(specialPower.getSpecialPowerActivationTime() == SpecialPowerActivationTime.ON_DEFEND
                         && ((OnDefendSpecialPower) specialPower).getOnDefendType() == OnDefendType.BUFF
                         && ((OnDefendSpecialPower) specialPower).getDeactivatedBuff() == buff.getBuffName())) {
