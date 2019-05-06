@@ -56,7 +56,7 @@ public class Collection {
             for (Card card : cards) {
                 if (!(card instanceof Hero)) {
                     if (card != null) {
-                        string = counter++ + "\t\t" + card.toString() + "Card ID : " + card.getCardID() + "\n";
+                        string = counter++ + "\t\t" + card.toString() + "\tCard ID : " + card.getCardID() + "\n";
                         stringBuilder.append(string);
                     }
                 }
