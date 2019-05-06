@@ -110,9 +110,9 @@ public class InGameRequest {
         } else if (command.length() >= 12 && command.substring(0, 12).matches(COMBO_ATTACK)) {
             getCommandOfComboAttack(command);
             return InGameRequestType.COMBO_ATTACK;
-        } else if (command.length() > 17 && command.substring(0, 17).matches(USE_SPECIAL_POWER)
+        } else if (command.length() >= 17 && command.substring(0, 17).matches(USE_SPECIAL_POWER)
                 && command.split(" ").length == 5
-                && command.matches("use special power [1-5] [1-9]")) {
+                && command.matches("use special power [0-4] [0-8]")) {
             x = Integer.parseInt(command.split(" ")[3]);
             y = Integer.parseInt(command.split(" ")[4]);
             return InGameRequestType.USE_SPECIAL_POWER;

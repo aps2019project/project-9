@@ -9,8 +9,8 @@ public class BattleMenuRequest {
     Scanner scanner = new Scanner(System.in);
     private static final String SINGLE_PLAYER = "enter single player";
     private static final String MULTI_PLAYER = "enter multi player";
-    private static final String STORY = "story";
-    private static final String CUSTOM_GAME = "custom game";
+    private static final String STORY = "enter story game";
+    private static final String CUSTOM_GAME = "enter custom game";
     private static final String START_GAME = "start game";
     private static final String ENTER = "enter";
     private static final String EXIT = "exit";
@@ -30,21 +30,24 @@ public class BattleMenuRequest {
         if (command.length() >= 5 && command.substring(0, 5).matches(ENTER) && command.split(" ").length == 3) {
             if (command.matches(SINGLE_PLAYER))
                 return BattleMenuRequestType.SINGLE_PLAYER;
-            else
+            else if(command.matches(MULTI_PLAYER))
                 return BattleMenuRequestType.MUTLI_PLAYER;
         } else if (command.matches(EXIT)) {
             return BattleMenuRequestType.EXIT;
         } else {
             return null; // invalid command
         }
+        return null;
     }
 
     public BattleMenuRequestType getTypeSinglePlayerMenu() {
         if (command.length() >= 5 && command.substring(0, 5).matches(ENTER) && command.split(" ").length == 3) {
             if (command.matches(CUSTOM_GAME))
                 return BattleMenuRequestType.CUSTOM_GAME;
-            else
+            else if (command.matches(STORY))
                 return BattleMenuRequestType.STORY_GAME;
+            else
+                return null;
         } else if (command.matches(EXIT)) {
             return BattleMenuRequestType.EXIT;
         } else {
@@ -65,12 +68,15 @@ public class BattleMenuRequest {
 
     public BattleMenuRequestType getTypeOfCustomGame() {
         String[] commands = command.split(" ");
-        if (command.matches(START_GAME) && commands.length >= 4) {
+        String com = "";
+        if (commands.length >= 2)
+            com = commands[0] + " " + commands[1];
+        if (com.matches(START_GAME) && commands.length >= 4) {
             deckName = commands[2];
             mode = commands[3];
             if (mode.equals("3"))
                 numberOfFlags = commands[4];
-            if (numberOfFlags.matches("[0-9]{2}") && mode.matches("[1-3]"))
+            if (mode.matches("[1-3]"))
                 return BattleMenuRequestType.START_GAME;
             else
                 return null;

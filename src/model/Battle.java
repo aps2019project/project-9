@@ -101,9 +101,6 @@ public class Battle {
 
 
     public void nextTurn() {
-        // fill hands
-        // change whose turn
-        // one flag mode turnsOwned ( flag field ) ++
         if (gameMode == GameMode.ONE_FLAG) {
             if (playGround.getFlag().getOwningMinion() != null)
                 playGround.getFlag().nextTurn();
@@ -139,10 +136,10 @@ public class Battle {
 
     private void assignMana() {
         if (whoseTurn == 1) {
-            secondPlayerMana++;
+            secondPlayerMana = secondPlayer.getMana() + 1;
             secondPlayer.assignMana(secondPlayerMana);
         } else {
-            firstPlayerMana++;
+            firstPlayerMana = firstPlayer.getMana() + 1;
             firstPlayer.assignMana(firstPlayerMana);
         }
     }
@@ -225,7 +222,7 @@ public class Battle {
                     endBattle(secondPlayer);
                 break;
             case FLAGS:
-                int checkingInt = (numberOfFlags%2==0)?(numberOfFlags/2):((numberOfFlags+1)/2);
+                int checkingInt = (numberOfFlags % 2 == 0) ? (numberOfFlags / 2) : ((numberOfFlags + 1) / 2);
                 if (firstPlayer.getFlagsAcheived().size() >= checkingInt) {
                     endBattle(firstPlayer);
                 } else if (secondPlayer.getFlagsAcheived().size() >= checkingInt) {

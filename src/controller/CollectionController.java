@@ -171,9 +171,9 @@ public class CollectionController {
                 if (currentCard != null) { // it is card not item
                     if (currentCard.getCardType() == CardType.MINION) { // card is a hero or minion
                         Minion currentMinion = (Minion) currentCard;
-                        if (currentMinion.getIsHero() && currentDeck.hasHero()) {
+                        if (currentMinion instanceof Hero && currentDeck.hasHero()) {
                             view.printError(CollectionErrorType.DECK_HAS_A_HERO);
-                        } else if (currentMinion.getIsHero()) { // minion is hero
+                        } else if (currentMinion instanceof Hero) { // minion is hero
                             currentDeck.setHero((Hero) currentMinion);
                         } else{ // it is not hero just minion
                             if (currentDeck.canAddCard())

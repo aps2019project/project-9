@@ -66,6 +66,7 @@ public class BattleMenuController {
 
     private void storyMenu() {
         while (true) {
+            view.showStoryMenu();
             BattleMenuRequest request = new BattleMenuRequest();
             request.getNewCommand();
             if (request.getTypeStoryMode() == BattleMenuRequestType.EXIT)
@@ -86,7 +87,6 @@ public class BattleMenuController {
                 }
                 return;
             }
-            view.showStoryMenu();
         }
     }
 
@@ -129,7 +129,7 @@ public class BattleMenuController {
     private void startSinglePlayer(int mode, Deck customOpponentDeck, String numberOfFlags) {
         if (mode != 3)
             numberOfFlags = "0";
-        SinglePlayerBattle singlePlayerBattle = new SinglePlayerBattle(3, customOpponentDeck, loggedInAccount
+        SinglePlayerBattle singlePlayerBattle = new SinglePlayerBattle(mode, customOpponentDeck, loggedInAccount
                 , Integer.parseInt(numberOfFlags));
         singlePlayerBattle.startBattle();
         InGameController inGameController = new InGameController(singlePlayerBattle);

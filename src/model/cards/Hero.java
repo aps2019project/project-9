@@ -31,7 +31,7 @@ public class Hero extends Minion {
                 ArrayList<Buff> buffs, int MP, int coolDown, int cardID, String name, String desc, boolean isFars,
                 HeroTargetType buffsTargetType , CellAffect cellAffect) {
         super(name, cost, MP, HP, AP, attackType, attackRange, null, CardType.MINION,cardID,desc,
-                null, isFars);
+                null, isFars); // MP is for special power in hero ( spell )
         this.coolDown = coolDown;
         this.buffs = buffs;
         this.buffsTargetType = buffsTargetType;
@@ -43,7 +43,7 @@ public class Hero extends Minion {
         return turnsRemained == 0;
     }
 
-    public void useSpecialPower(Cell cell) { // cast spell
+    public void useSpecialPower(Cell cell) {// cast spell
         turnsRemained = coolDown;
         if(buffsTargetType == HeroTargetType.ON_ATTACK)
             isSpecialPowerActivated = true;
@@ -67,6 +67,7 @@ public class Hero extends Minion {
                 for (Buff buff : buffs) {
                     buff.startBuff(target);
                 }
+                player.addMana(-MP);
             }else if(heroName == HeroName.AFSANE){
                 Cell target = player.getBattle().getPlayGround().getRandomPowerCell(player.getOpponent());
                 target.getMinionOnIt().dispelPositiveBuffs();
@@ -86,6 +87,7 @@ public class Hero extends Minion {
                 }
             }
         }
+        player.addMana(-MP);
     }
 
     public HeroTargetType getBuffsTargetType() {

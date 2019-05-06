@@ -26,6 +26,7 @@ public class CollectionView {
         System.out.println("Search [card name | item name]");
         System.out.println("create deck [ deck name ]");
         System.out.println("delete deck [ deck name ]");
+        System.out.println("select deck [ deck name ] ( for MainDeck Assigning )");
         System.out.println("add [card id] to deck [deck name]");
         System.out.println("remove [card id] from deck [deck name]");
         System.out.println("validate deck [deck name]");
