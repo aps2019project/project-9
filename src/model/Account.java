@@ -1,6 +1,8 @@
 package model;
 
+import model.cards.Card;
 import model.items.Collectible;
+import model.items.Item;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -119,5 +121,16 @@ public class Account implements Comparable<Account> {
 
     public void wins() {
         numberOfWins++;
+    }
+
+    public void deleteCardFromDecks(Card card){
+        for (Deck deck : decks) {
+            deck.removeCard(card);
+        }
+    }
+    public void deleteCardFromDecks(Item item){
+        for (Deck deck : decks) {
+            deck.removeItem(item);
+        }
     }
 }

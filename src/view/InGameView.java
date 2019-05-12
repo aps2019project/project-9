@@ -78,7 +78,7 @@ public class InGameView {
         System.out.println("The minion owning the Flag : ");
         if (battle.getPlayGround().getFlag().getOwningMinion() != null)
             System.out.println(battle.getPlayGround().getFlag().getOwningMinion().getName());
-        System.out.println("Turns Owning Minions :");
+        System.out.println("Turns Owning :");
         System.out.println(battle.getPlayGround().getFlag().getTurnsOwned());
     }
 

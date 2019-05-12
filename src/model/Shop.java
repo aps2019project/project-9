@@ -77,12 +77,14 @@ public class Shop {
         currentCard.setCardID(uniqueID++);
         loggedInAccount.getCollection().removeCard(currentCard);
         loggedInAccount.addMoney(currentCard.getCost());
+        loggedInAccount.deleteCardFromDecks(currentCard);
     }
 
     public void sell(Item currentItem, Account loggedInAccount) {
         currentItem.setItemID(uniqueID++);
         loggedInAccount.getCollection().removeItem(currentItem);
         loggedInAccount.addMoney(currentItem.getCost());
+        loggedInAccount.deleteCardFromDecks(currentItem);
     }
 
     public ArrayList<Card> getCards() {

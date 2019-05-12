@@ -30,7 +30,7 @@ public class BattleMenuRequest {
         if (command.length() >= 5 && command.substring(0, 5).matches(ENTER) && command.split(" ").length == 3) {
             if (command.matches(SINGLE_PLAYER))
                 return BattleMenuRequestType.SINGLE_PLAYER;
-            else if(command.matches(MULTI_PLAYER))
+            else if (command.matches(MULTI_PLAYER))
                 return BattleMenuRequestType.MUTLI_PLAYER;
         } else if (command.matches(EXIT)) {
             return BattleMenuRequestType.EXIT;
@@ -74,7 +74,7 @@ public class BattleMenuRequest {
         if (com.matches(START_GAME) && commands.length >= 4) {
             deckName = commands[2];
             mode = commands[3];
-            if (mode.equals("3"))
+            if (mode.equals("3") && commands.length >= 5)
                 numberOfFlags = commands[4];
             if (mode.matches("[1-3]"))
                 return BattleMenuRequestType.START_GAME;

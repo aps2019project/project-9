@@ -143,6 +143,7 @@ public class Collection {
 
 
     public void removeCard(Card card) {
+
         cards.remove(card);
     }
 
