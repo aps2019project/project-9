@@ -96,9 +96,8 @@ public class Minion extends Card {
     }
 
     public void setReductionOfOthersAttack(int reductionOfOthersAttack) {
-        this.reductionOfOthersAttack = reductionOfOthersAttack;
+        this.reductionOfOthersAttack += reductionOfOthersAttack;
     }
-
     public void putInMap(Cell cell) { // the validation of cell is checked in controller
         player.getHand().deleteCard(this);
         player.addMinionInPlayGroundMinions(this);
@@ -243,6 +242,8 @@ public class Minion extends Card {
                             && !buff.isPositiveBuff()))
                         activeBuffs.add(buff);
                 }
+            }else{
+                activeBuffs.add(buff);
             }
         }
     }

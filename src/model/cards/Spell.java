@@ -163,7 +163,7 @@ public class Spell extends Card {
             for (Minion enemyMinion : owningPlayer.getOpponent().getMinionsInPlayGround()) {
                 result.add(enemyMinion.getCell());
             }
-            result.add(owningPlayer.getOpponent().getHero().getCell());
+            //result.add(owningPlayer.getOpponent().getHero().getCell());
         } else if (targetType == SpellTargetType.ALL_FRIENDLY_POWERS) {
             for (Minion friendlyMinion : owningPlayer.getMinionsInPlayGround()) {
                 result.add(friendlyMinion.getCell());

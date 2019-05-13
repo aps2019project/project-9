@@ -8,7 +8,7 @@ public class StunBuff extends Buff{
 
 
     public StunBuff(int turnsActive, boolean isForAllTurns, boolean isContinous) {
-        super(BuffName.STUN, turnsActive, isForAllTurns, false, isContinous);
+        super(BuffName.STUN, turnsActive + 1, isForAllTurns, false, isContinous);
     }
 
     @Override
@@ -22,6 +22,7 @@ public class StunBuff extends Buff{
 
     @Override
     public void endBuff(Minion minion) {
+
         minion.setCanMove(true);
         minion.setCanAttack(true);
     }

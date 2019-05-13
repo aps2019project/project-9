@@ -1,6 +1,7 @@
 package model;
 
 import model.buffs.Buff;
+import model.buffs.StunBuff;
 import model.cards.Card;
 import model.cards.Minion;
 import model.cards.Spell;
@@ -108,6 +109,8 @@ public class Battle {
         }
         firstPlayer.getHero().setTurnsRemainedForNextTurn();
         secondPlayer.getHero().setTurnsRemainedForNextTurn();
+        handleCanMoveCanAttack(firstPlayer);
+        handleCanMoveCanAttack(secondPlayer);
         checkBuffs(firstPlayer);
         checkBuffs(secondPlayer);
         checkCellAffects(playGround);
@@ -123,14 +126,21 @@ public class Battle {
         if (this instanceof SinglePlayerBattle && whoseTurn == 2) {
             secondPlayer.doAiAction();
         }
-        handleCanMoveCanAttack(firstPlayer);
-        handleCanMoveCanAttack(secondPlayer);
     }
 
     private void handleCanMoveCanAttack(Player player) {
         for (Minion minion : player.getMinionsInPlayGround()) {
-            minion.setCanMove(true);
-            minion.setCanAttack(true);
+            boolean check = false;
+            for (Buff activeBuff : minion.getActiveBuffs()) {
+                if(activeBuff instanceof StunBuff){
+                    check = true;
+                    break;
+                }
+            }
+            if(!check) {
+                minion.setCanMove(true);
+                minion.setCanAttack(true);
+            }
         }
     }
 

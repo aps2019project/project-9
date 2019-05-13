@@ -27,7 +27,12 @@ public class HollyBuff extends Buff {
 
     @Override
     public void endBuff(Minion minion) {
-        minion.setReductionOfOthersAttack(0);
-        minion.missedHollyBuff();
+        if(!isNegative){
+            minion.setReductionOfOthersAttack(-1);
+            minion.missedHollyBuff();
+        }else {
+            minion.setReductionOfOthersAttack(1);
+            minion.missedHollyBuff();
+        }
     }
 }

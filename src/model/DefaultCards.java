@@ -76,7 +76,8 @@ public class DefaultCards {
                         "add 2 unit to a random hybrid or ranged unit", buffs3, ItemTarget.RANDOM_RANGED_OR_HYBRID);
             case PAR_SIMORGH:
                 ArrayList<Buff> buffs4 = new ArrayList<>();
-                buffs4.add(new PowerBuff(1, false, false, 2, false));
+                buffs4.add(new WeaknessBuff(1, false, false, 2, false
+                        , false, null));
                 return new SpellUsableItem(3500, "par_simorgh", ItemName.PAR_SIMORGH,
                         "if enemy hero is hybrid or ranged reduce two unit of it attack power", buffs4
                         , SpellItemTarget.ENEMY_HERO_RANGED_OR_HYBRID);

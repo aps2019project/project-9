@@ -9,7 +9,9 @@ public class Hand {
     public Hand(Deck deck) { // deck should be sorted in start game methods
         numberOfCardFromDeck = 0;
         this.deck = deck;
-        Collections.shuffle(deck.getCards());
+        //
+        Collections.reverse(deck.getCards());
+        //Collections.shuffle(deck.getCards());
         for (int i = 0; i < 5; i++) {
             this.cards.add(deck.getCards().get(i));
         }
