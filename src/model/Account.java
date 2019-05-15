@@ -9,7 +9,7 @@ import java.util.Collections;
 
 public class Account implements Comparable<Account> {
     private Collection myCollection;
-    private int money = 15000;
+    private int money = 15000000;
     private ArrayList<BattleResult> battleResults = new ArrayList<>();
     private ArrayList<Deck> decks = new ArrayList<>();
     private Deck mainDeck;

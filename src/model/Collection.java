@@ -167,30 +167,30 @@ public class Collection {
         // item : 1
         // --------------Minions---------------
         addCard(DefaultCards.getMinion(MinionName.FARS_SHAMSHIRZAN));
-        addCard(DefaultCards.getMinion(MinionName.TOORANEE_NEYZEDAR));
+        addCard(DefaultCards.getMinion(MinionName.GEEV));
         addCard(DefaultCards.getMinion(MinionName.TOORANEE_GORZDAR));
-        addCard(DefaultCards.getMinion(MinionName.BLACK_DEEV));
+        addCard(DefaultCards.getMinion(MinionName.JEN));
         addCard(DefaultCards.getMinion(MinionName.ONE_EYE_GHOOL));
-        addCard(DefaultCards.getMinion(MinionName.POISON_SNAKE));
+        addCard(DefaultCards.getMinion(MinionName.SIAVOSH));
         addCard(DefaultCards.getMinion(MinionName.GHOOL_SNAKE));
         addCard(DefaultCards.getMinion(MinionName.WHITE_WOLF));
         addCard(DefaultCards.getMinion(MinionName.JADOOGAR_AZAM));
         addCard(DefaultCards.getMinion(MinionName.SIAVOSH));
         addCard(DefaultCards.getMinion(MinionName.NANE_SARMA));
-        addCard(DefaultCards.getMinion(MinionName.ARJANG_DEEV));
+        addCard(DefaultCards.getMinion(MinionName.WOLF));
         addCard(DefaultCards.getMinion(MinionName.JADOOGAR));
         //------------Spells-------------------
         addCard(DefaultCards.getSpell(SpellName.TOTAL_DISARM));
         addCard(DefaultCards.getSpell(SpellName.LIGHTING_BOLT));
         addCard(DefaultCards.getSpell(SpellName.ALL_DISARM));
-        addCard(DefaultCards.getSpell(SpellName.DISPEL));
+        addCard(DefaultCards.getSpell(SpellName.AREA_DISPEL));
         addCard(DefaultCards.getSpell(SpellName.ALL_POISON));
-        addCard(DefaultCards.getSpell(SpellName.SACRIFICE));
+        addCard(DefaultCards.getSpell(SpellName.HELLFIRE));
         addCard(DefaultCards.getSpell(SpellName.SHOCK));
         //--------------Hero---------------------
         addCard(DefaultCards.getHero(HeroName.WHITE_DEEV));
         //------------------item----------------
-        addItem(DefaultCards.getItem(ItemName.TAJ_DANAYEE));
+        addItem(DefaultCards.getItem(ItemName.POISONOUS_DAGGER));
     }
 
     public int getNumberOfItems() {

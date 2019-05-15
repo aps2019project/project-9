@@ -76,7 +76,7 @@ public class DefaultCards {
                         "add 2 unit to a random hybrid or ranged unit", buffs3, ItemTarget.RANDOM_RANGED_OR_HYBRID);
             case PAR_SIMORGH:
                 ArrayList<Buff> buffs4 = new ArrayList<>();
-                buffs4.add(new WeaknessBuff(1, false, false, 2, false
+                buffs4.add(new WeaknessBuff(400, true, false, 2, false
                         , false, null));
                 return new SpellUsableItem(3500, "par_simorgh", ItemName.PAR_SIMORGH,
                         "if enemy hero is hybrid or ranged reduce two unit of it attack power", buffs4
@@ -237,24 +237,24 @@ public class DefaultCards {
                 minion.setSpecialPower(new OnSpawnSpecialPower(buff4, OnSpawnTargetCell.TWO_DISTANCE_CELLS));
                 break;
             case WHITE_WOLF:
-                int[] powers = {6, 4};
-                WeaknessBuff buff5 = new WeaknessBuff(3, false,
-                        false, 0, true, true, powers);
+                int[] powers = {0,6, 4};
+                WeaknessBuff buff5 = new WeaknessBuff(400, true,
+                        true, 0, true, true, powers);
                 buffs = new ArrayList<>();
                 buffs.add(buff5);
                 minion.setSpecialPower(new OnAttackSpecialPower(buffs, false, false));
                 break;
             case PALANG:
-                int[] powers1 = {8};
-                buff5 = new WeaknessBuff(2, false, false,
+                int[] powers1 = {0,8};
+                buff5 = new WeaknessBuff(400, true, true,
                         0, true, true, powers1);
                 buffs = new ArrayList<>();
                 buffs.add(buff5);
                 minion.setSpecialPower(new OnAttackSpecialPower(buffs, false, false));
                 break;
             case WOLF:
-                int[] powers2 = {6};
-                buff5 = new WeaknessBuff(2, false, false,
+                int[] powers2 = {0,6};
+                buff5 = new WeaknessBuff(400, true, true,
                         0, true, true, powers2);
                 buffs = new ArrayList<>();
                 buffs.add(buff5);
@@ -326,7 +326,7 @@ public class DefaultCards {
                 buffs = new ArrayList<>();
                 buffs.add(new WeaknessBuff(400, true, false,
                         6, true, false, null));
-                minion.setSpecialPower(new OnAttackSpecialPower(buffs, false, false));
+                minion.setSpecialPower(new OnDeathSpecialPower(6,OnDeathTargetType.ENEMY_HERO));
                 break;
             case SHAH_GOOL:
                 minion.setSpecialPower(new ComboSpecialPower());

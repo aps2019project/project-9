@@ -27,91 +27,97 @@ public class InGameController {
     public void main() {
         inGameView.printfError(InGameErrorType.GAME_STARTED);
         boolean isFinished = false;
-        main : do {
-            InGameRequest request = new InGameRequest();
-            request.getNewCommand();
-            if(inGameView.isFinished){
-                break;
-            }
-            if (request.getType() == InGameRequestType.EXIT) {
-                inGameView.printfError(InGameErrorType.EXIT_IN_THE_MIDDLE);
-                isFinished = true;
-            }
-            if (!request.isValid()) {
-                inGameView.printfError(InGameErrorType.INVALID_COMMAND);
-                continue;
-            }
-            switch (request.getType()) {
-                case HELP:
-                    inGameView.help(battle.getCurrenPlayer());
+        main:
+        do {
+            //try {
+                InGameRequest request = new InGameRequest();
+                request.getNewCommand();
+                if (inGameView.isFinished) {
                     break;
-                case USE:
-                    use(battle.getCurrenPlayer(), request.getX(), request.getY()); // for collectible item
-                    break;
-                case ATTACK:
-                    attack(battle.getCurrenPlayer(), request.getOpponentCardID());
-                    break;
-                case INSERT:
-                    // ID assigning ( battle ID )
-
-                    insert(request.getCardName(), request.getX(), request.getY());
-                    break;
-                case MOVE_TO:
-                    move(battle.getCurrenPlayer(), request.getX(), request.getY());
-                    break;
-                case END_GAME:
-                    // after view.endGameOutput called
-                    BattleMenuView view = new BattleMenuView();
-                    view.showSingleMultiPlayerMenu();
+                }
+                if (request.getType() == InGameRequestType.EXIT) {
+                    inGameView.printfError(InGameErrorType.EXIT_IN_THE_MIDDLE);
                     isFinished = true;
-                    break main;
-                case END_TURN:
-                    battle.getCurrenPlayer().endTurn();
-                    break;
-                case GAME_INFO:
-                    inGameView.showGameInfo(battle);
-                    break;
-                case SHOW_HAND:
-                    inGameView.showHand(battle.getCurrenPlayer().getHand());
-                    break;
-                case SHOW_INFO: // for selected collectible item information
-                    inGameView.showItemInfo(battle.getCurrenPlayer());
-                    break;
-                case SHOW_MENU:
-                    inGameView.showMenu();
-                    break;
-                case SELCET_CARD:
-                    selectCard(request.getCardID());
-                    break;
-                case SELCET_ITEM:
-                    selectItem(request.getCollectibleID());
-                    break;
-                case COMBO_ATTACK:
-                    comboAttack(battle.getCurrenPlayer(), request.getComboCardIds(), request.getOpponentCardID());
-                    break;
-                case SHOW_CARD_INFO:
-                    showCardInfo(request.getCardID());
-                    break;
-                case SHOW_NEXT_CARD:
-                    inGameView.showCardInfo(battle.getCurrenPlayer().getHand().getNext());
-                    break;
-                case ENTER_GRAVEYARD:
-                    GraveYardController graveYardController = new GraveYardController(battle.getCurrenPlayer());
-                    graveYardController.main();
-                    break;
-                case SHOW_MY_MINIONS:
-                    inGameView.showMinions(battle.getCurrenPlayer());
-                    break;
-                case SHOW_COLLECTIBLES:
-                    inGameView.showCollectibles(battle.getCurrenPlayer());
-                    break;
-                case USE_SPECIAL_POWER:
-                    useSpecialPower(request.getX(), request.getY());
-                    break;
-                case SHOW_OPPONENT_MINIONS:
-                    inGameView.showMinions(battle.getCurrenPlayer().getOpponent());
-                    break;
-            }
+                }
+                if (!request.isValid()) {
+                    inGameView.printfError(InGameErrorType.INVALID_COMMAND);
+                    continue;
+                }
+                switch (request.getType()) {
+                    case HELP:
+                        inGameView.help(battle.getCurrenPlayer());
+                        break;
+                    case USE:
+                        use(battle.getCurrenPlayer(), request.getX(), request.getY()); // for collectible item
+                        break;
+                    case ATTACK:
+                        attack(battle.getCurrenPlayer(), request.getOpponentCardID());
+                        break;
+                    case INSERT:
+                        // ID assigning ( battle ID )
+
+                        insert(request.getCardName(), request.getX(), request.getY());
+                        break;
+                    case MOVE_TO:
+                        move(battle.getCurrenPlayer(), request.getX(), request.getY());
+                        break;
+                    case END_GAME:
+                        // after view.endGameOutput called
+                        BattleMenuView view = new BattleMenuView();
+                        view.showSingleMultiPlayerMenu();
+                        isFinished = true;
+                        break main;
+                    case END_TURN:
+                        battle.getCurrenPlayer().endTurn();
+                        break;
+                    case GAME_INFO:
+                        inGameView.showGameInfo(battle);
+                        break;
+                    case SHOW_HAND:
+                        inGameView.showHand(battle.getCurrenPlayer().getHand());
+                        break;
+                    case SHOW_INFO: // for selected collectible item information
+                        inGameView.showItemInfo(battle.getCurrenPlayer());
+                        break;
+                    case SHOW_MENU:
+                        inGameView.showMenu();
+                        break;
+                    case SELCET_CARD:
+                        selectCard(request.getCardID());
+                        break;
+                    case SELCET_ITEM:
+                        selectItem(request.getCollectibleID());
+                        break;
+                    case COMBO_ATTACK:
+                        comboAttack(battle.getCurrenPlayer(), request.getComboCardIds(), request.getOpponentCardID());
+                        break;
+                    case SHOW_CARD_INFO:
+                        showCardInfo(request.getCardID());
+                        break;
+                    case SHOW_NEXT_CARD:
+                        inGameView.showCardInfo(battle.getCurrenPlayer().getHand().getNext());
+                        break;
+                    case ENTER_GRAVEYARD:
+                        GraveYardController graveYardController = new GraveYardController(battle.getCurrenPlayer());
+                        graveYardController.main();
+                        break;
+                    case SHOW_MY_MINIONS:
+                        inGameView.showMinions(battle.getCurrenPlayer());
+                        break;
+                    case SHOW_COLLECTIBLES:
+                        inGameView.showCollectibles(battle.getCurrenPlayer());
+                        break;
+                    case USE_SPECIAL_POWER:
+                        useSpecialPower(request.getX(), request.getY());
+                        break;
+                    case SHOW_OPPONENT_MINIONS:
+                        inGameView.showMinions(battle.getCurrenPlayer().getOpponent());
+                        break;
+
+                }
+            /*} catch (Exception e) {
+                e.printStackTrace();
+            }*/
         } while (!isFinished);
     }
 

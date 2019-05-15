@@ -36,6 +36,8 @@ public class Battle {
         initializeHeroAttributes();
         firstPlayer.assignMana(2);
         secondPlayer.assignMana(2);
+        firstPlayer.setMaxMana(2);
+        secondPlayer.setMaxMana(2);
         /*initializeSpecialPowersMinions(firstPlayer);
         initializeSpecialPowersMinions(secondPlayer);*/
     }
@@ -75,7 +77,6 @@ public class Battle {
         for (Minion minion : player.getMinionsInPlayGround()) {
             minions.add(minion);
         }
-        minions.add(player.getHero());
         for (Minion minion : minions) {
             ArrayList<Buff> buffsToDelete = new ArrayList<>();
             for (Buff buff : minion.getActiveBuffs()) {
@@ -118,9 +119,9 @@ public class Battle {
         handlePassiveSpecialPowers(secondPlayer);
         handleUsableItems(firstPlayer); // cast them
         handleUsableItems(secondPlayer);// cast them
+        assignMana();
         handleManaCollectibleItem(firstPlayer);
         handleManaCollectibleItem(secondPlayer);
-        assignMana();
         whoseTurn = (whoseTurn == 1) ? (2) : (1);
         turn++;
         if (this instanceof SinglePlayerBattle && whoseTurn == 2) {
@@ -132,12 +133,12 @@ public class Battle {
         for (Minion minion : player.getMinionsInPlayGround()) {
             boolean check = false;
             for (Buff activeBuff : minion.getActiveBuffs()) {
-                if(activeBuff instanceof StunBuff){
+                if (activeBuff instanceof StunBuff) {
                     check = true;
                     break;
                 }
             }
-            if(!check) {
+            if (!check) {
                 minion.setCanMove(true);
                 minion.setCanAttack(true);
             }
@@ -146,11 +147,23 @@ public class Battle {
 
     private void assignMana() {
         if (whoseTurn == 1) {
-            secondPlayerMana = secondPlayer.getMana() + 1;
-            secondPlayer.assignMana(secondPlayerMana);
+            secondPlayerMana = secondPlayer.getMaxMana() + 1;
+            if(secondPlayerMana > 9){
+                secondPlayer.setMaxMana(9);
+                secondPlayer.assignMana(9);
+            }else {
+                secondPlayer.setMaxMana(secondPlayerMana);
+                secondPlayer.assignMana(secondPlayerMana);
+            }
         } else {
-            firstPlayerMana = firstPlayer.getMana() + 1;
-            firstPlayer.assignMana(firstPlayerMana);
+            firstPlayerMana = firstPlayer.getMaxMana() + 1;
+            if(firstPlayerMana > 9){
+                firstPlayer.setMaxMana(9);
+                firstPlayer.assignMana(9);
+            }else {
+                firstPlayer.setMaxMana(secondPlayerMana);
+                firstPlayer.assignMana(secondPlayerMana);
+            }
         }
     }
 
@@ -169,6 +182,7 @@ public class Battle {
         for (Minion minion : player.getMinionsInPlayGround()) {
             if (minion.getSpecialPower() != null &&
                     minion.getSpecialPower().getSpecialPowerActivationTime() == SpecialPowerActivationTime.PASSIVE) {
+                //TODO
                 minion.getSpecialPower().castSpecialPower(minion.getCell());
             }
         }

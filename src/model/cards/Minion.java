@@ -12,10 +12,7 @@ import model.items.Item;
 import model.items.OnAttackSpellUsable;
 import model.items.OnDeathCollectibleItem;
 import model.items.OnDeathUsableItem;
-import model.specialPower.OnAttackSpecialPower;
-import model.specialPower.OnDefendSpecialPower;
-import model.specialPower.OnDefendType;
-import model.specialPower.SpecialPower;
+import model.specialPower.*;
 
 import java.util.ArrayList;
 
@@ -98,6 +95,7 @@ public class Minion extends Card {
     public void setReductionOfOthersAttack(int reductionOfOthersAttack) {
         this.reductionOfOthersAttack += reductionOfOthersAttack;
     }
+
     public void putInMap(Cell cell) { // the validation of cell is checked in controller
         player.getHand().deleteCard(this);
         player.addMinionInPlayGroundMinions(this);
@@ -160,6 +158,9 @@ public class Minion extends Card {
         // if it has flag in game mode two , put the flag in playGround
         // player.minions in battle ground -> delete
         // ( the Cell field is the minion last cell ( before kill ) )
+        if (specialPower != null && specialPower instanceof OnDeathSpecialPower) {
+            specialPower.castSpecialPower(cell);
+        }
         if (player.getBattle().getGameMode() == GameMode.ONE_FLAG) {
             if (player.getBattle().getPlayGround().getFlag().getOwningMinion().equals(this)) {
                 player.missFlag(player.getBattle().getPlayGround().getFlag());
@@ -172,7 +173,7 @@ public class Minion extends Card {
         getCell().setMinionOnIt(null);
         player.minionDead(this);
         player.getBattle().checkWinner();
-        if (player.getUsableItem().getItemType() == ItemName.SOUL_EATER) {
+        if (player.getUsableItem() != null && player.getUsableItem().getItemType() == ItemName.SOUL_EATER) {
             player.castUsableItem();
         }
         if (player.getUsableItem() != null && (player.getUsableItem() instanceof OnDeathUsableItem)) {
@@ -242,7 +243,7 @@ public class Minion extends Card {
                             && !buff.isPositiveBuff()))
                         activeBuffs.add(buff);
                 }
-            }else{
+            } else {
                 activeBuffs.add(buff);
             }
         }
@@ -250,11 +251,13 @@ public class Minion extends Card {
 
     public void reduceHP(int number) {
         // if HP bellow the 0 , killed()
-        if ((HP - number) <= 0) {
-            HP = 0;
-            killed();
-        } else
-            HP -= number;
+        if (number > 0) {
+            if ((HP - number) <= 0) {
+                HP = 0;
+                killed();
+            } else
+                HP -= number;
+        }
     }
 
     public Player getPlayer() {

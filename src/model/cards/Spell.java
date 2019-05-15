@@ -74,12 +74,12 @@ public class Spell extends Card {
         // description in Visual Paradigm
         if (isValidTarget(inputCell)) {
             ArrayList<Cell> targetCells = getCellsToCast(inputCell);
-            if (buffs == null) {
+            if (buffs == null && cellAffect != null) {
                 // it is cellAffect Spell
                 for (Cell targetCell : targetCells) {
                     cellAffect.putCellAffect(targetCell);
                 }
-            } else if (cellAffect == null) {
+            } else if (cellAffect == null && buffs != null) {
                 // it is Buff Spell
                 for (Buff castingBuff : buffs) {
                     for (Cell targetCell : targetCells) {

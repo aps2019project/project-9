@@ -28,6 +28,8 @@ public class WeaknessBuff extends Buff {
             if (turn < powers.length) {
                 cell.getMinionOnIt().reduceHP(powers[turn++]);
                 cell.getMinionOnIt().addActiveBuff(this);
+                if (this.isContinous && !cell.getMinionOnIt().getContinuousBuffs().contains(this))
+                    cell.getMinionOnIt().addContinuous(this);
             }
         } else {
             if (isForHP)
@@ -43,6 +45,8 @@ public class WeaknessBuff extends Buff {
 
     @Override
     public void endBuff(Minion minion) {
+        if(isDelayBuff)
+            return;
         if (isForHP)
             minion.addHP(power);
         else

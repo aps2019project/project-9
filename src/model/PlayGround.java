@@ -37,7 +37,7 @@ public class PlayGround {
         } else {
             for (int i = 0; i < 5; i++) {
                 for (int j = 0; j < 9; j++) {
-                    cells[i][j] = new Cell(i , j,this,null);
+                    cells[i][j] = new Cell(i, j, this, null);
                 }
             }
             for (int z = 0; z < numberOfFlags; z++) {
@@ -49,7 +49,7 @@ public class PlayGround {
         }
     }
 
-    private void assignCollectibleItem(){
+    private void assignCollectibleItem() {
         Cell cell = getRandomCell();
         Collectible collectible = getRandomCollectibleItem();
         collectibles.add(collectible);
@@ -82,18 +82,18 @@ public class PlayGround {
         }
     }
 
-    protected Collectible getRandomCollectibleItem(){
+    protected Collectible getRandomCollectibleItem() {
         Random r = new Random();
         ArrayList<Collectible> collectibles = new ArrayList<>();
-        collectibles.add((Collectible)DefaultCards.getItem(ItemName.NOOSH_DAROO));
-        collectibles.add((Collectible)DefaultCards.getItem(ItemName.TIR_DOSHAKH));
-        collectibles.add((Collectible)DefaultCards.getItem(ItemName.EKSIR));
-        collectibles.add((Collectible)DefaultCards.getItem(ItemName.MAJOON_MANA));
-        collectibles.add((Collectible)DefaultCards.getItem(ItemName.MAJOON_ROIEEN));
-        collectibles.add((Collectible)DefaultCards.getItem(ItemName.NEFRIN_MARG));
-        collectibles.add((Collectible)DefaultCards.getItem(ItemName.RANDOM_DAMAGE));
-        collectibles.add((Collectible)DefaultCards.getItem(ItemName.BLADES_AGILITY));
-        collectibles.add((Collectible)DefaultCards.getItem(ItemName.CHINESE_SHAMSHIR));
+        collectibles.add((Collectible) DefaultCards.getItem(ItemName.NOOSH_DAROO));
+        collectibles.add((Collectible) DefaultCards.getItem(ItemName.TIR_DOSHAKH));
+        collectibles.add((Collectible) DefaultCards.getItem(ItemName.EKSIR));
+        collectibles.add((Collectible) DefaultCards.getItem(ItemName.MAJOON_MANA));
+        collectibles.add((Collectible) DefaultCards.getItem(ItemName.MAJOON_ROIEEN));
+        collectibles.add((Collectible) DefaultCards.getItem(ItemName.NEFRIN_MARG));
+        collectibles.add((Collectible) DefaultCards.getItem(ItemName.RANDOM_DAMAGE));
+        collectibles.add((Collectible) DefaultCards.getItem(ItemName.BLADES_AGILITY));
+        collectibles.add((Collectible) DefaultCards.getItem(ItemName.CHINESE_SHAMSHIR));
         int y = r.nextInt(collectibles.size());
         return collectibles.get(y);
     }
@@ -223,8 +223,8 @@ public class PlayGround {
 
     public ArrayList<Cell> getSquareCells(Cell cell, int squareSize) {
         ArrayList<Cell> result = new ArrayList<>();
-        for (int i = cell.getX(); i < squareSize; i++) {
-            for (int j = cell.getY(); j < squareSize; j++) {
+        for (int i = cell.getX(); i < squareSize + cell.getX(); i++) {
+            for (int j = cell.getY(); j < squareSize + cell.getY(); j++) {
                 if (i < 5 && j < 9) {
                     result.add(getCell(i, j));
                 }

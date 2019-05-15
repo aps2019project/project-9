@@ -17,6 +17,7 @@ import java.util.Random;
 public class Player {
     private ArrayList<Minion> minionsInPlayGround = new ArrayList<>();
     private int mana;
+    private int maxMana;
     private Deck deck;
     private Hand hand;
     private Usable usableItem;
@@ -31,6 +32,14 @@ public class Player {
     private GraveYard graveYard;
     private boolean usedAddManaItem = false; // for item num 8
     private static int uniqueItemID = 100;
+
+    public int getMaxMana() {
+        return maxMana;
+    }
+
+    public void setMaxMana(int maxMana) {
+        this.maxMana = maxMana;
+    }
 
     public Player(Account account, Battle battle) {
         this.deck = account.getMainDeck().getCopy();
@@ -176,7 +185,7 @@ public class Player {
             for (int j = 0; j < 9; j++) {
                 if (playGround.getCell(i, j).getCollectableItem() != null
                         && playGround.getCell(i, j).getCollectableItem().getName().equals(item.getName())) {
-                    playGround.getCell(i,j).setCollectableItem(null);
+                    playGround.getCell(i, j).setCollectableItem(null);
                 }
             }
         }
