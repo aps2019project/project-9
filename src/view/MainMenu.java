@@ -14,6 +14,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -30,28 +31,6 @@ public class MainMenu extends Application {
     @Override
     public void start(Stage stage) {
         try {
-            stage.setTitle("project 9");
-            stage.setMaximized(true);
-            height = stage.getMaxHeight();
-            width = stage.getMaxWidth();
-            ImageView imageView = new ImageView();
-            imageView.setImage(new Image(new FileInputStream(".\\res\\1.png")));
-            imageView.setFitHeight(800);
-            imageView.setFitWidth(900);
-            imageView.setX(300);
-            Group group = new Group(imageView);
-            Scene scene = new Scene(group, height, width);
-            scene.setFill(Color.DEEPPINK);
-            scene.setOnMouseClicked(m -> mainMenuShow(stage));
-            stage.setScene(scene);
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    void mainMenuShow(Stage stage) {
-        try {
             Text text = new Text(100, 50, "Main Menu");
             text.setFont(Font.loadFont(new FileInputStream(new File(".\\res\\modern.TTF")), 50));
             text.setX(650);
@@ -62,12 +41,15 @@ public class MainMenu extends Application {
             imageView.setX(-300);
             imageView.setFitWidth(2100);
             imageView.setFitHeight(900);
+            Button collection = new Button("Collection");
+            Button shop = new Button("shop");
+            Button battle = new Button("battle");
+            Button exit = new Button("exit");
             stage.setScene(new Scene(new Group(imageView, text), height, width));
             stage.show();
-
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
+
 }
