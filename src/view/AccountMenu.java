@@ -32,7 +32,7 @@ public class AccountMenu extends Application {
             height = stage.getMaxHeight();
             width = stage.getMaxWidth();
             ImageView imageView = new ImageView();
-            imageView.setImage(new Image(new FileInputStream(".\\res\\1.png")));
+            imageView.setImage(new Image(new FileInputStream("src/res/1.png")));
             imageView.setFitHeight(800);
             imageView.setFitWidth(900);
             imageView.setX(300);
@@ -50,12 +50,12 @@ public class AccountMenu extends Application {
     void accountMenuShow(Stage stage) {
         try {
             Text text = new Text(100, 50, "Account Menu");
-            text.setFont(Font.loadFont(new FileInputStream(new File(".\\res\\modern.TTF")), 50));
+            text.setFont(Font.loadFont(new FileInputStream(new File("src/res/modern.TTF")), 50));
             text.setX(651);
             text.setY(100);
             text.setFill(Color.rgb(2, 14, 236));
             ImageView imageView = new ImageView();
-            imageView.setImage(new Image(new FileInputStream(".\\res\\5.jpg")));
+            imageView.setImage(new Image(new FileInputStream("src/res/5.jpg")));
             imageView.setFitWidth(1700);
             imageView.setFitHeight(1050);
             Button createAccount = new Button();
