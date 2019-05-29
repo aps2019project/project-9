@@ -32,12 +32,12 @@ public class MainMenu extends Application {
     public void start(Stage stage) {
         try {
             Text text = new Text(100, 50, "Main Menu");
-            text.setFont(Font.loadFont(new FileInputStream(new File(".\\res\\modern.TTF")), 50));
+            text.setFont(Font.loadFont(new FileInputStream(new File("src/res/modern.TTF")), 50));
             text.setX(650);
             text.setY(100);
             text.setFill(Color.rgb(2,14,236));
             ImageView imageView = new ImageView();
-            imageView.setImage(new Image(new FileInputStream(".\\res\\4.jpg")));
+            imageView.setImage(new Image(new FileInputStream("src/res/4.jpg")));
             imageView.setX(-300);
             imageView.setFitWidth(2100);
             imageView.setFitHeight(900);
