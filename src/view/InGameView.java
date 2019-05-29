@@ -129,17 +129,19 @@ public class InGameView {
     } // ones in the play ground
 
     public void showCardInfo(Card card) {
-        if (card instanceof Minion) {
-            if (card instanceof Hero) {
-                Hero hero = (Hero) card;
-                System.out.println(hero.toString());
-            } else {
-                Minion minion = (Minion) card;
-                System.out.println(minion.toString());
+        if (card != null) {
+            if (card instanceof Minion) {
+                if (card instanceof Hero) {
+                    Hero hero = (Hero) card;
+                    System.out.println(hero.toString());
+                } else {
+                    Minion minion = (Minion) card;
+                    System.out.println(minion.toString());
+                }
+            } else if (card instanceof Spell) {
+                Spell spell = (Spell) card;
+                System.out.println(spell.toString());
             }
-        } else if (card instanceof Spell) {
-            Spell spell = (Spell) card;
-            System.out.println(spell.toString());
         }
     }
 
@@ -209,8 +211,10 @@ public class InGameView {
             }
         }
         System.out.println("Next Card in Hand :");
-        System.out.println(hand.getNext().getName() +
-                ((hand.getNext() instanceof Spell) ? ("( Spell )") : ("( Minion )")));
+        Card next = hand.getNext();
+        if (next != null)
+            System.out.println(next.getName() +
+                    ((next instanceof Spell) ? ("( Spell )") : ("( Minion )")));
     }
 
     public void showItemInfo(Player player) {

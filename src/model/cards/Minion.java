@@ -150,7 +150,6 @@ public class Minion extends Card {
             }
             canAttack = false;
             canMove = false;
-            //player.getBattle().checkWinner(); -> will be checked in killed()
         }
     }
 

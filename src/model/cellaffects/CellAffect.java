@@ -10,7 +10,6 @@ public abstract class CellAffect {
     protected CellAffectName name;
     protected int turnsActive;
     protected int turnsRemained;
-    private static ArrayList<CellAffect> cellAffects = new ArrayList<>();
     protected Cell affectedCell;
 
     public CellAffect(CellAffectName name, int turnsActive) {
@@ -26,8 +25,8 @@ public abstract class CellAffect {
         affectedCell = cell;
     }
 
-    public void nextTurn(){
-        if(turnsRemained!=0)
+    public void nextTurn() {
+        if (turnsRemained != 0)
             turnsRemained--;
     }
 
@@ -37,5 +36,15 @@ public abstract class CellAffect {
 
     public Cell getAffectedCell() {
         return affectedCell;
+    }
+
+    public CellAffect getCopy() {
+        if (this instanceof FireCellAffect) {
+            return new FireCellAffect(turnsActive);
+        } else if (this instanceof HollyCellAffect) {
+            return new HollyCellAffect(turnsActive);
+        } else {
+            return new PoisonCellAffect(turnsActive);
+        }
     }
 }

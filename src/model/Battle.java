@@ -51,10 +51,15 @@ public class Battle {
         }
     }*/
     private void initializeHeroAttributes() {
-        firstPlayer.getHero().setCell(playGround.getCell(2, 0));
+        //TODO for debugg
+        /*firstPlayer.getHero().setCell(playGround.getCell(2, 0));
         secondPlayer.getHero().setCell(playGround.getCell(2, 8));
         playGround.getCell(2, 0).setMinionOnIt(firstPlayer.getHero());
-        playGround.getCell(2, 8).setMinionOnIt(secondPlayer.getHero());
+        playGround.getCell(2, 8).setMinionOnIt(secondPlayer.getHero());*/
+        firstPlayer.getHero().setCell(playGround.getCell(2, 4));
+        secondPlayer.getHero().setCell(playGround.getCell(2, 5));
+        playGround.getCell(2, 4).setMinionOnIt(firstPlayer.getHero());
+        playGround.getCell(2, 5).setMinionOnIt(secondPlayer.getHero());
         firstPlayer.getHero().setBattleID(firstPlayer.getName() + "_" + firstPlayer.getHero().getName()
                 + "_" + "1");
         secondPlayer.getHero().setBattleID(secondPlayer.getName() + "_" + secondPlayer.getHero().getName()
