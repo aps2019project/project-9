@@ -16,6 +16,15 @@ public class AccountRequest {
     private AccountErrorType errorType = null;
     private String command;
     private String userName;
+    private String passWord;
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setPassWord(String passWord) {
+        this.passWord = passWord;
+    }
 
     public void setErrorType(AccountErrorType errorType) {
         this.errorType = errorType;

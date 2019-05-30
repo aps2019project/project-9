@@ -1,26 +1,32 @@
 package view;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Pair;
 import model.Account;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.Optional;
 
 public class AccountMenu2 extends Application {
 
@@ -46,7 +52,7 @@ public class AccountMenu2 extends Application {
             Group group = new Group(imageView);
             Scene scene = new Scene(group, height, width);
             scene.setFill(Color.DEEPPINK);
-            scene.setOnMouseClicked(event -> showLeaderBoard(stage));
+            scene.setOnMouseClicked(event -> accountMenuShow(stage));
             stage.setScene(scene);
             stage.show();
         } catch (Exception e) {
@@ -65,28 +71,15 @@ public class AccountMenu2 extends Application {
             imageView.setImage(new Image(new FileInputStream("src/res/5.jpg")));
             imageView.setFitWidth(1700);
             imageView.setFitHeight(1050);
+            Group root = new Group();
 
-            ////most converted to button
-            //ImageView createAccountImageView = new ImageView(new Image(new FileInputStream("src/res/battered-axe.png")));
-            //Button button = new Button("Create Account",imageView);
+            Button createAccountButton = setCreateAccountButton();
+            Button loginButton = setLoginButton();
+            Button showLeaderBoard = setLeaderBoardButton();
+            Button helpButton = setHelpButton();
 
-            Text createAccount = new Text(630, 200, "Create account");
-            createAccount.setFont(accountMenuFont);
-            //createAccount(request);
 
-            Text login = new Text(630, 300, "Login");
-            login.setFont(accountMenuFont);
-
-            Text showLeaderBoard = new Text(630, 400, "show LeaderBoard");
-            showLeaderBoard.setFont(accountMenuFont);
-            //showLeaderBoard()
-
-            Text help = new Text(630, 500, "Help");
-            help.setFont(accountMenuFont);
-
-            //to here
-
-            Group root = new Group(imageView, text, createAccount, login, showLeaderBoard, help);
+            root.getChildren().addAll(imageView, text, loginButton, createAccountButton, showLeaderBoard, helpButton);
             Scene scene = new Scene(root, height, width);
             stage.setScene(scene);
             stage.show();
@@ -94,10 +87,158 @@ public class AccountMenu2 extends Application {
             e.printStackTrace();
         }
     }
-    private void showLeaderBoard(Stage stage){
+
+    private Button setCreateAccountButton() {
+        ImageView createAccountImageView = null;
+        try {
+            createAccountImageView = new ImageView(new Image(new FileInputStream("src/res/battered-axe.png")));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        createAccountImageView.setFitWidth(100);
+        createAccountImageView.setFitHeight(50);
+        Button button = new Button("Create Account", createAccountImageView);
+        button.setLayoutX(630);
+        button.setLayoutY(200);
+        button.setStyle("-fx-background-color: #beaf92");
+        button.setOnMouseClicked(event -> {
+            Dialog<Pair<String, String>> dialog = new Dialog<>();
+            dialog.setTitle("Create Account");
+            dialog.setHeaderText("Please enter a username and pass word");
+
+            ButtonType createAccountButtonType = new ButtonType("Create Account", ButtonBar.ButtonData.OK_DONE);
+            dialog.getDialogPane().getButtonTypes().addAll(createAccountButtonType, ButtonType.CANCEL);
+
+            GridPane grid = new GridPane();
+            grid.setHgap(10);
+            grid.setVgap(10);
+            grid.setPadding(new Insets(20, 150, 10, 10));
+
+            TextField username = new TextField();
+            username.setPromptText("Username");
+            PasswordField password = new PasswordField();
+            password.setPromptText("Password");
+
+            grid.add(new Label("Username:"), 0, 0);
+            grid.add(username, 1, 0);
+            grid.add(new Label("Password:"), 0, 1);
+            grid.add(password, 1, 1);
+
+            Node loginButton = dialog.getDialogPane().lookupButton(createAccountButtonType);
+            loginButton.setDisable(true);
+
+            username.textProperty().addListener((observable, oldValue, newValue) ->
+                    loginButton.setDisable(newValue.trim().isEmpty()));
+
+            dialog.getDialogPane().setContent(grid);
+
+            Platform.runLater(username::requestFocus);
+
+            dialog.setResultConverter(dialogButton -> {
+                if (dialogButton == createAccountButtonType) {
+                    return new Pair<>(username.getText(), password.getText());
+                }
+                return null;
+            });
+
+            Optional<Pair<String, String>> result = dialog.showAndWait();
+
+            AccountRequest temp = new AccountRequest();
+            result.ifPresent(usernamePassword -> {
+                temp.setUserName(usernamePassword.getKey());
+                temp.setPassWord(usernamePassword.getValue());
+                //be sync-------------------------------------------------------------------
+            });
+        });
+        return button;
+    }
+
+    private Button setLoginButton() {
+        ImageView loginImageview = null;
+        try {
+            loginImageview = new ImageView(new Image(new FileInputStream("src/res/bow-arrow.png")));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        loginImageview.setFitWidth(100);
+        loginImageview.setFitHeight(50);
+        Button button = new Button("Login", loginImageview);
+        button.setLayoutX(630);
+        button.setLayoutY(300);
+        button.setStyle("-fx-background-color: #beaf92");
+        button.setOnMouseClicked(event -> {
+            Dialog<Pair<String, String>> dialog = new Dialog<>();
+            dialog.setTitle("Login Dialog");
+            dialog.setHeaderText("Look, a Custom Login Dialog");
+
+            ButtonType loginButtonType = new ButtonType("Login", ButtonBar.ButtonData.OK_DONE);
+            dialog.getDialogPane().getButtonTypes().addAll(loginButtonType, ButtonType.CANCEL);
+
+            GridPane grid = new GridPane();
+            grid.setHgap(10);
+            grid.setVgap(10);
+            grid.setPadding(new Insets(20, 150, 10, 10));
+
+            TextField username = new TextField();
+            username.setPromptText("Username");
+            PasswordField password = new PasswordField();
+            password.setPromptText("Password");
+
+            grid.add(new Label("Username : "), 0, 0);
+            grid.add(username, 1, 0);
+            grid.add(new Label("Password : "), 0, 1);
+            grid.add(password, 1, 1);
+
+            Node loginButton = dialog.getDialogPane().lookupButton(loginButtonType);
+            loginButton.setDisable(true);
+
+            username.textProperty().addListener((observable, oldValue, newValue) -> {
+                loginButton.setDisable(newValue.trim().isEmpty());
+            });
+
+            dialog.getDialogPane().setContent(grid);
+
+            Platform.runLater(() -> username.requestFocus());
+
+            dialog.setResultConverter(dialogButton -> {
+                if (dialogButton == loginButtonType) {
+                    return new Pair<>(username.getText(), password.getText());
+                }
+                return null;
+            });
+
+            Optional<Pair<String, String>> result = dialog.showAndWait();
+
+            result.ifPresent(usernamePassword -> {
+                ///be sync----------------------------------------------------------------------------------------
+                System.out.println("Username=" + usernamePassword.getKey() + ", Password=" + usernamePassword.getValue());
+            });
+        });
+        return button;
+    }
+
+    private Button setLeaderBoardButton() {
+        try {
+            ImageView loginImageview = new ImageView(new Image(new FileInputStream("src/res/sharp-shuriken.png")));
+            loginImageview.setFitWidth(100);
+            loginImageview.setFitHeight(50);
+            Button button = new Button("show LeaderBoard", loginImageview);
+            button.setLayoutX(630);
+            button.setLayoutY(400);
+            button.setStyle("-fx-background-color: #beaf92");
+            button.setOnMouseClicked(event -> showLeaderBoard());
+            return button;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private void showLeaderBoard() {
+        Stage stage = new Stage();
+        stage.setTitle("LeaderBoard");
         TableView<Account> table = new TableView<>();
-        final ObservableList<Account> data =
-                FXCollections.observableArrayList();
+        final ObservableList<Account> data = FXCollections.observableArrayList(Account.getAccounts());
         Scene scene = new Scene(new Group());
         stage.setTitle("Table View Sample");
         stage.setWidth(450);
@@ -112,7 +253,6 @@ public class AccountMenu2 extends Application {
         lastNameCol.setMinWidth(100);
         lastNameCol.setCellValueFactory(new PropertyValueFactory<Account, Integer>("numberOfWins"));
 
-
         table.setItems(data);
         table.getColumns().addAll(firstNameCol, lastNameCol);
 
@@ -126,4 +266,36 @@ public class AccountMenu2 extends Application {
         stage.setScene(scene);
         stage.show();
     }
+
+    private Button setHelpButton() {
+        try {
+            ImageView loginImageview = new ImageView(new Image(new FileInputStream("src/res/life-buoy.png")));
+            loginImageview.setFitWidth(100);
+            loginImageview.setFitHeight(50);
+            Button button = new Button("Help", loginImageview);
+            button.setLayoutX(630);
+            button.setLayoutY(500);
+            button.setStyle("-fx-background-color: #beaf92");
+            button.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("HELP");
+                    alert.setHeaderText(null);
+                    alert.setHeight(300);
+                    alert.setWidth(250);
+                    alert.setContentText(
+                            "create account --- > creating a new account by entering a username and password \n" +
+                                    "login --->  login to your account by entering username and password \n" +
+                                    "LeaderBoard  ---> show LeaderBoard \n");
+                    alert.showAndWait();
+                }
+            });
+            return button;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }

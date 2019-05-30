@@ -1,50 +1,42 @@
 package controller;
 
+import javafx.stage.Stage;
 import model.Account;
 import model.enumerations.AccountErrorType;
 import model.enumerations.AccountRequestType;
+import view.AccountMenu2;
 import view.AccountRequest;
 import view.AccountView;
 
 public class AccountController {
     private AccountView accountView = AccountView.getInstance();
+    private AccountMenu2 accountMenu = new AccountMenu2();
 
     public void main() {
-        boolean isFinished = false;
-        do {
-            accountView.showHelp();
-            AccountRequest request = new AccountRequest();
-            request.getNewCommand();
-            if (request.getType() == AccountRequestType.EXIT) {
-                isFinished = true;
-            }
-            if (!request.isValid()) {
-                accountView.printError(AccountErrorType.INVALID_COMMAND);
-                continue;
-            }
-            switch (request.getType()) {
-                case CREATE_ACCOUNT:
-                    createAccount(request);
-                    break;
-                case LOGIN:
-                    login(request.getUserName(), request);
-                    break;
-                case SHOW_LEADERBOARDS:
-                    showLeaderBoards();
-                    break;
-                case HELP:
-                    break;
-            }
+        accountMenu.start(new Stage());
+        AccountRequest request = new AccountRequest();
 
-        } while (!isFinished);
+        switch (request.getType()) {
+            case CREATE_ACCOUNT:
+                createAccount(request);
+                break;
+            case LOGIN:
+                login(request);
+                break;
+            case SHOW_LEADERBOARDS:
+                showLeaderBoards();
+                break;
+            case HELP:
+                break;
+        }
     }
 
-    private void login(String userName, AccountRequest request) {
-        if (Account.isUserNameToken(userName)) {
+    private void login(AccountRequest request) {
+        if (Account.isUserNameToken(request.getUserName())) {
             accountView.printError(AccountErrorType.ENTER_PASSWORD);
             request.getNewCommand();
-            if (Account.isPassWordValid(userName, request.getCommand())) {
-                goNextMenu(Account.findAccount(userName));
+            if (Account.isPassWordValid(request.getUserName(), request.getCommand())) {
+                goNextMenu(Account.findAccount(request.getUserName()));
             } else
                 accountView.printError(AccountErrorType.INVALID_PASSWORD);
         } else
@@ -54,7 +46,7 @@ public class AccountController {
     private void createAccount(AccountRequest request) {
         if (isUserNameValid(request.getUserName(), request)) {
             accountView.printError(AccountErrorType.ENTER_PASSWORD);
-            request.getNewCommand();
+            //request.getNewCommand();
             Account newAccount = new Account(request.getUserName(), request.getCommand());
             goNextMenu(newAccount);
         }
