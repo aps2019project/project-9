@@ -9,7 +9,7 @@ import java.util.Collections;
 
 public class Account implements Comparable<Account> {
     private Collection myCollection;
-    private int money = 15000000;
+    private int money = 15000;
     private ArrayList<BattleResult> battleResults = new ArrayList<>();
     private ArrayList<Deck> decks = new ArrayList<>();
     private Deck mainDeck;
@@ -24,11 +24,13 @@ public class Account implements Comparable<Account> {
         accounts.add(this);
         myCollection = new Collection();
         myCollection.setOwnerAccount(this);
-        mainDeck = new Deck("first_level"); // initialized deck
+        //TODO debugging
+        mainDeck = new Deck("debugging");
+        //mainDeck = new Deck("first_level"); // initialized deck
         decks.add(mainDeck);
     }
 
-    public static Account findAccount(String userName) {           //if not valid return null
+    public static Account findAccount(String userName) {//if not valid return null
         Account temp = null;
         for (Account key : accounts) {
             if (key != null && key.userName.equals(userName))

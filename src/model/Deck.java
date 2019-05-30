@@ -8,7 +8,6 @@ import model.enumerations.*;
 import model.items.Item;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class Deck {
     // 1,9,11,25,13,17,18,21,22,26,38,36,40
@@ -66,7 +65,16 @@ public class Deck {
 
     public Deck(String name) {
         this.name = name;
-        if (name.equals("first_level")) {
+        //TODO for debug
+        if (name.equals("debugging")) {
+            hero = DefaultCards.getHero(FIRST_LEVEL_HERO);
+            cards.add(DefaultCards.getSpell(SpellName.TOTAL_DISARM));
+            cards.add(DefaultCards.getSpell(SpellName.AREA_DISPEL));
+            cards.add(DefaultCards.getSpell(SpellName.EMPOWER));
+            cards.add(DefaultCards.getSpell(SpellName.FIREBALL));
+            cards.add(DefaultCards.getSpell(SpellName.GOD_STRENGTH));
+            cards.add(DefaultCards.getSpell(SpellName.HELLFIRE));
+        } else if (name.equals("first_level")) {
             for (MinionName minion : FIRST_LEVEL_MINIONS) {
                 Minion minion1 = DefaultCards.getMinion(minion);
                 minion1.setCardID(uniqueID++);
@@ -136,8 +144,11 @@ public class Deck {
         }
         Hero secondHero = DefaultCards.getHero(hero.getHeroName());
         secondHero.setCardID(hero.getCardID());
-        Item secondItem = DefaultCards.getItem(item.getItemType());
-        secondItem.setItemID(item.getItemID());
+        Item secondItem = null;
+        if (item != null) {
+            secondItem = DefaultCards.getItem(item.getItemType());
+            secondItem.setItemID(item.getItemID());
+        }
         return new Deck(secondCards, secondHero, secondItem, name);
     }
 
@@ -165,8 +176,7 @@ public class Deck {
         if (card instanceof Hero && hero.getName().equals(card.getName())) {
             hero = null;
             cards.remove(card);//TODO
-        }
-        else
+        } else
             cards.remove(card);
     }
 
@@ -176,7 +186,9 @@ public class Deck {
     }
 
     public boolean isValid() {
-        return (cards.size() == 20 && hero != null);
+        //TODO debugging
+        return true;
+        //return (cards.size() == 20 && hero != null);
     }
 
     public String toString() {

@@ -71,19 +71,19 @@ public class Spell extends Card {
 
 
     public void castSpell(Cell inputCell) {
-        // description in Visual Paradigm
         if (isValidTarget(inputCell)) {
             ArrayList<Cell> targetCells = getCellsToCast(inputCell);
             if (buffs == null && cellAffect != null) {
-                // it is cellAffect Spell
+                //it is cellAffect spell
                 for (Cell targetCell : targetCells) {
-                    cellAffect.putCellAffect(targetCell);
+                    cellAffect.getCopy().putCellAffect(targetCell);
                 }
             } else if (cellAffect == null && buffs != null) {
                 // it is Buff Spell
                 for (Buff castingBuff : buffs) {
                     for (Cell targetCell : targetCells) {
-                        if (targetCell.hasCardOnIt() && targetCell.getMinionOnIt().canDefend(this, castingBuff)) {
+                        if (targetCell.hasCardOnIt() &&
+                                targetCell.getMinionOnIt().canDefend(this, castingBuff)) {
                             castingBuff.startBuff(targetCell);
                         }
                     }

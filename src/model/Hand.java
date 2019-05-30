@@ -11,8 +11,10 @@ public class Hand {
         this.deck = deck;
         //
         Collections.reverse(deck.getCards());
+        //TODO
         //Collections.shuffle(deck.getCards());
-        for (int i = 0; i < 5; i++) {
+        int index = (deck.getCards().size() >= 5) ? (5) : deck.getCards().size();
+        for (int i = 0; i < index; i++) {
             this.cards.add(deck.getCards().get(i));
         }
         numberOfCardFromDeck = 5;
@@ -23,12 +25,15 @@ public class Hand {
     private int numberOfCardFromDeck;
 
     public Card getNext() {
-        return deck.getCards().get(numberOfCardFromDeck);
+        if (numberOfCardFromDeck < deck.getCards().size())
+            return deck.getCards().get(numberOfCardFromDeck);
+        else
+            return null;
     }
 
 
     public void addCardFromDeck() {
-        if (cards.size() < 5) {
+        if (cards.size() < 5 && numberOfCardFromDeck < deck.getCards().size()) {
             cards.add(deck.getCards().get(numberOfCardFromDeck++));
         }
     }
@@ -39,7 +44,8 @@ public class Hand {
             string = string.concat(key.getName() + key.getCardID() + ":" + key.getDesc() + "\n");
         }
         string = string.concat("Next Card :\n");
-        string = string.concat(getNext().getName() + getNext().getCardID() + ":" + getNext().getDesc() + "\n");
+        if (getNext() != null)
+            string = string.concat(getNext().getName() + getNext().getCardID() + ":" + getNext().getDesc() + "\n");
         return string;
     }
 
