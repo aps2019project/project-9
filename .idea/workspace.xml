@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="429eadbd-36e3-4fa5-93ef-05e24885aef0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/res/life-buoy.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/controller/AccountController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/controller/AccountController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/controller/AccountController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/controller/AccountController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/AccountRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/AccountRequest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/MainMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/MainMenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/AccountController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/AccountMenu2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/AccountMenu2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/AccountRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/AccountRequest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -38,8 +30,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/view/AccountMenu2.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="287" column="77" selection-start-line="287" selection-start-column="77" selection-end-line="287" selection-end-column="77" />
+            <state relative-caret-position="313">
+              <caret line="289" column="77" lean-forward="true" selection-start-line="289" selection-start-column="77" selection-end-line="289" selection-end-column="77" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#setCreateAccountButton#0;class#AccountMenu2#0" />
@@ -203,7 +195,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559242614565" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559244526824" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../C1" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Libraries" />
@@ -262,7 +254,7 @@
       <workItem from="1558025253732" duration="40000" />
       <workItem from="1559071065411" duration="4494000" />
       <workItem from="1559110287437" duration="7432000" />
-      <workItem from="1559237153943" duration="5349000" />
+      <workItem from="1559237153943" duration="7117000" />
     </task>
     <task id="LOCAL-00001" summary="merge">
       <created>1556826863260</created>
@@ -327,11 +319,18 @@
       <option name="project" value="LOCAL" />
       <updated>1559218990598</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="account menu phase 5 complete except logic">
+      <created>1559242666230</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1559242666230</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="129718000" />
+    <option name="totallyTimeSpent" value="131486000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -343,7 +342,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18389262" />
@@ -355,7 +354,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32872504" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4984127" weight="0.713881" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4984127" visible="true" weight="0.14022663" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.5913978" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -423,7 +422,8 @@
     <MESSAGE value="account menu phase 2" />
     <MESSAGE value="account menu phase 3" />
     <MESSAGE value="account menu phase 4" />
-    <option name="LAST_COMMIT_MESSAGE" value="account menu phase 4" />
+    <MESSAGE value="account menu phase 5 complete except logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="account menu phase 5 complete except logic" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/model/enumerations/MinionAttackType.java">
@@ -826,8 +826,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view/AccountMenu2.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="287" column="77" selection-start-line="287" selection-start-column="77" selection-end-line="287" selection-end-column="77" />
+        <state relative-caret-position="313">
+          <caret line="289" column="77" lean-forward="true" selection-start-line="289" selection-start-column="77" selection-end-line="289" selection-end-column="77" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#setCreateAccountButton#0;class#AccountMenu2#0" />
