@@ -1,21 +1,18 @@
 package view;
 
-import com.sun.webkit.graphics.WCIcon;
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -48,7 +45,7 @@ public class MainMenu extends Application {
             Button shop = new Button("shop");
             Button battle = new Button("battle");
             Button exit = new Button("exit");
-            addToGroup(root,text,collection,shop,battle,exit);
+            addToGroup(root, text, collection, shop, battle, exit);
             stage.setScene(scene);
             stage.show();
         } catch (FileNotFoundException e) {
@@ -56,7 +53,7 @@ public class MainMenu extends Application {
         }
     }
 
-    private void addToGroup(Group root , Node... nodes){
+    private void addToGroup(Group root, Node... nodes) {
         for (Node node : nodes) {
             root.getChildren().add(node);
         }

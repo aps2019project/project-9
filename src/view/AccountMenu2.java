@@ -1,33 +1,28 @@
 package view;
 
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.awt.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-public class AccountMenu extends Application {
+public class AccountMenu2 extends Application {
+
+    double height;
+    double width;
 
     public static void main(String[] args) {
         launch(args);
     }
-
-    double height;
-    double width;
 
     @Override
     public void start(Stage stage) {
@@ -50,8 +45,8 @@ public class AccountMenu extends Application {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
 
+    }
     void accountMenuShow(Stage stage) {
         try {
             Font accountMenuFont = Font.loadFont(new FileInputStream(new File("src/res/modern.TTF")), 40);
@@ -64,8 +59,14 @@ public class AccountMenu extends Application {
             imageView.setFitHeight(1050);
 
             ////most converted to button
-            Text createAccount = new Text(630, 200, "Create account");
-            createAccount.setFont(accountMenuFont);
+            /*Text createAccount = new Text(630, 200, "Create account");
+            createAccount.setFont(accountMenuFont);*/
+
+            ImageView createAccountImageView = new ImageView(new Image(new FileInputStream("src/res/battered-axe.png")));
+
+            Button createAccount = new Button("Create Account",createAccountImageView);
+            createAccount.setLayoutX(630);
+            createAccount.setLayoutY(200);
 
             Text login = new Text(630, 300, "Login");
             login.setFont(accountMenuFont);
@@ -79,7 +80,8 @@ public class AccountMenu extends Application {
             //to here
 
             Group root = new Group(imageView, text, createAccount, login, showLeaderBoard, help);
-            stage.setScene(new Scene(root, height, width));
+            Scene scene = new Scene(root, height, width);
+            stage.setScene(scene);
             stage.show();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
