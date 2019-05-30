@@ -24,10 +24,10 @@ public class AccountController {
             }
             switch (request.getType()) {
                 case CREATE_ACCOUNT:
-                    createAccount(request.getUserName() , request);
+                    createAccount(request);
                     break;
                 case LOGIN:
-                    login(request.getUserName() , request);
+                    login(request.getUserName(), request);
                     break;
                 case SHOW_LEADERBOARDS:
                     showLeaderBoards();
@@ -39,29 +39,29 @@ public class AccountController {
         } while (!isFinished);
     }
 
-    private void login(String userName , AccountRequest request) {
-        if(Account.isUserNameToken(userName)){
+    private void login(String userName, AccountRequest request) {
+        if (Account.isUserNameToken(userName)) {
             accountView.printError(AccountErrorType.ENTER_PASSWORD);
             request.getNewCommand();
-            if(Account.isPassWordValid(userName,request.getCommand())){
+            if (Account.isPassWordValid(userName, request.getCommand())) {
                 goNextMenu(Account.findAccount(userName));
-            }else
+            } else
                 accountView.printError(AccountErrorType.INVALID_PASSWORD);
-        }else
+        } else
             accountView.printError(AccountErrorType.INVALID_USERNAME);
     }
 
-    private void createAccount(String userName , AccountRequest request) {
-        if (isUserNameValid(userName,request)) {
+    private void createAccount(AccountRequest request) {
+        if (isUserNameValid(request.getUserName(), request)) {
             accountView.printError(AccountErrorType.ENTER_PASSWORD);
             request.getNewCommand();
-            Account newAccount = new Account(userName , request.getCommand());
+            Account newAccount = new Account(request.getUserName(), request.getCommand());
             goNextMenu(newAccount);
         }
     }
 
-    private boolean isUserNameValid(String userName , AccountRequest request){
-        if(Account.isUserNameToken(userName)){
+    private boolean isUserNameValid(String userName, AccountRequest request) {
+        if (Account.isUserNameToken(userName)) {
             request.setErrorType(AccountErrorType.USERNAME_EXISTS);
             accountView.printError(request.getErrorType());
             return false;
@@ -73,7 +73,7 @@ public class AccountController {
         accountView.showLeaderBoards();
     }
 
-    private void goNextMenu(Account loggedInAccount){
+    private void goNextMenu(Account loggedInAccount) {
         MainMenuController mainMenuController = new MainMenuController(loggedInAccount);
         mainMenuController.main();
     }
