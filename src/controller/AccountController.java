@@ -4,10 +4,8 @@ import model.Account;
 import model.enumerations.AccountErrorType;
 import view.AccountMenu;
 import view.AccountRequest;
-import view.AccountView;
 
 public class AccountController {
-    private AccountView accountView = AccountView.getInstance();
     private static AccountMenu accountMenu = AccountMenu.getInstance();
 
     public void main(String[] args) {
@@ -50,10 +48,6 @@ public class AccountController {
             return false;
         }
         return true;
-    }
-
-    private void showLeaderBoards() {
-        accountView.showLeaderBoards();
     }
 
     private void goNextMenu(Account loggedInAccount) {

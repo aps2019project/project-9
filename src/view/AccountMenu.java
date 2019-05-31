@@ -154,7 +154,7 @@ public class AccountMenu extends Application {
             result.ifPresent(usernamePassword -> {
                 accountRequest.setUserName(usernamePassword.getKey());
                 accountRequest.setPassWord(usernamePassword.getValue());
-
+                accountRequest.setCommand("create account");
             });
         });
         return button;
@@ -217,8 +217,9 @@ public class AccountMenu extends Application {
             Optional<Pair<String, String>> result = dialog.showAndWait();
 
             result.ifPresent(usernamePassword -> {
-                ///be sync----------------------------------------------------------------------------------------
-                System.out.println("Username=" + usernamePassword.getKey() + ", Password=" + usernamePassword.getValue());
+                accountRequest.setUserName(usernamePassword.getKey());
+                accountRequest.setPassWord(usernamePassword.getValue());
+                accountRequest.setCommand("login");
             });
         });
         return button;
