@@ -74,6 +74,21 @@ public class Deck {
             cards.add(DefaultCards.getSpell(SpellName.FIREBALL));
             cards.add(DefaultCards.getSpell(SpellName.GOD_STRENGTH));
             cards.add(DefaultCards.getSpell(SpellName.HELLFIRE));
+            cards.add(DefaultCards.getSpell(SpellName.LIGHTING_BOLT));
+            cards.add(DefaultCards.getSpell(SpellName.POISON_LAKE));
+            cards.add(DefaultCards.getSpell(SpellName.MADNESS));
+            cards.add(DefaultCards.getSpell(SpellName.ALL_POISON));
+            cards.add(DefaultCards.getSpell(SpellName.HEALTH_WITH_PROFIT));
+            cards.add(DefaultCards.getSpell(SpellName.POWER_UP));
+            cards.add(DefaultCards.getSpell(SpellName.ALL_POWER));
+            cards.add(DefaultCards.getSpell(SpellName.ALL_ATTACK));
+            cards.add(DefaultCards.getSpell(SpellName.WEAKENING));
+            cards.add(DefaultCards.getMinion(MinionName.FARS_KAMANDAR));
+            cards.add(DefaultCards.getMinion(MinionName.FARS_ASBSAVAR));
+            cards.add(DefaultCards.getMinion(MinionName.TOORANEE_KAMANDAR));
+            cards.add(DefaultCards.getMinion(MinionName.TOORANEE_GHOLABSANG));
+            cards.add(DefaultCards.getSpell(SpellName.KINGS_GUARD));
+            cards.add(DefaultCards.getSpell(SpellName.SHOCK));
         } else if (name.equals("first_level")) {
             for (MinionName minion : FIRST_LEVEL_MINIONS) {
                 Minion minion1 = DefaultCards.getMinion(minion);

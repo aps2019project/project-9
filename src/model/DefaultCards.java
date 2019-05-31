@@ -765,7 +765,7 @@ public class DefaultCards {
             null, null, SpellName.HELLFIRE));
     private static final String LIGHTING_BOLT = gson.toJson(new Spell("lighting_bolt", 1250, 2,
             SpellTargetType.ENEMY_HERO, 0,
-            "attack 4 unit to enemy hero",
+            "attack 8 unit to enemy hero",
             null, null, SpellName.LIGHTING_BOLT));
     private static final String POISON_LAKE = gson.toJson(new Spell("poison_lake", 900, 5,
             SpellTargetType.THREE_IN_THREE_SQUARE, 0,

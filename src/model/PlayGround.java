@@ -1,5 +1,6 @@
 package model;
 
+import javafx.application.Platform;
 import model.cards.Card;
 import model.enumerations.GameMode;
 import model.enumerations.ItemName;
@@ -7,6 +8,7 @@ import model.enumerations.MinionAttackType;
 import model.items.Collectible;
 import model.items.Flag;
 
+import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Random;
@@ -181,9 +183,6 @@ public class PlayGround {
     }
 
     public boolean canMoveThroughPath(Cell firstCell, Cell secondCell) {
-    /*two cell with manhatan distance 2 ,
-     if there are no power in the middle
-     of their path , return true;*/
         if (getManhatanDistance(firstCell, secondCell) > 2)
             return false;
         if (java.lang.Math.abs(firstCell.getY() - secondCell.getY()) == 2
@@ -244,5 +243,16 @@ public class PlayGround {
     public Cell getRandomPowerCell(Player player) {
         Random r = new Random();
         return player.getMinionsInPlayGround().get(r.nextInt(player.getMinionsInPlayGround().size())).getCell();
+    }
+
+    public Cell getAnEnemyInEightAround(Player player, Cell cell) {
+        ArrayList<Cell> arounds = getAroundCells(cell);
+        ArrayList<Cell> allEnemyCells = new ArrayList<>();
+        for (Cell around : arounds) {
+            if (isForEnemyMinion(around, player)) {
+                allEnemyCells.add(around);
+            }
+        }
+        return allEnemyCells.get(new Random().nextInt(allEnemyCells.size()));
     }
 }
