@@ -22,18 +22,26 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Pair;
 import model.Account;
+import model.enumerations.AccountErrorType;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Optional;
 
-public class AccountMenu2 extends Application {
+public class AccountMenu extends Application {
 
-    double height;
-    double width;
+    static double height;
+    static double width;
+    view.AccountRequest accountRequest;
 
-    public static void main(String[] args) {
+    private static final AccountMenu ACCOUNTMENU = new AccountMenu();
+
+    private AccountMenu(){}
+
+    public static AccountMenu getInstance(){return ACCOUNTMENU;}
+
+    public void main(String[] args) {
         launch(args);
     }
 
@@ -143,11 +151,10 @@ public class AccountMenu2 extends Application {
 
             Optional<Pair<String, String>> result = dialog.showAndWait();
 
-            AccountRequest temp = new AccountRequest();
             result.ifPresent(usernamePassword -> {
-                temp.setUserName(usernamePassword.getKey());
-                temp.setPassWord(usernamePassword.getValue());
-                //be sync-------------------------------------------------------------------
+                accountRequest.setUserName(usernamePassword.getKey());
+                accountRequest.setPassWord(usernamePassword.getValue());
+
             });
         });
         return button;
@@ -180,9 +187,9 @@ public class AccountMenu2 extends Application {
             grid.setPadding(new Insets(20, 150, 10, 10));
 
             TextField username = new TextField();
-            username.setPromptText("Username");
+            username.setPromptText("Username ");
             PasswordField password = new PasswordField();
-            password.setPromptText("Password");
+            password.setPromptText("Password ");
 
             grid.add(new Label("Username : "), 0, 0);
             grid.add(username, 1, 0);
@@ -298,4 +305,21 @@ public class AccountMenu2 extends Application {
         return null;
     }
 
+    public AccountRequest getAccountRequest() {
+        return accountRequest;
+    }
+
+    public void printError(AccountErrorType request){
+        switch (request){
+            case USERNAME_EXISTS:
+                new Alert(Alert.AlertType.WARNING,"this username is taken").showAndWait();
+                break;
+            case INVALID_PASSWORD:
+                new Alert(Alert.AlertType.WARNING,"Invalid password").showAndWait();
+                break;
+            case INVALID_USERNAME:
+                new Alert(Alert.AlertType.WARNING,"Invalid username").showAndWait();
+                break;
+        }
+    }
 }

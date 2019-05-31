@@ -78,4 +78,7 @@ public class AccountRequest {
     }
 
 
+    public String getPassWord() {
+        return passWord;
+    }
 }
