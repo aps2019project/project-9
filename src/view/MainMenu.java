@@ -1,8 +1,8 @@
 package view;
 
+import controller.AccountController;
 import javafx.application.Application;
 import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -12,17 +12,28 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import model.enumerations.MainMenuErrorType;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 public class MainMenu extends Application {
-    private static double HEIGHT = 400;
-    private static double WIDTH = 400;
+    private static double HEIGHT;
+    private static double WIDTH;
+    private static final MainMenu MAINMENU = new MainMenu();
+    private MainMenuRequest mainMenuRequest;
+    static String[] argss;
 
+    private MainMenu() {
+    }
+
+    public static MainMenu getInstance() {
+        return MAINMENU;
+    }
 
     public static void main(String[] args) {
+        argss = args;
         launch(args);
     }
 
@@ -42,7 +53,6 @@ public class MainMenu extends Application {
             imageView.setX(-300);
             imageView.setFitWidth(2100);
             imageView.setFitHeight(900);
-
 
             Group root = new Group(imageView, text);
             setButtons(root);
@@ -65,7 +75,7 @@ public class MainMenu extends Application {
             collection.setScaleY(2.5);
             collection.setStyle("-fx-background-color: rgba(0,0,0,0);-fx-text-fill: #020d7f;");
             collection.setOnMouseClicked(event -> {
-
+                mainMenuRequest.setCommand("collection");
             });
 
             Font shopFont = Font.loadFont(new FileInputStream(new File("src/res/ALGER.TTF")), 30);
@@ -77,7 +87,7 @@ public class MainMenu extends Application {
             shop.setScaleY(2.5);
             shop.setStyle("-fx-background-color: rgba(0,0,0,0);-fx-text-fill: #020d7f;");
             shop.setOnMouseClicked(event -> {
-
+                mainMenuRequest.setCommand("shop");
             });
 
             Font battleFont = Font.loadFont(new FileInputStream(new File("src/res/ALGER.TTF")), 35);
@@ -89,7 +99,7 @@ public class MainMenu extends Application {
             battle.setScaleY(2.5);
             battle.setStyle("-fx-background-color: rgba(0,0,0,0);-fx-text-fill: #020d7f;");
             battle.setOnMouseClicked(event -> {
-
+                mainMenuRequest.setCommand("battle");
             });
 
             Font logOutFont = Font.loadFont(new FileInputStream(new File("src/res/ALGER.TTF")), 26);
@@ -101,11 +111,20 @@ public class MainMenu extends Application {
             logOut.setScaleY(2.5);
             logOut.setStyle("-fx-background-color: rgba(0,0,0,0);-fx-text-fill: #020d7f;");
             logOut.setOnMouseClicked(event -> {
-
+                AccountController accountController = new AccountController();
+                accountController.main(argss);
             });
             root.getChildren().addAll(collection, shop, battle, logOut);
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public MainMenuRequest getRequest() {
+        return mainMenuRequest;
+    }
+
+    public void printError(MainMenuErrorType e) {
+        new Alert(Alert.AlertType.WARNING, e.getMessage()).showAndWait();
     }
 }

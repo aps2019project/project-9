@@ -7,8 +7,10 @@ import view.AccountRequest;
 
 public class AccountController {
     private static AccountMenu accountMenu = AccountMenu.getInstance();
+    static String[] argss;
 
     public void main(String[] args) {
+        argss = args;
         accountMenu.main(args);
         AccountRequest request = accountMenu.getAccountRequest();
 
@@ -52,7 +54,7 @@ public class AccountController {
 
     private void goNextMenu(Account loggedInAccount) {
         MainMenuController mainMenuController = new MainMenuController(loggedInAccount);
-        mainMenuController.main();
+        mainMenuController.main(argss);
     }
 
 }
