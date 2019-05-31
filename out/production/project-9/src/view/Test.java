@@ -1,12 +1,9 @@
 package view;
 
 import javafx.application.Application;
-import javafx.scene.Group;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.FileNotFoundException;
-import java.util.Scanner;
 
 public class Test extends Application {
 
@@ -16,8 +13,9 @@ public class Test extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+        AccountMenu accountMenu  = AccountMenu.getInstance();
         try {
-            AccountMenu.getInstance().checkTest(primaryStage);
+            accountMenu.main(primaryStage);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

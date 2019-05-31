@@ -1,15 +1,12 @@
 package view;
 
-import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -31,48 +28,20 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Optional;
 
-public class AccountMenu extends Application {
+public class AccountMenu {
+    private static AccountMenu accountMenu = new AccountMenu();
+    private static double height;
+    private static double width;
+    private AccountRequest accountRequest;
 
-    static double height;
-    static double width;
-    AccountRequest accountRequest;
-
-
-    private static final AccountMenu ACCOUNTMENU = new AccountMenu();
-
-    private AccountMenu(){}
-
-    public static AccountMenu getInstance(){return ACCOUNTMENU;}
-
-    public void main(String[] args) {
-        launch(args);
+    private AccountMenu() {
     }
 
-    @Override
-    public void start(Stage stage) {
-        try {
-            stage.setTitle("project 9");
-            stage.setMaximized(true);
-            height = stage.getMaxHeight();
-            width = stage.getMaxWidth();
-            ImageView imageView = new ImageView();
-            imageView.setImage(new Image(new FileInputStream("src/res/1.png")));
-            imageView.setFitHeight(800);
-            imageView.setFitWidth(900);
-            imageView.setX(300);
-            Group group = new Group(imageView);
-            Scene scene = new Scene(group, height, width);
-            scene.setFill(Color.DEEPPINK);
-            scene.setOnMouseClicked(event -> accountMenuShow(stage));
-            stage.setScene(scene);
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
+    public static AccountMenu getInstance() {
+        return accountMenu;
     }
 
-    public void checkTest(Stage stage) throws FileNotFoundException {
+    public void main(Stage stage) throws FileNotFoundException {
         stage.setTitle("project 9");
         stage.setMaximized(true);
         height = stage.getMaxHeight();
@@ -89,6 +58,7 @@ public class AccountMenu extends Application {
         stage.setScene(scene);
         stage.show();
     }
+
 
     private void accountMenuShow(Stage stage) {
         try {
@@ -344,4 +314,5 @@ public class AccountMenu extends Application {
                 break;
         }
     }
+
 }

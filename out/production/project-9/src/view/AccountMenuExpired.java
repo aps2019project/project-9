@@ -1,5 +1,6 @@
 package view;
 
+import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -28,35 +29,45 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Optional;
 
-public class AccountMenu {
-    private static AccountMenu accountMenu = new AccountMenu();
-    private static double height;
-    private static double width;
-    private AccountRequest accountRequest;
+public class AccountMenuExpired extends Application {
 
-    private AccountMenu() {
+    static double height;
+    static double width;
+    AccountRequest accountRequest;
+
+
+    private static final AccountMenuExpired ACCOUNTMENU = new AccountMenuExpired();
+
+    private AccountMenuExpired(){}
+
+    public static AccountMenuExpired getInstance(){return ACCOUNTMENU;}
+
+    public void main(String[] args) {
+        launch(args);
     }
 
-    public static AccountMenu getInstance() {
-        return accountMenu;
-    }
+    @Override
+    public void start(Stage stage) {
+        /*try {
+            stage.setTitle("project 9");
+            stage.setMaximized(true);
+            height = stage.getMaxHeight();
+            width = stage.getMaxWidth();
+            ImageView imageView = new ImageView();
+            imageView.setImage(new Image(new FileInputStream("src/res/1.png")));
+            imageView.setFitHeight(800);
+            imageView.setFitWidth(900);
+            imageView.setX(300);
+            Group group = new Group(imageView);
+            Scene scene = new Scene(group, height, width);
+            scene.setFill(Color.DEEPPINK);
+            scene.setOnMouseClicked(event -> accountMenuShow(stage));
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }*/
 
-    public void main(Stage stage) throws FileNotFoundException {
-        stage.setTitle("project 9");
-        stage.setMaximized(true);
-        height = stage.getMaxHeight();
-        width = stage.getMaxWidth();
-        ImageView imageView = new ImageView();
-        imageView.setImage(new Image(new FileInputStream("src/res/1.png")));
-        imageView.setFitHeight(800);
-        imageView.setFitWidth(900);
-        imageView.setX(300);
-        Group group = new Group(imageView);
-        Scene scene = new Scene(group, height, width);
-        scene.setFill(Color.DEEPPINK);
-        scene.setOnMouseClicked(event -> accountMenuShow(stage));
-        stage.setScene(scene);
-        stage.show();
     }
 
 
@@ -314,5 +325,4 @@ public class AccountMenu {
                 break;
         }
     }
-
 }
