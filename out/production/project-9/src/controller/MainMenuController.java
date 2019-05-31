@@ -14,7 +14,7 @@ public class MainMenuController {
     }
 
     public void main(String[] args) {
-        //mainMenu.main(args);
+        //mainMenu.start(args);
         MainMenuRequest request = mainMenu.getRequest();
         switch (request.getCommand()) {
             case "battle":

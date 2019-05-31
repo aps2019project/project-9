@@ -18,12 +18,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-public class MainMenu extends Application {
+public class MainMenu {
     private static double HEIGHT;
     private static double WIDTH;
     private static final MainMenu MAINMENU = new MainMenu();
     private MainMenuRequest mainMenuRequest;
-    //static String[] argss;
 
     private MainMenu() {
     }
@@ -32,12 +31,6 @@ public class MainMenu extends Application {
         return MAINMENU;
     }
 
-    public static void main(String[] args) {
-        //argss = args;
-        launch(args);
-    }
-
-    @Override
     public void start(Stage stage) {
         try {
             HEIGHT = stage.getMaxHeight();
@@ -49,7 +42,7 @@ public class MainMenu extends Application {
             text.setFill(Color.rgb(2, 14, 236));
 
             ImageView imageView = new ImageView();
-            imageView.setImage(new Image(new FileInputStream("src/res/mainMenu.jpg")));
+            imageView.setImage(new Image(new FileInputStream("src/res/2.jpg")));
             imageView.setX(-300);
             imageView.setFitWidth(2100);
             imageView.setFitHeight(900);
@@ -112,7 +105,7 @@ public class MainMenu extends Application {
             logOut.setStyle("-fx-background-color: rgba(0,0,0,0);-fx-text-fill: #020d7f;");
             logOut.setOnMouseClicked(event -> {
                 AccountController accountController = new AccountController();
-                //accountController.main(argss);
+                accountController.main();
             });
             root.getChildren().addAll(collection, shop, battle, logOut);
         } catch (Exception e) {

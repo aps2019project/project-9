@@ -3,8 +3,6 @@ package view;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-import java.io.FileNotFoundException;
-
 public class Test extends Application {
 
     public static void main(String[] args) {
@@ -14,9 +12,10 @@ public class Test extends Application {
     @Override
     public void start(Stage primaryStage) {
         AccountMenu accountMenu  = AccountMenu.getInstance();
+        ShopMenu s = new ShopMenu();
         try {
-            accountMenu.main(primaryStage);
-        } catch (FileNotFoundException e) {
+            s.start(primaryStage);
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

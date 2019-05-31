@@ -41,7 +41,7 @@ public class AccountMenu {
         return accountMenu;
     }
 
-    public void main(Stage stage) throws FileNotFoundException {
+    public void start(Stage stage) throws FileNotFoundException {
         stage.setTitle("project 9");
         stage.setMaximized(true);
         height = stage.getMaxHeight();

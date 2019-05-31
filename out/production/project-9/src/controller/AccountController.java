@@ -2,16 +2,15 @@ package controller;
 
 import model.Account;
 import model.enumerations.AccountErrorType;
-import view.AccountMenuExpired;
+import view.AccountMenu;
 import view.AccountRequest;
 
 public class AccountController {
-    private static AccountMenuExpired accountMenu ;//= AccountMenuExpired.getInstance();
-    //static String[] argss;
+    private static AccountMenu accountMenu ;//= AccountMenuExpired.getInstance();
 
-    public void main(String[] args) {
-        //argss = args;
-        //accountMenu.main(args);
+
+    public void main() {
+        //accountMenu.start(args);
         AccountRequest request = accountMenu.getAccountRequest();
 
         switch (request.getType()) {
@@ -54,7 +53,7 @@ public class AccountController {
 
     private void goNextMenu(Account loggedInAccount) {
         MainMenuController mainMenuController = new MainMenuController(loggedInAccount);
-        //mainMenuController.main(argss);
+        //mainMenuController.start(argss);
     }
 
 }
