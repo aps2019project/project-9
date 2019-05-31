@@ -1,8 +1,8 @@
 package model.cards;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.gson.annotations.Expose;
+import model.Player;
 import model.enumerations.CardType;
 
 public class Card {
@@ -15,7 +15,7 @@ public class Card {
     protected CardType cardType;
     @Expose
     protected int cardID;
-    protected String BattleID;
+    protected String battleID;
     @Expose
     protected String name;
     @Expose
@@ -53,15 +53,30 @@ public class Card {
     }
 
     public String getBattleID() {
-        return BattleID;
+        return battleID;
     }
 
     public void setCardID(int cardID) {
         this.cardID = cardID;
     }
 
-    public void setBattleID(String battleID) {
-        this.BattleID = battleID;
+    public void setBattleID(Player player) {
+        int id = 1;
+        for (Minion minion : player.getMinionsInPlayGround()) {
+            try {
+                if (minion.getMinionName().equals(((Minion) this).getMinionName()))
+                    id++;
+            }catch (NullPointerException e){
+
+            }
+        }
+        battleID = player.getName() + "_"
+                + this.getName()
+                + "_" + id;
+    }
+
+    public void setBattleID(String id) {
+        this.battleID = id;
     }
 
     public int getMP() {

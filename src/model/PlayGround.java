@@ -162,7 +162,7 @@ public class PlayGround {
             case MELEE:
                 return getAroundCells(minionCell).contains(targetCell);
             case HYBRID:
-                return true;
+                return getManhatanDistance(minionCell, targetCell) <= minionCell.getMinionOnIt().getAttackRange();
             case RANGED:
                 if (getAroundCells(minionCell).contains(targetCell))
                     return false;

@@ -50,14 +50,14 @@ public class Hero extends Minion {
         else if (buffsTargetType == HeroTargetType.ITSELF) {
             if(buffs != null) {
                 for (Buff buff : buffs) {
-                    buff.startBuff(getCell());
+                    buff.getCopy().startBuff(getCell());
                 }
             }
         }else if(buffsTargetType == HeroTargetType.ALL_POWERS_IN_ROW){
             if(buffs != null){
                 for (Cell cell1 : player.getBattle().getPlayGround().enemyInRow(getCell(), player.getOpponent())) {
                     for (Buff buff : buffs) {
-                        buff.startBuff(cell1);
+                        buff.getCopy().startBuff(cell1);
                     }
                 }
             }
@@ -65,7 +65,7 @@ public class Hero extends Minion {
             if(buffs != null) {
                 Cell target = player.getBattle().getPlayGround().getRandomPowerCell(player);
                 for (Buff buff : buffs) {
-                    buff.startBuff(target);
+                    buff.getCopy().startBuff(target);
                 }
                 player.addMana(-MP);
             }else if(heroName == HeroName.AFSANE){
@@ -82,7 +82,7 @@ public class Hero extends Minion {
             if(buffs != null) {
                 for (Minion minion : player.getOpponent().getMinionsInPlayGround()) {
                     for (Buff buff : buffs) {
-                        buff.startBuff(minion.getCell());
+                        buff.getCopy().startBuff(minion.getCell());
                     }
                 }
             }

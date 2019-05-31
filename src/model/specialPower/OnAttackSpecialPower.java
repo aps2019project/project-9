@@ -26,9 +26,12 @@ public class OnAttackSpecialPower extends SpecialPower {
         // cell is the target cell that the minion wants to attack() to
         if (minion.getMinionName() == MinionName.DOSAR_GHOOL)
             cell.getMinionOnIt().dispelPositiveBuffs();
-        else if (buffs != null && cell.hasCardOnIt()){
+        else if (buffs != null && cell.hasCardOnIt()) {
             for (Buff buff : buffs) {
-                buff.startBuff(cell);
+                buff.getCopy().startBuff(cell);
+                //TODO
+                System.out.println("buff name : " + buff.getBuffName() + " started on cell : " + cell.getX() + " "
+                        + cell.getY() + " buff activation time : " + buff.getTurnsRemained());
             }
         }
     }

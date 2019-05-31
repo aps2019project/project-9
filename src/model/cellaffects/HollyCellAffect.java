@@ -16,7 +16,7 @@ public class HollyCellAffect extends CellAffect {
         // while a minion enters this cell ( cell that has this CellAffect )
         minion.setReductionOfOthersAttack(1);
         HollyBuff hollyBuff = new HollyBuff(1,false,false,false);  //be checked
-        hollyBuff.startBuff(minion.getCell());
+        hollyBuff.getCopy().startBuff(minion.getCell());
     }
 
 

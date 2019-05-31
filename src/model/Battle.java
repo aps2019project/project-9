@@ -82,9 +82,15 @@ public class Battle {
         for (Minion minion : player.getMinionsInPlayGround()) {
             minions.add(minion);
         }
+
         for (Minion minion : minions) {
             ArrayList<Buff> buffsToDelete = new ArrayList<>();
+
+
             for (Buff buff : minion.getActiveBuffs()) {
+                //tODO
+                System.out.println("buff : " + buff.getBuffName() + " from minion : " + minion.getName()
+                 + " has : " + buff.getTurnsRemained() + " turns remained ");
                 if (!buff.isForAllTurns()) {
                     buff.reduceTurnsRemained();
                     if (buff.getTurnsRemained() == 0) {
@@ -93,15 +99,18 @@ public class Battle {
                     }
                 }
             }
+
             for (Buff buff : buffsToDelete) {
                 minion.buffDeactivated(buff);
+                //TODO
+                System.out.println("buff : " + buff.getBuffName() + " deleted from minion : " + minion.getName());
             }
             ArrayList<Buff> buffsToAdd = new ArrayList<>(); // for exception handling
             for (Buff buff : minion.getContinuousBuffs()) {
                 buffsToAdd.add(buff);
             }
             for (Buff buff : buffsToAdd) {
-                buff.startBuff(minion.getCell());
+                buff.getCopy().startBuff(minion.getCell());
             }
         }
     }
@@ -153,19 +162,19 @@ public class Battle {
     private void assignMana() {
         if (whoseTurn == 1) {
             secondPlayerMana = secondPlayer.getMaxMana() + 1;
-            if(secondPlayerMana > 9){
+            if (secondPlayerMana > 9) {
                 secondPlayer.setMaxMana(9);
                 secondPlayer.assignMana(9);
-            }else {
+            } else {
                 secondPlayer.setMaxMana(secondPlayerMana);
                 secondPlayer.assignMana(secondPlayerMana);
             }
         } else {
             firstPlayerMana = firstPlayer.getMaxMana() + 1;
-            if(firstPlayerMana > 9){
+            if (firstPlayerMana > 9) {
                 firstPlayer.setMaxMana(9);
                 firstPlayer.assignMana(9);
-            }else {
+            } else {
                 firstPlayer.setMaxMana(secondPlayerMana);
                 firstPlayer.assignMana(secondPlayerMana);
             }

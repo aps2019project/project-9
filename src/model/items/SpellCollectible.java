@@ -26,11 +26,11 @@ public class SpellCollectible extends Collectible {
     public void useItem() {
         if(target == ItemTarget.RANDOM_FRIENDLY_CARD)
             for (Buff buff : buffs) {
-                buff.startBuff(owningPlayer.getRandomPower(false).getCell());
+                buff.getCopy().startBuff(owningPlayer.getRandomPower(false).getCell());
             }
         else if(target == ItemTarget.RANDOM_RANGED_OR_HYBRID)
             for (Buff buff : buffs) {
-                buff.startBuff(owningPlayer.getRandomPower(true).getCell());
+                buff.getCopy().startBuff(owningPlayer.getRandomPower(true).getCell());
             }
         else if(target == ItemTarget.MELEE){
             for (Minion minion : owningPlayer.getMinionsInPlayGround()) {

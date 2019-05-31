@@ -80,7 +80,7 @@ public class Spell extends Card {
                     for (Cell targetCell : targetCells) {
                         if (targetCell.hasCardOnIt() &&
                                 targetCell.getMinionOnIt().canDefend(this, castingBuff)) {
-                            castingBuff.startBuff(targetCell);
+                            castingBuff.getCopy().startBuff(targetCell);
                         }
                     }
                 }

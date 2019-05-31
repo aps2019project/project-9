@@ -437,4 +437,6 @@ public class Minion extends Card {
     public void setContinuousBuffs(ArrayList<Buff> continuousBuffs) {
         this.continuousBuffs = continuousBuffs;
     }
+
+
 }

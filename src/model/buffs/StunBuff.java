@@ -8,7 +8,7 @@ public class StunBuff extends Buff{
 
 
     public StunBuff(int turnsActive, boolean isForAllTurns, boolean isContinous) {
-        super(BuffName.STUN, turnsActive + 1, isForAllTurns, false, isContinous);
+        super(BuffName.STUN, turnsActive, isForAllTurns, false, isContinous);
     }
 
     @Override

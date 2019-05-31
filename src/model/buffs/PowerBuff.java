@@ -35,4 +35,12 @@ public class PowerBuff extends Buff {
         else
             minion.reduceAP(power);
     }
+
+    public int getPower() {
+        return power;
+    }
+
+    public boolean getIsForHP(){
+        return isForHP;
+    }
 }

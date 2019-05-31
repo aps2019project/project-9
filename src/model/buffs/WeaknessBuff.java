@@ -53,7 +53,23 @@ public class WeaknessBuff extends Buff {
             minion.addAP(power);
     }
 
-    public boolean isDelayBuff() {
+    public boolean getIsDelayBuff() {
         return isDelayBuff;
+    }
+
+    public int getPower() {
+        return power;
+    }
+
+    public boolean getIsForHP(){
+        return isForHP;
+    }
+
+    public int[] getPowers() {
+        return powers;
+    }
+
+    public int getTurn() {
+        return turn;
     }
 }

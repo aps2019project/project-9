@@ -35,4 +35,8 @@ public class HollyBuff extends Buff {
             minion.missedHollyBuff();
         }
     }
+
+    public boolean getIsNegative(){
+        return isNegative;
+    }
 }

@@ -30,7 +30,7 @@ public class OnDeathUsableItem extends Usable{
             case A_FRIENDLY_POWER:
                 Cell cell = player.getRandomPower(false).getCell();
                 for (Buff buff : buffs) {
-                    buff.startBuff(cell);
+                    buff.getCopy().startBuff(cell);
                 }
                 break;
         }
