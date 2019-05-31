@@ -33,7 +33,7 @@ public class AccountMenu extends Application {
 
     static double height;
     static double width;
-    view.AccountRequest accountRequest;
+    AccountRequest accountRequest;
 
     private static final AccountMenu ACCOUNTMENU = new AccountMenu();
 
@@ -69,7 +69,7 @@ public class AccountMenu extends Application {
 
     }
 
-    void accountMenuShow(Stage stage) {
+    private void accountMenuShow(Stage stage) {
         try {
             Font accountMenuFont = Font.loadFont(new FileInputStream(new File("src/res/modern.TTF")), 40);
             Text text = new Text(651, 100, "Account Menu");
