@@ -237,24 +237,24 @@ public class DefaultCards {
                 minion.setSpecialPower(new OnSpawnSpecialPower(buff4, OnSpawnTargetCell.TWO_DISTANCE_CELLS));
                 break;
             case WHITE_WOLF:
-                int[] powers = {0,6, 4};
+                int[] powers = {0, 6, 4};
                 WeaknessBuff buff5 = new WeaknessBuff(400, true,
-                        true, 0, true, true, powers);
+                        false, 0, true, true, powers);
                 buffs = new ArrayList<>();
                 buffs.add(buff5);
                 minion.setSpecialPower(new OnAttackSpecialPower(buffs, false, false));
                 break;
             case PALANG:
-                int[] powers1 = {0,8};
-                buff5 = new WeaknessBuff(400, true, true,
+                int[] powers1 = {0, 8};
+                buff5 = new WeaknessBuff(400, true, false,
                         0, true, true, powers1);
                 buffs = new ArrayList<>();
                 buffs.add(buff5);
                 minion.setSpecialPower(new OnAttackSpecialPower(buffs, false, false));
                 break;
             case WOLF:
-                int[] powers2 = {0,6};
-                buff5 = new WeaknessBuff(400, true, true,
+                int[] powers2 = {0, 6};
+                buff5 = new WeaknessBuff(400, true, false,
                         0, true, true, powers2);
                 buffs = new ArrayList<>();
                 buffs.add(buff5);
@@ -326,7 +326,7 @@ public class DefaultCards {
                 buffs = new ArrayList<>();
                 buffs.add(new WeaknessBuff(400, true, false,
                         6, true, false, null));
-                minion.setSpecialPower(new OnDeathSpecialPower(6,OnDeathTargetType.ENEMY_HERO));
+                minion.setSpecialPower(new OnDeathSpecialPower(6, OnDeathTargetType.ENEMY_HERO));
                 break;
             case SHAH_GOOL:
                 minion.setSpecialPower(new ComboSpecialPower());

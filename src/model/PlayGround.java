@@ -145,7 +145,7 @@ public class PlayGround {
         ArrayList<Cell> result = new ArrayList<>();
         for (Cell[] rowCells : cells) {
             for (Cell cell : rowCells) {
-                if (getManhatanDistance(cell, currentCell) == 2)
+                if (getManhatanDistance(cell, currentCell) <= 2)
                     result.add(cell);
             }
         }

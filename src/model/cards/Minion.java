@@ -129,13 +129,14 @@ public class Minion extends Card {
                         player.collectFlag(player.getBattle().getPlayGround().getFlag().getCurrentCell(), this);
                 }
                 if (opponent.canDefend(this, null)) { // reduce HP
+                    boolean counterAttack = opponent.canCounterAttack && opponent.isValidCell(this.getCell());
                     if (specialPower != null && specialPower.getSpecialPowerActivationTime() == SpecialPowerActivationTime.ON_ATTACK
                             && ((OnAttackSpecialPower) specialPower).isAntiHolly()
                             && opponent.hasHollyBuff) {
                         opponent.reduceHP(this.AP);
                     } else
                         opponent.reduceHP(this.AP - opponent.getReductionOfOthersAttack());
-                    if (opponent.canCounterAttack && opponent.isValidCell(this.getCell())) {
+                    if (counterAttack) {
                         this.reduceHP(opponent.AP - this.getReductionOfOthersAttack());
                     }
                 }

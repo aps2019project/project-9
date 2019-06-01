@@ -2,6 +2,7 @@ package model;
 
 import model.buffs.Buff;
 import model.buffs.StunBuff;
+import model.buffs.WeaknessBuff;
 import model.cards.Card;
 import model.cards.Minion;
 import model.cards.Spell;
@@ -11,6 +12,7 @@ import model.enumerations.SpecialPowerActivationTime;
 import view.InGameView;
 
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 
 public class Battle {
     protected int firstPlayerMana;
@@ -88,9 +90,11 @@ public class Battle {
 
 
             for (Buff buff : minion.getActiveBuffs()) {
-                //tODO
-                System.out.println("buff : " + buff.getBuffName() + " from minion : " + minion.getName()
-                 + " has : " + buff.getTurnsRemained() + " turns remained ");
+                /*System.out.println("buff : " + buff.getBuffName() + " from minion : " + minion.getName()
+                        + " has : " + buff.getTurnsRemained() + " turns remained ");*/
+                if (buff instanceof WeaknessBuff && ((WeaknessBuff) buff).getIsDelayBuff()) {
+                    buff.startBuff(minion.getCell());
+                }
                 if (!buff.isForAllTurns()) {
                     buff.reduceTurnsRemained();
                     if (buff.getTurnsRemained() == 0) {
@@ -102,8 +106,6 @@ public class Battle {
 
             for (Buff buff : buffsToDelete) {
                 minion.buffDeactivated(buff);
-                //TODO
-                System.out.println("buff : " + buff.getBuffName() + " deleted from minion : " + minion.getName());
             }
             ArrayList<Buff> buffsToAdd = new ArrayList<>(); // for exception handling
             for (Buff buff : minion.getContinuousBuffs()) {
@@ -194,10 +196,13 @@ public class Battle {
 
     private void handlePassiveSpecialPowers(Player player) {
         for (Minion minion : player.getMinionsInPlayGround()) {
-            if (minion.getSpecialPower() != null &&
-                    minion.getSpecialPower().getSpecialPowerActivationTime() == SpecialPowerActivationTime.PASSIVE) {
-                //TODO
-                minion.getSpecialPower().castSpecialPower(minion.getCell());
+            try {
+                if (minion.getSpecialPower() != null &&
+                        minion.getSpecialPower().getSpecialPowerActivationTime() == SpecialPowerActivationTime.PASSIVE) {
+                    minion.getSpecialPower().castSpecialPower(minion.getCell());
+                }
+            } catch (ConcurrentModificationException e) {
+
             }
         }
     }
