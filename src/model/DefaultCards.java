@@ -15,10 +15,8 @@ import model.items.*;
 import model.items.itemEnumerations.*;
 import model.specialPower.*;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 
 
 public class DefaultCards {
@@ -65,8 +63,7 @@ public class DefaultCards {
                         , buffs, OnAttackTargetType.OPPONENT_CELL, OnAttackOwningMinionType.RANGED_HYBRID_HERO);
             case NOOSH_DAROO:
                 ArrayList<Buff> buffs2 = new ArrayList<>();
-                for (int i = 0; i < 6; i++)
-                    buffs2.add(new HollyBuff(1, false, false, false));
+                buffs2.add(new PowerBuff(400,true,false,6,true));
                 return new SpellCollectible(0, "noosh_daro", ItemName.NOOSH_DAROO,
                         "add 6 unit to a random unit health", buffs2, ItemTarget.RANDOM_FRIENDLY_CARD);
             case TIR_DOSHAKH:
@@ -89,7 +86,7 @@ public class DefaultCards {
                         "power & give a powerbuff with 3 power increase on random minion"
                         , buf, ItemTarget.RANDOM_FRIENDLY_CARD);
             case MAJOON_MANA:       //be checked
-                return new addMana(0, "majoon_mana", ItemName.MAJOON_MANA, "increase 3 mana on next turn");
+                return new ManaCollectible(0, "majoon_mana", ItemName.MAJOON_MANA, "increase 3 mana on next turn");
             case MAJOON_ROIEEN:
                 ArrayList<Buff> buf1 = new ArrayList<>();
                 for (int i = 0; i < 10; i++) {

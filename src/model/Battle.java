@@ -40,18 +40,10 @@ public class Battle {
         secondPlayer.assignMana(2);
         firstPlayer.setMaxMana(2);
         secondPlayer.setMaxMana(2);
-        /*initializeSpecialPowersMinions(firstPlayer);
-        initializeSpecialPowersMinions(secondPlayer);*/
+        firstPlayer.castUsableItem();
+        secondPlayer.castUsableItem();
     }
 
-    /*private void initializeSpecialPowersMinions(Player player){
-        for (Card card : player.getDeck().getCards()) {
-            if(card instanceof Minion){
-                Minion minion = (Minion)card;
-                minion.getSpecialPower().setMinion(minion);
-            }
-        }
-    }*/
     private void initializeHeroAttributes() {
         //TODO for debugg
         /*firstPlayer.getHero().setCell(playGround.getCell(2, 0));
@@ -133,11 +125,9 @@ public class Battle {
         checkCellAffects(playGround);
         handlePassiveSpecialPowers(firstPlayer);
         handlePassiveSpecialPowers(secondPlayer);
-        handleUsableItems(firstPlayer); // cast them
-        handleUsableItems(secondPlayer);// cast them
         assignMana();
-        handleManaCollectibleItem(firstPlayer);
-        handleManaCollectibleItem(secondPlayer);
+        firstPlayer.castUsableItem();
+        secondPlayer.castUsableItem();
         whoseTurn = (whoseTurn == 1) ? (2) : (1);
         turn++;
         if (this instanceof SinglePlayerBattle && whoseTurn == 2) {
@@ -171,6 +161,7 @@ public class Battle {
                 secondPlayer.setMaxMana(secondPlayerMana);
                 secondPlayer.assignMana(secondPlayerMana);
             }
+            secondPlayer.assignMana(secondPlayer.getMana() + secondPlayer.getManaForNextTurnIncrease());
         } else {
             firstPlayerMana = firstPlayer.getMaxMana() + 1;
             if (firstPlayerMana > 9) {
@@ -180,18 +171,8 @@ public class Battle {
                 firstPlayer.setMaxMana(secondPlayerMana);
                 firstPlayer.assignMana(secondPlayerMana);
             }
+            firstPlayer.assignMana(firstPlayer.getMana() + firstPlayer.getManaForNextTurnIncrease());
         }
-    }
-
-    private void handleManaCollectibleItem(Player player) {
-        if (player.getUsedManaItem()) {
-            player.addMana(3);
-            player.setUsedAddManaItem(false);
-        }
-    } // for item num 8
-
-    private void handleUsableItems(Player player) {
-        player.castUsableItem();
     }
 
     private void handlePassiveSpecialPowers(Player player) {

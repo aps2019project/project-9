@@ -31,6 +31,7 @@ public class Player {
     private Item selectedCollectableItem;
     private GraveYard graveYard;
     private boolean usedAddManaItem = false; // for item num 8
+    private int manaForNextTurnIncrease = 0;
     private static int uniqueItemID = 100;
 
     public int getMaxMana() {
@@ -133,11 +134,8 @@ public class Player {
 
     public void castUsableItem() { // every turn should be called
         if (usableItem != null) {
-            ItemName usableName = usableItem.getItemType();
-            if (usableName == ItemName.ASSASINATION_DAGGER
-                    || usableName == ItemName.TERROR_HOOD
-                    || usableName == ItemName.POISONOUS_DAGGER)
-                return; // except for these items
+            if (usableItem instanceof OnSpawnUsableItem || usableItem instanceof OnDeathUsableItem)
+                return;
             usableItem.castItem(this);
         }
     }
@@ -537,5 +535,15 @@ public class Player {
             return this.name.equals(((Player) obj).getName());
         } else
             return false;
+    }
+
+    public void setManaForNextTurnIncrease(int manaForNextTurnIncrease) {
+        this.manaForNextTurnIncrease = manaForNextTurnIncrease;
+    }
+
+    public int getManaForNextTurnIncrease() {
+        int archive = manaForNextTurnIncrease;
+        manaForNextTurnIncrease = 0;
+        return archive;
     }
 }

@@ -67,7 +67,8 @@ public class Deck {
         this.name = name;
         //TODO for debug
         if (name.equals("debugging")) {
-            hero = DefaultCards.getHero(HeroName.ARASH);
+            hero = DefaultCards.getHero(HeroName.WHITE_DEEV);
+            item = DefaultCards.getItem(ItemName.ASSASINATION_DAGGER);
             cards.add(DefaultCards.getSpell(SpellName.TOTAL_DISARM));
             cards.add(DefaultCards.getSpell(SpellName.AREA_DISPEL));
             cards.add(DefaultCards.getSpell(SpellName.EMPOWER));
