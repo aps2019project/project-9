@@ -479,7 +479,7 @@ public class DefaultCards {
                 break;
             case ARASH:
                 buffs = new ArrayList<>();
-                buffs.add(new WeaknessBuff(400, true, false, 4, true, false, null));
+                buffs.add(new PowerBuff(400, true, false, 4, false));
                 hero.setBuffs(buffs);
                 break;
             case AFSANE:

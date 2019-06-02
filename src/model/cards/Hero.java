@@ -13,7 +13,6 @@ import java.util.ArrayList;
 public class Hero extends Minion {
     // hero does not have minion name ( not use the minion name that inherit )
     // for hero MP is the buffs cost
-    private static ArrayList<Hero> heroes = new ArrayList<>();
     @Expose
     private int coolDown;
     private int turnsRemained; // for cool down
@@ -29,8 +28,8 @@ public class Hero extends Minion {
 
     public Hero(HeroName heroName, int cost, int HP, int AP, MinionAttackType attackType, int attackRange,
                 ArrayList<Buff> buffs, int MP, int coolDown, int cardID, String name, String desc, boolean isFars,
-                HeroTargetType buffsTargetType , CellAffect cellAffect) {
-        super(name, cost, MP, HP, AP, attackType, attackRange, null, CardType.MINION,cardID,desc,
+                HeroTargetType buffsTargetType, CellAffect cellAffect) {
+        super(name, cost, MP, HP, AP, attackType, attackRange, null, CardType.MINION, cardID, desc,
                 null, isFars); // MP is for special power in hero ( spell )
         this.coolDown = coolDown;
         this.buffs = buffs;
@@ -45,41 +44,45 @@ public class Hero extends Minion {
 
     public void useSpecialPower(Cell cell) {// cast spell
         turnsRemained = coolDown;
-        if(buffsTargetType == HeroTargetType.ON_ATTACK)
-            isSpecialPowerActivated = true;
-        else if (buffsTargetType == HeroTargetType.ITSELF) {
-            if(buffs != null) {
+        if (buffsTargetType == HeroTargetType.ON_ATTACK) {
+            if (isSpecialPowerActivated) {
+                for (Buff buff : buffs) {
+                    buff.getCopy().startBuff(cell);
+                }
+            } else
+                isSpecialPowerActivated = true;
+        } else if (buffsTargetType == HeroTargetType.ITSELF) {
+            if (buffs != null) {
                 for (Buff buff : buffs) {
                     buff.getCopy().startBuff(getCell());
                 }
             }
-        }else if(buffsTargetType == HeroTargetType.ALL_POWERS_IN_ROW){
-            if(buffs != null){
+        } else if (buffsTargetType == HeroTargetType.ALL_POWERS_IN_ROW) {
+            if (buffs != null) {
                 for (Cell cell1 : player.getBattle().getPlayGround().enemyInRow(getCell(), player.getOpponent())) {
                     for (Buff buff : buffs) {
                         buff.getCopy().startBuff(cell1);
                     }
                 }
             }
-        } else if(buffsTargetType == HeroTargetType.AN_ENEMY_POWER){
-            if(buffs != null) {
+        } else if (buffsTargetType == HeroTargetType.AN_ENEMY_POWER) {
+            if (buffs != null) {
                 Cell target = player.getBattle().getPlayGround().getRandomPowerCell(player);
                 for (Buff buff : buffs) {
                     buff.getCopy().startBuff(target);
                 }
                 player.addMana(-MP);
-            }else if(heroName == HeroName.AFSANE){
+            } else if (heroName == HeroName.AFSANE) {
                 Cell target = player.getBattle().getPlayGround().getRandomPowerCell(player.getOpponent());
                 target.getMinionOnIt().dispelPositiveBuffs();
             }
-        } else if(buffsTargetType == HeroTargetType.A_CELL){
-            if(cellAffect != null) {
+        } else if (buffsTargetType == HeroTargetType.A_CELL) {
+            if (cellAffect != null) {
                 Cell target = player.getBattle().getPlayGround().getRandomCell();
                 cellAffect.putCellAffect(target);
             }
-        }
-        else if(buffsTargetType == HeroTargetType.ALL_ENEMY_POWERS){
-            if(buffs != null) {
+        } else if (buffsTargetType == HeroTargetType.ALL_ENEMY_POWERS) {
+            if (buffs != null) {
                 for (Minion minion : player.getOpponent().getMinionsInPlayGround()) {
                     for (Buff buff : buffs) {
                         buff.getCopy().startBuff(minion.getCell());
@@ -104,8 +107,8 @@ public class Hero extends Minion {
         return buffs;
     }
 
-    public void setTurnsRemainedForNextTurn(){// every turn ( in nextTurn() )
-        if(turnsRemained != 0){
+    public void setTurnsRemainedForNextTurn() {// every turn ( in nextTurn() )
+        if (turnsRemained != 0) {
             turnsRemained--;
         }
     }

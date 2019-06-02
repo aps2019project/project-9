@@ -67,7 +67,7 @@ public class Deck {
         this.name = name;
         //TODO for debug
         if (name.equals("debugging")) {
-            hero = DefaultCards.getHero(FIRST_LEVEL_HERO);
+            hero = DefaultCards.getHero(HeroName.ARASH);
             cards.add(DefaultCards.getSpell(SpellName.TOTAL_DISARM));
             cards.add(DefaultCards.getSpell(SpellName.AREA_DISPEL));
             cards.add(DefaultCards.getSpell(SpellName.EMPOWER));
@@ -86,7 +86,6 @@ public class Deck {
             cards.add(DefaultCards.getSpell(SpellName.KINGS_GUARD));
             cards.add(DefaultCards.getSpell(SpellName.SHOCK));
             cards.add(DefaultCards.getMinion(MinionName.FARS_SHAMSHIRZAN));
-
             cards.add(DefaultCards.getMinion(MinionName.TOORANEE_KAMANDAR));
             cards.add(DefaultCards.getMinion(MinionName.TOORANEE_GHOLABSANG));
             cards.add(DefaultCards.getMinion(MinionName.TOORANE_JASOS));
@@ -97,12 +96,12 @@ public class Deck {
             cards.add(DefaultCards.getMinion(MinionName.FARS_KAMANDAR));
             cards.add(DefaultCards.getMinion(MinionName.FARS_KAMANDAR));
             cards.add(DefaultCards.getMinion(MinionName.FARS_KAMANDAR));
-            cards.add(DefaultCards.getMinion(MinionName.FARS_KAMANDAR));
             cards.add(DefaultCards.getMinion(MinionName.GHOOL_SNAKE));
             cards.add(DefaultCards.getMinion(MinionName.FARS_ASBSAVAR));
             cards.add(DefaultCards.getMinion(MinionName.WHITE_WOLF));
             cards.add(DefaultCards.getMinion(MinionName.FARS_PAHLAVAN));
             cards.add(DefaultCards.getMinion(MinionName.ASHKBOOS));
+            cards.add(DefaultCards.getMinion(MinionName.FARS_KAMANDAR));
         } else if (name.equals("first_level")) {
             for (MinionName minion : FIRST_LEVEL_MINIONS) {
                 Minion minion1 = DefaultCards.getMinion(minion);
