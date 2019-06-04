@@ -15,6 +15,10 @@ public class PassiveSpecialPower extends SpecialPower {
     public PassiveSpecialPower(ArrayList<Buff> buffs, PassiveTargetType targetType) {
         super(SpecialPowerActivationTime.PASSIVE);
         this.buffs = buffs;
+        for (Buff buff : buffs) {
+            buff.setTurnsActive(buff.getTurnsRemained() / 2);
+            buff.setTurnsRemained(buff.getTurnsRemained() / 2);
+        }
         this.targetType = targetType;
     }
 
@@ -24,27 +28,26 @@ public class PassiveSpecialPower extends SpecialPower {
         switch (targetType) {
             case CURRENT_CELL:
                 for (Buff buff : buffs) {
-                    buff.startBuff(cell);
+                    buff.getCopy().startBuff(cell);
                 }
                 break;
             case CURRENT_AND_EIGHT_FRIENDLY_AROUND:
                 //specialPowerSpell.castSpell(cell);
                 for (Buff buff : buffs) {
-                    buff.startBuff(cell);
+                    buff.getCopy().startBuff(cell);
                 }
                 for (Cell aroundCell : cell.getPlayGround().getAroundCells(cell)) {
                     if (aroundCell.hasCardOnIt()
-                            && (minion.getPlayer().getMinionsInPlayGround().contains(aroundCell.getMinionOnIt())
-                            || aroundCell.equals(minion.getPlayer().getHero().getCell())))
+                            && (minion.getPlayer().getMinionsInPlayGround().contains(aroundCell.getMinionOnIt())))
                         for (Buff buff : buffs) {
-                            buff.startBuff(aroundCell);
+                            buff.getCopy().startBuff(aroundCell);
                         }
                 }
                 break;
             case ALL_FRIENDLY_MINIONS:
                 for (Minion minion1 : minion.getPlayer().getMinionsInPlayGround()) {
                     for (Buff buff : buffs) {
-                        buff.startBuff(minion1.getCell());
+                        buff.getCopy().startBuff(minion1.getCell());
                     }
                 }
                 break;

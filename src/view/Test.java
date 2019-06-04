@@ -12,9 +12,9 @@ public class Test extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        ShopMenu s = new ShopMenu();
+        GraveYard g = new GraveYard();
         try {
-            s.start(primaryStage,new Collection());
+            g.start(primaryStage, new Collection());
         } catch (Exception e) {
             e.printStackTrace();
         }

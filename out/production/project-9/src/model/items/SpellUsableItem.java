@@ -27,7 +27,7 @@ public class SpellUsableItem extends Usable { // simply just casts a spell ( arr
         if (target == SpellItemTarget.FRINEDLY_HERO) {
             Cell cell = player.getHero().getCell();
             for (Buff buff : buffs) {
-                buff.startBuff(cell);
+                buff.getCopy().startBuff(cell);
             }
             player.deleteUsableItem();
         } else if (target == SpellItemTarget.RANDOM_ENEMY_POWER) {
@@ -39,7 +39,7 @@ public class SpellUsableItem extends Usable { // simply just casts a spell ( arr
             if (player.getOpponent().getHero().getAttackType() == MinionAttackType.HYBRID
                     || player.getOpponent().getHero().getAttackType() == MinionAttackType.RANGED) {
                 for (Buff buff : buffs) {
-                    buff.startBuff(player.getOpponent().getHero().getCell());
+                    buff.getCopy().startBuff(player.getOpponent().getHero().getCell());
                 }
                 player.deleteUsableItem();
             }

@@ -15,10 +15,8 @@ import model.items.*;
 import model.items.itemEnumerations.*;
 import model.specialPower.*;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 
 
 public class DefaultCards {
@@ -65,8 +63,7 @@ public class DefaultCards {
                         , buffs, OnAttackTargetType.OPPONENT_CELL, OnAttackOwningMinionType.RANGED_HYBRID_HERO);
             case NOOSH_DAROO:
                 ArrayList<Buff> buffs2 = new ArrayList<>();
-                for (int i = 0; i < 6; i++)
-                    buffs2.add(new HollyBuff(1, false, false, false));
+                buffs2.add(new PowerBuff(400,true,false,6,true));
                 return new SpellCollectible(0, "noosh_daro", ItemName.NOOSH_DAROO,
                         "add 6 unit to a random unit health", buffs2, ItemTarget.RANDOM_FRIENDLY_CARD);
             case TIR_DOSHAKH:
@@ -89,7 +86,7 @@ public class DefaultCards {
                         "power & give a powerbuff with 3 power increase on random minion"
                         , buf, ItemTarget.RANDOM_FRIENDLY_CARD);
             case MAJOON_MANA:       //be checked
-                return new addMana(0, "majoon_mana", ItemName.MAJOON_MANA, "increase 3 mana on next turn");
+                return new ManaCollectible(0, "majoon_mana", ItemName.MAJOON_MANA, "increase 3 mana on next turn");
             case MAJOON_ROIEEN:
                 ArrayList<Buff> buf1 = new ArrayList<>();
                 for (int i = 0; i < 10; i++) {
@@ -237,24 +234,24 @@ public class DefaultCards {
                 minion.setSpecialPower(new OnSpawnSpecialPower(buff4, OnSpawnTargetCell.TWO_DISTANCE_CELLS));
                 break;
             case WHITE_WOLF:
-                int[] powers = {0,6, 4};
+                int[] powers = {0, 6, 4};
                 WeaknessBuff buff5 = new WeaknessBuff(400, true,
-                        true, 0, true, true, powers);
+                        false, 0, true, true, powers);
                 buffs = new ArrayList<>();
                 buffs.add(buff5);
                 minion.setSpecialPower(new OnAttackSpecialPower(buffs, false, false));
                 break;
             case PALANG:
-                int[] powers1 = {0,8};
-                buff5 = new WeaknessBuff(400, true, true,
+                int[] powers1 = {0, 8};
+                buff5 = new WeaknessBuff(400, true, false,
                         0, true, true, powers1);
                 buffs = new ArrayList<>();
                 buffs.add(buff5);
                 minion.setSpecialPower(new OnAttackSpecialPower(buffs, false, false));
                 break;
             case WOLF:
-                int[] powers2 = {0,6};
-                buff5 = new WeaknessBuff(400, true, true,
+                int[] powers2 = {0, 6};
+                buff5 = new WeaknessBuff(400, true, false,
                         0, true, true, powers2);
                 buffs = new ArrayList<>();
                 buffs.add(buff5);
@@ -326,7 +323,7 @@ public class DefaultCards {
                 buffs = new ArrayList<>();
                 buffs.add(new WeaknessBuff(400, true, false,
                         6, true, false, null));
-                minion.setSpecialPower(new OnDeathSpecialPower(6,OnDeathTargetType.ENEMY_HERO));
+                minion.setSpecialPower(new OnDeathSpecialPower(6, OnDeathTargetType.ENEMY_HERO));
                 break;
             case SHAH_GOOL:
                 minion.setSpecialPower(new ComboSpecialPower());
@@ -479,7 +476,7 @@ public class DefaultCards {
                 break;
             case ARASH:
                 buffs = new ArrayList<>();
-                buffs.add(new WeaknessBuff(400, true, false, 4, true, false, null));
+                buffs.add(new PowerBuff(400, true, false, 4, false));
                 hero.setBuffs(buffs);
                 break;
             case AFSANE:
@@ -765,7 +762,7 @@ public class DefaultCards {
             null, null, SpellName.HELLFIRE));
     private static final String LIGHTING_BOLT = gson.toJson(new Spell("lighting_bolt", 1250, 2,
             SpellTargetType.ENEMY_HERO, 0,
-            "attack 4 unit to enemy hero",
+            "attack 8 unit to enemy hero",
             null, null, SpellName.LIGHTING_BOLT));
     private static final String POISON_LAKE = gson.toJson(new Spell("poison_lake", 900, 5,
             SpellTargetType.THREE_IN_THREE_SQUARE, 0,

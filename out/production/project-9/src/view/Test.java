@@ -2,6 +2,7 @@ package view;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import model.Collection;
 
 public class Test extends Application {
 
@@ -11,10 +12,9 @@ public class Test extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        AccountMenu accountMenu  = AccountMenu.getInstance();
-        ShopMenu s = new ShopMenu();
+        GraveYard g = new GraveYard();
         try {
-            s.start(primaryStage);
+            g.start(primaryStage, new Collection());
         } catch (Exception e) {
             e.printStackTrace();
         }

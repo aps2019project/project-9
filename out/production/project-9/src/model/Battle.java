@@ -2,6 +2,7 @@ package model;
 
 import model.buffs.Buff;
 import model.buffs.StunBuff;
+import model.buffs.WeaknessBuff;
 import model.cards.Card;
 import model.cards.Minion;
 import model.cards.Spell;
@@ -11,6 +12,7 @@ import model.enumerations.SpecialPowerActivationTime;
 import view.InGameView;
 
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 
 public class Battle {
     protected int firstPlayerMana;
@@ -38,18 +40,10 @@ public class Battle {
         secondPlayer.assignMana(2);
         firstPlayer.setMaxMana(2);
         secondPlayer.setMaxMana(2);
-        /*initializeSpecialPowersMinions(firstPlayer);
-        initializeSpecialPowersMinions(secondPlayer);*/
+        firstPlayer.castUsableItem();
+        secondPlayer.castUsableItem();
     }
 
-    /*private void initializeSpecialPowersMinions(Player player){
-        for (Card card : player.getDeck().getCards()) {
-            if(card instanceof Minion){
-                Minion minion = (Minion)card;
-                minion.getSpecialPower().setMinion(minion);
-            }
-        }
-    }*/
     private void initializeHeroAttributes() {
         //TODO for debugg
         /*firstPlayer.getHero().setCell(playGround.getCell(2, 0));
@@ -82,9 +76,17 @@ public class Battle {
         for (Minion minion : player.getMinionsInPlayGround()) {
             minions.add(minion);
         }
+
         for (Minion minion : minions) {
             ArrayList<Buff> buffsToDelete = new ArrayList<>();
+
+
             for (Buff buff : minion.getActiveBuffs()) {
+                /*System.out.println("buff : " + buff.getBuffName() + " from minion : " + minion.getName()
+                        + " has : " + buff.getTurnsRemained() + " turns remained ");*/
+                if (buff instanceof WeaknessBuff && ((WeaknessBuff) buff).getIsDelayBuff()) {
+                    buff.startBuff(minion.getCell());
+                }
                 if (!buff.isForAllTurns()) {
                     buff.reduceTurnsRemained();
                     if (buff.getTurnsRemained() == 0) {
@@ -93,6 +95,7 @@ public class Battle {
                     }
                 }
             }
+
             for (Buff buff : buffsToDelete) {
                 minion.buffDeactivated(buff);
             }
@@ -101,7 +104,7 @@ public class Battle {
                 buffsToAdd.add(buff);
             }
             for (Buff buff : buffsToAdd) {
-                buff.startBuff(minion.getCell());
+                buff.getCopy().startBuff(minion.getCell());
             }
         }
     }
@@ -122,11 +125,9 @@ public class Battle {
         checkCellAffects(playGround);
         handlePassiveSpecialPowers(firstPlayer);
         handlePassiveSpecialPowers(secondPlayer);
-        handleUsableItems(firstPlayer); // cast them
-        handleUsableItems(secondPlayer);// cast them
         assignMana();
-        handleManaCollectibleItem(firstPlayer);
-        handleManaCollectibleItem(secondPlayer);
+        firstPlayer.castUsableItem();
+        secondPlayer.castUsableItem();
         whoseTurn = (whoseTurn == 1) ? (2) : (1);
         turn++;
         if (this instanceof SinglePlayerBattle && whoseTurn == 2) {
@@ -153,42 +154,36 @@ public class Battle {
     private void assignMana() {
         if (whoseTurn == 1) {
             secondPlayerMana = secondPlayer.getMaxMana() + 1;
-            if(secondPlayerMana > 9){
+            if (secondPlayerMana > 9) {
                 secondPlayer.setMaxMana(9);
                 secondPlayer.assignMana(9);
-            }else {
+            } else {
                 secondPlayer.setMaxMana(secondPlayerMana);
                 secondPlayer.assignMana(secondPlayerMana);
             }
+            secondPlayer.assignMana(secondPlayer.getMana() + secondPlayer.getManaForNextTurnIncrease());
         } else {
             firstPlayerMana = firstPlayer.getMaxMana() + 1;
-            if(firstPlayerMana > 9){
+            if (firstPlayerMana > 9) {
                 firstPlayer.setMaxMana(9);
                 firstPlayer.assignMana(9);
-            }else {
+            } else {
                 firstPlayer.setMaxMana(secondPlayerMana);
                 firstPlayer.assignMana(secondPlayerMana);
             }
+            firstPlayer.assignMana(firstPlayer.getMana() + firstPlayer.getManaForNextTurnIncrease());
         }
-    }
-
-    private void handleManaCollectibleItem(Player player) {
-        if (player.getUsedManaItem()) {
-            player.addMana(3);
-            player.setUsedAddManaItem(false);
-        }
-    } // for item num 8
-
-    private void handleUsableItems(Player player) {
-        player.castUsableItem();
     }
 
     private void handlePassiveSpecialPowers(Player player) {
         for (Minion minion : player.getMinionsInPlayGround()) {
-            if (minion.getSpecialPower() != null &&
-                    minion.getSpecialPower().getSpecialPowerActivationTime() == SpecialPowerActivationTime.PASSIVE) {
-                //TODO
-                minion.getSpecialPower().castSpecialPower(minion.getCell());
+            try {
+                if (minion.getSpecialPower() != null &&
+                        minion.getSpecialPower().getSpecialPowerActivationTime() == SpecialPowerActivationTime.PASSIVE) {
+                    minion.getSpecialPower().castSpecialPower(minion.getCell());
+                }
+            } catch (ConcurrentModificationException e) {
+
             }
         }
     }

@@ -29,7 +29,7 @@ public class OnSpawnUsableItem extends Usable {
             player.getOpponent().getHero().reduceHP(1);
         } else if (itemType == ItemName.GHOSL) {
             HollyBuff buff = new HollyBuff(2, false, false, false);
-            buff.startBuff(minion.getCell());
+            buff.getCopy().startBuff(minion.getCell());
         }
     }
 }

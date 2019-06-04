@@ -129,13 +129,14 @@ public class Minion extends Card {
                         player.collectFlag(player.getBattle().getPlayGround().getFlag().getCurrentCell(), this);
                 }
                 if (opponent.canDefend(this, null)) { // reduce HP
+                    boolean counterAttack = opponent.canCounterAttack && opponent.isValidCell(this.getCell());
                     if (specialPower != null && specialPower.getSpecialPowerActivationTime() == SpecialPowerActivationTime.ON_ATTACK
                             && ((OnAttackSpecialPower) specialPower).isAntiHolly()
                             && opponent.hasHollyBuff) {
                         opponent.reduceHP(this.AP);
                     } else
                         opponent.reduceHP(this.AP - opponent.getReductionOfOthersAttack());
-                    if (opponent.canCounterAttack && opponent.isValidCell(this.getCell())) {
+                    if (counterAttack) {
                         this.reduceHP(opponent.AP - this.getReductionOfOthersAttack());
                     }
                 }
@@ -172,9 +173,6 @@ public class Minion extends Card {
         getCell().setMinionOnIt(null);
         player.minionDead(this);
         player.getBattle().checkWinner();
-        if (player.getUsableItem() != null && player.getUsableItem().getItemType() == ItemName.SOUL_EATER) {
-            player.castUsableItem();
-        }
         if (player.getUsableItem() != null && (player.getUsableItem() instanceof OnDeathUsableItem)) {
             ((OnDeathUsableItem) player.getUsableItem()).doOnDeathAction(player);
         }
@@ -437,4 +435,6 @@ public class Minion extends Card {
     public void setContinuousBuffs(ArrayList<Buff> continuousBuffs) {
         this.continuousBuffs = continuousBuffs;
     }
+
+
 }

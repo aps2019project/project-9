@@ -3,14 +3,12 @@ package view;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -47,13 +45,13 @@ public class ShopMenu {
         }
     }
 
-    private void setHelpButton(Group group){
+    private void setHelpButton(Group group) {
         Button b = new Button("HELP");
         b.setScaleX(1.5);
         b.setScaleY(1.5);
         b.setLayoutX(1400);
         b.setLayoutY(700);
-        b.setOnMouseClicked(mouseEvent -> new Alert(Alert.AlertType.INFORMATION,"show Collection " +
+        b.setOnMouseClicked(mouseEvent -> new Alert(Alert.AlertType.INFORMATION, "show Collection " +
                 "---> show your collection\n" +
                 "search --> find card/item in shop/collection\n" +
                 "buy --> buy card/item\n" +
@@ -61,13 +59,13 @@ public class ShopMenu {
         group.getChildren().add(b);
     }
 
-    private void setExitButton(Group group){
+    private void setExitButton(Group group) {
         Button b = new Button("Back to Menu");
         b.setScaleX(1.5);
         b.setScaleY(1.5);
         b.setLayoutX(1380);
         b.setLayoutY(750);
-        b.setOnMouseClicked(mouseEvent ->{
+        b.setOnMouseClicked(mouseEvent -> {
             //TODO
 
         });
@@ -84,10 +82,9 @@ public class ShopMenu {
 
         searchButton.setOnMouseClicked(mouseEvent -> {
             //TODO
-            if (isShowShop){
+            if (isShowShop) {
 
-            }
-            else {
+            } else {
 
             }
         });

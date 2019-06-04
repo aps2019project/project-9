@@ -11,10 +11,6 @@ import model.enumerations.SpellTargetType;
 import java.util.ArrayList;
 
 public class Spell extends Card {
-    private static ArrayList<Spell> spells = new ArrayList<>();
-    private static ArrayList<Spell> heroSpells = new ArrayList<>();
-    private static ArrayList<Spell> itemSpells = new ArrayList<>();
-    private static ArrayList<Spell> specialPowerSpells = new ArrayList<>();
     @Expose
     private ArrayList<Buff> buffs;
     @Expose
@@ -84,7 +80,7 @@ public class Spell extends Card {
                     for (Cell targetCell : targetCells) {
                         if (targetCell.hasCardOnIt() &&
                                 targetCell.getMinionOnIt().canDefend(this, castingBuff)) {
-                            castingBuff.startBuff(targetCell);
+                            castingBuff.getCopy().startBuff(targetCell);
                         }
                     }
                 }
@@ -103,9 +99,10 @@ public class Spell extends Card {
     public boolean isValidTarget(Cell inputCell) { // not completed
         PlayGround playGround = owningPlayer.getBattle().getPlayGround();
         switch (targetType) {
-            case AN_ENEMY_MINION_IN_EIGHT_HERO:
-                return (playGround.isForEnemyMinion(inputCell, owningPlayer)
-                        && playGround.getAroundCells(owningPlayer.getHero().getCell()).contains(inputCell));
+            case AN_ENEMY_MINION_IN_EIGHT_HERO:// random enemy
+                /*return (playGround.isForEnemyMinion(inputCell, owningPlayer)
+                        && playGround.getAroundCells(owningPlayer.getHero().getCell()).contains(inputCell));*/
+                break;
             case THREE_IN_THREE_SQUARE:
                 break;
             case ALL_ENEMY_IN_COLUMN:
@@ -152,10 +149,13 @@ public class Spell extends Card {
                 || targetType == SpellTargetType.ENEMY_HERO
                 || targetType == SpellTargetType.A_POWER
                 || targetType == SpellTargetType.IT_SELF
-                || targetType == SpellTargetType.AN_ENEMY_MINION_IN_EIGHT_HERO
         )
             result.add(inputCell);
-        else if (targetType == SpellTargetType.TWO_IN_TWO_SQUARE) {
+        else if (targetType == SpellTargetType.AN_ENEMY_MINION_IN_EIGHT_HERO) {
+            //random enemy
+            result = new ArrayList<>();
+            result.add(playGround.getAnEnemyInEightAround(owningPlayer, owningPlayer.getHero().getCell()));
+        } else if (targetType == SpellTargetType.TWO_IN_TWO_SQUARE) {
             result = playGround.getSquareCells(inputCell, 2);
         } else if (targetType == SpellTargetType.THREE_IN_THREE_SQUARE) {
             result = playGround.getSquareCells(inputCell, 3);
@@ -163,12 +163,10 @@ public class Spell extends Card {
             for (Minion enemyMinion : owningPlayer.getOpponent().getMinionsInPlayGround()) {
                 result.add(enemyMinion.getCell());
             }
-            //result.add(owningPlayer.getOpponent().getHero().getCell());
         } else if (targetType == SpellTargetType.ALL_FRIENDLY_POWERS) {
             for (Minion friendlyMinion : owningPlayer.getMinionsInPlayGround()) {
                 result.add(friendlyMinion.getCell());
             }
-            result.add(owningPlayer.getHero().getCell());
         } else if (targetType == SpellTargetType.ALL_ENEMY_IN_COLUMN) {
             result = playGround.enemyInColumn(inputCell, owningPlayer);
         } else if (targetType == SpellTargetType.ALL_ENEMY_IN_ROW) {
