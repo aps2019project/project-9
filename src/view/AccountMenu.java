@@ -59,7 +59,6 @@ public class AccountMenu {
         stage.show();
     }
 
-
     private void accountMenuShow(Stage stage) {
         try {
             Font accountMenuFont = Font.loadFont(new FileInputStream(new File("src/res/modern.TTF")), 40);
@@ -275,20 +274,17 @@ public class AccountMenu {
             button.setLayoutX(630);
             button.setLayoutY(500);
             button.setStyle("-fx-background-color: #beaf92");
-            button.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("HELP");
-                    alert.setHeaderText(null);
-                    alert.setHeight(300);
-                    alert.setWidth(250);
-                    alert.setContentText(
-                            "create account --- > creating a new account by entering a username and password \n" +
-                                    "login --->  login to your account by entering username and password \n" +
-                                    "LeaderBoard  ---> show LeaderBoard \n");
-                    alert.showAndWait();
-                }
+            button.setOnMouseClicked(event -> {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("HELP");
+                alert.setHeaderText(null);
+                alert.setHeight(300);
+                alert.setWidth(250);
+                alert.setContentText(
+                        "create account --- > creating a new account by entering a username and password \n" +
+                                "login --->  login to your account by entering username and password \n" +
+                                "LeaderBoard  ---> show LeaderBoard \n");
+                alert.showAndWait();
             });
             return button;
         } catch (Exception e) {
@@ -301,16 +297,16 @@ public class AccountMenu {
         return accountRequest;
     }
 
-    public void printError(AccountErrorType request){
-        switch (request){
+    public void printError(AccountErrorType request) {
+        switch (request) {
             case USERNAME_EXISTS:
-                new Alert(Alert.AlertType.WARNING,"this username is taken").showAndWait();
+                new Alert(Alert.AlertType.WARNING, "this username is taken").showAndWait();
                 break;
             case INVALID_PASSWORD:
-                new Alert(Alert.AlertType.WARNING,"Invalid password").showAndWait();
+                new Alert(Alert.AlertType.WARNING, "Invalid password").showAndWait();
                 break;
             case INVALID_USERNAME:
-                new Alert(Alert.AlertType.WARNING,"Invalid username").showAndWait();
+                new Alert(Alert.AlertType.WARNING, "Invalid username").showAndWait();
                 break;
         }
     }
