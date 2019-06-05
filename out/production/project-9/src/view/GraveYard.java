@@ -19,26 +19,22 @@ public class GraveYard {
     private Collection collection;
 
     public void start(Stage stage, Collection collection) {
-        try {
-            this.collection = collection;
-            stage.setMaximized(true);
-            Image image = new Image("src/res/grave_yard.jpg");
-            ImageView imageView = new ImageView(image);
-            Group root = new Group(imageView);
+        this.collection = collection;
+        stage.setMaximized(true);
+        Image image = new Image("src/res/grave_yard.jpg");
+        ImageView imageView = new ImageView(image);
+        Group root = new Group(imageView);
 
-            setTableView(root);
-            setBackToGameButton(root);
+        setTableView(root);
+        setBackToGameButton(root);
 
-            imageView.setFitHeight(810);
-            imageView.setFitWidth(1600);
-            Scene scene = new Scene(root, stage.getMaxHeight(), stage.getMaxWidth());
-            stage.setScene(scene);
-            scene.getStylesheets().add("src/res/shopTable.css");
-            int a = 0;
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        imageView.setFitHeight(810);
+        imageView.setFitWidth(1600);
+        Scene scene = new Scene(root, stage.getMaxHeight(), stage.getMaxWidth());
+        stage.setScene(scene);
+        scene.getStylesheets().add("src/res/shopTable.css");
+        int a = 0;
+        stage.show();
     }
 
     private void setTableView(Group group) {

@@ -15,8 +15,9 @@ public class Test extends Application {
         ShopMenu s = ShopMenu.getInstance();
         GraveYard g = new GraveYard();
         AccountMenu a = AccountMenu.getInstance();
+        BattleMenu b = new BattleMenu();
         try {
-            a.start(primaryStage);
+            b.start(primaryStage);
         } catch (Exception e) {
             e.printStackTrace();
         }

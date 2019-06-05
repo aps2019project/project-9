@@ -32,27 +32,22 @@ public class ShopMenu {
         return instance;
     }
 
-    public void start(Stage stage, Collection collection) {
-        try {
-            stage.setMaximized(true);
+    public void start(Stage stage, Collection collection) throws FileNotFoundException {
+        stage.setMaximized(true);
+        Group root = new Group();
+        setBackGround(root);
+        TableView tableView = ShopTable();
+        setSearchButtonAndTextField(root);
+        setHelpButton(root);
+        setExitButton(root);
+        setShowCollectionButton(root, tableView, collection);
 
-            Group root = new Group();
-            setBackGround(root);
-            TableView tableView = ShopTable();
-            setSearchButtonAndTextField(root);
-            setHelpButton(root);
-            setExitButton(root);
-            setShowCollectionButton(root, tableView, collection);
+        root.getChildren().add(tableView);
 
-            root.getChildren().add(tableView);
-
-            Scene scene = new Scene(root, stage.getMaxHeight(), stage.getMaxWidth());
-            stage.setScene(scene);
-            scene.getStylesheets().add("src/res/shopTable.css");
-            stage.show();
-        } catch (Exception e) {
-            //
-        }
+        Scene scene = new Scene(root, stage.getMaxHeight(), stage.getMaxWidth());
+        stage.setScene(scene);
+        scene.getStylesheets().add("src/res/shopTable.css");
+        stage.show();
     }
 
     private void setHelpButton(Group group) {
