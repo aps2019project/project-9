@@ -53,12 +53,12 @@ public class OnAttackSpellUsable extends Usable { // KAMAN_DAMOOL , TERROR_HOOD 
             case RANDOM_ENEMY:
                 Cell target = cell.getMinionOnIt().getPlayer().getRandomPower(false).getCell();
                 for (Buff buff : buffs) {
-                    buff.startBuff(target);
+                    buff.getCopy().startBuff(target);
                 }
                 break;
             case OPPONENT_CELL:
                 for (Buff buff : buffs) {
-                    buff.startBuff(cell);
+                    buff.getCopy().startBuff(cell);
                 }
                 break;
         }

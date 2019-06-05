@@ -15,36 +15,40 @@ public abstract class Buff {
                 boolean isForAllTurns, boolean isPositive,
                 boolean isContinous) {
         this.buffName = buffName;
-        this.turnsActive = turnsActive;
-        this.turnsRemained = turnsActive;
+        this.turnsActive = (isContinous) ? turnsActive : 2 * turnsActive; // not counting the opponent's turns
+        this.turnsRemained = (isContinous) ? turnsActive : 2 * turnsActive;// not counting
         this.isForAllTurns = isForAllTurns;
         this.isPositive = isPositive;
         this.isContinous = isContinous;
-        if(isContinous)
+        if (isContinous)
             this.isForAllTurns = false;
-        else if(isForAllTurns)
+        else if (isForAllTurns)
             this.isContinous = false;
     }
 
     protected int turnsRemained;
-    private static ArrayList<Buff> buffs = new ArrayList<>();
     protected boolean isForAllTurns; // means : DAEMI
     protected boolean isPositive;
     protected boolean isContinous; // means : continous
-    public BuffName getBuffName(){
+
+    public BuffName getBuffName() {
         return buffName;
     }
+
     public abstract void startBuff(Cell cell);
+
     public abstract void endBuff(Minion minion);
-    public boolean isPositiveBuff(){
+
+    public boolean isPositiveBuff() {
         return isPositive;
     }
-    public boolean getIsContinuous(){
+
+    public boolean getIsContinuous() {
         return isContinous;
     }
 
     public void reduceTurnsRemained() {
-        if(turnsRemained != 0)
+        if (turnsRemained != 0)
             turnsRemained--;
     }
 
@@ -54,5 +58,31 @@ public abstract class Buff {
 
     public boolean isForAllTurns() {
         return isForAllTurns;
+    }
+
+    public void setTurnsActive(int turnsActive) {
+        this.turnsActive = turnsActive;
+    }
+
+    public void setTurnsRemained(int turnsRemained) {
+        this.turnsRemained = turnsRemained;
+    }
+
+    public Buff getCopy() {
+        if (this instanceof DisarmBuff)
+            return new DisarmBuff(turnsActive / 2, isForAllTurns, isContinous);
+        else if (this instanceof HollyBuff)
+            return new HollyBuff(turnsActive / 2, isForAllTurns, isContinous, ((HollyBuff) this).getIsNegative());
+        else if (this instanceof PoisonBuff)
+            return new PoisonBuff(turnsActive / 2, isForAllTurns, isContinous);
+        else if (this instanceof PowerBuff)
+            return new PowerBuff(turnsActive / 2, isForAllTurns, isContinous,
+                    ((PowerBuff) this).getPower(), ((PowerBuff) this).getIsForHP());
+        else if (this instanceof StunBuff)
+            return new StunBuff(turnsActive / 2, isForAllTurns, isContinous);
+        else
+            return new WeaknessBuff(turnsActive / 2, isForAllTurns, isContinous, ((WeaknessBuff) this).getPower()
+                    , ((WeaknessBuff) this).getIsForHP(), ((WeaknessBuff) this).getIsDelayBuff(),
+                    ((WeaknessBuff) this).getPowers());
     }
 }

@@ -12,6 +12,14 @@ import model.items.Item;
 import java.util.ArrayList;
 
 public class Collection {
+    public ArrayList<Card> getCards() {
+        return cards;
+    }
+
+    public ArrayList<Item> getItems() {
+        return items;
+    }
+
     private ArrayList<Card> cards;
     private ArrayList<Item> items;
     private Account ownerAccount;

@@ -23,7 +23,7 @@ public class OnSpawnSpecialPower extends SpecialPower { // ON TURN is also ON SP
                 for (Cell aroundCell : cell.getPlayGround().getAroundCells(cell)) {
                     if (aroundCell!= null && aroundCell.hasCardOnIt() &&
                             aroundCell.getMinionOnIt().getPlayer().equals(minion.getPlayer().getOpponent())) {
-                        castingBuff.startBuff(aroundCell);
+                        castingBuff.getCopy().startBuff(aroundCell);
                     }
                 }
                 break;
@@ -31,7 +31,7 @@ public class OnSpawnSpecialPower extends SpecialPower { // ON TURN is also ON SP
                 for (Cell twoDistanceCell : cell.getPlayGround().getTwoDistanceCells(cell)) {
                     if(twoDistanceCell.hasCardOnIt() &&
                     twoDistanceCell.getMinionOnIt().getPlayer().equals(minion.getPlayer().getOpponent()))
-                        castingBuff.startBuff(twoDistanceCell);
+                        castingBuff.getCopy().startBuff(twoDistanceCell);
                 }
                 break;
             case A_RANDOM_ENEMY_MINION:
@@ -40,7 +40,7 @@ public class OnSpawnSpecialPower extends SpecialPower { // ON TURN is also ON SP
                 break;
             case ALL_FRIENDLY_MINIONS:
                 for (Minion minion1 : minion.getPlayer().getMinionsInPlayGround()) {
-                    castingBuff.startBuff(minion1.getCell());
+                    castingBuff.getCopy().startBuff(minion1.getCell());
                 }
                 break;
         }

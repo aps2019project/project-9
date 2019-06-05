@@ -18,10 +18,11 @@ public class Shop {
     private ArrayList<Item> allItems = new ArrayList<>();
     private static int uniqueID = 1; // for shop
 
-    public static Shop getInstance(){
+    public static Shop getInstance() {
         return SHOP;
     }
-    private Shop(){
+
+    private Shop() {
         // initialize shop
         for (MinionName minionName : MinionName.values()) {
             Minion minion = DefaultCards.getMinion(minionName);
@@ -33,10 +34,10 @@ public class Shop {
             spell.setCardID(uniqueID++);
             allCards.add(spell);
         }
-        for(ItemName itemName : ItemName.values()){
+        for (ItemName itemName : ItemName.values()) {
             Item item = DefaultCards.getItem(itemName);
-            if(!(item instanceof Collectible)) {
-                if(item != null) {
+            if (!(item instanceof Collectible)) {
+                if (item != null) {
                     item.setItemID(uniqueID++);
                     allItems.add(item);
                 }
@@ -46,10 +47,11 @@ public class Shop {
             allCards.add(DefaultCards.getHero(value));
         }
     }
+
     // total_disarm , all_disam , all_poison , ghool_snake
     public Card searchCardByName(String cardName) {
         for (Card card : allCards) {
-            if(card.getName().equals(cardName))
+            if (card.getName().equals(cardName))
                 return card;
         }
         return null;
@@ -57,7 +59,7 @@ public class Shop {
 
     public Item searchItemByName(String itemName) {
         for (Item item : allItems) {
-            if(item.getName().equals(itemName))
+            if (item.getName().equals(itemName))
                 return item;
         }
         return null;
@@ -95,8 +97,7 @@ public class Shop {
         return allItems;
     }
 
-    public String toString(){
-        return Collection.showArraylistOfCardsAndItems(allCards,allItems);
+    public String toString() {
+        return Collection.showArraylistOfCardsAndItems(allCards, allItems);
     }
-
 }

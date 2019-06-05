@@ -67,13 +67,42 @@ public class Deck {
         this.name = name;
         //TODO for debug
         if (name.equals("debugging")) {
-            hero = DefaultCards.getHero(FIRST_LEVEL_HERO);
+            hero = DefaultCards.getHero(HeroName.WHITE_DEEV);
+            item = DefaultCards.getItem(ItemName.ASSASINATION_DAGGER);
             cards.add(DefaultCards.getSpell(SpellName.TOTAL_DISARM));
             cards.add(DefaultCards.getSpell(SpellName.AREA_DISPEL));
             cards.add(DefaultCards.getSpell(SpellName.EMPOWER));
             cards.add(DefaultCards.getSpell(SpellName.FIREBALL));
             cards.add(DefaultCards.getSpell(SpellName.GOD_STRENGTH));
             cards.add(DefaultCards.getSpell(SpellName.HELLFIRE));
+            cards.add(DefaultCards.getSpell(SpellName.LIGHTING_BOLT));
+            cards.add(DefaultCards.getSpell(SpellName.POISON_LAKE));
+            cards.add(DefaultCards.getSpell(SpellName.MADNESS));
+            cards.add(DefaultCards.getSpell(SpellName.ALL_POISON));
+            cards.add(DefaultCards.getSpell(SpellName.HEALTH_WITH_PROFIT));
+            cards.add(DefaultCards.getSpell(SpellName.POWER_UP));
+            cards.add(DefaultCards.getSpell(SpellName.ALL_POWER));
+            cards.add(DefaultCards.getSpell(SpellName.ALL_ATTACK));
+            cards.add(DefaultCards.getSpell(SpellName.WEAKENING));
+            cards.add(DefaultCards.getSpell(SpellName.KINGS_GUARD));
+            cards.add(DefaultCards.getSpell(SpellName.SHOCK));
+            cards.add(DefaultCards.getMinion(MinionName.FARS_SHAMSHIRZAN));
+            cards.add(DefaultCards.getMinion(MinionName.TOORANEE_KAMANDAR));
+            cards.add(DefaultCards.getMinion(MinionName.TOORANEE_GHOLABSANG));
+            cards.add(DefaultCards.getMinion(MinionName.TOORANE_JASOS));
+            cards.add(DefaultCards.getMinion(MinionName.EAGLE));
+            cards.add(DefaultCards.getMinion(MinionName.JADOOGAR));
+            cards.add(DefaultCards.getMinion(MinionName.JADOOGAR_AZAM));
+            cards.add(DefaultCards.getSpell(SpellName.WEAKENING));
+            cards.add(DefaultCards.getMinion(MinionName.FARS_KAMANDAR));
+            cards.add(DefaultCards.getMinion(MinionName.FARS_KAMANDAR));
+            cards.add(DefaultCards.getMinion(MinionName.FARS_KAMANDAR));
+            cards.add(DefaultCards.getMinion(MinionName.GHOOL_SNAKE));
+            cards.add(DefaultCards.getMinion(MinionName.FARS_ASBSAVAR));
+            cards.add(DefaultCards.getMinion(MinionName.WHITE_WOLF));
+            cards.add(DefaultCards.getMinion(MinionName.FARS_PAHLAVAN));
+            cards.add(DefaultCards.getMinion(MinionName.ASHKBOOS));
+            cards.add(DefaultCards.getMinion(MinionName.FARS_KAMANDAR));
         } else if (name.equals("first_level")) {
             for (MinionName minion : FIRST_LEVEL_MINIONS) {
                 Minion minion1 = DefaultCards.getMinion(minion);

@@ -68,7 +68,8 @@ public class MainMenu {
             collection.setScaleY(2.5);
             collection.setStyle("-fx-background-color: rgba(0,0,0,0);-fx-text-fill: #020d7f;");
             collection.setOnMouseClicked(event -> {
-                mainMenuRequest.setCommand("collection");
+                //TODO
+                //mainMenuRequest.setCommand("collection");
             });
 
             Font shopFont = Font.loadFont(new FileInputStream(new File("src/res/ALGER.TTF")), 30);
@@ -80,7 +81,8 @@ public class MainMenu {
             shop.setScaleY(2.5);
             shop.setStyle("-fx-background-color: rgba(0,0,0,0);-fx-text-fill: #020d7f;");
             shop.setOnMouseClicked(event -> {
-                mainMenuRequest.setCommand("shop");
+                //TODO
+                //mainMenuRequest.setCommand("shop");
             });
 
             Font battleFont = Font.loadFont(new FileInputStream(new File("src/res/ALGER.TTF")), 35);
@@ -92,7 +94,8 @@ public class MainMenu {
             battle.setScaleY(2.5);
             battle.setStyle("-fx-background-color: rgba(0,0,0,0);-fx-text-fill: #020d7f;");
             battle.setOnMouseClicked(event -> {
-                mainMenuRequest.setCommand("battle");
+                //TODO
+                //mainMenuRequest.setCommand("battle");
             });
 
             Font logOutFont = Font.loadFont(new FileInputStream(new File("src/res/ALGER.TTF")), 26);
@@ -104,8 +107,9 @@ public class MainMenu {
             logOut.setScaleY(2.5);
             logOut.setStyle("-fx-background-color: rgba(0,0,0,0);-fx-text-fill: #020d7f;");
             logOut.setOnMouseClicked(event -> {
-                AccountController accountController = new AccountController();
-                accountController.main();
+                //TODO
+                /*AccountController accountController = new AccountController();
+                accountController.main();*/
             });
             root.getChildren().addAll(collection, shop, battle, logOut);
         } catch (Exception e) {

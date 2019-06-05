@@ -27,16 +27,21 @@ public class WeaknessBuff extends Buff {
         if (isDelayBuff) {
             if (turn < powers.length) {
                 cell.getMinionOnIt().reduceHP(powers[turn++]);
-                cell.getMinionOnIt().addActiveBuff(this);
-                if (this.isContinous && !cell.getMinionOnIt().getContinuousBuffs().contains(this))
-                    cell.getMinionOnIt().addContinuous(this);
+                if (cell.getMinionOnIt() != null && !cell.getMinionOnIt().getActiveBuffs().contains(this))
+                    cell.getMinionOnIt().addActiveBuff(this);
+                try {
+                    if (this.isContinous && !cell.getMinionOnIt().getContinuousBuffs().contains(this))
+                        cell.getMinionOnIt().addContinuous(this);
+                } catch (NullPointerException e) {
+
+                }
             }
         } else {
             if (isForHP)
                 cell.getMinionOnIt().reduceHP(power);
             else
                 cell.getMinionOnIt().reduceAP(power);
-            if(cell.hasCardOnIt())
+            if (cell.hasCardOnIt())
                 cell.getMinionOnIt().addActiveBuff(this);
             if (this.isContinous && !cell.getMinionOnIt().getContinuousBuffs().contains(this))
                 cell.getMinionOnIt().addContinuous(this);
@@ -45,7 +50,7 @@ public class WeaknessBuff extends Buff {
 
     @Override
     public void endBuff(Minion minion) {
-        if(isDelayBuff)
+        if (isDelayBuff)
             return;
         if (isForHP)
             minion.addHP(power);
@@ -53,7 +58,23 @@ public class WeaknessBuff extends Buff {
             minion.addAP(power);
     }
 
-    public boolean isDelayBuff() {
+    public boolean getIsDelayBuff() {
         return isDelayBuff;
+    }
+
+    public int getPower() {
+        return power;
+    }
+
+    public boolean getIsForHP() {
+        return isForHP;
+    }
+
+    public int[] getPowers() {
+        return powers;
+    }
+
+    public int getTurn() {
+        return turn;
     }
 }
