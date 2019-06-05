@@ -2,76 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="429eadbd-36e3-4fa5-93ef-05e24885aef0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/view/GraveYard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/project-9/META-INF/project-9.kotlin_module" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/project-9/model/items/ManaCollectible.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/project-9/res/grave_yard.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/project-9/res/shop.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/project-9/src/model/items/ManaCollectible.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/project-9/src/res/grave_yard.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/project-9/src/res/shop.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/project-9/src/view/GraveYard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/project-9/src/view/ShopMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/project-9/view/GraveYard.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/project-9/view/ShopMenu$1$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/project-9/view/ShopMenu$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/project-9/view/ShopMenu$2$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/project-9/view/ShopMenu$2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/project-9/view/ShopMenu.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/grave_yard.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/shop.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/shopTable.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/controller/InGameController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/controller/InGameController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/controller/InGameController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/controller/InGameController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/Battle$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/Battle$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/Battle.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/Battle.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/Collection.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/Collection.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/Deck.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/Deck.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/DefaultCards$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/DefaultCards$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/DefaultCards.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/DefaultCards.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/PlayGround$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/PlayGround$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/PlayGround.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/PlayGround.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/Player.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/Shop.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/Shop.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/buffs/Buff.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/buffs/Buff.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/buffs/HollyBuff.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/buffs/HollyBuff.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/buffs/PowerBuff.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/buffs/PowerBuff.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/buffs/StunBuff.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/buffs/StunBuff.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/buffs/WeaknessBuff.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/buffs/WeaknessBuff.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/cards/Card.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/cards/Card.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/cards/Hero.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/cards/Hero.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/cards/Minion.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/cards/Minion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/cards/Spell$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/cards/Spell$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/cards/Spell.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/cards/Spell.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/cellaffects/HollyCellAffect.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/cellaffects/HollyCellAffect.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/items/OnAttackSpellUsable.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/items/OnAttackSpellUsable.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/items/OnDeathUsableItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/items/OnDeathUsableItem.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/items/OnSpawnUsableItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/items/OnSpawnUsableItem.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/items/SpellCollectible.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/items/SpellCollectible.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/items/SpellUsableItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/items/SpellUsableItem.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/items/addMana.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/specialPower/OnAttackSpecialPower.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/specialPower/OnAttackSpecialPower.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/specialPower/OnSpawnSpecialPower.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/specialPower/OnSpawnSpecialPower.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/specialPower/PassiveSpecialPower$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/specialPower/PassiveSpecialPower$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/specialPower/PassiveSpecialPower.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/specialPower/PassiveSpecialPower.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/controller/InGameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/controller/InGameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/Battle.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/Battle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/Collection.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/Collection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/Deck.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/Deck.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/DefaultCards.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/DefaultCards.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/PlayGround.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/PlayGround.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/Shop.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/Shop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/buffs/Buff.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/buffs/Buff.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/buffs/HollyBuff.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/buffs/HollyBuff.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/buffs/PowerBuff.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/buffs/PowerBuff.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/buffs/StunBuff.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/buffs/StunBuff.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/buffs/WeaknessBuff.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/buffs/WeaknessBuff.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/cards/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/cards/Card.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/cards/Hero.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/cards/Hero.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/cards/Minion.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/cards/Minion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/cards/Spell.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/cards/Spell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/cellaffects/HollyCellAffect.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/cellaffects/HollyCellAffect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/items/OnAttackSpellUsable.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/items/OnAttackSpellUsable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/items/OnDeathUsableItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/items/OnDeathUsableItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/items/OnSpawnUsableItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/items/OnSpawnUsableItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/items/SpellCollectible.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/items/SpellCollectible.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/items/SpellUsableItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/items/SpellUsableItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/items/addMana.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/specialPower/OnAttackSpecialPower.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/specialPower/OnAttackSpecialPower.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/specialPower/OnSpawnSpecialPower.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/specialPower/OnSpawnSpecialPower.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/specialPower/PassiveSpecialPower.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/specialPower/PassiveSpecialPower.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/view/AccountMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/view/AccountMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/view/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/view/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/AccountMenu$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/AccountMenu$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/AccountMenu$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/AccountMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/AccountMenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/Test.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/view/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/view/MainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/MainMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/MainMenu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/AccountMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/AccountMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/GraveYard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/GraveYard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/ShopMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/ShopMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Test.java" afterDir="false" />
     </list>
@@ -97,19 +50,25 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+    <leaf>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/view/AccountMenu.java">
+        <entry file="file://$PROJECT_DIR$/src/view/ShopMenu.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="43" column="4" lean-forward="true" selection-start-line="43" selection-start-column="4" selection-end-line="43" selection-end-column="4" />
+            <state relative-caret-position="440">
+              <caret line="50" column="12" lean-forward="true" selection-start-line="50" selection-start-column="12" selection-end-line="50" selection-end-column="64" />
               <folding>
-                <element signature="e#1157#1158#0" expanded="true" />
-                <element signature="e#1191#1192#0" expanded="true" />
-                <element signature="method#start#0;class#AccountMenu#0" />
-                <element signature="method#accountMenuShow#0;class#AccountMenu#0" />
-                <element signature="method#setCreateAccountButton#0;class#AccountMenu#0" />
-                <element signature="method#setLoginButton#0;class#AccountMenu#0" />
+                <element signature="e#789#790#0" expanded="true" />
+                <element signature="e#820#821#0" expanded="true" />
+                <element signature="method#setHelpButton#0;class#ShopMenu#0" />
+                <element signature="method#setExitButton#0;class#ShopMenu#0" />
+                <element signature="method#setSearchButtonAndTextField#0;class#ShopMenu#0" />
+                <element signature="method#setBackGround#0;class#ShopMenu#0" />
+                <element signature="method#ShopTable#0;class#ShopMenu#0" />
+                <element signature="method#addBuyButtonToTable#0;class#ShopMenu#0" />
+                <element signature="method#addSellButtonToTable#0;class#ShopMenu#0" />
+                <element signature="method#setTableColumns#0;class#ShopMenu#0" />
+                <element signature="method#setShowCollectionButton#0;class#ShopMenu#0" />
+                <element signature="method#showCollectionTable#0;class#ShopMenu#0" />
               </folding>
             </state>
           </provider>
@@ -118,47 +77,39 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/view/Test.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="16" column="50" selection-start-line="16" selection-start-column="50" selection-end-line="16" selection-end-column="50" />
+            <state relative-caret-position="238">
+              <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/view/GraveYard.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/view/AccountMenu.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
-              <caret line="30" column="14" selection-start-line="30" selection-start-column="14" selection-end-line="30" selection-end-column="14" />
+            <state relative-caret-position="347">
+              <caret line="101" column="26" selection-start-line="101" selection-start-column="26" selection-end-line="101" selection-end-column="54" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#1157#1158#0" expanded="true" />
+                <element signature="e#1191#1192#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/view/ShopMenu.java">
+        <entry file="file://$PROJECT_DIR$/src/res/shopTable.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="471">
-              <caret line="231" column="8" lean-forward="true" selection-start-line="231" selection-start-column="8" selection-end-line="231" selection-end-column="94" />
+            <state relative-caret-position="153">
+              <caret line="9" column="3" lean-forward="true" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/view/GraveYardView.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/res/AccountMenuStyle.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="68">
-              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/view/GraveYardRequest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+              <caret line="4" column="32" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -170,6 +121,7 @@
       <list>
         <option value="JavaFXApplication" />
         <option value="Class" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -189,8 +141,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/model/buffs/PoisonBuff.java" />
-        <option value="$PROJECT_DIR$/src/model/buffs/PowerBuff.java" />
         <option value="$PROJECT_DIR$/src/view/GraveYardView.java" />
         <option value="$PROJECT_DIR$/src/controller/GraveYardController.java" />
         <option value="$PROJECT_DIR$/src/model/items/Flag.java" />
@@ -231,22 +181,24 @@
         <option value="$PROJECT_DIR$/src/view/ShopView.java" />
         <option value="$PROJECT_DIR$/src/controller/MainMenuController.java" />
         <option value="$PROJECT_DIR$/src/controller/AccountController.java" />
-        <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/view/shopMenu.java" />
-        <option value="$PROJECT_DIR$/src/view/AccountMenu.java" />
         <option value="$PROJECT_DIR$/src/model/Shop.java" />
         <option value="$PROJECT_DIR$/src/model/Collection.java" />
         <option value="$PROJECT_DIR$/src/view/MainMenu.java" />
-        <option value="$PROJECT_DIR$/src/view/ShopMenu.java" />
-        <option value="$PROJECT_DIR$/src/view/Test.java" />
         <option value="$PROJECT_DIR$/src/view/GraveYard.java" />
+        <option value="$PROJECT_DIR$/src/Main.java" />
+        <option value="$PROJECT_DIR$/src/view/ShopMenu.java" />
+        <option value="$PROJECT_DIR$/src/res/shopTable.css" />
+        <option value="$PROJECT_DIR$/src/view/Test.java" />
+        <option value="$PROJECT_DIR$/src/view/AccountMenu.java" />
+        <option value="$PROJECT_DIR$/src/res/AccountMenuStyle.css" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-10" />
     <option name="y" value="-10" />
-    <option name="width" value="1388" />
+    <option name="width" value="1389" />
     <option name="height" value="790" />
   </component>
   <component name="ProjectView">
@@ -254,7 +206,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -284,6 +235,7 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -293,8 +245,9 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559677441618" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559718446898" />
     <property name="last_opened_file_path" value="$PATH_TO_FX$" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -403,7 +356,8 @@
       <workItem from="1559286918064" duration="3443000" />
       <workItem from="1559290388827" duration="6870000" />
       <workItem from="1559325991292" duration="2490000" />
-      <workItem from="1559663173273" duration="10205000" />
+      <workItem from="1559663173273" duration="10572000" />
+      <workItem from="1559715844981" duration="2472000" />
     </task>
     <task id="LOCAL-00001" summary="merge">
       <created>1556826863260</created>
@@ -517,11 +471,18 @@
       <option name="project" value="LOCAL" />
       <updated>1559674889389</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="grave yard (View) is complete :)">
+      <created>1559677495622</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1559677495622</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="158680000" />
+    <option name="totallyTimeSpent" value="161519000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -536,7 +497,7 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21610738" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21879195" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -545,13 +506,13 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32577905" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4984127" weight="0.57932013" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4984127" visible="true" weight="0.17705382" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.5906516" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.6643059" />
       <window_info anchor="bottom" id="Duplicate detector" order="7" weight="0.32872504" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32565284" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.3243626" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50158733" side_tool="true" weight="0.9532578" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.32577905" />
@@ -620,49 +581,10 @@
     <MESSAGE value="Main Menu is complete except logic" />
     <MESSAGE value="shop phase 1" />
     <MESSAGE value="shop is complete :)" />
-    <option name="LAST_COMMIT_MESSAGE" value="shop is complete :)" />
+    <MESSAGE value="grave yard (View) is complete :)" />
+    <option name="LAST_COMMIT_MESSAGE" value="grave yard (View) is complete :)" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/model/DefaultCards.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="367" column="41" selection-start-line="367" selection-start-column="41" selection-end-line="367" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/Deck.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="73" column="35" selection-start-line="73" selection-start-column="35" selection-end-line="73" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6771#6772#0" expanded="true" />
-            <element signature="e#6811#6812#0" expanded="true" />
-            <element signature="e#7014#7015#0" expanded="true" />
-            <element signature="e#7046#7047#0" expanded="true" />
-            <element signature="e#7078#7079#0" expanded="true" />
-            <element signature="e#7113#7114#0" expanded="true" />
-            <element signature="e#9122#9123#0" expanded="true" />
-            <element signature="e#9149#9150#0" expanded="true" />
-            <element signature="e#9190#9191#0" expanded="true" />
-            <element signature="e#9245#9246#0" expanded="true" />
-            <element signature="e#9277#9278#0" expanded="true" />
-            <element signature="e#9312#9313#0" expanded="true" />
-            <element signature="e#9350#9351#0" expanded="true" />
-            <element signature="e#9382#9383#0" expanded="true" />
-            <element signature="e#9423#9424#0" expanded="true" />
-            <element signature="e#9451#9452#0" expanded="true" />
-            <element signature="e#9480#9481#0" expanded="true" />
-            <element signature="e#9507#9508#0" expanded="true" />
-            <element signature="e#9536#9537#0" expanded="true" />
-            <element signature="e#9563#9564#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-11.0.2/lib/src.zip!/java.desktop/java/awt/Button.java" />
-    <entry file="jar://C:/Program Files/Java/jdk-12.0.1/lib/src.zip!/java.desktop/java/awt/Component.java" />
-    <entry file="jar://C:/Program Files/Java/jdk-12.0.1/lib/src.zip!/java.desktop/java/awt/Font.java" />
     <entry file="file://$PROJECT_DIR$/src/view/AccountMenu3.java" />
     <entry file="jar://$PATH_TO_FX$/src.zip!/javafx.graphics/javafx/scene/image/ImageView.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -828,20 +750,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="33" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/cards/Card.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="21" column="25" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/Collection.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="219">
@@ -943,14 +851,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/GraveYardRequest.java">
+    <entry file="file://$PROJECT_DIR$/src/model/GraveYard.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/GraveYard.java">
+    <entry file="file://$PROJECT_DIR$/src/res/shop.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-12.0.1/lib/src.zip!/java.base/java/lang/Object.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="242" column="18" selection-start-line="242" selection-start-column="18" selection-end-line="242" selection-end-column="18" />
+          <folding>
+            <element signature="e#10105#10106#0" expanded="true" />
+            <element signature="e#10188#10189#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/cards/Card.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/GraveYardRequest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
@@ -959,47 +888,85 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view/GraveYardView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        <state relative-caret-position="221">
+          <caret line="19" column="12" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/AccountMenu.java">
+    <entry file="file://$PROJECT_DIR$/src/view/BattleMenuView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="43" column="4" lean-forward="true" selection-start-line="43" selection-start-column="4" selection-end-line="43" selection-end-column="4" />
-          <folding>
-            <element signature="e#1157#1158#0" expanded="true" />
-            <element signature="e#1191#1192#0" expanded="true" />
-            <element signature="method#start#0;class#AccountMenu#0" />
-            <element signature="method#accountMenuShow#0;class#AccountMenu#0" />
-            <element signature="method#setCreateAccountButton#0;class#AccountMenu#0" />
-            <element signature="method#setLoginButton#0;class#AccountMenu#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/ShopMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="471">
-          <caret line="231" column="8" lean-forward="true" selection-start-line="231" selection-start-column="8" selection-end-line="231" selection-end-column="94" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="16" column="50" selection-start-line="16" selection-start-column="50" selection-end-line="16" selection-end-column="50" />
+        <state relative-caret-position="476">
+          <caret line="32" column="32" lean-forward="true" selection-start-line="32" selection-start-column="32" selection-end-line="32" selection-end-column="32" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view/GraveYard.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="30" column="14" selection-start-line="30" selection-start-column="14" selection-end-line="30" selection-end-column="14" />
+        <state relative-caret-position="341">
+          <caret line="36" column="22" selection-start-line="36" selection-start-column="22" selection-end-line="36" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="10" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/ShopMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="50" column="12" lean-forward="true" selection-start-line="50" selection-start-column="12" selection-end-line="50" selection-end-column="64" />
+          <folding>
+            <element signature="e#789#790#0" expanded="true" />
+            <element signature="e#820#821#0" expanded="true" />
+            <element signature="method#setHelpButton#0;class#ShopMenu#0" />
+            <element signature="method#setExitButton#0;class#ShopMenu#0" />
+            <element signature="method#setSearchButtonAndTextField#0;class#ShopMenu#0" />
+            <element signature="method#setBackGround#0;class#ShopMenu#0" />
+            <element signature="method#ShopTable#0;class#ShopMenu#0" />
+            <element signature="method#addBuyButtonToTable#0;class#ShopMenu#0" />
+            <element signature="method#addSellButtonToTable#0;class#ShopMenu#0" />
+            <element signature="method#setTableColumns#0;class#ShopMenu#0" />
+            <element signature="method#setShowCollectionButton#0;class#ShopMenu#0" />
+            <element signature="method#showCollectionTable#0;class#ShopMenu#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/res/shopTable.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="3" lean-forward="true" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/AccountMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="347">
+          <caret line="101" column="26" selection-start-line="101" selection-start-column="26" selection-end-line="101" selection-end-column="54" />
+          <folding>
+            <element signature="e#1157#1158#0" expanded="true" />
+            <element signature="e#1191#1192#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/res/AccountMenuStyle.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="32" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
         </state>
       </provider>
     </entry>

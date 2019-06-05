@@ -80,6 +80,7 @@ public class AccountMenu {
             root.getChildren().addAll(imageView, text, loginButton, createAccountButton, showLeaderBoard, helpButton);
             Scene scene = new Scene(root, height, width);
             stage.setScene(scene);
+            scene.getStylesheets().add("src/res/AccountMenuStyle.css");
             stage.show();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -223,7 +224,7 @@ public class AccountMenu {
             Button button = new Button("show LeaderBoard", loginImageview);
             button.setLayoutX(630);
             button.setLayoutY(400);
-            button.setStyle("-fx-background-color: #beaf92");
+            //button.setStyle("-fx-background-color: #beaf92");
             button.setOnMouseClicked(event -> showLeaderBoard());
             return button;
         } catch (FileNotFoundException e) {

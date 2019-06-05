@@ -11,10 +11,12 @@ public class Test extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) {                 //all start must have try catch
+        ShopMenu s = ShopMenu.getInstance();
         GraveYard g = new GraveYard();
+        AccountMenu a = AccountMenu.getInstance();
         try {
-            g.start(primaryStage, new Collection());
+            a.start(primaryStage);
         } catch (Exception e) {
             e.printStackTrace();
         }
