@@ -206,11 +206,11 @@ public class Battle {
     }
 
     public void endBattle(Player winner) {
-        BattleResult battleResult = new BattleResult(firstPlayer, secondPlayer, winner, level, battlePrize);
+        BattleResult battleResult = new BattleResult(winner, battlePrize, this);
         if (Account.findAccount(firstPlayer.getName()) != null) {
             Account.findAccount(firstPlayer.getName()).addBattleResult(battleResult);
         }
-        battleResult = new BattleResult(secondPlayer, firstPlayer, winner, level, battlePrize);
+        battleResult = new BattleResult(winner, battlePrize, this);
         if (Account.findAccount(secondPlayer.getName()) != null) {
             Account.findAccount(secondPlayer.getName()).addBattleResult(battleResult);
         }

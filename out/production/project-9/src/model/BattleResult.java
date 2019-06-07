@@ -1,17 +1,16 @@
 package model;
 
-public class BattleResult {
-    private Player currentPlayer;
-    private Player opponent;
-    private Player winner;
-    private int level;
-    private int prize;
+import java.util.HashMap;
 
-    public BattleResult(Player currentPlayer, Player opponent, Player winner, int level, int prize) {
-        this.currentPlayer = currentPlayer;
-        this.opponent = opponent;
+public class BattleResult {
+    private Player winner;
+    private int prize;
+    private Battle battle;
+
+
+    public BattleResult(Player winner, int prize, Battle battle) {
+        this.battle = battle;
         this.winner = winner;
-        this.level = level;
         this.prize = prize;
     }
 
