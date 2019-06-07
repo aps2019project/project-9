@@ -10,9 +10,13 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import model.Collection;
 import model.cards.Card;
+
+import java.io.File;
 
 public class GraveYard {
 
@@ -25,6 +29,10 @@ public class GraveYard {
         ImageView imageView = new ImageView(image);
         Group root = new Group(imageView);
 
+        /*Media media = new Media(new File("src\\res\\music\\backgroundmusic.mp3").toURI().toString());
+        MediaPlayer player = new MediaPlayer(media);
+        player.*/
+
         setTableView(root);
         setBackToGameButton(root);
 
@@ -35,6 +43,7 @@ public class GraveYard {
         scene.getStylesheets().add("src/res/shopTable.css");
         int a = 0;
         stage.show();
+
     }
 
     private void setTableView(Group group) {

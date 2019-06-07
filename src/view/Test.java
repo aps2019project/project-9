@@ -23,7 +23,7 @@ public class Test extends Application {
             //b.multiPlayerPreesed(new Account("ali","mamad"));
             //a.start(primaryStage);
             //a.start(primaryStage);
-            g.start(primaryStage,new Collection());
+            c.start(primaryStage);
         } catch (Exception e) {
             e.printStackTrace();
         }
