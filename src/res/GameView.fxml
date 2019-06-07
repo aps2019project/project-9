@@ -34,55 +34,55 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Pane prefHeight="200.0" prefWidth="200.0" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="1" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="1" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="1" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="2" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="2" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="2" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="3" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="4" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="3" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="4" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="3" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="4" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="3" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="4" />
+                  <Pane fx:id="cell00" prefHeight="200.0" prefWidth="200.0" />
+                  <Pane fx:id="cell01" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
+                  <Pane fx:id="cell02" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" />
+                  <Pane fx:id="cell03" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" />
+                  <Pane fx:id="cell04" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" />
+                  <Pane fx:id="cell05" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" />
+                  <Pane fx:id="cell06" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" />
+                  <Pane fx:id="cell07" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" />
+                  <Pane fx:id="cell10" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
+                  <Pane fx:id="cell08" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" />
+                  <Pane fx:id="cell11" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Pane fx:id="cell12" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <Pane fx:id="cell13" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                  <Pane fx:id="cell14" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                  <Pane fx:id="cell15" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                  <Pane fx:id="cell16" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+                  <Pane fx:id="cell17" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+                  <Pane fx:id="cell18" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="1" />
+                  <Pane fx:id="cell20" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2" />
+                  <Pane fx:id="cell21" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Pane fx:id="cell22" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <Pane fx:id="cell23" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                  <Pane fx:id="cell24" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                  <Pane fx:id="cell25" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                  <Pane fx:id="cell26" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+                  <Pane fx:id="cell27" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="2" />
+                  <Pane fx:id="cell28" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="2" />
+                  <Pane fx:id="cell30" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3" />
+                  <Pane fx:id="cell40" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4" />
+                  <Pane fx:id="cell31" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Pane fx:id="cell41" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Pane fx:id="cell32" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                  <Pane fx:id="cell42" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                  <Pane fx:id="cell33" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                  <Pane fx:id="cell43" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                  <Pane fx:id="cell34" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                  <Pane fx:id="cell44" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+                  <Pane fx:id="cell35" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+                  <Pane fx:id="cell45" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+                  <Pane fx:id="cell36" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="3" />
+                  <Pane fx:id="cell46" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="4" />
+                  <Pane fx:id="cell37" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="3" />
+                  <Pane fx:id="cell47" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="4" />
+                  <Pane fx:id="cell38" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="3" />
+                  <Pane fx:id="cell48" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="4" />
                </children>
             </GridPane>
-            <Button fx:id="endTurn" layoutX="675.0" layoutY="431.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="66.0" text="EndTurn" />
-            <Label layoutX="13.0" layoutY="407.0" prefHeight="74.0" prefWidth="258.0" text="card Details :      no card selected" wrapText="true" />
+            <Button fx:id="endTurnButton" layoutX="675.0" layoutY="431.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="66.0" text="EndTurn" />
+            <Label fx:id="cardDetailsTextArea" layoutX="13.0" layoutY="407.0" prefHeight="74.0" prefWidth="258.0" text="card Details :      no card selected" wrapText="true" />
             <GridPane gridLinesVisible="true" layoutX="333.0" layoutY="416.0" prefHeight="56.0" prefWidth="326.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -95,11 +95,11 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Pane prefHeight="200.0" prefWidth="91.0" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" />
+                  <Pane fx:id="hand0" prefHeight="200.0" prefWidth="91.0" />
+                  <Pane fx:id="hand1" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
+                  <Pane fx:id="hand2" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" />
+                  <Pane fx:id="hand3" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" />
+                  <Pane fx:id="hand4" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" />
                </children>
             </GridPane>
             <Label layoutX="289.0" layoutY="424.0" prefHeight="41.0" prefWidth="35.0" text="Hand">

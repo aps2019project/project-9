@@ -24,7 +24,7 @@ public class Test extends Application {
             e.printStackTrace();
         }*/
         try {
-            new ShowReplay().showBattle(null,primaryStage);
+            ShowReplay.showBattle(null,primaryStage);
         } catch (IOException e) {
             e.printStackTrace();
         }

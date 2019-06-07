@@ -2,33 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="429eadbd-36e3-4fa5-93ef-05e24885aef0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/META-INF/project-9.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/Battle.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/Battle.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/BattleResult.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/BattleResult.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/Battle.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/Battle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/BattleResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/BattleResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/items/Collectible.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/items/Collectible.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/items/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/items/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/items/ManaCollectible.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/items/ManaCollectible.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/items/ManaUsableItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/items/ManaUsableItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/items/OnAttackSpellUsable.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/items/OnAttackSpellUsable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/items/OnDeathCollectibleItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/items/OnDeathCollectibleItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/items/OnDeathUsableItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/items/OnDeathUsableItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/items/OnSpawnUsableItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/items/OnSpawnUsableItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/items/SpellCollectible.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/items/SpellCollectible.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/items/Usable.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/items/Usable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/items/itemEnumerations/OnAttackOwningMinionType.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/items/itemEnumerations/OnAttackOwningMinionType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/items/itemEnumerations/OnAttackTargetType.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/items/itemEnumerations/OnAttackTargetType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/items/itemEnumerations/OnDeathTarget.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/items/itemEnumerations/OnDeathTarget.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/items/itemEnumerations/SpellItemTarget.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/items/itemEnumerations/SpellItemTarget.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/view/BattleMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/view/BattleMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/view/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/view/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/BattleMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/BattleMenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/Test.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/InGameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/InGameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/GameView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/GameView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/InGameRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/InGameRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/ShowReplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/ShowReplay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Test.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -54,45 +31,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/model/BattleResult.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" selection-start-line="8" selection-end-line="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/view/ShowReplay.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="26" column="35" selection-start-line="26" selection-start-column="35" selection-end-line="26" selection-end-column="35" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#836#837#0" expanded="true" />
-                <element signature="e#883#884#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/view/Test.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="199">
               <caret line="27" column="33" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/view/BattleMenu.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
-              <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -106,11 +48,36 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/view/ShowReplay.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="19" column="8" lean-forward="true" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="8" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/controller/InGameController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
+            <state relative-caret-position="153">
+              <caret line="31" column="22" selection-start-line="31" selection-start-column="22" selection-end-line="31" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/view/InGameRequest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="901">
+              <caret line="65" lean-forward="true" selection-start-line="65" selection-end-line="65" />
+              <folding>
+                <element signature="e#1974#1975#0" expanded="true" />
+                <element signature="e#2008#2009#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -148,13 +115,11 @@
         <option value="$PROJECT_DIR$/src/view/CollectionView.java" />
         <option value="$PROJECT_DIR$/src/controller/CollectionController.java" />
         <option value="$PROJECT_DIR$/src/model/Cell.java" />
-        <option value="$PROJECT_DIR$/src/view/InGameRequest.java" />
         <option value="$PROJECT_DIR$/src/view/BattleMenuRequest.java" />
         <option value="$PROJECT_DIR$/src/model/buffs/StunBuff.java" />
         <option value="$PROJECT_DIR$/src/model/cards/Hero.java" />
         <option value="$PROJECT_DIR$/src/model/buffs/HollyBuff.java" />
         <option value="$PROJECT_DIR$/src/model/PlayGround.java" />
-        <option value="$PROJECT_DIR$/src/controller/InGameController.java" />
         <option value="$PROJECT_DIR$/src/model/Player.java" />
         <option value="$PROJECT_DIR$/src/model/buffs/WeaknessBuff.java" />
         <option value="$PROJECT_DIR$/src/model/DefaultCards.java" />
@@ -193,10 +158,12 @@
         <option value="$PROJECT_DIR$/src/view/BattleMenu.java" />
         <option value="$PROJECT_DIR$/src/view/Test.java" />
         <option value="$PROJECT_DIR$/src/view/ShowReplay.java" />
+        <option value="$PROJECT_DIR$/src/view/InGameRequest.java" />
+        <option value="$PROJECT_DIR$/src/controller/InGameController.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-9" />
     <option name="y" value="-9" />
     <option name="width" value="1387" />
@@ -229,12 +196,6 @@
               <item name="project-9" type="b2602c69:ProjectViewProjectNode" />
               <item name="project-9" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="project-9" type="b2602c69:ProjectViewProjectNode" />
-              <item name="project-9" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="view" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -252,7 +213,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559752558211" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559753880176" />
     <property name="last_opened_file_path" value="$PATH_TO_FX$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -496,7 +457,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="175605000" />
+    <option name="totallyTimeSpent" value="176926000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -511,7 +472,7 @@
     <frame x="54" y="-8" width="1320" height="784" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21666667" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21666667" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -520,7 +481,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32577905" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4984127" visible="true" weight="0.33333334" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4984127" weight="0.34254992" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.5906516" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -600,7 +561,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="some changes in graphic" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk-12.0.1/lib/src.zip!/java.base/jdk/internal/reflect/DelegatingMethodAccessorImpl.java" />
     <entry file="jar://C:/Program Files/Java/jdk-12.0.1/lib/src.zip!/java.base/jdk/internal/reflect/NativeMethodAccessorImpl.java" />
     <entry file="jar://C:/Program Files/Java/jdk-12.0.1/lib/src.zip!/java.base/java/lang/reflect/Method.java" />
     <entry file="jar://$PATH_TO_FX$/src.zip!/javafx.graphics/com/sun/javafx/application/LauncherImpl.java">
@@ -774,13 +734,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/InGameRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/GraveYard.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -901,13 +854,6 @@
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/InGameController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -939,14 +885,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/InGameController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="31" column="22" selection-start-line="31" selection-start-column="22" selection-end-line="31" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/InGameRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="901">
+          <caret line="65" lean-forward="true" selection-start-line="65" selection-end-line="65" />
+          <folding>
+            <element signature="e#1974#1975#0" expanded="true" />
+            <element signature="e#2008#2009#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/BattleResult.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/view/ShowReplay.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="26" column="35" selection-start-line="26" selection-start-column="35" selection-end-line="26" selection-end-column="35" />
+        <state relative-caret-position="323">
+          <caret line="19" column="8" lean-forward="true" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#836#837#0" expanded="true" />
-            <element signature="e#883#884#0" expanded="true" />
           </folding>
         </state>
       </provider>
