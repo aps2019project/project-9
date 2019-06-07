@@ -15,16 +15,16 @@ public class Test extends Application {
 
     @Override
     public void start(Stage primaryStage) {                 //all start must have try catch
-        BattleMenu b = new BattleMenu();
+        /*BattleMenu b = new BattleMenu();
         try {
             b.multiPlayerPreesed(new Account("ali","mamad"));
         } catch (Exception e) {
             e.printStackTrace();
-        }
-        /*try {
-            new ShowReplay().showBattle(null,primaryStage);
+        }*/
+        try {
+            new NewInGameView().showGame(primaryStage,null);
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
+        }
     }
 }

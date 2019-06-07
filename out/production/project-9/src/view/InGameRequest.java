@@ -29,7 +29,6 @@ public class InGameRequest {
     private static final String HELP = "help";
     private static final String SHOW_MENU = "show menu";
     private static final String END_GAME = "end game";
-    private InGameErrorType errorType;
     private String cardID;
     private int x;
     private int y;
@@ -38,6 +37,16 @@ public class InGameRequest {
     private String opponentCardID;
     private ArrayList<String> comboCardIds; // for combo attack
     private String command;
+    private InGameRequestType requestType;
+
+    public InGameRequest(String command) {
+        this.command = command;
+        requestType = this.getType();
+    }
+
+    public InGameRequestType getRequestType() {
+        return requestType;
+    }
 
     public ArrayList<String> getComboCardIds() {
         return comboCardIds;
@@ -67,9 +76,6 @@ public class InGameRequest {
         return cardID;
     }
 
-    public InGameErrorType getErrorType() {
-        return errorType;
-    }
 
     public String getCommand() {
         return command;

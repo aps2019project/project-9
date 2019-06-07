@@ -29,7 +29,7 @@ public class InGameController {
         InGameRequestType type = request.getRequestType();
         switch (type){
             case SHOW_CARD_INFO:
-            case EXIT:
+            //case EXIT:
             case SHOW_OPPONENT_MINIONS:
             case USE_SPECIAL_POWER:
             case SHOW_COLLECTIBLES:
