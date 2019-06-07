@@ -29,17 +29,9 @@ import java.io.FileNotFoundException;
 import java.util.Optional;
 
 public class AccountMenu {
-    private static AccountMenu accountMenu = new AccountMenu();
     private static double height;
     private static double width;
     private AccountRequest accountRequest;
-
-    private AccountMenu() {
-    }
-
-    public static AccountMenu getInstance() {
-        return accountMenu;
-    }
 
     public void start(Stage stage) throws FileNotFoundException {
         stage.setTitle("project 9");
