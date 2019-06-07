@@ -18,10 +18,12 @@ public class Test extends Application {
         BattleMenu b = new BattleMenu();
         AccountMenu a =new AccountMenu();
         CollectionMenu c = new CollectionMenu();
+        GraveYard g = new GraveYard();
         try {
             //b.multiPlayerPreesed(new Account("ali","mamad"));
             //a.start(primaryStage);
-            c.start(primaryStage);
+            //a.start(primaryStage);
+            g.start(primaryStage,new Collection());
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -25,13 +25,40 @@ public class InGameController {
         this.battle = battle;
     }
 
+    public void main(InGameRequest request){
+        InGameRequestType type = request.getRequestType();
+        switch (type){
+            case SHOW_CARD_INFO:
+            case EXIT:
+            case SHOW_OPPONENT_MINIONS:
+            case USE_SPECIAL_POWER:
+            case SHOW_COLLECTIBLES:
+            case SHOW_MY_MINIONS:
+            case ENTER_GRAVEYARD:
+            case SHOW_NEXT_CARD:
+            case COMBO_ATTACK:
+            case SELCET_ITEM:
+            case SELCET_CARD:
+            case SHOW_MENU:
+            case SHOW_INFO:
+            case SHOW_HAND:
+            case GAME_INFO:
+            case END_GAME:
+            case MOVE_TO:
+            case INSERT:
+            case ATTACK:
+            case USE:
+            case HELP:
+            case END_TURN:
+        }
+    }
     public void main() {
         inGameView.printfError(InGameErrorType.GAME_STARTED);
         boolean isFinished = false;
         main:
         do {
             //try {
-            InGameRequest request = new InGameRequest();
+            InGameRequest request = new InGameRequest("");
             request.getNewCommand();
             if (inGameView.isFinished) {
                 break;

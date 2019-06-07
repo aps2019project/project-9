@@ -15,6 +15,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -35,6 +37,11 @@ public class AccountMenu {
 
     public void start(Stage stage) throws FileNotFoundException {
         stage.setTitle("project 9");
+
+        /*Media media = new Media(new File("src\\res\\music\\backgroundmusic.mp3").toURI().toString());
+        MediaPlayer player = new MediaPlayer(media);
+        player.play();*/
+
         stage.setMaximized(true);
         height = stage.getMaxHeight();
         width = stage.getMaxWidth();
