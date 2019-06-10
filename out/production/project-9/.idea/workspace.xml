@@ -2,30 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="429eadbd-36e3-4fa5-93ef-05e24885aef0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/res/icon.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/inGameResource/hand-cards.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/inGameResource/music_playmode.m4a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/inGameResource/nextCard.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/inGameResource/nextTurn.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/playground.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/controller/InGameController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/controller/InGameController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/controller/InGameController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/controller/InGameController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/project-9/res/GameView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/res/GameView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/controller/InGameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/controller/InGameController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/project-9/src/res/GameView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/res/GameView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/view/InGameRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/view/InGameRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/view/ShowReplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/view/ShowReplay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/view/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/view/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/InGameRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/InGameRequest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/ShowReplay$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/ShowReplay.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/ShowReplay.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/Test.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/InGameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/InGameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/view/NewInGameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/view/NewInGameView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/NewInGameView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/NewInGameView.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/res/GameView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/GameView.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/NewInGameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/NewInGameView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Test.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -53,8 +36,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/view/NewInGameView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="212">
-              <caret line="39" column="52" lean-forward="true" selection-start-line="39" selection-start-column="52" selection-end-line="39" selection-end-column="52" />
+            <state relative-caret-position="234">
+              <caret line="64" column="59" lean-forward="true" selection-start-line="64" selection-start-column="59" selection-end-line="64" selection-end-column="59" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -244,7 +227,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559927524271" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559931923843" />
     <property name="last_opened_file_path" value="$PATH_TO_FX$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -493,7 +476,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="191822000" />
+    <option name="totallyTimeSpent" value="196228000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -505,7 +488,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="54" y="-8" width="1320" height="784" extended-state="6" />
+    <frame x="54" y="-8" width="1320" height="784" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21666667" />
@@ -952,8 +935,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view/NewInGameView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="39" column="52" lean-forward="true" selection-start-line="39" selection-start-column="52" selection-end-line="39" selection-end-column="52" />
+        <state relative-caret-position="234">
+          <caret line="64" column="59" lean-forward="true" selection-start-line="64" selection-start-column="59" selection-end-line="64" selection-end-column="59" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Point3D?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -21,7 +22,7 @@
                   <Image url="@playground.png" />
                </image>
             </ImageView>
-            <GridPane gridLinesVisible="true" layoutX="301.0" layoutY="182.0" prefHeight="246.0" prefWidth="466.0" rotate="-67.4">
+            <GridPane fx:id="ground" gridLinesVisible="true" layoutX="301.0" layoutY="182.0" prefHeight="246.0" prefWidth="466.0" rotate="-67.4">
               <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -41,7 +42,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Pane fx:id="cell00" prefHeight="200.0" prefWidth="200.0" />
+                  <Pane fx:id="cell00" prefHeight="200.0" prefWidth="43.0" />
                   <Pane fx:id="cell01" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
                   <Pane fx:id="cell02" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" />
                   <Pane fx:id="cell03" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" />
@@ -92,52 +93,122 @@
                   <Point3D x="13.0" y="9.0" z="11.0" />
                </rotationAxis>
             </GridPane>
-            <ImageView fitHeight="99.0" fitWidth="65.0" layoutX="545.0" layoutY="474.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="83.0" fitWidth="95.0" layoutX="465.0" layoutY="458.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@inGameResource/hand-cards.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="99.0" fitWidth="65.0" layoutX="626.0" layoutY="474.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="83.0" fitWidth="84.0" layoutX="551.0" layoutY="458.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@inGameResource/hand-cards.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="99.0" fitWidth="65.0" layoutX="701.0" layoutY="474.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="83.0" fitWidth="83.0" layoutX="637.0" layoutY="457.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@inGameResource/hand-cards.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="99.0" fitWidth="65.0" layoutX="778.0" layoutY="474.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="83.0" fitWidth="109.0" layoutX="724.0" layoutY="456.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@inGameResource/hand-cards.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="99.0" fitWidth="65.0" layoutX="855.0" layoutY="474.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="83.0" fitWidth="112.0" layoutX="811.0" layoutY="456.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@inGameResource/hand-cards.png" />
                </image>
             </ImageView>
-            <Pane fx:id="hand0" layoutX="547.0" layoutY="477.0" prefHeight="60.0" prefWidth="60.0" />
-            <Pane fx:id="hand1" layoutX="628.0" layoutY="475.0" prefHeight="61.0" prefWidth="62.0" />
-            <Pane fx:id="hand2" layoutX="701.0" layoutY="477.0" prefHeight="61.0" prefWidth="66.0" />
-            <Pane fx:id="hand3" layoutX="779.0" layoutY="473.0" prefHeight="68.0" prefWidth="67.0" />
-            <Pane fx:id="hand4" layoutX="856.0" layoutY="471.0" prefHeight="69.0" prefWidth="65.0" />
-            <ImageView fitHeight="65.0" fitWidth="156.0" layoutX="34.0" layoutY="478.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@inGameResource/nextTurn.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="nextTurnBtn" contentDisplay="TOP" layoutX="70.0" layoutY="499.0" text="NEXT TURN" textAlignment="CENTER" textFill="#2884dd">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="92.0" fitWidth="83.0" layoutX="917.0" layoutY="464.0" pickOnBounds="true" preserveRatio="true">
+            <Pane fx:id="hand0" layoutX="477.0" layoutY="470.0" prefHeight="60.0" prefWidth="60.0" />
+            <Pane fx:id="hand1" layoutX="562.0" layoutY="469.0" prefHeight="60.0" prefWidth="60.0" />
+            <Pane fx:id="hand2" layoutX="649.0" layoutY="470.0" prefHeight="60.0" prefWidth="60.0" />
+            <Pane fx:id="hand3" layoutX="732.0" layoutY="465.0" prefHeight="60.0" prefWidth="60.0" />
+            <Pane fx:id="hand4" layoutX="823.0" layoutY="465.0" prefHeight="60.0" prefWidth="60.0" />
+            <ImageView fitHeight="97.0" fitWidth="102.0" layoutX="898.0" layoutY="450.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@inGameResource/nextCard.png" />
                </image>
             </ImageView>
-            <Pane layoutX="929.0" layoutY="466.0" prefHeight="72.0" prefWidth="62.0" />
+            <Pane fx:id="nextCard" layoutX="917.0" layoutY="469.0" prefHeight="60.0" prefWidth="60.0" />
+            <Pane fx:id="nextTurnPane" layoutX="30.0" layoutY="478.0" prefHeight="60.0" prefWidth="145.0">
+               <children>
+                  <ImageView fx:id="nextTurnButtonBack" fitHeight="65.0" fitWidth="164.0" layoutX="-8.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@inGameResource/nextTurn.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="nextTurnBtnLabel" contentDisplay="TOP" layoutX="30.0" layoutY="21.0" text="NEXT TURN" textAlignment="CENTER" textFill="#2884dd">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="closePane" layoutX="7.0" layoutY="14.0" prefHeight="43.0" prefWidth="47.0">
+               <children>
+                  <ImageView fitHeight="50.0" fitWidth="51.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@inGameResource/button_close.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <TextArea fx:id="description" editable="false" layoutX="14.0" layoutY="217.0" opacity="0.52" prefHeight="164.0" prefWidth="138.0" promptText="no card selected" wrapText="true" />
+            <ImageView fitHeight="50.0" fitWidth="138.0" layoutX="14.0" layoutY="173.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@inGameResource/title.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="36.0" layoutY="188.0" text="Card Description" textFill="#2884dd">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Pane fx:id="secondPlayerPane" layoutX="474.0" layoutY="27.0" prefHeight="61.0" prefWidth="337.0">
+               <children>
+                  <ImageView fitHeight="83.0" fitWidth="71.0" layoutX="266.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@inGameResource/speech_portrait_rook.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="113.0" layoutY="1.0" text="YOUR OPPONENT">
+                     <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
+                  <Pane fx:id="mana29" layoutY="36.0" prefHeight="27.0" prefWidth="29.0" />
+                  <Pane fx:id="mana28" layoutX="29.0" layoutY="36.0" prefHeight="27.0" prefWidth="29.0" />
+                  <Pane fx:id="mana27" layoutX="58.0" layoutY="36.0" prefHeight="27.0" prefWidth="29.0" />
+                  <Pane fx:id="mana26" layoutX="87.0" layoutY="36.0" prefHeight="27.0" prefWidth="29.0" />
+                  <Pane fx:id="mana25" layoutX="116.0" layoutY="36.0" prefHeight="27.0" prefWidth="29.0" />
+                  <Pane fx:id="mana24" layoutX="145.0" layoutY="36.0" prefHeight="27.0" prefWidth="29.0" />
+                  <Pane fx:id="mana23" layoutX="174.0" layoutY="36.0" prefHeight="27.0" prefWidth="29.0" />
+                  <Pane fx:id="mana22" layoutX="203.0" layoutY="36.0" prefHeight="27.0" prefWidth="29.0" />
+                  <Pane fx:id="mana21" layoutX="232.0" layoutY="36.0" prefHeight="27.0" prefWidth="29.0" />
+               </children>
+            </Pane>
+            <Pane fx:id="firstPlayerPane" layoutX="103.0" layoutY="27.0" prefHeight="61.0" prefWidth="337.0">
+               <children>
+                  <ImageView fitHeight="83.0" fitWidth="70.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@inGameResource/speech_portrait_lyonarthird.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="82.0" layoutY="4.0" text="YOU">
+                     <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
+                  <Pane fx:id="mana11" layoutX="82.0" layoutY="34.0" prefHeight="27.0" prefWidth="29.0" />
+                  <Pane fx:id="mana12" layoutX="111.0" layoutY="34.0" prefHeight="27.0" prefWidth="29.0" />
+                  <Pane fx:id="mana13" layoutX="140.0" layoutY="34.0" prefHeight="27.0" prefWidth="29.0" />
+                  <Pane fx:id="mana14" layoutX="169.0" layoutY="34.0" prefHeight="27.0" prefWidth="29.0" />
+                  <Pane fx:id="mana15" layoutX="198.0" layoutY="34.0" prefHeight="27.0" prefWidth="29.0" />
+                  <Pane fx:id="mana16" layoutX="227.0" layoutY="34.0" prefHeight="27.0" prefWidth="29.0" />
+                  <Pane fx:id="mana17" layoutX="256.0" layoutY="34.0" prefHeight="27.0" prefWidth="29.0" />
+                  <Pane fx:id="mana18" layoutX="285.0" layoutY="34.0" prefHeight="27.0" prefWidth="29.0" />
+                  <Pane fx:id="mana19" layoutX="314.0" layoutY="34.0" prefHeight="27.0" prefWidth="29.0" />
+               </children>
+            </Pane>
       </children>
     </AnchorPane>
   </children>
