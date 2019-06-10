@@ -17,8 +17,6 @@ public class CollectionMenu {
 
     private int count = 0;
     private ImageView slideshowImageView;
-    private final int size = 4;
-    private long delay = 10000;
 
     public void start(Stage primaryStage) {
         try {
@@ -27,8 +25,8 @@ public class CollectionMenu {
             Group root = new Group();
             runMusic(root);
             runSlideShow(root);
-
             setButtons(root);
+
             Scene scene = new Scene(root, 800, 300);
             primaryStage.setScene(scene);
             scene.getStylesheets().add("src/res/CollectionButtonStyle.css");
@@ -47,6 +45,10 @@ public class CollectionMenu {
     }
 
     private void runSlideShow(Group root) {
+        //change this if you wanna add picture
+        final int size = 4;
+        long delay = 10000;
+
         ArrayList<Image> images = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             images.add(new Image("/src/res/collection-menu-images/" + i + ".jpg"));

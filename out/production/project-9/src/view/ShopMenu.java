@@ -115,10 +115,11 @@ public class ShopMenu {
 
         setTableColumns(tableView);
 
-        ObservableList<Item> item = FXCollections.observableArrayList(Shop.getInstance().getItems());
-        ObservableList<Card> cards = FXCollections.observableArrayList(Shop.getInstance().getCards());
+        ObservableList cards = FXCollections.observableArrayList(Shop.getInstance().getCards());
+        ObservableList items = FXCollections.observableArrayList(Shop.getInstance().getItems());
+
         tableView.getItems().addAll(cards);
-        tableView.getItems().addAll(item);
+        tableView.getItems().addAll(items);
 
         tableView.setScaleX(1.6);
         tableView.setScaleY(2);

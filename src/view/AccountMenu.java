@@ -47,8 +47,8 @@ public class AccountMenu {
         width = stage.getMaxWidth();
         ImageView imageView = new ImageView();
         imageView.setImage(new Image(new FileInputStream("src/res/1.png")));
-        imageView.setFitHeight(800);
-        imageView.setFitWidth(900);
+        imageView.setFitHeight(700);
+        imageView.setFitWidth(810);
         imageView.setX(300);
         Group group = new Group(imageView);
         Scene scene = new Scene(group, height, width);

@@ -19,11 +19,17 @@ public class Test extends Application {
         AccountMenu a =new AccountMenu();
         CollectionMenu c = new CollectionMenu();
         GraveYard g = new GraveYard();
+        MainMenu m = MainMenu.getInstance();
+        ShopMenu s = ShopMenu.getInstance();
         try {
-            //b.multiPlayerPreesed(new Account("ali","mamad"));
+            //b.customGamePresed(new Account("mamad","ali"));
             //a.start(primaryStage);
             //a.start(primaryStage);
-            c.start(primaryStage);
+            //c.start(primaryStage);
+            //m.start(primaryStage);
+            //s.start(primaryStage,new Collection());
+           // g.start(primaryStage,graveyard);
+            //c.start(primaryStage);
         } catch (Exception e) {
             e.printStackTrace();
         }

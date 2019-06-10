@@ -2,7 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="429eadbd-36e3-4fa5-93ef-05e24885aef0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/out/production/project-9/res/CollectionButtonStyle.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/project-9/res/collection-menu-images/0.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/project-9/res/collection-menu-images/1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/project-9/res/collection-menu-images/2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/project-9/res/collection-menu-images/3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/project-9/res/music/backgroundmusic.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/project-9/src/res/CollectionButtonStyle.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/project-9/src/res/collection-menu-images/0.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/project-9/src/res/collection-menu-images/1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/project-9/src/res/collection-menu-images/2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/project-9/src/res/collection-menu-images/3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/project-9/src/res/music/backgroundmusic.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/project-9/src/view/CollectionMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/project-9/src/view/NewInGameView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/project-9/view/CollectionMenu$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/project-9/view/CollectionMenu.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/project-9/view/NewInGameView.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/project-9/src/view/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/view/Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/project-9/view/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/Test.class" afterDir="false" />
     </list>
@@ -28,44 +46,12 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/view/Test.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="306">
               <caret line="25" column="32" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/view/CollectionMenu.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" column="27" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1922#2179#0" expanded="true" />
-                <element signature="e#2178#2179#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/view/CollectionRequest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="8" column="45" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/view/CollectionView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="27" column="56" selection-start-line="27" selection-start-column="56" selection-end-line="27" selection-end-column="56" />
             </state>
           </provider>
         </entry>
@@ -77,6 +63,7 @@
       <list>
         <option value="JavaFXApplication" />
         <option value="Class" />
+        <option value="FxmlFile" />
         <option value="CSS File" />
       </list>
     </option>
@@ -97,8 +84,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/view/BattleMenuView.java" />
-        <option value="$PROJECT_DIR$/src/model/cards/Card.java" />
         <option value="$PROJECT_DIR$/src/view/CollectionView.java" />
         <option value="$PROJECT_DIR$/src/controller/CollectionController.java" />
         <option value="$PROJECT_DIR$/src/model/Cell.java" />
@@ -144,9 +129,11 @@
         <option value="$PROJECT_DIR$/src/view/ShowReplay.java" />
         <option value="$PROJECT_DIR$/src/view/InGameRequest.java" />
         <option value="$PROJECT_DIR$/src/controller/InGameController.java" />
-        <option value="$PROJECT_DIR$/src/view/AccountMenu.java" />
         <option value="$PROJECT_DIR$/src/view/GraveYard.java" />
         <option value="$PROJECT_DIR$/src/view/Test.java" />
+        <option value="$PROJECT_DIR$/src/view/AccountMenu.java" />
+        <option value="$PROJECT_DIR$/src/res/CollectionButtonStyle.fxml" />
+        <option value="$PROJECT_DIR$/src/res/CollectionButtonStyle.css" />
         <option value="$PROJECT_DIR$/src/view/CollectionMenu.java" />
       </list>
     </option>
@@ -162,8 +149,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -180,12 +165,14 @@
               <item name="project-9" type="b2602c69:ProjectViewProjectNode" />
               <item name="project-9" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
+              <item name="res" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -195,7 +182,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559936748996" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1560023127396" />
     <property name="last_opened_file_path" value="$USER_HOME$/IdeaProjects/B2_test" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -272,6 +259,7 @@
       <workItem from="1559325991292" duration="2490000" />
       <workItem from="1559663173273" duration="10572000" />
       <workItem from="1559715844981" duration="14334000" />
+      <workItem from="1560018905379" duration="4251000" />
     </task>
     <task id="LOCAL-00001" summary="merge">
       <created>1556826863260</created>
@@ -413,11 +401,18 @@
       <option name="project" value="LOCAL" />
       <updated>1559936739618</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="collection menu phase 4 (graphic is complete just logic)">
+      <created>1560023152239</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1560023152239</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="180270000" />
+    <option name="totallyTimeSpent" value="184521000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -432,7 +427,7 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.21610738" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16442953" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -447,7 +442,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.6643059" />
       <window_info anchor="bottom" id="Duplicate detector" order="7" weight="0.32872504" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32411674" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32152975" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50158733" side_tool="true" weight="0.9532578" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.32577905" />
@@ -520,32 +515,10 @@
     <MESSAGE value="some changes in graphic" />
     <MESSAGE value="adding music and collection menu phase 2" />
     <MESSAGE value="collection menu phase 3" />
-    <option name="LAST_COMMIT_MESSAGE" value="collection menu phase 3" />
+    <MESSAGE value="collection menu phase 4 (graphic is complete just logic)" />
+    <option name="LAST_COMMIT_MESSAGE" value="collection menu phase 4 (graphic is complete just logic)" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$PATH_TO_FX$/src.zip!/javafx.controls/javafx/scene/control/Button.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="97" column="11" selection-start-line="97" selection-start-column="11" selection-end-line="97" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/MainMenuView.java" />
-    <entry file="file://$PROJECT_DIR$/src/model/enumerations/MainMenuErrorType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
-          <folding>
-            <element signature="e#224#225#0" expanded="true" />
-            <element signature="e#262#263#0" expanded="true" />
-            <element signature="e#296#297#0" expanded="true" />
-            <element signature="e#326#327#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/MainMenu2.java" />
-    <entry file="jar://$USER_HOME$/Downloads/Compressed/jdk-12.0.1/lib/src.zip!/java.base/sun/launcher/LauncherHelper.java" />
     <entry file="jar://$USER_HOME$/Downloads/Compressed/jdk-12.0.1/lib/src.zip!/java.base/jdk/internal/reflect/NativeMethodAccessorImpl.java" />
     <entry file="jar://$PATH_TO_FX$/javafx.graphics.jar!/javafx/scene/Group.class">
       <provider selected="true" editor-type-id="text-editor">
@@ -721,26 +694,6 @@
     <entry file="file://$PROJECT_DIR$/src/res/AccountMenuStyle.css" />
     <entry file="jar://C:/Program Files/Java/jdk-12.0.1/lib/src.zip!/java.base/java/lang/Object.java" />
     <entry file="jar://C:/Program Files/Java/jdk-12.0.1/lib/src.zip!/java.base/java/util/AbstractList.java" />
-    <entry file="file://$PROJECT_DIR$/src/view/ShopMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="109" column="34" selection-start-line="109" selection-start-column="34" selection-end-line="109" selection-end-column="34" />
-          <folding>
-            <element signature="e#789#790#0" expanded="true" />
-            <element signature="e#820#821#0" expanded="true" />
-            <element signature="method#setHelpButton#0;class#ShopMenu#0" />
-            <element signature="method#setExitButton#0;class#ShopMenu#0" />
-            <element signature="method#setSearchButtonAndTextField#0;class#ShopMenu#0" />
-            <element signature="method#ShopTable#0;class#ShopMenu#0" />
-            <element signature="method#addBuyButtonToTable#0;class#ShopMenu#0" />
-            <element signature="method#addSellButtonToTable#0;class#ShopMenu#0" />
-            <element signature="method#setTableColumns#0;class#ShopMenu#0" />
-            <element signature="method#setShowCollectionButton#0;class#ShopMenu#0" />
-            <element signature="method#showCollectionTable#0;class#ShopMenu#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/res/BattleMenu.css" />
     <entry file="file://$PROJECT_DIR$/src/res/Untitled.png">
       <provider selected="true" editor-type-id="images" />
@@ -774,22 +727,15 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/res/BattleMenu.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="20" column="23" lean-forward="true" selection-start-line="20" selection-start-column="23" selection-end-line="20" selection-end-column="23" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="40" lean-forward="true" selection-start-line="5" selection-start-column="40" selection-end-line="5" selection-end-column="40" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/model/Battle.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -843,31 +789,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/CollectionRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="8" column="45" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/CollectionView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="27" column="56" selection-start-line="27" selection-start-column="56" selection-end-line="27" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/AccountMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="41" column="31" lean-forward="true" selection-start-line="41" selection-start-column="31" selection-end-line="41" selection-end-column="31" />
-          <folding>
-            <element signature="method#setCreateAccountButton#0;class#AccountMenu#0" />
-            <element signature="method#setLoginButton#0;class#AccountMenu#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/view/GraveYard.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="173">
@@ -878,22 +799,114 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/Test.java">
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="25" column="32" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
+        <state relative-caret-position="85">
+          <caret line="5" column="40" selection-start-line="5" selection-start-column="40" selection-end-line="5" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/CollectionRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="8" column="45" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/AccountMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="40" column="8" selection-start-line="40" selection-start-column="8" selection-end-line="42" selection-end-column="24" />
+          <folding>
+            <element signature="method#setCreateAccountButton#0;class#AccountMenu#0" />
+            <element signature="method#setLoginButton#0;class#AccountMenu#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/res/CollectionButtonStyle.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="8" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/ShopMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="131">
+          <caret line="48" column="60" lean-forward="true" selection-start-line="48" selection-start-column="60" selection-end-line="48" selection-end-column="60" />
+          <folding>
+            <element signature="e#789#790#0" expanded="true" />
+            <element signature="e#820#821#0" expanded="true" />
+            <element signature="method#setHelpButton#0;class#ShopMenu#0" />
+            <element signature="method#setExitButton#0;class#ShopMenu#0" />
+            <element signature="method#setSearchButtonAndTextField#0;class#ShopMenu#0" />
+            <element signature="method#setBackGround#0;class#ShopMenu#0" />
+            <element signature="method#ShopTable#0;class#ShopMenu#0" />
+            <element signature="method#addBuyButtonToTable#0;class#ShopMenu#0" />
+            <element signature="method#addSellButtonToTable#0;class#ShopMenu#0" />
+            <element signature="method#setTableColumns#0;class#ShopMenu#0" />
+            <element signature="method#setShowCollectionButton#0;class#ShopMenu#0" />
+            <element signature="method#showCollectionTable#0;class#ShopMenu#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PATH_TO_FX$/javafx.graphics.jar!/javafx/scene/layout/Region.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="70" column="13" selection-start-line="70" selection-start-column="13" selection-end-line="70" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PATH_TO_FX$/javafx.graphics.jar!/javafx/scene/layout/Pane.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="14" column="28" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PATH_TO_FX$/javafx.graphics.jar!/javafx/scene/layout/HBox.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="32" column="29" selection-start-line="32" selection-start-column="29" selection-end-line="32" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/CollectionView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="28" column="83" lean-forward="true" selection-start-line="28" selection-start-column="83" selection-end-line="28" selection-end-column="83" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view/CollectionMenu.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="27" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
+        <state relative-caret-position="680">
+          <caret line="46" column="42" selection-start-line="46" selection-start-column="42" selection-end-line="46" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1922#2179#0" expanded="true" />
-            <element signature="e#2178#2179#0" expanded="true" />
+            <element signature="method#runMusic#0;class#CollectionMenu#0" />
+            <element signature="method#runSlideShow#0;class#CollectionMenu#0" />
+            <element signature="e#1363#1620#0" expanded="true" />
+            <element signature="e#1619#1620#0" expanded="true" />
+            <element signature="method#setButtons#0;class#CollectionMenu#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/res/CollectionButtonStyle.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="4" lean-forward="true" selection-start-line="1" selection-start-column="4" selection-end-line="11" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="25" column="32" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
         </state>
       </provider>
     </entry>
