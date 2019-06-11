@@ -30,7 +30,10 @@ public class AccountRequest {
     }
 
     public AccountRequestType getType() {
-        if (command.equals("create account")) {
+        if(command == null){
+            return null;
+        }
+        else if (command.equals("create account")) {
             return AccountRequestType.CREATE_ACCOUNT;
         } else if (command.equals("login")) {
             return AccountRequestType.LOGIN;

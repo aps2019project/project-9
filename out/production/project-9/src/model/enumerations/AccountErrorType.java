@@ -1,11 +1,9 @@
 package model.enumerations;
 
 public enum AccountErrorType {
-    INVALID_COMMAND("Invalid Command"),
     INVALID_USERNAME("Invalid UserName"),
     INVALID_PASSWORD("Invalid PassWord"),
-    USERNAME_EXISTS("This UserName Is Already Token"),
-    ENTER_PASSWORD("Enter Your Password :");
+    USERNAME_EXISTS("This UserName Is Already Token");
     private String message;
 
     AccountErrorType(String message) {

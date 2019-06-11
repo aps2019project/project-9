@@ -1,11 +1,9 @@
 package view;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceDialog;
 import javafx.stage.Stage;
 import model.Account;
@@ -30,10 +28,14 @@ public class BattleMenu {
         stage.show();
     }
 
+    private void multiPlayerClicked(ActionEvent event) {
+        System.out.println("mamad");
+    }
+
     public void storyCustom(Stage stage) throws IOException {
         stage.setMaximized(true);
 
-        FXMLLoader loader = new FXMLLoader(new URL("file:src\\res\\StoryCustom.fxml"));
+        FXMLLoader loader = new FXMLLoader(new URL("file:src\\res\\BattleMenuImage\\StoryCustom.fxml"));
         Parent parent = loader.load();
 
         Scene scene = new Scene(parent, 1300, 600);
@@ -45,7 +47,7 @@ public class BattleMenu {
     public void storyMenu(Stage stage) throws IOException {
         stage.setMaximized(true);
 
-        FXMLLoader loader = new FXMLLoader(new URL("file:src\\res\\StoryMenu.fxml"));
+        FXMLLoader loader = new FXMLLoader(new URL("file:src\\res\\BattleMenuImage\\StoryMenu.fxml"));
         Parent parent = loader.load();
 
         Scene scene = new Scene(parent, 1300, 600);

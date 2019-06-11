@@ -1,5 +1,6 @@
 package view;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -25,6 +26,10 @@ public class BattleMenu {
         stage.setScene(scene);
 
         stage.show();
+    }
+
+    private void multiPlayerClicked(ActionEvent event) {
+        System.out.println("mamad");
     }
 
     public void storyCustom(Stage stage) throws IOException {

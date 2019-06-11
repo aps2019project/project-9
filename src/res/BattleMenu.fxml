@@ -20,7 +20,7 @@
             <Image url="@twoswords.png" />
          </image>
       </ImageView>
-      <Button fx:id="slider" layoutX="444.0" layoutY="189.0" mnemonicParsing="false" prefHeight="430.0" prefWidth="270.0" style="-fx-background-color: transparent; -fx-shape: &quot;M 400 100 Q 350 100 300 150 L 300 350 Q 350 400 400 400 Q 450 400 500 350 L 500 150 Q 450 100 400 100&quot;;" text="Multi Player">
+      <Button layoutX="444.0" layoutY="189.0" mnemonicParsing="false" onAction="#multiPlayerClicked" prefHeight="430.0" prefWidth="270.0" style="-fx-background-color: transparent; -fx-shape: &quot;M 400 100 Q 350 100 300 150 L 300 350 Q 350 400 400 400 Q 450 400 500 350 L 500 150 Q 450 100 400 100&quot;;" text="Multi Player">
          <font>
             <Font name="DS Stain" size="34.0" />
          </font>

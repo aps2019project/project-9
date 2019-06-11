@@ -1,49 +1,40 @@
 package controller;
 
+import javafx.stage.Stage;
 import model.Account;
 import model.enumerations.AccountErrorType;
 import view.AccountMenu;
 import view.AccountRequest;
 
+import java.io.FileNotFoundException;
+
 public class AccountController {
-    private static AccountMenu accountMenu ;//= AccountMenuExpired.getInstance();
+    private static AccountMenu accountMenu = AccountMenu.getInstance();
 
 
-    public void main() {
-        //accountMenu.start(args);
-        AccountRequest request = accountMenu.getAccountRequest();
-
-        switch (request.getType()) {
-            case CREATE_ACCOUNT:
-                createAccount(request);
-                break;
-            case LOGIN:
-                login(request);
-                break;
-            default:
-                break;
-        }
+    public void start(Stage stage) throws FileNotFoundException {
+        accountMenu.start(stage, this);
     }
 
-    private void login(AccountRequest request) {
+    public void login(AccountRequest request, Stage stage) {
         if (Account.isUserNameToken(request.getUserName())) {
             if (Account.isPassWordValid(request.getUserName(), request.getPassWord())) {
-                goNextMenu(Account.findAccount(request.getUserName()));
+                goNextMenu(Account.findAccount(request.getUserName()),stage);
             } else
                 accountMenu.printError(AccountErrorType.INVALID_PASSWORD);
         } else
             accountMenu.printError(AccountErrorType.INVALID_USERNAME);
     }
 
-    private void createAccount(AccountRequest request) {
-        if (isUserNameValid(request.getUserName(), request)) {
+    public void createAccount(AccountRequest request, Stage stage) {
+        if (isUserNameValid(request)) {
             Account newAccount = new Account(request.getUserName(), request.getPassWord());
-            goNextMenu(newAccount);
+            goNextMenu(newAccount,stage);
         }
     }
 
-    private boolean isUserNameValid(String userName, AccountRequest request) {
-        if (Account.isUserNameToken(userName)) {
+    private boolean isUserNameValid(AccountRequest request) {
+        if (Account.isUserNameToken(request.getUserName())) {
             request.setErrorType(AccountErrorType.USERNAME_EXISTS);
             accountMenu.printError(request.getErrorType());
             return false;
@@ -51,9 +42,9 @@ public class AccountController {
         return true;
     }
 
-    private void goNextMenu(Account loggedInAccount) {
+    private void goNextMenu(Account loggedInAccount, Stage stage) {
         MainMenuController mainMenuController = new MainMenuController(loggedInAccount);
-        //mainMenuController.start(argss);
+        mainMenuController.start(stage);
     }
 
 }

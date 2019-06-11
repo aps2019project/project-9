@@ -1,5 +1,7 @@
 package view;
 
+import controller.AccountController;
+import controller.MainMenuController;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -20,7 +22,6 @@ public class MainMenu {
     private static double HEIGHT;
     private static double WIDTH;
     private static final MainMenu MAINMENU = new MainMenu();
-    private MainMenuRequest mainMenuRequest;
 
     private MainMenu() {
     }
@@ -29,7 +30,7 @@ public class MainMenu {
         return MAINMENU;
     }
 
-    public void start(Stage stage) {
+    public void start(Stage stage, MainMenuController controller) {
         try {
             HEIGHT = stage.getMaxHeight();
             WIDTH = stage.getMaxWidth();
@@ -46,7 +47,7 @@ public class MainMenu {
             imageView.setFitHeight(900);
 
             Group root = new Group(imageView, text);
-            setButtons(root);
+            setButtons(root,controller,stage);
             Scene scene = new Scene(root, WIDTH, HEIGHT);
             stage.setScene(scene);
             stage.show();
@@ -55,7 +56,7 @@ public class MainMenu {
         }
     }
 
-    void setButtons(Group root) {
+    void setButtons(Group root, MainMenuController controller, Stage stage) {
         try {
             Font collectionFont = Font.loadFont(new FileInputStream(new File("src/res/Font/ALGER.TTF")), 25);
             Button collection = new Button("Collection");
@@ -66,8 +67,7 @@ public class MainMenu {
             collection.setScaleY(2.5);
             collection.setStyle("-fx-background-color: rgba(0,0,0,0);-fx-text-fill: #020d7f;");
             collection.setOnMouseClicked(event -> {
-                //TODO
-                //mainMenuRequest.setCommand("collection");
+                controller.goCollectionMenu(controller.getLoggedInAccount());
             });
 
             Font shopFont = Font.loadFont(new FileInputStream(new File("src/res/Font/ALGER.TTF")), 30);
@@ -79,8 +79,7 @@ public class MainMenu {
             shop.setScaleY(2.5);
             shop.setStyle("-fx-background-color: rgba(0,0,0,0);-fx-text-fill: #020d7f;");
             shop.setOnMouseClicked(event -> {
-                //TODO
-                //mainMenuRequest.setCommand("shop");
+                controller.goShopMenu(controller.getLoggedInAccount(),stage);
             });
 
             Font battleFont = Font.loadFont(new FileInputStream(new File("src/res/Font/ALGER.TTF")), 35);
@@ -92,8 +91,7 @@ public class MainMenu {
             battle.setScaleY(2.5);
             battle.setStyle("-fx-background-color: rgba(0,0,0,0);-fx-text-fill: #020d7f;");
             battle.setOnMouseClicked(event -> {
-                //TODO
-                //mainMenuRequest.setCommand("battle");
+                controller.goBattleMenu(controller.getLoggedInAccount());
             });
 
             Font logOutFont = Font.loadFont(new FileInputStream(new File("src/res/Font/ALGER.TTF")), 26);
@@ -105,18 +103,17 @@ public class MainMenu {
             logOut.setScaleY(2.5);
             logOut.setStyle("-fx-background-color: rgba(0,0,0,0);-fx-text-fill: #020d7f;");
             logOut.setOnMouseClicked(event -> {
-                //TODO
-                /*AccountController accountController = new AccountController();
-                accountController.main();*/
+                try {
+                    AccountController accountController = new AccountController();
+                    accountController.start(stage);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
             });
             root.getChildren().addAll(collection, shop, battle, logOut);
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public MainMenuRequest getRequest() {
-        return mainMenuRequest;
     }
 
     public void printError(MainMenuErrorType e) {

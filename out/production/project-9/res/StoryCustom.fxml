@@ -30,7 +30,7 @@
       </Button>
       <ImageView fitHeight="430.0" fitWidth="406.0" layoutX="455.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@story-button.png" />
+            <Image url="@res/BattleMenuImages/story-button.png" />
          </image>
       </ImageView>
       <Button fx:id="slider" layoutX="454.0" layoutY="199.0" mnemonicParsing="false" prefHeight="430.0" prefWidth="270.0" style="-fx-background-color: transparent; -fx-shape: &quot;M 400 100 Q 350 100 300 150 L 300 350 Q 350 400 400 400 Q 450 400 500 350 L 500 150 Q 450 100 400 100&quot;;" text="Story Game" textOverrun="CLIP">

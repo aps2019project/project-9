@@ -29,7 +29,7 @@ public class CollectionMenu {
 
             Scene scene = new Scene(root, 800, 300);
             primaryStage.setScene(scene);
-            scene.getStylesheets().add("src/res/CollectionButtonStyle.css");
+            scene.getStylesheets().add("src/res/CSS/CollectionButtonStyle.css");
             primaryStage.show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -47,7 +47,7 @@ public class CollectionMenu {
     private void runSlideShow(Group root) {
         //change this if you wanna add picture
         final int size = 4;
-        long delay = 10000;
+        long delay = 7000;
 
         ArrayList<Image> images = new ArrayList<>();
         for (int i = 0; i < size; i++) {

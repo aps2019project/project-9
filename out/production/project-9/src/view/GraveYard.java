@@ -10,13 +10,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import model.Collection;
 import model.cards.Card;
-
-import java.io.File;
 
 public class GraveYard {
 
@@ -40,7 +36,7 @@ public class GraveYard {
         imageView.setFitWidth(1600);
         Scene scene = new Scene(root, stage.getMaxHeight(), stage.getMaxWidth());
         stage.setScene(scene);
-        scene.getStylesheets().add("src/res/shopTable.css");
+        scene.getStylesheets().add("src/res/CSS/shopTable.css");
         int a = 0;
         stage.show();
 
