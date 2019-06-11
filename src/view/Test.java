@@ -23,7 +23,7 @@ public class Test extends Application {
         ShopMenu s = ShopMenu.getInstance();
         try {
             //b.customGamePresed(new Account("mamad","ali"));
-            //a.start(primaryStage);
+            a.start(primaryStage);
             //a.start(primaryStage);
             //c.start(primaryStage);
             //m.start(primaryStage);

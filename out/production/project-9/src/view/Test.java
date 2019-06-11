@@ -22,8 +22,8 @@ public class Test extends Application {
         MainMenu m = MainMenu.getInstance();
         ShopMenu s = ShopMenu.getInstance();
         try {
-            b.customGamePresed(new Account("mamad","ali"));
-            //a.start(primaryStage);
+            //b.customGamePresed(new Account("mamad","ali"));
+            a.start(primaryStage);
             //a.start(primaryStage);
             //c.start(primaryStage);
             //m.start(primaryStage);

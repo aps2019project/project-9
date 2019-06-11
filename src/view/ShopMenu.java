@@ -46,7 +46,7 @@ public class ShopMenu {
 
         Scene scene = new Scene(root, stage.getMaxHeight(), stage.getMaxWidth());
         stage.setScene(scene);
-        scene.getStylesheets().add("src/res/shopTable.css");
+        scene.getStylesheets().add("src/res/CSS/shopTable.css");
         stage.show();
     }
 
@@ -104,7 +104,7 @@ public class ShopMenu {
     }
 
     private void setBackGround(Group group) throws FileNotFoundException {
-        ImageView imageView = new ImageView(new Image(new FileInputStream("src/res/shop.jpg")));
+        ImageView imageView = new ImageView(new Image(new FileInputStream("src/res/ShopImages/shop.jpg")));
         imageView.setFitHeight(810);
         imageView.setFitWidth(1600);
         group.getChildren().add(imageView);

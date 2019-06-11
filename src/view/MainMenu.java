@@ -1,7 +1,5 @@
 package view;
 
-import controller.AccountController;
-import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -36,13 +34,13 @@ public class MainMenu {
             HEIGHT = stage.getMaxHeight();
             WIDTH = stage.getMaxWidth();
             stage.setMaximized(true);
-            Font mainMenuFont = Font.loadFont(new FileInputStream(new File("src/res/ALGER.TTF")), 60);
+            Font mainMenuFont = Font.loadFont(new FileInputStream(new File("src/res/Font/ALGER.TTF")), 60);
             Text text = new Text(600, 100, "Main Menu");
             text.setFont(mainMenuFont);
             text.setFill(Color.rgb(2, 14, 236));
 
             ImageView imageView = new ImageView();
-            imageView.setImage(new Image(new FileInputStream("src/res/2.jpg")));
+            imageView.setImage(new Image(new FileInputStream("src/res/MainMenuImages/2.jpg")));
             imageView.setX(-300);
             imageView.setFitWidth(2100);
             imageView.setFitHeight(900);
@@ -59,7 +57,7 @@ public class MainMenu {
 
     void setButtons(Group root) {
         try {
-            Font collectionFont = Font.loadFont(new FileInputStream(new File("src/res/ALGER.TTF")), 25);
+            Font collectionFont = Font.loadFont(new FileInputStream(new File("src/res/Font/ALGER.TTF")), 25);
             Button collection = new Button("Collection");
             collection.setFont(collectionFont);
             collection.setLayoutX(680);
@@ -72,7 +70,7 @@ public class MainMenu {
                 //mainMenuRequest.setCommand("collection");
             });
 
-            Font shopFont = Font.loadFont(new FileInputStream(new File("src/res/ALGER.TTF")), 30);
+            Font shopFont = Font.loadFont(new FileInputStream(new File("src/res/Font/ALGER.TTF")), 30);
             Button shop = new Button("shop");
             shop.setFont(shopFont);
             shop.setLayoutX(720);
@@ -85,7 +83,7 @@ public class MainMenu {
                 //mainMenuRequest.setCommand("shop");
             });
 
-            Font battleFont = Font.loadFont(new FileInputStream(new File("src/res/ALGER.TTF")), 35);
+            Font battleFont = Font.loadFont(new FileInputStream(new File("src/res/Font/ALGER.TTF")), 35);
             Button battle = new Button("battle");
             battle.setFont(battleFont);
             battle.setLayoutX(690);
@@ -98,7 +96,7 @@ public class MainMenu {
                 //mainMenuRequest.setCommand("battle");
             });
 
-            Font logOutFont = Font.loadFont(new FileInputStream(new File("src/res/ALGER.TTF")), 26);
+            Font logOutFont = Font.loadFont(new FileInputStream(new File("src/res/Font/ALGER.TTF")), 26);
             Button logOut = new Button("Log Out");
             logOut.setFont(logOutFont);
             logOut.setLayoutX(720);

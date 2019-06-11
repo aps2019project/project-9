@@ -3,7 +3,6 @@ package view;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -12,11 +11,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -47,8 +43,8 @@ public class AccountMenu {
         width = stage.getMaxWidth();
         ImageView imageView = new ImageView();
         imageView.setImage(new Image(new FileInputStream("src/res/1.png")));
-        imageView.setFitHeight(800);
-        imageView.setFitWidth(900);
+        imageView.setFitHeight(700);
+        imageView.setFitWidth(810);
         imageView.setX(300);
         Group group = new Group(imageView);
         Scene scene = new Scene(group, height, width);
@@ -60,7 +56,7 @@ public class AccountMenu {
 
     private void accountMenuShow(Stage stage) {
         try {
-            Font accountMenuFont = Font.loadFont(new FileInputStream(new File("src/res/modern.TTF")), 40);
+            Font accountMenuFont = Font.loadFont(new FileInputStream(new File("src/res/Font/modern.TTF")), 40);
             Text text = new Text(651, 100, "Account Menu");
             text.setFont(accountMenuFont);
             text.setFill(Color.rgb(2, 14, 236));

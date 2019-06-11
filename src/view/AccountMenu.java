@@ -3,7 +3,6 @@ package view;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -12,11 +11,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -46,7 +42,7 @@ public class AccountMenu {
         height = stage.getMaxHeight();
         width = stage.getMaxWidth();
         ImageView imageView = new ImageView();
-        imageView.setImage(new Image(new FileInputStream("src/res/1.png")));
+        imageView.setImage(new Image(new FileInputStream("src/res/AccountMenuImages/1.png")));
         imageView.setFitHeight(700);
         imageView.setFitWidth(810);
         imageView.setX(300);
@@ -60,7 +56,7 @@ public class AccountMenu {
 
     private void accountMenuShow(Stage stage) {
         try {
-            Font accountMenuFont = Font.loadFont(new FileInputStream(new File("src/res/modern.TTF")), 40);
+            Font accountMenuFont = Font.loadFont(new FileInputStream(new File("src/res/Font/modern.TTF")), 40);
             Text text = new Text(651, 100, "Account Menu");
             text.setFont(accountMenuFont);
             text.setFill(Color.rgb(2, 14, 236));
@@ -88,7 +84,7 @@ public class AccountMenu {
     private Button setCreateAccountButton() {
         ImageView createAccountImageView = null;
         try {
-            createAccountImageView = new ImageView(new Image(new FileInputStream("src/res/battered-axe.png")));
+            createAccountImageView = new ImageView(new Image(new FileInputStream("src/res/AccountMenuImages/battered-axe.png")));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -152,7 +148,7 @@ public class AccountMenu {
     private Button setLoginButton() {
         ImageView loginImageview = null;
         try {
-            loginImageview = new ImageView(new Image(new FileInputStream("src/res/bow-arrow.png")));
+            loginImageview = new ImageView(new Image(new FileInputStream("src/res/AccountMenuImages/bow-arrow.png")));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -216,7 +212,7 @@ public class AccountMenu {
 
     private Button setLeaderBoardButton() {
         try {
-            ImageView loginImageview = new ImageView(new Image(new FileInputStream("src/res/sharp-shuriken.png")));
+            ImageView loginImageview = new ImageView(new Image(new FileInputStream("src/res/AccountMenuImages/sharp-shuriken.png")));
             loginImageview.setFitWidth(100);
             loginImageview.setFitHeight(50);
             Button button = new Button("show LeaderBoard", loginImageview);
@@ -266,7 +262,7 @@ public class AccountMenu {
 
     private Button setHelpButton() {
         try {
-            ImageView loginImageview = new ImageView(new Image(new FileInputStream("src/res/life-buoy.png")));
+            ImageView loginImageview = new ImageView(new Image(new FileInputStream("src/res/BattleMenuImages/life-buoy.png")));
             loginImageview.setFitWidth(100);
             loginImageview.setFitHeight(50);
             Button button = new Button("Help", loginImageview);
