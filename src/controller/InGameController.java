@@ -14,6 +14,7 @@ import model.items.Collectible;
 import view.BattleMenuView;
 import view.InGameRequest;
 import view.InGameView;
+import view.NewInGameView;
 
 import java.util.ArrayList;
 
@@ -45,11 +46,19 @@ public class InGameController {
             case GAME_INFO:
             case END_GAME:
             case MOVE_TO:
+                move(battle.getCurrenPlayer(), request.getX(), request.getY());
+                break;
             case INSERT:
+                insert(request.getCardName(),request.getX(),request.getY());
+                break;
             case ATTACK:
+                attack(battle.getCurrenPlayer(), request.getOpponentCardID());
+                break;
             case USE:
             case HELP:
             case END_TURN:
+                battle.getCurrenPlayer().endTurn();
+                break;
         }
     }
     public void main() {
@@ -203,7 +212,7 @@ public class InGameController {
             if (!((Minion) currentPlayer.getSelectedCard()).isValidCell(opponentMinion.getCell())) {
                 inGameView.printfError(InGameErrorType.UNAVAILABLE_FOR_ATTACK);
             } else if (!((Minion) currentPlayer.getSelectedCard()).isCanAttack()) {
-                inGameView.cardCantAttack(currentPlayer.getSelectedCard());
+                NewInGameView.cantAttack(currentPlayer.getSelectedCard().getBattleID());
             } else {
                 ((Minion) currentPlayer.getSelectedCard()).attack(opponentMinion.getCell());
                 currentPlayer.setSelectedCard(null);
@@ -219,7 +228,7 @@ public class InGameController {
             Player player = battle.getCurrenPlayer();
             Card friendlyCard = battle.getCurrenPlayer().getHand().getCardByName(cardName);
             if (player.getMana() < friendlyCard.getMP()) {
-                inGameView.printfError(InGameErrorType.NOT_HAVE_ENOUGH_MANA);
+                NewInGameView.notEnoughMana();
             } else if (friendlyCard instanceof Minion) {
                 if (!player.getCellsToInsertMinion().contains(cell)
                         || cell.hasCardOnIt()) {
@@ -255,12 +264,11 @@ public class InGameController {
         if (player.getSelectedCard() == null)
             inGameView.printfError(InGameErrorType.NO_SELECTED_CARD);
         else if (!((Minion) player.getSelectedCard()).isCanMove()) {
-            inGameView.printfError(InGameErrorType.CAN_NOT_MOVE);
+            NewInGameView.showError(InGameErrorType.CAN_NOT_MOVE);
         } else {
             Minion selectedMinion = (Minion) player.getSelectedCard();
             Cell targetCell = battle.getPlayGround().getCell(x, y);
             if (!selectedMinion.isValidCellForMove(targetCell)) {
-
                 inGameView.printfError(InGameErrorType.INVALID_TARGET);
             } else {
                 player.move(selectedMinion, targetCell);
@@ -332,5 +340,9 @@ public class InGameController {
         } else {
             player.getHero().useSpecialPower(targetCell);
         }
+    }
+
+    public Battle getBattle() {
+        return battle;
     }
 }

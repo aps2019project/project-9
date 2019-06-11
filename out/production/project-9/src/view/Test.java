@@ -3,7 +3,9 @@ package view;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import model.Account;
+import model.Battle;
 import model.Collection;
+import model.MultiPlayerBattle;
 
 import java.io.IOException;
 
@@ -22,7 +24,9 @@ public class Test extends Application {
             e.printStackTrace();
         }*/
         try {
-            new NewInGameView().showGame(primaryStage,null);
+            Account c = new Account("n","n");
+            new NewInGameView().showGame(primaryStage,new MultiPlayerBattle(new Account("m","m")
+                    ,"n",1,1));
         } catch (IOException e) {
             e.printStackTrace();
         }

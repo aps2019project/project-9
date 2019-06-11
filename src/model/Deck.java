@@ -93,7 +93,7 @@ public class Deck {
             cards.add(DefaultCards.getMinion(MinionName.EAGLE));
             cards.add(DefaultCards.getMinion(MinionName.JADOOGAR));
             cards.add(DefaultCards.getMinion(MinionName.JADOOGAR_AZAM));
-            cards.add(DefaultCards.getSpell(SpellName.WEAKENING));
+
             cards.add(DefaultCards.getMinion(MinionName.FARS_KAMANDAR));
             cards.add(DefaultCards.getMinion(MinionName.FARS_KAMANDAR));
             cards.add(DefaultCards.getMinion(MinionName.FARS_KAMANDAR));
@@ -103,6 +103,8 @@ public class Deck {
             cards.add(DefaultCards.getMinion(MinionName.FARS_PAHLAVAN));
             cards.add(DefaultCards.getMinion(MinionName.ASHKBOOS));
             cards.add(DefaultCards.getMinion(MinionName.FARS_KAMANDAR));
+            cards.add(DefaultCards.getSpell(SpellName.WEAKENING));
+            cards.add(DefaultCards.getSpell(SpellName.GOD_STRENGTH));
         } else if (name.equals("first_level")) {
             for (MinionName minion : FIRST_LEVEL_MINIONS) {
                 Minion minion1 = DefaultCards.getMinion(minion);

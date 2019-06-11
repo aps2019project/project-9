@@ -162,6 +162,7 @@ public class Battle {
                 secondPlayer.assignMana(secondPlayerMana);
             }
             secondPlayer.assignMana(secondPlayer.getMana() + secondPlayer.getManaForNextTurnIncrease());
+            firstPlayer.assignMana(firstPlayer.getMaxMana());
         } else {
             firstPlayerMana = firstPlayer.getMaxMana() + 1;
             if (firstPlayerMana > 9) {
@@ -172,6 +173,7 @@ public class Battle {
                 firstPlayer.assignMana(secondPlayerMana);
             }
             firstPlayer.assignMana(firstPlayer.getMana() + firstPlayer.getManaForNextTurnIncrease());
+            secondPlayer.assignMana(secondPlayer.getMaxMana());
         }
     }
 
