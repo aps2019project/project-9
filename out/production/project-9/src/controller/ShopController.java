@@ -1,11 +1,14 @@
 package controller;
 
+import javafx.stage.Stage;
 import model.Account;
+import model.Collection;
 import model.Shop;
 import model.cards.Card;
 import model.enumerations.ShopErrorType;
 import model.enumerations.ShopRequestType;
 import model.items.Item;
+import view.ShopMenu;
 import view.ShopRequest;
 import view.ShopView;
 
@@ -13,30 +16,21 @@ public class ShopController {
     private ShopView view = ShopView.getInstance();
     private Account loggedInAccount;
     private Shop shop = Shop.getInstance();
+    private ShopMenu shopMenu = ShopMenu.getInstance();
+
     public ShopController(Account loggedInAccount) {
         this.loggedInAccount = loggedInAccount;
     }
 
-    public void main() {
-        boolean isFinished = false;
-        do {
+    public void start(Stage stage) {
+        try {
+            shopMenu.start(stage, loggedInAccount.getCollection());
             ShopRequest request = new ShopRequest();
-            ShopView.getInstance().help();
-            request.getNewCommand();
-            if (request.getType() == ShopRequestType.EXIT)
-                isFinished = true;
-            if (!request.isValid()) {
-                view.printError(ShopErrorType.INVALID_COMMAND);
-                continue;
-            }
             switch (request.getType()) {
                 case SEARCH_COLLECTION:
                     searchCollection(request.getItemOrCardName());
                     break;
-                case SHOW_COLLECTION:
-                    view.showCollection(loggedInAccount.getCollection());
-                    break;
-                case SELL:
+               case SELL:
                     sell(request.getItemOrCardID());
                     break;
                 case BUY:
@@ -52,7 +46,9 @@ public class ShopController {
                     view.help();
                     break;
             }
-        } while (!isFinished);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     private void searchCollection(String itemOrCardName) {
@@ -93,10 +89,9 @@ public class ShopController {
             Item currentItem = shop.searchItemByName(itemOrCardName);
             if (loggedInAccount.getMoney() < currentItem.getCost())
                 view.printError(ShopErrorType.NOT_ENOUGH_MONEY);
-            else if(loggedInAccount.getCollection().getNumberOfItems() == 3){
+            else if (loggedInAccount.getCollection().getNumberOfItems() == 3) {
                 view.printError(ShopErrorType.YOUR_COLLECTION_HAS_THREE_ITEMS);
-            }
-            else {
+            } else {
                 shop.buy(currentItem, loggedInAccount);
                 view.printError(ShopErrorType.BOUGHT_SUCCESSFUL);
             }
@@ -107,10 +102,10 @@ public class ShopController {
         if (shop.searchCardByName(itemOrCardName) == null
                 && shop.searchItemByName(itemOrCardName) == null)
             view.printError(ShopErrorType.CARD_OR_ITEM_NOT_IN_SHOP);
-        else{
-            if(shop.searchCardByName(itemOrCardName)!=null){ // card not item
+        else {
+            if (shop.searchCardByName(itemOrCardName) != null) { // card not item
                 view.showCardID(shop.searchCardByName(itemOrCardName));
-            }else{ // item not card
+            } else { // item not card
                 view.showItemID(shop.searchItemByName(itemOrCardName));
             }
         }

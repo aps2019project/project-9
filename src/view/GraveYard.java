@@ -25,6 +25,10 @@ public class GraveYard {
         ImageView imageView = new ImageView(image);
         Group root = new Group(imageView);
 
+        /*Media media = new Media(new File("src\\res\\music\\backgroundmusic.mp3").toURI().toString());
+        MediaPlayer player = new MediaPlayer(media);
+        player.*/
+
         setTableView(root);
         setBackToGameButton(root);
 
@@ -32,9 +36,10 @@ public class GraveYard {
         imageView.setFitWidth(1600);
         Scene scene = new Scene(root, stage.getMaxHeight(), stage.getMaxWidth());
         stage.setScene(scene);
-        scene.getStylesheets().add("src/res/shopTable.css");
+        scene.getStylesheets().add("src/res/CSS/shopTable.css");
         int a = 0;
         stage.show();
+
     }
 
     private void setTableView(Group group) {

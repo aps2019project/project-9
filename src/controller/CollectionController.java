@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.stage.Stage;
 import model.Account;
 import model.Deck;
 import model.cards.Card;
@@ -9,68 +10,46 @@ import model.enumerations.CardType;
 import model.enumerations.CollectionErrorType;
 import model.enumerations.CollectionRequestType;
 import model.items.Item;
+import view.CollectionMenu;
 import view.CollectionRequest;
 import view.CollectionView;
 
 public class CollectionController {
     private Account loggedInAccount;
     private CollectionView view = CollectionView.getInstance();
+    private CollectionMenu collectionMenu;
 
     public CollectionController(Account loggedInAccount) {
         this.loggedInAccount = loggedInAccount;
+        collectionMenu = new CollectionMenu(this);
     }
 
-    public void main() {
-        boolean isFinished = false;
-        do {
-            view.help();
-            CollectionRequest request = new CollectionRequest();
-            request.getNewCommand();
-            if (request.getType() == CollectionRequestType.EXIT) {
-                isFinished = true;
-            }
-            if (!request.isValid()) {
-                view.printError(CollectionErrorType.INVALID_COMMAND);
-                continue;
-            }
-            switch (request.getType()) {
-                case SHOW_ALL_DECKS:
-                    view.showAllDecks(loggedInAccount.getDecks(), loggedInAccount.getMainDeck());
-                    break;
-                case VALIDATE_DECK:
-                    validateDeck(request.getDeckName());
-                    break;
-                case SELECT_DECK:
-                    selectDeck(request.getDeckName());
-                    break;
-                case DELETE_DECK:
-                    deleteDeck(request.getDeckName());
-                    break;
-                case CREATE_DECK:
-                    createDeck(request.getDeckName());
-                    break;
-                case SHOW_DECK:
-                    showDeck(request.getDeckName());
-                    break;
-                case SEARCH:
-                    search(request.getCardOrItamName());
-                    break;
-                case REMOVE:
-                    remove(request.getDeckName(), request.getCardOrItamName());
-                    break;
-                case SHOW:
-                    view.showCollection(loggedInAccount.getCollection());
-                    break;
-                case SAVE:
-                    // I don't know what to do here ... :)
-                    break;
-                case ADD:
-                    add(request.getDeckName(),request.getCardOrItamName());
-                    break;
-                case HELP:
-                    break;
-            }
-        } while (!isFinished);
+    public void main(Stage stage) {
+        collectionMenu.start(stage);
+        CollectionRequest request = new CollectionRequest();
+        switch (request.getType()) {
+            case VALIDATE_DECK:
+                validateDeck(request.getDeckName());
+                break;
+            case SHOW_DECK:
+                showDeck(request.getDeckName());
+                break;
+            case SEARCH:
+                search(request.getCardOrItamName());
+                break;
+            case REMOVE:
+                remove(request.getDeckName(), request.getCardOrItamName());
+                break;
+            case SHOW:
+                view.showCollection(loggedInAccount.getCollection());
+                break;
+            case SAVE:
+                //TODO
+                break;
+            case ADD:
+                add(request.getDeckName(), request.getCardOrItamName());
+                break;
+        }
     }
 
     private void validateDeck(String deckName) {
@@ -87,32 +66,24 @@ public class CollectionController {
         }
     }
 
-    private void selectDeck(String deckName) {
-        if (loggedInAccount.findDeckByName(deckName) == null)
-            view.printError(CollectionErrorType.DECK_NAME_NOT_EXISTS);
-        else {
-            Deck currentDeck = loggedInAccount.findDeckByName(deckName);
-            if (currentDeck.isValid())
-                loggedInAccount.selectMainDeck(loggedInAccount.findDeckByName(deckName));
-            else
-                view.printError(CollectionErrorType.DECK_NOT_VALID);
-        }
+    public void selectDeck(String deckName) {
+        Deck currentDeck = loggedInAccount.findDeckByName(deckName);
+        if (currentDeck.isValid())
+            loggedInAccount.selectMainDeck(loggedInAccount.findDeckByName(deckName));
+        else
+            collectionMenu.printError(CollectionErrorType.DECK_NOT_VALID);
     }
 
-    private void deleteDeck(String deckName) {
-        if (loggedInAccount.findDeckByName(deckName) == null)
-            view.printError(CollectionErrorType.DECK_NAME_NOT_EXISTS);
-        else {
-            loggedInAccount.deleteDeck(deckName);
-        }
+    public void deleteDeck(String deckName) {
+        loggedInAccount.deleteDeck(deckName);
     }
 
-    private void createDeck(String newDeckName) {
+    public void createDeck(String newDeckName) {
         if (loggedInAccount.findDeckByName(newDeckName) != null) {
-            view.printError(CollectionErrorType.DECK_NAME_EXISTS);
+            collectionMenu.printError(CollectionErrorType.DECK_NAME_EXISTS);
         } else {
             loggedInAccount.createNewDeck(newDeckName);
-            view.printError(CollectionErrorType.DECK_CREATED);
+            collectionMenu.printError(CollectionErrorType.DECK_CREATED);
         }
     }
 
@@ -175,7 +146,7 @@ public class CollectionController {
                             view.printError(CollectionErrorType.DECK_HAS_A_HERO);
                         } else if (currentMinion instanceof Hero) { // minion is hero
                             currentDeck.setHero((Hero) currentMinion);
-                        } else{ // it is not hero just minion
+                        } else { // it is not hero just minion
                             if (currentDeck.canAddCard())
                                 currentDeck.addCard(currentCard);
                             else
@@ -189,13 +160,17 @@ public class CollectionController {
                     }
                 } else { // it is item not card
                     Item currentItem = loggedInAccount.getCollection().getItem(cardOrItemName);
-                    if(currentDeck.hasItem())
+                    if (currentDeck.hasItem())
                         view.printError(CollectionErrorType.DECK_ALREADY_HAS_AN_ITEM);
-                    else{
+                    else {
                         currentDeck.addItem(currentItem);
                     }
                 }
             }
         }
+    }
+
+    public Account getLoggedInAccount() {
+        return loggedInAccount;
     }
 }

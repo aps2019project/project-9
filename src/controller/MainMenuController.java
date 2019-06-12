@@ -1,50 +1,51 @@
 package controller;
 
+import javafx.stage.Stage;
 import model.Account;
 import model.enumerations.MainMenuErrorType;
 import view.MainMenu;
-import view.MainMenuRequest;
 
 public class MainMenuController {
     private MainMenu mainMenu = MainMenu.getInstance();
+    private static MainMenuController mainMenuController = new MainMenuController();
+
+    public Account getLoggedInAccount() {
+        return loggedInAccount;
+    }
+
     private Account loggedInAccount;
+
+    private MainMenuController() {
+    }
+
+    public static MainMenuController getInstance() {
+        return mainMenuController;
+    }
 
     MainMenuController(Account loggedInAccount) {
         this.loggedInAccount = loggedInAccount;
     }
 
-    public void main(String[] args) {
-        //mainMenu.start(args);
-        MainMenuRequest request = mainMenu.getRequest();
-        switch (request.getCommand()) {
-            case "battle":
-                goBattleMenu(loggedInAccount);
-                break;
-            case "shop":
-                goShopMenu(loggedInAccount);
-                break;
-            case "collection":
-                goCollectionMenu(loggedInAccount);
-                break;
-        }
+    public void start(Stage stage) {
+        mainMenu.start(stage);
     }
 
-    private void goCollectionMenu(Account loggedInAccount) {
+    public void goCollectionMenu(Account loggedInAccount, Stage stage) {
         CollectionController collectionController = new CollectionController(loggedInAccount);
-        collectionController.main();
+        collectionController.main(stage);
     }
 
-    private void goBattleMenu(Account loggedInAccount) {
+    public void goBattleMenu(Stage stage) {
         if (loggedInAccount.getMainDeck() == null || !loggedInAccount.getMainDeck().isValid()) {
             mainMenu.printError(MainMenuErrorType.SELECTED_DECK_INVALID);
         } else {
             BattleMenuController battleMenuController = new BattleMenuController(loggedInAccount);
-            battleMenuController.main();
+            battleMenuController.main(stage);
         }
     }
 
-    private void goShopMenu(Account loggedInAccount) {
+    public void goShopMenu(Account loggedInAccount, Stage stage) {
         ShopController shopController = new ShopController(loggedInAccount);
-        shopController.main();
+        shopController.start(stage);
     }
 }

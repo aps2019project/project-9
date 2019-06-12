@@ -1,79 +1,196 @@
 package view;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
+import controller.BattleMenuController;
+import controller.MainMenuController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceDialog;
+import javafx.scene.control.Dialog;
 import javafx.stage.Stage;
 import model.Account;
 import model.Deck;
+import model.enumerations.BattleMenuErrorType;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class BattleMenu {
-    public void start(Stage stage) throws IOException {
-        stage.setMaximized(true);
+    private Account logInAccount;
+    private BattleMenuController controller;
 
-        FXMLLoader loader = new FXMLLoader(new URL("file:src\\res\\BattleMenu.fxml"));
-        Parent parent = loader.load();
-
-        Scene scene = new Scene(parent, 100, 100);
-        stage.setScene(scene);
-
-        stage.show();
+    public BattleMenu(Account logInAccount, BattleMenuController controller) {
+        this.logInAccount = logInAccount;
+        this.controller = controller;
     }
 
-    public void storyCustom(Stage stage) throws IOException {
-        stage.setMaximized(true);
+    public void start(Stage stage) {
+        try {
+            stage.setMaximized(true);
 
-        FXMLLoader loader = new FXMLLoader(new URL("file:src\\res\\StoryCustom.fxml"));
-        Parent parent = loader.load();
+            FXMLLoader loader = new FXMLLoader(new URL("file:src\\res\\FXML\\BattleMenu.fxml"));
+            Parent parent = loader.load();
+            setButttomnsEventbattle(parent, stage);
+            Scene scene = new Scene(parent, 100, 100);
+            stage.setScene(scene);
 
-        Scene scene = new Scene(parent, 1300, 600);
-        stage.setScene(scene);
-
-        stage.show();
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    public void storyMenu(Stage stage) throws IOException {
-        stage.setMaximized(true);
-
-        FXMLLoader loader = new FXMLLoader(new URL("file:src\\res\\StoryMenu.fxml"));
-        Parent parent = loader.load();
-
-        Scene scene = new Scene(parent, 1300, 600);
-        stage.setScene(scene);
-
-        stage.show();
+    private void setButttomnsEventbattle(Parent parent, Stage stage) {
+        Button multi = (Button) parent.lookup("#multi");
+        multi.setOnMouseClicked(mouseEvent -> multiPlayerPressed());
+        Button single = (Button) parent.lookup("#single");
+        single.setOnMouseClicked(mouseEvent -> singlePlayerPressed(stage));
+        Button back = (Button) parent.lookup("#back");
+        back.setOnMouseClicked(mouseEvent -> MainMenuController.getInstance().start(stage));
     }
 
-    void customGamePresed(Account loggedInAccount){
+    private void singlePlayerPressed(Stage stage) {
+        try {
+            FXMLLoader loader = new FXMLLoader(new URL("file:src\\res\\FXML\\StoryCustom.fxml"));
+            Parent parent = loader.load();
+            setButttomnsEventsingle(parent, stage);
+            Scene scene = new Scene(parent, 1300, 600);
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void setButttomnsEventsingle(Parent parent, Stage stage) {
+        Button story = (Button) parent.lookup("#story");
+        story.setOnMouseClicked(mouseEvent -> storyMenuShow(stage));
+        Button custom = (Button) parent.lookup("#custom");
+        custom.setOnMouseClicked(mouseEvent -> customGamePressed(stage));
+        Button back = (Button) parent.lookup("#back");
+        back.setOnMouseClicked(mouseEvent -> start(stage));
+    }
+
+    private void storyMenuShow(Stage stage) {
+        try {
+            stage.setMaximized(true);
+
+            FXMLLoader loader = new FXMLLoader(new URL("file:src\\res\\FXML\\StoryMenu.fxml"));
+            Parent parent = loader.load();
+            setStoryButtons(parent, stage);
+            Scene scene = new Scene(parent, 1300, 600);
+            stage.setScene(scene);
+
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void setStoryButtons(Parent parent, Stage stage) {
+        Button easy = (Button) parent.lookup("#easy");
+        easy.setOnMouseClicked(mouseEvent -> {
+            if (logInAccount.getMainDeck().isValid())
+                controller.startStoryModeGame(1);
+            else {
+                printError(BattleMenuErrorType.YOUR_MAIN_DECK_NOT_VALID,stage);
+            }
+        });
+
+        Button inter = (Button) parent.lookup("#intermediate");
+        inter.setOnMouseClicked(mouseEvent -> {
+            if (logInAccount.getMainDeck().isValid())
+                controller.startStoryModeGame(2);
+            else {
+                printError(BattleMenuErrorType.YOUR_MAIN_DECK_NOT_VALID,stage);
+            }
+        });
+
+        Button hard = (Button) parent.lookup("#intermediate");
+        hard.setOnMouseClicked(mouseEvent -> {
+            if (logInAccount.getMainDeck().isValid())
+                controller.startStoryModeGame(3);
+            else {
+                printError(BattleMenuErrorType.YOUR_MAIN_DECK_NOT_VALID,stage);
+            }
+        });
+
+        Button back = (Button) parent.lookup("#back");
+        back.setOnMouseClicked(mouseEvent -> singlePlayerPressed(stage));
+    }
+
+    void customGamePressed(Stage stage) {
         List<String> choices = new ArrayList<>();
-        for (Deck deck : loggedInAccount.getDecks()) {
+        for (Deck deck : logInAccount.getDecks()) {
             choices.add(deck.getName());
         }
-
-        ChoiceDialog<String> dialog = new ChoiceDialog<>(loggedInAccount.getMainDeck().getName(), choices);
-        dialog.setTitle("Choice Your Deck");
-        dialog.setHeaderText("Please Choice the deck you wanna play with");
+        ChoiceDialog<String> dialog = new ChoiceDialog<>(logInAccount.getMainDeck().getName(), choices);
+        dialog.setTitle("Custom Game");
+        dialog.setHeaderText("Please Select the Deck You wanna play with");
         dialog.setContentText("Deck:");
         Optional<String> result = dialog.showAndWait();
 
+        result.ifPresent(letter -> {
+            List<String> modes = new ArrayList<>();
+            modes.add("Hero Killed");
+            modes.add("multi Flags");
+            modes.add("One Flag");
 
-        //TODO
-        //result.ifPresent(letter -> System.out.println("Your choice: " + letter));
+            ChoiceDialog<String> d = new ChoiceDialog<>("", modes);
+            d.setTitle("Custom Game");
+            d.setHeaderText("Please Select the Game Type");
+            d.setContentText("Types:");
+            Optional<String> r = d.showAndWait();
+            r.ifPresent(l -> handleGameTypes(l,letter,stage));
+        });
     }
-    void multiPlayerPreesed(Account loggedAccount){
+
+    private void handleGameTypes(String string, String deckName, Stage stage){
+        switch (string) {
+            case "Hero Killed":
+                if (logInAccount.findDeckByName(deckName).isValid())
+                    controller.startCustomGame(deckName, 1, 0);
+                else {
+                    printError(BattleMenuErrorType.DECK_NOT_VALID,stage);
+                }
+                break;
+            case "One Flag":
+                if (logInAccount.findDeckByName(deckName).isValid())
+                    controller.startCustomGame(deckName, 2, 1);
+                else {
+                    printError(BattleMenuErrorType.DECK_NOT_VALID,stage);
+                }
+                break;
+            case "multi Flags":
+                List<Integer> c = new ArrayList<>();
+                for (int i = 1; i < 31; i++) {
+                    c.add(i);
+                }
+                ChoiceDialog<Integer> dio = new ChoiceDialog<>(1, c);
+                dio.setTitle("Custom Game");
+                dio.setHeaderText("Please Select number of flags");
+                dio.setContentText("number:");
+                Optional<Integer> result1 = dio.showAndWait();
+
+                result1.ifPresent(p -> {
+                    if (logInAccount.findDeckByName(deckName).isValid())
+                        controller.startCustomGame(deckName, 3, p);
+                    else {
+                        printError(BattleMenuErrorType.DECK_NOT_VALID,stage);
+                    }
+                });
+                break;
+        }
+    }
+
+    private void multiPlayerPressed() {
         List<String> choices = new ArrayList<>();
         for (Account account : Account.getAccounts()) {
-            if (!account.getUserName().equals(loggedAccount.getUserName()))
+            if (!account.getUserName().equals(logInAccount.getUserName()))
                 choices.add(account.getUserName());
         }
         ChoiceDialog<String> dialog = new ChoiceDialog<>("", choices);
@@ -82,8 +199,22 @@ public class BattleMenu {
         dialog.setContentText("User Name:");
         Optional<String> result = dialog.showAndWait();
 
+        result.ifPresent(letter -> {
+            new Alert(Alert.AlertType.WARNING, "sorry this feature isn't available now");
+        });
+    }
 
-        //TODO
-        //result.ifPresent(letter -> System.out.println("Your choice: " + letter));
+    private void printError(BattleMenuErrorType error, Stage stage) {
+        switch (error){
+            case YOUR_MAIN_DECK_NOT_VALID:
+                new Alert(Alert.AlertType.WARNING, "Your Main Deck is not valid");
+                storyMenuShow(stage);
+                break;
+            case DECK_NOT_VALID:
+                new Alert(Alert.AlertType.WARNING, "Your Selected Deck is not valid");
+                singlePlayerPressed(stage);
+                break;
+        }
+
     }
 }
