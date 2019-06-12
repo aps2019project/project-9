@@ -9,15 +9,18 @@ import model.enumerations.CardType;
 import model.enumerations.CollectionErrorType;
 import model.enumerations.CollectionRequestType;
 import model.items.Item;
+import view.CollectionMenu;
 import view.CollectionRequest;
 import view.CollectionView;
 
 public class CollectionController {
     private Account loggedInAccount;
     private CollectionView view = CollectionView.getInstance();
+    private CollectionMenu collectionMenu;
 
     public CollectionController(Account loggedInAccount) {
         this.loggedInAccount = loggedInAccount;
+        collectionMenu = new CollectionMenu(this);
     }
 
     public void main() {
@@ -62,10 +65,10 @@ public class CollectionController {
                     view.showCollection(loggedInAccount.getCollection());
                     break;
                 case SAVE:
-                    // I don't know what to do here ... :)
+                    //TODO
                     break;
                 case ADD:
-                    add(request.getDeckName(),request.getCardOrItamName());
+                    add(request.getDeckName(), request.getCardOrItamName());
                     break;
                 case HELP:
                     break;
@@ -87,7 +90,7 @@ public class CollectionController {
         }
     }
 
-    private void selectDeck(String deckName) {
+    public void selectDeck(String deckName) {
         if (loggedInAccount.findDeckByName(deckName) == null)
             view.printError(CollectionErrorType.DECK_NAME_NOT_EXISTS);
         else {
@@ -99,20 +102,16 @@ public class CollectionController {
         }
     }
 
-    private void deleteDeck(String deckName) {
-        if (loggedInAccount.findDeckByName(deckName) == null)
-            view.printError(CollectionErrorType.DECK_NAME_NOT_EXISTS);
-        else {
-            loggedInAccount.deleteDeck(deckName);
-        }
+    public void deleteDeck(String deckName) {
+        loggedInAccount.deleteDeck(deckName);
     }
 
-    private void createDeck(String newDeckName) {
+    public void createDeck(String newDeckName) {
         if (loggedInAccount.findDeckByName(newDeckName) != null) {
-            view.printError(CollectionErrorType.DECK_NAME_EXISTS);
+            collectionMenu.printError(CollectionErrorType.DECK_NAME_EXISTS);
         } else {
             loggedInAccount.createNewDeck(newDeckName);
-            view.printError(CollectionErrorType.DECK_CREATED);
+            collectionMenu.printError(CollectionErrorType.DECK_CREATED);
         }
     }
 
@@ -175,7 +174,7 @@ public class CollectionController {
                             view.printError(CollectionErrorType.DECK_HAS_A_HERO);
                         } else if (currentMinion instanceof Hero) { // minion is hero
                             currentDeck.setHero((Hero) currentMinion);
-                        } else{ // it is not hero just minion
+                        } else { // it is not hero just minion
                             if (currentDeck.canAddCard())
                                 currentDeck.addCard(currentCard);
                             else
@@ -189,13 +188,17 @@ public class CollectionController {
                     }
                 } else { // it is item not card
                     Item currentItem = loggedInAccount.getCollection().getItem(cardOrItemName);
-                    if(currentDeck.hasItem())
+                    if (currentDeck.hasItem())
                         view.printError(CollectionErrorType.DECK_ALREADY_HAS_AN_ITEM);
-                    else{
+                    else {
                         currentDeck.addItem(currentItem);
                     }
                 }
             }
         }
+    }
+
+    public Account getLoggedInAccount() {
+        return loggedInAccount;
     }
 }
