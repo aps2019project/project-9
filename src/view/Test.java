@@ -22,7 +22,7 @@ public class Test extends Application {
         }*/
         try {
             Account c = new Account("n","n");
-            new NewInGameView().showGame(primaryStage,new SinglePlayerBattle(1,c));
+            new GraphicalInGameView().showGame(primaryStage,new SinglePlayerBattle(1,c));
         } catch (IOException e) {
             e.printStackTrace();
         }

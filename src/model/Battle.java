@@ -9,8 +9,8 @@ import model.cards.Spell;
 import model.cellaffects.CellAffect;
 import model.enumerations.GameMode;
 import model.enumerations.SpecialPowerActivationTime;
+import view.GraphicalInGameView;
 import view.InGameView;
-import view.NewInGameView;
 
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
@@ -224,7 +224,7 @@ public class Battle {
         } else if (!(this instanceof SinglePlayerBattle)) {
             Account.findAccount(secondPlayer.getName()).wins();
         }
-        NewInGameView.finished(battleResult);
+        GraphicalInGameView.finished(battleResult);
     }
 
     public PlayGround getPlayGround() {

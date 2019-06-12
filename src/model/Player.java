@@ -8,8 +8,7 @@ import model.cards.Spell;
 import model.cellaffects.CellAffect;
 import model.enumerations.*;
 import model.items.*;
-import view.AiAction;
-import view.NewInGameView;
+import view.GraphicalInGameView;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -304,7 +303,7 @@ public class Player {
         insertAiAction();
         moveAiAction();
         attackAiAction();
-        NewInGameView.alertAiAction(action);
+        GraphicalInGameView.alertAiAction(action);
         endTurn();
     }
 
@@ -314,7 +313,7 @@ public class Player {
                 if (minion.isCanMove()) {
                     Cell target = targetAiMove(minion);
                     move(minion, target);
-                    //NewInGameView.alertAiAction(AiAction.MOVE,minion,target);
+                    //GraphicalInGameView.alertAiAction(AiAction.MOVE,minion,target);
                     action += "\nMinion : " + minion.getName() + "\nmoved to : " + target.getX() + " " + target.getY();
                 }
             } catch (Exception e) {
@@ -324,7 +323,7 @@ public class Player {
 
     private Cell targetAiMove(Minion minion) throws Exception {
         Cell target = getOpponent().getHero().getCell();
-        ArrayList<Cell> possibleCellsForMove = NewInGameView.getPossibleCellsForMove(minion);
+        ArrayList<Cell> possibleCellsForMove = GraphicalInGameView.getPossibleCellsForMove(minion);
         if (possibleCellsForMove.size() > 0) {
             PlayGround playGround = battle.getPlayGround();
             if (playGround.getManhatanDistance(target, minion.getCell()) <= 2)
@@ -347,11 +346,11 @@ public class Player {
         ArrayList<Card> cards = hand.getCards();
         ArrayList<Card> toInsert = new ArrayList<>();
         for (Card card : cards) {
-            ArrayList<Cell> possibleCells = NewInGameView.getPossibleCells(card);
+            ArrayList<Cell> possibleCells = GraphicalInGameView.getPossibleCells(card);
             if (possibleCells.size() > 0) {
                 if (mana >= card.getMP()) {
                     InGameController.finalThingsInInsertingCard(card, this, possibleCells.get(0));
-                    //NewInGameView.alertAiAction(AiAction.INSERT, card, possibleCells.get(0));
+                    //GraphicalInGameView.alertAiAction(AiAction.INSERT, card, possibleCells.get(0));
                     Cell cell = possibleCells.get(0);
                     action += "\nYour Opponent :\nInserted " + card.getName() + "\nin " + cell.getX() + " " + cell.getY();
                     break;
@@ -363,7 +362,7 @@ public class Player {
     private void attackAiAction() {
         for (Minion minion : getMinionsInPlayGround()) {
             if (minion.isCanAttack()) {
-                ArrayList<Cell> possibleCellsForAttack = NewInGameView.getPossibleCellsForAttack(minion);
+                ArrayList<Cell> possibleCellsForAttack = GraphicalInGameView.getPossibleCellsForAttack(minion);
                 if (possibleCellsForAttack.size() > 0) {
                     Cell target;
                     if (possibleCellsForAttack.contains(getOpponent().getHero().getCell())) {
@@ -372,7 +371,7 @@ public class Player {
                         target = possibleCellsForAttack.get(0);
                     }
                     minion.attack(target);
-                    //NewInGameView.alertAiAction(AiAction.ATTACK, minion, target);
+                    //GraphicalInGameView.alertAiAction(AiAction.ATTACK, minion, target);
                     action += "\n" + minion.getName() + " :\nattacked to the Cell: \n"
                             + target.getX() + " " + target.getY();
                     break;

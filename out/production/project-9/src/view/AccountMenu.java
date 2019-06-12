@@ -79,8 +79,8 @@ public class AccountMenu {
             imageView.setFitHeight(1050);
             Group root = new Group();
 
-            Button createAccountButton = setCreateAccountButton(account,stage);
-            Button loginButton = setLoginButton(account,stage);
+            Button createAccountButton = setCreateAccountButton(account, stage);
+            Button loginButton = setLoginButton(account, stage);
             Button showLeaderBoard = setLeaderBoardButton();
             Button helpButton = setHelpButton();
 
@@ -148,7 +148,7 @@ public class AccountMenu {
                 result.ifPresent(usernamePassword -> {
                     accountRequest.setUserName(usernamePassword.getKey());
                     accountRequest.setPassWord(usernamePassword.getValue());
-                    account.createAccount(accountRequest,stage);
+                    account.createAccount(accountRequest, stage);
                 });
             });
             return button;
@@ -225,7 +225,7 @@ public class AccountMenu {
             result.ifPresent(usernamePassword -> {
                 accountRequest.setUserName(usernamePassword.getKey());
                 accountRequest.setPassWord(usernamePassword.getValue());
-                account.login(accountRequest,stage);
+                account.login(accountRequest, stage);
             });
         });
         return button;

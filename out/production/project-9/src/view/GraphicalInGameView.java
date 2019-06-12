@@ -1,7 +1,6 @@
 package view;
 
 import controller.InGameController;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point3D;
 import javafx.scene.*;
@@ -20,8 +19,6 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.*;
 import model.Cell;
-import model.buffs.HollyBuff;
-import model.buffs.PoisonBuff;
 import model.cards.Card;
 import model.cards.Hero;
 import model.cards.Minion;
@@ -41,7 +38,7 @@ import java.util.HashMap;
 import java.util.Random;
 
 
-public class NewInGameView {
+public class GraphicalInGameView {
     private static InGameController inGameController;
     private static TextArea descLabel;
     private static Parent parent;
@@ -54,10 +51,10 @@ public class NewInGameView {
     public void showGame(Stage stage, Battle battle) throws IOException {
         inGameController = new InGameController(battle);
         Group group = new Group();
-        NewInGameView.group = group;
+        GraphicalInGameView.group = group;
         FXMLLoader fxmlLoader = new FXMLLoader(new URL("file:src/res/GameView.fxml"));
         Parent parent = fxmlLoader.load();
-        NewInGameView.parent = parent;
+        GraphicalInGameView.parent = parent;
         group.getChildren().add(parent);
         descLabel = ((TextArea) parent.lookup("#description"));
         Scene scene = new Scene(group);
