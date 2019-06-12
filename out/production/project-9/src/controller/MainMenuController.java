@@ -7,6 +7,7 @@ import view.MainMenu;
 
 public class MainMenuController {
     private MainMenu mainMenu = MainMenu.getInstance();
+    private static MainMenuController mainMenuController = new MainMenuController();
 
     public Account getLoggedInAccount() {
         return loggedInAccount;
@@ -14,12 +15,19 @@ public class MainMenuController {
 
     private Account loggedInAccount;
 
+    private MainMenuController() {
+    }
+
+    public static MainMenuController getInstance() {
+        return mainMenuController;
+    }
+
     MainMenuController(Account loggedInAccount) {
         this.loggedInAccount = loggedInAccount;
     }
 
     public void start(Stage stage) {
-        mainMenu.start(stage,this);
+        mainMenu.start(stage);
     }
 
     public void goCollectionMenu(Account loggedInAccount) {
@@ -27,12 +35,12 @@ public class MainMenuController {
         collectionController.main();
     }
 
-    public void goBattleMenu(Account loggedInAccount) {
+    public void goBattleMenu(Stage stage) {
         if (loggedInAccount.getMainDeck() == null || !loggedInAccount.getMainDeck().isValid()) {
             mainMenu.printError(MainMenuErrorType.SELECTED_DECK_INVALID);
         } else {
             BattleMenuController battleMenuController = new BattleMenuController(loggedInAccount);
-            battleMenuController.main();
+            battleMenuController.main(stage);
         }
     }
 

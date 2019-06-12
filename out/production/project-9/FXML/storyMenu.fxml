@@ -15,7 +15,7 @@
             <Image url="@../battleMenu.jpg" />
          </image>
       </ImageView>
-      <Button layoutX="1245.0" layoutY="679.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="134.0" style="-fx-background-color: transparent;" text="Back">
+      <Button fx:id="back" layoutX="1245.0" layoutY="679.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="134.0" style="-fx-background-color: transparent;" text="Back">
          <font>
             <Font name="DS Stain" size="32.0" />
          </font>
@@ -33,7 +33,7 @@
             <Image url="@../easy.png" />
          </image>
       </ImageView>
-      <Button fx:id="slider" layoutX="225.0" layoutY="200.0" mnemonicParsing="false" prefHeight="430.0" prefWidth="270.0" style="-fx-background-color: transparent; -fx-shape: &quot;M 400 100 Q 350 100 300 150 L 300 350 Q 350 400 400 400 Q 450 400 500 350 L 500 150 Q 450 100 400 100&quot;;" text="Easy" textFill="#17943f" textOverrun="CLIP">
+      <Button fx:id="easy" layoutX="225.0" layoutY="200.0" mnemonicParsing="false" prefHeight="430.0" prefWidth="270.0" style="-fx-background-color: transparent; -fx-shape: &quot;M 400 100 Q 350 100 300 150 L 300 350 Q 350 400 400 400 Q 450 400 500 350 L 500 150 Q 450 100 400 100&quot;;" text="Easy" textFill="#17943f" textOverrun="CLIP">
          <font>
             <Font name="DS Stain" size="34.0" />
          </font>
@@ -43,7 +43,7 @@
             <Image url="@../swordm.png" />
          </image>
       </ImageView>
-      <Button layoutX="624.0" layoutY="196.0" mnemonicParsing="false" prefHeight="430.0" prefWidth="302.0" style="-fx-shape: &quot;M 400 100 Q 350 100 300 150 L 300 350 Q 350 400 400 400 Q 450 400 500 350 L 500 150 Q 450 100 400 100&quot;; -fx-background-color: transparent;" text="Internidate" textFill="#8c5c0a">
+      <Button fx:id="intermediate" layoutX="624.0" layoutY="196.0" mnemonicParsing="false" prefHeight="430.0" prefWidth="302.0" style="-fx-shape: &quot;M 400 100 Q 350 100 300 150 L 300 350 Q 350 400 400 400 Q 450 400 500 350 L 500 150 Q 450 100 400 100&quot;; -fx-background-color: transparent;" text="Intermidate" textFill="#8c5c0a">
          <font>
             <Font name="DS Stain" size="33.0" />
          </font>
@@ -53,7 +53,7 @@
             <Image url="@../hard.png" />
          </image>
       </ImageView>
-      <Button layoutX="1022.0" layoutY="201.0" mnemonicParsing="false" prefHeight="430.0" prefWidth="302.0" style="-fx-shape: &quot;M 400 100 Q 350 100 300 150 L 300 350 Q 350 400 400 400 Q 450 400 500 350 L 500 150 Q 450 100 400 100&quot;; -fx-background-color: transparent;" text="Hard" textFill="#af1b1b">
+      <Button fx:id="hard" layoutX="1022.0" layoutY="201.0" mnemonicParsing="false" prefHeight="430.0" prefWidth="302.0" style="-fx-shape: &quot;M 400 100 Q 350 100 300 150 L 300 350 Q 350 400 400 400 Q 450 400 500 350 L 500 150 Q 450 100 400 100&quot;; -fx-background-color: transparent;" text="Hard" textFill="#af1b1b">
          <font>
             <Font name="DS Stain" size="33.0" />
          </font>

@@ -30,7 +30,7 @@ public class MainMenu {
         return MAINMENU;
     }
 
-    public void start(Stage stage, MainMenuController controller) {
+    public void start(Stage stage) {
         try {
             HEIGHT = stage.getMaxHeight();
             WIDTH = stage.getMaxWidth();
@@ -47,7 +47,7 @@ public class MainMenu {
             imageView.setFitHeight(900);
 
             Group root = new Group(imageView, text);
-            setButtons(root,controller,stage);
+            setButtons(root, MainMenuController.getInstance(), stage);
             Scene scene = new Scene(root, WIDTH, HEIGHT);
             stage.setScene(scene);
             stage.show();
@@ -79,7 +79,7 @@ public class MainMenu {
             shop.setScaleY(2.5);
             shop.setStyle("-fx-background-color: rgba(0,0,0,0);-fx-text-fill: #020d7f;");
             shop.setOnMouseClicked(event -> {
-                controller.goShopMenu(controller.getLoggedInAccount(),stage);
+                controller.goShopMenu(controller.getLoggedInAccount(), stage);
             });
 
             Font battleFont = Font.loadFont(new FileInputStream(new File("src/res/Font/ALGER.TTF")), 35);
@@ -91,7 +91,7 @@ public class MainMenu {
             battle.setScaleY(2.5);
             battle.setStyle("-fx-background-color: rgba(0,0,0,0);-fx-text-fill: #020d7f;");
             battle.setOnMouseClicked(event -> {
-                controller.goBattleMenu(controller.getLoggedInAccount());
+                controller.goBattleMenu(stage);
             });
 
             Font logOutFont = Font.loadFont(new FileInputStream(new File("src/res/Font/ALGER.TTF")), 26);

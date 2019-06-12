@@ -12,30 +12,30 @@
    <children>
       <ImageView fitHeight="810.0" fitWidth="1550.0" pickOnBounds="true">
          <image>
-            <Image url="@battleMenu.jpg" />
+            <Image url="@../battleMenu.jpg" />
          </image>
       </ImageView>
       <ImageView fitHeight="430.0" fitWidth="406.0" layoutX="445.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@twoswords.png" />
+            <Image url="@../twoswords.png" />
          </image>
       </ImageView>
-      <Button layoutX="444.0" layoutY="189.0" mnemonicParsing="false" onAction="#multiPlayerClicked" prefHeight="430.0" prefWidth="270.0" style="-fx-background-color: transparent; -fx-shape: &quot;M 400 100 Q 350 100 300 150 L 300 350 Q 350 400 400 400 Q 450 400 500 350 L 500 150 Q 450 100 400 100&quot;;" text="Multi Player">
+      <Button fx:id="multi" layoutX="444.0" layoutY="189.0" mnemonicParsing="false" prefHeight="430.0" prefWidth="270.0" style="-fx-background-color: transparent; -fx-shape: &quot;M 400 100 Q 350 100 300 150 L 300 350 Q 350 400 400 400 Q 450 400 500 350 L 500 150 Q 450 100 400 100&quot;;" text="Multi Player">
          <font>
             <Font name="DS Stain" size="34.0" />
          </font>
       </Button>
       <ImageView fitHeight="430.0" fitWidth="291.0" layoutX="842.0" layoutY="189.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Untitled.png" />
+            <Image url="@../Untitled.png" />
          </image>
       </ImageView>
-      <Button layoutX="833.0" layoutY="191.0" mnemonicParsing="false" prefHeight="430.0" prefWidth="302.0" style="-fx-shape: &quot;M 400 100 Q 350 100 300 150 L 300 350 Q 350 400 400 400 Q 450 400 500 350 L 500 150 Q 450 100 400 100&quot;; -fx-background-color: transparent;" text="Single Player">
+      <Button fx:id="single" layoutX="833.0" layoutY="191.0" mnemonicParsing="false" prefHeight="430.0" prefWidth="302.0" style="-fx-shape: &quot;M 400 100 Q 350 100 300 150 L 300 350 Q 350 400 400 400 Q 450 400 500 350 L 500 150 Q 450 100 400 100&quot;; -fx-background-color: transparent;" text="Single Player">
          <font>
             <Font name="DS Stain" size="36.0" />
          </font>
       </Button>
-      <Button layoutX="1245.0" layoutY="679.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="134.0" style="-fx-background-color: transparent;" text="Back">
+      <Button fx:id="back" layoutX="1245.0" layoutY="679.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="134.0" style="-fx-background-color: transparent;" text="Back">
          <font>
             <Font name="DS Stain" size="32.0" />
          </font>
