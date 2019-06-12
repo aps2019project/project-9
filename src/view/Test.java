@@ -21,7 +21,9 @@ public class Test extends Application {
     public void start(Stage primaryStage) {                 //all start must have try catch
         Account account = new Account("mamad","ali");
         CollectionMenu c = new CollectionMenu(new CollectionController(account));
+        AccountMenu m =AccountMenu.getInstance();
         try {
+            //m.start(primaryStage,new AccountController());
             c.start(primaryStage);
 
         } catch (Exception e) {

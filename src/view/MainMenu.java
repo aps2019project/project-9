@@ -67,7 +67,7 @@ public class MainMenu {
             collection.setScaleY(2.5);
             collection.setStyle("-fx-background-color: rgba(0,0,0,0);-fx-text-fill: #020d7f;");
             collection.setOnMouseClicked(event -> {
-                controller.goCollectionMenu(controller.getLoggedInAccount());
+                controller.goCollectionMenu(controller.getLoggedInAccount(),stage);
             });
 
             Font shopFont = Font.loadFont(new FileInputStream(new File("src/res/Font/ALGER.TTF")), 30);

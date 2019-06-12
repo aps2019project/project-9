@@ -1,20 +1,14 @@
 package view;
 
-import java.io.File;
 import java.util.*;
 
 import controller.CollectionController;
+import controller.MainMenuController;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceDialog;
-import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 import model.Account;
 import model.Deck;
@@ -37,11 +31,12 @@ public class CollectionMenu {
             stage.setMaximized(true);
 
             Group root = new Group();
-            runMusic(root);
-            runSlideShow(root);
-            setButtons(root);
+            TableView tableView = setTable();
 
-            Scene scene = new Scene(root, 800, 300);
+            runSlideShow(root);
+            setButtons(root, stage, tableView);
+            root.getChildren().add(tableView);
+            Scene scene = new Scene(root, 1000, 800);
             stage.setScene(scene);
             scene.getStylesheets().add("src/res/CSS/CollectionButtonStyle.css");
             stage.show();
@@ -50,12 +45,10 @@ public class CollectionMenu {
         }
     }
 
-    private void runMusic(Group root) {
-        Media media = new Media(new File("src\\res\\music\\backgroundmusic.mp3").toURI().toString());
-        MediaPlayer player = new MediaPlayer(media);
-        MediaView mediaView = new MediaView(player);
-        player.play();
-        root.getChildren().add(mediaView);
+    private TableView setTable() {
+        TableView tableView = new TableView();
+        tableView.setTranslateX(900);
+        return tableView;
     }
 
     private void runSlideShow(Group root) {
@@ -83,7 +76,7 @@ public class CollectionMenu {
         root.getChildren().addAll(slideshowImageView);
     }
 
-    private void setButtons(Group root) {
+    private void setButtons(Group root, Stage stage, TableView t) {
         int addX = 30;
         int addY = 60;
         int startX = 30;
@@ -108,64 +101,68 @@ public class CollectionMenu {
         createDeck.setLayoutY(startY + addY);
 
         createDeck.setOnMouseClicked(m -> {
-            TextInputDialog dialog = new TextInputDialog("walter");
+            TextInputDialog dialog = new TextInputDialog();
             dialog.setTitle("Create Deck");
             dialog.setHeaderText("Please enter Deck name");
             dialog.setContentText("Name :");
 
             Optional<String> result = dialog.showAndWait();
-            result.ifPresent(name -> {
-                controller.createDeck(name);
-            });
+            result.ifPresent(name -> controller.createDeck(name));
         });
 
         Button deleteDeck = new Button("Delete Deck");
         deleteDeck.setLayoutX(startX + 2 * addX);
         deleteDeck.setLayoutY(startY + 2 * addY);
 
-        selectDeck.setOnMouseClicked(mouseEvent -> {
+        deleteDeck.setOnMouseClicked(mouseEvent -> {
             ChoiceDialog<String> dio = setDecksList();
             dio.setTitle("Delete deck");
             dio.setHeaderText("Select deck you wanna delete");
             dio.setContentText("Decks:");
             Optional<String> result1 = dio.showAndWait();
-
             result1.ifPresent(p -> controller.deleteDeck(p));
         });
 
         Button showAllDecks = new Button("Show All Decks");
         showAllDecks.setLayoutX(startX + 3 * addX);
         showAllDecks.setLayoutY(startY + 3 * addY);
+
+        showAllDecks.setOnMouseClicked(m -> {
+
+        });
+
         Button showDeck = new Button("Show Deck");
         showDeck.setLayoutX(startX + 4 * addX);
         showDeck.setLayoutY(startY + 4 * addY);
+
         Button save = new Button("Save");
         save.setLayoutX(startX + 5 * addX);
         save.setLayoutY(startY + 5 * addY);
+
+        save.setOnMouseClicked(m -> {
+            //TODO
+        });
         Button help = new Button("help");
         help.setLayoutX(startX + 6 * addX);
         help.setLayoutY(startY + 6 * addY);
 
-        help.setOnMouseClicked(m ->{
+        help.setOnMouseClicked(m -> {
             new Alert(Alert.AlertType.INFORMATION,
-            "show ( show Collection Items or Cards )\n"+
-            "Search [card name | item name]\n"+
-            "create deck [ deck name ]\n"+
-            "delete deck [ deck name ]\n"+
-            "select deck [ deck name ]  for MainDeck Assigning \n"+
-            "add [card id] to deck [deck name]\n"+
-            "remove [card id] from deck [deck name]\n"+
-            "validate deck [deck name]\n"+
-            "show all decks\n"+
-            "show deck [deck name]\n"+
-            "save\n"+
-            "help\n"+
-            "exit\n");
+                    "show Collection ---> show collection\n" +
+                            "create deck --> create a deck\n" +
+                            "delete deck --> delete a deck\n" +
+                            "select deck --> set a deck for MainDeck Assigning \n" +
+                            "show all decks --> show all of your decks\n" +
+                            "show deck --> show a deck by name\n" +
+                            "save --> save your changes\n" +
+                            "exit --> back to main menu\n").showAndWait();
         });
 
         Button back = new Button("Exit");
         back.setLayoutX(startX + 7 * addX);
         back.setLayoutY(startY + 7 * addY);
+        back.setOnMouseClicked(m -> MainMenuController.getInstance().start(stage));
+
         Button triangleButton = new Button("show\nCollection");
         triangleButton.setStyle("-fx-background-color: \n " +
                 "        linear-gradient(#f2f2f2, #d6d6d6),\n" +
@@ -189,6 +186,9 @@ public class CollectionMenu {
                 break;
             case DECK_CREATED:
                 new Alert(Alert.AlertType.INFORMATION, error.getMessage());
+                break;
+            case DECK_NOT_VALID:
+                new Alert(Alert.AlertType.WARNING, error.getMessage());
                 break;
         }
     }

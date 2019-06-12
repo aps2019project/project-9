@@ -30,9 +30,9 @@ public class MainMenuController {
         mainMenu.start(stage);
     }
 
-    public void goCollectionMenu(Account loggedInAccount) {
+    public void goCollectionMenu(Account loggedInAccount, Stage stage) {
         CollectionController collectionController = new CollectionController(loggedInAccount);
-        collectionController.main();
+        collectionController.main(stage);
     }
 
     public void goBattleMenu(Stage stage) {

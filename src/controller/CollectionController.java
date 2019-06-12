@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.stage.Stage;
 import model.Account;
 import model.Deck;
 import model.cards.Card;
@@ -23,57 +24,32 @@ public class CollectionController {
         collectionMenu = new CollectionMenu(this);
     }
 
-    public void main() {
-        boolean isFinished = false;
-        do {
-            view.help();
-            CollectionRequest request = new CollectionRequest();
-            request.getNewCommand();
-            if (request.getType() == CollectionRequestType.EXIT) {
-                isFinished = true;
-            }
-            if (!request.isValid()) {
-                view.printError(CollectionErrorType.INVALID_COMMAND);
-                continue;
-            }
-            switch (request.getType()) {
-                case SHOW_ALL_DECKS:
-                    view.showAllDecks(loggedInAccount.getDecks(), loggedInAccount.getMainDeck());
-                    break;
-                case VALIDATE_DECK:
-                    validateDeck(request.getDeckName());
-                    break;
-                case SELECT_DECK:
-                    selectDeck(request.getDeckName());
-                    break;
-                case DELETE_DECK:
-                    deleteDeck(request.getDeckName());
-                    break;
-                case CREATE_DECK:
-                    createDeck(request.getDeckName());
-                    break;
-                case SHOW_DECK:
-                    showDeck(request.getDeckName());
-                    break;
-                case SEARCH:
-                    search(request.getCardOrItamName());
-                    break;
-                case REMOVE:
-                    remove(request.getDeckName(), request.getCardOrItamName());
-                    break;
-                case SHOW:
-                    view.showCollection(loggedInAccount.getCollection());
-                    break;
-                case SAVE:
-                    //TODO
-                    break;
-                case ADD:
-                    add(request.getDeckName(), request.getCardOrItamName());
-                    break;
-                case HELP:
-                    break;
-            }
-        } while (!isFinished);
+    public void main(Stage stage) {
+        collectionMenu.start(stage);
+        CollectionRequest request = new CollectionRequest();
+        switch (request.getType()) {
+            case VALIDATE_DECK:
+                validateDeck(request.getDeckName());
+                break;
+            case SHOW_DECK:
+                showDeck(request.getDeckName());
+                break;
+            case SEARCH:
+                search(request.getCardOrItamName());
+                break;
+            case REMOVE:
+                remove(request.getDeckName(), request.getCardOrItamName());
+                break;
+            case SHOW:
+                view.showCollection(loggedInAccount.getCollection());
+                break;
+            case SAVE:
+                //TODO
+                break;
+            case ADD:
+                add(request.getDeckName(), request.getCardOrItamName());
+                break;
+        }
     }
 
     private void validateDeck(String deckName) {
@@ -91,15 +67,11 @@ public class CollectionController {
     }
 
     public void selectDeck(String deckName) {
-        if (loggedInAccount.findDeckByName(deckName) == null)
-            view.printError(CollectionErrorType.DECK_NAME_NOT_EXISTS);
-        else {
-            Deck currentDeck = loggedInAccount.findDeckByName(deckName);
-            if (currentDeck.isValid())
-                loggedInAccount.selectMainDeck(loggedInAccount.findDeckByName(deckName));
-            else
-                view.printError(CollectionErrorType.DECK_NOT_VALID);
-        }
+        Deck currentDeck = loggedInAccount.findDeckByName(deckName);
+        if (currentDeck.isValid())
+            loggedInAccount.selectMainDeck(loggedInAccount.findDeckByName(deckName));
+        else
+            collectionMenu.printError(CollectionErrorType.DECK_NOT_VALID);
     }
 
     public void deleteDeck(String deckName) {

@@ -2,6 +2,7 @@ package view;
 
 import controller.AccountController;
 import controller.BattleMenuController;
+import controller.CollectionController;
 import controller.MainMenuController;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -19,26 +20,12 @@ public class Test extends Application {
     @Override
     public void start(Stage primaryStage) {                 //all start must have try catch
         Account account = new Account("mamad","ali");
-        BattleMenuController bc = new BattleMenuController(account);
-        BattleMenu b = new BattleMenu(account,bc);
-        AccountMenu a = AccountMenu.getInstance();
-        CollectionMenu c = new CollectionMenu();
-        GraveYard g = new GraveYard();
-        MainMenu m = MainMenu.getInstance();
-        ShopMenu s = ShopMenu.getInstance();
-        AccountController ac = new AccountController();
+        CollectionMenu c = new CollectionMenu(new CollectionController(account));
+        AccountMenu m =AccountMenu.getInstance();
         try {
-            //bc.main(primaryStage);
-            //ac.start(primaryStage);
-            //b.start(primaryStage,account);
-            //a.start(primaryStage);
-            //a.start(primaryStage);
-            //c.start(primaryStage);
-            //m.start(primaryStage);
-            //s.start(primaryStage,new Collection());
-            // g.start(primaryStage,graveyard);
-            //c.start(primaryStage);
-            b.customGamePressed(primaryStage);
+            //m.start(primaryStage,new AccountController());
+            c.start(primaryStage);
+
         } catch (Exception e) {
             e.printStackTrace();
         }

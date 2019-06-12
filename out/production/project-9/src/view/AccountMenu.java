@@ -15,6 +15,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -58,6 +59,7 @@ public class AccountMenu {
         imageView.setFitWidth(810);
         imageView.setX(300);
         Group group = new Group(imageView);
+        runMusic(group);
         Scene scene = new Scene(group, height, width);
         scene.setFill(Color.DEEPPINK);
         scene.setOnMouseClicked(event -> accountMenuShow(stage, account));
@@ -154,6 +156,14 @@ public class AccountMenu {
             e.printStackTrace();
         }
         return null;
+    }
+
+    private void runMusic(Group root) {
+        Media media = new Media(new File("src\\res\\music\\backgroundmusic.mp3").toURI().toString());
+        MediaPlayer player = new MediaPlayer(media);
+        MediaView mediaView = new MediaView(player);
+        player.play();
+        root.getChildren().add(mediaView);
     }
 
     private Button setLoginButton(AccountController account, Stage stage) {
