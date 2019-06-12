@@ -20,6 +20,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import javafx.util.Pair;
 import model.Account;
 import model.enumerations.AccountErrorType;
@@ -54,7 +55,7 @@ public class AccountMenu {
         loading.setX(50);
         loading.setY(462);
         Text text = new Text("Click Any Where To Enter The Game ...");
-        text.setFont(Font.loadFont("file:src/res/inGameResource/font1.ttf",14));
+        text.setFont(Font.loadFont("file:src/res/inGameResource/font1.ttf", 14));
         text.setY(490);
         text.setX(110);
         Group group = new Group(imageView);
@@ -64,17 +65,18 @@ public class AccountMenu {
         scene.setFill(Color.DEEPPINK);
         scene.setOnMouseClicked(event -> {
             //stage.close();
-            accountMenuShow(stage,account);
+            accountMenuShow(stage, account);
         });
         stage.setScene(scene);
         stage.show();
     }
 
-    private void accountMenuShow(Stage last , AccountController account) {
+    private void accountMenuShow(Stage last, AccountController account) {
         try {
             Stage stage = new Stage();
-            stage.setTitle("Account Menu");
-            Font accountMenuFont = Font.loadFont(new FileInputStream(new File("src/res/Font/modern.TTF")), 40);
+            stage.setTitle("Duelyst");
+            Font accountMenuFont = Font.loadFont(
+                    new FileInputStream(new File("src/res/Font/modern.TTF")), 40);
             Text text = new Text(371, 100, "Account Menu");
             text.setFont(accountMenuFont);
             text.setFill(Color.rgb(2, 14, 236));
@@ -114,48 +116,35 @@ public class AccountMenu {
                 Dialog<Pair<String, String>> dialog = new Dialog<>();
                 dialog.setTitle("Create Account");
                 dialog.setHeaderText("Please enter a username and pass word");
-
                 ButtonType createAccountButtonType = new ButtonType("Create Account", ButtonBar.ButtonData.OK_DONE);
                 dialog.getDialogPane().getButtonTypes().addAll(createAccountButtonType, ButtonType.CANCEL);
-
-                GridPane grid = new GridPane();
-                grid.setHgap(10);
-                grid.setVgap(10);
-                grid.setPadding(new Insets(20, 150, 10, 10));
-
+                GridPane grid = getGridPane();
                 TextField username = new TextField();
                 username.setPromptText("Username");
                 PasswordField password = new PasswordField();
                 password.setPromptText("Password");
-
                 grid.add(new Label("Username:"), 0, 0);
                 grid.add(username, 1, 0);
                 grid.add(new Label("Password:"), 0, 1);
                 grid.add(password, 1, 1);
-
                 Node loginButton = dialog.getDialogPane().lookupButton(createAccountButtonType);
                 loginButton.setDisable(true);
-
                 username.textProperty().addListener((observable, oldValue, newValue) ->
                         loginButton.setDisable(newValue.trim().isEmpty()));
-
                 dialog.getDialogPane().setContent(grid);
-
                 Platform.runLater(username::requestFocus);
-
                 dialog.setResultConverter(dialogButton -> {
                     if (dialogButton == createAccountButtonType) {
                         return new Pair<>(username.getText(), password.getText());
                     }
                     return null;
                 });
-
                 Optional<Pair<String, String>> result = dialog.showAndWait();
-
                 result.ifPresent(usernamePassword -> {
                     accountRequest.setUserName(usernamePassword.getKey());
                     accountRequest.setPassWord(usernamePassword.getValue());
-                    account.createAccount(accountRequest, stage);
+                    stage.close();
+                    account.createAccount(accountRequest);
                 });
             });
             return button;
@@ -170,10 +159,11 @@ public class AccountMenu {
         MediaPlayer player = new MediaPlayer(media);
         MediaView mediaView = new MediaView(player);
         player.play();
+        player.setOnEndOfMedia(() -> player.seek(Duration.ZERO));
         root.getChildren().add(mediaView);
     }
 
-    private void setOnMouseAction(Button button){
+    private void setOnMouseAction(Button button) {
         button.setPrefWidth(235);
         button.setStyle("-fx-background-color: #beaf92");
         button.setOnMouseEntered(mouseEvent -> {
@@ -204,45 +194,31 @@ public class AccountMenu {
             Dialog<Pair<String, String>> dialog = new Dialog<>();
             dialog.setTitle("Login Dialog");
             dialog.setHeaderText("Look, a Custom Login Dialog");
-
             ButtonType loginButtonType = new ButtonType("Login", ButtonBar.ButtonData.OK_DONE);
             dialog.getDialogPane().getButtonTypes().addAll(loginButtonType, ButtonType.CANCEL);
-
-            GridPane grid = new GridPane();
-            grid.setHgap(10);
-            grid.setVgap(10);
-            grid.setPadding(new Insets(20, 150, 10, 10));
-
+            GridPane grid = getGridPane();
             TextField username = new TextField();
             username.setPromptText("Username ");
             PasswordField password = new PasswordField();
             password.setPromptText("Password ");
-
             grid.add(new Label("Username : "), 0, 0);
             grid.add(username, 1, 0);
             grid.add(new Label("Password : "), 0, 1);
             grid.add(password, 1, 1);
-
             Node loginButton = dialog.getDialogPane().lookupButton(loginButtonType);
             loginButton.setDisable(true);
-
             username.textProperty().addListener((observable, oldValue, newValue) -> {
                 loginButton.setDisable(newValue.trim().isEmpty());
             });
-
             dialog.getDialogPane().setContent(grid);
-
             Platform.runLater(username::requestFocus);
-
             dialog.setResultConverter(dialogButton -> {
                 if (dialogButton == loginButtonType) {
                     return new Pair<>(username.getText(), password.getText());
                 }
                 return null;
             });
-
             Optional<Pair<String, String>> result = dialog.showAndWait();
-
             result.ifPresent(usernamePassword -> {
                 accountRequest.setUserName(usernamePassword.getKey());
                 accountRequest.setPassWord(usernamePassword.getValue());
@@ -252,9 +228,18 @@ public class AccountMenu {
         return button;
     }
 
+    private GridPane getGridPane() {
+        GridPane grid = new GridPane();
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(20, 150, 10, 10));
+        return grid;
+    }
+
     private Button setLeaderBoardButton() {
         try {
-            ImageView loginImageview = new ImageView(new Image(new FileInputStream("src/res/AccountMenuImages/sharp-shuriken.png")));
+            ImageView loginImageview = new ImageView(
+                    new Image(new FileInputStream("src/res/AccountMenuImages/sharp-shuriken.png")));
             loginImageview.setFitWidth(100);
             loginImageview.setFitHeight(50);
             Button button = new Button("show LeaderBoard", loginImageview);
@@ -272,10 +257,11 @@ public class AccountMenu {
 
     private Button setHelpButton() {
         try {
-            ImageView loginImageview = new ImageView(new Image(new FileInputStream("src/res/BattleMenuImages/life-buoy.png")));
-            loginImageview.setFitWidth(100);
-            loginImageview.setFitHeight(50);
-            Button button = new Button("Help", loginImageview);
+            ImageView loginImageView = new ImageView(
+                    new Image(new FileInputStream("src/res/BattleMenuImages/life-buoy.png")));
+            loginImageView.setFitWidth(100);
+            loginImageView.setFitHeight(50);
+            Button button = new Button("Help", loginImageView);
             button.setLayoutX(385);
             button.setLayoutY(480);
             button.setStyle("-fx-background-color: #beaf92");

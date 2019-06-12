@@ -22,7 +22,7 @@ public class MainMenuController {
         return mainMenuController;
     }
 
-    MainMenuController(Account loggedInAccount) {
+    public MainMenuController(Account loggedInAccount) {
         this.loggedInAccount = loggedInAccount;
     }
 

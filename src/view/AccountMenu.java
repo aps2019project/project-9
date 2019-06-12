@@ -20,6 +20,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import javafx.util.Pair;
 import model.Account;
 import model.enumerations.AccountErrorType;
@@ -73,7 +74,7 @@ public class AccountMenu {
     private void accountMenuShow(Stage last, AccountController account) {
         try {
             Stage stage = new Stage();
-            stage.setTitle("Account Menu");
+            stage.setTitle("Duelyst");
             Font accountMenuFont = Font.loadFont(
                     new FileInputStream(new File("src/res/Font/modern.TTF")), 40);
             Text text = new Text(371, 100, "Account Menu");
@@ -115,13 +116,9 @@ public class AccountMenu {
                 Dialog<Pair<String, String>> dialog = new Dialog<>();
                 dialog.setTitle("Create Account");
                 dialog.setHeaderText("Please enter a username and pass word");
-
                 ButtonType createAccountButtonType = new ButtonType("Create Account", ButtonBar.ButtonData.OK_DONE);
                 dialog.getDialogPane().getButtonTypes().addAll(createAccountButtonType, ButtonType.CANCEL);
-                GridPane grid = new GridPane();
-                grid.setHgap(10);
-                grid.setVgap(10);
-                grid.setPadding(new Insets(20, 150, 10, 10));
+                GridPane grid = getGridPane();
                 TextField username = new TextField();
                 username.setPromptText("Username");
                 PasswordField password = new PasswordField();
@@ -146,7 +143,8 @@ public class AccountMenu {
                 result.ifPresent(usernamePassword -> {
                     accountRequest.setUserName(usernamePassword.getKey());
                     accountRequest.setPassWord(usernamePassword.getValue());
-                    account.createAccount(accountRequest, stage);
+                    stage.close();
+                    account.createAccount(accountRequest);
                 });
             });
             return button;
@@ -161,6 +159,7 @@ public class AccountMenu {
         MediaPlayer player = new MediaPlayer(media);
         MediaView mediaView = new MediaView(player);
         player.play();
+        player.setOnEndOfMedia(() -> player.seek(Duration.ZERO));
         root.getChildren().add(mediaView);
     }
 
@@ -197,10 +196,7 @@ public class AccountMenu {
             dialog.setHeaderText("Look, a Custom Login Dialog");
             ButtonType loginButtonType = new ButtonType("Login", ButtonBar.ButtonData.OK_DONE);
             dialog.getDialogPane().getButtonTypes().addAll(loginButtonType, ButtonType.CANCEL);
-            GridPane grid = new GridPane();
-            grid.setHgap(10);
-            grid.setVgap(10);
-            grid.setPadding(new Insets(20, 150, 10, 10));
+            GridPane grid = getGridPane();
             TextField username = new TextField();
             username.setPromptText("Username ");
             PasswordField password = new PasswordField();
@@ -232,9 +228,18 @@ public class AccountMenu {
         return button;
     }
 
+    private GridPane getGridPane() {
+        GridPane grid = new GridPane();
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(20, 150, 10, 10));
+        return grid;
+    }
+
     private Button setLeaderBoardButton() {
         try {
-            ImageView loginImageview = new ImageView(new Image(new FileInputStream("src/res/AccountMenuImages/sharp-shuriken.png")));
+            ImageView loginImageview = new ImageView(
+                    new Image(new FileInputStream("src/res/AccountMenuImages/sharp-shuriken.png")));
             loginImageview.setFitWidth(100);
             loginImageview.setFitHeight(50);
             Button button = new Button("show LeaderBoard", loginImageview);
@@ -252,7 +257,8 @@ public class AccountMenu {
 
     private Button setHelpButton() {
         try {
-            ImageView loginImageView = new ImageView(new Image(new FileInputStream("src/res/BattleMenuImages/life-buoy.png")));
+            ImageView loginImageView = new ImageView(
+                    new Image(new FileInputStream("src/res/BattleMenuImages/life-buoy.png")));
             loginImageView.setFitWidth(100);
             loginImageView.setFitHeight(50);
             Button button = new Button("Help", loginImageView);

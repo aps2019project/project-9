@@ -19,8 +19,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 public class MainMenu {
-    private static double HEIGHT;
-    private static double WIDTH;
+    private static double HEIGHT = 562;
+    private static double WIDTH = 1003;
     private static final MainMenu MAINMENU = new MainMenu();
 
     private MainMenu() {
@@ -32,20 +32,16 @@ public class MainMenu {
 
     public void start(Stage stage) {
         try {
-            HEIGHT = stage.getMaxHeight();
-            WIDTH = stage.getMaxWidth();
-            stage.setMaximized(true);
-            Font mainMenuFont = Font.loadFont(new FileInputStream(new File("src/res/Font/ALGER.TTF")), 60);
-            Text text = new Text(600, 100, "Main Menu");
+            Font mainMenuFont = Font.loadFont(
+                    new FileInputStream(new File("src/res/Font/ALGER.TTF")), 55);
+            Text text = new Text(385, 100, "Main Menu");
             text.setFont(mainMenuFont);
             text.setFill(Color.rgb(2, 14, 236));
-
             ImageView imageView = new ImageView();
             imageView.setImage(new Image(new FileInputStream("src/res/MainMenuImages/2.jpg")));
-            imageView.setX(-300);
-            imageView.setFitWidth(2100);
-            imageView.setFitHeight(900);
-
+            imageView.setX(-200);
+            imageView.setFitWidth(1203);
+            imageView.setFitHeight(562);
             Group root = new Group(imageView, text);
             setButtons(root, MainMenuController.getInstance(), stage);
             Scene scene = new Scene(root, WIDTH, HEIGHT);
@@ -56,52 +52,57 @@ public class MainMenu {
         }
     }
 
+    private void setActionsAndStyles(Button button) {
+        button.setStyle("-fx-background-color: rgba(0,0,0,0);-fx-text-fill: #020d7f;");
+        button.setOnMouseEntered(mouseEvent ->
+                button.setStyle("-fx-background-color: rgba(0,0,0,0);-fx-text-fill: red"));
+        button.setOnMouseExited(mouseEvent ->
+                button.setStyle("-fx-background-color: rgba(0,0,0,0);-fx-text-fill: #020d7f"));
+    }
+
     void setButtons(Group root, MainMenuController controller, Stage stage) {
         try {
-            Font collectionFont = Font.loadFont(new FileInputStream(new File("src/res/Font/ALGER.TTF")), 25);
+            Font collectionFont = Font.loadFont(new FileInputStream(new File("src/res/Font/ALGER.TTF")), 15);
             Button collection = new Button("Collection");
             collection.setFont(collectionFont);
-            collection.setLayoutX(680);
+            collection.setLayoutX(485);
             collection.setLayoutY(200);
             collection.setScaleX(3);
             collection.setScaleY(2.5);
-            collection.setStyle("-fx-background-color: rgba(0,0,0,0);-fx-text-fill: #020d7f;");
-            collection.setOnMouseClicked(event -> {
-                controller.goCollectionMenu(controller.getLoggedInAccount(),stage);
-            });
-
-            Font shopFont = Font.loadFont(new FileInputStream(new File("src/res/Font/ALGER.TTF")), 30);
+            setActionsAndStyles(collection);
+            collection.setOnMouseClicked(event -> controller.goCollectionMenu(controller.getLoggedInAccount(), stage));
+            Font shopFont = Font.loadFont(new FileInputStream(new File("src/res/Font/ALGER.TTF")), 15);
             Button shop = new Button("shop");
             shop.setFont(shopFont);
-            shop.setLayoutX(720);
-            shop.setLayoutY(350);
+            shop.setLayoutX(485);
+            shop.setLayoutY(300);
             shop.setScaleX(3);
             shop.setScaleY(2.5);
-            shop.setStyle("-fx-background-color: rgba(0,0,0,0);-fx-text-fill: #020d7f;");
+            setActionsAndStyles(shop);
             shop.setOnMouseClicked(event -> {
                 controller.goShopMenu(controller.getLoggedInAccount(), stage);
             });
 
-            Font battleFont = Font.loadFont(new FileInputStream(new File("src/res/Font/ALGER.TTF")), 35);
+            Font battleFont = Font.loadFont(new FileInputStream(new File("src/res/Font/ALGER.TTF")), 15);
             Button battle = new Button("battle");
             battle.setFont(battleFont);
-            battle.setLayoutX(690);
-            battle.setLayoutY(500);
+            battle.setLayoutX(485);
+            battle.setLayoutY(400);
             battle.setScaleX(3);
             battle.setScaleY(2.5);
-            battle.setStyle("-fx-background-color: rgba(0,0,0,0);-fx-text-fill: #020d7f;");
+            setActionsAndStyles(battle);
             battle.setOnMouseClicked(event -> {
                 controller.goBattleMenu(stage);
             });
 
-            Font logOutFont = Font.loadFont(new FileInputStream(new File("src/res/Font/ALGER.TTF")), 26);
+            Font logOutFont = Font.loadFont(new FileInputStream(new File("src/res/Font/ALGER.TTF")), 15);
             Button logOut = new Button("Log Out");
             logOut.setFont(logOutFont);
-            logOut.setLayoutX(720);
-            logOut.setLayoutY(650);
+            logOut.setLayoutX(485);
+            logOut.setLayoutY(500);
             logOut.setScaleX(3);
             logOut.setScaleY(2.5);
-            logOut.setStyle("-fx-background-color: rgba(0,0,0,0);-fx-text-fill: #020d7f;");
+            setActionsAndStyles(logOut);
             logOut.setOnMouseClicked(event -> {
                 try {
                     AccountController accountController = new AccountController();

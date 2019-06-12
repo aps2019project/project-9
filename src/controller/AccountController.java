@@ -26,8 +26,9 @@ public class AccountController {
             accountMenu.printError(AccountErrorType.INVALID_USERNAME);
     }
 
-    public void createAccount(AccountRequest request, Stage stage) {
+    public void createAccount(AccountRequest request) {
         if (isUserNameValid(request)) {
+            Stage stage = new Stage();
             Account newAccount = new Account(request.getUserName(), request.getPassWord());
             goNextMenu(newAccount,stage);
         }
