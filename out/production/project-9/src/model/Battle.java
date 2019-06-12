@@ -28,7 +28,7 @@ public class Battle {
     protected int turnsToWon; // for one flag mode , turns that a flag is in position of winner
     protected int battlePrize; // should be initialized at Constructor()
     protected int level; // for single player games ( in battle result )
-
+    protected boolean checked = false;
 
     public void startBattle() {
         // ..........
@@ -208,6 +208,7 @@ public class Battle {
     }
 
     public void endBattle(Player winner) {
+        checked = true;
         BattleResult battleResult = new BattleResult(winner, battlePrize, this);
         if (Account.findAccount(firstPlayer.getName()) != null) {
             Account.findAccount(firstPlayer.getName()).addBattleResult(battleResult);
@@ -231,31 +232,33 @@ public class Battle {
     }
 
     public void checkWinner() {
-        switch (gameMode) {
-            case HERO_KILL:
-                if (firstPlayer.getHero().getHP() == 0) {
-                    endBattle(secondPlayer);
-                } else if (secondPlayer.getHero().getHP() == 0) {
-                    endBattle(firstPlayer);
-                }
-                break;
-            case ONE_FLAG:
-                // get the turns that the flag is in the position of a player
-                if (firstPlayer.getModeTwoFlag() != null &&
-                        firstPlayer.getModeTwoFlag().getTurnsOwned() >= turnsToWon)
-                    endBattle(firstPlayer);
-                else if (secondPlayer.getModeTwoFlag() != null
-                        && secondPlayer.getModeTwoFlag().getTurnsOwned() >= turnsToWon)
-                    endBattle(secondPlayer);
-                break;
-            case FLAGS:
-                int checkingInt = (numberOfFlags % 2 == 0) ? (numberOfFlags / 2) : ((numberOfFlags + 1) / 2);
-                if (firstPlayer.getFlagsAcheived().size() >= checkingInt) {
-                    endBattle(firstPlayer);
-                } else if (secondPlayer.getFlagsAcheived().size() >= checkingInt) {
-                    endBattle(secondPlayer);
-                }
-                break;
+        if (!checked) {
+            switch (gameMode) {
+                case HERO_KILL:
+                    if (firstPlayer.getHero().getHP() == 0) {
+                        endBattle(secondPlayer);
+                    } else if (secondPlayer.getHero().getHP() == 0) {
+                        endBattle(firstPlayer);
+                    }
+                    break;
+                case ONE_FLAG:
+                    // get the turns that the flag is in the position of a player
+                    if (firstPlayer.getModeTwoFlag() != null &&
+                            firstPlayer.getModeTwoFlag().getTurnsOwned() >= turnsToWon)
+                        endBattle(firstPlayer);
+                    else if (secondPlayer.getModeTwoFlag() != null
+                            && secondPlayer.getModeTwoFlag().getTurnsOwned() >= turnsToWon)
+                        endBattle(secondPlayer);
+                    break;
+                case FLAGS:
+                    int checkingInt = (numberOfFlags % 2 == 0) ? (numberOfFlags / 2) : ((numberOfFlags + 1) / 2);
+                    if (firstPlayer.getFlagsAcheived().size() >= checkingInt) {
+                        endBattle(firstPlayer);
+                    } else if (secondPlayer.getFlagsAcheived().size() >= checkingInt) {
+                        endBattle(secondPlayer);
+                    }
+                    break;
+            }
         }
     }
 

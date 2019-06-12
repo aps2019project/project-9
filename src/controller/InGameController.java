@@ -30,21 +30,11 @@ public class InGameController {
         InGameRequestType type = request.getRequestType();
         switch (type){
             case EXIT:
-                //TODO
             case USE_SPECIAL_POWER:
                 useSpecialPower(request.getX(), request.getY());
                 break;
-            case SHOW_COLLECTIBLES:
-            case SHOW_MY_MINIONS:
             case ENTER_GRAVEYARD:
-            case SHOW_NEXT_CARD:
             case COMBO_ATTACK:
-            case SELCET_ITEM:
-            case SELCET_CARD:
-            case SHOW_MENU:
-            case SHOW_INFO:
-            case SHOW_HAND:
-            case GAME_INFO:
             case END_GAME:
             case MOVE_TO:
                 move(battle.getCurrenPlayer(), request.getX(), request.getY());
@@ -58,7 +48,6 @@ public class InGameController {
             case USE:
                 use(battle.getCurrenPlayer(), request.getX(), request.getY()); // for collectible item
                 break;
-            case HELP:
             case END_TURN:
                 battle.getCurrenPlayer().endTurn();
                 break;

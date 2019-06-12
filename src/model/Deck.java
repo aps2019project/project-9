@@ -79,6 +79,7 @@ public class Deck {
             cards.add(DefaultCards.getMinion(MinionName.FARS_KAMANDAR));
             cards.add(DefaultCards.getSpell(SpellName.WEAKENING));
             cards.add(DefaultCards.getSpell(SpellName.GOD_STRENGTH));
+            cards.add(DefaultCards.getSpell(SpellName.HELLFIRE));
         } else if (name.equals("first_level")) {
             for (MinionName minion : FIRST_LEVEL_MINIONS) {
                 Minion minion1 = DefaultCards.getMinion(minion);

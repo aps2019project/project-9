@@ -2,56 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="429eadbd-36e3-4fa5-93ef-05e24885aef0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/res/inGameResource/BrockScript.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/inGameResource/font1.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/AiAction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/project-9/controller/InGameController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/controller/InGameController$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/project-9/controller/InGameController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/controller/InGameController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/project-9/model/Account.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/Account.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/project-9/model/Battle$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/Battle$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/project-9/model/Battle.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/Battle.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/project-9/model/Deck.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/Deck.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/Hand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/Hand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/PlayGround$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/PlayGround$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/PlayGround.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/PlayGround.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/Player.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/cards/Hero.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/cards/Hero.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/items/Item.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/items/Item.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/res/GameView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/res/GameView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/res/heroes/5.gif" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/res/heroes/5.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/res/minions/6.gif" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/res/minions/6.gif" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/project-9/src/controller/InGameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/controller/InGameController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/Account.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/Battle.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/Battle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/Deck.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/Deck.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/Hand.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/Hand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/PlayGround.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/PlayGround.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/cards/Hero.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/cards/Hero.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/items/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/items/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/res/GameView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/res/GameView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/res/heroes/5.gif" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/res/heroes/5.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/res/minions/6.gif" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/res/minions/6.gif" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/project-9/src/view/NewInGameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/view/NewInGameView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/view/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/view/Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/project-9/view/NewInGameView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/NewInGameView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/Test.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/InGameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/InGameController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Account.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/Battle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Battle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/Deck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Deck.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Hand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Hand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/PlayGround.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/PlayGround.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/cards/Hero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/cards/Hero.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/items/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/items/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/GameView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/GameView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/heroes/5.gif" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/heroes/5.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/minions/6.gif" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/minions/6.gif" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/NewInGameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/NewInGameView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Test.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -79,36 +48,15 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/view/NewInGameView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="80" column="81" selection-start-line="80" selection-start-column="81" selection-end-line="80" selection-end-column="81" />
+            <state relative-caret-position="416">
+              <caret line="260" column="110" selection-start-line="260" selection-start-column="110" selection-end-line="260" selection-end-column="110" />
               <folding>
-                <element signature="method#updateSpecialPower#0;class#NewInGameView#0" />
-                <element signature="method#setMediaViews#0;class#NewInGameView#0" />
                 <element signature="method#showError#0;class#NewInGameView#0" />
                 <element signature="method#notEnoughMana#0;class#NewInGameView#0" />
                 <element signature="method#cantAttack#0;class#NewInGameView#0" />
-                <element signature="method#updatePlayGround#1;class#NewInGameView#0" />
-                <element signature="e#15520#15521#0" expanded="true" />
-                <element signature="e#21427#21428#0" expanded="true" />
+                <element signature="e#16947#16948#0" expanded="true" />
+                <element signature="e#22904#22905#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/model/Battle.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="376">
-              <caret line="225" column="43" selection-start-line="225" selection-start-column="43" selection-end-line="225" selection-end-column="43" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/model/items/Item.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="28" column="19" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -116,13 +64,52 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/model/PlayGround.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
-              <caret line="53" column="43" selection-start-line="53" selection-start-column="43" selection-end-line="53" selection-end-column="43" />
+            <state relative-caret-position="289">
+              <caret line="28" column="18" selection-start-line="28" selection-start-column="18" selection-end-line="28" selection-end-column="18" />
               <folding>
+                <element signature="e#2154#2155#0" expanded="true" />
                 <element signature="e#2189#2190#0" expanded="true" />
+                <element signature="e#7456#7457#0" expanded="true" />
                 <element signature="e#7484#7485#0" expanded="true" />
+                <element signature="e#7513#7514#0" expanded="true" />
                 <element signature="e#7540#7541#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/model/Account.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="244">
+              <caret line="28" column="8" selection-start-line="28" selection-start-column="8" selection-end-line="28" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/model/Deck.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="81" column="65" selection-start-line="81" selection-start-column="65" selection-end-line="81" selection-end-column="65" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/model/cards/Minion.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="265">
+              <caret line="174" column="27" selection-start-line="174" selection-start-column="27" selection-end-line="174" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/model/Player.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="121">
+              <caret line="260" column="39" lean-forward="true" selection-start-line="260" selection-start-column="39" selection-end-line="260" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -143,8 +130,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/controller/InGameController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="529">
-              <caret line="59" column="22" lean-forward="true" selection-start-line="59" selection-start-column="22" selection-end-line="59" selection-end-column="22" />
+            <state relative-caret-position="155">
+              <caret line="31" column="22" selection-start-line="31" selection-start-column="22" selection-end-line="31" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -218,15 +205,15 @@
         <option value="$PROJECT_DIR$/src/model/cards/Minion.java" />
         <option value="$PROJECT_DIR$/src/model/cards/Hero.java" />
         <option value="$PROJECT_DIR$/src/view/Test.java" />
-        <option value="$PROJECT_DIR$/src/model/Account.java" />
         <option value="$PROJECT_DIR$/src/model/Hand.java" />
-        <option value="$PROJECT_DIR$/src/model/Deck.java" />
         <option value="$PROJECT_DIR$/src/view/AiAction.java" />
-        <option value="$PROJECT_DIR$/src/model/PlayGround.java" />
         <option value="$PROJECT_DIR$/src/model/items/Item.java" />
-        <option value="$PROJECT_DIR$/src/controller/InGameController.java" />
         <option value="$PROJECT_DIR$/src/model/Player.java" />
+        <option value="$PROJECT_DIR$/src/controller/InGameController.java" />
         <option value="$PROJECT_DIR$/src/model/Battle.java" />
+        <option value="$PROJECT_DIR$/src/model/Deck.java" />
+        <option value="$PROJECT_DIR$/src/model/Account.java" />
+        <option value="$PROJECT_DIR$/src/model/PlayGround.java" />
         <option value="$PROJECT_DIR$/src/view/NewInGameView.java" />
       </list>
     </option>
@@ -288,7 +275,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1560352499398" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1560356585756" />
     <property name="last_opened_file_path" value="$USER_HOME$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -424,7 +411,7 @@
       <workItem from="1559715844981" duration="14334000" />
       <workItem from="1560170068653" duration="26327000" />
       <workItem from="1560256148067" duration="16386000" />
-      <workItem from="1560337594918" duration="14643000" />
+      <workItem from="1560337594918" duration="18617000" />
     </task>
     <task id="LOCAL-00001" summary="merge">
       <created>1556826863260</created>
@@ -556,7 +543,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="253584000" />
+    <option name="totallyTimeSpent" value="257558000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -571,7 +558,7 @@
     <frame x="54" y="-8" width="1320" height="784" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22619048" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22619048" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -580,7 +567,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32565284" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49761903" visible="true" weight="0.21044546" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49761903" visible="true" weight="0.1827957" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4984127" weight="0.58986175" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -660,27 +647,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="some changes in graphic" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/view/ShopMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="109" column="34" selection-start-line="109" selection-start-column="34" selection-end-line="109" selection-end-column="34" />
-          <folding>
-            <element signature="e#789#790#0" expanded="true" />
-            <element signature="e#820#821#0" expanded="true" />
-            <element signature="method#setHelpButton#0;class#ShopMenu#0" />
-            <element signature="method#setExitButton#0;class#ShopMenu#0" />
-            <element signature="method#setSearchButtonAndTextField#0;class#ShopMenu#0" />
-            <element signature="method#ShopTable#0;class#ShopMenu#0" />
-            <element signature="method#addBuyButtonToTable#0;class#ShopMenu#0" />
-            <element signature="method#addSellButtonToTable#0;class#ShopMenu#0" />
-            <element signature="method#setTableColumns#0;class#ShopMenu#0" />
-            <element signature="method#setShowCollectionButton#0;class#ShopMenu#0" />
-            <element signature="method#showCollectionTable#0;class#ShopMenu#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/res/BattleMenu.css" />
     <entry file="file://$PROJECT_DIR$/src/res/Untitled.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -849,13 +815,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/cards/Minion.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="219" column="54" selection-start-line="219" selection-start-column="54" selection-end-line="219" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/enumerations/InGameErrorType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -902,28 +861,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/Account.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="26" column="8" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/Hand.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="139">
           <caret line="14" column="36" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/Deck.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="94" column="28" selection-start-line="94" selection-start-column="28" selection-end-line="94" selection-end-column="28" />
-          <folding>
-            <element signature="e#8225#8226#0" expanded="true" />
-            <element signature="e#8284#8285#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -945,18 +886,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="17" column="35" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/PlayGround.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="53" column="43" selection-start-line="53" selection-start-column="43" selection-end-line="53" selection-end-column="43" />
-          <folding>
-            <element signature="e#2189#2190#0" expanded="true" />
-            <element signature="e#7484#7485#0" expanded="true" />
-            <element signature="e#7540#7541#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -985,76 +914,95 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/Player.java">
+    <entry file="file://$PROJECT_DIR$/src/controller/InGameController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="614">
-          <caret line="375" column="82" selection-start-line="375" selection-start-column="82" selection-end-line="375" selection-end-column="82" />
-          <folding>
-            <element signature="e#13164#13165#0" expanded="true" />
-            <element signature="e#13194#13195#0" expanded="true" />
-            <element signature="e#13234#13235#0" expanded="true" />
-            <element signature="e#13266#13267#0" expanded="true" />
-            <element signature="e#13304#13305#0" expanded="true" />
-            <element signature="e#13337#13338#0" expanded="true" />
-            <element signature="e#13559#13560#0" expanded="true" />
-            <element signature="e#13586#13587#0" expanded="true" />
-            <element signature="e#14880#14881#0" expanded="true" />
-            <element signature="e#14922#14923#0" expanded="true" />
-            <element signature="e#14951#14952#0" expanded="true" />
-            <element signature="e#14978#14979#0" expanded="true" />
-            <element signature="e#15027#15028#0" expanded="true" />
-            <element signature="e#15063#15064#0" expanded="true" />
-            <element signature="e#15111#15112#0" expanded="true" />
-            <element signature="e#15157#15158#0" expanded="true" />
-            <element signature="e#15194#15195#0" expanded="true" />
-            <element signature="e#15229#15230#0" expanded="true" />
-            <element signature="e#15268#15269#0" expanded="true" />
-            <element signature="e#15300#15301#0" expanded="true" />
-            <element signature="e#16246#16247#0" expanded="true" />
-            <element signature="e#16294#16295#0" expanded="true" />
-            <element signature="e#16330#16331#0" expanded="true" />
-            <element signature="e#16364#16365#0" expanded="true" />
-            <element signature="e#16427#16428#0" expanded="true" />
-            <element signature="e#16474#16475#0" expanded="true" />
-            <element signature="e#16519#16520#0" expanded="true" />
-            <element signature="e#16569#16570#0" expanded="true" />
-            <element signature="e#16606#16607#0" expanded="true" />
-            <element signature="e#16639#16640#0" expanded="true" />
-            <element signature="e#16886#16887#0" expanded="true" />
-            <element signature="e#16940#16941#0" expanded="true" />
-            <element signature="e#16980#16981#0" expanded="true" />
-            <element signature="e#17018#17019#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="155">
+          <caret line="31" column="22" selection-start-line="31" selection-start-column="22" selection-end-line="31" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/cards/Minion.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="174" column="27" selection-start-line="174" selection-start-column="27" selection-end-line="174" selection-end-column="27" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/model/Battle.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="225" column="43" selection-start-line="225" selection-start-column="43" selection-end-line="225" selection-end-column="43" />
+        <state relative-caret-position="172">
+          <caret line="210" column="23" selection-start-line="210" selection-start-column="23" selection-end-line="210" selection-end-column="23" />
+          <folding>
+            <element signature="e#10522#10523#0" expanded="true" />
+            <element signature="e#10608#10609#0" expanded="true" />
+            <element signature="e#10663#10664#0" expanded="true" />
+            <element signature="e#10735#10736#0" expanded="true" />
+            <element signature="e#10809#10810#0" expanded="true" />
+            <element signature="e#10877#10878#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/InGameController.java">
+    <entry file="file://$PROJECT_DIR$/src/model/cellaffects/PoisonCellAffect.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="59" column="22" lean-forward="true" selection-start-line="59" selection-start-column="22" selection-end-line="59" selection-end-column="22" />
+        <state relative-caret-position="153">
+          <caret line="13" column="11" lean-forward="true" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/cellaffects/CellAffect.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="20" column="25" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="121">
+          <caret line="260" column="39" lean-forward="true" selection-start-line="260" selection-start-column="39" selection-end-line="260" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Deck.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="81" column="65" selection-start-line="81" selection-start-column="65" selection-end-line="81" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Account.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="28" column="8" selection-start-line="28" selection-start-column="8" selection-end-line="28" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/PlayGround.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="28" column="18" selection-start-line="28" selection-start-column="18" selection-end-line="28" selection-end-column="18" />
+          <folding>
+            <element signature="e#2154#2155#0" expanded="true" />
+            <element signature="e#2189#2190#0" expanded="true" />
+            <element signature="e#7456#7457#0" expanded="true" />
+            <element signature="e#7484#7485#0" expanded="true" />
+            <element signature="e#7513#7514#0" expanded="true" />
+            <element signature="e#7540#7541#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view/NewInGameView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="80" column="81" selection-start-line="80" selection-start-column="81" selection-end-line="80" selection-end-column="81" />
+        <state relative-caret-position="416">
+          <caret line="260" column="110" selection-start-line="260" selection-start-column="110" selection-end-line="260" selection-end-column="110" />
           <folding>
-            <element signature="method#updateSpecialPower#0;class#NewInGameView#0" />
-            <element signature="method#setMediaViews#0;class#NewInGameView#0" />
             <element signature="method#showError#0;class#NewInGameView#0" />
             <element signature="method#notEnoughMana#0;class#NewInGameView#0" />
             <element signature="method#cantAttack#0;class#NewInGameView#0" />
-            <element signature="method#updatePlayGround#1;class#NewInGameView#0" />
-            <element signature="e#15520#15521#0" expanded="true" />
-            <element signature="e#21427#21428#0" expanded="true" />
+            <element signature="e#16947#16948#0" expanded="true" />
+            <element signature="e#22904#22905#0" expanded="true" />
           </folding>
         </state>
       </provider>

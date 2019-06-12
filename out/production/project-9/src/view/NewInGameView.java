@@ -20,10 +20,15 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.*;
 import model.Cell;
+import model.buffs.HollyBuff;
+import model.buffs.PoisonBuff;
 import model.cards.Card;
 import model.cards.Hero;
 import model.cards.Minion;
 import model.cards.Spell;
+import model.cellaffects.CellAffect;
+import model.cellaffects.HollyCellAffect;
+import model.cellaffects.PoisonCellAffect;
 import model.enumerations.InGameErrorType;
 import model.items.Collectible;
 import model.items.Item;
@@ -61,11 +66,17 @@ public class NewInGameView {
         setBtns();
         //TODO
         battle.startBattle();
+
         //
         setManas(battle.getFirstPlayer());
         setManas(battle.getSecondPlayer());
         updateHand();
         updatePlayGround(group);
+
+        //setFlag(getCellPane(2,2));
+
+
+
         MediaView mediaView = getBackGroundMusic();
         group.getChildren().add(mediaView);
         stage.setTitle("Duelyst");
@@ -73,16 +84,16 @@ public class NewInGameView {
         stage.show();
     }
 
-    public static void finished(BattleResult battleResult){//TODO
+    public static void finished(BattleResult battleResult) {//TODO
         String winner = battleResult.getWinner();
         int prize = battleResult.getPrize();
         Text winnerText = new Text(winner + " wins \nand gets " + prize + " prize");
         winnerText.setFill(Color.BLUE);
-        winnerText.setFont(Font.loadFont("file:src/res/inGameResource/BrockScript.ttf",50));
+        winnerText.setFont(Font.loadFont("file:src/res/inGameResource/BrockScript.ttf", 50));
         winnerText.setX(20);
         winnerText.setY(50);
         Group group = new Group();
-        Scene scene = new Scene(group,400,400);
+        Scene scene = new Scene(group, 400, 400);
         ImageView imageView = new ImageView(new Image("file:src/res/inGameResource/endGame.jpg"));
         imageView.setFitWidth(400);
         imageView.setFitHeight(400);
@@ -184,6 +195,24 @@ public class NewInGameView {
         group.getChildren().add(mediaViewInsertMove);
     }
 
+    private static void setCellAffect(Pane pane) {
+        CellAffect cellAffect = getCell(pane).getCellAffects().get(0);
+        if (cellAffect instanceof HollyCellAffect) {
+            pane.getChildren().
+                    add(new ImageView(new Image("file:src/res/inGameResource/holly-cellaffect.gif")));
+        } else if (cellAffect instanceof PoisonCellAffect) {
+            pane.getChildren().
+                    add(new ImageView(new Image("file:src/res/inGameResource/poison-cellaffect.gif")));
+        } else {
+            pane.getChildren().
+                    add(new ImageView(new Image("file:src/res/inGameResource/fire-cellaffect.gif")));
+        }
+    }
+
+    private static void setFlag(Pane pane) {
+        pane.getChildren().add(new ImageView(new Image("file:src/res/inGameResource/flag.gif")));
+    }
+
     private static void updatePlayGround(Group group) {
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 9; j++) {
@@ -191,6 +220,10 @@ public class NewInGameView {
                 pane.getChildren().clear();
                 String path = "file:src/res/inGameResource/cellBack1.png";
                 ImageView imageView = new ImageView(new Image(path));
+                if (inGameController.getBattle().getPlayGround().getCell(i, j).hasCellAffect())
+                    setCellAffect(pane);
+                if (inGameController.getBattle().getPlayGround().getCell(i, j).getFlag() != null)
+                    setFlag(pane);
                 pane.setOnDragOver(dragEvent -> {
                     if (dragEvent.getDragboard().hasImage() && isMarked(pane, false)) {
                         dragEvent.acceptTransferModes(TransferMode.ANY);
@@ -211,7 +244,7 @@ public class NewInGameView {
                         insert.play();
                         updateHand();
                         setManas(inGameController.getBattle().getCurrenPlayer());
-                        updatePlayGround(inGameController.getBattle().getCurrenPlayer());
+                        updatePlayGround(group);
                         dragEvent.setDropCompleted(true);
                     }
                     dragEvent.setDropCompleted(false);
@@ -229,7 +262,6 @@ public class NewInGameView {
                 });
             }
         }
-        //TODO
         updateCollectibles();
         updatePlayGround(inGameController.getBattle().getSecondPlayer());
         updatePlayGround(inGameController.getBattle().getFirstPlayer());
@@ -267,7 +299,7 @@ public class NewInGameView {
         for (Minion minion : player.getMinionsInPlayGround()) {
             Cell cell = minion.getCell();
             Pane pane = getCellPane(cell.getX(), cell.getY());
-            pane.getChildren().clear();
+            //pane.getChildren().clear();
             ImageView imageView = getImageView(minion);
             setImageRotateForPlayGround(imageView);
             pane.getChildren().add(imageView);
@@ -418,9 +450,11 @@ public class NewInGameView {
 
         Pane nextCard = ((Pane) parent.lookup("#nextCard"));
         nextCard.getChildren().clear();
-        ImageView nextImageView = getImageView(next);
-        nextImageView.setOnMouseClicked(mouseEvent -> descLabel.setText(next.toString()));
-        nextCard.getChildren().add(nextImageView);
+        if (next != null) {
+            ImageView nextImageView = getImageView(next);
+            nextImageView.setOnMouseClicked(mouseEvent -> descLabel.setText(next.toString()));
+            nextCard.getChildren().add(nextImageView);
+        }
     }
 
     private static ArrayList<Cell> getValidCellsForSpell(Spell spell) {
