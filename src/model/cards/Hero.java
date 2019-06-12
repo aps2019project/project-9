@@ -113,6 +113,10 @@ public class Hero extends Minion {
         }
     }
 
+    public int getTurnsRemained() {
+        return turnsRemained;
+    }
+
     public HeroName getHeroName() {
         return heroName;
     }

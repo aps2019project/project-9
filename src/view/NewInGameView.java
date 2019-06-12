@@ -5,9 +5,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point3D;
 import javafx.scene.*;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
@@ -16,9 +14,12 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.*;
+import model.Cell;
 import model.cards.Card;
 import model.cards.Hero;
 import model.cards.Minion;
@@ -56,25 +57,113 @@ public class NewInGameView {
         descLabel = ((TextArea) parent.lookup("#description"));
         Scene scene = new Scene(group);
         setCursor(scene);
-        setExitBtn();
         stage.getIcons().add(new Image("src\\res\\icon.jpg"));
-        setNextTurnButton();
-        setCellsAction();
-        //
+        setBtns();
         //TODO
         battle.startBattle();
+        //
         setManas(battle.getFirstPlayer());
         setManas(battle.getSecondPlayer());
         updateHand();
         updatePlayGround(group);
-        //
-
-        //
         MediaView mediaView = getBackGroundMusic();
         group.getChildren().add(mediaView);
         stage.setTitle("Duelyst");
         stage.setScene(scene);
         stage.show();
+    }
+
+    public static void finished(BattleResult battleResult) {//TODO
+        String winner = battleResult.getWinner();
+        int prize = battleResult.getPrize();
+        Text winnerText = new Text(winner + " wins \nand gets " + prize + " prize");
+        winnerText.setFill(Color.BLUE);
+        winnerText.setFont(Font.loadFont("file:src/res/inGameResource/BrockScript.ttf", 50));
+        winnerText.setX(20);
+        winnerText.setY(50);
+        Group group = new Group();
+        Scene scene = new Scene(group, 400, 400);
+        ImageView imageView = new ImageView(new Image("file:src/res/inGameResource/endGame.jpg"));
+        imageView.setFitWidth(400);
+        imageView.setFitHeight(400);
+        group.getChildren().add(imageView);
+        group.getChildren().add(winnerText);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public static void alertAiAction(String action) {
+        descLabel.setText(action);
+    }
+
+    private static void setBtns() {
+        setExitBtn();
+        setNextTurnButton();
+        setCellsAction();
+        Pane specialPower = ((Pane) parent.lookup("#specialPowerPane"));
+        specialPower.setOnMouseEntered(mouseEvent -> {
+            Label label1 = (Label) parent.lookup("#specialPowerLabel1");
+            label1.setTextFill(Color.YELLOW);
+            Label label2 = (Label) parent.lookup("#specialPowerLabel2");
+            label2.setTextFill(Color.YELLOW);
+        });
+        specialPower.setOnMouseExited(mouseEvent1 -> {
+            ((Label) parent.lookup("#specialPowerLabel1")).setTextFill(Color.WHITE);
+            ((Label) parent.lookup("#specialPowerLabel2")).setTextFill(Color.WHITE);
+        });
+        updateSpecialPower();
+    }
+
+    private static void updateCollectibles() {
+        PlayGround playGround = inGameController.getBattle().getPlayGround();
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (playGround.getCell(i, j).hasCollectableItem()) {
+                    ImageView imageView = new ImageView(new Image("file:src/res/inGameResource/collectible.png"));
+                    getCellPane(i, j).getChildren().add(imageView);
+                }
+            }
+        }
+        ChoiceBox choiceBox = ((ChoiceBox) parent.lookup("#collectibles"));
+        Button button = (Button) parent.lookup("#collectibleBtn");
+        button.setOnMouseClicked(mouseEvent -> {
+            Object selectedItem = choiceBox.getSelectionModel().getSelectedItem();
+            inGameController.getBattle().getCurrenPlayer()
+                    .setSelectedCollectableItem(((Collectible) selectedItem));
+            InGameRequest request = new InGameRequest("use 1 1");
+            inGameController.main(request);
+            inGameController.getBattle().getCurrenPlayer()
+                    .setSelectedCollectableItem(null);
+            updateCollectibles();
+            updatePlayGround(group);
+            setManas(inGameController.getBattle().getCurrenPlayer());
+            alertAiAction("Collectible Item Used");
+        });
+        choiceBox.getItems().clear();
+        //TODO its just for single player
+        Player firstPlayer = inGameController.getBattle().getFirstPlayer();
+        for (Collectible collectedItem : firstPlayer.getCollectedItems()) {
+            choiceBox.getItems().add(collectedItem);
+        }
+    }
+
+    private static void updateSpecialPower() {
+        Hero hero = inGameController.getBattle().getCurrenPlayer().getHero();
+        if (hero.isSpellReady()) {
+            ((Label) parent.lookup("#specialPowerLabel2")).setText("Is Ready");
+            ((Pane) parent.lookup("#specialPowerPane")).setOnMouseClicked(mouseEvent -> {
+                InGameRequest request = new InGameRequest("use special power 1 1");
+                inGameController.main(request);
+                updatePlayGround(group);
+                setManas(inGameController.getBattle().getCurrenPlayer());
+                updateSpecialPower();
+            });
+        } else {
+            ((Label) parent.lookup("#specialPowerLabel2")).setText("Turns Remained : " + hero.getTurnsRemained());
+            ((Pane) parent.lookup("#specialPowerPane")).setOnMouseClicked(mouseEvent -> {
+            });
+        }
     }
 
     private static void setMediaViews(Group group) {
@@ -92,6 +181,7 @@ public class NewInGameView {
         move = mediaPlayerInsertMove;
         group.getChildren().add(mediaViewAttack);
         group.getChildren().add(mediaViewInsert);
+        group.getChildren().add(mediaViewInsertMove);
     }
 
     private static void updatePlayGround(Group group) {
@@ -114,18 +204,15 @@ public class NewInGameView {
                     if (db.hasImage()) {
                         int x = (pane.getId().charAt(pane.getId().length() - 2)) - 48;
                         int y = pane.getId().charAt(pane.getId().length() - 1) - 48;
-                        int firstMana = inGameController.getBattle().getCurrenPlayer().getMana();
                         InGameRequest request = new InGameRequest(
                                 "insert " + db.getString() + " in " + x + " " + y);
                         inGameController.main(request);
-                        //if (inGameController.getBattle().getCurrenPlayer().getMana() != firstMana) {
                         setMediaViews(group);
                         insert.play();
                         updateHand();
                         setManas(inGameController.getBattle().getCurrenPlayer());
                         updatePlayGround(inGameController.getBattle().getCurrenPlayer());
                         dragEvent.setDropCompleted(true);
-                        //}
                     }
                     dragEvent.setDropCompleted(false);
                 });
@@ -142,6 +229,8 @@ public class NewInGameView {
                 });
             }
         }
+        //TODO
+        updateCollectibles();
         updatePlayGround(inGameController.getBattle().getSecondPlayer());
         updatePlayGround(inGameController.getBattle().getFirstPlayer());
     }
@@ -151,6 +240,11 @@ public class NewInGameView {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Can't Move");
             alert.setContentText("The Player You Select Can't Move At This Turn");
+            alert.show();
+        } else if (errorType == InGameErrorType.HERO_NOT_HAVE_SPELL) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("No Special Power");
+            alert.setContentText("Your Hero Doesn't Have Special Power :(");
             alert.show();
         }
     }
@@ -184,7 +278,7 @@ public class NewInGameView {
                     if (possibleForMove.size() > 0) {
                         if (isMarked(getCellPane(possibleForMove.get(0).getX()
                                 , possibleForMove.get(0).getY()), false)) {
-                            deleteMarkCells(possibleForMove, false);
+                            deleteMarkCells(false);
                             player.setSelectedCard(null);
                         } else {
                             markCells(possibleForMove, false);
@@ -194,7 +288,7 @@ public class NewInGameView {
                     ArrayList<Cell> possibles = getPossibleCellsForAttack(minion);
                     if (possibles.size() > 0) {
                         if (isMarked(getCellPane(possibles.get(0).getX(), possibles.get(0).getY()), true)) {
-                            deleteMarkCells(possibles, true);
+                            deleteMarkCells(true);
                             player.setSelectedCard(null);
                         } else {
                             markCells(possibles, true);
@@ -209,11 +303,10 @@ public class NewInGameView {
                     updatePlayGround(group);
                 }
             });
-
         }
     }
 
-    private static ArrayList<Cell> getPossibleCellsForMove(Minion minion) {
+    public static ArrayList<Cell> getPossibleCellsForMove(Minion minion) {
         PlayGround playGround = inGameController.getBattle().getPlayGround();
         ArrayList<Cell> result = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
@@ -232,7 +325,7 @@ public class NewInGameView {
         return playGround.getCell(x, y);
     }
 
-    private static ArrayList<Cell> getPossibleCellsForAttack(Minion minion) {
+    public static ArrayList<Cell> getPossibleCellsForAttack(Minion minion) {
         PlayGround playGround = inGameController.getBattle().getPlayGround();
         ArrayList<Cell> result = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
@@ -266,7 +359,7 @@ public class NewInGameView {
 
     }
 
-    private static ArrayList<Cell> getPossibleCells(Card card) {
+    public static ArrayList<Cell> getPossibleCells(Card card) {
         if (card instanceof Minion) {
             //return ((Minion) card).getPlayer().getCellsToInsertMinion();
             ArrayList<Cell> result = new ArrayList<>();
@@ -291,25 +384,38 @@ public class NewInGameView {
         ArrayList<Card> cards = hand.getCards();
         Card next = hand.getNext();
         int count = 0;
-        for (Card card : cards) {
-            ImageView imageView = getImageView(card);
-            Pane pane = ((Pane) parent.lookup("#hand" + count++));
-            pane.getChildren().clear();
-            pane.getChildren().add(imageView);
-            pane.setOnMouseClicked(mouseEvent -> descLabel.setText(card.toString()));
-            pane.setOnDragDone(dragEvent -> deleteMarkCells(getPossibleCells(card), false));
-            pane.setOnDragDetected(mouseEvent -> {
-                descLabel.setText(card.toString());
-                markCells(getPossibleCells(card), false);
-                Dragboard db = pane.startDragAndDrop(TransferMode.ANY);
-                ClipboardContent clipboardContent = new ClipboardContent();
-                clipboardContent.putImage(imageView.getImage());
-                clipboardContent.putUrl(imageView.getImage().getUrl());
-                clipboardContent.putString(card.getName());//TODO
-                db.setContent(clipboardContent);
-                mouseEvent.consume();
-            });
+        for (int i = 0; i < 5; i++) {
+            if (i < cards.size()) {
+                Card card = cards.get(i);
+                ImageView imageView = getImageView(card);
+                Pane pane = ((Pane) parent.lookup("#hand" + count++));
+                pane.getChildren().clear();
+                pane.getChildren().add(imageView);
+                pane.setOnMouseClicked(mouseEvent -> descLabel.setText(card.toString()));
+                pane.setOnDragDone(dragEvent -> deleteMarkCells(false));
+                pane.setOnDragDetected(mouseEvent -> {
+                    descLabel.setText(card.toString());
+                    markCells(getPossibleCells(card), false);
+                    Dragboard db = pane.startDragAndDrop(TransferMode.ANY);
+                    ClipboardContent clipboardContent = new ClipboardContent();
+                    clipboardContent.putImage(imageView.getImage());
+                    clipboardContent.putUrl(imageView.getImage().getUrl());
+                    clipboardContent.putString(card.getName());//TODO
+                    db.setContent(clipboardContent);
+                    mouseEvent.consume();
+                });
+            } else {
+                Pane pane = ((Pane) parent.lookup("#hand" + count++));
+                pane.getChildren().clear();
+                pane.setOnMouseClicked(mouseEvent -> {
+                });
+                pane.setOnDragDone(dragEvent -> {
+                });
+                pane.setOnDragDetected(mouseEvent -> {
+                });
+            }
         }
+
         Pane nextCard = ((Pane) parent.lookup("#nextCard"));
         nextCard.getChildren().clear();
         ImageView nextImageView = getImageView(next);
@@ -341,19 +447,20 @@ public class NewInGameView {
         }
     }
 
-    private static void deleteMarkCells(ArrayList<Cell> cells, boolean attack) {
+    private static void deleteMarkCells(boolean attack) {
         String path = "file:src/res/inGameResource/markCell.gif";
         if (attack)
             path = "file:src/res/inGameResource/markAttack.gif";
-        for (Cell cell : cells) {
-            int x = cell.getX();
-            int y = cell.getY();
-            Pane pane = ((Pane) parent.lookup("#cell" + x + y));
-            for (Node child : pane.getChildren()) {
-                if (child instanceof ImageView) {
-                    if (((ImageView) child).getImage().getUrl().equals(path)) {
-                        pane.getChildren().remove(child);
-                        break;
+        PlayGround playGround = inGameController.getBattle().getPlayGround();
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 9; j++) {
+                Pane pane = ((Pane) parent.lookup("#cell" + i + j));
+                for (Node child : pane.getChildren()) {
+                    if (child instanceof ImageView) {
+                        if (((ImageView) child).getImage().getUrl().equals(path)) {
+                            pane.getChildren().remove(child);
+                            break;
+                        }
                     }
                 }
             }
@@ -386,6 +493,23 @@ public class NewInGameView {
     }
 
     private static void setCellsAction() {
+        //hand action - >
+        for (int i = 0; i < 5; i++) {
+            Pane pane = ((Pane) parent.lookup("#hand" + i));
+            pane.setOnMouseEntered(mouseEvent -> {
+                int x = pane.getId().charAt(pane.getId().length() - 1) - 48;
+                x++;
+                ((ImageView) parent.lookup("#handImage" + x)).setImage(
+                        new Image("file:src/res/inGameResource/handCard2.png"));
+            });
+            pane.setOnMouseExited(mouseEvent -> {
+                int x = pane.getId().charAt(pane.getId().length() - 1) - 48;
+                x++;
+                ((ImageView) parent.lookup("#handImage" + x)).setImage(
+                        new Image("file:src/res/inGameResource/hand-cards.png"));
+            });
+        }
+        //
         String path = "file:src/res/inGameResource/cellBack1.png";
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 9; j++) {
@@ -454,6 +578,7 @@ public class NewInGameView {
             updateHand();
             setManas(inGameController.getBattle().getFirstPlayer());
             setManas(inGameController.getBattle().getSecondPlayer());
+            updateSpecialPower();
         });
     }
 

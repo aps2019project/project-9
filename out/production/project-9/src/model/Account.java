@@ -24,9 +24,7 @@ public class Account implements Comparable<Account> {
         accounts.add(this);
         myCollection = new Collection();
         myCollection.setOwnerAccount(this);
-        //TODO debugging
-        mainDeck = new Deck("debugging");
-        //mainDeck = new Deck("first_level"); // initialized deck
+        mainDeck = new Deck("first_level"); // initialized deck
         decks.add(mainDeck);
     }
 

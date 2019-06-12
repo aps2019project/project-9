@@ -2,10 +2,7 @@ package view;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import model.Account;
-import model.Battle;
-import model.Collection;
-import model.MultiPlayerBattle;
+import model.*;
 
 import java.io.IOException;
 
@@ -25,8 +22,7 @@ public class Test extends Application {
         }*/
         try {
             Account c = new Account("n","n");
-            new NewInGameView().showGame(primaryStage,new MultiPlayerBattle(new Account("m","m")
-                    ,"n",1,1));
+            new NewInGameView().showGame(primaryStage,new SinglePlayerBattle(1,c));
         } catch (IOException e) {
             e.printStackTrace();
         }

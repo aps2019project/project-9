@@ -29,10 +29,11 @@ public class InGameController {
     public void main(InGameRequest request){
         InGameRequestType type = request.getRequestType();
         switch (type){
-            case SHOW_CARD_INFO:
-            //case EXIT:
-            case SHOW_OPPONENT_MINIONS:
+            case EXIT:
+                //TODO
             case USE_SPECIAL_POWER:
+                useSpecialPower(request.getX(), request.getY());
+                break;
             case SHOW_COLLECTIBLES:
             case SHOW_MY_MINIONS:
             case ENTER_GRAVEYARD:
@@ -55,6 +56,8 @@ public class InGameController {
                 attack(battle.getCurrenPlayer(), request.getOpponentCardID());
                 break;
             case USE:
+                use(battle.getCurrenPlayer(), request.getX(), request.getY()); // for collectible item
+                break;
             case HELP:
             case END_TURN:
                 battle.getCurrenPlayer().endTurn();
@@ -235,29 +238,25 @@ public class InGameController {
                     inGameView.printfError(InGameErrorType.INVALID_TARGET);
                 } else {
                     // ID assigning
-                    finalThingsInInsertingCard(friendlyCard, player, cell, x, y);
+                    finalThingsInInsertingCard(friendlyCard, player, cell);
                 }
             } else {
                 if (!((Spell) friendlyCard).isValidTarget(cell))
                     inGameView.printfError(InGameErrorType.INVALID_TARGET);
                 else {
                     // ID assigning
-                    finalThingsInInsertingCard(friendlyCard, player, cell, x, y);
+                    finalThingsInInsertingCard(friendlyCard, player, cell);
                 }
             }
         }
     }
 
-    private void finalThingsInInsertingCard(Card friendlyCard, Player player, Cell cell, int x, int y) {
-        /*String Id = player.getName() + "_"
-                + friendlyCard.getName()
-                + "_" + numberOfUseInBattle(player, friendlyCard);
-        friendlyCard.setBattleID(Id);*/
+    public static void finalThingsInInsertingCard(Card friendlyCard, Player player, Cell cell) {
         if (friendlyCard instanceof Minion){
             friendlyCard.setBattleID(player);
         }
         player.insertCard(friendlyCard, cell);
-        inGameView.cardInserted(friendlyCard, x, y);
+        //inGameView.cardInserted(friendlyCard, x, y);
     }
 
     private void move(Player player, int x, int y) {
@@ -332,9 +331,9 @@ public class InGameController {
         Cell targetCell = battle.getPlayGround().getCell(x, y);
         Player player = battle.getCurrenPlayer();
         if (player.getHero().getBuffs() == null && player.getHero().getCellAffect() == null) {
-            inGameView.printfError(InGameErrorType.HERO_NOT_HAVE_SPELL);
+            NewInGameView.showError(InGameErrorType.HERO_NOT_HAVE_SPELL);
         } else if (player.getMana() < player.getHero().getMP()) {
-            inGameView.printfError(InGameErrorType.NOT_HAVE_ENOUGH_MANA);
+            NewInGameView.notEnoughMana();
         } else if (!player.getHero().isSpellReady()) {
             inGameView.printfError(InGameErrorType.HERO_COOL_DOWN);
         } else {

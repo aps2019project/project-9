@@ -10,6 +10,7 @@ import model.cellaffects.CellAffect;
 import model.enumerations.GameMode;
 import model.enumerations.SpecialPowerActivationTime;
 import view.InGameView;
+import view.NewInGameView;
 
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
@@ -45,15 +46,14 @@ public class Battle {
     }
 
     private void initializeHeroAttributes() {
-        //TODO for debugg
-        /*firstPlayer.getHero().setCell(playGround.getCell(2, 0));
+        firstPlayer.getHero().setCell(playGround.getCell(2, 0));
         secondPlayer.getHero().setCell(playGround.getCell(2, 8));
         playGround.getCell(2, 0).setMinionOnIt(firstPlayer.getHero());
-        playGround.getCell(2, 8).setMinionOnIt(secondPlayer.getHero());*/
-        firstPlayer.getHero().setCell(playGround.getCell(2, 4));
+        playGround.getCell(2, 8).setMinionOnIt(secondPlayer.getHero());
+        /*firstPlayer.getHero().setCell(playGround.getCell(2, 4));
         secondPlayer.getHero().setCell(playGround.getCell(2, 5));
         playGround.getCell(2, 4).setMinionOnIt(firstPlayer.getHero());
-        playGround.getCell(2, 5).setMinionOnIt(secondPlayer.getHero());
+        playGround.getCell(2, 5).setMinionOnIt(secondPlayer.getHero());*/
         firstPlayer.getHero().setBattleID(firstPlayer.getName() + "_" + firstPlayer.getHero().getName()
                 + "_" + "1");
         secondPlayer.getHero().setBattleID(secondPlayer.getName() + "_" + secondPlayer.getHero().getName()
@@ -223,6 +223,7 @@ public class Battle {
         } else if (!(this instanceof SinglePlayerBattle)) {
             Account.findAccount(secondPlayer.getName()).wins();
         }
+        NewInGameView.finished(battleResult);
     }
 
     public PlayGround getPlayGround() {

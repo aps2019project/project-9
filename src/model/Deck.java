@@ -67,33 +67,7 @@ public class Deck {
         this.name = name;
         //TODO for debug
         if (name.equals("debugging")) {
-            hero = DefaultCards.getHero(HeroName.WHITE_DEEV);
-            item = DefaultCards.getItem(ItemName.ASSASINATION_DAGGER);
-            cards.add(DefaultCards.getSpell(SpellName.TOTAL_DISARM));
-            cards.add(DefaultCards.getSpell(SpellName.AREA_DISPEL));
-            cards.add(DefaultCards.getSpell(SpellName.EMPOWER));
-            cards.add(DefaultCards.getSpell(SpellName.FIREBALL));
-            cards.add(DefaultCards.getSpell(SpellName.GOD_STRENGTH));
-            cards.add(DefaultCards.getSpell(SpellName.HELLFIRE));
-            cards.add(DefaultCards.getSpell(SpellName.LIGHTING_BOLT));
-            cards.add(DefaultCards.getSpell(SpellName.POISON_LAKE));
-            cards.add(DefaultCards.getSpell(SpellName.MADNESS));
-            cards.add(DefaultCards.getSpell(SpellName.ALL_POISON));
-            cards.add(DefaultCards.getSpell(SpellName.HEALTH_WITH_PROFIT));
-            cards.add(DefaultCards.getSpell(SpellName.POWER_UP));
-            cards.add(DefaultCards.getSpell(SpellName.ALL_POWER));
-            cards.add(DefaultCards.getSpell(SpellName.ALL_ATTACK));
-            cards.add(DefaultCards.getSpell(SpellName.WEAKENING));
-            cards.add(DefaultCards.getSpell(SpellName.KINGS_GUARD));
-            cards.add(DefaultCards.getSpell(SpellName.SHOCK));
-            cards.add(DefaultCards.getMinion(MinionName.FARS_SHAMSHIRZAN));
-            cards.add(DefaultCards.getMinion(MinionName.TOORANEE_KAMANDAR));
-            cards.add(DefaultCards.getMinion(MinionName.TOORANEE_GHOLABSANG));
-            cards.add(DefaultCards.getMinion(MinionName.TOORANE_JASOS));
-            cards.add(DefaultCards.getMinion(MinionName.EAGLE));
-            cards.add(DefaultCards.getMinion(MinionName.JADOOGAR));
-            cards.add(DefaultCards.getMinion(MinionName.JADOOGAR_AZAM));
-
+            hero = DefaultCards.getHero(HeroName.SIMORGH);
             cards.add(DefaultCards.getMinion(MinionName.FARS_KAMANDAR));
             cards.add(DefaultCards.getMinion(MinionName.FARS_KAMANDAR));
             cards.add(DefaultCards.getMinion(MinionName.FARS_KAMANDAR));
@@ -118,8 +92,9 @@ public class Deck {
             }
             hero = DefaultCards.getHero(FIRST_LEVEL_HERO);
             hero.setCardID(uniqueID++);
-            item = DefaultCards.getItem(FIRST_LEVEL_ITEM);
-            item.setItemID(uniqueID++);
+            //TODO debugging
+            //item = DefaultCards.getItem(FIRST_LEVEL_ITEM);
+            //item.setItemID(uniqueID++);
         } else if (name.equals("second_level")) {
             for (MinionName minion : SECOND_LEVEL_MINIONS) {
                 Minion minion1 = DefaultCards.getMinion(minion);
@@ -217,9 +192,7 @@ public class Deck {
     }
 
     public boolean isValid() {
-        //TODO debugging
-        return true;
-        //return (cards.size() == 20 && hero != null);
+        return (cards.size() == 20 && hero != null);
     }
 
     public String toString() {

@@ -46,16 +46,18 @@ public class PlayGround {
                 placeFlags();
             }
         }
-        for (int i = 0; i < 3; i++) {
-            assignCollectibleItem();
-        }
+        assignCollectibleItem();
     }
 
     private void assignCollectibleItem() {
-        Cell cell = getRandomCell();
-        Collectible collectible = getRandomCollectibleItem();
-        collectibles.add(collectible);
-        cell.setCollectableItem(collectible);
+        int[] col = new int[]{3, 4, 5};
+        int[] row = new int[]{0, 1, 2, 3, 4};
+        for (int i = 0; i < 3; i++) {
+            Cell cell = getCell(row[new Random().nextInt(5)], col[i]);
+            Collectible collectible = getRandomCollectibleItem();
+            collectibles.add(collectible);
+            cell.setCollectableItem(collectible);
+        }
     }
 
     public ArrayList<Collectible> getCollectibles() {
