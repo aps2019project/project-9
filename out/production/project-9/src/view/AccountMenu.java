@@ -30,8 +30,8 @@ import java.io.FileNotFoundException;
 import java.util.Optional;
 
 public class AccountMenu {
-    private static double height;
-    private static double width;
+    private static double height = 1003;
+    private static double width = 562;
     private AccountRequest accountRequest = new AccountRequest();
     private static AccountMenu instance = new AccountMenu();
 
@@ -45,50 +45,53 @@ public class AccountMenu {
     public void start(Stage stage, AccountController account) throws FileNotFoundException {
         stage.setTitle("project 9");
         stage.getIcons().add(new Image("src/res/icon.png"));
-
-        /*Media media = new Media(new File("src\\res\\music\\backgroundmusic.mp3").toURI().toString());
-        MediaPlayer player = new MediaPlayer(media);
-        player.play();*/
-
-        stage.setMaximized(true);
-        height = stage.getMaxHeight();
-        width = stage.getMaxWidth();
         ImageView imageView = new ImageView();
-        imageView.setImage(new Image(new FileInputStream("src/res/AccountMenuImages/1.png")));
-        imageView.setFitHeight(700);
-        imageView.setFitWidth(810);
-        imageView.setX(300);
+        imageView.setImage(new Image(new FileInputStream("src/res/AccountMenuImages/12.png")));
+        imageView.setFitHeight(462);
+        ImageView loading = new ImageView(new Image("file:src/res/AccountMenuImages/loading.gif"));
+        loading.setFitWidth(50);
+        loading.setFitHeight(50);
+        loading.setX(50);
+        loading.setY(462);
+        Text text = new Text("Click Any Where To Enter The Game ...");
+        text.setFont(Font.loadFont("file:src/res/inGameResource/font1.ttf",14));
+        text.setY(490);
+        text.setX(110);
         Group group = new Group(imageView);
-        Scene scene = new Scene(group, height, width);
+        group.getChildren().add(loading);
+        group.getChildren().add(text);
+        Scene scene = new Scene(group, 420, 562);
         scene.setFill(Color.DEEPPINK);
         scene.setOnMouseClicked(event -> {
-            stage.close();
-            accountMenuShow(stage, account);
+            //stage.close();
+            accountMenuShow(stage,account);
         });
         stage.setScene(scene);
         stage.show();
     }
 
-    private void accountMenuShow(Stage stage, AccountController account) {
+    private void accountMenuShow(Stage last , AccountController account) {
         try {
+            Stage stage = new Stage();
+            stage.setTitle("Account Menu");
             Font accountMenuFont = Font.loadFont(new FileInputStream(new File("src/res/Font/modern.TTF")), 40);
-            Text text = new Text(651, 100, "Account Menu");
+            Text text = new Text(371, 100, "Account Menu");
             text.setFont(accountMenuFont);
             text.setFill(Color.rgb(2, 14, 236));
             ImageView imageView = new ImageView();
             imageView.setImage(new Image(new FileInputStream("src/res/AccountMenuImages/5.jpg")));
-            imageView.setFitWidth(1700);
-            imageView.setFitHeight(1050);
+            imageView.setFitWidth(1003);
+            imageView.setFitHeight(762);
             Group root = new Group();
             runMusic(root);
             Button createAccountButton = setCreateAccountButton(account, stage);
             Button loginButton = setLoginButton(account, stage);
             Button showLeaderBoard = setLeaderBoardButton();
             Button helpButton = setHelpButton();
-
             root.getChildren().addAll(imageView, text, loginButton, createAccountButton, showLeaderBoard, helpButton);
             Scene scene = new Scene(root, height, width);
             stage.setScene(scene);
+            last.close();
             stage.show();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -98,13 +101,15 @@ public class AccountMenu {
     private Button setCreateAccountButton(AccountController account, Stage stage) {
         try {
             ImageView createAccountImageView;
-            createAccountImageView = new ImageView(new Image(new FileInputStream("src/res/AccountMenuImages/battered-axe.png")));
+            createAccountImageView = new ImageView(new Image(
+                    new FileInputStream("src/res/AccountMenuImages/battered-axe.png")));
             createAccountImageView.setFitWidth(100);
             createAccountImageView.setFitHeight(50);
             Button button = new Button("Create Account", createAccountImageView);
-            button.setLayoutX(630);
-            button.setLayoutY(200);
+            button.setLayoutX(385);
+            button.setLayoutY(160);
             button.setStyle("-fx-background-color: #beaf92");
+            setOnMouseAction(button);
             button.setOnMouseClicked(event -> {
                 Dialog<Pair<String, String>> dialog = new Dialog<>();
                 dialog.setTitle("Create Account");
@@ -168,19 +173,33 @@ public class AccountMenu {
         root.getChildren().add(mediaView);
     }
 
+    private void setOnMouseAction(Button button){
+        button.setPrefWidth(235);
+        button.setStyle("-fx-background-color: #beaf92");
+        button.setOnMouseEntered(mouseEvent -> {
+            button.setStyle("-fx-background-color: black");
+            button.setTextFill(Color.WHITE);
+        });
+        button.setOnMouseExited(mouseEvent -> {
+            button.setStyle("-fx-background-color: #beaf92");
+            button.setTextFill(Color.BLACK);
+        });
+    }
+
     private Button setLoginButton(AccountController account, Stage stage) {
         ImageView loginImageview = null;
         try {
-            loginImageview = new ImageView(new Image(new FileInputStream("src/res/AccountMenuImages/bow-arrow.png")));
+            loginImageview = new ImageView(new Image(
+                    new FileInputStream("src/res/AccountMenuImages/bow-arrow.png")));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         loginImageview.setFitWidth(100);
         loginImageview.setFitHeight(50);
         Button button = new Button("Login", loginImageview);
-        button.setLayoutX(630);
-        button.setLayoutY(300);
-        button.setStyle("-fx-background-color: #beaf92");
+        button.setLayoutX(385);
+        button.setLayoutY(280);
+        setOnMouseAction(button);
         button.setOnMouseClicked(event -> {
             Dialog<Pair<String, String>> dialog = new Dialog<>();
             dialog.setTitle("Login Dialog");
@@ -239,9 +258,10 @@ public class AccountMenu {
             loginImageview.setFitWidth(100);
             loginImageview.setFitHeight(50);
             Button button = new Button("show LeaderBoard", loginImageview);
-            button.setLayoutX(630);
-            button.setLayoutY(400);
+            button.setLayoutX(385);
+            button.setLayoutY(380);
             button.setStyle("-fx-background-color: #beaf92");
+            setOnMouseAction(button);
             button.setOnMouseClicked(event -> showLeaderBoard());
             return button;
         } catch (FileNotFoundException e) {
@@ -256,9 +276,10 @@ public class AccountMenu {
             loginImageview.setFitWidth(100);
             loginImageview.setFitHeight(50);
             Button button = new Button("Help", loginImageview);
-            button.setLayoutX(630);
-            button.setLayoutY(500);
+            button.setLayoutX(385);
+            button.setLayoutY(480);
             button.setStyle("-fx-background-color: #beaf92");
+            setOnMouseAction(button);
             button.setOnMouseClicked(event -> {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("HELP");
