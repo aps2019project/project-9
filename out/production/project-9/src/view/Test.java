@@ -1,5 +1,6 @@
 package view;
 
+import controller.AccountController;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import model.*;
@@ -14,17 +15,18 @@ public class Test extends Application {
 
     @Override
     public void start(Stage primaryStage) {                 //all start must have try catch
-        /*BattleMenu b = new BattleMenu();
+        AccountMenu a = AccountMenu.getInstance();
+        AccountController accountController = new AccountController();
         try {
-            b.multiPlayerPreesed(new Account("ali","mamad"));
+           a.start(primaryStage,accountController);
         } catch (Exception e) {
             e.printStackTrace();
-        }*/
-        try {
+        }
+        /*try {
             Account c = new Account("n","n");
             new GraphicalInGameView().showGame(primaryStage,new SinglePlayerBattle(1,c));
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 }

@@ -46,9 +46,9 @@ public class AccountMenu {
         stage.setTitle("project 9");
         stage.getIcons().add(new Image("src/res/icon.png"));
 
-        Media media = new Media(new File("src\\res\\music\\backgroundmusic.mp3").toURI().toString());
+        /*Media media = new Media(new File("src\\res\\music\\backgroundmusic.mp3").toURI().toString());
         MediaPlayer player = new MediaPlayer(media);
-        player.play();
+        player.play();*/
 
         stage.setMaximized(true);
         height = stage.getMaxHeight();
@@ -59,10 +59,12 @@ public class AccountMenu {
         imageView.setFitWidth(810);
         imageView.setX(300);
         Group group = new Group(imageView);
-        runMusic(group);
         Scene scene = new Scene(group, height, width);
         scene.setFill(Color.DEEPPINK);
-        scene.setOnMouseClicked(event -> accountMenuShow(stage, account));
+        scene.setOnMouseClicked(event -> {
+            stage.close();
+            accountMenuShow(stage, account);
+        });
         stage.setScene(scene);
         stage.show();
     }
@@ -78,7 +80,7 @@ public class AccountMenu {
             imageView.setFitWidth(1700);
             imageView.setFitHeight(1050);
             Group root = new Group();
-
+            runMusic(root);
             Button createAccountButton = setCreateAccountButton(account, stage);
             Button loginButton = setLoginButton(account, stage);
             Button showLeaderBoard = setLeaderBoardButton();
