@@ -52,7 +52,7 @@ public class GraphicalInGameView {
         inGameController = new InGameController(battle);
         Group group = new Group();
         GraphicalInGameView.group = group;
-        FXMLLoader fxmlLoader = new FXMLLoader(new URL("file:src/res/GameView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(new URL("file:src/res/FXML/GameView.fxml"));
         Parent parent = fxmlLoader.load();
         GraphicalInGameView.parent = parent;
         group.getChildren().add(parent);

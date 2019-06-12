@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+  <children>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="540.0" prefWidth="500.0" VBox.vgrow="ALWAYS">
+         <children>
+            <TextField fx:id="name" layoutX="87.0" layoutY="39.0" promptText="name" />
+            <ChoiceBox fx:id="type" layoutX="88.0" layoutY="70.0" prefWidth="150.0" />
+            <Label layoutX="35.0" layoutY="74.0" text="Type" />
+            <Label layoutX="31.0" layoutY="103.0" text="Target" />
+            <ChoiceBox fx:id="target" layoutX="88.0" layoutY="99.0" prefWidth="150.0" />
+            <ListView fx:id="buffList" layoutX="89.0" layoutY="162.0" prefHeight="53.0" prefWidth="150.0" />
+            <Label layoutX="35.0" layoutY="163.0" prefHeight="17.0" prefWidth="27.0" text="Buffs" />
+            <Button fx:id="addBuff" layoutX="197.0" layoutY="130.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="41.0" text="Add" />
+            <TextField fx:id="AP" layoutX="89.0" layoutY="220.0" />
+            <TextField layoutX="89.0" layoutY="253.0" />
+            <Label layoutX="40.0" layoutY="224.0" prefHeight="17.0" prefWidth="16.0" text="AP" />
+            <Label layoutX="41.0" layoutY="257.0" text="HP" />
+            <Label layoutX="17.0" layoutY="286.0" text="Attack Type" />
+            <ChoiceBox fx:id="attackType" layoutX="89.0" layoutY="282.0" prefWidth="150.0" />
+            <TextField layoutX="90.0" layoutY="316.0" />
+            <Label layoutX="41.0" layoutY="320.0" text="Range" />
+            <Label layoutX="11.0" layoutY="351.0" text="Special Power" />
+            <Button layoutX="90.0" layoutY="347.0" mnemonicParsing="false" text="Create Special Power" />
+            <TextField layoutX="301.0" layoutY="39.0" />
+            <TextField layoutX="301.0" layoutY="70.0" />
+            <Label layoutX="239.0" layoutY="43.0" text="Activation" />
+            <Label layoutX="238.0" layoutY="74.0" text="CoolDown" />
+            <TextField layoutX="301.0" layoutY="99.0" />
+            <Label layoutX="254.0" layoutY="103.0" text="Cost" />
+            <Button layoutX="331.0" layoutY="176.0" mnemonicParsing="false" text="Create" />
+         </children>
+    </AnchorPane>
+  </children>
+</VBox>

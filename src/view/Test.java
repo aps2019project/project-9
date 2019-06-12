@@ -28,6 +28,10 @@ public class Test extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }*/
-        new CustomCardMenu(new Account("m","n")).start();
+        try {
+            new CustomCardMenu(new Account("m","n")).start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
