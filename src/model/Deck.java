@@ -80,6 +80,10 @@ public class Deck {
             cards.add(DefaultCards.getSpell(SpellName.WEAKENING));
             cards.add(DefaultCards.getSpell(SpellName.GOD_STRENGTH));
             cards.add(DefaultCards.getSpell(SpellName.HELLFIRE));
+            cards.add(DefaultCards.getMinion(MinionName.SHAH_GOOL));
+            cards.add(DefaultCards.getMinion(MinionName.ARJANG_DEEV));
+            cards.add(DefaultCards.getMinion(MinionName.TOORANEE_SHAHZADE));
+            cards.add(DefaultCards.getMinion(MinionName.FARS_SEPAHSALAR));
         } else if (name.equals("first_level")) {
             for (MinionName minion : FIRST_LEVEL_MINIONS) {
                 Minion minion1 = DefaultCards.getMinion(minion);

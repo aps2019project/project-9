@@ -34,6 +34,8 @@ public class InGameController {
                 break;
             case ENTER_GRAVEYARD:
             case COMBO_ATTACK:
+                comboAttack(battle.getCurrenPlayer(), request.getComboCardIds(), request.getOpponentCardID());
+                break;
             case END_GAME:
             case MOVE_TO:
                 move(battle.getCurrenPlayer(), request.getX(), request.getY());
@@ -307,7 +309,7 @@ public class InGameController {
                 return;
             }
             if (!friendlyMinion.isCanAttack()) {
-                inGameView.cardCantAttack(friendlyMinion);
+                GraphicalInGameView.cantAttack(friendlyMinion.getBattleID());
                 return;
             }
         }

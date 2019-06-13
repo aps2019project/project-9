@@ -1,6 +1,7 @@
 package view;
 
 import controller.InGameController;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point3D;
 import javafx.scene.*;
@@ -29,6 +30,7 @@ import model.cellaffects.PoisonCellAffect;
 import model.enumerations.InGameErrorType;
 import model.items.Collectible;
 import model.items.Item;
+import model.specialPower.ComboSpecialPower;
 
 import java.io.File;
 import java.io.IOException;
@@ -47,6 +49,8 @@ public class GraphicalInGameView {
     private static MediaPlayer attack;
     private static MediaPlayer move;
     private static Group group;
+    private static boolean isCombo = false;
+    private static ArrayList<Minion> comboCards = new ArrayList<>();
 
     public void showGame(Stage stage, Battle battle) throws IOException {
         inGameController = new InGameController(battle);
@@ -61,8 +65,7 @@ public class GraphicalInGameView {
         setCursor(scene);
         stage.getIcons().add(new Image("src\\res\\icon.jpg"));
         setBtns();
-        //TODO
-        battle.startBattle();
+
 
         //
         setManas(battle.getFirstPlayer());
@@ -70,15 +73,36 @@ public class GraphicalInGameView {
         updateHand();
         updatePlayGround(group);
 
-        //setFlag(getCellPane(2,2));
-
-
 
         MediaView mediaView = getBackGroundMusic();
         group.getChildren().add(mediaView);
         stage.setTitle("Duelyst");
         stage.setScene(scene);
         stage.show();
+    }
+
+    private static void setComboBtn() {
+        Pane pane = ((Pane) parent.lookup("#combo"));
+        ImageView combo = new ImageView(new Image("file:src/res/inGameResource/comboBtn.gif"));
+        combo.setFitHeight(20);
+        combo.setFitWidth(100);
+        combo.setLayoutX(15);
+        combo.setLayoutY(10);
+        pane.getChildren().add(combo);
+        pane.setOnMouseEntered(mouseEvent ->
+                combo.setImage(new Image("file:src/res/inGameResource/comboBtn2.gif")));
+        pane.setOnMouseExited(mouseEvent ->
+                combo.setImage(new Image("file:src/res/inGameResource/comboBtn.gif")));
+        pane.setOnMouseClicked(mouseEvent -> {
+            if (isCombo) {
+                isCombo = false;
+                descLabel.setText("Combo Cancelled :(");
+            } else {
+                descLabel.setText("Click On Combo Minions Then Click Target Cell\nSelected Cards:\n");
+                isCombo = true;
+                comboCards = new ArrayList<>();
+            }
+        });
     }
 
     public static void finished(BattleResult battleResult) {//TODO
@@ -106,6 +130,7 @@ public class GraphicalInGameView {
     }
 
     private static void setBtns() {
+        setComboBtn();
         setExitBtn();
         setNextTurnButton();
         setCellsAction();
@@ -296,32 +321,48 @@ public class GraphicalInGameView {
         for (Minion minion : player.getMinionsInPlayGround()) {
             Cell cell = minion.getCell();
             Pane pane = getCellPane(cell.getX(), cell.getY());
-            //pane.getChildren().clear();
             ImageView imageView = getImageView(minion);
             setImageRotateForPlayGround(imageView);
+            //TODO for combo minions :
+            if (minion.getSpecialPower() instanceof ComboSpecialPower && !isComboMarked(pane))
+                setComboCell(minion);
             pane.getChildren().add(imageView);
             pane.setOnMouseClicked(mouseEvent -> {
-                descLabel.setText(minion.toString());
+                if (minion.getSpecialPower() instanceof ComboSpecialPower)
+                    descLabel.setText("For Combo Attack Press (C)\n" + minion.toString());
+                else
+                    descLabel.setText(minion.toString());
                 if (inGameController.getBattle().getCurrenPlayer().equals(player)) {
-                    ArrayList<Cell> possibleForMove = getPossibleCellsForMove(minion);
-                    if (possibleForMove.size() > 0) {
-                        if (isMarked(getCellPane(possibleForMove.get(0).getX()
-                                , possibleForMove.get(0).getY()), false)) {
-                            deleteMarkCells(false);
-                            player.setSelectedCard(null);
-                        } else {
-                            markCells(possibleForMove, false);
-                            player.setSelectedCard(minion);
+                    if (!isCombo) {
+                        ArrayList<Cell> possibleForMove = getPossibleCellsForMove(minion);
+                        if (possibleForMove.size() > 0) {
+                            if (isMarked(getCellPane(possibleForMove.get(0).getX()
+                                    , possibleForMove.get(0).getY()), false)) {
+                                deleteMarkCells(false);
+                                player.setSelectedCard(null);
+                            } else {
+                                markCells(possibleForMove, false);
+                                player.setSelectedCard(minion);
+                            }
                         }
-                    }
-                    ArrayList<Cell> possibles = getPossibleCellsForAttack(minion);
-                    if (possibles.size() > 0) {
-                        if (isMarked(getCellPane(possibles.get(0).getX(), possibles.get(0).getY()), true)) {
-                            deleteMarkCells(true);
-                            player.setSelectedCard(null);
-                        } else {
-                            markCells(possibles, true);
-                            player.setSelectedCard(minion);
+                        ArrayList<Cell> possibles = getPossibleCellsForAttack(minion);
+                        if (possibles.size() > 0) {
+                            if (isMarked(getCellPane(possibles.get(0).getX(), possibles.get(0).getY()), true)) {
+                                deleteMarkCells(true);
+                                player.setSelectedCard(null);
+                            } else {
+                                markCells(possibles, true);
+                                player.setSelectedCard(minion);
+                            }
+                        }
+                    } else {
+                        //for combo
+                        if (minion.getSpecialPower() instanceof ComboSpecialPower) {
+                            if (!comboCards.contains(minion))
+                                comboCards.add(minion);
+                            descLabel.setText(getComboSelectedCards());
+                            deleteMarkCells(false);
+                            markPossibleComboCells(player);
                         }
                     }
                 } else if (isMarked(pane, true)) {
@@ -330,8 +371,87 @@ public class GraphicalInGameView {
                     InGameRequest request = new InGameRequest("attack " + minion.getBattleID());
                     inGameController.main(request);
                     updatePlayGround(group);
+                } else if (isMarked(pane,false)){
+                    if(isCombo){
+                        comboAttack(minion);
+                    }
                 }
             });
+        }
+    }
+
+    private static void comboAttack(Minion target){
+        String request = "attack combo " + target.getBattleID();
+        for (Minion comboCard : comboCards) {
+            request += " " + comboCard.getBattleID();
+        }
+        inGameController.main(new InGameRequest(request));
+        isCombo = false;
+        deleteMarkCells(false);
+        comboCards = new ArrayList<>();
+        setMediaViews(group);
+        attack.play();
+    }
+
+    private static void markPossibleComboCells(Player player) {
+        String path = "file:src/res/inGameResource/markCell.gif";
+        for (int i = 0; i < 5; i++) {
+            m:
+            for (int j = 0; j < 9; j++) {
+                Cell cell = inGameController.getBattle().getPlayGround().getCell(i, j);
+                if (cell.hasCardOnIt() && !cell.getMinionOnIt().getPlayer().equals(player)) {
+                    for (Minion comboCard : comboCards) {
+                        if (!comboCard.isValidCell(cell))
+                            continue m;
+                    }
+                    if (!isMarked(getCellPane(i, j), false))
+                        getCellPane(i, j).getChildren().add(new ImageView(new Image(path)));
+                }
+            }
+        }
+    }
+
+    private static String getComboSelectedCards() {
+        String result = "Select Combo Cards Then Select Target\nSelected Cards:\n";
+        for (Minion comboCard : comboCards) {
+            result += comboCard.getBattleID() + "\n";
+        }
+        return result;
+    }
+
+    private static boolean isComboMarked(Pane pane) {
+        String path = "file:src/res/inGameResource/comboCell.gif";
+        for (Node child : pane.getChildren()) {
+            if (child instanceof ImageView && ((ImageView) child).getImage().getUrl().equals(path))
+                return true;
+        }
+        return false;
+    }
+
+    private static void setComboCell(Minion minion) {
+        String path = "file:src/res/inGameResource/comboCell.gif";
+        /*for (Minion minion1 : minion.getPlayer().getMinionsInPlayGround()) {
+            if (minion1.getSpecialPower() instanceof ComboSpecialPower) {
+                getCellPane(minion1.getCell().getX(), minion1.getCell().getY())
+                        .getChildren().add(new ImageView(new Image(path)));
+            }
+        }*/
+        getCellPane(minion.getCell().getX(), minion.getCell().getY())
+                .getChildren().add(new ImageView(new Image(path)));
+    }
+
+    private static void deleteComboCells() {
+        String path = "file:src/res/inGameResource/comboCell.gif";
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 9; j++) {
+                Pane pane = getCellPane(i, j);
+                for (Node child : pane.getChildren()) {
+                    if (child instanceof ImageView && ((ImageView) child).getImage().getUrl().equals(path)) {
+                        pane.getChildren().remove(child);
+                        break;
+                    }
+                }
+            }
         }
     }
 

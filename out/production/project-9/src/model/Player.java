@@ -299,11 +299,12 @@ public class Player {
     private String action;
 
     public void doAiAction() {
-        action = "";
+        //TODO
+       /* action = "";
         insertAiAction();
         moveAiAction();
         attackAiAction();
-        GraphicalInGameView.alertAiAction(action);
+        GraphicalInGameView.alertAiAction(action);*/
         endTurn();
     }
 

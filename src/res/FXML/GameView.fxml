@@ -235,6 +235,15 @@
                </image>
             </ImageView>
             <Label layoutX="41.0" layoutY="136.0" text="Collected Items" textFill="WHITE" />
+            <Pane fx:id="combo" layoutX="157.0" layoutY="124.0" prefHeight="40.0" prefWidth="137.0">
+               <children>
+                  <ImageView fitHeight="40.0" fitWidth="138.0" layoutX="-3.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../inGameResource/specialPower.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
       </children>
     </AnchorPane>
   </children>
