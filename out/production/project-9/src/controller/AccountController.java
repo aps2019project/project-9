@@ -45,7 +45,7 @@ public class AccountController {
     }
 
     private void goNextMenu(Account loggedInAccount, Stage stage) {
-        MainMenuController mainMenuController = new MainMenuController(loggedInAccount);
+        MainMenuController mainMenuController = MainMenuController.getInstance(loggedInAccount);
         mainMenuController.start(stage);
     }
 

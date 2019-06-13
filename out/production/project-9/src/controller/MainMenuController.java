@@ -18,16 +18,14 @@ public class MainMenuController {
     private MainMenuController() {
     }
 
-    public static MainMenuController getInstance() {
+    public static MainMenuController getInstance(Account loggedInAccount) {
+        mainMenuController.loggedInAccount = loggedInAccount;
         return mainMenuController;
     }
 
-    public MainMenuController(Account loggedInAccount) {
-        this.loggedInAccount = loggedInAccount;
-    }
 
     public void start(Stage stage) {
-        mainMenu.start(stage);
+        mainMenu.start(stage,loggedInAccount);
     }
 
     public void goCollectionMenu(Account loggedInAccount, Stage stage) {

@@ -12,6 +12,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import model.Account;
 import model.enumerations.MainMenuErrorType;
 
 import java.io.File;
@@ -30,7 +31,7 @@ public class MainMenu {
         return MAINMENU;
     }
 
-    public void start(Stage stage) {
+    public void start(Stage stage, Account loggedAccount) {
         try {
             Font mainMenuFont = Font.loadFont(
                     new FileInputStream(new File("src/res/Font/ALGER.TTF")), 55);
@@ -43,7 +44,7 @@ public class MainMenu {
             imageView.setFitWidth(1203);
             imageView.setFitHeight(562);
             Group root = new Group(imageView, text);
-            setButtons(root, MainMenuController.getInstance(), stage);
+            setButtons(root, MainMenuController.getInstance(loggedAccount), stage);
             Scene scene = new Scene(root, WIDTH, HEIGHT);
             stage.setScene(scene);
             stage.show();
