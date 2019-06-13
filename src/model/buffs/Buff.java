@@ -8,12 +8,21 @@ import model.enumerations.BuffName;
 import java.util.ArrayList;
 
 public abstract class Buff {
+    protected String name;
     protected BuffName buffName;
     protected int turnsActive;
     protected int turnsRemained;
     protected boolean isForAllTurns; // means : DAEMI
     protected boolean isPositive;
     protected boolean isContinous; // means : continous
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
 
     public Buff(BuffName buffName, int turnsActive,
                 boolean isForAllTurns, boolean isPositive,
@@ -83,5 +92,10 @@ public abstract class Buff {
             return new WeaknessBuff(turnsActive / 2, isForAllTurns, isContinous, ((WeaknessBuff) this).getPower()
                     , ((WeaknessBuff) this).getIsForHP(), ((WeaknessBuff) this).getIsDelayBuff(),
                     ((WeaknessBuff) this).getPowers());
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

@@ -79,8 +79,6 @@ public class Battle {
 
         for (Minion minion : minions) {
             ArrayList<Buff> buffsToDelete = new ArrayList<>();
-
-
             for (Buff buff : minion.getActiveBuffs()) {
                 /*System.out.println("buff : " + buff.getBuffName() + " from minion : " + minion.getName()
                         + " has : " + buff.getTurnsRemained() + " turns remained ");*/
@@ -95,7 +93,6 @@ public class Battle {
                     }
                 }
             }
-
             for (Buff buff : buffsToDelete) {
                 minion.buffDeactivated(buff);
             }

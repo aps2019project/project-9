@@ -6,5 +6,6 @@ public enum BuffName {
     POISON,
     WEAKNESS,
     STUN,
-    DISARM
+    DISARM,
+    DELAY,
 }
