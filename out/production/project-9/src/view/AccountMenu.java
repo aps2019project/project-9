@@ -87,7 +87,7 @@ public class AccountMenu {
             Group root = new Group();
             runMusic(root);
             Button createAccountButton = setCreateAccountButton(account);
-            Button loginButton = setLoginButton(account, stage);
+            Button loginButton = setLoginButton(account);
             Button showLeaderBoard = setLeaderBoardButton();
             Button helpButton = setHelpButton();
             root.getChildren().addAll(imageView, text, loginButton, createAccountButton, showLeaderBoard, helpButton);
@@ -176,7 +176,7 @@ public class AccountMenu {
         });
     }
 
-    private Button setLoginButton(AccountController account, Stage stage) {
+    private Button setLoginButton(AccountController account) {
         ImageView loginImageview = null;
         try {
             loginImageview = new ImageView(new Image(
@@ -222,7 +222,7 @@ public class AccountMenu {
             result.ifPresent(usernamePassword -> {
                 accountRequest.setUserName(usernamePassword.getKey());
                 accountRequest.setPassWord(usernamePassword.getValue());
-                account.login(accountRequest, stage);
+                account.login(accountRequest);
             });
         });
         return button;

@@ -16,7 +16,8 @@ public class AccountController {
         accountMenu.start(stage, this);
     }
 
-    public void login(AccountRequest request, Stage stage) {
+    public void login(AccountRequest request) {
+        Stage stage = new Stage();
         if (Account.isUserNameToken(request.getUserName())) {
             if (Account.isPassWordValid(request.getUserName(), request.getPassWord())) {
                 goNextMenu(Account.findAccount(request.getUserName()),stage);
