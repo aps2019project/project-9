@@ -86,7 +86,7 @@ public class AccountMenu {
             imageView.setFitHeight(762);
             Group root = new Group();
             runMusic(root);
-            Button createAccountButton = setCreateAccountButton(account, stage);
+            Button createAccountButton = setCreateAccountButton(account);
             Button loginButton = setLoginButton(account, stage);
             Button showLeaderBoard = setLeaderBoardButton();
             Button helpButton = setHelpButton();
@@ -100,7 +100,7 @@ public class AccountMenu {
         }
     }
 
-    private Button setCreateAccountButton(AccountController account, Stage stage) {
+    private Button setCreateAccountButton(AccountController account) {
         try {
             ImageView createAccountImageView;
             createAccountImageView = new ImageView(new Image(
@@ -143,7 +143,7 @@ public class AccountMenu {
                 result.ifPresent(usernamePassword -> {
                     accountRequest.setUserName(usernamePassword.getKey());
                     accountRequest.setPassWord(usernamePassword.getValue());
-                    stage.close();
+                    //stage.close();
                     account.createAccount(accountRequest);
                 });
             });

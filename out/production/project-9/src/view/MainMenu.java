@@ -104,12 +104,13 @@ public class MainMenu {
             logOut.setScaleY(2.5);
             setActionsAndStyles(logOut);
             logOut.setOnMouseClicked(event -> {
-                try {
+                stage.close();
+                /*try {
                     AccountController accountController = new AccountController();
                     accountController.start(stage);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
-                }
+                }*/
             });
             root.getChildren().addAll(collection, shop, battle, logOut);
         } catch (Exception e) {

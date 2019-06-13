@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import model.Account;
@@ -64,6 +65,8 @@ public class CustomCardMenu {
         Stage stage = new Stage();
         Group root = new Group();
         Scene scene = new Scene(root,300,200);
+        TextField name = new TextField();
+        ChoiceBox<BuffName> Type = new ChoiceBox<>();
 
         stage.setScene(scene);
         stage.show();
