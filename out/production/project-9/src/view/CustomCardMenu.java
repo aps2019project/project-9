@@ -1,5 +1,6 @@
 package view;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.ImageCursor;
@@ -7,13 +8,17 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.Account;
 import model.buffs.*;
+import model.cards.Card;
+import model.cards.Spell;
 import model.enumerations.BuffName;
 import model.enumerations.MinionAttackType;
 import model.enumerations.SpecialPowerActivationTime;
 import model.enumerations.SpellTargetType;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -24,6 +29,7 @@ public class CustomCardMenu {
     private ArrayList<Buff> createdBuffs = new ArrayList<>();
     private Stage firstStage;
     private Stage secondStage;
+    private Spell specialPower;
 
     public CustomCardMenu(Account loggedAccount) {
         this.loggedAccount = loggedAccount;
@@ -46,6 +52,7 @@ public class CustomCardMenu {
     }
 
     private void setElements() {
+        setSpecialBtn(((Label) parent.lookup("#specialLabel")));
         setAddBuffButton();
         setCost();
         setChoiceBoxes();
@@ -77,7 +84,7 @@ public class CustomCardMenu {
                 parent.lookup("#HP").setDisable(false);
                 attackType.setDisable(false);
                 parent.lookup("#range").setDisable(false);
-                parent.lookup("#specialPower").setDisable(false);
+                parent.lookup("#createSpecialPower").setDisable(false);
                 if (type.getSelectionModel().getSelectedItem().equals("Minion"))
                     parent.lookup("#activation").setDisable(false);
                 else
@@ -88,6 +95,43 @@ public class CustomCardMenu {
                     parent.lookup("#coolDown").setDisable(true);
             }
         });
+    }
+
+    private void setSpecialBtn(Label label) {
+        Button button = (Button) parent.lookup("#createSpecialPower");
+        ArrayList<Card> cards = loggedAccount.getCollection().getCards();
+        ArrayList<Spell> spells = new ArrayList<>();
+        for (Card card : cards) {
+            if (card instanceof Spell)
+                spells.add(((Spell) card));
+        }
+        button.setOnMouseClicked(mouseEvent -> {
+            Stage stage = new Stage();
+            Group root = new Group();
+            Scene scene = new Scene(root, 250, 200);
+            ListView<String> spellList = new ListView<>();
+            for (Spell spell : spells) {
+                spellList.getItems().add(spell.getName());
+            }
+            spellList.setOnMouseClicked(mouseEvent1 -> {
+                specialPower = spells.get(spellList.getSelectionModel().getSelectedIndex());
+                label.setText(spellList.getSelectionModel().getSelectedItem());
+                stage.close();
+            });
+            root.getChildren().add(spellList);
+            stage.setTitle("Your Spells");
+            stage.setScene(scene);
+            stage.getIcons().add(new Image("file:src/res/icon.jpg"));
+            stage.show();
+        });
+    }
+
+    private void createCard() {
+        Button button = ((Button) parent.lookup("#create"));
+        button.setOnMouseClicked(mouseEvent -> {
+
+        });
+        firstStage.close();
     }
 
     private void setChoiceBoxes() {
