@@ -10,6 +10,10 @@ import java.util.ArrayList;
 public abstract class Buff {
     protected BuffName buffName;
     protected int turnsActive;
+    protected int turnsRemained;
+    protected boolean isForAllTurns; // means : DAEMI
+    protected boolean isPositive;
+    protected boolean isContinous; // means : continous
 
     public Buff(BuffName buffName, int turnsActive,
                 boolean isForAllTurns, boolean isPositive,
@@ -25,11 +29,6 @@ public abstract class Buff {
         else if (isForAllTurns)
             this.isContinous = false;
     }
-
-    protected int turnsRemained;
-    protected boolean isForAllTurns; // means : DAEMI
-    protected boolean isPositive;
-    protected boolean isContinous; // means : continous
 
     public BuffName getBuffName() {
         return buffName;

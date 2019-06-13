@@ -16,27 +16,27 @@
             <ChoiceBox fx:id="type" layoutX="88.0" layoutY="70.0" prefWidth="150.0" />
             <Label layoutX="35.0" layoutY="74.0" text="Type" />
             <Label layoutX="31.0" layoutY="103.0" text="Target" />
-            <ChoiceBox fx:id="target" layoutX="88.0" layoutY="99.0" prefWidth="150.0" />
-            <ListView fx:id="buffList" layoutX="89.0" layoutY="162.0" prefHeight="53.0" prefWidth="150.0" />
+            <ChoiceBox fx:id="target" disable="true" layoutX="88.0" layoutY="99.0" prefWidth="150.0" />
+            <ListView fx:id="buffList" disable="true" layoutX="89.0" layoutY="162.0" prefHeight="53.0" prefWidth="150.0" />
             <Label layoutX="35.0" layoutY="163.0" prefHeight="17.0" prefWidth="27.0" text="Buffs" />
-            <Button fx:id="addBuff" layoutX="197.0" layoutY="130.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="41.0" text="Add" />
-            <TextField fx:id="AP" layoutX="89.0" layoutY="220.0" />
-            <TextField layoutX="89.0" layoutY="253.0" />
+            <Button fx:id="addBuff" disable="true" layoutX="197.0" layoutY="130.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="41.0" text="Add" />
+            <TextField fx:id="AP" disable="true" layoutX="89.0" layoutY="220.0" />
+            <TextField fx:id="HP" disable="true" layoutX="89.0" layoutY="253.0" />
             <Label layoutX="40.0" layoutY="224.0" prefHeight="17.0" prefWidth="16.0" text="AP" />
             <Label layoutX="41.0" layoutY="257.0" text="HP" />
             <Label layoutX="17.0" layoutY="286.0" text="Attack Type" />
-            <ChoiceBox fx:id="attackType" layoutX="89.0" layoutY="282.0" prefWidth="150.0" />
-            <TextField layoutX="90.0" layoutY="316.0" />
+            <ChoiceBox fx:id="attackType" disable="true" layoutX="89.0" layoutY="282.0" prefWidth="150.0" />
+            <TextField fx:id="range" disable="true" layoutX="90.0" layoutY="316.0" />
             <Label layoutX="41.0" layoutY="320.0" text="Range" />
             <Label layoutX="11.0" layoutY="351.0" text="Special Power" />
-            <Button layoutX="90.0" layoutY="347.0" mnemonicParsing="false" text="Create Special Power" />
-            <TextField layoutX="301.0" layoutY="39.0" />
-            <TextField layoutX="301.0" layoutY="70.0" />
+            <Button fx:id="specialPower" disable="true" layoutX="90.0" layoutY="347.0" mnemonicParsing="false" text="Create Special Power" />
+            <TextField fx:id="activation" disable="true" layoutX="301.0" layoutY="39.0" />
+            <TextField fx:id="coolDown" disable="true" layoutX="301.0" layoutY="70.0" />
             <Label layoutX="239.0" layoutY="43.0" text="Activation" />
             <Label layoutX="238.0" layoutY="74.0" text="CoolDown" />
-            <TextField layoutX="301.0" layoutY="99.0" />
+            <TextField fx:id="cost" disable="true" layoutX="301.0" layoutY="99.0" />
             <Label layoutX="254.0" layoutY="103.0" text="Cost" />
-            <Button layoutX="331.0" layoutY="176.0" mnemonicParsing="false" text="Create" />
+            <Button fx:id="create" disable="true" layoutX="331.0" layoutY="176.0" mnemonicParsing="false" text="Create" />
          </children>
     </AnchorPane>
   </children>

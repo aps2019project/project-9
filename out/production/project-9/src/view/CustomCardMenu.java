@@ -36,21 +36,67 @@ public class CustomCardMenu {
         FXMLLoader fxmlLoader = new FXMLLoader(new URL("file:src/res/FXML/CustomCardView.fxml"));
         Parent parent = fxmlLoader.load();
         this.parent = parent;
-        setChoiceBoxes();
-        setAddBuffButton();
+        setElements();
         root.getChildren().add(parent);
         stage.show();
     }
 
-    private void setChoiceBoxes() {
+    private void setElements() {
+        setAddBuffButton();
+        setCost();
+        setChoiceBoxes();
         ChoiceBox type = (ChoiceBox) parent.lookup("#type");
-        ChoiceBox target = (ChoiceBox) parent.lookup("#target");
-        ChoiceBox attackType = (ChoiceBox) parent.lookup("#attackType");
         type.getItems().add("Spell");
         type.getItems().add("Minion");
         type.getItems().add("Hero");
+        ChoiceBox target = ((ChoiceBox) parent.lookup("#target"));
+        ChoiceBox attackType = ((ChoiceBox) parent.lookup("#attackType"));
+        type.setOnAction(actionEvent -> {
+            if (type.getSelectionModel().getSelectedItem().equals("Spell")) {
+                target.setDisable(false);
+                parent.lookup("#addBuff").setDisable(false);
+                parent.lookup("#buffList").setDisable(false);
+                parent.lookup("#cost").setDisable(false);
+                parent.lookup("#AP").setDisable(true);
+                parent.lookup("#HP").setDisable(true);
+                attackType.setDisable(true);
+                parent.lookup("#range").setDisable(true);
+                parent.lookup("#specialPower").setDisable(true);
+                parent.lookup("#activation").setDisable(true);
+                parent.lookup("#coolDown").setDisable(true);
+            } else {
+                target.setDisable(true);
+                parent.lookup("#addBuff").setDisable(true);
+                parent.lookup("#buffList").setDisable(true);
+                parent.lookup("#cost").setDisable(true);
+                parent.lookup("#AP").setDisable(false);
+                parent.lookup("#HP").setDisable(false);
+                attackType.setDisable(false);
+                parent.lookup("#range").setDisable(false);
+                parent.lookup("#specialPower").setDisable(false);
+                if (type.getSelectionModel().getSelectedItem().equals("Minion"))
+                    parent.lookup("#activation").setDisable(false);
+                else
+                    parent.lookup("#activation").setDisable(true);
+                if (type.getSelectionModel().getSelectedItem().equals("Hero"))
+                    parent.lookup("#coolDown").setDisable(false);
+                else
+                    parent.lookup("#coolDown").setDisable(true);
+            }
+        });
+    }
+
+    private void setChoiceBoxes() {
+        ChoiceBox target = ((ChoiceBox) parent.lookup("#target"));
+        ChoiceBox attackType = ((ChoiceBox) parent.lookup("#attackType"));
         target.getItems().addAll(SpellTargetType.values());
         attackType.getItems().addAll(MinionAttackType.values());
+    }
+
+    private void setCost() {
+        (parent.lookup("#cost")).setOnMouseClicked(mouseEvent -> {
+            parent.lookup("#create").setDisable(false);
+        });
     }
 
     private void setAddBuffButton() {
@@ -61,10 +107,10 @@ public class CustomCardMenu {
         });
     }
 
-    private void buffCreateMenu(ListView listView){
+    private void buffCreateMenu(ListView listView) {
         Stage stage = new Stage();
         Group root = new Group();
-        Scene scene = new Scene(root,300,200);
+        Scene scene = new Scene(root, 300, 200);
         TextField name = new TextField();
         ChoiceBox<BuffName> Type = new ChoiceBox<>();
 
