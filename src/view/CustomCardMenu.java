@@ -1,5 +1,6 @@
 package view;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.ImageCursor;
@@ -7,23 +8,28 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.Account;
 import model.buffs.*;
-import model.enumerations.BuffName;
-import model.enumerations.MinionAttackType;
-import model.enumerations.SpecialPowerActivationTime;
-import model.enumerations.SpellTargetType;
+import model.cards.Card;
+import model.cards.Minion;
+import model.cards.Spell;
+import model.enumerations.*;
+import model.specialPower.*;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 
 public class CustomCardMenu {
+    private static int uniqueID = 2000;
     private Account loggedAccount;
     private Parent parent;
     private ArrayList<Buff> createdBuffs = new ArrayList<>();
     private Stage firstStage;
     private Stage secondStage;
+    private Spell specialPower;
 
     public CustomCardMenu(Account loggedAccount) {
         this.loggedAccount = loggedAccount;
@@ -46,6 +52,7 @@ public class CustomCardMenu {
     }
 
     private void setElements() {
+        setSpecialBtn(((Label) parent.lookup("#specialLabel")));
         setAddBuffButton();
         setCost();
         setChoiceBoxes();
@@ -77,7 +84,7 @@ public class CustomCardMenu {
                 parent.lookup("#HP").setDisable(false);
                 attackType.setDisable(false);
                 parent.lookup("#range").setDisable(false);
-                parent.lookup("#specialPower").setDisable(false);
+                parent.lookup("#createSpecialPower").setDisable(false);
                 if (type.getSelectionModel().getSelectedItem().equals("Minion"))
                     parent.lookup("#activation").setDisable(false);
                 else
@@ -89,6 +96,91 @@ public class CustomCardMenu {
             }
         });
     }
+
+    private void setSpecialBtn(Label label) {
+        Button button = (Button) parent.lookup("#createSpecialPower");
+        ArrayList<Card> cards = loggedAccount.getCollection().getCards();
+        ArrayList<Spell> spells = new ArrayList<>();
+        for (Card card : cards) {
+            if (card instanceof Spell)
+                spells.add(((Spell) card));
+        }
+        button.setOnMouseClicked(mouseEvent -> {
+            Stage stage = new Stage();
+            Group root = new Group();
+            Scene scene = new Scene(root, 250, 200);
+            ListView<String> spellList = new ListView<>();
+            for (Spell spell : spells) {
+                spellList.getItems().add(spell.getName());
+            }
+            spellList.setOnMouseClicked(mouseEvent1 -> {
+                specialPower = spells.get(spellList.getSelectionModel().getSelectedIndex());
+                label.setText(spellList.getSelectionModel().getSelectedItem());
+                stage.close();
+            });
+            root.getChildren().add(spellList);
+            stage.setTitle("Your Spells");
+            stage.setScene(scene);
+            stage.getIcons().add(new Image("file:src/res/icon.jpg"));
+            stage.show();
+        });
+    }
+
+    private void createCard() {
+        Button button = ((Button) parent.lookup("#create"));
+        button.setOnMouseClicked(mouseEvent -> {
+            String name = ((TextField) parent.lookup("#name")).getText();
+            CardType cardType = ((CardType) ((ChoiceBox) parent.lookup("#type"))
+                    .getSelectionModel().getSelectedItem());
+            SpellTargetType spellTargetType;
+            int AP;
+            int HP;
+            MinionAttackType minionAttackType;
+            int range;
+            SpecialPowerActivationTime specialPowerActivationTime;
+            int coolDown;
+            String desc = ((TextArea) parent.lookup("#desc")).getText();
+            int MP = Integer.parseInt(((TextField) parent.lookup("#MP")).getText());
+            int cost = Integer.parseInt(((TextField) parent.lookup("#cost")).getText());
+            Card result;
+            if (cardType == CardType.SPELL) {
+                spellTargetType = ((SpellTargetType) ((ChoiceBox) parent.lookup("#target"))
+                        .getSelectionModel().getSelectedItem());
+                result = new Spell(name, cost, MP, spellTargetType,
+                        uniqueID++, desc, createdBuffs, null, SpellName.CUSTOM);
+            } else if (cardType == CardType.MINION) {
+                HP = Integer.parseInt(((TextField) parent.lookup("#HP")).getText());
+                AP = Integer.parseInt(((TextField) parent.lookup("#AP")).getText());
+                range = Integer.parseInt(((TextField) parent.lookup("#range")).getText());
+                minionAttackType = ((MinionAttackType) ((ChoiceBox) parent.lookup("#attackType"))
+                        .getSelectionModel().getSelectedItem());
+
+                //result = new Minion(name, cost, MP, HP, AP, minionAttackType, range, )
+            }
+
+        });
+        firstStage.close();
+    }
+
+    /*private SpecialPower getSpecialPower(SpecialPowerActivationTime time) {
+        switch (time) {
+            case PASSIVE:
+                return new PassiveSpecialPower(specialPower.getBuffs(), );
+            case ON_SPAWN:
+                if (specialPower.getBuffs().size() > 0)
+                    return new OnSpawnSpecialPower(specialPower.getBuffs().get(0), );
+                else
+                    return null;
+            case ON_ATTACK:
+                return new OnAttackSpecialPower(specialPower.getBuffs(),false,false);
+            case ON_DEFEND:
+                return new OnDefendSpecialPower();
+            case COMBO:
+                return new ComboSpecialPower();
+            case ON_DEATH:
+                return new OnDeathSpecialPower();
+        }
+    }*/
 
     private void setChoiceBoxes() {
         ChoiceBox target = ((ChoiceBox) parent.lookup("#target"));

@@ -40,5 +40,6 @@ public enum  MinionName {
     FOOLAD_ZEREH,
     SIAVOSH,
     SHAH_GOOL,
-    ARJANG_DEEV
+    ARJANG_DEEV,
+    CUSTOM
 }

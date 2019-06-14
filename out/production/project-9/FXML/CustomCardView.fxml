@@ -4,39 +4,56 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="663.0" prefWidth="295.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="540.0" prefWidth="500.0" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="663.0" prefWidth="345.0" VBox.vgrow="ALWAYS">
          <children>
-            <TextField fx:id="name" layoutX="87.0" layoutY="39.0" promptText="name" />
-            <ChoiceBox fx:id="type" layoutX="88.0" layoutY="70.0" prefWidth="150.0" />
-            <Label layoutX="35.0" layoutY="74.0" text="Type" />
-            <Label layoutX="31.0" layoutY="103.0" text="Target" />
-            <ChoiceBox fx:id="target" disable="true" layoutX="88.0" layoutY="99.0" prefWidth="150.0" />
-            <ListView fx:id="buffList" disable="true" layoutX="89.0" layoutY="162.0" prefHeight="53.0" prefWidth="150.0" />
-            <Label layoutX="35.0" layoutY="163.0" prefHeight="17.0" prefWidth="27.0" text="Buffs" />
-            <Button fx:id="addBuff" disable="true" layoutX="197.0" layoutY="130.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="41.0" text="Add" />
-            <TextField fx:id="AP" disable="true" layoutX="89.0" layoutY="220.0" />
-            <TextField fx:id="HP" disable="true" layoutX="89.0" layoutY="253.0" />
-            <Label layoutX="40.0" layoutY="224.0" prefHeight="17.0" prefWidth="16.0" text="AP" />
-            <Label layoutX="41.0" layoutY="257.0" text="HP" />
-            <Label layoutX="17.0" layoutY="286.0" text="Attack Type" />
-            <ChoiceBox fx:id="attackType" disable="true" layoutX="89.0" layoutY="282.0" prefWidth="150.0" />
-            <TextField fx:id="range" disable="true" layoutX="90.0" layoutY="316.0" />
-            <Label layoutX="41.0" layoutY="320.0" text="Range" />
-            <Label layoutX="11.0" layoutY="351.0" text="Special Power" />
-            <Button fx:id="specialPower" disable="true" layoutX="90.0" layoutY="347.0" mnemonicParsing="false" text="Create Special Power" />
-            <TextField fx:id="coolDown" disable="true" layoutX="301.0" layoutY="70.0" />
-            <Label layoutX="239.0" layoutY="43.0" text="Activation" />
-            <Label layoutX="238.0" layoutY="74.0" text="CoolDown" />
-            <TextField fx:id="cost" disable="true" layoutX="301.0" layoutY="99.0" />
-            <Label layoutX="254.0" layoutY="103.0" text="Cost" />
-            <Button fx:id="create" disable="true" layoutX="331.0" layoutY="176.0" mnemonicParsing="false" text="Create" />
-            <ChoiceBox fx:id="activation" disable="true" layoutX="301.0" layoutY="39.0" prefWidth="150.0" />
+            <ImageView fitHeight="663.0" fitWidth="409.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../inGameResource/cardMenu.jpg" />
+               </image>
+            </ImageView>
+            <TextField fx:id="name" layoutX="88.0" layoutY="61.0" promptText="name" text="name" />
+            <ChoiceBox fx:id="type" layoutX="88.0" layoutY="93.0" prefWidth="150.0" />
+            <Label layoutX="35.0" layoutY="97.0" text="Type" textFill="WHITE" />
+            <Label layoutX="31.0" layoutY="126.0" text="Target" textFill="WHITE" />
+            <ChoiceBox fx:id="target" disable="true" layoutX="88.0" layoutY="122.0" prefWidth="150.0" />
+            <ListView fx:id="buffList" disable="true" layoutX="89.0" layoutY="185.0" prefHeight="53.0" prefWidth="150.0" />
+            <Label layoutX="35.0" layoutY="185.0" prefHeight="17.0" prefWidth="27.0" text="Buffs" textFill="WHITE" />
+            <Button fx:id="addBuff" disable="true" layoutX="132.0" layoutY="154.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="56.0" text="Add" />
+            <TextField fx:id="AP" disable="true" layoutX="89.0" layoutY="243.0" promptText="0" text="0" />
+            <TextField fx:id="HP" disable="true" layoutX="89.0" layoutY="276.0" text="0" />
+            <Label layoutX="40.0" layoutY="247.0" prefHeight="17.0" prefWidth="16.0" text="AP" textFill="WHITE" />
+            <Label layoutX="40.0" layoutY="280.0" text="HP" textFill="WHITE" />
+            <Label layoutX="17.0" layoutY="309.0" text="Attack Type" textFill="WHITE" />
+            <ChoiceBox fx:id="attackType" disable="true" layoutX="89.0" layoutY="305.0" prefWidth="150.0" />
+            <TextField fx:id="range" disable="true" layoutX="89.0" layoutY="339.0" prefHeight="25.0" prefWidth="150.0" text="0" />
+            <Label layoutX="31.0" layoutY="343.0" text="Range" textFill="WHITE" />
+            <Label layoutX="11.0" layoutY="374.0" text="Special Power" textFill="WHITE" />
+            <Button fx:id="createSpecialPower" disable="true" layoutX="98.0" layoutY="370.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="131.0" text="Set Special Power" />
+            <TextField fx:id="coolDown" disable="true" layoutX="89.0" layoutY="465.0" text="0" />
+            <Label layoutX="22.0" layoutY="438.0" text="Activation" textFill="WHITE" />
+            <Label layoutX="20.0" layoutY="469.0" text="CoolDown" textFill="WHITE" />
+            <TextField fx:id="cost" layoutX="89.0" layoutY="494.0" text="0" />
+            <Label layoutX="36.0" layoutY="498.0" text="Cost" textFill="WHITE" />
+            <Button fx:id="create" disable="true" layoutX="132.0" layoutY="622.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="56.0" text="create" />
+            <ChoiceBox fx:id="activation" disable="true" layoutX="89.0" layoutY="434.0" prefWidth="150.0" />
+            <ImageView fitHeight="53.0" fitWidth="273.0" layoutX="27.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../inGameResource/customTitle.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="specialLabel" layoutX="92.0" layoutY="408.0" text="No Special Power Selected" textFill="WHITE" />
+            <TextField fx:id="MP" layoutX="89.0" layoutY="524.0" text="0" />
+            <Label layoutX="36.0" layoutY="528.0" text="MP" textFill="WHITE" />
+            <TextArea fx:id="desc" layoutX="89.0" layoutY="559.0" prefHeight="53.0" prefWidth="150.0" promptText="Enter A Description for Your Card" />
          </children>
     </AnchorPane>
   </children>
