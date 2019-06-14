@@ -30,6 +30,10 @@ public class Spell extends Card {
         this.spellName = spellName;
     }
 
+    public CellAffect getCellAffect() {
+        return cellAffect;
+    }
+
     public ArrayList<Buff> getBuffs() {
         return buffs;
     }
@@ -64,54 +68,6 @@ public class Spell extends Card {
             targetCell.getMinionOnIt().reduceHP(targetCell.getMinionOnIt().getHP());
         }
     }
-
-    /*public void castSpecialPower(Cell cell) { // when there is no target
-        //cell is for IT_SELF ,
-        // A_CELL should be deleted
-        PlayGround playGround = owningPlayer.getBattle().getPlayGround();
-        switch (targetType) {
-            case A_FRIENDLY_POWER:
-                castSpell(playGround.getRandomPowerCell(owningPlayer));
-                break;
-            case IT_SELF:
-                castSpell(cell);
-                break;
-            case ALL_ENEMY_POWERS:
-                castSpell(cell);
-                break;
-            case AN_ENEMY_POWER:
-                castSpell(playGround.getRandomPowerCell(owningPlayer.getOpponent()));
-                break;
-            case A_CELL:
-                castSpell(playGround.getRandomPowerCell(owningPlayer));
-                break;
-            case ENEMY_HERO:
-                castSpell(owningPlayer.getOpponent().getHero().getCell());
-                break;
-            case A_POWER:
-                castSpell(playGround.getRandomPowerCell(owningPlayer));
-                break;
-            case AN_ENEMY_MINION:
-                castSpell(playGround.getRandomPowerCell(owningPlayer.getOpponent()));
-                break;
-            case ALL_FRIENDLY_POWERS:
-                castSpell(cell);
-                break;
-            case A_FRIENDLY_MINION:
-                castSpell(playGround.getRandomPowerCell(owningPlayer));
-                break;
-            case FRIENDLY_HERO:
-                castSpell(owningPlayer.getHero().getCell());
-                break;
-            case TWO_IN_TWO_SQUARE:
-                castSpell(cell);
-                break;
-            case ALL_ENEMY_IN_COLUMN:
-            case THREE_IN_THREE_SQUARE:
-            case AN_ENEMY_MINION_IN_EIGHT_HERO:
-            case ALL_ENEMY_IN_ROW:
-        }
-    }*/
 
 
     public void castSpell(Cell inputCell) {

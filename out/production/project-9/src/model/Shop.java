@@ -48,6 +48,11 @@ public class Shop {
         }
     }
 
+    public void addCard(Card card){
+        card.setCardID(uniqueID++);
+        allCards.add(card);
+    }
+
     // total_disarm , all_disam , all_poison , ghool_snake
     public Card searchCardByName(String cardName) {
         for (Card card : allCards) {

@@ -78,8 +78,8 @@ public class CustomCardMenu {
                 parent.lookup("#coolDown").setDisable(true);
             } else {
                 target.setDisable(true);
-                parent.lookup("#addBuff").setDisable(false);
-                parent.lookup("#buffList").setDisable(false);
+                parent.lookup("#addBuff").setDisable(true);
+                parent.lookup("#buffList").setDisable(true);
                 parent.lookup("#cost").setDisable(false);
                 parent.lookup("#AP").setDisable(false);
                 parent.lookup("#HP").setDisable(false);
@@ -158,9 +158,12 @@ public class CustomCardMenu {
                     range = Integer.parseInt(((TextField) parent.lookup("#range")).getText());
                     minionAttackType = ((MinionAttackType) ((ChoiceBox) parent.lookup("#attackType"))
                             .getSelectionModel().getSelectedItem());
-                    SpecialPower specialPower = getSpecialPower(specialPowerActivationTime);
+                    SpecialPower power = getSpecialPower(specialPowerActivationTime);
+                    //TODO
+                    System.out.println("mamad");
+                    System.out.println(power.getSpell());
                     result = new Minion(name, cost, MP, HP, AP, minionAttackType, range,
-                            specialPower, CardType.MINION, uniqueID++, desc, MinionName.CUSTOM, false);
+                            power, CardType.MINION, uniqueID++, desc, MinionName.CUSTOM, false);
                 } else if (cardType.equals("Hero")) {
                     HP = Integer.parseInt(((TextField) parent.lookup("#HP")).getText());
                     AP = Integer.parseInt(((TextField) parent.lookup("#AP")).getText());
@@ -190,6 +193,8 @@ public class CustomCardMenu {
     private SpecialPower getSpecialPower(SpecialPowerActivationTime time) {
         switch (time) {
             case PASSIVE:
+                //TODO
+                System.out.println(specialPower);
                 return new PassiveSpecialPower(specialPower);
             case ON_SPAWN:
                 return new OnSpawnSpecialPower(specialPower);

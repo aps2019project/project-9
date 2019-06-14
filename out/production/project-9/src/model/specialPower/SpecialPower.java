@@ -24,7 +24,29 @@ public abstract class SpecialPower { // FARS_PAHLAVAN remaining
         this.minion = minion;
     }
 
-    protected Cell getSpellCastCell(SpellTargetType targetType){
+    public Spell getSpell() {
+        return spell;
+    }
+
+    public SpecialPower getCustomCopy(){
+        switch (specialPowerActivationTime){
+            case ON_DEATH:
+                return new OnDeathSpecialPower(((Spell) spell.getCustomCopy()));
+            case COMBO:
+                return new ComboSpecialPower();
+            case ON_DEFEND:
+                return this;
+            case ON_ATTACK:
+                return new OnAttackSpecialPower(((Spell) spell.getCustomCopy()));
+            case ON_SPAWN:
+                return new OnSpawnSpecialPower(((Spell) spell.getCustomCopy()));
+            case PASSIVE:
+                return new PassiveSpecialPower(((Spell) spell.getCustomCopy()));
+        }
+        return null;
+    }
+
+    public static Cell getSpellCastCell(SpellTargetType targetType, Minion minion){
         PlayGround playGround = minion.getPlayer().getBattle().getPlayGround();
         switch (targetType){
             case A_POWER:
