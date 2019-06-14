@@ -310,4 +310,13 @@ public class Deck {
         return mana;
     }
 
+    public Card getcardbyName(String cardName) {
+        for (Card key :
+                cards) {
+            if (key != null && key.getName().equals(cardName)) {
+                return key;
+            }
+        }
+        return null;
+    }
 }

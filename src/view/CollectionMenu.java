@@ -3,9 +3,7 @@ package view;
 import java.util.*;
 
 import controller.CollectionController;
-import controller.MainMenuController;
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -19,6 +17,9 @@ import model.Deck;
 import model.cards.Card;
 import model.enumerations.CollectionErrorType;
 
+import static model.enumerations.CollectionErrorType.DECK_CREATED;
+import static model.enumerations.CollectionErrorType.REMOVED_SUCCESSFULLY;
+
 public class CollectionMenu {
 
     private int count = 0;
@@ -26,7 +27,8 @@ public class CollectionMenu {
     private Account account;
     private CollectionController controller;
     private static boolean isColomnsset = false;
-    private static boolean havaBottun = false;
+    private static boolean haveAddButton = false;
+    private static boolean haveDelButton = false;
 
     public CollectionMenu(CollectionController controller) {
         this.account = controller.getLoggedInAccount();
@@ -53,7 +55,7 @@ public class CollectionMenu {
 
     private TableView setTable() {
         TableView tableView = new TableView();
-        tableView.setTranslateX(600);
+        tableView.setTranslateX(500);
         tableView.setLayoutY(30);
         return tableView;
     }
@@ -85,27 +87,149 @@ public class CollectionMenu {
 
     private void setButtons(Group root, Stage stage, TableView tableView) {
         int addX = 20;
-        int addY = 45;
+        int addY = 43;
         int startX = 20;
-        int startY = 190;
+        int startY = 170;
+        Button selectDeck = setSelectButton(startX, startY);
+        Button createDeck = setCreateDeckButton(startX, startY, addX, addY);
+        Button deleteDeck = setDeleteDeckButton(startX, startY, addX, addY);
+        Button showAllDecks = setShowAllDecksButton(startX, startY, addX, addY, tableView);
+        Button showDeck = setshowDeckButton(startX, startY, addX, addY, tableView);
+        Button save = setSaveButton(startX, startY, addX, addY);
+        Button search = setSearchButton(startX, startY, addX, addY, tableView);
+        Button help = setHelpButton(startX, startY, addX, addY);
+        Button back = setBackButton(startX, startY, addX, addY, stage);
+        Button showCollection = setShowCollectionButton(tableView);
 
+        root.getChildren().addAll(selectDeck, createDeck, deleteDeck, showAllDecks, showDeck, save, help, back,
+                showCollection, search);
+    }
 
-        Button selectDeck = new Button("Select Deck");
-        selectDeck.setScaleX(0.8);
-        selectDeck.setScaleY(0.8);
-        selectDeck.setLayoutX(startX);
-        selectDeck.setLayoutY(startY);
+    private Button setShowCollectionButton(TableView tableView) {
+        Button showCollection = new Button("show\nCollection");
+        showCollection.setStyle("-fx-background-color: \n " +
+                "        linear-gradient(#f2f2f2, #d6d6d6),\n" +
+                "        linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%),\n" +
+                "        linear-gradient(#dddddd 0%, #f6f6f6 50%);\n" +
+                "    -fx-background-radius: 8,7,6;\n" +
+                "    -fx-background-insets: 0,1,2;\n" +
+                "    -fx-text-fill: black;\n" +
+                "    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );");
+        showCollection.setLayoutX(35);
+        showCollection.setLayoutY(480);
+        showCollection.setOnMouseClicked(m -> showCollectionTable(tableView));
+        return showCollection;
+    }
 
-        selectDeck.setOnMouseClicked(mouseEvent -> {
+    private Button setBackButton(int startX, int startY, int addX, int addY, Stage stage) {
+        Button back = new Button("Exit");
+        back.setScaleX(0.8);
+        back.setScaleY(0.8);
+        back.setLayoutX(startX + 8 * addX);
+        back.setLayoutY(startY + 8 * addY);
+        back.setOnMouseClicked(m -> stage.close());
+        return back;
+    }
+
+    private Button setHelpButton(int startX, int startY, int addX, int addY) {
+        Button help = new Button("help");
+        help.setScaleX(0.8);
+        help.setScaleY(0.8);
+        help.setLayoutX(startX + 7 * addX);
+        help.setLayoutY(startY + 7 * addY);
+
+        help.setOnMouseClicked(m -> {
+            new Alert(Alert.AlertType.INFORMATION,
+                    "show Collection ---> show collection\n" +
+                            "create deck --> create a deck\n" +
+                            "delete deck --> delete a deck\n" +
+                            "select deck --> set a deck for MainDeck Assigning \n" +
+                            "show all decks --> show all of your decks\n" +
+                            "show deck --> show a deck by name\n" +
+                            "save --> save your changes\n" +
+                            "exit --> back to main menu\n").showAndWait();
+        });
+        return help;
+    }
+
+    private Button setSearchButton(int startX, int startY, int addX, int addY, TableView tableView) {
+        Button search = new Button("Search");
+        search.setScaleX(0.8);
+        search.setScaleY(0.8);
+        search.setLayoutX(startX + 6 * addX);
+        search.setLayoutY(startY + 6 * addY);
+        search.setOnMouseClicked(m -> {
+            TextInputDialog dialog = new TextInputDialog("");
+            dialog.setTitle("Search");
+            dialog.setHeaderText("Enter Card/item name");
+            dialog.setContentText("Enter :");
+
+            Optional<String> result = dialog.showAndWait();
+            result.ifPresent(name -> {
+                showCard(tableView, name);
+            });
+        });
+        return search;
+    }
+
+    private Button setSaveButton(int startX, int startY, int addX, int addY) {
+        Button save = new Button("Save");
+        save.setScaleX(0.8);
+        save.setScaleY(0.8);
+        save.setLayoutX(startX + 5 * addX);
+        save.setLayoutY(startY + 5 * addY);
+
+        save.setOnMouseClicked(m -> {
+            //TODO
+        });
+        return save;
+    }
+
+    private Button setshowDeckButton(int startX, int startY, int addX, int addY, TableView tableView) {
+        Button showDeck = new Button("Show Deck");
+        showDeck.setScaleX(0.8);
+        showDeck.setScaleY(0.8);
+        showDeck.setLayoutX(startX + 4 * addX);
+        showDeck.setLayoutY(startY + 4 * addY);
+
+        showDeck.setOnMouseClicked(m -> {
+            showDeckTable(tableView);
+        });
+        return showDeck;
+    }
+
+    private Button setShowAllDecksButton(int startX, int startY, int addX, int addY, TableView tableView) {
+        Button showAllDecks = new Button("Show All Decks");
+        showAllDecks.setScaleX(0.8);
+        showAllDecks.setScaleY(0.8);
+        showAllDecks.setLayoutX(startX + 3 * addX);
+        showAllDecks.setLayoutY(startY + 3 * addY);
+
+        showAllDecks.setOnMouseClicked(m -> {
+            showAllDecksTable(tableView);
+        });
+        return showAllDecks;
+    }
+
+    private Button setDeleteDeckButton(int startX, int startY, int addX, int addY) {
+        Button deleteDeck = new Button("Delete Deck");
+        deleteDeck.setScaleX(0.8);
+        deleteDeck.setScaleY(0.8);
+        deleteDeck.setLayoutX(startX + 2 * addX);
+        deleteDeck.setLayoutY(startY + 2 * addY);
+
+        deleteDeck.setOnMouseClicked(mouseEvent -> {
             ChoiceDialog<String> dio = setDecksList();
-            dio.setTitle("Select main Deck");
-            dio.setHeaderText("Select your main deck");
+            dio.setTitle("Delete deck");
+            dio.setHeaderText("Select deck you wanna delete");
             dio.setContentText("Decks:");
             Optional<String> result1 = dio.showAndWait();
-
-            result1.ifPresent(p -> controller.selectDeck(p));
+            result1.ifPresent(p -> controller.deleteDeck(p));
         });
+        return deleteDeck;
+    }
 
+    private Button setCreateDeckButton(int startX, int startY, int addX, int addY) {
         Button createDeck = new Button("Create Deck");
         createDeck.setScaleX(0.8);
         createDeck.setScaleY(0.8);
@@ -121,107 +245,54 @@ public class CollectionMenu {
             Optional<String> result = dialog.showAndWait();
             result.ifPresent(name -> controller.createDeck(name));
         });
+        return createDeck;
+    }
 
-        Button deleteDeck = new Button("Delete Deck");
-        deleteDeck.setScaleX(0.8);
-        deleteDeck.setScaleY(0.8);
-        deleteDeck.setLayoutX(startX + 2 * addX);
-        deleteDeck.setLayoutY(startY + 2 * addY);
-
-        deleteDeck.setOnMouseClicked(mouseEvent -> {
+    private Button setSelectButton(int startX, int startY) {
+        Button selectDeck = new Button("Select Deck");
+        selectDeck.setScaleX(0.8);
+        selectDeck.setScaleY(0.8);
+        selectDeck.setLayoutX(startX);
+        selectDeck.setLayoutY(startY);
+        selectDeck.setOnMouseClicked(mouseEvent -> {
             ChoiceDialog<String> dio = setDecksList();
-            dio.setTitle("Delete deck");
-            dio.setHeaderText("Select deck you wanna delete");
+            dio.setTitle("Select main Deck");
+            dio.setHeaderText("Select your main deck");
             dio.setContentText("Decks:");
             Optional<String> result1 = dio.showAndWait();
-            result1.ifPresent(p -> controller.deleteDeck(p));
+
+            result1.ifPresent(p -> controller.selectDeck(p));
         });
+        return selectDeck;
+    }
 
-        Button showAllDecks = new Button("Show All Decks");
-        showAllDecks.setScaleX(0.8);
-        showAllDecks.setScaleY(0.8);
-        showAllDecks.setLayoutX(startX + 3 * addX);
-        showAllDecks.setLayoutY(startY + 3 * addY);
+    private void showCard(TableView tableView, String name) {
+        setupCollectionTable(tableView);
+        controller.search(name, tableView);
+    }
 
-        showAllDecks.setOnMouseClicked(m -> {
-            showAllDecksTable(tableView);
-        });
-
-        Button showDeck = new Button("Show Deck");
-        showDeck.setScaleX(0.8);
-        showDeck.setScaleY(0.8);
-        showDeck.setLayoutX(startX + 4 * addX);
-        showDeck.setLayoutY(startY + 4 * addY);
-
-        showDeck.setOnMouseClicked(m -> {
-            showDeckTable(tableView);
-        });
-
-        Button save = new Button("Save");
-        save.setScaleX(0.8);
-        save.setScaleY(0.8);
-        save.setLayoutX(startX + 5 * addX);
-        save.setLayoutY(startY + 5 * addY);
-
-        save.setOnMouseClicked(m -> {
-            //TODO
-        });
-        Button help = new Button("help");
-        help.setScaleX(0.8);
-        help.setScaleY(0.8);
-        help.setLayoutX(startX + 6 * addX);
-        help.setLayoutY(startY + 6 * addY);
-
-        help.setOnMouseClicked(m -> {
-            new Alert(Alert.AlertType.INFORMATION,
-                    "show Collection ---> show collection\n" +
-                            "create deck --> create a deck\n" +
-                            "delete deck --> delete a deck\n" +
-                            "select deck --> set a deck for MainDeck Assigning \n" +
-                            "show all decks --> show all of your decks\n" +
-                            "show deck --> show a deck by name\n" +
-                            "save --> save your changes\n" +
-                            "exit --> back to main menu\n").showAndWait();
-        });
-
-        Button back = new Button("Exit");
-        back.setScaleX(0.8);
-        back.setScaleY(0.8);
-        back.setLayoutX(startX + 7 * addX);
-        back.setLayoutY(startY + 7 * addY);
-        back.setOnMouseClicked(m -> stage.close());
-
-        Button showCollection = new Button("show\nCollection");
-        selectDeck.setScaleX(0.9);
-        selectDeck.setScaleY(0.9);
-        showCollection.setStyle("-fx-background-color: \n " +
-                "        linear-gradient(#f2f2f2, #d6d6d6),\n" +
-                "        linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%),\n" +
-                "        linear-gradient(#dddddd 0%, #f6f6f6 50%);\n" +
-                "    -fx-background-radius: 8,7,6;\n" +
-                "    -fx-background-insets: 0,1,2;\n" +
-                "    -fx-text-fill: black;\n" +
-                "    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );");
-        showCollection.setLayoutX(35);
-        showCollection.setLayoutY(480);
-        showCollection.setOnMouseClicked(m -> showCollectionTable(tableView));
-
-        root.getChildren().addAll(selectDeck, createDeck, deleteDeck, showAllDecks, showDeck, save, help, back,
-                showCollection);
+    private void setupCollectionTable(TableView tableView) {
+        for (int i = 0; i < tableView.getColumns().size(); i++) {
+            tableView.getColumns().remove(i);
+        }
+        setColumns(tableView);
+        addAddButtonToTable(tableView);
+        tableView.getItems().clear();
     }
 
     private void showCollectionTable(TableView tableView) {
-        if (!havaBottun) {
-            setColumns(tableView);
-            havaBottun = true;
-        }
-        if (!isColomnsset) {
-            addAddButtonToTable(tableView);
-            isColomnsset = true;
-        }
-        tableView.getItems().clear();
+        setupCollectionTable(tableView);
         tableView.getItems().addAll(FXCollections.observableArrayList(account.getCollection().getCards()));
         tableView.getItems().addAll(FXCollections.observableArrayList(account.getCollection().getItems()));
+    }
+
+    private void setupColumns(TableView tableView) {
+        for (int i = 0; i < tableView.getColumns().size(); i++) {
+            tableView.getColumns().remove(i);
+        }
+        setColumns(tableView);
+        addDeleteButtonToTable(tableView);
+        tableView.getItems().clear();
     }
 
     private void showDeckTable(TableView tableView) {
@@ -229,30 +300,21 @@ public class CollectionMenu {
         for (int i = 0; i < account.getDecks().size(); i++) {
             choices.add(account.getDecks().get(i).getName());
         }
+        if (account.getDecks().size() != 0) {
+            ChoiceDialog<String> dialog = new ChoiceDialog<>(account.getMainDeck().getName(), choices);
+            dialog.setTitle("Choice Deck");
+            dialog.setHeaderText("Please Choose a deck");
+            dialog.setContentText("Decks :");
 
-        ChoiceDialog<String> dialog = new ChoiceDialog<>(account.getMainDeck().getName(), choices);
-        dialog.setTitle("Choice Deck");
-        dialog.setHeaderText("Please Choose a deck");
-        dialog.setContentText("Decks :");
-
-        Optional<String> result = dialog.showAndWait();
-        result.ifPresent(letter -> {
-            setupColumns(tableView);
-            Deck temp = account.findDeckByName(letter);
-            showDeck(tableView, temp);
-        });
-    }
-
-    private void setupColumns(TableView tableView) {
-        if (havaBottun) {
-            tableView.getColumns().remove(6);
-            havaBottun = false;
+            Optional<String> result = dialog.showAndWait();
+            result.ifPresent(letter -> {
+                setupColumns(tableView);
+                Deck temp = account.findDeckByName(letter);
+                showDeck(tableView, temp);
+            });
+        } else {
+            new Alert(Alert.AlertType.WARNING, "You Have no Deck!!!");
         }
-        if (!isColomnsset) {
-            setColumns(tableView);
-            isColomnsset = true;
-        }
-        tableView.getItems().clear();
     }
 
     private void setColumns(TableView tableView) {
@@ -297,17 +359,10 @@ public class CollectionMenu {
     }
 
     public void printError(CollectionErrorType error) {
-        switch (error) {
-            case DECK_NAME_EXISTS:
-                new Alert(Alert.AlertType.WARNING, error.getMessage());
-                break;
-            case DECK_CREATED:
-                new Alert(Alert.AlertType.INFORMATION, error.getMessage());
-                break;
-            case DECK_NOT_VALID:
-                new Alert(Alert.AlertType.WARNING, error.getMessage());
-                break;
-        }
+        if (error == DECK_CREATED || error == REMOVED_SUCCESSFULLY)
+            new Alert(Alert.AlertType.INFORMATION, error.getMessage()).showAndWait();
+        else
+            new Alert(Alert.AlertType.WARNING, error.getMessage()).showAndWait();
     }
 
     private ChoiceDialog<String> setDecksList() {
@@ -319,8 +374,9 @@ public class CollectionMenu {
     }
 
     private void addAddButtonToTable(TableView table) {
+        table.setTranslateX(500);
         TableColumn actionCol = new TableColumn("Add");
-        actionCol.setCellValueFactory(new PropertyValueFactory<>("DUMMY"));
+        actionCol.setCellValueFactory(new PropertyValueFactory<>(""));
         Callback<TableColumn<Card, String>, TableCell<Card, String>> cellFactory = new Callback<>() {
             @Override
             public TableCell call(final TableColumn<Card, String> param) {
@@ -354,6 +410,52 @@ public class CollectionMenu {
                             setGraphic(btn);
                             setText(null);
                         }
+                    }
+                };
+                return cell;
+            }
+        };
+        actionCol.setCellFactory(cellFactory);
+        table.getColumns().add(actionCol);
+    }
+
+    private void addDeleteButtonToTable(TableView table) {
+        table.setTranslateX(500);
+        TableColumn actionCol = new TableColumn("Delete");
+        actionCol.setCellValueFactory(new PropertyValueFactory<>(""));
+        Callback<TableColumn<Card, String>, TableCell<Card, String>> cellFactory = new Callback<>() {
+            @Override
+            public TableCell call(final TableColumn<Card, String> param) {
+                final TableCell<Card, String> cell = new TableCell<>() {
+                    final Button btn = new Button("Delete");
+
+                    @Override
+                    public void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                            setText(null);
+                        } else {
+                            btn.setOnAction(event -> {
+                                Card card = getTableView().getItems().get(getIndex());
+                                Alert alert = new Alert(Alert.AlertType.WARNING, "Are You Sure?");
+                                alert.showAndWait();
+                                String deckName = searchTableForDeckName(getTableView().getItems());
+                                controller.remove(deckName, card.getName());
+
+                            });
+                            setGraphic(btn);
+                            setText(null);
+                        }
+                    }
+
+                    private String searchTableForDeckName(List<Card> items) {
+                        for (Card key : items) {
+                            if (key != null && account.findDeckByName(key.getName()) != null) {
+                                return key.getName();
+                            }
+                        }
+                        return null;
                     }
                 };
                 return cell;

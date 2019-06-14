@@ -2,7 +2,6 @@ package model.enumerations;
 
 
 public enum CollectionErrorType {
-    INVALID_COMMAND("Invalid Command"),
     DECK_NAME_EXISTS("A Deck With This Name Already Exists"),
     DECK_NAME_NOT_EXISTS("There is no Deck With This Name"),
     CARD_NOT_IN_COLLECTION("There is no such Card ( Item ) in your Collection"),

@@ -1,5 +1,7 @@
 package controller;
 
+import javafx.collections.FXCollections;
+import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import model.Account;
 import model.Deck;
@@ -87,34 +89,29 @@ public class CollectionController {
         }
     }
 
-    public void search(String cardOrItemName) { // card or item name
+    public void search(String cardOrItemName, TableView tableView) { // card or item name
         if (loggedInAccount.getCollection().searchCardByName(cardOrItemName) != null) {
-            view.showCardID(loggedInAccount.getCollection().searchCardByName(cardOrItemName));
+            tableView.getItems().addAll(FXCollections.observableArrayList(
+                    loggedInAccount.getCollection().searchCardByName(cardOrItemName)));
         } else if (loggedInAccount.getCollection().searchItemByName(cardOrItemName) != null) {
-            view.showItemID(loggedInAccount.getCollection().searchItemByName(cardOrItemName));
+            tableView.getItems().addAll(FXCollections.observableArrayList(
+                    loggedInAccount.getCollection().searchItemByName(cardOrItemName)));
         } else
-            view.printError(CollectionErrorType.CARD_NOT_IN_COLLECTION);
+            collectionMenu.printError(CollectionErrorType.CARD_NOT_IN_COLLECTION);
     }
 
-    private void remove(String deckName, String cardOrItemName) { // card or item id
+    public void remove(String deckName, String cardOrItemName) { // card or item id
         Deck currentDeck = loggedInAccount.findDeckByName(deckName);
-        if (currentDeck == null)
-            view.printError(CollectionErrorType.DECK_NAME_NOT_EXISTS);
-        else {
-            if (currentDeck.getCardByID(cardOrItemName) == null
-                    && currentDeck.getItemByID(cardOrItemName) == null) {
-                view.printError(CollectionErrorType.NOT_IN_DECK);
-            } else {
-                if (currentDeck.getCardByID(cardOrItemName) != null) {
-                    // card found should be deleted
-                    currentDeck.removeCard(currentDeck.getCardByID(cardOrItemName));
-                } else {
-                    // item found , should be deleted
-                    currentDeck.removeItem(currentDeck.getItemByID(cardOrItemName));
-                }
-                view.printError(CollectionErrorType.REMOVED_SUCCESSFULLY);
-            }
+        System.out.println(currentDeck.getName());
+        System.out.println(cardOrItemName);
+        if (currentDeck.getcardbyName(cardOrItemName) != null) {
+            // card found should be deleted
+            currentDeck.removeCard(currentDeck.getCardByID(cardOrItemName));
+        } else {
+            // item found , should be deleted
+            currentDeck.removeItem(currentDeck.getItemByID(cardOrItemName));
         }
+        collectionMenu.printError(CollectionErrorType.REMOVED_SUCCESSFULLY);
     }
 
     public void add(String deckName, String cardOrItemName) { // card or item id
@@ -124,25 +121,25 @@ public class CollectionController {
             if (currentCard.getCardType() == CardType.MINION) { // card is a hero or minion
                 Minion currentMinion = (Minion) currentCard;
                 if (currentMinion instanceof Hero && currentDeck.hasHero()) {
-                    view.printError(CollectionErrorType.DECK_HAS_A_HERO);
+                    collectionMenu.printError(CollectionErrorType.DECK_HAS_A_HERO);
                 } else if (currentMinion instanceof Hero) { // minion is hero
                     currentDeck.setHero((Hero) currentMinion);
                 } else { // it is not hero just minion
                     if (currentDeck.canAddCard())
                         currentDeck.addCard(currentCard);
                     else
-                        view.printError(CollectionErrorType.DECK_FULL);
+                        collectionMenu.printError(CollectionErrorType.DECK_FULL);
                 }
             } else { // card is spell
                 if (currentDeck.canAddCard())
                     currentDeck.addCard(currentCard);
                 else
-                    view.printError(CollectionErrorType.DECK_FULL);
+                    collectionMenu.printError(CollectionErrorType.DECK_FULL);
             }
         } else { // it is item not card
             Item currentItem = loggedInAccount.getCollection().getItem(cardOrItemName);
             if (currentDeck.hasItem())
-                view.printError(CollectionErrorType.DECK_ALREADY_HAS_AN_ITEM);
+                collectionMenu.printError(CollectionErrorType.DECK_ALREADY_HAS_AN_ITEM);
             else {
                 currentDeck.addItem(currentItem);
             }
