@@ -161,7 +161,7 @@ public class CollectionMenu {
         Button back = new Button("Exit");
         back.setLayoutX(startX + 7 * addX);
         back.setLayoutY(startY + 7 * addY);
-        back.setOnMouseClicked(m -> MainMenuController.getInstance().start(stage));
+        back.setOnMouseClicked(m -> MainMenuController.getInstance(account).start(stage));
 
         Button triangleButton = new Button("show\nCollection");
         triangleButton.setStyle("-fx-background-color: \n " +

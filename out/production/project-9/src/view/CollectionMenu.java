@@ -1,6 +1,5 @@
 package view;
 
-import java.io.File;
 import java.util.*;
 
 import controller.CollectionController;
@@ -10,9 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 import model.Account;
 import model.Deck;
@@ -38,7 +34,7 @@ public class CollectionMenu {
             TableView tableView = setTable();
 
             runSlideShow(root);
-            setButtons(root, stage);
+            setButtons(root, stage, tableView);
             root.getChildren().add(tableView);
             Scene scene = new Scene(root, 1000, 800);
             stage.setScene(scene);
@@ -49,9 +45,9 @@ public class CollectionMenu {
         }
     }
 
-    private TableView setTable(){
+    private TableView setTable() {
         TableView tableView = new TableView();
-        tableView.setTranslateX(100);
+        tableView.setTranslateX(900);
         return tableView;
     }
 
@@ -80,7 +76,7 @@ public class CollectionMenu {
         root.getChildren().addAll(slideshowImageView);
     }
 
-    private void setButtons(Group root, Stage stage) {
+    private void setButtons(Group root, Stage stage, TableView t) {
         int addX = 30;
         int addY = 60;
         int startX = 30;
@@ -130,31 +126,43 @@ public class CollectionMenu {
         Button showAllDecks = new Button("Show All Decks");
         showAllDecks.setLayoutX(startX + 3 * addX);
         showAllDecks.setLayoutY(startY + 3 * addY);
+
+        showAllDecks.setOnMouseClicked(m -> {
+
+        });
+
         Button showDeck = new Button("Show Deck");
         showDeck.setLayoutX(startX + 4 * addX);
         showDeck.setLayoutY(startY + 4 * addY);
+
         Button save = new Button("Save");
         save.setLayoutX(startX + 5 * addX);
         save.setLayoutY(startY + 5 * addY);
+
+        save.setOnMouseClicked(m -> {
+            //TODO
+        });
         Button help = new Button("help");
         help.setLayoutX(startX + 6 * addX);
         help.setLayoutY(startY + 6 * addY);
 
-        help.setOnMouseClicked(m ->
-                new Alert(Alert.AlertType.INFORMATION,
-                        "show Collection ---> show collection\n" +
-                                "create deck --> create a deck\n" +
-                                "delete deck --> delete a deck\n" +
-                                "select deck --> set a deck for MainDeck Assigning \n" +
-                                "show all decks --> show all of your decks\n" +
-                                "show deck --> show a deck by name\n" +
-                                "save --> save your changes\n" +
-                                "exit --> back to main menu\n").showAndWait()
-        );
+        help.setOnMouseClicked(m -> {
+            new Alert(Alert.AlertType.INFORMATION,
+                    "show Collection ---> show collection\n" +
+                            "create deck --> create a deck\n" +
+                            "delete deck --> delete a deck\n" +
+                            "select deck --> set a deck for MainDeck Assigning \n" +
+                            "show all decks --> show all of your decks\n" +
+                            "show deck --> show a deck by name\n" +
+                            "save --> save your changes\n" +
+                            "exit --> back to main menu\n").showAndWait();
+        });
 
         Button back = new Button("Exit");
         back.setLayoutX(startX + 7 * addX);
         back.setLayoutY(startY + 7 * addY);
+        back.setOnMouseClicked(m -> MainMenuController.getInstance(account).start(stage));
+
         Button triangleButton = new Button("show\nCollection");
         triangleButton.setStyle("-fx-background-color: \n " +
                 "        linear-gradient(#f2f2f2, #d6d6d6),\n" +
@@ -166,9 +174,6 @@ public class CollectionMenu {
                 "    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );");
         triangleButton.setLayoutX(40);
         triangleButton.setLayoutY(700);
-        back.setOnMouseClicked(m -> {
-            MainMenuController.getInstance().start(stage);
-        });
 
         root.getChildren().addAll(selectDeck, createDeck, deleteDeck, showAllDecks, showDeck, save, help, back,
                 triangleButton);

@@ -9,6 +9,7 @@ import model.cards.Spell;
 import model.cellaffects.CellAffect;
 import model.enumerations.GameMode;
 import model.enumerations.SpecialPowerActivationTime;
+import view.GraphicalInGameView;
 import view.InGameView;
 
 import java.util.ArrayList;
@@ -27,7 +28,7 @@ public class Battle {
     protected int turnsToWon; // for one flag mode , turns that a flag is in position of winner
     protected int battlePrize; // should be initialized at Constructor()
     protected int level; // for single player games ( in battle result )
-
+    protected boolean checked = false;
 
     public void startBattle() {
         // ..........
@@ -45,15 +46,14 @@ public class Battle {
     }
 
     private void initializeHeroAttributes() {
-        //TODO for debugg
-        /*firstPlayer.getHero().setCell(playGround.getCell(2, 0));
+        firstPlayer.getHero().setCell(playGround.getCell(2, 0));
         secondPlayer.getHero().setCell(playGround.getCell(2, 8));
         playGround.getCell(2, 0).setMinionOnIt(firstPlayer.getHero());
-        playGround.getCell(2, 8).setMinionOnIt(secondPlayer.getHero());*/
-        firstPlayer.getHero().setCell(playGround.getCell(2, 4));
+        playGround.getCell(2, 8).setMinionOnIt(secondPlayer.getHero());
+        /*firstPlayer.getHero().setCell(playGround.getCell(2, 4));
         secondPlayer.getHero().setCell(playGround.getCell(2, 5));
         playGround.getCell(2, 4).setMinionOnIt(firstPlayer.getHero());
-        playGround.getCell(2, 5).setMinionOnIt(secondPlayer.getHero());
+        playGround.getCell(2, 5).setMinionOnIt(secondPlayer.getHero());*/
         firstPlayer.getHero().setBattleID(firstPlayer.getName() + "_" + firstPlayer.getHero().getName()
                 + "_" + "1");
         secondPlayer.getHero().setBattleID(secondPlayer.getName() + "_" + secondPlayer.getHero().getName()
@@ -79,8 +79,6 @@ public class Battle {
 
         for (Minion minion : minions) {
             ArrayList<Buff> buffsToDelete = new ArrayList<>();
-
-
             for (Buff buff : minion.getActiveBuffs()) {
                 /*System.out.println("buff : " + buff.getBuffName() + " from minion : " + minion.getName()
                         + " has : " + buff.getTurnsRemained() + " turns remained ");*/
@@ -95,7 +93,6 @@ public class Battle {
                     }
                 }
             }
-
             for (Buff buff : buffsToDelete) {
                 minion.buffDeactivated(buff);
             }
@@ -162,6 +159,7 @@ public class Battle {
                 secondPlayer.assignMana(secondPlayerMana);
             }
             secondPlayer.assignMana(secondPlayer.getMana() + secondPlayer.getManaForNextTurnIncrease());
+            firstPlayer.assignMana(firstPlayer.getMaxMana());
         } else {
             firstPlayerMana = firstPlayer.getMaxMana() + 1;
             if (firstPlayerMana > 9) {
@@ -172,6 +170,7 @@ public class Battle {
                 firstPlayer.assignMana(secondPlayerMana);
             }
             firstPlayer.assignMana(firstPlayer.getMana() + firstPlayer.getManaForNextTurnIncrease());
+            secondPlayer.assignMana(secondPlayer.getMaxMana());
         }
     }
 
@@ -206,6 +205,7 @@ public class Battle {
     }
 
     public void endBattle(Player winner) {
+        checked = true;
         BattleResult battleResult = new BattleResult(winner, battlePrize, this);
         if (Account.findAccount(firstPlayer.getName()) != null) {
             Account.findAccount(firstPlayer.getName()).addBattleResult(battleResult);
@@ -221,6 +221,7 @@ public class Battle {
         } else if (!(this instanceof SinglePlayerBattle)) {
             Account.findAccount(secondPlayer.getName()).wins();
         }
+        GraphicalInGameView.finished(battleResult);
     }
 
     public PlayGround getPlayGround() {
@@ -228,31 +229,33 @@ public class Battle {
     }
 
     public void checkWinner() {
-        switch (gameMode) {
-            case HERO_KILL:
-                if (firstPlayer.getHero().getHP() == 0) {
-                    endBattle(secondPlayer);
-                } else if (secondPlayer.getHero().getHP() == 0) {
-                    endBattle(firstPlayer);
-                }
-                break;
-            case ONE_FLAG:
-                // get the turns that the flag is in the position of a player
-                if (firstPlayer.getModeTwoFlag() != null &&
-                        firstPlayer.getModeTwoFlag().getTurnsOwned() >= turnsToWon)
-                    endBattle(firstPlayer);
-                else if (secondPlayer.getModeTwoFlag() != null
-                        && secondPlayer.getModeTwoFlag().getTurnsOwned() >= turnsToWon)
-                    endBattle(secondPlayer);
-                break;
-            case FLAGS:
-                int checkingInt = (numberOfFlags % 2 == 0) ? (numberOfFlags / 2) : ((numberOfFlags + 1) / 2);
-                if (firstPlayer.getFlagsAcheived().size() >= checkingInt) {
-                    endBattle(firstPlayer);
-                } else if (secondPlayer.getFlagsAcheived().size() >= checkingInt) {
-                    endBattle(secondPlayer);
-                }
-                break;
+        if (!checked) {
+            switch (gameMode) {
+                case HERO_KILL:
+                    if (firstPlayer.getHero().getHP() == 0) {
+                        endBattle(secondPlayer);
+                    } else if (secondPlayer.getHero().getHP() == 0) {
+                        endBattle(firstPlayer);
+                    }
+                    break;
+                case ONE_FLAG:
+                    // get the turns that the flag is in the position of a player
+                    if (firstPlayer.getModeTwoFlag() != null &&
+                            firstPlayer.getModeTwoFlag().getTurnsOwned() >= turnsToWon)
+                        endBattle(firstPlayer);
+                    else if (secondPlayer.getModeTwoFlag() != null
+                            && secondPlayer.getModeTwoFlag().getTurnsOwned() >= turnsToWon)
+                        endBattle(secondPlayer);
+                    break;
+                case FLAGS:
+                    int checkingInt = (numberOfFlags % 2 == 0) ? (numberOfFlags / 2) : ((numberOfFlags + 1) / 2);
+                    if (firstPlayer.getFlagsAcheived().size() >= checkingInt) {
+                        endBattle(firstPlayer);
+                    } else if (secondPlayer.getFlagsAcheived().size() >= checkingInt) {
+                        endBattle(secondPlayer);
+                    }
+                    break;
+            }
         }
     }
 

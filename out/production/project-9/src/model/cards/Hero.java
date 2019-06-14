@@ -98,8 +98,8 @@ public class Hero extends Minion {
     }
 
     public String toString() {
-        String string = "Name : " + getName() + " - AP : " + getAP() + " - HP : " + getHP() + " - Class : "
-                + getAttackType() + " - Special power: " + getDesc() + " - cost : " + getCost();
+        String string = "Name : " + getName() + "\nAP : " + getAP() + "\nHP : " + getHP() + "\nClass : "
+                + getAttackType() + "\nSpecial power: " + getDesc() + "\ncost : " + getCost();
         return string;
     }
 
@@ -111,6 +111,10 @@ public class Hero extends Minion {
         if (turnsRemained != 0) {
             turnsRemained--;
         }
+    }
+
+    public int getTurnsRemained() {
+        return turnsRemained;
     }
 
     public HeroName getHeroName() {

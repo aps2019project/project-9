@@ -1,6 +1,6 @@
 package model;
 
-import model.buffs.Buff;
+import controller.InGameController;
 import model.cards.Card;
 import model.cards.Hero;
 import model.cards.Minion;
@@ -8,10 +8,9 @@ import model.cards.Spell;
 import model.cellaffects.CellAffect;
 import model.enumerations.*;
 import model.items.*;
-import model.items.itemEnumerations.SpellItemTarget;
+import view.GraphicalInGameView;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Random;
 
 public class Player {
@@ -297,104 +296,89 @@ public class Player {
         return collectedItems;
     }
 
+    private String action;
+
     public void doAiAction() {
-        if (battle.getPlayGround().getManhatanDistance(getOpponent().getHero().getCell(), hero.getCell()) > 2) {
-            moveHeroAI();
-        }
-        for (int i = 0; i < 3; i++) {
-            insertMinionOrSpellAI();
-        }
-        moveMinionsAI();
+        //TODO
+       /* action = "";
+        insertAiAction();
+        moveAiAction();
+        attackAiAction();
+        GraphicalInGameView.alertAiAction(action);*/
         endTurn();
     }
 
-    private void moveHeroAI() {
-        int xFirst = hero.getCell().getX();
-        int yFirst = hero.getCell().getY();
-        int X1 = xFirst - 1;
-        int X2 = xFirst + 1;
-        int Y1 = yFirst - 1;
-        int Y2 = yFirst + 1;
-        int dX1 = 40, dX2 = 40, dY1 = 40, dY2 = 40;
-        if (X1 >= 0 && X1 <= 5)
-            dX1 = manhatanint(X1, yFirst);
-        if (X2 >= 0 && X2 <= 5)
-            dX2 = manhatanint(X2, yFirst);
-        if (Y1 >= 0 && Y1 <= 7)
-            dY1 = manhatanint(xFirst, Y1);
-        if (Y2 >= 0 && Y2 <= 7)
-            dY2 = manhatanint(xFirst, Y2);
-        ArrayList<Integer> distanses = new ArrayList<>();
-        distanses.add(dX1);
-        distanses.add(dX2);
-        distanses.add(dY1);
-        distanses.add(dY2);
-        int min = Collections.min(distanses);
-        if (min == dX1)
-            move(hero, battle.getPlayGround().getCell(X1, yFirst));
-        else if (min == dX2)
-            move(hero, battle.getPlayGround().getCell(X2, yFirst));
-        else if (min == dY1)
-            move(hero, battle.getPlayGround().getCell(xFirst, Y1));
-        else if (min == dY2)
-            move(hero, battle.getPlayGround().getCell(xFirst, Y2));
-    }
-
-    private void insertMinionOrSpellAI() {
-        if (minManaCardInHand() instanceof Minion) {
-            if (mana <= minManaCardInHand().getMP() && !battle.getPlayGround().getCell(hero.getCell().getX() - 1,
-                    hero.getCell().getY() - 1).hasCardOnIt() && battle.getPlayGround().getCell(hero.getCell()
-                    .getX() - 1, hero.getCell().getY() - 1) != null) {
-                insertCard(minManaCardInHand(), battle.getPlayGround().getCell(hero.getCell().getX() - 1,
-                        hero.getCell().getY() - 1));
-            } else if (mana <= minManaCardInHand().getMP() && !battle.getPlayGround().getCell(hero.getCell().getX()
-                    - 1, hero.getCell().getY()).hasCardOnIt() && battle.getPlayGround().getCell(hero.getCell().getX()
-                    - 1, hero.getCell().getY()) != null) {
-                insertCard(minManaCardInHand(), battle.getPlayGround().getCell(hero.getCell().getX() - 1,
-                        hero.getCell().getY()));
-            }
-        } else {
-            Spell spell = (Spell) minManaCardInHand();
-            if (spell.getTargetType().equals(SpellItemTarget.FRINEDLY_HERO)) {
-                insertCard(spell, hero.getCell());
-            } else if (spell.getTargetType().equals(SpellItemTarget.ENEMY_HERO_RANGED_OR_HYBRID) && (
-                    getOpponent().getHero().getAttackType().equals(MinionAttackType.RANGED) ||
-                            getOpponent().getHero().getAttackType().equals(MinionAttackType.HYBRID))) {
-                insertCard(spell, getOpponent().getHero().getCell());
+    private void moveAiAction() {
+        for (Minion minion : getMinionsInPlayGround()) {
+            try {
+                if (minion.isCanMove()) {
+                    Cell target = targetAiMove(minion);
+                    move(minion, target);
+                    //GraphicalInGameView.alertAiAction(AiAction.MOVE,minion,target);
+                    action += "\nMinion : " + minion.getName() + "\nmoved to : " + target.getX() + " " + target.getY();
+                }
+            } catch (Exception e) {
             }
         }
     }
 
-    private void moveMinionsAI() {
-        for (Minion key : minionsInPlayGround) {
-            if (key.isCanMove() && battle.getPlayGround().getCell(key.getCell().getX() - 1, key.getCell().getY())
-                    != null) {
-                move(key, battle.getPlayGround().getCell(key.getCell().getX() - 1, key.getCell().getY()));
+    private Cell targetAiMove(Minion minion) throws Exception {
+        Cell target = getOpponent().getHero().getCell();
+        ArrayList<Cell> possibleCellsForMove = GraphicalInGameView.getPossibleCellsForMove(minion);
+        if (possibleCellsForMove.size() > 0) {
+            PlayGround playGround = battle.getPlayGround();
+            if (playGround.getManhatanDistance(target, minion.getCell()) <= 2)
+                throw new Exception("no need to move");
+            int min = playGround.getManhatanDistance(target, possibleCellsForMove.get(0));
+            Cell result = possibleCellsForMove.get(0);
+            for (Cell cell : possibleCellsForMove) {
+                if (playGround.getManhatanDistance(cell, target) < min) {
+                    min = playGround.getManhatanDistance(cell, target);
+                    result = cell;
+                }
             }
-            if ((key.getAttackType().equals(MinionAttackType.RANGED) ||
-                    key.getAttackType().equals(MinionAttackType.HYBRID)
-            ) && battle.getPlayGround().getManhatanDistance(key.getCell(), getOpponent().getHero().getCell()) <
-                    key.getAttackRange()) {
-                key.attack(getOpponent().getHero().getCell());
+            return result;
+        }
+        throw new Exception("no possible cells");
+    }
+
+
+    private void insertAiAction() {
+        ArrayList<Card> cards = hand.getCards();
+        ArrayList<Card> toInsert = new ArrayList<>();
+        for (Card card : cards) {
+            ArrayList<Cell> possibleCells = GraphicalInGameView.getPossibleCells(card);
+            if (possibleCells.size() > 0) {
+                if (mana >= card.getMP()) {
+                    InGameController.finalThingsInInsertingCard(card, this, possibleCells.get(0));
+                    //GraphicalInGameView.alertAiAction(AiAction.INSERT, card, possibleCells.get(0));
+                    Cell cell = possibleCells.get(0);
+                    action += "\nYour Opponent :\nInserted " + card.getName() + "\nin " + cell.getX() + " " + cell.getY();
+                    break;
+                }
             }
         }
     }
 
-    private Card minManaCardInHand() {
-        ArrayList<Integer> minMana = new ArrayList<>();
-        for (Card key : hand.getCards()) {
-            minMana.add(key.getMP());
+    private void attackAiAction() {
+        for (Minion minion : getMinionsInPlayGround()) {
+            if (minion.isCanAttack()) {
+                ArrayList<Cell> possibleCellsForAttack = GraphicalInGameView.getPossibleCellsForAttack(minion);
+                if (possibleCellsForAttack.size() > 0) {
+                    Cell target;
+                    if (possibleCellsForAttack.contains(getOpponent().getHero().getCell())) {
+                        target = getOpponent().getHero().getCell();
+                    } else {
+                        target = possibleCellsForAttack.get(0);
+                    }
+                    minion.attack(target);
+                    //GraphicalInGameView.alertAiAction(AiAction.ATTACK, minion, target);
+                    action += "\n" + minion.getName() + " :\nattacked to the Cell: \n"
+                            + target.getX() + " " + target.getY();
+                    break;
+                }
+            }
         }
-        for (Card key : hand.getCards()) {
-            if (key.getMP() == Collections.min(minMana))
-                return key;
-        }
-        return null;
-    }
-
-    public int manhatanint(int x, int y) {
-        return battle.getPlayGround().getManhatanDistance(getOpponent().hero.getCell()
-                , battle.getPlayGround().getCell(x, y));
     }
 
     public void addMana(int number) {

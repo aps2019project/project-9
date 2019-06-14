@@ -1,7 +1,6 @@
 package controller;
 
 
-import javafx.application.Platform;
 import model.Battle;
 import model.Cell;
 import model.Player;
@@ -12,6 +11,7 @@ import model.enumerations.InGameErrorType;
 import model.enumerations.InGameRequestType;
 import model.items.Collectible;
 import view.BattleMenuView;
+import view.GraphicalInGameView;
 import view.InGameRequest;
 import view.InGameView;
 
@@ -28,28 +28,30 @@ public class InGameController {
     public void main(InGameRequest request){
         InGameRequestType type = request.getRequestType();
         switch (type){
-            case SHOW_CARD_INFO:
             case EXIT:
-            case SHOW_OPPONENT_MINIONS:
             case USE_SPECIAL_POWER:
-            case SHOW_COLLECTIBLES:
-            case SHOW_MY_MINIONS:
+                useSpecialPower(request.getX(), request.getY());
+                break;
             case ENTER_GRAVEYARD:
-            case SHOW_NEXT_CARD:
             case COMBO_ATTACK:
-            case SELCET_ITEM:
-            case SELCET_CARD:
-            case SHOW_MENU:
-            case SHOW_INFO:
-            case SHOW_HAND:
-            case GAME_INFO:
+                comboAttack(battle.getCurrenPlayer(), request.getComboCardIds(), request.getOpponentCardID());
+                break;
             case END_GAME:
             case MOVE_TO:
+                move(battle.getCurrenPlayer(), request.getX(), request.getY());
+                break;
             case INSERT:
+                insert(request.getCardName(),request.getX(),request.getY());
+                break;
             case ATTACK:
+                attack(battle.getCurrenPlayer(), request.getOpponentCardID());
+                break;
             case USE:
-            case HELP:
+                use(battle.getCurrenPlayer(), request.getX(), request.getY()); // for collectible item
+                break;
             case END_TURN:
+                battle.getCurrenPlayer().endTurn();
+                break;
         }
     }
     public void main() {
@@ -203,7 +205,7 @@ public class InGameController {
             if (!((Minion) currentPlayer.getSelectedCard()).isValidCell(opponentMinion.getCell())) {
                 inGameView.printfError(InGameErrorType.UNAVAILABLE_FOR_ATTACK);
             } else if (!((Minion) currentPlayer.getSelectedCard()).isCanAttack()) {
-                inGameView.cardCantAttack(currentPlayer.getSelectedCard());
+                GraphicalInGameView.cantAttack(currentPlayer.getSelectedCard().getBattleID());
             } else {
                 ((Minion) currentPlayer.getSelectedCard()).attack(opponentMinion.getCell());
                 currentPlayer.setSelectedCard(null);
@@ -219,48 +221,43 @@ public class InGameController {
             Player player = battle.getCurrenPlayer();
             Card friendlyCard = battle.getCurrenPlayer().getHand().getCardByName(cardName);
             if (player.getMana() < friendlyCard.getMP()) {
-                inGameView.printfError(InGameErrorType.NOT_HAVE_ENOUGH_MANA);
+                GraphicalInGameView.notEnoughMana();
             } else if (friendlyCard instanceof Minion) {
                 if (!player.getCellsToInsertMinion().contains(cell)
                         || cell.hasCardOnIt()) {
                     inGameView.printfError(InGameErrorType.INVALID_TARGET);
                 } else {
                     // ID assigning
-                    finalThingsInInsertingCard(friendlyCard, player, cell, x, y);
+                    finalThingsInInsertingCard(friendlyCard, player, cell);
                 }
             } else {
                 if (!((Spell) friendlyCard).isValidTarget(cell))
                     inGameView.printfError(InGameErrorType.INVALID_TARGET);
                 else {
                     // ID assigning
-                    finalThingsInInsertingCard(friendlyCard, player, cell, x, y);
+                    finalThingsInInsertingCard(friendlyCard, player, cell);
                 }
             }
         }
     }
 
-    private void finalThingsInInsertingCard(Card friendlyCard, Player player, Cell cell, int x, int y) {
-        /*String Id = player.getName() + "_"
-                + friendlyCard.getName()
-                + "_" + numberOfUseInBattle(player, friendlyCard);
-        friendlyCard.setBattleID(Id);*/
+    public static void finalThingsInInsertingCard(Card friendlyCard, Player player, Cell cell) {
         if (friendlyCard instanceof Minion){
             friendlyCard.setBattleID(player);
         }
         player.insertCard(friendlyCard, cell);
-        inGameView.cardInserted(friendlyCard, x, y);
+        //inGameView.cardInserted(friendlyCard, x, y);
     }
 
     private void move(Player player, int x, int y) {
         if (player.getSelectedCard() == null)
             inGameView.printfError(InGameErrorType.NO_SELECTED_CARD);
         else if (!((Minion) player.getSelectedCard()).isCanMove()) {
-            inGameView.printfError(InGameErrorType.CAN_NOT_MOVE);
+            GraphicalInGameView.showError(InGameErrorType.CAN_NOT_MOVE);
         } else {
             Minion selectedMinion = (Minion) player.getSelectedCard();
             Cell targetCell = battle.getPlayGround().getCell(x, y);
             if (!selectedMinion.isValidCellForMove(targetCell)) {
-
                 inGameView.printfError(InGameErrorType.INVALID_TARGET);
             } else {
                 player.move(selectedMinion, targetCell);
@@ -312,7 +309,7 @@ public class InGameController {
                 return;
             }
             if (!friendlyMinion.isCanAttack()) {
-                inGameView.cardCantAttack(friendlyMinion);
+                GraphicalInGameView.cantAttack(friendlyMinion.getBattleID());
                 return;
             }
         }
@@ -324,13 +321,17 @@ public class InGameController {
         Cell targetCell = battle.getPlayGround().getCell(x, y);
         Player player = battle.getCurrenPlayer();
         if (player.getHero().getBuffs() == null && player.getHero().getCellAffect() == null) {
-            inGameView.printfError(InGameErrorType.HERO_NOT_HAVE_SPELL);
+            GraphicalInGameView.showError(InGameErrorType.HERO_NOT_HAVE_SPELL);
         } else if (player.getMana() < player.getHero().getMP()) {
-            inGameView.printfError(InGameErrorType.NOT_HAVE_ENOUGH_MANA);
+            GraphicalInGameView.notEnoughMana();
         } else if (!player.getHero().isSpellReady()) {
             inGameView.printfError(InGameErrorType.HERO_COOL_DOWN);
         } else {
             player.getHero().useSpecialPower(targetCell);
         }
+    }
+
+    public Battle getBattle() {
+        return battle;
     }
 }

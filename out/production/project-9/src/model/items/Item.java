@@ -25,7 +25,9 @@ public class Item {
     }
 
     public String toString() {
-        return "Name : " + name + " - Desc: " + desc + " - cost : " + cost;
+        if (this instanceof Collectible)
+            return name + "\nDesc: " + desc;
+        return "Name : " + name + "\nDesc: " + desc + "\ncost : " + cost;
     }
 
     public static ArrayList<Item> getItems() {

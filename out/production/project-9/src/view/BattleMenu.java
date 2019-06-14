@@ -50,7 +50,7 @@ public class BattleMenu {
         Button single = (Button) parent.lookup("#single");
         single.setOnMouseClicked(mouseEvent -> singlePlayerPressed(stage));
         Button back = (Button) parent.lookup("#back");
-        back.setOnMouseClicked(mouseEvent -> MainMenuController.getInstance().start(stage));
+        back.setOnMouseClicked(mouseEvent -> MainMenuController.getInstance(logInAccount).start(stage));
     }
 
     private void singlePlayerPressed(Stage stage) {

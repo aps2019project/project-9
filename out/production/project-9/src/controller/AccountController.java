@@ -16,7 +16,8 @@ public class AccountController {
         accountMenu.start(stage, this);
     }
 
-    public void login(AccountRequest request, Stage stage) {
+    public void login(AccountRequest request) {
+        Stage stage = new Stage();
         if (Account.isUserNameToken(request.getUserName())) {
             if (Account.isPassWordValid(request.getUserName(), request.getPassWord())) {
                 goNextMenu(Account.findAccount(request.getUserName()),stage);
@@ -26,8 +27,9 @@ public class AccountController {
             accountMenu.printError(AccountErrorType.INVALID_USERNAME);
     }
 
-    public void createAccount(AccountRequest request, Stage stage) {
+    public void createAccount(AccountRequest request) {
         if (isUserNameValid(request)) {
+            Stage stage = new Stage();
             Account newAccount = new Account(request.getUserName(), request.getPassWord());
             goNextMenu(newAccount,stage);
         }
@@ -43,7 +45,7 @@ public class AccountController {
     }
 
     private void goNextMenu(Account loggedInAccount, Stage stage) {
-        MainMenuController mainMenuController = new MainMenuController(loggedInAccount);
+        MainMenuController mainMenuController = MainMenuController.getInstance(loggedInAccount);
         mainMenuController.start(stage);
     }
 
