@@ -1,6 +1,8 @@
 package view;
 
 import controller.InGameController;
+import javafx.animation.TranslateTransition;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point3D;
@@ -79,6 +81,33 @@ public class GraphicalInGameView {
         stage.setTitle("Duelyst");
         stage.setScene(scene);
         stage.show();
+    }
+
+    private static void moveTo(Cell first, Cell second) {
+        Pane firstCell = getCellPane(first.getX(), first.getY());
+        ImageView imageView = new ImageView(new Image(pathes.get(second.getMinionOnIt().getName())));
+        for (Node child : firstCell.getChildren()) {
+            if (child instanceof ImageView &&
+                    ((ImageView) child).getImage().getUrl().equals(imageView.getImage().getUrl())) {
+                firstCell.getChildren().remove(child);
+                break;
+            }
+        }
+        TranslateTransition transition = new TranslateTransition(Duration.millis(2000), imageView);
+        int x = first.getX();
+        int y = first.getY();
+        int u = second.getX() * 9 + second.getY();
+        int u1 = x * 9 + y;
+        group.getChildren().add(imageView);
+        transition.setFromX(GraphicalViewTest.positions.get(u1)[0]);
+        transition.setFromY(GraphicalViewTest.positions.get(u1)[1]);
+        transition.setToX(GraphicalViewTest.positions.get(u)[0]);
+        transition.setToY(GraphicalViewTest.positions.get(u)[1]);
+        transition.play();
+        transition.setOnFinished(actionEvent -> {
+            group.getChildren().remove(imageView);
+            updatePlayGround(group);
+        });
     }
 
     private static void setComboBtn() {
@@ -274,12 +303,18 @@ public class GraphicalInGameView {
                 pane.setOnMouseClicked(mouseEvent -> {
                     Cell cell = getCell(pane);
                     if (isMarked(pane, false)) {
+                        Cell cellFirst = ((Minion) inGameController.getBattle()
+                                .getCurrenPlayer().getSelectedCard()).getCell();
                         InGameRequest request = new
                                 InGameRequest("move to " + cell.getX() + " " + cell.getY());
                         inGameController.main(request);
-                        setMediaViews(group);
-                        move.play();
-                        updatePlayGround(group);
+                        //TODO
+                        //updatePlayGround(group);
+                        if (inGameController.getBattle().getCurrenPlayer().getSelectedCard() == null) {
+                            setMediaViews(group);
+                            move.play();
+                            moveTo(cellFirst, cell);
+                        }
                     }
                 });
             }
@@ -371,8 +406,8 @@ public class GraphicalInGameView {
                     InGameRequest request = new InGameRequest("attack " + minion.getBattleID());
                     inGameController.main(request);
                     updatePlayGround(group);
-                } else if (isMarked(pane,false)){
-                    if(isCombo){
+                } else if (isMarked(pane, false)) {
+                    if (isCombo) {
                         comboAttack(minion);
                     }
                 }
@@ -380,7 +415,7 @@ public class GraphicalInGameView {
         }
     }
 
-    private static void comboAttack(Minion target){
+    private static void comboAttack(Minion target) {
         String request = "attack combo " + target.getBattleID();
         for (Minion comboCard : comboCards) {
             request += " " + comboCard.getBattleID();

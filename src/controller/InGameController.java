@@ -115,7 +115,7 @@ public class InGameController {
                 case SELCET_CARD:
                     selectCard(request.getCardID());
                     break;
-                case SELCET_ITEM:
+                case SELECT_ITEM:
                     selectItem(request.getCollectibleID());
                     break;
                 case COMBO_ATTACK:

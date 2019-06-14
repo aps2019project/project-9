@@ -1,6 +1,5 @@
 package view;
 
-import model.enumerations.InGameErrorType;
 import model.enumerations.InGameRequestType;
 
 import java.util.ArrayList;
@@ -132,7 +131,7 @@ public class InGameRequest {
             return InGameRequestType.SHOW_COLLECTIBLES;
         else if (command.length() >= 11 && command.substring(0, 11).matches(SELECT_ITEM)) {
             collectibleID = command.split(" ")[2];
-            return InGameRequestType.SELCET_ITEM;
+            return InGameRequestType.SELECT_ITEM;
         } else if (command.matches(SHOW_INFO))
             return InGameRequestType.SHOW_INFO;
         else if (command.split(" ")[0].matches(USE_ITEM) && command.split(" ").length == 3

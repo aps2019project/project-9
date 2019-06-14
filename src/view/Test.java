@@ -29,7 +29,7 @@ public class Test extends Application {
             e.printStackTrace();
         }*/
         /*MainMenuController mainMenuController = MainMenuController.getInstance(new Account("m","m"));
-        mainMenuController.start(primaryStage);
+        mainMenuController.start(primaryStage);*/
         try {
             Account c = new Account("n","n");
             SinglePlayerBattle singlePlayerBattle = new SinglePlayerBattle(1, c);
@@ -37,11 +37,16 @@ public class Test extends Application {
             new GraphicalInGameView().showGame(primaryStage,singlePlayerBattle);
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
-        try {
+        }
+        /*try {
             new CustomCardMenu(new Account("m","n")).start();
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
+        /*try {
+            new GraphicalViewTest().start(primaryStage);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
     }
 }
