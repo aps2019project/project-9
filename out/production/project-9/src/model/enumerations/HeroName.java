@@ -10,5 +10,6 @@ public enum HeroName {
     ARASH,
     AFSANE,
     ESFANDIAR,
-    ROSTAM
+    ROSTAM,
+    CUSTOM
 }

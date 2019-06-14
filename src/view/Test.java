@@ -25,18 +25,18 @@ public class Test extends Application {
         }*/
        /* MainMenuController mainMenuController = MainMenuController.getInstance(new Account("m","m"));
         mainMenuController.start(primaryStage);*/
-        /*try {
+        try {
             Account c = new Account("n","n");
             SinglePlayerBattle singlePlayerBattle = new SinglePlayerBattle(1, c);
             singlePlayerBattle.startBattle();
             new GraphicalInGameView().showGame(primaryStage,singlePlayerBattle);
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
-        try {
+        }
+        /*try {
             new CustomCardMenu(new Account("m","n")).start();
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 }

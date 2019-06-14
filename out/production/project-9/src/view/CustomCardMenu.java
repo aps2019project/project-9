@@ -13,17 +13,17 @@ import javafx.stage.Stage;
 import model.Account;
 import model.buffs.*;
 import model.cards.Card;
+import model.cards.Minion;
 import model.cards.Spell;
-import model.enumerations.BuffName;
-import model.enumerations.MinionAttackType;
-import model.enumerations.SpecialPowerActivationTime;
-import model.enumerations.SpellTargetType;
+import model.enumerations.*;
+import model.specialPower.*;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 
 public class CustomCardMenu {
+    private static int uniqueID = 2000;
     private Account loggedAccount;
     private Parent parent;
     private ArrayList<Buff> createdBuffs = new ArrayList<>();
@@ -129,10 +129,58 @@ public class CustomCardMenu {
     private void createCard() {
         Button button = ((Button) parent.lookup("#create"));
         button.setOnMouseClicked(mouseEvent -> {
+            String name = ((TextField) parent.lookup("#name")).getText();
+            CardType cardType = ((CardType) ((ChoiceBox) parent.lookup("#type"))
+                    .getSelectionModel().getSelectedItem());
+            SpellTargetType spellTargetType;
+            int AP;
+            int HP;
+            MinionAttackType minionAttackType;
+            int range;
+            SpecialPowerActivationTime specialPowerActivationTime;
+            int coolDown;
+            String desc = ((TextArea) parent.lookup("#desc")).getText();
+            int MP = Integer.parseInt(((TextField) parent.lookup("#MP")).getText());
+            int cost = Integer.parseInt(((TextField) parent.lookup("#cost")).getText());
+            Card result;
+            if (cardType == CardType.SPELL) {
+                spellTargetType = ((SpellTargetType) ((ChoiceBox) parent.lookup("#target"))
+                        .getSelectionModel().getSelectedItem());
+                result = new Spell(name, cost, MP, spellTargetType,
+                        uniqueID++, desc, createdBuffs, null, SpellName.CUSTOM);
+            } else if (cardType == CardType.MINION) {
+                HP = Integer.parseInt(((TextField) parent.lookup("#HP")).getText());
+                AP = Integer.parseInt(((TextField) parent.lookup("#AP")).getText());
+                range = Integer.parseInt(((TextField) parent.lookup("#range")).getText());
+                minionAttackType = ((MinionAttackType) ((ChoiceBox) parent.lookup("#attackType"))
+                        .getSelectionModel().getSelectedItem());
+
+                //result = new Minion(name, cost, MP, HP, AP, minionAttackType, range, )
+            }
 
         });
         firstStage.close();
     }
+
+    /*private SpecialPower getSpecialPower(SpecialPowerActivationTime time) {
+        switch (time) {
+            case PASSIVE:
+                return new PassiveSpecialPower(specialPower.getBuffs(), );
+            case ON_SPAWN:
+                if (specialPower.getBuffs().size() > 0)
+                    return new OnSpawnSpecialPower(specialPower.getBuffs().get(0), );
+                else
+                    return null;
+            case ON_ATTACK:
+                return new OnAttackSpecialPower(specialPower.getBuffs(),false,false);
+            case ON_DEFEND:
+                return new OnDefendSpecialPower();
+            case COMBO:
+                return new ComboSpecialPower();
+            case ON_DEATH:
+                return new OnDeathSpecialPower();
+        }
+    }*/
 
     private void setChoiceBoxes() {
         ChoiceBox target = ((ChoiceBox) parent.lookup("#target"));

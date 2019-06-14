@@ -20,5 +20,6 @@ public enum SpellName {
     WEAKENING,
     SACRIFICE,
     KINGS_GUARD,
-    SHOCK
+    SHOCK,
+    CUSTOM
 }

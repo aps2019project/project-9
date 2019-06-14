@@ -155,14 +155,14 @@ public class CustomCardMenu {
                 minionAttackType = ((MinionAttackType) ((ChoiceBox) parent.lookup("#attackType"))
                         .getSelectionModel().getSelectedItem());
 
-                result = new Minion(name, cost, MP, HP, AP, minionAttackType, range, )
+                //result = new Minion(name, cost, MP, HP, AP, minionAttackType, range, )
             }
 
         });
         firstStage.close();
     }
 
-    private SpecialPower getSpecialPower(SpecialPowerActivationTime time) {
+    /*private SpecialPower getSpecialPower(SpecialPowerActivationTime time) {
         switch (time) {
             case PASSIVE:
                 return new PassiveSpecialPower(specialPower.getBuffs(), );
@@ -180,7 +180,7 @@ public class CustomCardMenu {
             case ON_DEATH:
                 return new OnDeathSpecialPower();
         }
-    }
+    }*/
 
     private void setChoiceBoxes() {
         ChoiceBox target = ((ChoiceBox) parent.lookup("#target"));
