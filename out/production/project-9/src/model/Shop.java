@@ -25,14 +25,18 @@ public class Shop {
     private Shop() {
         // initialize shop
         for (MinionName minionName : MinionName.values()) {
-            Minion minion = DefaultCards.getMinion(minionName);
-            minion.setCardID(uniqueID++);
-            allCards.add(minion);
+            if (minionName != MinionName.CUSTOM) {
+                Minion minion = DefaultCards.getMinion(minionName);
+                minion.setCardID(uniqueID++);
+                allCards.add(minion);
+            }
         }
         for (SpellName spellName : SpellName.values()) {
-            Spell spell = DefaultCards.getSpell(spellName);
-            spell.setCardID(uniqueID++);
-            allCards.add(spell);
+            if (spellName != SpellName.CUSTOM) {
+                Spell spell = DefaultCards.getSpell(spellName);
+                spell.setCardID(uniqueID++);
+                allCards.add(spell);
+            }
         }
         for (ItemName itemName : ItemName.values()) {
             Item item = DefaultCards.getItem(itemName);
@@ -44,11 +48,12 @@ public class Shop {
             }
         }
         for (HeroName value : HeroName.values()) {
-            allCards.add(DefaultCards.getHero(value));
+            if (value != HeroName.CUSTOM)
+                allCards.add(DefaultCards.getHero(value));
         }
     }
 
-    public void addCard(Card card){
+    public void addCard(Card card) {
         card.setCardID(uniqueID++);
         allCards.add(card);
     }

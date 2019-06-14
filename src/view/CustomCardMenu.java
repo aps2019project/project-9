@@ -73,7 +73,7 @@ public class CustomCardMenu {
                 parent.lookup("#HP").setDisable(true);
                 attackType.setDisable(true);
                 parent.lookup("#range").setDisable(true);
-                parent.lookup("#specialPower").setDisable(true);
+                parent.lookup("#createSpecialPower").setDisable(true);
                 parent.lookup("#activation").setDisable(true);
                 parent.lookup("#coolDown").setDisable(true);
             } else {
@@ -159,9 +159,6 @@ public class CustomCardMenu {
                     minionAttackType = ((MinionAttackType) ((ChoiceBox) parent.lookup("#attackType"))
                             .getSelectionModel().getSelectedItem());
                     SpecialPower power = getSpecialPower(specialPowerActivationTime);
-                    //TODO
-                    System.out.println("mamad");
-                    System.out.println(power.getSpell());
                     result = new Minion(name, cost, MP, HP, AP, minionAttackType, range,
                             power, CardType.MINION, uniqueID++, desc, MinionName.CUSTOM, false);
                 } else if (cardType.equals("Hero")) {
@@ -193,8 +190,6 @@ public class CustomCardMenu {
     private SpecialPower getSpecialPower(SpecialPowerActivationTime time) {
         switch (time) {
             case PASSIVE:
-                //TODO
-                System.out.println(specialPower);
                 return new PassiveSpecialPower(specialPower);
             case ON_SPAWN:
                 return new OnSpawnSpecialPower(specialPower);

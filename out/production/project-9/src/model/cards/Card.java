@@ -93,10 +93,15 @@ public class Card {
 
     public Card getCustomCopy() {
         if (this instanceof Spell) {
-            CellAffect cellAffect = ((Spell) this).getCellAffect().getCopy();
-            ArrayList<Buff> buffs = new ArrayList<>();
-            for (Buff buff : ((Spell) this).getBuffs()) {
-                buffs.add(buff.getCopy());
+            CellAffect cellAffect = null;
+            if (((Spell) this).getCellAffect() != null)
+                cellAffect = ((Spell) this).getCellAffect().getCopy();
+            ArrayList<Buff> buffs = null;
+            if (((Spell) this).getBuffs() != null && ((Spell) this).getBuffs().size() > 0) {
+                buffs = new ArrayList<>();
+                for (Buff buff : ((Spell) this).getBuffs()) {
+                    buffs.add(buff.getCopy());
+                }
             }
             return new Spell(this.name, cost, MP, ((Spell) this).getTargetType(), cardID, desc,
                     buffs, cellAffect, SpellName.CUSTOM);

@@ -2,40 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="429eadbd-36e3-4fa5-93ef-05e24885aef0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/FXML/CustomCardView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/FXML/CustomCardView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/inGameResource/SpecialPowerMenuBkgrnd.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/Shop.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/Shop.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/cards/Card.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/cards/Card.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/cards/Hero.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/cards/Hero.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/cards/Spell$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/cards/Spell$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/cards/Spell.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/cards/Spell.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/specialPower/OnAttackSpecialPower.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/specialPower/OnAttackSpecialPower.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/specialPower/OnDeathSpecialPower.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/specialPower/OnDeathSpecialPower.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/specialPower/OnSpawnSpecialPower.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/specialPower/OnSpawnSpecialPower.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/specialPower/PassiveSpecialPower.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/specialPower/PassiveSpecialPower.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/specialPower/SpecialPower$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/specialPower/SpecialPower$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/specialPower/SpecialPower.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/specialPower/SpecialPower.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/res/FXML/CustomCardView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/res/FXML/CustomCardView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/res/inGameResource/SpecialPowerMenuBkgrnd.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/Shop.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/Shop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/cards/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/cards/Card.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/cards/Hero.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/cards/Hero.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/cards/Spell.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/cards/Spell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/specialPower/OnAttackSpecialPower.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/specialPower/OnAttackSpecialPower.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/specialPower/OnDeathSpecialPower.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/specialPower/OnDeathSpecialPower.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/specialPower/OnSpawnSpecialPower.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/specialPower/OnSpawnSpecialPower.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/specialPower/PassiveSpecialPower.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/specialPower/PassiveSpecialPower.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/specialPower/SpecialPower.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/specialPower/SpecialPower.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/res/FXML/CustomCardView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/res/FXML/CustomCardView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/res/inGameResource/SpecialPowerMenuBkgrnd.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/view/CustomCardMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/view/CustomCardMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/CustomCardMenu$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/CustomCardMenu$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/CustomCardMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/CustomCardMenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/inGameResource/SpecialPowerMenuBkgrnd.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/DefaultCards.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/DefaultCards.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Shop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Shop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/cards/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/cards/Card.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/CustomCardMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/CustomCardMenu.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -61,33 +30,34 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/model/specialPower/SpecialPower.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/view/CustomCardMenu.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="91">
-              <caret line="42" column="25" selection-start-line="42" selection-start-column="25" selection-end-line="42" selection-end-column="25" />
+            <state relative-caret-position="227">
+              <caret line="186" column="8" selection-start-line="186" selection-start-column="8" selection-end-line="186" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/model/Shop.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="295">
+              <caret line="50" column="41" selection-start-line="50" selection-start-column="41" selection-end-line="50" selection-end-column="41" />
               <folding>
-                <element signature="e#891#892#0" expanded="true" />
-                <element signature="e#919#920#0" expanded="true" />
+                <element signature="e#3203#3204#0" expanded="true" />
+                <element signature="e#3275#3276#0" expanded="true" />
+                <element signature="e#3389#3390#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/view/CustomCardMenu.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-147">
-              <caret line="137" column="43" selection-start-line="137" selection-start-column="43" selection-end-line="137" selection-end-column="43" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/model/specialPower/PassiveSpecialPower.java">
+        <entry file="file://$PROJECT_DIR$/src/model/enumerations/SpellName.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="125">
-              <caret line="25" column="11" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
+            <state relative-caret-position="365">
+              <caret line="23" column="10" selection-start-line="23" selection-start-column="10" selection-end-line="23" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -95,8 +65,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/model/cards/Card.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="155">
-              <caret line="108" column="65" selection-start-line="108" selection-start-column="65" selection-end-line="108" selection-end-column="65" />
+            <state relative-caret-position="218">
+              <caret line="100" column="42" selection-start-line="100" selection-start-column="42" selection-end-line="100" selection-end-column="42" />
             </state>
           </provider>
         </entry>
@@ -129,7 +99,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/res/BattleMenu.css" />
         <option value="$PROJECT_DIR$/src/res/shopTable.css" />
         <option value="$PROJECT_DIR$/src/res/BattleMenu.fxml" />
         <option value="$PROJECT_DIR$/src/view/InGameRequest.java" />
@@ -171,14 +140,15 @@
         <option value="$PROJECT_DIR$/src/model/specialPower/OnAttackSpecialPower.java" />
         <option value="$PROJECT_DIR$/src/model/specialPower/OnDeathSpecialPower.java" />
         <option value="$PROJECT_DIR$/src/model/specialPower/OnSpawnSpecialPower.java" />
-        <option value="$PROJECT_DIR$/src/model/specialPower/PassiveSpecialPower.java" />
         <option value="$PROJECT_DIR$/src/model/cards/Spell.java" />
         <option value="$PROJECT_DIR$/src/model/cards/Hero.java" />
         <option value="$PROJECT_DIR$/src/model/cards/Minion.java" />
-        <option value="$PROJECT_DIR$/src/model/Shop.java" />
         <option value="$PROJECT_DIR$/src/model/Account.java" />
-        <option value="$PROJECT_DIR$/src/model/cards/Card.java" />
         <option value="$PROJECT_DIR$/src/model/specialPower/SpecialPower.java" />
+        <option value="$PROJECT_DIR$/src/model/specialPower/PassiveSpecialPower.java" />
+        <option value="$PROJECT_DIR$/src/model/cards/Card.java" />
+        <option value="$PROJECT_DIR$/src/model/Shop.java" />
+        <option value="$PROJECT_DIR$/src/model/DefaultCards.java" />
         <option value="$PROJECT_DIR$/src/view/CustomCardMenu.java" />
       </list>
     </option>
@@ -221,7 +191,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1560522111410" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1560522896579" />
     <property name="last_opened_file_path" value="$USER_HOME$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -490,7 +460,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="299884000" />
+    <option name="totallyTimeSpent" value="300834000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -536,38 +506,6 @@
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Theme Preview" order="8" />
     </layout>
-    <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22619048" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Designer" order="2" />
-      <window_info id="Image Layers" order="3" />
-      <window_info id="Capture Tool" order="4" />
-      <window_info id="UI Designer" order="5" />
-      <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4984127" weight="0.32565284" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49761903" visible="true" weight="0.20122887" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4984127" weight="0.58986175" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.3640553" />
-      <window_info anchor="bottom" id="Duplicate detector" order="7" weight="0.32872504" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32411674" />
-      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50158733" side_tool="true" weight="0.32565284" />
-      <window_info anchor="bottom" id="Messages" order="11" weight="0.32565284" />
-      <window_info anchor="bottom" id="Database Changes" order="12" />
-      <window_info anchor="bottom" id="Version Control" order="13" sideWeight="0.49920633" weight="0.32718894" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Maven" order="3" />
-      <window_info anchor="right" id="Palette" order="4" />
-      <window_info anchor="right" id="Capture Analysis" order="5" />
-      <window_info anchor="right" id="Database" order="6" />
-      <window_info anchor="right" id="Palette&#9;" order="7" />
-      <window_info anchor="right" id="Theme Preview" order="8" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -594,13 +532,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="some changes in graphic" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/controller/AccountController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="47" column="50" selection-start-line="47" selection-start-column="50" selection-end-line="47" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/MainMenuController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -651,13 +582,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/enumerations/SpellName.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="10" selection-start-line="23" selection-start-column="10" selection-end-line="23" selection-end-column="10" />
         </state>
       </provider>
     </entry>
@@ -806,62 +730,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/specialPower/OnDeathSpecialPower.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="40" column="73" selection-start-line="40" selection-start-column="73" selection-end-line="40" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/specialPower/OnDefendType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/specialPower/OnSpawnSpecialPower.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="54" column="73" selection-start-line="54" selection-start-column="73" selection-end-line="54" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/specialPower/OnSpawnTargetCell.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/specialPower/PassiveTargetType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/specialPower/OnDeathTargetType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="24" lean-forward="true" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/specialPower/OnAttackSpecialPower.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="44" column="73" selection-start-line="44" selection-start-column="73" selection-end-line="44" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/specialPower/ComboSpecialPower.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/Collection.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="208">
@@ -915,13 +783,6 @@
             <element signature="e#5713#5714#0" expanded="true" />
             <element signature="e#5746#5747#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/specialPower/OnDefendSpecialPower.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -979,13 +840,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/Shop.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="50" column="11" lean-forward="true" selection-start-line="50" selection-start-column="11" selection-end-line="50" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/cards/Spell.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-60">
@@ -994,13 +848,6 @@
             <element signature="e#1002#1003#0" expanded="true" />
             <element signature="e#1035#1036#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/cards/Card.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="108" column="65" selection-start-line="108" selection-start-column="65" selection-end-line="108" selection-end-column="65" />
         </state>
       </provider>
     </entry>
@@ -1015,17 +862,113 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/specialPower/ComboSpecialPower.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/specialPower/OnDeathSpecialPower.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/specialPower/OnDeathTargetType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/specialPower/PassiveSpecialPower.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="25" column="11" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
+        <state relative-caret-position="68">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/specialPower/OnAttackSpecialPower.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/specialPower/OnDefendSpecialPower.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/specialPower/PassiveTargetType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/specialPower/OnDefendType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/specialPower/OnSpawnSpecialPower.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/specialPower/OnSpawnTargetCell.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/cards/Card.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="100" column="42" selection-start-line="100" selection-start-column="42" selection-end-line="100" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Shop.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="50" column="41" selection-start-line="50" selection-start-column="41" selection-end-line="50" selection-end-column="41" />
+          <folding>
+            <element signature="e#3203#3204#0" expanded="true" />
+            <element signature="e#3275#3276#0" expanded="true" />
+            <element signature="e#3389#3390#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/DefaultCards.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="51" column="24" selection-start-line="51" selection-start-column="24" selection-end-line="51" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/enumerations/SpellName.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="23" column="10" selection-start-line="23" selection-start-column="10" selection-end-line="23" selection-end-column="10" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view/CustomCardMenu.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-147">
-          <caret line="137" column="43" selection-start-line="137" selection-start-column="43" selection-end-line="137" selection-end-column="43" />
+        <state relative-caret-position="227">
+          <caret line="186" column="8" selection-start-line="186" selection-start-column="8" selection-end-line="186" selection-end-column="8" />
         </state>
       </provider>
     </entry>
