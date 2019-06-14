@@ -25,8 +25,8 @@ public class ShopController {
     public void start(Stage stage) {
         try {
             shopMenu.start(stage, loggedInAccount.getCollection());
-            ShopRequest request = new ShopRequest();
-            switch (request.getType()) {
+
+            /*switch (request.getType()) {
                 case SEARCH_COLLECTION:
                     searchCollection(request.getItemOrCardName());
                     break;
@@ -39,13 +39,7 @@ public class ShopController {
                 case SEARCH:
                     search(request.getItemOrCardName());
                     break;
-                case SHOW:
-                    view.show(shop);
-                    break;
-                case HELP:
-                    view.help();
-                    break;
-            }
+            }*/
         }catch (Exception e){
             e.printStackTrace();
         }

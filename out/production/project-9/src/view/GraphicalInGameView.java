@@ -362,7 +362,7 @@ public class GraphicalInGameView {
                                 comboCards.add(minion);
                             descLabel.setText(getComboSelectedCards());
                             deleteMarkCells(false);
-                            markPossibleComboCells();
+                            markPossibleComboCells(player);
                         }
                     }
                 } else if (isMarked(pane, true)) {
@@ -393,13 +393,13 @@ public class GraphicalInGameView {
         attack.play();
     }
 
-    private static void markPossibleComboCells() {
+    private static void markPossibleComboCells(Player player) {
         String path = "file:src/res/inGameResource/markCell.gif";
         for (int i = 0; i < 5; i++) {
             m:
             for (int j = 0; j < 9; j++) {
                 Cell cell = inGameController.getBattle().getPlayGround().getCell(i, j);
-                if (cell.hasCardOnIt()) {
+                if (cell.hasCardOnIt() && !cell.getMinionOnIt().getPlayer().equals(player)) {
                     for (Minion comboCard : comboCards) {
                         if (!comboCard.isValidCell(cell))
                             continue m;

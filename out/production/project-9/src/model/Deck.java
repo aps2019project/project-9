@@ -280,4 +280,34 @@ public class Deck {
     public Hero getHero() {
         return hero;
     }
+
+    public int getDeckCost() {
+        int cost = 0;
+        for (Card key :
+                cards) {
+            if (key != null)
+                cost += key.getCost();
+        }
+        if (item != null)
+            cost += item.getCost();
+        return cost;
+    }
+
+    public int getAvarageMana() {
+        int mana = 0;
+        for (Card key :
+                cards) {
+            if (key != null)
+                mana += key.getMP();
+        }
+        if (cards.size() != 0)
+            mana /= cards.size();
+        else {
+            mana = 0;
+        }
+
+        mana = Math.round(mana);
+        return mana;
+    }
+
 }
