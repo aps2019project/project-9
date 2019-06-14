@@ -304,6 +304,7 @@ public class Player {
         moveAiAction();
         attackAiAction();
         GraphicalInGameView.alertAiAction(action);
+        //GraphicalInGameView.doAiAnimations(action);
         endTurn();
     }
 
@@ -312,11 +313,18 @@ public class Player {
             try {
                 if (minion.isCanMove()) {
                     Cell target = targetAiMove(minion);
+                    //TODO
+                    Cell first = minion.getCell();
+
                     move(minion, target);
+
+                    //GraphicalInGameView.moveTo(first,target);
                     //GraphicalInGameView.alertAiAction(AiAction.MOVE,minion,target);
-                    action += "\nMinion : " + minion.getName() + "\nmoved to : " + target.getX() + " " + target.getY();
+                    action += "\nMinion : " + minion.getName() + "\nmoved to : " + target.getX() + " " + target.getY()
+                    + "\nfrom : " + first.getX() + " " + first.getY();
                 }
             } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }
@@ -352,7 +360,7 @@ public class Player {
                     InGameController.finalThingsInInsertingCard(card, this, possibleCells.get(0));
                     //GraphicalInGameView.alertAiAction(AiAction.INSERT, card, possibleCells.get(0));
                     Cell cell = possibleCells.get(0);
-                    action += "\nYour Opponent :\nInserted " + card.getName() + "\nin " + cell.getX() + " " + cell.getY();
+                    action += "\nYour Opponent : Inserted " + card.getName() + " in " + cell.getX() + " " + cell.getY();
                     break;
                 }
             }
@@ -372,7 +380,7 @@ public class Player {
                     }
                     minion.attack(target);
                     //GraphicalInGameView.alertAiAction(AiAction.ATTACK, minion, target);
-                    action += "\n" + minion.getName() + " :\nattacked to the Cell: \n"
+                    action += "\n" + minion.getName() + " : attacked to the Cell:  "
                             + target.getX() + " " + target.getY();
                     break;
                 }

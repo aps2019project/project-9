@@ -86,13 +86,8 @@ public class GraphicalInGameView {
     public static void moveTo(Cell first, Cell second) {
         Pane firstCell = getCellPane(first.getX(), first.getY());
         ImageView imageView = new ImageView(new Image(pathes.get(second.getMinionOnIt().getName())));
-        for (Node child : firstCell.getChildren()) {
-            if (child instanceof ImageView &&
-                    ((ImageView) child).getImage().getUrl().equals(imageView.getImage().getUrl())) {
-                firstCell.getChildren().remove(child);
-                break;
-            }
-        }
+        removeImage(pathes.get(second.getMinionOnIt().getName()), firstCell);
+        removeImage(pathes.get(second.getMinionOnIt().getName()), getCellPane(second.getX(), second.getY()));
         TranslateTransition transition = new TranslateTransition(Duration.millis(2000), imageView);
         int x = first.getX();
         int y = first.getY();
@@ -108,6 +103,31 @@ public class GraphicalInGameView {
             group.getChildren().remove(imageView);
             updatePlayGround(group);
         });
+    }
+
+    public static void doAiAnimations(String alert) {
+        String[] split = alert.split("\n");
+        for (int i = 0; i < split.length; i++) {
+            if (split[i].length() >= 9 && split[i].substring(0, 9).equals("Minion : ")) {
+                String minion = split[i].split(" ")[2];
+                int fx = Integer.parseInt(split[i + 1].split(" ")[3]);
+                int fy = Integer.parseInt(split[i + 1].split(" ")[4]);
+                int sx = Integer.parseInt(split[i + 2].split(" ")[2]);
+                int sy = Integer.parseInt(split[i + 2].split(" ")[3]);
+                moveTo(inGameController.getBattle().getPlayGround().getCell(sx, sy),
+                        inGameController.getBattle().getPlayGround().getCell(fx, fy));
+            }
+        }
+    }
+
+    private static void removeImage(String path, Pane pane) {
+        for (Node child : pane.getChildren()) {
+            if (child instanceof ImageView &&
+                    ((ImageView) child).getImage().getUrl().equals(path)) {
+                pane.getChildren().remove(child);
+                break;
+            }
+        }
     }
 
     private static void setComboBtn() {
@@ -155,6 +175,7 @@ public class GraphicalInGameView {
     }
 
     public static void alertAiAction(String action) {
+        aiMove = action;
         descLabel.setText(action);
     }
 
@@ -309,7 +330,7 @@ public class GraphicalInGameView {
                                 InGameRequest("move to " + cell.getX() + " " + cell.getY());
                         inGameController.main(request);
                         //TODO
-                        //updatePlayGround(group);
+                        updatePlayGround(group);
                         if (inGameController.getBattle().getCurrenPlayer().getSelectedCard() == null) {
                             setMediaViews(group);
                             move.play();
@@ -743,6 +764,7 @@ public class GraphicalInGameView {
         scene.setCursor(new ImageCursor(new Image("src/res/inGameResource/cursor.png")));
     }
 
+    static String aiMove;
     private static void setNextTurnButton() {
         Image image1 = new Image("src/res/inGameResource/nextTurn.png");
         Image image2 = new Image("file:src\\res\\inGameResource\\nextTurn2.png");
@@ -761,6 +783,9 @@ public class GraphicalInGameView {
             InGameRequest request = new InGameRequest("end turn");
             inGameController.main(request);
             updatePlayGround(group);
+            //
+            doAiAnimations(aiMove);
+            //
             updateHand();
             setManas(inGameController.getBattle().getFirstPlayer());
             setManas(inGameController.getBattle().getSecondPlayer());
