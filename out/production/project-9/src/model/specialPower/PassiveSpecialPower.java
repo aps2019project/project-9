@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class PassiveSpecialPower extends SpecialPower {
     private ArrayList<Buff> buffs;
     private PassiveTargetType targetType;
+    private Spell spell;
 
     public PassiveSpecialPower(ArrayList<Buff> buffs, PassiveTargetType targetType) {
         super(SpecialPowerActivationTime.PASSIVE);
@@ -20,6 +21,11 @@ public class PassiveSpecialPower extends SpecialPower {
             buff.setTurnsRemained(buff.getTurnsRemained() / 2);
         }
         this.targetType = targetType;
+    }
+
+    public PassiveSpecialPower(Spell spell){
+        super(SpecialPowerActivationTime.PASSIVE);
+        this.spell = spell;
     }
 
     @Override

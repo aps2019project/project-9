@@ -17,7 +17,7 @@ public class Test extends Application {
 
     @Override
     public void start(Stage primaryStage) {                 //all start must have try catch
-        AccountMenu a = AccountMenu.getInstance();
+        /*AccountMenu a = AccountMenu.getInstance();
         AccountController accountController = new AccountController();
         ShopMenu s = ShopMenu.getInstance();
         CollectionMenu c = new CollectionMenu(new CollectionController(new Account("ali", "b")));
@@ -27,7 +27,7 @@ public class Test extends Application {
             //a.start(primaryStage, accountController);
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
         /*MainMenuController mainMenuController = MainMenuController.getInstance(new Account("m","m"));
         mainMenuController.start(primaryStage);
         try {
@@ -37,11 +37,11 @@ public class Test extends Application {
             new GraphicalInGameView().showGame(primaryStage,singlePlayerBattle);
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
         try {
             new CustomCardMenu(new Account("m","n")).start();
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
+        }
     }
 }

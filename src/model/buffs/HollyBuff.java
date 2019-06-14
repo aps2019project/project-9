@@ -15,14 +15,16 @@ public class HollyBuff extends Buff {
 
     @Override
     public void startBuff(Cell cell) {
-        if (!isNegative) {
-            cell.getMinionOnIt().setReductionOfOthersAttack(1);
-            cell.getMinionOnIt().addActiveBuff(this);
-            cell.getMinionOnIt().gotHollyBuff();
-            if (this.isContinous && !cell.getMinionOnIt().getContinuousBuffs().contains(this))
-                cell.getMinionOnIt().addContinuous(this);
-        } else
-            cell.getMinionOnIt().setReductionOfOthersAttack(-1);
+        if (cell.hasCardOnIt()) {
+            if (!isNegative) {
+                cell.getMinionOnIt().setReductionOfOthersAttack(1);
+                cell.getMinionOnIt().addActiveBuff(this);
+                cell.getMinionOnIt().gotHollyBuff();
+                if (this.isContinous && !cell.getMinionOnIt().getContinuousBuffs().contains(this))
+                    cell.getMinionOnIt().addContinuous(this);
+            } else
+                cell.getMinionOnIt().setReductionOfOthersAttack(-1);
+        }
     }
 
     @Override
