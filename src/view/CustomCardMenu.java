@@ -1,14 +1,11 @@
 package view;
 
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
-import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.Account;
 import model.Shop;
@@ -25,6 +22,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class CustomCardMenu {
+    //TODO debuggin of the CustomCard behaviour remained
     private static int uniqueID = 2000;
     private Account loggedAccount;
     private Parent parent;
