@@ -13,10 +13,12 @@ public class DisarmBuff extends Buff {
 
     @Override
     public void startBuff(Cell cell) {
-        cell.getMinionOnIt().assignCanCounterAttack(false);
-        cell.getMinionOnIt().addActiveBuff(this);
-        if (this.isContinous && !cell.getMinionOnIt().getContinuousBuffs().contains(this))
-            cell.getMinionOnIt().addContinuous(this);
+        if(cell.hasCardOnIt()) {
+            cell.getMinionOnIt().assignCanCounterAttack(false);
+            cell.getMinionOnIt().addActiveBuff(this);
+            if (this.isContinous && !cell.getMinionOnIt().getContinuousBuffs().contains(this))
+                cell.getMinionOnIt().addContinuous(this);
+        }
     }
 
     @Override

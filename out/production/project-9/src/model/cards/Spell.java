@@ -179,6 +179,8 @@ public class Spell extends Card {
                 return true;
             case IT_SELF:
                 return true;
+            case ALL_ENEMY_IN_ROW:
+                return (playGround.isForEnemyMinion(inputCell, owningPlayer));
         }
         return true;
     }

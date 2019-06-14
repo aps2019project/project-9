@@ -24,27 +24,29 @@ public class WeaknessBuff extends Buff {
 
     @Override
     public void startBuff(Cell cell) {
-        if (isDelayBuff) {
-            if (turn < powers.length) {
-                cell.getMinionOnIt().reduceHP(powers[turn++]);
-                if (cell.getMinionOnIt() != null && !cell.getMinionOnIt().getActiveBuffs().contains(this))
-                    cell.getMinionOnIt().addActiveBuff(this);
-                try {
-                    if (this.isContinous && !cell.getMinionOnIt().getContinuousBuffs().contains(this))
-                        cell.getMinionOnIt().addContinuous(this);
-                } catch (NullPointerException e) {
+        if (cell.hasCardOnIt()) {
+            if (isDelayBuff) {
+                if (turn < powers.length) {
+                    cell.getMinionOnIt().reduceHP(powers[turn++]);
+                    if (cell.getMinionOnIt() != null && !cell.getMinionOnIt().getActiveBuffs().contains(this))
+                        cell.getMinionOnIt().addActiveBuff(this);
+                    try {
+                        if (this.isContinous && !cell.getMinionOnIt().getContinuousBuffs().contains(this))
+                            cell.getMinionOnIt().addContinuous(this);
+                    } catch (NullPointerException e) {
 
+                    }
                 }
+            } else {
+                if (isForHP)
+                    cell.getMinionOnIt().reduceHP(power);
+                else
+                    cell.getMinionOnIt().reduceAP(power);
+                if (cell.hasCardOnIt())
+                    cell.getMinionOnIt().addActiveBuff(this);
+                if (this.isContinous && !cell.getMinionOnIt().getContinuousBuffs().contains(this))
+                    cell.getMinionOnIt().addContinuous(this);
             }
-        } else {
-            if (isForHP)
-                cell.getMinionOnIt().reduceHP(power);
-            else
-                cell.getMinionOnIt().reduceAP(power);
-            if (cell.hasCardOnIt())
-                cell.getMinionOnIt().addActiveBuff(this);
-            if (this.isContinous && !cell.getMinionOnIt().getContinuousBuffs().contains(this))
-                cell.getMinionOnIt().addContinuous(this);
         }
     }
 

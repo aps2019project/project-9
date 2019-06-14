@@ -16,5 +16,5 @@ public enum SpellTargetType {
     AN_ENEMY_MINION,
     A_CELL,
     IT_SELF,
-    //ALL_ENEMY_IN_ROW,
+    ALL_ENEMY_IN_ROW,
 }

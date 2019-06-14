@@ -2,6 +2,7 @@ package model.specialPower;
 
 import com.google.gson.annotations.Expose;
 import model.Cell;
+import model.PlayGround;
 import model.cards.Minion;
 import model.cards.Spell;
 import model.enumerations.SpecialPowerActivationTime;
@@ -23,28 +24,41 @@ public abstract class SpecialPower { // FARS_PAHLAVAN remaining
         this.minion = minion;
     }
 
-    private Cell getSpellCastCell(SpellTargetType targetType){
+    protected Cell getSpellCastCell(SpellTargetType targetType){
+        PlayGround playGround = minion.getPlayer().getBattle().getPlayGround();
         switch (targetType){
             case A_POWER:
-                return minion.getCell();
+                return playGround.getRandomPowerCell(minion.getPlayer());
             case ENEMY_HERO:
                 return minion.getPlayer().getOpponent().getHero().getCell();
             case ALL_ENEMY_IN_COLUMN:
-                return minion.getPlayer().getOpponent().getHero().getCell();
+                return playGround.getRandomPowerCell(minion.getPlayer().getOpponent());
             case A_CELL:
-                return minion.getCell();
-
+                return playGround.getRandomPowerCell(minion.getPlayer());
+            case ALL_ENEMY_IN_ROW:
+                return playGround.getRandomPowerCell(minion.getPlayer().getOpponent());
             case AN_ENEMY_MINION_IN_EIGHT_HERO:
+                return minion.getCell();
             case THREE_IN_THREE_SQUARE:
+                return playGround.getRandomCell();
             case TWO_IN_TWO_SQUARE:
+                return playGround.getRandomCell();
             case FRIENDLY_HERO:
+                return minion.getPlayer().getHero().getCell();
             case A_FRIENDLY_MINION:
+                return playGround.getRandomPowerCell(minion.getPlayer());
             case ALL_FRIENDLY_POWERS:
+                return minion.getCell();
             case AN_ENEMY_MINION:
+                return playGround.getRandomPowerCell(minion.getPlayer().getOpponent());
             case AN_ENEMY_POWER:
+                return playGround.getRandomPowerCell(minion.getPlayer().getOpponent());
             case ALL_ENEMY_POWERS:
+                return minion.getPlayer().getOpponent().getHero().getCell();
             case IT_SELF:
+                return minion.getCell();
             case A_FRIENDLY_POWER:
+                return playGround.getRandomPowerCell(minion.getPlayer());
         }
         return null;
     }

@@ -2,6 +2,7 @@ package model.specialPower;
 
 import model.Cell;
 import model.buffs.Buff;
+import model.cards.Spell;
 import model.enumerations.SpecialPowerActivationTime;
 
 import java.util.ArrayList;
@@ -9,7 +10,6 @@ import java.util.ArrayList;
 public class OnDeathSpecialPower extends SpecialPower {
     private int attackPower;
     private OnDeathTargetType targetType;
-    private ArrayList<Buff> buffs = null;
 
     public OnDeathSpecialPower(int attackPower, OnDeathTargetType targetType) {
         super(SpecialPowerActivationTime.ON_DEATH);
@@ -17,18 +17,15 @@ public class OnDeathSpecialPower extends SpecialPower {
         this.targetType = targetType;
     }
 
-    public OnDeathSpecialPower(ArrayList<Buff> buffs, OnDeathTargetType targetType) {
+    public OnDeathSpecialPower(Spell spell){
         super(SpecialPowerActivationTime.ON_DEATH);
-        this.targetType = targetType;
-        this.buffs = buffs;
+        this.spell = spell;
     }
 
     @Override
     public void castSpecialPower(Cell cell) {
         // minion current cell ( last cell it was alive )
-        if (buffs != null){
-            //TODO
-        }else {
+        if (spell == null) {
             switch (targetType) {
                 case ENEMY_HERO:
                     minion.getPlayer().getOpponent().getHero().reduceHP(attackPower);
@@ -40,6 +37,8 @@ public class OnDeathSpecialPower extends SpecialPower {
                     }
                     break;
             }
+        }else{
+            spell.castSpell(getSpellCastCell(spell.getTargetType()));
         }
     }
 }

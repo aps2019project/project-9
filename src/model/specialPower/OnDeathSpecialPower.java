@@ -38,7 +38,7 @@ public class OnDeathSpecialPower extends SpecialPower {
                     break;
             }
         }else{
-            spell.castSpell(getSpellCastCell(spell.getTargetType()));
+            spell.castSpell(getSpellCastCell(spell.getTargetType(),minion));
         }
     }
 }

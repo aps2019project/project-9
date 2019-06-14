@@ -42,7 +42,7 @@ public class OnAttackSpecialPower extends SpecialPower {
                 }
             }
         } else {
-            spell.castSpell(getSpellCastCell(spell.getTargetType()));
+            spell.castSpell(getSpellCastCell(spell.getTargetType(),minion));
         }
     }
 

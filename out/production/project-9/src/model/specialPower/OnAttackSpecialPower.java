@@ -42,14 +42,7 @@ public class OnAttackSpecialPower extends SpecialPower {
                 }
             }
         } else {
-            if (spell.getTargetType() == SpellTargetType.ALL_ENEMY_IN_COLUMN
-                    || spell.getTargetType() == SpellTargetType.ENEMY_HERO) {
-                // in column of opponent hero
-                spell.castSpell(minion.getPlayer().getOpponent().getHero().getCell());
-            }else if (spell.getTargetType() == SpellTargetType.A_POWER
-            ){
-                spell.castSpell(minion.getCell());
-            }
+            spell.castSpell(getSpellCastCell(spell.getTargetType()));
         }
     }
 
