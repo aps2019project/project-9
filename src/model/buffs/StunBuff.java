@@ -13,11 +13,13 @@ public class StunBuff extends Buff{
 
     @Override
     public void startBuff(Cell cell) {
-        cell.getMinionOnIt().setCanAttack(false);
-        cell.getMinionOnIt().setCanMove(false);
-        cell.getMinionOnIt().addActiveBuff(this);
-        if (this.isContinous && !cell.getMinionOnIt().getContinuousBuffs().contains(this))
-            cell.getMinionOnIt().addContinuous(this);
+        if(cell.hasCardOnIt()) {
+            cell.getMinionOnIt().setCanAttack(false);
+            cell.getMinionOnIt().setCanMove(false);
+            cell.getMinionOnIt().addActiveBuff(this);
+            if (this.isContinous && !cell.getMinionOnIt().getContinuousBuffs().contains(this))
+                cell.getMinionOnIt().addContinuous(this);
+        }
     }
 
     @Override

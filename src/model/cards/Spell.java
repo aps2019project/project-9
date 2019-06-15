@@ -30,6 +30,10 @@ public class Spell extends Card {
         this.spellName = spellName;
     }
 
+    public CellAffect getCellAffect() {
+        return cellAffect;
+    }
+
     public ArrayList<Buff> getBuffs() {
         return buffs;
     }
@@ -100,8 +104,6 @@ public class Spell extends Card {
         PlayGround playGround = owningPlayer.getBattle().getPlayGround();
         switch (targetType) {
             case AN_ENEMY_MINION_IN_EIGHT_HERO:// random enemy
-                /*return (playGround.isForEnemyMinion(inputCell, owningPlayer)
-                        && playGround.getAroundCells(owningPlayer.getHero().getCell()).contains(inputCell));*/
                 break;
             case THREE_IN_THREE_SQUARE:
                 break;
@@ -133,6 +135,8 @@ public class Spell extends Card {
                 return true;
             case IT_SELF:
                 return true;
+            case ALL_ENEMY_IN_ROW:
+                return (playGround.isForEnemyMinion(inputCell, owningPlayer));
         }
         return true;
     }

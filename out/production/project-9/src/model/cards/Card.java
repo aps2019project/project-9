@@ -3,7 +3,15 @@ package model.cards;
 
 import com.google.gson.annotations.Expose;
 import model.Player;
+import model.buffs.Buff;
+import model.cellaffects.CellAffect;
 import model.enumerations.CardType;
+import model.enumerations.HeroName;
+import model.enumerations.MinionName;
+import model.enumerations.SpellName;
+import model.specialPower.SpecialPower;
+
+import java.util.ArrayList;
 
 public class Card {
 
@@ -66,7 +74,7 @@ public class Card {
             try {
                 if (minion.getMinionName().equals(((Minion) this).getMinionName()))
                     id++;
-            }catch (NullPointerException e){
+            } catch (NullPointerException e) {
 
             }
         }
@@ -82,4 +90,31 @@ public class Card {
     public int getMP() {
         return MP;
     }
+
+    public Card getCustomCopy() {
+        if (this instanceof Spell) {
+            CellAffect cellAffect = null;
+            if (((Spell) this).getCellAffect() != null)
+                cellAffect = ((Spell) this).getCellAffect().getCopy();
+            ArrayList<Buff> buffs = null;
+            if (((Spell) this).getBuffs() != null && ((Spell) this).getBuffs().size() > 0) {
+                buffs = new ArrayList<>();
+                for (Buff buff : ((Spell) this).getBuffs()) {
+                    buffs.add(buff.getCopy());
+                }
+            }
+            return new Spell(this.name, cost, MP, ((Spell) this).getTargetType(), cardID, desc,
+                    buffs, cellAffect, SpellName.CUSTOM);
+        } else if (this instanceof Hero) {
+            Spell spell = ((Spell) ((Hero) this).getSpell().getCustomCopy());
+            return new Hero(spell, HeroName.CUSTOM, cost, ((Hero) this).HP, ((Hero) this).AP, ((Hero) this).attackType,
+                    ((Hero) this).attackRange, MP, ((Hero) this).getCoolDown(), cardID, name, desc, false);
+        } else if (this instanceof Minion) {
+            Minion current = ((Minion) this);
+            SpecialPower specialPower = current.specialPower.getCustomCopy();
+            return new Minion(name, cost, MP, current.HP, current.AP, current.attackType, current.attackRange,
+                    specialPower, CardType.MINION, cardID, desc, MinionName.CUSTOM, false);
+        }
+        return null;
+    } // get copy of custom card
 }

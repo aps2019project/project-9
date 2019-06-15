@@ -18,14 +18,16 @@ public class PowerBuff extends Buff {
 
     @Override
     public void startBuff(Cell cell) {
-        if (isForHP) {
-            cell.getMinionOnIt().addHP(power);
-        } else {
-            cell.getMinionOnIt().addAP(power);
+        if (cell.hasCardOnIt()) {
+            if (isForHP) {
+                cell.getMinionOnIt().addHP(power);
+            } else {
+                cell.getMinionOnIt().addAP(power);
+            }
+            cell.getMinionOnIt().addActiveBuff(this);
+            if (this.isContinous && !cell.getMinionOnIt().getContinuousBuffs().contains(this))
+                cell.getMinionOnIt().addContinuous(this);
         }
-        cell.getMinionOnIt().addActiveBuff(this);
-        if (this.isContinous && !cell.getMinionOnIt().getContinuousBuffs().contains(this))
-            cell.getMinionOnIt().addContinuous(this);
     }
 
     @Override

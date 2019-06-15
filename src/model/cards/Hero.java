@@ -7,6 +7,7 @@ import model.cellaffects.CellAffect;
 import model.enumerations.CardType;
 import model.enumerations.HeroName;
 import model.enumerations.MinionAttackType;
+import model.specialPower.SpecialPower;
 
 import java.util.ArrayList;
 
@@ -25,6 +26,7 @@ public class Hero extends Minion {
     @Expose
     private HeroName heroName;
     private boolean isSpecialPowerActivated = false;
+    private Spell spell = null;
 
     public Hero(HeroName heroName, int cost, int HP, int AP, MinionAttackType attackType, int attackRange,
                 ArrayList<Buff> buffs, int MP, int coolDown, int cardID, String name, String desc, boolean isFars,
@@ -38,59 +40,81 @@ public class Hero extends Minion {
         this.cellAffect = cellAffect;
     }
 
+    public Hero(Spell spell,HeroName heroName, int cost, int HP, int AP, MinionAttackType attackType, int attackRange,
+                int MP, int coolDown, int cardID, String name, String desc, boolean isFars) {
+        super(name, cost, MP, HP, AP, attackType, attackRange, null, CardType.MINION, cardID, desc,
+                null, isFars); // MP is for special power in hero ( spell )
+        this.coolDown = coolDown;
+        this.spell = spell;
+        this.heroName = heroName;
+    }
+
+    public Spell getSpell() {
+        return spell;
+    }
+
+    public int getCoolDown() {
+        return coolDown;
+    }
+
     public boolean isSpellReady() {
         return turnsRemained == 0;
     }
 
     public void useSpecialPower(Cell cell) {// cast spell
         turnsRemained = coolDown;
-        if (buffsTargetType == HeroTargetType.ON_ATTACK) {
-            if (isSpecialPowerActivated) {
-                for (Buff buff : buffs) {
-                    buff.getCopy().startBuff(cell);
-                }
-            } else
-                isSpecialPowerActivated = true;
-        } else if (buffsTargetType == HeroTargetType.ITSELF) {
-            if (buffs != null) {
-                for (Buff buff : buffs) {
-                    buff.getCopy().startBuff(getCell());
-                }
-            }
-        } else if (buffsTargetType == HeroTargetType.ALL_POWERS_IN_ROW) {
-            if (buffs != null) {
-                for (Cell cell1 : player.getBattle().getPlayGround().enemyInRow(getCell(), player.getOpponent())) {
+        if (spell == null) {
+            if (buffsTargetType == HeroTargetType.ON_ATTACK) {
+                if (isSpecialPowerActivated) {
                     for (Buff buff : buffs) {
-                        buff.getCopy().startBuff(cell1);
+                        buff.getCopy().startBuff(cell);
+                    }
+                } else
+                    isSpecialPowerActivated = true;
+            } else if (buffsTargetType == HeroTargetType.ITSELF) {
+                if (buffs != null) {
+                    for (Buff buff : buffs) {
+                        buff.getCopy().startBuff(getCell());
+                    }
+                }
+            } else if (buffsTargetType == HeroTargetType.ALL_POWERS_IN_ROW) {
+                if (buffs != null) {
+                    for (Cell cell1 : player.getBattle().getPlayGround().enemyInRow(getCell(), player.getOpponent())) {
+                        for (Buff buff : buffs) {
+                            buff.getCopy().startBuff(cell1);
+                        }
+                    }
+                }
+            } else if (buffsTargetType == HeroTargetType.AN_ENEMY_POWER) {
+                if (buffs != null) {
+                    Cell target = player.getBattle().getPlayGround().getRandomPowerCell(player);
+                    for (Buff buff : buffs) {
+                        buff.getCopy().startBuff(target);
+                    }
+                    player.addMana(-MP);
+                } else if (heroName == HeroName.AFSANE) {
+                    Cell target = player.getBattle().getPlayGround().getRandomPowerCell(player.getOpponent());
+                    target.getMinionOnIt().dispelPositiveBuffs();
+                }
+            } else if (buffsTargetType == HeroTargetType.A_CELL) {
+                if (cellAffect != null) {
+                    Cell target = player.getBattle().getPlayGround().getRandomCell();
+                    cellAffect.putCellAffect(target);
+                }
+            } else if (buffsTargetType == HeroTargetType.ALL_ENEMY_POWERS) {
+                if (buffs != null) {
+                    for (Minion minion : player.getOpponent().getMinionsInPlayGround()) {
+                        for (Buff buff : buffs) {
+                            buff.getCopy().startBuff(minion.getCell());
+                        }
                     }
                 }
             }
-        } else if (buffsTargetType == HeroTargetType.AN_ENEMY_POWER) {
-            if (buffs != null) {
-                Cell target = player.getBattle().getPlayGround().getRandomPowerCell(player);
-                for (Buff buff : buffs) {
-                    buff.getCopy().startBuff(target);
-                }
-                player.addMana(-MP);
-            } else if (heroName == HeroName.AFSANE) {
-                Cell target = player.getBattle().getPlayGround().getRandomPowerCell(player.getOpponent());
-                target.getMinionOnIt().dispelPositiveBuffs();
-            }
-        } else if (buffsTargetType == HeroTargetType.A_CELL) {
-            if (cellAffect != null) {
-                Cell target = player.getBattle().getPlayGround().getRandomCell();
-                cellAffect.putCellAffect(target);
-            }
-        } else if (buffsTargetType == HeroTargetType.ALL_ENEMY_POWERS) {
-            if (buffs != null) {
-                for (Minion minion : player.getOpponent().getMinionsInPlayGround()) {
-                    for (Buff buff : buffs) {
-                        buff.getCopy().startBuff(minion.getCell());
-                    }
-                }
-            }
+            player.addMana(-MP);
+        }else{
+            spell.castSpell(SpecialPower.getSpellCastCell(spell.getTargetType(),this));
+            player.addMana(-spell.MP);
         }
-        player.addMana(-MP);
     }
 
     public HeroTargetType getBuffsTargetType() {

@@ -1,6 +1,7 @@
 package model.specialPower;
 
 import model.Cell;
+import model.cards.Spell;
 import model.enumerations.BuffName;
 import model.enumerations.SpecialPowerActivationTime;
 

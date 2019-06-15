@@ -14,7 +14,7 @@ public enum InGameRequestType {
     INSERT,
     END_TURN,
     SHOW_COLLECTIBLES,
-    SELCET_ITEM,
+    SELECT_ITEM,
     SHOW_INFO,
     USE,
     SHOW_NEXT_CARD,

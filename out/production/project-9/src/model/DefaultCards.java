@@ -22,25 +22,34 @@ import java.util.HashMap;
 public class DefaultCards {
 
     public static Minion getMinion(MinionName name) { // special powers = null
-        Minion minion = gson.fromJson(minionHashMap.get(name), Minion.class);
-        minion.setActiveBuffs(new ArrayList<>());
-        minion.setContinuousBuffs(new ArrayList<>());
-        setMinionSpecialPower(minion, name);
-        return minion;
+        if (name != MinionName.CUSTOM) {
+            Minion minion = gson.fromJson(minionHashMap.get(name), Minion.class);
+            minion.setActiveBuffs(new ArrayList<>());
+            minion.setContinuousBuffs(new ArrayList<>());
+            setMinionSpecialPower(minion, name);
+            return minion;
+        }else
+            return null;
     }
 
     public static Spell getSpell(SpellName name) { // cellaffects and buffs = null
-        Spell spell = gson.fromJson(spellHashMap.get(name), Spell.class);
-        setSpellCellAffectOrBuffs(spell, name);
-        return spell;
+        if (name != SpellName.CUSTOM) {
+            Spell spell = gson.fromJson(spellHashMap.get(name), Spell.class);
+            setSpellCellAffectOrBuffs(spell, name);
+            return spell;
+        }else
+            return null;
     }
 
     public static Hero getHero(HeroName name) { // hero spell = null
-        Hero hero = gson.fromJson(heroHashMap.get(name), Hero.class);
-        hero.setActiveBuffs(new ArrayList<>());
-        hero.setContinuousBuffs(new ArrayList<>());
-        setHeroBuffsOrCellAffect(hero, name);
-        return hero;
+        if (name != HeroName.CUSTOM) {
+            Hero hero = gson.fromJson(heroHashMap.get(name), Hero.class);
+            hero.setActiveBuffs(new ArrayList<>());
+            hero.setContinuousBuffs(new ArrayList<>());
+            setHeroBuffsOrCellAffect(hero, name);
+            return hero;
+        }else
+            return null;
     }
 
     public static Item getItem(ItemName name) {

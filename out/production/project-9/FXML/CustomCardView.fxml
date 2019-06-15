@@ -10,10 +10,11 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox prefHeight="663.0" prefWidth="295.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="663.0" prefWidth="348.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="663.0" prefWidth="345.0" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="663.0" prefWidth="266.0" VBox.vgrow="ALWAYS">
          <children>
             <ImageView fitHeight="663.0" fitWidth="409.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -27,7 +28,7 @@
             <ChoiceBox fx:id="target" disable="true" layoutX="88.0" layoutY="122.0" prefWidth="150.0" />
             <ListView fx:id="buffList" disable="true" layoutX="89.0" layoutY="185.0" prefHeight="53.0" prefWidth="150.0" />
             <Label layoutX="35.0" layoutY="185.0" prefHeight="17.0" prefWidth="27.0" text="Buffs" textFill="WHITE" />
-            <Button fx:id="addBuff" disable="true" layoutX="132.0" layoutY="154.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="56.0" text="Add" />
+            <Button fx:id="addBuff" disable="true" layoutX="132.0" layoutY="150.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="56.0" text="Add" />
             <TextField fx:id="AP" disable="true" layoutX="89.0" layoutY="243.0" promptText="0" text="0" />
             <TextField fx:id="HP" disable="true" layoutX="89.0" layoutY="276.0" text="0" />
             <Label layoutX="40.0" layoutY="247.0" prefHeight="17.0" prefWidth="16.0" text="AP" textFill="WHITE" />
@@ -54,6 +55,11 @@
             <TextField fx:id="MP" layoutX="89.0" layoutY="524.0" text="0" />
             <Label layoutX="36.0" layoutY="528.0" text="MP" textFill="WHITE" />
             <TextArea fx:id="desc" layoutX="89.0" layoutY="559.0" prefHeight="53.0" prefWidth="150.0" promptText="Enter A Description for Your Card" />
+            <Label layoutX="22.0" layoutY="171.0" prefHeight="17.0" prefWidth="301.0" text="For On Defend Minion Activation it is The Deactivated Buff ( Just One Buff )" textFill="WHITE">
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </Label>
          </children>
     </AnchorPane>
   </children>

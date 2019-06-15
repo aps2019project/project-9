@@ -1,6 +1,8 @@
 package view;
 
 import controller.InGameController;
+import javafx.animation.TranslateTransition;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point3D;
@@ -81,6 +83,53 @@ public class GraphicalInGameView {
         stage.show();
     }
 
+    public static void moveTo(Cell first, Cell second) {
+        Pane firstCell = getCellPane(first.getX(), first.getY());
+        ImageView imageView = new ImageView(new Image(pathes.get(second.getMinionOnIt().getName())));
+        removeImage(pathes.get(second.getMinionOnIt().getName()), firstCell);
+        removeImage(pathes.get(second.getMinionOnIt().getName()), getCellPane(second.getX(), second.getY()));
+        TranslateTransition transition = new TranslateTransition(Duration.millis(2000), imageView);
+        int x = first.getX();
+        int y = first.getY();
+        int u = second.getX() * 9 + second.getY();
+        int u1 = x * 9 + y;
+        group.getChildren().add(imageView);
+        transition.setFromX(GraphicalViewTest.positions.get(u1)[0]);
+        transition.setFromY(GraphicalViewTest.positions.get(u1)[1]);
+        transition.setToX(GraphicalViewTest.positions.get(u)[0]);
+        transition.setToY(GraphicalViewTest.positions.get(u)[1]);
+        transition.play();
+        transition.setOnFinished(actionEvent -> {
+            group.getChildren().remove(imageView);
+            updatePlayGround(group);
+        });
+    }
+
+    public static void doAiAnimations(String alert) {
+        String[] split = alert.split("\n");
+        for (int i = 0; i < split.length; i++) {
+            if (split[i].length() >= 9 && split[i].substring(0, 9).equals("Minion : ")) {
+                String minion = split[i].split(" ")[2];
+                int fx = Integer.parseInt(split[i + 1].split(" ")[3]);
+                int fy = Integer.parseInt(split[i + 1].split(" ")[4]);
+                int sx = Integer.parseInt(split[i + 2].split(" ")[2]);
+                int sy = Integer.parseInt(split[i + 2].split(" ")[3]);
+                moveTo(inGameController.getBattle().getPlayGround().getCell(sx, sy),
+                        inGameController.getBattle().getPlayGround().getCell(fx, fy));
+            }
+        }
+    }
+
+    private static void removeImage(String path, Pane pane) {
+        for (Node child : pane.getChildren()) {
+            if (child instanceof ImageView &&
+                    ((ImageView) child).getImage().getUrl().equals(path)) {
+                pane.getChildren().remove(child);
+                break;
+            }
+        }
+    }
+
     private static void setComboBtn() {
         Pane pane = ((Pane) parent.lookup("#combo"));
         ImageView combo = new ImageView(new Image("file:src/res/inGameResource/comboBtn.gif"));
@@ -126,6 +175,7 @@ public class GraphicalInGameView {
     }
 
     public static void alertAiAction(String action) {
+        aiMove = action;
         descLabel.setText(action);
     }
 
@@ -274,12 +324,18 @@ public class GraphicalInGameView {
                 pane.setOnMouseClicked(mouseEvent -> {
                     Cell cell = getCell(pane);
                     if (isMarked(pane, false)) {
+                        Cell cellFirst = ((Minion) inGameController.getBattle()
+                                .getCurrenPlayer().getSelectedCard()).getCell();
                         InGameRequest request = new
                                 InGameRequest("move to " + cell.getX() + " " + cell.getY());
                         inGameController.main(request);
-                        setMediaViews(group);
-                        move.play();
+                        //TODO
                         updatePlayGround(group);
+                        if (inGameController.getBattle().getCurrenPlayer().getSelectedCard() == null) {
+                            setMediaViews(group);
+                            move.play();
+                            moveTo(cellFirst, cell);
+                        }
                     }
                 });
             }
@@ -371,8 +427,8 @@ public class GraphicalInGameView {
                     InGameRequest request = new InGameRequest("attack " + minion.getBattleID());
                     inGameController.main(request);
                     updatePlayGround(group);
-                } else if (isMarked(pane,false)){
-                    if(isCombo){
+                } else if (isMarked(pane, false)) {
+                    if (isCombo) {
                         comboAttack(minion);
                     }
                 }
@@ -380,7 +436,7 @@ public class GraphicalInGameView {
         }
     }
 
-    private static void comboAttack(Minion target){
+    private static void comboAttack(Minion target) {
         String request = "attack combo " + target.getBattleID();
         for (Minion comboCard : comboCards) {
             request += " " + comboCard.getBattleID();
@@ -708,6 +764,7 @@ public class GraphicalInGameView {
         scene.setCursor(new ImageCursor(new Image("src/res/inGameResource/cursor.png")));
     }
 
+    static String aiMove;
     private static void setNextTurnButton() {
         Image image1 = new Image("src/res/inGameResource/nextTurn.png");
         Image image2 = new Image("file:src\\res\\inGameResource\\nextTurn2.png");
@@ -726,6 +783,9 @@ public class GraphicalInGameView {
             InGameRequest request = new InGameRequest("end turn");
             inGameController.main(request);
             updatePlayGround(group);
+            //
+            doAiAnimations(aiMove);
+            //
             updateHand();
             setManas(inGameController.getBattle().getFirstPlayer());
             setManas(inGameController.getBattle().getSecondPlayer());
