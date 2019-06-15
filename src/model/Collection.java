@@ -1,5 +1,6 @@
 package model;
 
+import com.google.gson.annotations.Expose;
 import model.cards.Card;
 import model.cards.Hero;
 import model.cards.Minion;
@@ -12,16 +13,11 @@ import model.items.Item;
 import java.util.ArrayList;
 
 public class Collection {
-    public ArrayList<Card> getCards() {
-        return cards;
-    }
-
-    public ArrayList<Item> getItems() {
-        return items;
-    }
-
+    @Expose
     private ArrayList<Card> cards;
+    @Expose
     private ArrayList<Item> items;
+
     private Account ownerAccount;
     static int uniqueID = 1;
 
@@ -31,6 +27,13 @@ public class Collection {
         initializeCollections();
     }
 
+    public ArrayList<Card> getCards() {
+        return cards;
+    }
+
+    public ArrayList<Item> getItems() {
+        return items;
+    }
 
     public static String showArraylistOfCardsAndItems(ArrayList<Card> cards, ArrayList<Item> items) {
         // used in shop and collection toString()

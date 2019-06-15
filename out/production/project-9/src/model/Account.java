@@ -12,19 +12,19 @@ public class Account implements Comparable<Account> {
     private static ArrayList<Account> accounts = new ArrayList<>();
 
     private Collection myCollection;
-    @Expose
+
     private int money = 15000;
-    @Expose
+
     private ArrayList<BattleResult> battleResults = new ArrayList<>();
-    @Expose
+
     private ArrayList<Deck> decks = new ArrayList<>();
-    @Expose
+
     private Deck mainDeck;
-    @Expose
+
     private String userName;
-    @Expose
+
     private String passWord;
-    @Expose
+
     private int numberOfWins = 0;
 
     public Account(String userName, String passWord) {

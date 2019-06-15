@@ -58,11 +58,15 @@ public class Deck {
     private static final HeroName THIRD_LEVEL_HERO = HeroName.EJDEHA;
     // 12
     private static final ItemName THIRD_LEVEL_ITEM = ItemName.TERROR_HOOD;
+
+    @Expose
     private ArrayList<Card> cards = new ArrayList<>();
     private Hero hero;
+
     private Item item;
-    @Expose
+
     private String name; // used in accounts
+
     private int uniqueID = 150;
 
     public Deck(String name) {
