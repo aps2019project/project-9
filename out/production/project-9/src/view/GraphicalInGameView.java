@@ -51,9 +51,6 @@ public class GraphicalInGameView {
     private static TextArea descLabel;
     private static Parent parent;
     private static HashMap<String, String> pathes = new HashMap<>();
-    private static MediaPlayer insert;
-    private static MediaPlayer attack;
-    private static MediaPlayer move;
     private static Group group;
     private static boolean isCombo = false;
     private static ArrayList<Minion> comboCards = new ArrayList<>();
@@ -101,15 +98,16 @@ public class GraphicalInGameView {
         /*Pane pane = getCellPane(target.getX(), target.getY());
         pane.getChildren().add(new ImageView(new Image("file:src/res/inGameResource/spellAction.gif")));*/
         group.getChildren().add(imageView);
-        TranslateTransition transition = new TranslateTransition(Duration.millis(2000),imageView);
-        int u = target.getX()*9 + target.getY();
+        TranslateTransition transition = new TranslateTransition(Duration.millis(2000), imageView);
+        int u = target.getX() * 9 + target.getY();
         int[] laout = GraphicalViewResource.positions.get(u);
-        laout[0]-=50;
-        laout[1]-=50;
-        transition.setFromY(laout[1] - 100);
-        transition.setFromX(laout[0]);
-        transition.setToX(laout[0]);
-        transition.setToY(laout[1]);
+        int[] i = new int[]{laout[0], laout[1]};
+        i[0] -= 50;
+        i[1] -= 50;
+        transition.setFromY(i[1] - 100);
+        transition.setFromX(i[0]);
+        transition.setToX(i[0]);
+        transition.setToY(i[1]);
         transition.play();
         transition.setOnFinished(actionEvent -> group.getChildren().remove(imageView));
     }
@@ -284,22 +282,33 @@ public class GraphicalInGameView {
         }
     }
 
-    private static void setMediaViews(Group group) {
-        Media mediaInsert = new Media(new File("src/res/inGameResource/insert.m4a").toURI().toString());
-        MediaPlayer mediaPlayerInsert = new MediaPlayer(mediaInsert);
-        MediaView mediaViewInsert = new MediaView(mediaPlayerInsert);
-        Media mediaAttack = new Media(new File("src/res/inGameResource/attack.m4a").toURI().toString());
-        MediaPlayer mediaPlayerAttack = new MediaPlayer(mediaAttack);
-        MediaView mediaViewAttack = new MediaView(mediaPlayerAttack);
-        Media mediaInsertMove = new Media(new File("src/res/inGameResource/move.m4a").toURI().toString());
-        MediaPlayer mediaPlayerInsertMove = new MediaPlayer(mediaInsertMove);
-        MediaView mediaViewInsertMove = new MediaView(mediaPlayerInsertMove);
-        insert = mediaPlayerInsert;
-        attack = mediaPlayerAttack;
-        move = mediaPlayerInsertMove;
-        group.getChildren().add(mediaViewAttack);
-        group.getChildren().add(mediaViewInsert);
-        group.getChildren().add(mediaViewInsertMove);
+    private static void setMediaViews(MusicAct act) {
+        switch (act) {
+            case ATTACK:
+                Media mediaAttack = new Media(new File("src/res/inGameResource/attack.m4a").toURI().toString());
+                MediaPlayer mediaPlayerAttack = new MediaPlayer(mediaAttack);
+                MediaView mediaViewAttack = new MediaView(mediaPlayerAttack);
+                group.getChildren().add(mediaViewAttack);
+                mediaPlayerAttack.play();
+                mediaPlayerAttack.setOnEndOfMedia(() -> group.getChildren().remove(mediaViewAttack));
+                break;
+            case INSERT:
+                Media mediaInsert = new Media(new File("src/res/inGameResource/insert.m4a").toURI().toString());
+                MediaPlayer mediaPlayerInsert = new MediaPlayer(mediaInsert);
+                MediaView mediaViewInsert = new MediaView(mediaPlayerInsert);
+                group.getChildren().add(mediaViewInsert);
+                mediaPlayerInsert.play();
+                mediaPlayerInsert.setOnEndOfMedia(() -> group.getChildren().remove(mediaViewInsert));
+                break;
+            case MOVE:
+                Media mediaInsertMove = new Media(new File("src/res/inGameResource/move.m4a").toURI().toString());
+                MediaPlayer mediaPlayerInsertMove = new MediaPlayer(mediaInsertMove);
+                MediaView mediaViewInsertMove = new MediaView(mediaPlayerInsertMove);
+                group.getChildren().add(mediaViewInsertMove);
+                mediaPlayerInsertMove.play();
+                mediaPlayerInsertMove.setOnEndOfMedia(() -> group.getChildren().remove(mediaViewInsertMove));
+                break;
+        }
     }
 
     private static void setCellAffect(Pane pane) {
@@ -355,8 +364,7 @@ public class GraphicalInGameView {
                             //spellCast(inGameController.getBattle().getPlayGround().getCell(x, y));
                         }*/
                         inGameController.main(request);
-                        setMediaViews(group);
-                        insert.play();
+                        setMediaViews(MusicAct.INSERT);
                         updateHand();
                         setManas(inGameController.getBattle().getCurrenPlayer());
                         updatePlayGround(group);
@@ -379,8 +387,7 @@ public class GraphicalInGameView {
                         //TODO
                         updatePlayGround(group);
                         if (inGameController.getBattle().getCurrenPlayer().getSelectedCard() == null) {
-                            setMediaViews(group);
-                            move.play();
+                            setMediaViews(MusicAct.MOVE);
                             moveTo(cellFirst, cell);
                         }
                     }
@@ -469,8 +476,7 @@ public class GraphicalInGameView {
                         }
                     }
                 } else if (isMarked(pane, true)) {
-                    setMediaViews(group);
-                    attack.play();
+                    setMediaViews(MusicAct.ATTACK);
                     InGameRequest request = new InGameRequest("attack " + minion.getBattleID());
                     inGameController.main(request);
                     updatePlayGround(group);
@@ -492,8 +498,7 @@ public class GraphicalInGameView {
         isCombo = false;
         deleteMarkCells(false);
         comboCards = new ArrayList<>();
-        setMediaViews(group);
-        attack.play();
+        setMediaViews(MusicAct.ATTACK);
     }
 
     private static void markPossibleComboCells(Player player) {
