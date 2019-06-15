@@ -8,12 +8,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Account implements Comparable<Account> {
+    private static ArrayList<Account> accounts = new ArrayList<>();
+
     private Collection myCollection;
     private int money = 15000;
     private ArrayList<BattleResult> battleResults = new ArrayList<>();
     private ArrayList<Deck> decks = new ArrayList<>();
     private Deck mainDeck;
-    private static ArrayList<Account> accounts = new ArrayList<>();
     private String userName;
     private String passWord;
     private int numberOfWins = 0;

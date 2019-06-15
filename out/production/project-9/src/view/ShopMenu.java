@@ -100,7 +100,7 @@ public class ShopMenu {
     private void setExitButton(Parent parent, Stage stage) {
         Button back = (Button) parent.lookup("#back");
         back.setOnMouseClicked(mouseEvent -> {
-            stage.close();
+            MainMenu.getInstance().start(stage,controller.getLoggedInAccount());
         });
     }
 

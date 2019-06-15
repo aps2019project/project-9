@@ -14,6 +14,10 @@ public class ShopController {
     private Shop shop = Shop.getInstance();
     private ShopMenu shopMenu = ShopMenu.getInstance();
 
+    public Account getLoggedInAccount() {
+        return loggedInAccount;
+    }
+
     public ShopController(Account loggedInAccount) {
         this.loggedInAccount = loggedInAccount;
     }

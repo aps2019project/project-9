@@ -59,11 +59,11 @@ public class GraphicalInGameView {
     private static MediaPlayer backGroundMusic;
 
     public void showGame(Stage stage, Battle battle, Account account) throws IOException {
-        /*//TODO
+        //
         loggedAccount = account;
         AccountMenu.closeMainStage();
         AccountMenu.stopMusic();
-        //*/
+        //
         GraphicalInGameView.stage = stage;
         inGameController = new InGameController(battle);
         Group group = new Group();
@@ -356,22 +356,11 @@ public class GraphicalInGameView {
                         int y = pane.getId().charAt(pane.getId().length() - 1) - 48;
                         InGameRequest request = new InGameRequest(
                                 "insert " + db.getString() + " in " + x + " " + y);
-                        //TODO spell inserting
-                        /*int flag = 0;
-                        Card card = inGameController.getBattle().getCurrenPlayer().getHand().getCardByName(db.getString());
-                        if (card instanceof Spell) {
-                            flag = 1;
-                            //spellCast(inGameController.getBattle().getPlayGround().getCell(x, y));
-                        }*/
                         inGameController.main(request);
                         setMediaViews(MusicAct.INSERT);
                         updateHand();
                         setManas(inGameController.getBattle().getCurrenPlayer());
                         updatePlayGround(group);
-                        /*//TODO
-                        if (flag == 1){
-                            spellCast(inGameController.getBattle().getPlayGround().getCell(x,y));
-                        }*/
                         dragEvent.setDropCompleted(true);
                     }
                     dragEvent.setDropCompleted(false);

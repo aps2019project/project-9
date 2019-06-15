@@ -17,24 +17,24 @@ public class Test extends Application {
 
     @Override
     public void start(Stage primaryStage) {                 //all start must have try catch
-        /*AccountMenu a = AccountMenu.getInstance();
+        AccountMenu a = AccountMenu.getInstance();
         try {
             a.start(primaryStage,new AccountController());
             //s.start(primaryStage, new Collection());
             //a.start(primaryStage, accountController);
         } catch (Exception e) {
             e.printStackTrace();
-        }*/
+        }
         /*MainMenuController mainMenuController = MainMenuController.getInstance(new Account("m","m"));
         mainMenuController.start(primaryStage);*/
-        try {
+        /*try {
             Account c = new Account("n", "n");
             SinglePlayerBattle singlePlayerBattle = new SinglePlayerBattle(1, c);
             singlePlayerBattle.startBattle();
             new GraphicalInGameView().showGame(primaryStage, singlePlayerBattle, c);
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
         /*try {
             new CustomCardMenu(new Account("m","n")).start();
         } catch (IOException e) {
