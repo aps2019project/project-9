@@ -44,6 +44,6 @@ public class MainMenuController {
 
     public void goShopMenu(Account loggedInAccount) {
         ShopController shopController = new ShopController(loggedInAccount);
-        shopController.start(new Stage());
+        shopController.start();
     }
 }

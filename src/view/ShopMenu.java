@@ -1,5 +1,6 @@
 package view;
 
+import controller.ShopController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,6 +19,7 @@ import model.Collection;
 import model.Deck;
 import model.Shop;
 import model.cards.Card;
+import model.enumerations.ShopErrorType;
 import model.items.Item;
 
 import java.io.FileInputStream;
@@ -27,10 +29,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static model.enumerations.ShopErrorType.BOUGHT_SUCCESSFUL;
+
 public class ShopMenu {
 
     private boolean isShowShop = true;
     private static ShopMenu instance = new ShopMenu();
+    private ShopController controller;
 
     private ShopMenu() {
     }
@@ -39,8 +44,9 @@ public class ShopMenu {
         return instance;
     }
 
-    public void start(Stage stage, Collection collection) {
+    public void start(Stage stage, Collection collection, ShopController controller) {
         try {
+            this.controller = controller;
             FXMLLoader loader = new FXMLLoader(new URL("file:src\\res\\FXML\\Shop.fxml"));
             Parent parent = loader.load();
 
@@ -49,7 +55,7 @@ public class ShopMenu {
             setCardTableColumns(cardTable);
             setitemTableColumns(itemTable);
 
-            setSearchButtonAndTextField(parent);
+            setSearchButtonAndTextField(parent, cardTable, itemTable);
             setHelpButton(parent);
             setExitButton(parent, stage);
 
@@ -98,40 +104,78 @@ public class ShopMenu {
         });
     }
 
-    private void setSearchButtonAndTextField(Parent parent) {
+    private void setSearchButtonAndTextField(Parent parent, TableView cardTable, TableView itemTable) {
         Button search = (Button) parent.lookup("#searchB");
         TextField searchTextField = (TextField) parent.lookup("#search");
 
         search.setOnMouseClicked(mouseEvent -> {
             //TODO
             if (isShowShop) {
-
+                controller.searchShop(searchTextField.getText(), cardTable, itemTable);
             } else {
-
+                controller.searchCollection(searchTextField.getText(), cardTable, itemTable);
             }
         });
     }
 
     private void showCollectionTable(TableView cardTable, TableView itemTable, Collection collection) {
-        cardTable.getColumns().remove(cardTable.getColumns().get(5));
-        addSellButtonToTable(cardTable);
-
-        itemTable.getColumns().remove(itemTable.getColumns().get(3));
-        addSellButtonToTable(itemTable);
-
+        addSellButton(cardTable, itemTable);
         ObservableList<Item> item = FXCollections.observableArrayList(collection.getItems());
         ObservableList<Card> cards = FXCollections.observableArrayList(collection.getCards());
         cardTable.setItems(cards);
         itemTable.setItems(item);
     }
 
-    private void showShopTable(TableView cardTable, TableView itemTable) {
+    private void addSellButton(TableView cardTable, TableView itemTable) {
+        cardTable.getColumns().remove(cardTable.getColumns().get(5));
+        addSellButtonToTable(cardTable);
+
+        itemTable.getColumns().remove(itemTable.getColumns().get(3));
+        addSellButtonToTable(itemTable);
+    }
+
+    private void addBuyButton(TableView cardTable, TableView itemTable) {
         cardTable.getColumns().remove(cardTable.getColumns().get(5));
         addBuyButtonToTable(cardTable);
 
         itemTable.getColumns().remove(itemTable.getColumns().get(3));
         addBuyButtonToTable(itemTable);
+    }
 
+    public void showCardSell(TableView cardTable, TableView itemTable, Card card) {
+        cardTable.getItems().clear();
+        itemTable.getItems().clear();
+        addSellButton(cardTable, itemTable);
+        ObservableList<Card> cards = FXCollections.observableArrayList(card);
+        cardTable.setItems(cards);
+    }
+
+    public void showItemSell(TableView cardTable, TableView itemTable, Item item) {
+        cardTable.getItems().clear();
+        itemTable.getItems().clear();
+        addSellButton(cardTable, itemTable);
+        ObservableList<Item> items = FXCollections.observableArrayList(item);
+        itemTable.setItems(items);
+    }
+
+    public void showCardBuy(TableView cardTable, TableView itemTable, Card card) {
+        cardTable.getItems().clear();
+        itemTable.getItems().clear();
+        addBuyButton(cardTable, itemTable);
+        ObservableList<Card> cards = FXCollections.observableArrayList(card);
+        cardTable.setItems(cards);
+    }
+
+    public void showItemBuy(TableView cardTable, TableView itemTable, Item item) {
+        cardTable.getItems().clear();
+        itemTable.getItems().clear();
+        addBuyButton(cardTable, itemTable);
+        ObservableList<Item> cards = FXCollections.observableArrayList(item);
+        itemTable.setItems(cards);
+    }
+
+    private void showShopTable(TableView cardTable, TableView itemTable) {
+        addBuyButton(cardTable, itemTable);
         ObservableList<Item> item = FXCollections.observableArrayList(Shop.getInstance().getItems());
         ObservableList<Card> cards = FXCollections.observableArrayList(Shop.getInstance().getCards());
         cardTable.setItems(cards);
@@ -150,6 +194,7 @@ public class ShopMenu {
 
         TableColumn<String, Card> column4 = new TableColumn<>("MP");
         column4.setCellValueFactory(new PropertyValueFactory<>("MP"));
+        column4.setMaxWidth(30);
 
         TableColumn<String, Card> column5 = new TableColumn<>("Description");
         column5.setCellValueFactory(new PropertyValueFactory<>("desc"));
@@ -191,7 +236,7 @@ public class ShopMenu {
                             setText(null);
                         } else {
                             btn.setOnAction(event -> {
-                                //TODO
+                                controller.sell(getTableView().getItems().get(getIndex()).getName());
                             });
                             setGraphic(btn);
                             setText(null);
@@ -222,8 +267,7 @@ public class ShopMenu {
                             setText(null);
                         } else {
                             btn.setOnAction(event -> {
-                                //TODO
-
+                                controller.buy(getTableView().getItems().get(getIndex()).getName());
                             });
                             setGraphic(btn);
                             setText(null);
@@ -235,5 +279,12 @@ public class ShopMenu {
         };
         actionCol.setCellFactory(cellFactory);
         table.getColumns().add(actionCol);
+    }
+
+    public void printError(ShopErrorType error) {
+        if (error == BOUGHT_SUCCESSFUL) {
+            new Alert(Alert.AlertType.INFORMATION, error.getMessage()).showAndWait();
+        } else
+            new Alert(Alert.AlertType.WARNING, error.getMessage()).showAndWait();
     }
 }

@@ -1,9 +1,6 @@
 package view;
 
-import controller.AccountController;
-import controller.BattleMenuController;
-import controller.CollectionController;
-import controller.MainMenuController;
+import controller.*;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import model.*;
@@ -28,12 +25,12 @@ public class Test extends Application {
         Account account1 = new Account("b","b");
         try {
             //m.start(primaryStage,new Account("ali","n"));
-            //a.start(primaryStage, new AccountController());
+            a.start(primaryStage, new AccountController());
             //s.start(primaryStage, new Collection());
             //a.start(primaryStage, accountController);
             //c.start();
             //battleMenu.start(primaryStage);
-            s.start(primaryStage,new Collection());
+            //s.start(primaryStage,new Collection(), new ShopController(account));
         } catch (Exception e) {
             e.printStackTrace();
         }
