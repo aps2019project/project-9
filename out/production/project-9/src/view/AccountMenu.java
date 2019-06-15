@@ -37,6 +37,21 @@ public class AccountMenu {
     private static double width = 562;
     private AccountRequest accountRequest = new AccountRequest();
     private static AccountMenu instance = new AccountMenu();
+    private static Stage stage;
+    private static MediaPlayer mediaPlayer;
+
+    public static void stopMusic(){
+        mediaPlayer.stop();
+    }
+
+    public static void startMusic(){
+        mediaPlayer.play();
+    }
+
+    public static void closeMainStage(){
+        stage.close();
+    }
+
 
     private AccountMenu() {
     }
@@ -72,10 +87,11 @@ public class AccountMenu {
         stage.show();
     }
 
-    private void accountMenuShow(Stage last, AccountController account) {
+    public void accountMenuShow(Stage last, AccountController account) {
         try {
             Stage stage = new Stage();
             stage.getIcons().add(new Image("file:src/res/icon.jpg"));
+            AccountMenu.stage = stage;
             stage.setOnCloseRequest(windowEvent -> System.exit(0));
             stage.setTitle("Duelyst");
             Font accountMenuFont = Font.loadFont(
@@ -160,6 +176,7 @@ public class AccountMenu {
     private void runMusic(Group root) {
         Media media = new Media(new File("src\\res\\music\\backgroundmusic.mp3").toURI().toString());
         MediaPlayer player = new MediaPlayer(media);
+        mediaPlayer = player;
         MediaView mediaView = new MediaView(player);
         player.play();
         player.setOnEndOfMedia(() -> player.seek(Duration.ZERO));

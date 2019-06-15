@@ -313,15 +313,17 @@ public class Player {
             try {
                 if (minion.isCanMove()) {
                     Cell target = targetAiMove(minion);
-                    //TODO
-                    Cell first = minion.getCell();
+                    if (target != null) {
+                        //TODO
+                        Cell first = minion.getCell();
 
-                    move(minion, target);
+                        move(minion, target);
 
-                    //GraphicalInGameView.moveTo(first,target);
-                    //GraphicalInGameView.alertAiAction(AiAction.MOVE,minion,target);
-                    action += "\nMinion : " + minion.getName() + "\nmoved to : " + target.getX() + " " + target.getY()
-                    + "\nfrom : " + first.getX() + " " + first.getY();
+                        //GraphicalInGameView.moveTo(first,target);
+                        //GraphicalInGameView.alertAiAction(AiAction.MOVE,minion,target);
+                        action += "\nMinion : " + minion.getName() + "\nmoved to : " + target.getX() + " " + target.getY()
+                                + "\nfrom : " + first.getX() + " " + first.getY();
+                    }
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -335,7 +337,7 @@ public class Player {
         if (possibleCellsForMove.size() > 0) {
             PlayGround playGround = battle.getPlayGround();
             if (playGround.getManhatanDistance(target, minion.getCell()) <= 2)
-                throw new Exception("no need to move");
+                return null;
             int min = playGround.getManhatanDistance(target, possibleCellsForMove.get(0));
             Cell result = possibleCellsForMove.get(0);
             for (Cell cell : possibleCellsForMove) {

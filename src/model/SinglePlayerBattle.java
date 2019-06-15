@@ -14,11 +14,17 @@ public class SinglePlayerBattle extends Battle {
             playGround = new PlayGround(GameMode.ONE_FLAG, 1);
             gameMode = GameMode.ONE_FLAG;
             battlePrize = 1000;
-        } else {
+        } else if (level == 3){
             playGround = new PlayGround(GameMode.FLAGS, 7);
             gameMode = GameMode.FLAGS;
             numberOfFlags = 7;
             battlePrize = 1500;
+        } else{
+            try {
+                throw new Exception();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }
         turn = 0;
         whoseTurn = 1;

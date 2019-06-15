@@ -18,9 +18,9 @@ public class ShopController {
         this.loggedInAccount = loggedInAccount;
     }
 
-    public void start() {
+    public void start(Stage stage) {
         try {
-            shopMenu.start(new Stage(), loggedInAccount.getCollection(), this);
+            shopMenu.start(stage, loggedInAccount.getCollection(), this);
         } catch (Exception e) {
             e.printStackTrace();
         }

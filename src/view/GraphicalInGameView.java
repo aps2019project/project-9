@@ -1,6 +1,8 @@
 package view;
 
+import controller.AccountController;
 import controller.InGameController;
+import controller.MainMenuController;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point3D;
@@ -33,6 +35,7 @@ import model.items.Item;
 import model.specialPower.ComboSpecialPower;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -51,8 +54,17 @@ public class GraphicalInGameView {
     private static Group group;
     private static boolean isCombo = false;
     private static ArrayList<Minion> comboCards = new ArrayList<>();
+    private static Stage stage;
+    private static Account loggedAccount;
+    private static MediaPlayer backGroundMusic;
 
-    public void showGame(Stage stage, Battle battle) throws IOException {
+    public void showGame(Stage stage, Battle battle, Account account) throws IOException {
+        //TODO
+        loggedAccount = account;
+        AccountMenu.closeMainStage();
+        AccountMenu.stopMusic();
+        //
+        GraphicalInGameView.stage = stage;
         inGameController = new InGameController(battle);
         Group group = new Group();
         GraphicalInGameView.group = group;
@@ -755,7 +767,31 @@ public class GraphicalInGameView {
         pane.setOnMouseExited(mouseEvent -> {
             imageView.setImage(new Image("file:src/res/inGameResource/button_close.png"));
         });
-
+        pane.setOnMouseClicked(mouseEvent -> {
+            Stage newStage = new Stage();
+            Group group = new Group();
+            Scene scene = new Scene(group, 300, 300);
+            newStage.setTitle("Exit Request");
+            newStage.setScene(scene);
+            Button button = new Button("Exit Without Save");
+            Button button1 = new Button("Resume");
+            button.setLayoutX(50);
+            button1.setLayoutX(200);
+            button.setLayoutY(20);
+            button1.setLayoutY(20);
+            group.getChildren().add(button);
+            group.getChildren().add(button1);
+            newStage.show();
+            button.setOnMouseClicked(mouseEvent1 -> {
+                AccountMenu.getInstance().accountMenuShow(new Stage(),new AccountController());
+                stage.close();
+                newStage.close();
+                backGroundMusic.stop();
+            });
+            button1.setOnMouseClicked(mouseEvent1 -> {
+                newStage.close();
+            });
+        });
     }
 
     private static void setCursor(Scene scene) {
@@ -763,6 +799,7 @@ public class GraphicalInGameView {
     }
 
     static String aiMove;
+
     private static void setNextTurnButton() {
         Image image1 = new Image("src/res/inGameResource/nextTurn.png");
         Image image2 = new Image("file:src\\res\\inGameResource\\nextTurn2.png");
@@ -800,6 +837,7 @@ public class GraphicalInGameView {
     private MediaView getBackGroundMusic() {
         Media media = new Media(new File("src/res/inGameResource/music_playmode.m4a").toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
+        backGroundMusic = mediaPlayer;
         mediaPlayer.setAutoPlay(true);
         mediaPlayer.setOnEndOfMedia(() -> mediaPlayer.seek(Duration.ZERO));
         return new MediaView(mediaPlayer);

@@ -81,7 +81,7 @@ public class MainMenu {
             shop.setScaleX(3);
             shop.setScaleY(2.5);
             setActionsAndStyles(shop);
-            shop.setOnMouseClicked(event -> controller.goShopMenu(controller.getLoggedInAccount()));
+            shop.setOnMouseClicked(event -> controller.goShopMenu(controller.getLoggedInAccount(),stage));
 
             Button battle = new Button("battle");
             battle.setFont(font);
@@ -90,7 +90,7 @@ public class MainMenu {
             battle.setScaleX(3);
             battle.setScaleY(2.5);
             setActionsAndStyles(battle);
-            battle.setOnMouseClicked(event -> controller.goBattleMenu());
+            battle.setOnMouseClicked(event -> controller.goBattleMenu(stage));
 
             Button logOut = new Button("Log Out");
             logOut.setFont(font);
