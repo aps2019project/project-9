@@ -10,6 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import model.Account;
@@ -45,6 +46,8 @@ public class CollectionMenu {
             Scene scene = new Scene(root, 1003, 562);
             stage.setScene(scene);
             scene.getStylesheets().add("src/res/CSS/CollectionButtonStyle.css");
+            stage.getIcons().add(new Image("file:src/res/icon.jpg"));
+            stage.setTitle("Collection Menu");
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -89,18 +92,39 @@ public class CollectionMenu {
         int startX = 20;
         int startY = 170;
         Button selectDeck = setSelectButton(startX, startY);
+        setBtnOnMouseOverAction(selectDeck);
         Button createDeck = setCreateDeckButton(startX, startY, addX, addY);
+        setBtnOnMouseOverAction(createDeck);
         Button deleteDeck = setDeleteDeckButton(startX, startY, addX, addY);
+        setBtnOnMouseOverAction(deleteDeck);
         Button showAllDecks = setShowAllDecksButton(startX, startY, addX, addY, tableView);
+        setBtnOnMouseOverAction(showAllDecks);
         Button showDeck = setshowDeckButton(startX, startY, addX, addY, tableView);
+        setBtnOnMouseOverAction(showDeck);
         Button save = setSaveButton(startX, startY, addX, addY);
+        setBtnOnMouseOverAction(save);
         Button search = setSearchButton(startX, startY, addX, addY, tableView);
+        setBtnOnMouseOverAction(search);
         Button help = setHelpButton(startX, startY, addX, addY);
+        setBtnOnMouseOverAction(help);
         Button back = setBackButton(startX, startY, addX, addY, stage);
+        setBtnOnMouseOverAction(back);
         Button showCollection = setShowCollectionButton(tableView);
 
         root.getChildren().addAll(selectDeck, createDeck, deleteDeck, showAllDecks, showDeck, save, help, back,
                 showCollection, search);
+    }
+
+    private void setBtnOnMouseOverAction(Button button) {
+        double layoutX = button.getLayoutX();
+        button.setOnMouseEntered(mouseEvent -> {
+            button.setStyle("-fx-text-fill: blue");
+            button.setLayoutX(layoutX + 10);
+        });
+        button.setOnMouseExited(mouseEvent -> {
+            button.setStyle("-fx-text-fill: black");
+            button.setLayoutX(layoutX);
+        });
     }
 
     private Button setShowCollectionButton(TableView tableView) {
@@ -265,7 +289,7 @@ public class CollectionMenu {
     }
 
     private void showCard(TableView tableView, String name) {
-        if (havebutton){
+        if (havebutton) {
             tableView.getColumns().remove(5);
         }
         havebutton = true;
@@ -275,7 +299,7 @@ public class CollectionMenu {
     }
 
     private void showCollectionTable(TableView tableView) {
-        if (havebutton){
+        if (havebutton) {
             tableView.getColumns().remove(5);
         }
         havebutton = true;
@@ -298,7 +322,7 @@ public class CollectionMenu {
 
             Optional<String> result = dialog.showAndWait();
             result.ifPresent(letter -> {
-                if (havebutton){
+                if (havebutton) {
                     tableView.getColumns().remove(5);
                 }
                 havebutton = true;
@@ -346,7 +370,7 @@ public class CollectionMenu {
     }
 
     private void showAllDecksTable(TableView tableView) {
-        if (havebutton){
+        if (havebutton) {
             tableView.getColumns().remove(5);
         }
         havebutton = true;

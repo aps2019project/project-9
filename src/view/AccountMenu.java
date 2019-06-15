@@ -4,6 +4,7 @@ import controller.AccountController;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -20,6 +21,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 import javafx.util.Pair;
 import model.Account;
@@ -73,6 +75,8 @@ public class AccountMenu {
     private void accountMenuShow(Stage last, AccountController account) {
         try {
             Stage stage = new Stage();
+            stage.getIcons().add(new Image("file:src/res/icon.jpg"));
+            stage.setOnCloseRequest(windowEvent -> System.exit(0));
             stage.setTitle("Duelyst");
             Font accountMenuFont = Font.loadFont(
                     new FileInputStream(new File("src/res/Font/modern.TTF")), 40);

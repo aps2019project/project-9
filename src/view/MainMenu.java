@@ -1,6 +1,5 @@
 package view;
 
-import controller.AccountController;
 import controller.MainMenuController;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -18,6 +17,7 @@ import model.enumerations.MainMenuErrorType;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class MainMenu {
     private static double HEIGHT = 562;
@@ -47,6 +47,7 @@ public class MainMenu {
             setButtons(root, MainMenuController.getInstance(loggedAccount), stage);
             Scene scene = new Scene(root, WIDTH, HEIGHT);
             stage.setScene(scene);
+            stage.getIcons().add(new Image("file:src/res/icon.jpg"));
             stage.show();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -100,7 +101,7 @@ public class MainMenu {
             setActionsAndStyles(logOut);
             logOut.setOnMouseClicked(event -> stage.close());
 
-            Button defaultCard = new Button("Default\n  Card");
+            Button defaultCard = new Button("Custom\n  Card");
             defaultCard.setFont(font);
             defaultCard.setLayoutX(50);
             defaultCard.setLayoutY(450);
@@ -111,14 +112,14 @@ public class MainMenu {
                     defaultCard.setStyle("-fx-background-color: rgba(0,0,0,0);-fx-text-fill: #063e07"));
             defaultCard.setOnMouseExited(mouseEvent ->
                     defaultCard.setStyle("-fx-background-color: rgba(0,0,0,0);-fx-text-fill: #ff1cd7"));
-            defaultCard.setOnMouseClicked(m -> GoToDefaultCardMenu());
+            defaultCard.setOnMouseClicked(m -> GoToCustomCardMenu(controller.getLoggedInAccount()));
 
             ImageView imageView = new ImageView(new Image("src\\res\\MainMenuImages\\1.png"));
             imageView.setScaleY(0.5);
             imageView.setScaleX(0.5);
             imageView.setLayoutX(-30);
             imageView.setLayoutY(320);
-            imageView.setOnMouseClicked(m -> GoToDefaultCardMenu());
+            imageView.setOnMouseClicked(m -> GoToCustomCardMenu(controller.getLoggedInAccount()));
 
             root.getChildren().addAll(imageView, collection, shop, battle, logOut, defaultCard);
         } catch (Exception e) {
@@ -126,8 +127,13 @@ public class MainMenu {
         }
     }
 
-    private void GoToDefaultCardMenu() {
-        //TODO
+    private void GoToCustomCardMenu(Account loggedAccount) {
+        CustomCardMenu customCardMenu = new CustomCardMenu(loggedAccount);
+        try {
+            customCardMenu.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void printError(MainMenuErrorType e) {

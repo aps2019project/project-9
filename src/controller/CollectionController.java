@@ -26,7 +26,7 @@ public class CollectionController {
         collectionMenu = new CollectionMenu(this);
     }
 
-    public void main(Stage stage) {
+    public void main() {
         collectionMenu.start();
 
         /*switch (request.getType()) {
