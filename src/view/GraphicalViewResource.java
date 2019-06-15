@@ -26,7 +26,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 
-public class GraphicalViewTest {
+public class GraphicalViewResource {
 
     public static HashMap<Integer, int[]> positions = new HashMap<>();
 

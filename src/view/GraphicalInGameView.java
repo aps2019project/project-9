@@ -2,8 +2,6 @@ package view;
 
 import controller.InGameController;
 import javafx.animation.TranslateTransition;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point3D;
 import javafx.scene.*;
@@ -94,10 +92,10 @@ public class GraphicalInGameView {
         int u = second.getX() * 9 + second.getY();
         int u1 = x * 9 + y;
         group.getChildren().add(imageView);
-        transition.setFromX(GraphicalViewTest.positions.get(u1)[0]);
-        transition.setFromY(GraphicalViewTest.positions.get(u1)[1]);
-        transition.setToX(GraphicalViewTest.positions.get(u)[0]);
-        transition.setToY(GraphicalViewTest.positions.get(u)[1]);
+        transition.setFromX(GraphicalViewResource.positions.get(u1)[0]);
+        transition.setFromY(GraphicalViewResource.positions.get(u1)[1]);
+        transition.setToX(GraphicalViewResource.positions.get(u)[0]);
+        transition.setToY(GraphicalViewResource.positions.get(u)[1]);
         transition.play();
         transition.setOnFinished(actionEvent -> {
             group.getChildren().remove(imageView);
