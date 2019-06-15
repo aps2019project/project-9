@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import model.Account;
 import model.Collection;
@@ -40,14 +41,14 @@ public class ShopController {
                     search(request.getItemOrCardName());
                     break;
             }*/
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private void searchCollection(String itemOrCardName) {
+    private void searchCollection(String itemOrCardName, TableView tableView) {
         CollectionController collectionController = new CollectionController(loggedInAccount);
-        collectionController.search(itemOrCardName);
+        collectionController.search(itemOrCardName, tableView);
     }
 
     private void sell(String itemOrCardID) {

@@ -1,6 +1,7 @@
 package view;
 
 import controller.AccountController;
+import controller.BattleMenuController;
 import controller.CollectionController;
 import controller.MainMenuController;
 import javafx.application.Application;
@@ -18,13 +19,20 @@ public class Test extends Application {
     @Override
     public void start(Stage primaryStage) {                 //all start must have try catch
         AccountMenu a = AccountMenu.getInstance();
+        Account account = new Account("ali", "b");
         AccountController accountController = new AccountController();
         ShopMenu s = ShopMenu.getInstance();
-        CollectionMenu c = new CollectionMenu(new CollectionController(new Account("ali", "b")));
+        CollectionMenu c = new CollectionMenu(new CollectionController(account));
+        MainMenu m = MainMenu.getInstance();
+        BattleMenu battleMenu = new BattleMenu(account,new BattleMenuController(account));
+        Account account1 = new Account("b","b");
         try {
-            c.start();
+            //m.start(primaryStage,new Account("ali","n"));
+            //a.start(primaryStage, new AccountController());
             //s.start(primaryStage, new Collection());
             //a.start(primaryStage, accountController);
+            //c.start();
+            battleMenu.start(primaryStage);
         } catch (Exception e) {
             e.printStackTrace();
         }

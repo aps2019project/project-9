@@ -26,9 +26,7 @@ public class CollectionMenu {
     private ImageView slideshowImageView;
     private Account account;
     private CollectionController controller;
-    private static boolean isColomnsset = false;
-    private static boolean haveAddButton = false;
-    private static boolean haveDelButton = false;
+    private static boolean havebutton = false;
 
     public CollectionMenu(CollectionController controller) {
         this.account = controller.getLoggedInAccount();
@@ -40,9 +38,9 @@ public class CollectionMenu {
             Stage stage = new Stage();
             Group root = new Group();
             TableView tableView = setTable();
-
             runSlideShow(root);
             setButtons(root, stage, tableView);
+            setColumns(tableView);
             root.getChildren().add(tableView);
             Scene scene = new Scene(root, 1003, 562);
             stage.setScene(scene);
@@ -267,32 +265,24 @@ public class CollectionMenu {
     }
 
     private void showCard(TableView tableView, String name) {
-        setupCollectionTable(tableView);
+        if (havebutton){
+            tableView.getColumns().remove(5);
+        }
+        havebutton = true;
+        addAddButtonToTable(tableView);
+        tableView.getItems().clear();
         controller.search(name, tableView);
     }
 
-    private void setupCollectionTable(TableView tableView) {
-        for (int i = 0; i < tableView.getColumns().size(); i++) {
-            tableView.getColumns().remove(i);
+    private void showCollectionTable(TableView tableView) {
+        if (havebutton){
+            tableView.getColumns().remove(5);
         }
-        setColumns(tableView);
+        havebutton = true;
         addAddButtonToTable(tableView);
         tableView.getItems().clear();
-    }
-
-    private void showCollectionTable(TableView tableView) {
-        setupCollectionTable(tableView);
         tableView.getItems().addAll(FXCollections.observableArrayList(account.getCollection().getCards()));
         tableView.getItems().addAll(FXCollections.observableArrayList(account.getCollection().getItems()));
-    }
-
-    private void setupColumns(TableView tableView) {
-        for (int i = 0; i < tableView.getColumns().size(); i++) {
-            tableView.getColumns().remove(i);
-        }
-        setColumns(tableView);
-        addDeleteButtonToTable(tableView);
-        tableView.getItems().clear();
     }
 
     private void showDeckTable(TableView tableView) {
@@ -308,7 +298,12 @@ public class CollectionMenu {
 
             Optional<String> result = dialog.showAndWait();
             result.ifPresent(letter -> {
-                setupColumns(tableView);
+                if (havebutton){
+                    tableView.getColumns().remove(5);
+                }
+                havebutton = true;
+                addDeleteButtonToTable(tableView);
+                tableView.getItems().clear();
                 Deck temp = account.findDeckByName(letter);
                 showDeck(tableView, temp);
             });
@@ -351,7 +346,12 @@ public class CollectionMenu {
     }
 
     private void showAllDecksTable(TableView tableView) {
-        setupColumns(tableView);
+        if (havebutton){
+            tableView.getColumns().remove(5);
+        }
+        havebutton = true;
+        addDeleteButtonToTable(tableView);
+        tableView.getItems().clear();
         for (int i = 0; i < account.getDecks().size(); i++) {
             Deck temp = account.getDecks().get(i);
             showDeck(tableView, temp);
@@ -376,7 +376,7 @@ public class CollectionMenu {
     private void addAddButtonToTable(TableView table) {
         table.setTranslateX(500);
         TableColumn actionCol = new TableColumn("Add");
-        actionCol.setCellValueFactory(new PropertyValueFactory<>("D"));
+        actionCol.setCellValueFactory(new PropertyValueFactory<>(""));
         Callback<TableColumn<Card, String>, TableCell<Card, String>> cellFactory = new Callback<>() {
             @Override
             public TableCell call(final TableColumn<Card, String> param) {

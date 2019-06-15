@@ -28,22 +28,22 @@ public class MainMenuController {
         mainMenu.start(stage,loggedInAccount);
     }
 
-    public void goCollectionMenu(Account loggedInAccount, Stage stage) {
+    public void goCollectionMenu(Account loggedInAccount) {
         CollectionController collectionController = new CollectionController(loggedInAccount);
-        collectionController.main(stage);
+        collectionController.main(new Stage());
     }
 
-    public void goBattleMenu(Stage stage) {
+    public void goBattleMenu() {
         if (loggedInAccount.getMainDeck() == null || !loggedInAccount.getMainDeck().isValid()) {
             mainMenu.printError(MainMenuErrorType.SELECTED_DECK_INVALID);
         } else {
             BattleMenuController battleMenuController = new BattleMenuController(loggedInAccount);
-            battleMenuController.main(stage);
+            battleMenuController.main(new Stage());
         }
     }
 
-    public void goShopMenu(Account loggedInAccount, Stage stage) {
+    public void goShopMenu(Account loggedInAccount) {
         ShopController shopController = new ShopController(loggedInAccount);
-        shopController.start(stage);
+        shopController.start(new Stage());
     }
 }

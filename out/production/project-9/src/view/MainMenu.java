@@ -63,60 +63,71 @@ public class MainMenu {
 
     void setButtons(Group root, MainMenuController controller, Stage stage) {
         try {
-            Font collectionFont = Font.loadFont(new FileInputStream(new File("src/res/Font/ALGER.TTF")), 15);
+            Font font = Font.loadFont(new FileInputStream(new File("src/res/Font/ALGER.TTF")), 13);
             Button collection = new Button("Collection");
-            collection.setFont(collectionFont);
+            collection.setFont(font);
             collection.setLayoutX(485);
             collection.setLayoutY(200);
             collection.setScaleX(3);
             collection.setScaleY(2.5);
             setActionsAndStyles(collection);
-            collection.setOnMouseClicked(event -> controller.goCollectionMenu(controller.getLoggedInAccount(), stage));
-            Font shopFont = Font.loadFont(new FileInputStream(new File("src/res/Font/ALGER.TTF")), 15);
+            collection.setOnMouseClicked(event -> controller.goCollectionMenu(controller.getLoggedInAccount()));
+
             Button shop = new Button("shop");
-            shop.setFont(shopFont);
+            shop.setFont(font);
             shop.setLayoutX(485);
             shop.setLayoutY(300);
             shop.setScaleX(3);
             shop.setScaleY(2.5);
             setActionsAndStyles(shop);
-            shop.setOnMouseClicked(event -> {
-                controller.goShopMenu(controller.getLoggedInAccount(), stage);
-            });
+            shop.setOnMouseClicked(event -> controller.goShopMenu(controller.getLoggedInAccount()));
 
-            Font battleFont = Font.loadFont(new FileInputStream(new File("src/res/Font/ALGER.TTF")), 15);
             Button battle = new Button("battle");
-            battle.setFont(battleFont);
+            battle.setFont(font);
             battle.setLayoutX(485);
             battle.setLayoutY(400);
             battle.setScaleX(3);
             battle.setScaleY(2.5);
             setActionsAndStyles(battle);
-            battle.setOnMouseClicked(event -> {
-                controller.goBattleMenu(stage);
-            });
+            battle.setOnMouseClicked(event -> controller.goBattleMenu());
 
-            Font logOutFont = Font.loadFont(new FileInputStream(new File("src/res/Font/ALGER.TTF")), 15);
             Button logOut = new Button("Log Out");
-            logOut.setFont(logOutFont);
+            logOut.setFont(font);
             logOut.setLayoutX(485);
             logOut.setLayoutY(500);
             logOut.setScaleX(3);
             logOut.setScaleY(2.5);
             setActionsAndStyles(logOut);
-            logOut.setOnMouseClicked(event -> {
-                stage.close();
-                /*try {
-                    AccountController accountController = new AccountController();
-                    accountController.start(stage);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }*/
-            });
-            root.getChildren().addAll(collection, shop, battle, logOut);
+            logOut.setOnMouseClicked(event -> stage.close());
+
+            Button defaultCard = new Button("Default\n  Card");
+            defaultCard.setFont(font);
+            defaultCard.setLayoutX(50);
+            defaultCard.setLayoutY(450);
+            defaultCard.setScaleX(2);
+            defaultCard.setScaleY(2);
+            defaultCard.setStyle("-fx-background-color: rgba(0,0,0,0);-fx-text-fill: #ff1cd7;");
+            defaultCard.setOnMouseEntered(mouseEvent ->
+                    defaultCard.setStyle("-fx-background-color: rgba(0,0,0,0);-fx-text-fill: #063e07"));
+            defaultCard.setOnMouseExited(mouseEvent ->
+                    defaultCard.setStyle("-fx-background-color: rgba(0,0,0,0);-fx-text-fill: #ff1cd7"));
+            defaultCard.setOnMouseClicked(m -> GoToDefaultCardMenu());
+
+            ImageView imageView = new ImageView(new Image("src\\res\\MainMenuImages\\1.png"));
+            imageView.setScaleY(0.5);
+            imageView.setScaleX(0.5);
+            imageView.setLayoutX(-30);
+            imageView.setLayoutY(320);
+            imageView.setOnMouseClicked(m -> GoToDefaultCardMenu());
+
+            root.getChildren().addAll(imageView, collection, shop, battle, logOut, defaultCard);
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void GoToDefaultCardMenu() {
+        //TODO
     }
 
     public void printError(MainMenuErrorType e) {

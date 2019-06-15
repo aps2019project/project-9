@@ -44,7 +44,7 @@ public class AccountMenu {
     }
 
     public void start(Stage stage, AccountController account) throws FileNotFoundException {
-        stage.setTitle("project 9");
+        stage.setTitle("Duelyst");
         stage.getIcons().add(new Image("src/res/icon.png"));
         ImageView imageView = new ImageView();
         imageView.setImage(new Image(new FileInputStream("src/res/AccountMenuImages/12.png")));
@@ -64,7 +64,6 @@ public class AccountMenu {
         Scene scene = new Scene(group, 420, 562);
         scene.setFill(Color.DEEPPINK);
         scene.setOnMouseClicked(event -> {
-            //stage.close();
             accountMenuShow(stage, account);
         });
         stage.setScene(scene);
