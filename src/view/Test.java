@@ -32,7 +32,8 @@ public class Test extends Application {
             //s.start(primaryStage, new Collection());
             //a.start(primaryStage, accountController);
             //c.start();
-            battleMenu.start(primaryStage);
+            //battleMenu.start(primaryStage);
+            s.start(primaryStage,new Collection());
         } catch (Exception e) {
             e.printStackTrace();
         }

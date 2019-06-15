@@ -8,7 +8,6 @@ import view.BattleMenu;
 
 public class BattleMenuController {
     private Account loggedInAccount;
-    private BattleMenu battleMenu;
 
     public BattleMenuController(Account loggedInAccount) {
         this.loggedInAccount = loggedInAccount;
@@ -16,7 +15,6 @@ public class BattleMenuController {
 
     public void main(Stage stage) {
         BattleMenu battleMenu = new BattleMenu(loggedInAccount, this);
-        this.battleMenu = battleMenu;
         battleMenu.start(stage);
     }
 

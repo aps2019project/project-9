@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="562.0" prefWidth="1003.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="562.0" fitWidth="1003.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../ShopImages/shop.jpg" />
+         </image>
+      </ImageView>
+      <TableView fx:id="cardTable" layoutX="14.0" layoutY="14.0" prefHeight="324.0" prefWidth="470.0" />
+      <TableView fx:id="itemTable" layoutX="14.0" layoutY="348.0" prefHeight="200.0" prefWidth="469.0" />
+      <TextField fx:id="search" layoutX="676.0" layoutY="31.0" prefHeight="33.0" prefWidth="197.0" promptText="Enter card/item Name">
+         <font>
+            <Font name="BirchCTT" size="16.0" />
+         </font>
+      </TextField>
+      <ImageView fitHeight="65.0" fitWidth="155.0" layoutX="844.0" layoutY="499.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../ShopImages/button.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="back" layoutX="844.0" layoutY="505.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Back To Menu">
+         <font>
+            <Font name="BirchCTT" size="19.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="0.4312976880837943" endY="0.6679389158278022" startX="0.4427481516626955" startY="0.21374043617539729">
+               <stops>
+                  <Stop color="#f50606" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Button>
+      <ImageView fitHeight="65.0" fitWidth="155.0" layoutX="844.0" layoutY="448.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../ShopImages/button.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="help" layoutX="850.0" layoutY="450.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="142.0" style="-fx-background-color: transparent;" text="Help">
+         <font>
+            <Font name="BirchCTT" size="23.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="0.4312976880837943" endY="0.6679389158278022" startX="0.5725191294691945" startY="0.21374043617539729">
+               <stops>
+                  <Stop color="#f50606" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Button>
+      <ImageView fitHeight="65.0" fitWidth="180.0" layoutX="802.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../ShopImages/button.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="searchB" layoutX="806.0" layoutY="69.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="172.0" style="-fx-background-color: transparent;" text="Search">
+         <font>
+            <Font name="BirchCTT" size="26.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="0.7977098799843825" endY="0.6717557242808452" startX="0.4694656652348642" startY="0.5648855034631627">
+               <stops>
+                  <Stop color="#f50606" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Button>
+      <ImageView fitHeight="65.0" fitWidth="180.0" layoutX="514.0" layoutY="357.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../ShopImages/button.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="65.0" fitWidth="180.0" layoutX="514.0" layoutY="420.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../ShopImages/button.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="showCollection" layoutX="518.0" layoutY="361.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="172.0" style="-fx-background-color: transparent;" text="Show Collection">
+         <font>
+            <Font name="BirchCTT" size="19.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="0.4312976880837943" endY="0.6679389158278022" startX="0.5725191294691945" startY="0.21374043617539729">
+               <stops>
+                  <Stop color="#dd0808" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Button>
+      <Button fx:id="showShop" layoutX="521.0" layoutY="427.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="165.0" style="-fx-background-color: transparent;" text="Show Shop">
+         <font>
+            <Font name="BirchCTT" size="23.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="0.4312976880837943" endY="0.6679389158278022" startX="0.5725191294691945" startY="0.21374043617539729">
+               <stops>
+                  <Stop color="#dd0808" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Button>
+   </children>
+</AnchorPane>

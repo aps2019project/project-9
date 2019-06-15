@@ -23,24 +23,9 @@ public class ShopController {
         this.loggedInAccount = loggedInAccount;
     }
 
-    public void start(Stage stage) {
+    public void start() {
         try {
-            shopMenu.start(stage, loggedInAccount.getCollection());
-
-            /*switch (request.getType()) {
-                case SEARCH_COLLECTION:
-                    searchCollection(request.getItemOrCardName());
-                    break;
-               case SELL:
-                    sell(request.getItemOrCardID());
-                    break;
-                case BUY:
-                    buy(request.getItemOrCardName());
-                    break;
-                case SEARCH:
-                    search(request.getItemOrCardName());
-                    break;
-            }*/
+            shopMenu.start(new Stage(), loggedInAccount.getCollection());
         } catch (Exception e) {
             e.printStackTrace();
         }

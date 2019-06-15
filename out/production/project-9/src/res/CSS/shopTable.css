@@ -1,6 +1,3 @@
-.table-view {
-    -fx-background-color: transparent;
-}
 .button:hover {
     -fx-background-color: linear-gradient(#2A5058, #61a2b1);
 }

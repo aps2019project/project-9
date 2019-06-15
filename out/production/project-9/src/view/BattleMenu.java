@@ -8,7 +8,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceDialog;
-import javafx.scene.control.Dialog;
 import javafx.stage.Stage;
 import model.Account;
 import model.Deck;
@@ -30,12 +29,10 @@ public class BattleMenu {
 
     public void start(Stage stage) {
         try {
-            stage.setMaximized(true);
-
             FXMLLoader loader = new FXMLLoader(new URL("file:src\\res\\FXML\\BattleMenu.fxml"));
             Parent parent = loader.load();
             setButttomnsEventbattle(parent, stage);
-            Scene scene = new Scene(parent, 100, 100);
+            Scene scene = new Scene(parent, 1003, 562);
             stage.setScene(scene);
 
             stage.show();
@@ -58,7 +55,7 @@ public class BattleMenu {
             FXMLLoader loader = new FXMLLoader(new URL("file:src\\res\\FXML\\StoryCustom.fxml"));
             Parent parent = loader.load();
             setButttomnsEventsingle(parent, stage);
-            Scene scene = new Scene(parent, 1300, 600);
+            Scene scene = new Scene(parent, 1003, 562);
             stage.setScene(scene);
             stage.show();
         } catch (Exception e) {
@@ -77,12 +74,10 @@ public class BattleMenu {
 
     private void storyMenuShow(Stage stage) {
         try {
-            stage.setMaximized(true);
-
             FXMLLoader loader = new FXMLLoader(new URL("file:src\\res\\FXML\\StoryMenu.fxml"));
             Parent parent = loader.load();
             setStoryButtons(parent, stage);
-            Scene scene = new Scene(parent, 1300, 600);
+            Scene scene = new Scene(parent, 1003, 562);
             stage.setScene(scene);
 
             stage.show();
@@ -200,7 +195,7 @@ public class BattleMenu {
         Optional<String> result = dialog.showAndWait();
 
         result.ifPresent(letter -> {
-            new Alert(Alert.AlertType.WARNING, "sorry this feature isn't available now");
+            new Alert(Alert.AlertType.WARNING, "sorry this feature isn't available now").showAndWait();
         });
     }
 

@@ -3,7 +3,9 @@ package view;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -13,12 +15,17 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import model.Collection;
+import model.Deck;
 import model.Shop;
 import model.cards.Card;
 import model.items.Item;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 public class ShopMenu {
 
@@ -34,20 +41,22 @@ public class ShopMenu {
 
     public void start(Stage stage, Collection collection) {
         try {
-            stage.setMaximized(true);
-            Group root = new Group();
-            setBackGround(root);
-            TableView tableView = cardTable();
-            //TableView itemTable = itemTable();
-            setSearchButtonAndTextField(root);
-            setHelpButton(root);
-            setExitButton(root);
-            setShowShopButton(root, tableView);
-            setShowCollectionButton(root, tableView, collection);
+            FXMLLoader loader = new FXMLLoader(new URL("file:src\\res\\FXML\\Shop.fxml"));
+            Parent parent = loader.load();
 
-            root.getChildren().addAll(tableView);
+            TableView cardTable = (TableView) parent.lookup("#cardTable");
+            TableView itemTable = (TableView) parent.lookup("#itemTable");
+            setCardTableColumns(cardTable);
+            setitemTableColumns(itemTable);
 
-            Scene scene = new Scene(root, stage.getMaxHeight(), stage.getMaxWidth());
+            setSearchButtonAndTextField(parent);
+            setHelpButton(parent);
+            setExitButton(parent, stage);
+
+            setShowShopButton(parent, cardTable, itemTable);
+            setShowCollectionButton(parent, cardTable, itemTable, collection);
+
+            Scene scene = new Scene(parent, 1003, 562);
             stage.setScene(scene);
             scene.getStylesheets().add("src/res/CSS/shopTable.css");
             stage.show();
@@ -56,81 +65,44 @@ public class ShopMenu {
         }
     }
 
-    private TableView itemTable() {
-        TableView tableView = new TableView();
-        showItemShopTable(tableView);
-        return tableView;
-    }
-
-    private TableView cardTable() {
-        TableView tableView = new TableView();
-        showCardShopTable(tableView);
-        return tableView;
-    }
-
-    private void setShowShopButton(Group root, TableView tableView) {
-        Button b = new Button("Show Shop");
-        b.setScaleX(2);
-        b.setScaleY(1.5);
-        b.setLayoutX(1230);
-        b.setLayoutY(200);
+    private void setShowShopButton(Parent parent, TableView cardTable, TableView itemTable) {
+        Button b = (Button) parent.lookup("#showShop");
         b.setOnMouseClicked(mouseEvent -> {
             isShowShop = true;
-            showCardShopTable(tableView);
+            showShopTable(cardTable, itemTable);
         });
-        root.getChildren().add(b);
     }
 
-    private void setShowCollectionButton(Group group, TableView tableView, Collection collection) {
-        Button showCollection = new Button("Show collection");
-        showCollection.setLayoutX(1020);
-        showCollection.setLayoutY(200);
-        showCollection.setScaleX(2);
-        showCollection.setScaleY(1.5);
-
+    private void setShowCollectionButton(Parent parent, TableView cardTable, TableView itemTable, Collection collection) {
+        Button showCollection = (Button) parent.lookup("#showCollection");
         showCollection.setOnMouseClicked(mouseEvent -> {
             isShowShop = false;
-            showCollectionTable(tableView, collection);
+            showCollectionTable(cardTable, itemTable, collection);
         });
-        group.getChildren().add(showCollection);
     }
 
-    private void setHelpButton(Group group) {
-        Button b = new Button("HELP");
-        b.setScaleX(1.5);
-        b.setScaleY(1.5);
-        b.setLayoutX(1400);
-        b.setLayoutY(700);
-        b.setOnMouseClicked(mouseEvent -> new Alert(Alert.AlertType.INFORMATION, "show Collection " +
+    private void setHelpButton(Parent parent) {
+        Button help = (Button) parent.lookup("#help");
+        help.setOnMouseClicked(mouseEvent -> new Alert(Alert.AlertType.INFORMATION, "show Collection " +
                 "---> show your collection\n" +
                 "search --> find card/item in shop/collection\n" +
                 "buy --> buy card/item\n" +
                 "sell --> buy card/item\n").showAndWait());
-        group.getChildren().add(b);
+
     }
 
-    private void setExitButton(Group group) {
-        Button b = new Button("Back to Menu");
-        b.setScaleX(1.5);
-        b.setScaleY(1.5);
-        b.setLayoutX(1380);
-        b.setLayoutY(750);
-        b.setOnMouseClicked(mouseEvent -> {
-            //TODO
-
+    private void setExitButton(Parent parent, Stage stage) {
+        Button back = (Button) parent.lookup("#back");
+        back.setOnMouseClicked(mouseEvent -> {
+            stage.close();
         });
-        group.getChildren().add(b);
     }
 
-    private void setSearchButtonAndTextField(Group group) {
-        Button searchButton = new Button("Search");
-        searchButton.setTextFill(Color.rgb(46, 30, 142));
-        searchButton.setLayoutX(1150);
-        searchButton.setLayoutY(120);
-        searchButton.setScaleX(2);
-        searchButton.setScaleY(1.5);
+    private void setSearchButtonAndTextField(Parent parent) {
+        Button search = (Button) parent.lookup("#searchB");
+        TextField searchTextField = (TextField) parent.lookup("#search");
 
-        searchButton.setOnMouseClicked(mouseEvent -> {
+        search.setOnMouseClicked(mouseEvent -> {
             //TODO
             if (isShowShop) {
 
@@ -138,64 +110,32 @@ public class ShopMenu {
 
             }
         });
-
-        TextField textField = new TextField();
-        textField.setPromptText("Enter Name of Card/Item");
-        textField.setScaleX(1.7);
-        textField.setScaleY(1.5);
-        textField.setLayoutX(1100);
-        textField.setLayoutY(70);
-        group.getChildren().addAll(searchButton, textField);
     }
 
-    private void setBackGround(Group group) throws FileNotFoundException {
-        ImageView imageView = new ImageView(new Image(new FileInputStream("src/res/ShopImages/shop.jpg")));
-        imageView.setFitHeight(810);
-        imageView.setFitWidth(1600);
-        group.getChildren().add(imageView);
-    }
+    private void showCollectionTable(TableView cardTable, TableView itemTable, Collection collection) {
+        cardTable.getColumns().remove(cardTable.getColumns().get(5));
+        addSellButtonToTable(cardTable);
 
-    private void showCollectionTable(TableView tableView, Collection collection) {
-        tableView.getColumns().remove(tableView.getColumns().get(5));
-        addSellButtonToTable(tableView);
+        itemTable.getColumns().remove(itemTable.getColumns().get(3));
+        addSellButtonToTable(itemTable);
+
         ObservableList<Item> item = FXCollections.observableArrayList(collection.getItems());
         ObservableList<Card> cards = FXCollections.observableArrayList(collection.getCards());
-        tableView.setItems(cards);
-        tableView.getItems().addAll(item);
+        cardTable.setItems(cards);
+        itemTable.setItems(item);
     }
 
-    private void showCardShopTable(TableView tableView) {
-        setShopTable(tableView, true);
-    }
+    private void showShopTable(TableView cardTable, TableView itemTable) {
+        cardTable.getColumns().remove(cardTable.getColumns().get(5));
+        addBuyButtonToTable(cardTable);
 
-    private void showItemShopTable(TableView tableView) {
-        setShopTable(tableView, false);
-    }
+        itemTable.getColumns().remove(itemTable.getColumns().get(3));
+        addBuyButtonToTable(itemTable);
 
-    private void setShopTable(TableView tableView, boolean isCard) {
-        if (isCard) {
-            setCardTableColumns(tableView);
-            tableView.getColumns().remove(tableView.getColumns().get(5));
-            addBuyButtonToTable(tableView);
-            ObservableList cards = FXCollections.observableArrayList(Shop.getInstance().getCards());
-            tableView.setItems(cards);
-            tableView.setScaleX(1.6);
-            tableView.setScaleY(2);
-            /*tableView.setLayoutX(145);
-            tableView.setLayoutY(300);*/
-            tableView.setTranslateX(145);
-            tableView.setTranslateY(200);
-        } else {
-            setitemTableColumns(tableView);
-            tableView.getColumns().remove(tableView.getColumns().get(3));
-            addBuyButtonToTable(tableView);
-            ObservableList items = FXCollections.observableArrayList(Shop.getInstance().getItems());
-            tableView.setItems(items);
-            tableView.setScaleX(1.6);
-            tableView.setScaleY(2);
-            tableView.setLayoutX(145);
-            tableView.setLayoutY(200);
-        }
+        ObservableList<Item> item = FXCollections.observableArrayList(Shop.getInstance().getItems());
+        ObservableList<Card> cards = FXCollections.observableArrayList(Shop.getInstance().getCards());
+        cardTable.setItems(cards);
+        itemTable.setItems(item);
     }
 
     private void setCardTableColumns(TableView tableView) {
@@ -235,68 +175,65 @@ public class ShopMenu {
     }
 
     private void addSellButtonToTable(TableView table) {
-        TableColumn<Card, Void> colBtn = new TableColumn("Sell");
-
-        Callback<TableColumn<Card, Void>, TableCell<Card, Void>> cellFactory = new Callback<>() {
+        TableColumn actionCol = new TableColumn("Sell");
+        actionCol.setCellValueFactory(new PropertyValueFactory<>(""));
+        Callback<TableColumn<Card, String>, TableCell<Card, String>> cellFactory = new Callback<>() {
             @Override
-            public TableCell<Card, Void> call(final TableColumn<Card, Void> param) {
-                final TableCell<Card, Void> cell = new TableCell<>() {
-
-                    private final Button btn = new Button("Sell");
-
-                    {
-                        btn.setOnAction((ActionEvent event) -> {
-                            //TODO
-                        });
-                    }
+            public TableCell call(final TableColumn<Card, String> param) {
+                final TableCell<Card, String> cell = new TableCell<>() {
+                    final Button btn = new Button("Sell");
 
                     @Override
-                    public void updateItem(Void item, boolean empty) {
+                    public void updateItem(String item, boolean empty) {
                         super.updateItem(item, empty);
                         if (empty) {
                             setGraphic(null);
+                            setText(null);
                         } else {
+                            btn.setOnAction(event -> {
+                                //TODO
+                            });
                             setGraphic(btn);
+                            setText(null);
                         }
                     }
                 };
                 return cell;
             }
         };
-        colBtn.setCellFactory(cellFactory);
-        table.getColumns().add(colBtn);
+        actionCol.setCellFactory(cellFactory);
+        table.getColumns().add(actionCol);
     }
 
     private void addBuyButtonToTable(TableView table) {
-        TableColumn<Card, Void> colBtn = new TableColumn("Buy");
-
-        Callback<TableColumn<Card, Void>, TableCell<Card, Void>> cellFactory = new Callback<>() {
+        TableColumn actionCol = new TableColumn("Buy");
+        actionCol.setCellValueFactory(new PropertyValueFactory<>(""));
+        Callback<TableColumn<Card, String>, TableCell<Card, String>> cellFactory = new Callback<>() {
             @Override
-            public TableCell<Card, Void> call(final TableColumn<Card, Void> param) {
-                final TableCell<Card, Void> cell = new TableCell<>() {
-
-                    private final Button btn = new Button("Buy");
-
-                    {
-                        btn.setOnAction((ActionEvent event) -> {
-                            //TODO
-                        });
-                    }
+            public TableCell call(final TableColumn<Card, String> param) {
+                final TableCell<Card, String> cell = new TableCell<>() {
+                    final Button btn = new Button("Buy");
 
                     @Override
-                    public void updateItem(Void item, boolean empty) {
+                    public void updateItem(String item, boolean empty) {
                         super.updateItem(item, empty);
                         if (empty) {
                             setGraphic(null);
+                            setText(null);
                         } else {
+                            btn.setOnAction(event -> {
+                                //TODO
+
+                            });
                             setGraphic(btn);
+                            setText(null);
                         }
                     }
                 };
                 return cell;
             }
         };
-        colBtn.setCellFactory(cellFactory);
-        table.getColumns().add(colBtn);
+        actionCol.setCellFactory(cellFactory);
+        table.getColumns().add(actionCol);
     }
 }
