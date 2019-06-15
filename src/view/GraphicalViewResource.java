@@ -21,6 +21,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import model.Cell;
+import model.cards.Minion;
 
 import java.io.IOException;
 import java.net.URL;
@@ -100,84 +102,7 @@ public class GraphicalViewResource {
         stage.show();
     }
 
-    public static void move(ImageView imageView , Pane fi , Pane s) {
-        TranslateTransition t = new TranslateTransition(Duration.millis(3000), imageView);
-        t.setFromY(100);
-        t.setFromX(100);
-        t.setToX(400);
-        t.setToY(200);
-        t.play();
-    }
+    public static void attackShow(Minion minion , Cell taget){
 
-    public void putInCell(ImageView imageView, int x, int y) {
-        int i = x * 9 + y;
-        imageView.setLayoutX(positions.get(i)[0]);
-        imageView.setLayoutY(positions.get(i)[1]);
-    }
-
-    public void start2(Stage stage) {
-        Group root = new Group();
-        //Circle circle = new Circle(20, Color.LIGHTCORAL);
-        ImageView circle = new ImageView(new Image("file:src/res/minions/1.gif"));
-        root.getChildren().add(circle);
-
-        Path path = new Path();
-        path.getElements().addAll(new MoveTo(50, 50), new LineTo(200, 200));
-
-        path.setFill(null);
-        root.getChildren().add(path);
-
-        Scene scene = new Scene(root, 500, 500);
-        stage.setScene(scene);
-        stage.show();
-
-        PathTransition pt = new PathTransition(Duration.millis(4000), path, circle);
-        pt.setCycleCount(1);
-        //pt.setAutoReverse(true);
-        pt.play();
-        pt.setOnFinished(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-
-            }
-        });
-    }
-
-    public void start3(Stage stage) {
-        // Create the Text
-        Text text = new Text("A Translate Transition Example");
-        text.setFont(Font.font(36));
-
-        // Create the VBox
-        VBox root = new VBox(text);
-        // Set the Size of the VBox
-        root.setPrefSize(500, 100);
-        // Set the Style-properties of the VBox
-        root.setStyle("-fx-padding: 10;" +
-                "-fx-border-style: solid inside;" +
-                "-fx-border-width: 2;" +
-                "-fx-border-insets: 5;" +
-                "-fx-border-radius: 5;" +
-                "-fx-border-color: blue;");
-
-        // Create the Scene
-        Scene scene = new Scene(root);
-        // Add the Scene to the Stage
-        stage.setScene(scene);
-        // Set the Title
-        stage.setTitle("Scrolling Text using a Translate Transition");
-        // Display the Stage
-        stage.show();
-
-        // Set up a Translate Transition for the Text object
-        TranslateTransition trans = new TranslateTransition(Duration.seconds(2), text);
-        trans.setFromX(scene.getWidth());
-        trans.setToX(-1.0 * text.getLayoutBounds().getWidth());
-        // Let the animation run forever
-        trans.setCycleCount(TranslateTransition.INDEFINITE);
-        // Reverse direction on alternating cycles
-        trans.setAutoReverse(true);
-        // Play the Animation
-        trans.play();
     }
 }

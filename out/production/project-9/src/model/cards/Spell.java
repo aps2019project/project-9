@@ -7,6 +7,7 @@ import model.cellaffects.CellAffect;
 import model.enumerations.CardType;
 import model.enumerations.SpellName;
 import model.enumerations.SpellTargetType;
+import view.GraphicalInGameView;
 
 import java.util.ArrayList;
 
@@ -73,6 +74,10 @@ public class Spell extends Card {
     public void castSpell(Cell inputCell) {
         if (isValidTarget(inputCell)) {
             ArrayList<Cell> targetCells = getCellsToCast(inputCell);
+            for (Cell targetCell : targetCells) {
+                //TODO very big TODO
+                GraphicalInGameView.spellCast(targetCell);
+            }
             if (buffs == null && cellAffect != null) {
                 //it is cellAffect spell
                 for (Cell targetCell : targetCells) {

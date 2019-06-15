@@ -4,6 +4,8 @@ import controller.AccountController;
 import controller.InGameController;
 import controller.MainMenuController;
 import javafx.animation.TranslateTransition;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point3D;
 import javafx.scene.*;
@@ -18,6 +20,7 @@ import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.transform.Translate;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.*;
@@ -59,11 +62,11 @@ public class GraphicalInGameView {
     private static MediaPlayer backGroundMusic;
 
     public void showGame(Stage stage, Battle battle, Account account) throws IOException {
-        //TODO
+        /*//TODO
         loggedAccount = account;
         AccountMenu.closeMainStage();
         AccountMenu.stopMusic();
-        //
+        //*/
         GraphicalInGameView.stage = stage;
         inGameController = new InGameController(battle);
         Group group = new Group();
@@ -93,7 +96,30 @@ public class GraphicalInGameView {
         stage.show();
     }
 
-    public static void moveTo(Cell first, Cell second) {
+    public static void spellCast(Cell target) {//animation view
+        ImageView imageView = new ImageView(new Image("file:src/res/inGameResource/spellAction.gif"));
+        /*Pane pane = getCellPane(target.getX(), target.getY());
+        pane.getChildren().add(new ImageView(new Image("file:src/res/inGameResource/spellAction.gif")));*/
+        group.getChildren().add(imageView);
+        TranslateTransition transition = new TranslateTransition(Duration.millis(2000), imageView);
+        int u = target.getX() * 9 + target.getY();
+        int[] laout = GraphicalViewResource.positions.get(u);
+        int[] i = new int[]{laout[0],laout[1]};
+        i[0] -= 50;
+        i[1] -= 50;
+        transition.setFromY(i[1] - 100);
+        transition.setFromX(i[0]);
+        transition.setToX(i[0]);
+        transition.setToY(i[1]);
+        transition.play();
+        transition.setOnFinished(actionEvent -> group.getChildren().remove(imageView));
+    }
+
+    public static void attackTo(Minion minion, Cell target) {//animation view
+        //TODO
+    }
+
+    public static void moveTo(Cell first, Cell second) {//animation view
         Pane firstCell = getCellPane(first.getX(), first.getY());
         ImageView imageView = new ImageView(new Image(pathes.get(second.getMinionOnIt().getName())));
         removeImage(pathes.get(second.getMinionOnIt().getName()), firstCell);
@@ -295,6 +321,7 @@ public class GraphicalInGameView {
         pane.getChildren().add(new ImageView(new Image("file:src/res/inGameResource/flag.gif")));
     }
 
+
     private static void updatePlayGround(Group group) {
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 9; j++) {
@@ -321,12 +348,23 @@ public class GraphicalInGameView {
                         int y = pane.getId().charAt(pane.getId().length() - 1) - 48;
                         InGameRequest request = new InGameRequest(
                                 "insert " + db.getString() + " in " + x + " " + y);
+                        //TODO spell inserting
+                        /*int flag = 0;
+                        Card card = inGameController.getBattle().getCurrenPlayer().getHand().getCardByName(db.getString());
+                        if (card instanceof Spell) {
+                            flag = 1;
+                            //spellCast(inGameController.getBattle().getPlayGround().getCell(x, y));
+                        }*/
                         inGameController.main(request);
                         setMediaViews(group);
                         insert.play();
                         updateHand();
                         setManas(inGameController.getBattle().getCurrenPlayer());
                         updatePlayGround(group);
+                        /*//TODO
+                        if (flag == 1){
+                            spellCast(inGameController.getBattle().getPlayGround().getCell(x,y));
+                        }*/
                         dragEvent.setDropCompleted(true);
                     }
                     dragEvent.setDropCompleted(false);
@@ -783,7 +821,7 @@ public class GraphicalInGameView {
             group.getChildren().add(button1);
             newStage.show();
             button.setOnMouseClicked(mouseEvent1 -> {
-                AccountMenu.getInstance().accountMenuShow(new Stage(),new AccountController());
+                AccountMenu.getInstance().accountMenuShow(new Stage(), new AccountController());
                 stage.close();
                 newStage.close();
                 backGroundMusic.stop();
