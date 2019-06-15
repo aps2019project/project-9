@@ -1,5 +1,6 @@
 package model;
 
+import com.google.gson.annotations.Expose;
 import model.cards.Card;
 import model.cards.Hero;
 import model.cards.Minion;
@@ -60,6 +61,7 @@ public class Deck {
     private ArrayList<Card> cards = new ArrayList<>();
     private Hero hero;
     private Item item;
+    @Expose
     private String name; // used in accounts
     private int uniqueID = 150;
 
