@@ -22,6 +22,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.transform.Translate;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 import model.*;
 import model.Cell;
@@ -205,6 +206,14 @@ public class GraphicalInGameView {
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.show();
+        stage.setOnCloseRequest(windowEvent -> {
+            //save changes TODO
+            JsonProcess.saveAccount(loggedAccount);
+            AccountMenu.getInstance().accountMenuShow(new Stage(), new AccountController());
+            stage.close();
+            GraphicalInGameView.stage.close();
+            backGroundMusic.stop();
+        });
     }
 
     public static void alertAiAction(String action) {

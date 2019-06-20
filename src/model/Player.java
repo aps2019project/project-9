@@ -326,7 +326,7 @@ public class Player {
                     }
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                //TODO check for debugging e.printStackTrace();
             }
         }
     }

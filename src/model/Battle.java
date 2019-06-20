@@ -12,6 +12,8 @@ import model.enumerations.SpecialPowerActivationTime;
 import view.GraphicalInGameView;
 import view.InGameView;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 
@@ -205,12 +207,16 @@ public class Battle {
     }
 
     public void endBattle(Player winner) {
+        Player looser = (winner.equals(firstPlayer)) ? secondPlayer : firstPlayer;
+        LocalDateTime l = LocalDateTime.now();
+        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        String str = l.format(myFormatObj);
         checked = true;
-        BattleResult battleResult = new BattleResult(winner, battlePrize, java.time.Instant.now().toString());
+        BattleResult battleResult = new BattleResult(winner, battlePrize, str, looser.getName());
         if (Account.findAccount(firstPlayer.getName()) != null) {
             Account.findAccount(firstPlayer.getName()).addBattleResult(battleResult);
         }
-        battleResult = new BattleResult(winner, battlePrize, java.time.Instant.now().toString());
+        battleResult = new BattleResult(winner, battlePrize, str, looser.getName());
         if (Account.findAccount(secondPlayer.getName()) != null) {
             Account.findAccount(secondPlayer.getName()).addBattleResult(battleResult);
         }

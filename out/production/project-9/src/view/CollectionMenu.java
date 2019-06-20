@@ -429,7 +429,7 @@ public class CollectionMenu {
                                 Optional<String> result = dialog.showAndWait();
                                 result.ifPresent(letter -> {
                                     controller.add(letter, card.getCardID());
-                                    new Alert(Alert.AlertType.NONE,"Added").show();
+                                    new Alert(Alert.AlertType.INFORMATION,"Added").show();
                                 });
                             });
                             setGraphic(btn);

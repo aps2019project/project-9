@@ -25,6 +25,7 @@ import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 import javafx.util.Pair;
 import model.Account;
+import model.BattleResult;
 import model.enumerations.AccountErrorType;
 
 import java.io.File;
@@ -40,15 +41,15 @@ public class AccountMenu {
     private static Stage stage;
     private static MediaPlayer mediaPlayer;
 
-    public static void stopMusic(){
+    public static void stopMusic() {
         mediaPlayer.stop();
     }
 
-    public static void startMusic(){
+    public static void startMusic() {
         mediaPlayer.play();
     }
 
-    public static void closeMainStage(){
+    public static void closeMainStage() {
         stage.close();
     }
 
@@ -307,12 +308,10 @@ public class AccountMenu {
 
     private void showLeaderBoard() {
         Stage stage = new Stage();
+        stage.getIcons().add(new Image("src/res/icon.jpg"));
         stage.setTitle("LeaderBoard");
         TableView<Account> table = new TableView<>();
         final ObservableList<Account> data = FXCollections.observableArrayList(Account.getAccounts());
-        stage.setTitle("Table View Sample");
-        stage.setWidth(450);
-        stage.setHeight(500);
         table.setEditable(true);
 
         TableColumn firstNameCol = new TableColumn("User Name");
@@ -326,8 +325,31 @@ public class AccountMenu {
         table.setItems(data);
         table.getColumns().addAll(firstNameCol, lastNameCol);
 
+        table.setOnMouseClicked(mouseEvent -> {
+            Account account = table.getSelectionModel().getSelectedItem();
+            Stage secondStage = new Stage();
+            secondStage.setTitle(account.getUserName());
+            Group root = new Group();
+            Label label = new Label("Games Done :");
+            root.getChildren().add(label);
+            ListView<String> listView = new ListView<>();
+            for (BattleResult battleResult : account.getBattleResults()) {
+                listView.getItems().add(battleResult.toString());
+            }
+            listView.setLayoutY(20);
+            listView.setPrefSize(400, 180);
+            root.getChildren().add(listView);
+            Scene scene = new Scene(root, 400, 200);
+            secondStage.setScene(scene);
+            secondStage.show();
+        });
+
+        Label label = new Label("Click On Any Account To See Brief Information");
+        label.setLayoutX(0);
+        label.setLayoutY(410);
         Group root = new Group(table);
-        Scene scene = new Scene(root);
+        root.getChildren().add(label);
+        Scene scene = new Scene(root, 250, 450);
         stage.setScene(scene);
         stage.show();
     }
