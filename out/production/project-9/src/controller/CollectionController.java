@@ -114,7 +114,7 @@ public class CollectionController {
         collectionMenu.printError(CollectionErrorType.REMOVED_SUCCESSFULLY);
     }
 
-    public void add(String deckName, String cardOrItemName) { // card or item id
+    public void add(String deckName, int cardOrItemName) { // card or item id
         Deck currentDeck = loggedInAccount.findDeckByName(deckName);
         Card currentCard = loggedInAccount.getCollection().searchCardByID(cardOrItemName);
         if (currentCard != null) { // it is card not item

@@ -36,12 +36,19 @@ public class ShopController {
     }
 
     public void sell(String itemOrCardID) {
-        Card currentCard = loggedInAccount.getCollection().searchCardByID(itemOrCardID);
+        int id;
+        try{
+            id = Integer.parseInt(itemOrCardID);
+        }catch (NumberFormatException e){
+            e.printStackTrace();
+            return;
+        }
+        Card currentCard = loggedInAccount.getCollection().searchCardByID(id);
         if (currentCard != null) {// it is card not item
             Shop.getInstance().sell(currentCard, loggedInAccount);
             shopMenu.printError(ShopErrorType.SOLD_SUCCESSFUL);
         } else {// it is item not card
-            Item currentItem = loggedInAccount.getCollection().searchItemByID(itemOrCardID);
+            Item currentItem = loggedInAccount.getCollection().searchItemByID(id);
             Shop.getInstance().sell(currentItem, loggedInAccount);
             shopMenu.printError(ShopErrorType.SOLD_SUCCESSFUL);
         }

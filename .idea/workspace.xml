@@ -3,14 +3,19 @@
   <component name="ChangeListManager">
     <list default="true" id="429eadbd-36e3-4fa5-93ef-05e24885aef0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/Account.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/Account.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/view/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/view/MainMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/MainMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/MainMenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/accountJsons/ali3434.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/DefaultCards.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/DefaultCards.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/data/accountJsons/new.json" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/data/accountJsons/new.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/data/accountJsons/new.json" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/data/accountJsons/new.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/view/CollectionMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/view/CollectionMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/CollectionMenu$2$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/CollectionMenu$2$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/CollectionMenu$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/CollectionMenu$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/CollectionMenu$3$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/CollectionMenu$3$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/CollectionMenu$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/CollectionMenu$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/CollectionMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/CollectionMenu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/CollectionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/CollectionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/ShopController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ShopController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/accountJsons/new.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/accountJsons/new.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Collection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Collection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/CollectionMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/CollectionMenu.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -44,7 +49,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/model/Account.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="136">
@@ -62,6 +67,46 @@
                 <element signature="e#3632#3633#0" expanded="true" />
                 <element signature="e#3674#3675#0" expanded="true" />
                 <element signature="e#3704#3705#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/view/CollectionMenu.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="122">
+              <caret line="431" column="90" selection-start-line="431" selection-start-column="90" selection-end-line="431" selection-end-column="90" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/controller/CollectionController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-8">
+              <caret line="36" column="40" selection-start-line="36" selection-start-column="40" selection-end-line="36" selection-end-column="40" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/model/Collection.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="173">
+              <caret line="79" column="57" selection-start-line="79" selection-start-column="57" selection-end-line="79" selection-end-column="57" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/controller/ShopController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="190">
+              <caret line="43" column="19" selection-start-line="43" selection-start-column="19" selection-end-line="43" selection-end-column="19" />
+              <folding>
+                <element signature="e#450#451#0" expanded="true" />
+                <element signature="e#488#489#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -116,8 +161,6 @@
         <option value="$PROJECT_DIR$/src/model/enumerations/InGameRequestType.java" />
         <option value="$PROJECT_DIR$/src/view/GraphicalViewTest.java" />
         <option value="$PROJECT_DIR$/src/model/Hand.java" />
-        <option value="$PROJECT_DIR$/src/controller/CollectionController.java" />
-        <option value="$PROJECT_DIR$/src/view/CollectionMenu.java" />
         <option value="$PROJECT_DIR$/src/controller/MainMenuController.java" />
         <option value="$PROJECT_DIR$/src/controller/BattleMenuController.java" />
         <option value="$PROJECT_DIR$/src/view/AccountMenu.java" />
@@ -128,7 +171,6 @@
         <option value="$PROJECT_DIR$/src/view/MusicAct.java" />
         <option value="$PROJECT_DIR$/src/view/GraphicalInGameView.java" />
         <option value="$PROJECT_DIR$/src/view/Test.java" />
-        <option value="$PROJECT_DIR$/src/controller/ShopController.java" />
         <option value="$PROJECT_DIR$/src/view/ShopMenu.java" />
         <option value="$PROJECT_DIR$/src/data/new.json" />
         <option value="$PROJECT_DIR$/src/data/TestAbstract.java" />
@@ -145,7 +187,6 @@
         <option value="$PROJECT_DIR$/src/data/SpecialPowerAdapter.java" />
         <option value="$PROJECT_DIR$/src/model/cards/Minion.java" />
         <option value="$PROJECT_DIR$/src/model/specialPower/SpecialPower.java" />
-        <option value="$PROJECT_DIR$/src/model/Collection.java" />
         <option value="$PROJECT_DIR$/src/model/BattleResult.java" />
         <option value="$PROJECT_DIR$/src/model/Battle.java" />
         <option value="$PROJECT_DIR$/src/data/Adapter.java" />
@@ -155,6 +196,10 @@
         <option value="$PROJECT_DIR$/src/view/MainMenu.java" />
         <option value="$PROJECT_DIR$/src/model/Account.java" />
         <option value="$PROJECT_DIR$/src/model/DefaultCards.java" />
+        <option value="$PROJECT_DIR$/src/controller/CollectionController.java" />
+        <option value="$PROJECT_DIR$/src/model/Collection.java" />
+        <option value="$PROJECT_DIR$/src/controller/ShopController.java" />
+        <option value="$PROJECT_DIR$/src/view/CollectionMenu.java" />
       </list>
     </option>
   </component>
@@ -221,7 +266,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1561043448309" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1561044606488" />
     <property name="last_opened_file_path" value="$USER_HOME$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -505,7 +550,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="339034000" />
+    <option name="totallyTimeSpent" value="340063000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -609,20 +654,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="some changes in graphic" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/model/Hand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-639">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/InGameController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="243" column="23" selection-start-line="243" selection-start-column="23" selection-end-line="243" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/view/MusicAct.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -634,17 +665,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="65" column="10" selection-start-line="65" selection-start-column="10" selection-end-line="65" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/ShopController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="17" column="8" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="31" />
-          <folding>
-            <element signature="e#450#451#0" expanded="true" />
-            <element signature="e#488#489#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -940,13 +960,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/Collection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="17" column="11" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/Battle.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="207">
@@ -1058,6 +1071,38 @@
             <element signature="e#3674#3675#0" expanded="true" />
             <element signature="e#3704#3705#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/ShopController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="43" column="19" selection-start-line="43" selection-start-column="19" selection-end-line="43" selection-end-column="19" />
+          <folding>
+            <element signature="e#450#451#0" expanded="true" />
+            <element signature="e#488#489#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Collection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="79" column="57" selection-start-line="79" selection-start-column="57" selection-end-line="79" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/CollectionController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-8">
+          <caret line="36" column="40" selection-start-line="36" selection-start-column="40" selection-end-line="36" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/CollectionMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="122">
+          <caret line="431" column="90" selection-start-line="431" selection-start-column="90" selection-end-line="431" selection-end-column="90" />
         </state>
       </provider>
     </entry>

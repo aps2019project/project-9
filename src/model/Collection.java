@@ -75,15 +75,9 @@ public class Collection {
         return stringBuilder.toString();
     }
 
-    public Item getItem(String itemID) {
-        int mainItemId;
-        try {
-            mainItemId = Integer.parseInt(itemID);
-        } catch (NumberFormatException e) {
-            return null;
-        }
+    public Item getItem(int itemID) {
         for (Item key : items) {
-            if (key != null && key.getItemID() == (mainItemId)) {
+            if (key != null && key.getItemID() == (itemID)) {
                 return key;
             }
         }
@@ -101,29 +95,17 @@ public class Collection {
         return result;
     }
 
-    public Card searchCardByID(String cardID) {
-        int mainCardId;
-        try {
-            mainCardId = Integer.parseInt(cardID);
-        } catch (NumberFormatException e) {
-            return null;
-        }
+    public Card searchCardByID(int cardID) {
         for (Card card : cards) {
-            if (card.getCardID() == mainCardId)
+            if (card.getCardID() == cardID)
                 return card;
         }
         return null;
     }
 
-    public Item searchItemByID(String itemID) {
-        int mainItemId;
-        try {
-            mainItemId = Integer.parseInt(itemID);
-        } catch (NumberFormatException e) {
-            return null;
-        }
+    public Item searchItemByID(int itemID) {
         for (Item item : items) {
-            if (item.getItemID() == mainItemId)
+            if (item.getItemID() == itemID)
                 return item;
         }
         return null;
