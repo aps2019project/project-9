@@ -36,12 +36,11 @@ public class Account implements Comparable<Account> {
         this.passWord = passWord;
         accounts.add(this);
         myCollection = new Collection();
-        //TODO
-        JsonProcess.saveAccount(this);
-
         //mainDeck = new Deck("debugging");
         mainDeck = new Deck("first_level"); // initialized deck
         decks.add(mainDeck);
+        //TODO
+        JsonProcess.saveAccount(this);
     }
 
     public static Account findAccount(String userName) {//if not valid return null

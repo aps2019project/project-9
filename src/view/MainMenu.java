@@ -12,6 +12,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Account;
+import model.JsonProcess;
 import model.enumerations.MainMenuErrorType;
 
 import java.io.File;
@@ -67,7 +68,7 @@ public class MainMenu {
             Font font = Font.loadFont(new FileInputStream(new File("src/res/Font/ALGER.TTF")), 13);
             Button collection = new Button("Collection");
             collection.setFont(font);
-            collection.setLayoutX(485);
+            collection.setLayoutX(480);
             collection.setLayoutY(200);
             collection.setScaleX(3);
             collection.setScaleY(2.5);
@@ -92,14 +93,18 @@ public class MainMenu {
             setActionsAndStyles(battle);
             battle.setOnMouseClicked(event -> controller.goBattleMenu(stage));
 
-            Button logOut = new Button("Log Out");
+            Button logOut = new Button("Save And Log Out");
             logOut.setFont(font);
-            logOut.setLayoutX(485);
+            logOut.setLayoutX(465);
             logOut.setLayoutY(500);
             logOut.setScaleX(3);
             logOut.setScaleY(2.5);
             setActionsAndStyles(logOut);
-            logOut.setOnMouseClicked(event -> stage.close());
+            logOut.setOnMouseClicked(event -> {
+                //TODO saving
+                JsonProcess.saveAccount(controller.getLoggedInAccount());
+                stage.close();
+            });
 
             Button defaultCard = new Button("Custom\n  Card");
             defaultCard.setFont(font);
