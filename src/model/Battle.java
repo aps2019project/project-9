@@ -179,7 +179,7 @@ public class Battle {
             try {
                 if (minion.getSpecialPower() != null &&
                         minion.getSpecialPower().getSpecialPowerActivationTime() == SpecialPowerActivationTime.PASSIVE) {
-                    minion.getSpecialPower().castSpecialPower(minion.getCell());
+                    minion.castSpecialPower(minion.getCell());
                 }
             } catch (ConcurrentModificationException e) {
 

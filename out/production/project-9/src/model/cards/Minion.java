@@ -147,6 +147,7 @@ public class Minion extends Card {
                     if (cell.getMinionOnIt() != null)
                         cell.getMinionOnIt().dispelPositiveBuffs();
                 }
+                specialPower.setMinion(this);
                 specialPower.castSpecialPower(cell);
             }
             canAttack = false;
@@ -159,6 +160,7 @@ public class Minion extends Card {
         // player.minions in battle ground -> delete
         // ( the Cell field is the minion last cell ( before kill ) )
         if (specialPower != null && specialPower instanceof OnDeathSpecialPower) {
+            specialPower.setMinion(this);
             specialPower.castSpecialPower(cell);
         }
         if (player.getBattle().getGameMode() == GameMode.ONE_FLAG) {
@@ -436,5 +438,11 @@ public class Minion extends Card {
         this.continuousBuffs = continuousBuffs;
     }
 
+    public void castSpecialPower(Cell cell) {
+        if (specialPower != null) {
+            specialPower.setMinion(this);
+            specialPower.castSpecialPower(cell);
+        }
+    }
 
 }

@@ -154,7 +154,7 @@ public class Player {
             currentMinion.setCanAttack(false);
             if (currentMinion.getSpecialPower() != null
                     && currentMinion.getSpecialPower().getSpecialPowerActivationTime() == SpecialPowerActivationTime.ON_SPAWN) {
-                currentMinion.getSpecialPower().castSpecialPower(cell);
+                currentMinion.castSpecialPower(cell);
             }
             if (usableItem != null && usableItem instanceof OnSpawnUsableItem) {
                 ((OnSpawnUsableItem) usableItem).doOnSpawnAction(this, currentMinion);
