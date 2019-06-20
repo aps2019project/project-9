@@ -10,10 +10,10 @@ import java.lang.reflect.Type;
 
 public class CellAffectAdapter implements JsonSerializer<CellAffect>, JsonDeserializer<CellAffect> {
     @Override
-    public JsonElement serialize(CellAffect buff, Type type, JsonSerializationContext context) {
+    public JsonElement serialize(CellAffect cellAffect, Type type, JsonSerializationContext context) {
         JsonObject result = new JsonObject();
-        result.add("type", new JsonPrimitive(buff.getClass().getSimpleName()));
-        result.add("properties", context.serialize(buff, buff.getClass()));
+        result.add("type", new JsonPrimitive(cellAffect.getClass().getSimpleName()));
+        result.add("properties", context.serialize(cellAffect, cellAffect.getClass()));
         return result;
     }
 
