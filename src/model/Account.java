@@ -11,6 +11,10 @@ import java.util.Collections;
 public class Account implements Comparable<Account> {
     private static ArrayList<Account> accounts = new ArrayList<>();
 
+    static {
+        setAccounts();
+    }
+
     private Collection myCollection;
 
     private int money = 15000;
@@ -32,9 +36,8 @@ public class Account implements Comparable<Account> {
         this.passWord = passWord;
         accounts.add(this);
         myCollection = new Collection();
-        myCollection.setOwnerAccount(this);
         //TODO
-        //AccountSave.save(this);
+        JsonProcess.saveAccount(this);
 
         //mainDeck = new Deck("debugging");
         mainDeck = new Deck("first_level"); // initialized deck
@@ -145,5 +148,18 @@ public class Account implements Comparable<Account> {
         for (Deck deck : decks) {
             deck.removeItem(item);
         }
+    }
+
+    public ArrayList<BattleResult> getBattleResults() {
+        return battleResults;
+    }
+
+    public static void setAccounts(){
+        accounts = JsonProcess.getSavedAccounts();
+    }
+
+    @Override
+    public String toString() {
+        return userName;
     }
 }

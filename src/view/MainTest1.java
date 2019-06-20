@@ -1,11 +1,11 @@
 package view;
 
 import model.Account;
-import model.AccountSave;
-import model.Deck;
+import model.JsonProcess;
 
 public class MainTest1 {
     public static void main(String[] args) {
-        AccountSave.save(new Deck("first_level"));
+        JsonProcess.getSavedAccounts();
+        //JsonProcess.saveAccount(new Account("mammad", "n"));
     }
 }

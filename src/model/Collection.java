@@ -18,7 +18,6 @@ public class Collection {
     @Expose
     private ArrayList<Item> items;
 
-    private Account ownerAccount;
     static int uniqueID = 1;
 
     public Collection() {
@@ -166,9 +165,6 @@ public class Collection {
         return showArraylistOfCardsAndItems(cards, items);
     }
 
-    public void setOwnerAccount(Account ownerAccount) {
-        this.ownerAccount = ownerAccount;
-    }
 
     private void initializeCollections() {
         // initializing by level one in index doc
