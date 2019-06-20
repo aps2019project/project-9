@@ -37,6 +37,7 @@ public abstract class Buff {
             this.isForAllTurns = false;
         else if (isForAllTurns)
             this.isContinous = false;
+        this.name = buffName.toString();
     }
 
     public BuffName getBuffName() {
