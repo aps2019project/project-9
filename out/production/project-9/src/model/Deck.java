@@ -151,16 +151,29 @@ public class Deck {
         ArrayList<Card> secondCards = new ArrayList<>();
         for (Card card : cards) {
             if (card instanceof Minion) {
-                Minion copy = DefaultCards.getMinion(((Minion) card).getMinionName());
-                copy.setCardID(card.getCardID());
-                secondCards.add(copy);
+                if (((Minion) card).getMinionName() == MinionName.CUSTOM) {
+                    secondCards.add(card.getCustomCopy());
+                } else {
+                    Minion copy = DefaultCards.getMinion(((Minion) card).getMinionName());
+                    copy.setCardID(card.getCardID());
+                    secondCards.add(copy);
+                }
             } else if (card instanceof Spell) {
-                Spell copy = DefaultCards.getSpell(((Spell) card).getSpellName());
-                copy.setCardID(card.getCardID());
-                secondCards.add(copy);
+                if (((Spell) card).getSpellName() == SpellName.CUSTOM) {
+                    secondCards.add(card.getCustomCopy());
+                } else {
+                    Spell copy = DefaultCards.getSpell(((Spell) card).getSpellName());
+                    copy.setCardID(card.getCardID());
+                    secondCards.add(copy);
+                }
             }
         }
-        Hero secondHero = DefaultCards.getHero(hero.getHeroName());
+        Hero secondHero;
+        if (hero.getHeroName() == HeroName.CUSTOM){
+            secondHero = ((Hero) hero.getCustomCopy());
+        }else {
+            secondHero = DefaultCards.getHero(hero.getHeroName());
+        }
         secondHero.setCardID(hero.getCardID());
         Item secondItem = null;
         if (item != null) {
@@ -318,8 +331,7 @@ public class Deck {
     }
 
     public Card getcardbyName(String cardName) {
-        for (Card key :
-                cards) {
+        for (Card key : cards) {
             if (key != null && key.getName().equals(cardName)) {
                 return key;
             }

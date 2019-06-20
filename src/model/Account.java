@@ -23,7 +23,7 @@ public class Account implements Comparable<Account> {
 
     private ArrayList<Deck> decks = new ArrayList<>();
 
-    private Deck mainDeck;
+    private String mainDeck;
 
     private String userName;
 
@@ -37,9 +37,8 @@ public class Account implements Comparable<Account> {
         accounts.add(this);
         myCollection = new Collection();
         //mainDeck = new Deck("debugging");
-        mainDeck = new Deck("first_level"); // initialized deck
-        decks.add(mainDeck);
-        //TODO
+        mainDeck = "first_level"; // initialized deck
+        decks.add(new Deck("first_level"));
         JsonProcess.saveAccount(this);
     }
 
@@ -67,12 +66,12 @@ public class Account implements Comparable<Account> {
 
     public void deleteDeck(String deckName) {
         decks.remove(findDeckByName(deckName));
-        if (mainDeck.getName().equals(deckName))
+        if (mainDeck.equals(deckName))
             mainDeck = null;
     }
 
     public void selectMainDeck(Deck deck) {
-        mainDeck = deck;
+        mainDeck = deck.getName();
     }
 
     public void reduceMoney(int money) {
@@ -84,7 +83,6 @@ public class Account implements Comparable<Account> {
     }
 
     public void createNewDeck(String name) {
-
         decks.add(new Deck(name));
     }
 
@@ -93,7 +91,7 @@ public class Account implements Comparable<Account> {
     }
 
     public Deck getMainDeck() {
-        return mainDeck;
+        return findDeckByName(mainDeck);
     }
 
     public String getUserName() {
@@ -138,12 +136,13 @@ public class Account implements Comparable<Account> {
         numberOfWins++;
     }
 
-    public void deleteCardFromDecks(Card card){
+    public void deleteCardFromDecks(Card card) {
         for (Deck deck : decks) {
             deck.removeCard(card);
         }
     }
-    public void deleteCardFromDecks(Item item){
+
+    public void deleteCardFromDecks(Item item) {
         for (Deck deck : decks) {
             deck.removeItem(item);
         }
@@ -153,7 +152,7 @@ public class Account implements Comparable<Account> {
         return battleResults;
     }
 
-    public static void setAccounts(){
+    public static void setAccounts() {
         accounts = JsonProcess.getSavedAccounts();
     }
 

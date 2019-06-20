@@ -383,7 +383,7 @@ public class GraphicalInGameView {
                         InGameRequest request = new
                                 InGameRequest("move to " + cell.getX() + " " + cell.getY());
                         inGameController.main(request);
-                        //TODO
+
                         updatePlayGround(group);
                         if (inGameController.getBattle().getCurrenPlayer().getSelectedCard() == null) {
                             setMediaViews(MusicAct.MOVE);

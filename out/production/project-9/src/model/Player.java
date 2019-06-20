@@ -42,6 +42,14 @@ public class Player {
     }
 
     public Player(Account account, Battle battle) {
+        //TODO
+        System.out.println(account.getMainDeck().getName());
+        for (Card card : account.getMainDeck().getCards()) {
+            System.out.println(card.getName());
+        }
+        System.out.println(account.getUserName());
+        System.out.println(account.getMainDeck().getCards().size());
+        System.out.println("fisrt finished");
         this.deck = account.getMainDeck().getCopy();
         if (deck.getItem() != null)
             usableItem = (Usable) deck.getItem();
@@ -326,7 +334,7 @@ public class Player {
                     }
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                //TODO check for debugging e.printStackTrace();
             }
         }
     }

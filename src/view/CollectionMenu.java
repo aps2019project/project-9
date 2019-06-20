@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import model.Account;
 import model.Deck;
+import model.JsonProcess;
 import model.cards.Card;
 import model.enumerations.CollectionErrorType;
 
@@ -203,6 +204,7 @@ public class CollectionMenu {
 
         save.setOnMouseClicked(m -> {
             //TODO
+            JsonProcess.saveAccount(account);
         });
         return save;
     }
@@ -429,7 +431,6 @@ public class CollectionMenu {
                                 Optional<String> result = dialog.showAndWait();
                                 result.ifPresent(letter -> {
                                     controller.add(letter, card.getCardID());
-                                    new Alert(Alert.AlertType.INFORMATION,"Added").show();
                                 });
                             });
                             setGraphic(btn);
@@ -466,8 +467,7 @@ public class CollectionMenu {
                                 Alert alert = new Alert(Alert.AlertType.WARNING, "Are You Sure?");
                                 alert.showAndWait();
                                 String deckName = searchTableForDeckName(getTableView().getItems());
-                                controller.remove(deckName, card.getName());
-
+                                controller.remove(deckName, card.getCardID());
                             });
                             setGraphic(btn);
                             setText(null);

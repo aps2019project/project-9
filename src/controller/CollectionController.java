@@ -1,6 +1,7 @@
 package controller;
 
 import javafx.collections.FXCollections;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import model.Account;
@@ -100,16 +101,14 @@ public class CollectionController {
             collectionMenu.printError(CollectionErrorType.CARD_NOT_IN_COLLECTION);
     }
 
-    public void remove(String deckName, String cardOrItemName) { // card or item id
+    public void remove(String deckName, int cardOrItemName) { // card or item id
         Deck currentDeck = loggedInAccount.findDeckByName(deckName);
-        System.out.println(currentDeck.getName());
-        System.out.println(cardOrItemName);
-        if (currentDeck.getcardbyName(cardOrItemName) != null) {
+        if (currentDeck.getCardByID(String.valueOf(cardOrItemName)) != null) {
             // card found should be deleted
-            currentDeck.removeCard(currentDeck.getCardByID(cardOrItemName));
+            currentDeck.removeCard(currentDeck.getCardByID(String.valueOf(cardOrItemName)));
         } else {
             // item found , should be deleted
-            currentDeck.removeItem(currentDeck.getItemByID(cardOrItemName));
+            currentDeck.removeItem(currentDeck.getItemByID(String.valueOf(cardOrItemName)));
         }
         collectionMenu.printError(CollectionErrorType.REMOVED_SUCCESSFULLY);
     }
@@ -125,15 +124,17 @@ public class CollectionController {
                 } else if (currentMinion instanceof Hero) { // minion is hero
                     currentDeck.setHero((Hero) currentMinion);
                 } else { // it is not hero just minion
-                    if (currentDeck.canAddCard())
+                    if (currentDeck.canAddCard()) {
                         currentDeck.addCard(currentCard);
-                    else
+                        new Alert(Alert.AlertType.INFORMATION, "Added").show();
+                    } else
                         collectionMenu.printError(CollectionErrorType.DECK_FULL);
                 }
             } else { // card is spell
-                if (currentDeck.canAddCard())
+                if (currentDeck.canAddCard()) {
                     currentDeck.addCard(currentCard);
-                else
+                    new Alert(Alert.AlertType.INFORMATION, "Added").show();
+                } else
                     collectionMenu.printError(CollectionErrorType.DECK_FULL);
             }
         } else { // it is item not card
@@ -142,6 +143,7 @@ public class CollectionController {
                 collectionMenu.printError(CollectionErrorType.DECK_ALREADY_HAS_AN_ITEM);
             else {
                 currentDeck.addItem(currentItem);
+                new Alert(Alert.AlertType.INFORMATION, "Added").show();
             }
         }
     }

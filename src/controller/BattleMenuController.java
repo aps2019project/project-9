@@ -4,6 +4,7 @@ import javafx.stage.Stage;
 import model.Account;
 import model.Deck;
 import model.SinglePlayerBattle;
+import model.cards.Card;
 import view.BattleMenu;
 import view.GraphicalInGameView;
 

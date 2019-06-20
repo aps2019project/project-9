@@ -78,7 +78,11 @@ public class GraphicalInGameView {
         setCursor(scene);
         stage.getIcons().add(new Image("src\\res\\icon.jpg"));
         setBtns();
-
+        //TODO
+        System.out.println(inGameController.getBattle().getFirstPlayer().getName());
+        for (Card card : inGameController.getBattle().getFirstPlayer().getDeck().getCards()) {
+            System.out.println(card.getName());
+        }
 
         //
         setManas(battle.getFirstPlayer());
@@ -204,6 +208,7 @@ public class GraphicalInGameView {
         group.getChildren().add(imageView);
         group.getChildren().add(winnerText);
         Stage stage = new Stage();
+        stage.getIcons().add(new Image("src/res/icon.jpg"));
         stage.setScene(scene);
         stage.show();
         stage.setOnCloseRequest(windowEvent -> {

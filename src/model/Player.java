@@ -42,6 +42,7 @@ public class Player {
     }
 
     public Player(Account account, Battle battle) {
+        System.out.println("fisrt finished");
         this.deck = account.getMainDeck().getCopy();
         if (deck.getItem() != null)
             usableItem = (Usable) deck.getItem();
