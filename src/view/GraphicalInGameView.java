@@ -204,6 +204,7 @@ public class GraphicalInGameView {
         group.getChildren().add(imageView);
         group.getChildren().add(winnerText);
         Stage stage = new Stage();
+        stage.getIcons().add(new Image("src/res/icon.jpg"));
         stage.setScene(scene);
         stage.show();
         stage.setOnCloseRequest(windowEvent -> {
