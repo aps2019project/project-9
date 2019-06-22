@@ -52,7 +52,6 @@ public class GraphicalInGameView {
     private static Stage stage;
     private static Account loggedAccount;
     private static MediaPlayer backGroundMusic;
-    private static ArrayList<InGameCommand> commands = new ArrayList<>();
     private static int time = 1000;
 
     public void showGame(Stage stage, Battle battle, Account account) throws IOException {

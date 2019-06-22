@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class InGameRequest {
-    private Scanner scanner = new Scanner(System.in);
+    private transient Scanner scanner = new Scanner(System.in);
     private static final String GAME_INFO = "game info";
     private static final String SHOW_MY_MINION = "show my minions";
     private static final String SHOW_OPPONENT_MINION = "show opponent minions";
@@ -88,6 +88,11 @@ public class InGameRequest {
         return getType() != null;
     }
 
+    @Override
+    public String toString() {
+        return command;
+    }
+
     public InGameRequestType getType() {
         if (command.matches(GAME_INFO))
             return InGameRequestType.GAME_INFO;
@@ -102,7 +107,7 @@ public class InGameRequest {
         } else if (command.length() >= 6 && command.substring(0, 6).matches(SELECT)
                 && command.split(" ").length == 2) {
             cardID = command.split(" ")[1];
-            return InGameRequestType.SELCET_CARD;
+            return InGameRequestType.SELECT_CARD;
         } else if (command.length() >= 7 && command.substring(0, 7).matches(MOVE)
                 && command.split(" ").length == 4
                 && checkMoveSyntax(command)) {

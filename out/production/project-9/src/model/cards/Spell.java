@@ -20,7 +20,7 @@ public class Spell extends Card {
     private CellAffect cellAffect;
     @Expose
     private SpellName spellName;
-    private Player owningPlayer; // the player use it
+    private transient Player owningPlayer; // the player use it
 
     public Spell(String name, int cost, int MP, SpellTargetType targetType, int cardID,
                  String desc, ArrayList<Buff> buffs, CellAffect cellAffect, SpellName spellName) {

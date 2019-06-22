@@ -20,13 +20,16 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 
 import javafx.stage.Stage;
+import model.BattleResult;
 import model.Cell;
 import model.Player;
 import model.cards.Minion;
 import model.items.Item;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class InGameMethodsAndSource {// a resource for graphical in game view
@@ -81,7 +84,7 @@ public class InGameMethodsAndSource {// a resource for graphical in game view
         positions.put(44, new int[]{720, 255});
     }
 
-    public static void showReplay(){
+    public static void showReplay(BattleResult battleResult){
 
     }
 

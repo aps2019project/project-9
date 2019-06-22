@@ -5,7 +5,7 @@ public enum InGameRequestType {
     SHOW_MY_MINIONS,
     SHOW_OPPONENT_MINIONS,
     SHOW_CARD_INFO,
-    SELCET_CARD,
+    SELECT_CARD,
     MOVE_TO,
     ATTACK,
     COMBO_ATTACK,

@@ -1,10 +1,11 @@
 package model;
 
 
-import com.google.gson.annotations.Expose;
 
-import java.text.Format;
-import java.util.Date;
+import model.enumerations.GameMode;
+import view.InGameRequest;
+import java.util.ArrayList;
+
 
 public class BattleResult {
 
@@ -12,14 +13,32 @@ public class BattleResult {
     private String looser;
     private int prize;
     private String time;
+    private ArrayList<InGameRequest> inGameRequests;
+    private GameMode gameMode;
+    private int numberOfFlags;
+    private int level;
+
+    private transient Deck deck;
+    private boolean isSinglePlayer;
 
 
-    public BattleResult(Player winner, int prize, String time, String looser) {
+    public BattleResult(Player winner, int prize, String time, String looser
+            , Battle battle) {
         this.winner = winner.getName();
         this.prize = prize;
         this.time = time;
         this.looser = looser;
+        this.inGameRequests = battle.inGameRequests;
+        gameMode = battle.gameMode;
+        numberOfFlags = battle.numberOfFlags;
+        level = battle.level;
+        deck = battle.secondPlayer.getDeck();
+        isSinglePlayer = battle instanceof SinglePlayerBattle;
     }
+
+    /*public ArrayList<InGameRequest> getInGameRequests() {
+        return inGameRequests;
+    }*/
 
     public String getTime() {
         return time;

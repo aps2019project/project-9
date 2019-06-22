@@ -10,6 +10,7 @@ import model.enumerations.*;
 import model.items.*;
 import view.GraphicalInGameView;
 import view.InGameMethodsAndSource;
+import view.InGameRequest;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -231,9 +232,9 @@ public class Player {
         return name;
     }
 
-    public void endTurn() {
+    public void endTurn(ArrayList<InGameRequest> inGameRequests) {
         hand.addCardFromDeck();
-        battle.nextTurn();
+        battle.nextTurn(inGameRequests);
     }
 
     public void reduceMana(int number) {
@@ -305,27 +306,30 @@ public class Player {
 
     private String action;
 
-    public void doAiAction() {
+    public void doAiAction(ArrayList<InGameRequest> inGameRequests) {
         action = "";
-        insertAiAction();
-        moveAiAction();
-        attackAiAction();
+        insertAiAction(inGameRequests);
+        moveAiAction(inGameRequests);
+        attackAiAction(inGameRequests);
         GraphicalInGameView.alertAiAction(action);
         //GraphicalInGameView.doAiAnimations(action);
-        endTurn();
+
+        endTurn(inGameRequests);
     }
 
-    private void moveAiAction() {
+    private void moveAiAction(ArrayList<InGameRequest> inGameRequests) {
         for (Minion minion : getMinionsInPlayGround()) {
             try {
                 if (minion.isCanMove()) {
                     Cell target = targetAiMove(minion);
                     if (target != null) {
-                        //TODO
                         Cell first = minion.getCell();
-
+                        //TODO
+                        inGameRequests.add(new InGameRequest("select " + minion.getBattleID()));
+                        inGameRequests.add(new InGameRequest("move to " +
+                                target.getX() + " " + target.getY()));
+                        //
                         move(minion, target);
-
                         //GraphicalInGameView.moveTo(first,target);
                         //GraphicalInGameView.alertAiAction(AiAction.MOVE,minion,target);
                         action += "\nMinion : " + minion.getName() + "\nmoved to : " + target.getX() + " " + target.getY()
@@ -359,13 +363,17 @@ public class Player {
     }
 
 
-    private void insertAiAction() {
+    private void insertAiAction(ArrayList<InGameRequest> inGameRequests) {
         ArrayList<Card> cards = hand.getCards();
         ArrayList<Card> toInsert = new ArrayList<>();
         for (Card card : cards) {
             ArrayList<Cell> possibleCells = GraphicalInGameView.getPossibleCells(card);
             if (possibleCells.size() > 0) {
                 if (mana >= card.getMP()) {
+                    //TODO
+                    inGameRequests.add(new InGameRequest("insert " + card.getName()
+                            + " in " + possibleCells.get(0).getX() + " " + possibleCells.get(0).getY()));
+                    //
                     InGameController.finalThingsInInsertingCard(card, this, possibleCells.get(0));
                     //GraphicalInGameView.alertAiAction(AiAction.INSERT, card, possibleCells.get(0));
                     Cell cell = possibleCells.get(0);
@@ -376,7 +384,7 @@ public class Player {
         }
     }
 
-    private void attackAiAction() {
+    private void attackAiAction(ArrayList<InGameRequest> inGameRequests) {
         for (Minion minion : getMinionsInPlayGround()) {
             if (minion.isCanAttack()) {
                 ArrayList<Cell> possibleCellsForAttack = GraphicalInGameView.getPossibleCellsForAttack(minion);
@@ -387,6 +395,11 @@ public class Player {
                     } else {
                         target = possibleCellsForAttack.get(0);
                     }
+                    //TODO
+                    inGameRequests.add(new InGameRequest("select " + minion.getBattleID()));
+                    inGameRequests.add(new InGameRequest("attack "
+                            + target.getMinionOnIt().getBattleID()));
+                    //
                     minion.attack(target);
                     //GraphicalInGameView.alertAiAction(AiAction.ATTACK, minion, target);
                     action += "\n" + minion.getName() + " : attacked to the Cell:  "

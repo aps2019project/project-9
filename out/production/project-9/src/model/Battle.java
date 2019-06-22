@@ -12,6 +12,7 @@ import model.enumerations.SpecialPowerActivationTime;
 import model.items.Item;
 import view.GraphicalInGameView;
 import view.InGameMethodsAndSource;
+import view.InGameRequest;
 import view.InGameView;
 
 import java.time.LocalDateTime;
@@ -33,6 +34,12 @@ public class Battle {
     protected int battlePrize; // should be initialized at Constructor()
     protected int level; // for single player games ( in battle result )
     protected boolean checked = false;
+    protected ArrayList<InGameRequest> inGameRequests;
+
+
+    public void setInGameRequests(ArrayList<InGameRequest> inGameRequests) {
+        this.inGameRequests = inGameRequests;
+    }
 
     public void startBattle() {
         // ..........
@@ -112,7 +119,8 @@ public class Battle {
     }
 
 
-    public void nextTurn() {
+    public void nextTurn(ArrayList<InGameRequest> inGameRequests) {
+        // (arrayList) parameter is only for singlePlayer games
         if (gameMode == GameMode.ONE_FLAG) {
             if (playGround.getFlag().getOwningMinion() != null)
                 playGround.getFlag().nextTurn();
@@ -133,7 +141,7 @@ public class Battle {
         whoseTurn = (whoseTurn == 1) ? (2) : (1);
         turn++;
         if (this instanceof SinglePlayerBattle && whoseTurn == 2) {
-            secondPlayer.doAiAction();
+            secondPlayer.doAiAction(inGameRequests);
         }
     }
 
@@ -227,11 +235,11 @@ public class Battle {
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
         String str = l.format(myFormatObj);
         checked = true;
-        BattleResult battleResult = new BattleResult(winner, battlePrize, str, looser.getName());
+        BattleResult battleResult = new BattleResult(winner, battlePrize, str, looser.getName(),this);
         if (Account.findAccount(firstPlayer.getName()) != null) {
             Account.findAccount(firstPlayer.getName()).addBattleResult(battleResult);
         }
-        battleResult = new BattleResult(winner, battlePrize, str, looser.getName());
+        battleResult = new BattleResult(winner, battlePrize, str, looser.getName(),this);
         if (Account.findAccount(secondPlayer.getName()) != null) {
             Account.findAccount(secondPlayer.getName()).addBattleResult(battleResult);
         }

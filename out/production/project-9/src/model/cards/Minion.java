@@ -41,10 +41,11 @@ public class Minion extends Card {
     protected SpecialPower specialPower;
     @Expose
     protected boolean isFars;
-    protected Player player;
+
+    protected transient Player player;
     protected ArrayList<Item> activeItems;
     protected Item onAttackItem;
-    protected Cell cell;
+    protected transient Cell cell;
     protected boolean isHero;
     protected int reductionOfOthersAttack = 0;
     protected boolean hasHollyBuff;

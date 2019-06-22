@@ -20,13 +20,15 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 
 import javafx.stage.Stage;
-import model.Cell;
-import model.Player;
+import model.*;
 import model.cards.Minion;
+import model.enumerations.GameMode;
 import model.items.Item;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class InGameMethodsAndSource {// a resource for graphical in game view
@@ -81,11 +83,37 @@ public class InGameMethodsAndSource {// a resource for graphical in game view
         positions.put(44, new int[]{720, 255});
     }
 
-    public static void showReplay(){
+    public static void showReplay(BattleResult battleResult) {
+        Battle battle = getBattle(battleResult);
 
     }
 
-    public static void showAlertAtTheBeginning(String title, String message){
+    private static Battle getBattle(BattleResult battleResult){
+        Battle battle;
+        int mode;
+        GameMode gameMode = battleResult.getGameMode();
+        if (gameMode == GameMode.HERO_KILL)
+            mode = 1;
+        else if (gameMode == GameMode.ONE_FLAG)
+            mode = 2;
+        else
+            mode = 3;
+        if (battleResult.isSinglePlayer()) {
+            if (battleResult.getLevel() == 0) {//second constructor
+                battle = new SinglePlayerBattle(mode, battleResult.getDeck()
+                        , Account.findAccount(battleResult.getFirstPlayer()), battleResult.getNumberOfFlags());
+            } else {
+                battle = new SinglePlayerBattle(battleResult.getLevel()
+                        , Account.findAccount(battleResult.getFirstPlayer()));
+            }
+        } else {
+            battle = new MultiPlayerBattle(Account.findAccount(battleResult.getFirstPlayer())
+                    , (battleResult.getSecondPlayer()), mode, battleResult.getNumberOfFlags());
+        }
+        return battle;
+    }
+
+    public static void showAlertAtTheBeginning(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
         alert.setContentText(message);
