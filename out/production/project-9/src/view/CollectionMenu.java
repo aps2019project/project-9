@@ -94,11 +94,15 @@ public class CollectionMenu {
         return new ChoiceDialog<>(null, sample);
     }
 
-    private void setButtons(Group root, Stage stage, TableView tableView) {
+    private void setExportImportBtns(Group root){
         //////////////////////deck export importing process//////////////////
-        //TODO export import buttons ->
+        //TODO export import buttons ( layouts Remained )->
         Button exportDeck = new Button("Export Deck");
         Button importDeck = new Button("Import Deck");
+        exportDeck.setOnMouseEntered(mouseEvent -> exportDeck.setLayoutX(exportDeck.getLayoutX() + 50));
+        exportDeck.setOnMouseExited(mouseEvent -> exportDeck.setLayoutX(exportDeck.getLayoutX() - 50));
+        importDeck.setOnMouseEntered(mouseEvent -> importDeck.setLayoutX(importDeck.getLayoutX() + 50));
+        importDeck.setOnMouseExited(mouseEvent -> importDeck.setLayoutX(importDeck.getLayoutX() - 50));
         exportDeck.setOnMouseClicked(mouseEvent -> {
             ChoiceDialog<String> dio = setDecksList();
             dio.setTitle("Select Deck To Export");
@@ -137,7 +141,10 @@ public class CollectionMenu {
         //
         root.getChildren().addAll(exportDeck, importDeck);
         ////////////////////////////////////end/////////////////////////////
+    }
 
+    private void setButtons(Group root, Stage stage, TableView tableView) {
+        setExportImportBtns(root);
         int addX = 20;
         int addY = 43;
         int startX = 20;
