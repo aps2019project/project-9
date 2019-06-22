@@ -3,6 +3,8 @@ package view;
 import controller.AccountController;
 import controller.InGameController;
 import javafx.animation.TranslateTransition;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point3D;
 import javafx.scene.*;
@@ -53,13 +55,14 @@ public class GraphicalInGameView {
     private static Account loggedAccount;
     private static MediaPlayer backGroundMusic;
     private static ArrayList<InGameCommand> commands = new ArrayList<>();
+    private static int time = 1000;
 
     public void showGame(Stage stage, Battle battle, Account account) throws IOException {
-        //
-        loggedAccount = account;
+        //TODO
+        /*loggedAccount = account;
         AccountMenu.closeMainStage();
         AccountMenu.stopMusic();
-        //
+        *///
         GraphicalInGameView.stage = stage;
         inGameController = new InGameController(battle);
         Group group = new Group();
@@ -73,6 +76,7 @@ public class GraphicalInGameView {
         setCursor(scene);
         stage.getIcons().add(new Image("src\\res\\icon.jpg"));
         setBtns();
+        setSideMenu();
         //
 
 
@@ -93,8 +97,7 @@ public class GraphicalInGameView {
         /*Pane pane = getCellPane(target.getX(), target.getY());
         pane.getChildren().add(new ImageView(new Image("file:src/res/inGameResource/spellAction.gif")));*/
         group.getChildren().add(imageView);
-        //TODO timing
-        TranslateTransition transition = new TranslateTransition(Duration.millis(500), imageView);
+        TranslateTransition transition = new TranslateTransition(Duration.millis(time), imageView);
         int u = target.getX() * 9 + target.getY();
         int[] laout = InGameMethodsAndSource.positions.get(u);
         int[] i = new int[]{laout[0], laout[1]};
@@ -117,7 +120,7 @@ public class GraphicalInGameView {
         ImageView imageView = new ImageView(new Image(pathes.get(second.getMinionOnIt().getName())));
         removeImage(pathes.get(second.getMinionOnIt().getName()), firstCell);
         removeImage(pathes.get(second.getMinionOnIt().getName()), getCellPane(second.getX(), second.getY()));
-        TranslateTransition transition = new TranslateTransition(Duration.millis(2000), imageView);
+        TranslateTransition transition = new TranslateTransition(Duration.millis(time), imageView);
         int x = first.getX();
         int y = first.getY();
         int u = second.getX() * 9 + second.getY();
@@ -802,16 +805,17 @@ public class GraphicalInGameView {
         });
         pane.setOnMouseClicked(mouseEvent -> {
             Stage newStage = new Stage();
+            newStage.getIcons().add(new Image("src/res/icon.jpg"));
             Group group = new Group();
-            Scene scene = new Scene(group, 300, 300);
-            newStage.setTitle("Exit Request");
+            Scene scene = new Scene(group, 200, 150);
+            newStage.setTitle("Exit");
             newStage.setScene(scene);
             Button button = new Button("Exit Without Save");
             Button button1 = new Button("Resume");
-            button.setLayoutX(50);
-            button1.setLayoutX(200);
+            button.setLayoutX(10);
+            button1.setLayoutX(10);
             button.setLayoutY(20);
-            button1.setLayoutY(20);
+            button1.setLayoutY(70);
             group.getChildren().add(button);
             group.getChildren().add(button1);
             newStage.show();
@@ -874,5 +878,51 @@ public class GraphicalInGameView {
         mediaPlayer.setAutoPlay(true);
         mediaPlayer.setOnEndOfMedia(() -> mediaPlayer.seek(Duration.ZERO));
         return new MediaView(mediaPlayer);
+    }
+
+    private static void setSideMenu() {
+        ImageView sideMenu = (ImageView) parent.lookup("#sideMenu");
+        sideMenu.setOnMouseEntered(mouseEvent -> sideMenu.setFitHeight(sideMenu.getFitHeight() * 5));
+        sideMenu.setOnMouseExited(mouseEvent -> sideMenu.setFitHeight(sideMenu.getFitHeight() / 5));
+        sideMenu.setOnMouseClicked(mouseEvent -> {
+            Stage newStage = new Stage();
+            newStage.setTitle("IN GAME MENU");
+            newStage.getIcons().add(new Image("src/res/icon.jpg"));
+            Parent newParent = null;
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(new URL("file:src/res/FXML/inGameMenu.fxml"));
+                newParent = fxmlLoader.load();
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+            Group root = new Group(newParent);
+            Scene scene = new Scene(root);
+            Button graveYard = ((Button) newParent.lookup("#graveYard"));
+            ChoiceBox<String> setGameSpeed = ((ChoiceBox) newParent.lookup("#setGameSpeed"));
+            setGameSpeed.getItems().add(".25X");
+            setGameSpeed.getItems().add(".5X");
+            setGameSpeed.getItems().add("X");
+            setGameSpeed.getItems().add("2X");
+            setGameSpeed.getItems().add("4X");
+            setGameSpeed.setOnAction(actionEvent -> {
+                int selectedIndex = setGameSpeed.getSelectionModel().getSelectedIndex();
+                if (selectedIndex == 0)
+                    time = 4000;
+                else if (selectedIndex == 1)
+                    time = 2000;
+                else if (selectedIndex == 2)
+                    time = 1000;
+                else if (selectedIndex == 3)
+                    time = 500;
+                else
+                    time = 250;
+            });
+            (newParent.lookup("#resume")).setOnMouseClicked(mouseEvent1 -> newStage.close());
+            graveYard.setOnMouseClicked(mouseEvent12 -> {
+                //TODO graveYard
+            });
+            newStage.setScene(scene);
+            newStage.show();
+        });
     }
 }

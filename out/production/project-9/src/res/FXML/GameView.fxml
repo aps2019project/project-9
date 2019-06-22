@@ -244,6 +244,11 @@
                   </ImageView>
                </children>
             </Pane>
+            <ImageView fx:id="sideMenu" fitHeight="46.0" fitWidth="47.0" layoutX="940.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../inGameResource/sideMenu.png" />
+               </image>
+            </ImageView>
       </children>
     </AnchorPane>
   </children>
