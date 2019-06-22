@@ -14,11 +14,13 @@ import javafx.stage.Stage;
 import model.Collection;
 import model.cards.Card;
 
-public class GraveYard {
+public class GraphicalGraveYard {
 
     private Collection collection;
+    private Stage stage;
 
-    public void start(Stage stage, Collection collection) {
+    public void start(Collection collection) {
+        stage = new Stage();
         this.collection = collection;
         stage.setMaximized(true);
         Image image = new Image("src/res/grave_yard.jpg");
@@ -69,7 +71,7 @@ public class GraveYard {
     private void setBackToGameButton(Group group) {
         Button b = new Button("Back To Game");
         b.setOnMouseClicked(mouseEvent -> {
-            //TODO
+            stage.close();
         });
         b.setScaleX(1.5);
         b.setScaleY(1.5);

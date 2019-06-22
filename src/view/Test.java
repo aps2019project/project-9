@@ -45,5 +45,7 @@ public class Test extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }*/
+        /*GraphicalGraveYard graphicalGraveYard = new GraphicalGraveYard();
+        graphicalGraveYard.start(new Account("m","m").getCollection());*/
     }
 }

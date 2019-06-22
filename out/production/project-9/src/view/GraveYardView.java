@@ -27,7 +27,7 @@ public class GraveYardView {
         }
 
         public void help(Player player){
-            System.out.printf("<<-------GraveYard for Player : %s--------->>\n",player.getName());
+            System.out.printf("<<-------GraphicalGraveYard for Player : %s--------->>\n",player.getName());
             System.out.println("show info\nshow cards\nexit");
         }
 }
