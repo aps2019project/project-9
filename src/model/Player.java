@@ -153,10 +153,14 @@ public class Player {
             reduceMana(card.getMP());
             currentMinion.setCanMove(false);
             currentMinion.setCanAttack(false);
+
             if (currentMinion.getSpecialPower() != null
                     && currentMinion.getSpecialPower().getSpecialPowerActivationTime() == SpecialPowerActivationTime.ON_SPAWN) {
+
                 currentMinion.castSpecialPower(cell);
             }
+
+
             if (usableItem != null && usableItem instanceof OnSpawnUsableItem) {
                 ((OnSpawnUsableItem) usableItem).doOnSpawnAction(this, currentMinion);
             }

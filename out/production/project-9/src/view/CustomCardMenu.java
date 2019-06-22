@@ -22,7 +22,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class CustomCardMenu {
-    //TODO debuggin of the CustomCard behaviour remained
+
     private static int uniqueID = 2000;
     private Account loggedAccount;
     private Parent parent;

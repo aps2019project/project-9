@@ -183,7 +183,7 @@ public class GraphicalInGameView {
         });
     }
 
-    public static void finished(BattleResult battleResult) {//TODO
+    public static void finished(BattleResult battleResult) {
         String winner = battleResult.getWinner();
         int prize = battleResult.getPrize();
         Text winnerText = new Text(winner + " wins \nand gets " + prize + " prize");
@@ -203,7 +203,7 @@ public class GraphicalInGameView {
         stage.setScene(scene);
         stage.show();
         stage.setOnCloseRequest(windowEvent -> {
-            //save changes TODO
+            //save changes
             JsonProcess.saveAccount(loggedAccount);
             AccountMenu.getInstance().accountMenuShow(new Stage(), new AccountController());
             stage.close();
@@ -359,9 +359,13 @@ public class GraphicalInGameView {
                     if (db.hasImage()) {
                         int x = (pane.getId().charAt(pane.getId().length() - 2)) - 48;
                         int y = pane.getId().charAt(pane.getId().length() - 1) - 48;
+
                         InGameRequest request = new InGameRequest(
                                 "insert " + db.getString() + " in " + x + " " + y);
+
                         inGameController.main(request);
+                        //TODO
+                        System.out.println(request.getCommand());
                         setMediaViews(MusicAct.INSERT);
                         updateHand();
                         setManas(inGameController.getBattle().getCurrenPlayer());

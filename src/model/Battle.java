@@ -68,9 +68,15 @@ public class Battle {
                 ((Spell) card).setOwningPlayer(player);
             } else if (card instanceof Minion) {
                 ((Minion) card).setPlayer(player);
+                if (((Minion) card).getSpecialPower() != null && ((Minion) card).getSpecialPower().getSpell() != null) {
+                    ((Minion) card).getSpecialPower().getSpell().setOwningPlayer(player);
+                }
             }
         }
         player.getDeck().getHero().setPlayer(player);
+        if (player.getDeck().getHero().getSpell() != null) {
+            player.getHero().getSpell().setOwningPlayer(player);
+        }
     }
 
     private void checkBuffs(Player player) {

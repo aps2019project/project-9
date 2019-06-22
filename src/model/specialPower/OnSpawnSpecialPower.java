@@ -51,7 +51,9 @@ public class OnSpawnSpecialPower extends SpecialPower { // ON TURN is also ON SP
                     }
                     break;
             }
-        }else
-            spell.castSpell(getSpellCastCell(spell.getTargetType(),minion));
+        }else {
+
+            spell.castSpell(getSpellCastCell(spell.getTargetType(), minion));
+        }
     }
 }

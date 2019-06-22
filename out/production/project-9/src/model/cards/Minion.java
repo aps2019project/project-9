@@ -439,9 +439,13 @@ public class Minion extends Card {
     }
 
     public void castSpecialPower(Cell cell) {
+
         if (specialPower != null) {
             specialPower.setMinion(this);
+
             specialPower.castSpecialPower(cell);
+
+
         }
     }
 

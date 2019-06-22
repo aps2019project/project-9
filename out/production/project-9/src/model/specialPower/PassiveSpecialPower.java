@@ -30,6 +30,7 @@ public class PassiveSpecialPower extends SpecialPower {
     @Override
     public void castSpecialPower(Cell cell) {
         // cell is minion current cell
+
         if (spell == null) {
             switch (targetType) {
                 case CURRENT_CELL:
@@ -58,7 +59,8 @@ public class PassiveSpecialPower extends SpecialPower {
                     }
                     break;
             }
-        }else
-            spell.castSpell(getSpellCastCell(spell.getTargetType(),minion));
+        }else {
+            spell.castSpell(getSpellCastCell(spell.getTargetType(), minion));
+        }
     }
 }

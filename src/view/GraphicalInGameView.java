@@ -359,9 +359,13 @@ public class GraphicalInGameView {
                     if (db.hasImage()) {
                         int x = (pane.getId().charAt(pane.getId().length() - 2)) - 48;
                         int y = pane.getId().charAt(pane.getId().length() - 1) - 48;
+
                         InGameRequest request = new InGameRequest(
                                 "insert " + db.getString() + " in " + x + " " + y);
+
                         inGameController.main(request);
+                        //TODO
+                        System.out.println(request.getCommand());
                         setMediaViews(MusicAct.INSERT);
                         updateHand();
                         setManas(inGameController.getBattle().getCurrenPlayer());

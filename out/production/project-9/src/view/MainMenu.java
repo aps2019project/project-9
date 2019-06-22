@@ -101,7 +101,7 @@ public class MainMenu {
             logOut.setScaleY(2.5);
             setActionsAndStyles(logOut);
             logOut.setOnMouseClicked(event -> {
-                //TODO saving
+                //saving
                 JsonProcess.saveAccount(controller.getLoggedInAccount());
                 stage.close();
             });

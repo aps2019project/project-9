@@ -10,7 +10,7 @@ public class Hand {
         numberOfCardFromDeck = 0;
         this.deck = deck;
         Collections.reverse(deck.getCards());
-       // TODO Collections.shuffle(deck.getCards());
+       //TODO Collections.shuffle(deck.getCards());
         int index = (deck.getCards().size() >= 5) ? (5) : deck.getCards().size();
         for (int i = 0; i < index; i++) {
             this.cards.add(deck.getCards().get(i));

@@ -72,7 +72,12 @@ public class Spell extends Card {
 
 
     public void castSpell(Cell inputCell) {
+        //TODO
+        System.out.println(inputCell.getX() + "  " + inputCell.getY());
+        System.out.println(getOwningPlayer().getOpponent().getHero().getCell().getX()+ " " + getOwningPlayer().getOpponent().getHero().getCell().getY());
         if (isValidTarget(inputCell)) {
+            //TODO
+            System.out.println("two");
             ArrayList<Cell> targetCells = getCellsToCast(inputCell);
             for (Cell targetCell : targetCells) {
                 //TODO very big TODO

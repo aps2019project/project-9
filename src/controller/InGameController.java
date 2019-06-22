@@ -214,6 +214,7 @@ public class InGameController {
     }
 
     private void insert(String cardName, int x, int y) {
+
         if (battle.getCurrenPlayer().getHand().getCardByName(cardName) == null) {
             inGameView.printfError(InGameErrorType.INVALID_CARD_NAME);
         } else {
@@ -229,6 +230,7 @@ public class InGameController {
                 } else {
                     // ID assigning
                     finalThingsInInsertingCard(friendlyCard, player, cell);
+
                 }
             } else {
                 if (!((Spell) friendlyCard).isValidTarget(cell))
@@ -246,6 +248,7 @@ public class InGameController {
             friendlyCard.setBattleID(player);
         }
         player.insertCard(friendlyCard, cell);
+
         //inGameView.cardInserted(friendlyCard, x, y);
     }
 

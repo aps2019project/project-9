@@ -203,7 +203,6 @@ public class CollectionMenu {
         save.setLayoutY(startY + 5 * addY);
 
         save.setOnMouseClicked(m -> {
-            //TODO
             JsonProcess.saveAccount(account);
         });
         return save;
