@@ -206,7 +206,7 @@ public class Deck {
     public void removeCard(Card card) {
         if (card instanceof Hero && hero.getName().equals(card.getName())) {
             hero = null;
-            cards.remove(card);//TODO
+            cards.remove(card);
         } else
             cards.remove(card);
     }

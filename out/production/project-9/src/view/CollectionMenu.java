@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import model.Account;
 import model.Deck;
+import model.JsonProcess;
 import model.cards.Card;
 import model.enumerations.CollectionErrorType;
 
@@ -203,6 +204,7 @@ public class CollectionMenu {
 
         save.setOnMouseClicked(m -> {
             //TODO
+            JsonProcess.saveAccount(account);
         });
         return save;
     }

@@ -39,7 +39,6 @@ public class Account implements Comparable<Account> {
         //mainDeck = new Deck("debugging");
         mainDeck = "first_level"; // initialized deck
         decks.add(new Deck("first_level"));
-        //TODO
         JsonProcess.saveAccount(this);
     }
 

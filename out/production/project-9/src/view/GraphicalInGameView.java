@@ -78,11 +78,7 @@ public class GraphicalInGameView {
         setCursor(scene);
         stage.getIcons().add(new Image("src\\res\\icon.jpg"));
         setBtns();
-        //TODO
-        System.out.println(inGameController.getBattle().getFirstPlayer().getName());
-        for (Card card : inGameController.getBattle().getFirstPlayer().getDeck().getCards()) {
-            System.out.println(card.getName());
-        }
+
 
         //
         setManas(battle.getFirstPlayer());
@@ -387,7 +383,7 @@ public class GraphicalInGameView {
                         InGameRequest request = new
                                 InGameRequest("move to " + cell.getX() + " " + cell.getY());
                         inGameController.main(request);
-                        //TODO
+
                         updatePlayGround(group);
                         if (inGameController.getBattle().getCurrenPlayer().getSelectedCard() == null) {
                             setMediaViews(MusicAct.MOVE);

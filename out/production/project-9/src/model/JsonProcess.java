@@ -13,7 +13,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 
-public class JsonProcess {//TODO
+public class JsonProcess {
 
     private static GsonBuilder gsonBuilder = new GsonBuilder();
 
