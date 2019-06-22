@@ -91,9 +91,6 @@ public class JsonProcess {
     public static ArrayList<Account> getSavedAccounts() {
         File f = new File("src/data/accountJsons");
         File[] files = f.listFiles();
-        /*for (File file : files) {
-            System.out.println(file.getName());
-        }*/
         ArrayList<Account> result = new ArrayList<>();
         for (File file : files) {
             try {
@@ -104,7 +101,6 @@ public class JsonProcess {
                 e.printStackTrace();
             }
         }
-        System.out.println(result);
         return result;
     }
 }

@@ -17,10 +17,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
+
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import model.Cell;
 import model.cards.Minion;
 
@@ -28,10 +26,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 
-public class GraphicalViewResource {
+public class InGameMethodsAndSource {// a resource for graphical in game view
 
     public static HashMap<Integer, int[]> positions = new HashMap<>();
-
 
     static {
         positions.put(0, new int[]{298, 292});
@@ -81,28 +78,8 @@ public class GraphicalViewResource {
         positions.put(44, new int[]{720, 255});
     }
 
-    public void start(Stage stage) throws IOException {
-        //setHomes();
-        FXMLLoader fxmlLoader = new FXMLLoader(new URL("file:src/res/FXML/GameView.fxml"));
-        Parent parent = fxmlLoader.load();
-        Group group = new Group();
-        group.getChildren().add(parent);
-        Scene scene = new Scene(group);
-        GridPane pane = ((GridPane) parent.lookup("#ground"));
-        System.out.println(pane.getLayoutX());
-        System.out.println(pane.getLayoutY());
-        ImageView imageView = new ImageView(new Image("file:src/res/heroes/1.gif"));
-        Pane pane1 = ((Pane) parent.lookup("#cell00"));
-        Pane pane2 = ((Pane) parent.lookup("#cell33"));
-        Path path = new Path();
-
-        //move(imageView);
-        group.getChildren().add(imageView);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    public static void attackShow(Minion minion , Cell taget){
+    public static void showReplay(){
 
     }
+
 }

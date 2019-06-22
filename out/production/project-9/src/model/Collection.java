@@ -124,18 +124,33 @@ public class Collection {
     }
 
     public void addCard(Card card) {
-        card.setCardID(uniqueID++);
+        int id = uniqueID;
+        while (true) {
+            if (searchCardByID(id) != null)
+                id++;
+            else
+                break;
+        }
+        uniqueID = id + 1;
+        card.setCardID(id);
         cards.add(card);
     }
 
     public void addItem(Item item) {
-        item.setItemID(uniqueID++);
+        int id = uniqueID;
+        while (true) {
+            if (searchItemByID(id) != null)
+                id++;
+            else
+                break;
+        }
+        uniqueID = id + 1;
+        item.setItemID(id);
         items.add(item);
     }
 
 
     public void removeCard(Card card) {
-
         cards.remove(card);
     }
 

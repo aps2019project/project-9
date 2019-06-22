@@ -41,7 +41,7 @@ public class Test extends Application {
             e.printStackTrace();
         }*/
         /*try {
-            new GraphicalViewResource().start(primaryStage);
+            new InGameMethodsAndSource().start(primaryStage);
         } catch (IOException e) {
             e.printStackTrace();
         }*/

@@ -2,10 +2,7 @@ package view;
 
 import controller.AccountController;
 import controller.InGameController;
-import controller.MainMenuController;
 import javafx.animation.TranslateTransition;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point3D;
 import javafx.scene.*;
@@ -20,9 +17,7 @@ import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.scene.transform.Translate;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 import model.*;
 import model.Cell;
@@ -39,7 +34,6 @@ import model.items.Item;
 import model.specialPower.ComboSpecialPower;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -58,6 +52,7 @@ public class GraphicalInGameView {
     private static Stage stage;
     private static Account loggedAccount;
     private static MediaPlayer backGroundMusic;
+    private static ArrayList<InGameCommand> commands = new ArrayList<>();
 
     public void showGame(Stage stage, Battle battle, Account account) throws IOException {
         //
@@ -78,6 +73,7 @@ public class GraphicalInGameView {
         setCursor(scene);
         stage.getIcons().add(new Image("src\\res\\icon.jpg"));
         setBtns();
+        //
 
 
         //
@@ -85,8 +81,6 @@ public class GraphicalInGameView {
         setManas(battle.getSecondPlayer());
         updateHand();
         updatePlayGround(group);
-
-
         MediaView mediaView = getBackGroundMusic();
         group.getChildren().add(mediaView);
         stage.setTitle("Duelyst");
@@ -99,9 +93,10 @@ public class GraphicalInGameView {
         /*Pane pane = getCellPane(target.getX(), target.getY());
         pane.getChildren().add(new ImageView(new Image("file:src/res/inGameResource/spellAction.gif")));*/
         group.getChildren().add(imageView);
-        TranslateTransition transition = new TranslateTransition(Duration.millis(2000), imageView);
+        //TODO timing
+        TranslateTransition transition = new TranslateTransition(Duration.millis(500), imageView);
         int u = target.getX() * 9 + target.getY();
-        int[] laout = GraphicalViewResource.positions.get(u);
+        int[] laout = InGameMethodsAndSource.positions.get(u);
         int[] i = new int[]{laout[0], laout[1]};
         i[0] -= 50;
         i[1] -= 50;
@@ -128,10 +123,10 @@ public class GraphicalInGameView {
         int u = second.getX() * 9 + second.getY();
         int u1 = x * 9 + y;
         group.getChildren().add(imageView);
-        transition.setFromX(GraphicalViewResource.positions.get(u1)[0]);
-        transition.setFromY(GraphicalViewResource.positions.get(u1)[1]);
-        transition.setToX(GraphicalViewResource.positions.get(u)[0]);
-        transition.setToY(GraphicalViewResource.positions.get(u)[1]);
+        transition.setFromX(InGameMethodsAndSource.positions.get(u1)[0]);
+        transition.setFromY(InGameMethodsAndSource.positions.get(u1)[1]);
+        transition.setToX(InGameMethodsAndSource.positions.get(u)[0]);
+        transition.setToY(InGameMethodsAndSource.positions.get(u)[1]);
         transition.play();
         transition.setOnFinished(actionEvent -> {
             group.getChildren().remove(imageView);
@@ -611,9 +606,6 @@ public class GraphicalInGameView {
         return ((Pane) parent.lookup("#cell" + x + y));
     }
 
-    private static void showCollectiblesInCells(ArrayList<Collectible> items) {
-
-    }
 
     public static ArrayList<Cell> getPossibleCells(Card card) {
         if (card instanceof Minion) {
@@ -744,10 +736,6 @@ public class GraphicalInGameView {
             imageView = new ImageView(new Image("file:src/res/minions/" + index + ".gif"));
         }
         return imageView;
-    }
-
-    private static ImageView getImageView(Item item) {
-        return null;
     }
 
     private static void setCellsAction() {

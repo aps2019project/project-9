@@ -22,7 +22,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class CustomCardMenu {
-    //TODO debuggin of the CustomCard behaviour remained
+
     private static int uniqueID = 2000;
     private Account loggedAccount;
     private Parent parent;
@@ -189,6 +189,8 @@ public class CustomCardMenu {
 
     private SpecialPower getSpecialPower(SpecialPowerActivationTime time) {
         switch (time) {
+            case NONE:
+                return null;
             case PASSIVE:
                 return new PassiveSpecialPower(specialPower);
             case ON_SPAWN:
@@ -212,7 +214,7 @@ public class CustomCardMenu {
         attackType.getItems().addAll(MinionAttackType.values());
         ChoiceBox activation = ((ChoiceBox) parent.lookup("#activation"));
         activation.getItems().addAll(SpecialPowerActivationTime.values());
-        activation.getSelectionModel().select(1);
+        activation.getSelectionModel().select(0);
     }
 
     private void setCost() {
