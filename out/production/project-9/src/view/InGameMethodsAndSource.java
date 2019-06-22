@@ -1,5 +1,6 @@
 package view;
 
+import controller.InGameController;
 import javafx.animation.Animation;
 import javafx.animation.FillTransition;
 import javafx.animation.PathTransition;
@@ -20,10 +21,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 
 import javafx.stage.Stage;
-import model.BattleResult;
-import model.Cell;
-import model.Player;
+import model.*;
 import model.cards.Minion;
+import model.enumerations.GameMode;
 import model.items.Item;
 
 import java.io.IOException;
@@ -84,11 +84,55 @@ public class InGameMethodsAndSource {// a resource for graphical in game view
         positions.put(44, new int[]{720, 255});
     }
 
-    public static void showReplay(BattleResult battleResult){
-
+    public static void showReplay(BattleResult battleResult) {
+        Battle battle = getBattle(battleResult);
+        ArrayList<InGameRequest> inGameRequests = battleResult.getInGameRequests();
+        GraphicalInGameView view = new GraphicalInGameView();
+        //
+        battle.startBattle();
+        try {
+            view.showGame(new Stage(), battle, null);
+            InGameController inGameController = GraphicalInGameView.getInGameController();
+            for (InGameRequest request : inGameRequests) {
+                inGameController.main(request);
+                //TODO
+                try {
+                    Thread.currentThread().sleep(2000);//TODO timing
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public static void showAlertAtTheBeginning(String title, String message){
+    private static Battle getBattle(BattleResult battleResult) {
+        Battle battle;
+        int mode;
+        GameMode gameMode = battleResult.getGameMode();
+        if (gameMode == GameMode.HERO_KILL)
+            mode = 1;
+        else if (gameMode == GameMode.ONE_FLAG)
+            mode = 2;
+        else
+            mode = 3;
+        if (battleResult.isSinglePlayer()) {
+            if (battleResult.getLevel() == 0) {//second constructor
+                battle = new SinglePlayerBattle(mode, battleResult.getDeck().getCopy()
+                        , Account.findAccount(battleResult.getFirstPlayer()), battleResult.getNumberOfFlags());
+            } else {
+                battle = new SinglePlayerBattle(battleResult.getLevel()
+                        , Account.findAccount(battleResult.getFirstPlayer()));
+            }
+        } else {
+            battle = new MultiPlayerBattle(Account.findAccount(battleResult.getFirstPlayer())
+                    , (battleResult.getSecondPlayer()), mode, battleResult.getNumberOfFlags());
+        }
+        return battle;
+    }
+
+    public static void showAlertAtTheBeginning(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
         alert.setContentText(message);

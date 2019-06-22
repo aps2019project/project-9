@@ -55,7 +55,7 @@ public class SinglePlayerBattle extends Battle {
         firstPlayer = new Player(firstPlayerAccount, this);
         secondPlayer = new Player(deck, this);
         battlePrize = 1000;
-        level = 0;
+        level = 0;//
     }
 
 }

@@ -42,8 +42,6 @@ public class InGameController {
             inGameRequests.add(new InGameRequest("select item " + item.getItemID()));
         }
         inGameRequests.add(request);
-        //TODO
-        System.out.println(inGameRequests);
         //
         switch (type) {
             case SELECT_ITEM:

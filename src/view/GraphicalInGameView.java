@@ -4,6 +4,8 @@ import controller.AccountController;
 import controller.InGameController;
 import data.JsonProcess;
 import javafx.animation.TranslateTransition;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point3D;
 import javafx.scene.*;
@@ -55,10 +57,10 @@ public class GraphicalInGameView {
     private static int time = 1000;
 
     public void showGame(Stage stage, Battle battle, Account account) throws IOException {
-        //
-        loggedAccount = account;
+        //TODO
+        /*loggedAccount = account;
         AccountMenu.closeMainStage();
-        AccountMenu.stopMusic();
+        AccountMenu.stopMusic();*/
         //
         GraphicalInGameView.stage = stage;
         inGameController = new InGameController(battle);
@@ -89,10 +91,32 @@ public class GraphicalInGameView {
         stage.show();
     }
 
+    public void updateEveryThing() {//for replay
+        updatePlayGround(group);
+        updateHand();
+    }
+
+    public static void attackTo(Minion minion, Cell target) {//animation view
+        ImageView imageView = new ImageView(new Image("file:src/res/inGameResource/attackGif.gif"));
+        group.getChildren().add(imageView);
+        TranslateTransition transition = new TranslateTransition(Duration.millis(time), imageView);
+        Cell first = minion.getCell();
+        int fu = first.getX() * 9 + first.getY();
+        int su = target.getX() * 9 + target.getY();
+        transition.setToX(InGameMethodsAndSource.positions.get(su)[0]);
+        transition.setToY(InGameMethodsAndSource.positions.get(su)[1]);
+        transition.setFromX(InGameMethodsAndSource.positions.get(fu)[0]);
+        transition.setFromY(InGameMethodsAndSource.positions.get(fu)[1]);
+        transition.play();
+        transition.setOnFinished(actionEvent -> group.getChildren().remove(imageView));
+    }
+
+    public static InGameController getInGameController() {
+        return inGameController;
+    }
+
     public static void spellCast(Cell target) {//animation view
         ImageView imageView = new ImageView(new Image("file:src/res/inGameResource/spellAction.gif"));
-        /*Pane pane = getCellPane(target.getX(), target.getY());
-        pane.getChildren().add(new ImageView(new Image("file:src/res/inGameResource/spellAction.gif")));*/
         group.getChildren().add(imageView);
         TranslateTransition transition = new TranslateTransition(Duration.millis(time), imageView);
         int u = target.getX() * 9 + target.getY();
@@ -108,9 +132,6 @@ public class GraphicalInGameView {
         transition.setOnFinished(actionEvent -> group.getChildren().remove(imageView));
     }
 
-    public static void attackTo(Minion minion, Cell target) {//animation view
-        //TODO
-    }
 
     public static void moveTo(Cell first, Cell second) {//animation view
         Pane firstCell = getCellPane(first.getX(), first.getY());
@@ -204,7 +225,8 @@ public class GraphicalInGameView {
         stage.show();
         stage.setOnCloseRequest(windowEvent -> {
             //save changes
-            JsonProcess.saveAccount(loggedAccount);
+            if (loggedAccount != null)
+                JsonProcess.saveAccount(loggedAccount);
             AccountMenu.getInstance().accountMenuShow(new Stage(), new AccountController());
             stage.close();
             GraphicalInGameView.stage.close();
@@ -889,7 +911,7 @@ public class GraphicalInGameView {
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader(new URL("file:src/res/FXML/inGameMenu.fxml"));
                 newParent = fxmlLoader.load();
-            }catch (IOException e){
+            } catch (IOException e) {
                 e.printStackTrace();
             }
             Group root = new Group(newParent);
@@ -923,7 +945,7 @@ public class GraphicalInGameView {
         });
     }
 
-    public static void addToBoard(String alert){
+    public static void addToBoard(String alert) {
         descLabel.setText(descLabel.getText() + "\n" + alert);
     }
 }

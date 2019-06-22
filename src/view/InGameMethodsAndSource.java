@@ -1,5 +1,6 @@
 package view;
 
+import controller.InGameController;
 import javafx.animation.Animation;
 import javafx.animation.FillTransition;
 import javafx.animation.PathTransition;
@@ -85,10 +86,28 @@ public class InGameMethodsAndSource {// a resource for graphical in game view
 
     public static void showReplay(BattleResult battleResult) {
         Battle battle = getBattle(battleResult);
-
+        ArrayList<InGameRequest> inGameRequests = battleResult.getInGameRequests();
+        GraphicalInGameView view = new GraphicalInGameView();
+        //
+        battle.startBattle();
+        try {
+            view.showGame(new Stage(), battle, null);
+            InGameController inGameController = GraphicalInGameView.getInGameController();
+            for (InGameRequest request : inGameRequests) {
+                inGameController.main(request);
+                //TODO
+                try {
+                    Thread.currentThread().sleep(2000);//TODO timing
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    private static Battle getBattle(BattleResult battleResult){
+    private static Battle getBattle(BattleResult battleResult) {
         Battle battle;
         int mode;
         GameMode gameMode = battleResult.getGameMode();
@@ -100,7 +119,7 @@ public class InGameMethodsAndSource {// a resource for graphical in game view
             mode = 3;
         if (battleResult.isSinglePlayer()) {
             if (battleResult.getLevel() == 0) {//second constructor
-                battle = new SinglePlayerBattle(mode, battleResult.getDeck()
+                battle = new SinglePlayerBattle(mode, battleResult.getDeck().getCopy()
                         , Account.findAccount(battleResult.getFirstPlayer()), battleResult.getNumberOfFlags());
             } else {
                 battle = new SinglePlayerBattle(battleResult.getLevel()
