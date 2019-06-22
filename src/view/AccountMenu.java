@@ -13,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -336,6 +337,14 @@ public class AccountMenu {
             for (BattleResult battleResult : account.getBattleResults()) {
                 listView.getItems().add(battleResult.toString());
             }
+            //TODO for replay show
+            listView.setOnMouseClicked(mouseEvent1 -> {
+                BattleResult battleResult = account.getBattleResults()
+                        .get(listView.getSelectionModel().getSelectedIndex());
+                //
+                InGameMethodsAndSource.showReplay(battleResult);
+                //
+            });
             listView.setLayoutY(20);
             listView.setPrefSize(400, 180);
             root.getChildren().add(listView);

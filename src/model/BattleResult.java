@@ -1,10 +1,13 @@
 package model;
 
 
-
 import model.enumerations.GameMode;
+import model.items.Collectible;
+import model.items.Flag;
 import view.InGameRequest;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class BattleResult {
@@ -17,10 +20,13 @@ public class BattleResult {
     private GameMode gameMode;
     private int numberOfFlags;
     private int level;
-    private transient Deck deck;
+    private Deck secondPlayerDeck;
+    private Deck firstPlayerDeck;
     private boolean isSinglePlayer;
     private String firstPlayer;
     private String secondPlayer;
+    private HashMap<Cell, Collectible> collectibles = new HashMap<>();
+    private ArrayList<Cell> flagCells = new ArrayList<>();
 
     public BattleResult(Player winner, int prize, String time, String looser
             , Battle battle) {
@@ -32,10 +38,40 @@ public class BattleResult {
         gameMode = battle.gameMode;
         numberOfFlags = battle.numberOfFlags;
         level = battle.level;
-        deck = battle.secondPlayer.getDeck();
+        secondPlayerDeck = battle.secondPlayer.getDeck();
         isSinglePlayer = battle instanceof SinglePlayerBattle;
         this.firstPlayer = battle.getFirstPlayer().getName();
         this.secondPlayer = battle.getSecondPlayer().getName();
+        firstPlayerDeck = battle.getFirstPlayer().getDeck();
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (battle.getPlayGround().getCell(i, j).hasCollectableItem()) {
+                    collectibles.put(battle.getPlayGround().getCell(i, j)
+                            , ((Collectible) battle.getPlayGround().getCell(i, j).getCollectableItem()));
+                }
+            }
+        }
+        if (gameMode == GameMode.FLAGS){
+            for (Flag flag : battle.getPlayGround().getFlags()) {
+                flagCells.add(flag.getCurrentCell());
+            }
+        }
+    }
+
+    public ArrayList<Cell> getFlagCells() {
+        return flagCells;
+    }
+
+    public HashMap<Cell, Collectible> getCollectibles() {
+        return collectibles;
+    }
+
+    public Deck getFirstPlayerDeck() {
+        return firstPlayerDeck;
+    }
+
+    public Deck getSecondPlayerDeck() {
+        return secondPlayerDeck;
     }
 
     public String getSecondPlayer() {
@@ -99,11 +135,11 @@ public class BattleResult {
     }
 
     public Deck getDeck() {
-        return deck;
+        return secondPlayerDeck;
     }
 
     public void setDeck(Deck deck) {
-        this.deck = deck;
+        this.secondPlayerDeck = deck;
     }
 
     public boolean isSinglePlayer() {
@@ -113,8 +149,6 @@ public class BattleResult {
     public void setSinglePlayer(boolean singlePlayer) {
         isSinglePlayer = singlePlayer;
     }
-
-
 
 
     public String getTime() {

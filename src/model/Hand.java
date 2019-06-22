@@ -6,17 +6,19 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Hand {
-    public Hand(Deck deck) { // deck should be sorted in start game methods
+    public Hand(Deck deck, boolean shuffle) { // deck should be sorted in start game methods
         numberOfCardFromDeck = 0;
         this.deck = deck;
         Collections.reverse(deck.getCards());
-        Collections.shuffle(deck.getCards());
+        if (shuffle)
+            Collections.shuffle(deck.getCards());
         int index = (deck.getCards().size() >= 5) ? (5) : deck.getCards().size();
         for (int i = 0; i < index; i++) {
             this.cards.add(deck.getCards().get(i));
         }
         numberOfCardFromDeck = 5;
     }
+
 
     private ArrayList<Card> cards = new ArrayList<>(5);
     private Deck deck;

@@ -22,6 +22,7 @@ import javafx.scene.shape.*;
 
 import javafx.stage.Stage;
 import model.*;
+import model.cards.Card;
 import model.cards.Minion;
 import model.enumerations.GameMode;
 import model.items.Item;
@@ -92,15 +93,26 @@ public class InGameMethodsAndSource {// a resource for graphical in game view
         battle.startBattle();
         try {
             view.showGame(new Stage(), battle, null);
+            GraphicalInGameView.setIsReplay(true);
             InGameController inGameController = GraphicalInGameView.getInGameController();
             for (InGameRequest request : inGameRequests) {
-                inGameController.main(request);
+                ////////start///////
+                System.out.println("before request : " );
+                for (Card card : battle.getCurrenPlayer().getHand().getCards()) {
+                    System.out.print(card.getName() + " ");
+                }
+                InGameView.showMinions(battle.getCurrenPlayer());
                 //TODO
-                try {
+                System.out.println(request + " : ");
+                inGameController.main(request);
+                //
+                view.updateEveryThing();
+                //////////end///////
+                /*try {
                     Thread.currentThread().sleep(2000);//TODO timing
                 } catch (InterruptedException e) {
                     e.printStackTrace();
-                }
+                }*/
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -125,11 +137,11 @@ public class InGameMethodsAndSource {// a resource for graphical in game view
                 battle = new SinglePlayerBattle(battleResult.getLevel()
                         , Account.findAccount(battleResult.getFirstPlayer()));
             }
+            return new MultiPlayerBattle(((SinglePlayerBattle) battle));
         } else {
-            battle = new MultiPlayerBattle(Account.findAccount(battleResult.getFirstPlayer())
+            return new MultiPlayerBattle(Account.findAccount(battleResult.getFirstPlayer())
                     , (battleResult.getSecondPlayer()), mode, battleResult.getNumberOfFlags());
         }
-        return battle;
     }
 
     public static void showAlertAtTheBeginning(String title, String message) {

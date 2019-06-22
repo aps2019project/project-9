@@ -54,7 +54,7 @@ public class Player {
         this.name = account.getUserName();
         minionsInPlayGround.add(hero);
         graveYard = new GraveYard(this);
-        hand = new Hand(deck);
+        hand = new Hand(deck,true);
     }
 
     public Player(int level, Battle battle) { // for computer AI
@@ -79,7 +79,7 @@ public class Player {
         this.battle = battle;
         minionsInPlayGround.add(hero);
         graveYard = new GraveYard(this);
-        hand = new Hand(deck);
+        hand = new Hand(deck,true);
     }
 
     public Player(Deck deck, Battle battle) {
@@ -93,6 +93,10 @@ public class Player {
         minionsInPlayGround.add(hero);
         graveYard = new GraveYard(this);
         name = "CustomOpponent";
+    }
+
+    public void setHand(Hand hand) {
+        this.hand = hand;
     }
 
     public static void enterNewCell(Cell target, Minion minion, Player player) { //not attack to cell entering new cell
@@ -228,6 +232,10 @@ public class Player {
 
     }
 
+    public void setBattle(Battle battle) {
+        this.battle = battle;
+    }
+
     public String getName() {
         return name;
     }
@@ -313,6 +321,8 @@ public class Player {
         attackAiAction(inGameRequests);
         GraphicalInGameView.alertAiAction(action);
         //GraphicalInGameView.doAiAnimations(action);
+
+        inGameRequests.add(new InGameRequest("end turn"));
 
         endTurn(inGameRequests);
     }

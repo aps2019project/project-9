@@ -55,12 +55,14 @@ public class GraphicalInGameView {
     private static Account loggedAccount;
     private static MediaPlayer backGroundMusic;
     private static int time = 1000;
+    private static boolean isReplay;
 
     public void showGame(Stage stage, Battle battle, Account account) throws IOException {
-        //TODO
-        /*loggedAccount = account;
+        isReplay = false;
+        //
+        loggedAccount = account;
         AccountMenu.closeMainStage();
-        AccountMenu.stopMusic();*/
+        AccountMenu.stopMusic();
         //
         GraphicalInGameView.stage = stage;
         inGameController = new InGameController(battle);
@@ -91,9 +93,20 @@ public class GraphicalInGameView {
         stage.show();
     }
 
+    public static void setIsReplay(boolean isReplay) {
+        GraphicalInGameView.isReplay = isReplay;
+    }
+
     public void updateEveryThing() {//for replay
         updatePlayGround(group);
+        //
+        if (aiMove != null && aiMove.length() > 0)
+            doAiAnimations(aiMove);
+        //
         updateHand();
+        setManas(inGameController.getBattle().getFirstPlayer());
+        setManas(inGameController.getBattle().getSecondPlayer());
+        updateSpecialPower();
     }
 
     public static void attackTo(Minion minion, Cell target) {//animation view
@@ -135,24 +148,28 @@ public class GraphicalInGameView {
 
     public static void moveTo(Cell first, Cell second) {//animation view
         Pane firstCell = getCellPane(first.getX(), first.getY());
-        ImageView imageView = new ImageView(new Image(pathes.get(second.getMinionOnIt().getName())));
-        removeImage(pathes.get(second.getMinionOnIt().getName()), firstCell);
-        removeImage(pathes.get(second.getMinionOnIt().getName()), getCellPane(second.getX(), second.getY()));
-        TranslateTransition transition = new TranslateTransition(Duration.millis(time), imageView);
-        int x = first.getX();
-        int y = first.getY();
-        int u = second.getX() * 9 + second.getY();
-        int u1 = x * 9 + y;
-        group.getChildren().add(imageView);
-        transition.setFromX(InGameMethodsAndSource.positions.get(u1)[0]);
-        transition.setFromY(InGameMethodsAndSource.positions.get(u1)[1]);
-        transition.setToX(InGameMethodsAndSource.positions.get(u)[0]);
-        transition.setToY(InGameMethodsAndSource.positions.get(u)[1]);
-        transition.play();
-        transition.setOnFinished(actionEvent -> {
-            group.getChildren().remove(imageView);
-            updatePlayGround(group);
-        });
+        //ImageView imageView = new ImageView(new Image(pathes.get(second.getMinionOnIt().getName())));
+        //TODO sometimes null pointer
+        if (second.hasCardOnIt()) {
+            ImageView imageView = getImageView(second.getMinionOnIt());
+            removeImage(pathes.get(second.getMinionOnIt().getName()), firstCell);
+            removeImage(pathes.get(second.getMinionOnIt().getName()), getCellPane(second.getX(), second.getY()));
+            TranslateTransition transition = new TranslateTransition(Duration.millis(time), imageView);
+            int x = first.getX();
+            int y = first.getY();
+            int u = second.getX() * 9 + second.getY();
+            int u1 = x * 9 + y;
+            group.getChildren().add(imageView);
+            transition.setFromX(InGameMethodsAndSource.positions.get(u1)[0]);
+            transition.setFromY(InGameMethodsAndSource.positions.get(u1)[1]);
+            transition.setToX(InGameMethodsAndSource.positions.get(u)[0]);
+            transition.setToY(InGameMethodsAndSource.positions.get(u)[1]);
+            transition.play();
+            transition.setOnFinished(actionEvent -> {
+                group.getChildren().remove(imageView);
+                updatePlayGround(group);
+            });
+        }
     }
 
     public static void doAiAnimations(String alert) {
@@ -168,6 +185,8 @@ public class GraphicalInGameView {
                         inGameController.getBattle().getPlayGround().getCell(fx, fy));
             }
         }
+        //TODO
+        aiMove = "";
     }
 
     private static void removeImage(String path, Pane pane) {
@@ -224,9 +243,11 @@ public class GraphicalInGameView {
         stage.setScene(scene);
         stage.show();
         stage.setOnCloseRequest(windowEvent -> {
-            //save changes
-            if (loggedAccount != null)
-                JsonProcess.saveAccount(loggedAccount);
+            if (!isReplay) {
+                //save changes
+                if (loggedAccount != null)
+                    JsonProcess.saveAccount(loggedAccount);
+            }
             AccountMenu.getInstance().accountMenuShow(new Stage(), new AccountController());
             stage.close();
             GraphicalInGameView.stage.close();

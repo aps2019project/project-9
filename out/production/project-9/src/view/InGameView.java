@@ -96,7 +96,7 @@ public class InGameView {
         }
     }
 
-    public void showMinions(Player player) {
+    public static void showMinions(Player player) {
         int[][] places = new int[5][9];
         for (Minion minion : player.getMinionsInPlayGround()) {
             if (minion != null) {

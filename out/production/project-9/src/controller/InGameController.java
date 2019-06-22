@@ -4,6 +4,7 @@ package controller;
 import model.Battle;
 import model.Cell;
 import model.Player;
+import model.SinglePlayerBattle;
 import model.cards.Card;
 import model.cards.Minion;
 import model.cards.Spell;

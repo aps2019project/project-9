@@ -11,6 +11,7 @@ import model.items.Flag;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Random;
 
 public class PlayGround {
@@ -19,7 +20,7 @@ public class PlayGround {
     private Flag flag; // for mode two ( one flag )
     private ArrayList<Collectible> collectibles = new ArrayList<>();
 
-    public PlayGround(GameMode mode, int numberOfFlags) {
+    public PlayGround(GameMode mode, int numberOfFlags, boolean assignRandomCollectible, boolean assignRandomFlag) {
         if (mode == GameMode.HERO_KILL) {
             for (int i = 0; i < 5; i++) {
                 for (int j = 0; j < 9; j++) {
@@ -42,11 +43,14 @@ public class PlayGround {
                     cells[i][j] = new Cell(i, j, this, null);
                 }
             }
-            for (int z = 0; z < numberOfFlags; z++) {
-                placeFlags();
+            if (assignRandomFlag) {
+                for (int z = 0; z < numberOfFlags; z++) {
+                    placeFlags();
+                }
             }
         }
-        assignCollectibleItem();
+        if (assignRandomCollectible)
+            assignCollectibleItem();
     }
 
     private void assignCollectibleItem() {
@@ -57,6 +61,23 @@ public class PlayGround {
             Collectible collectible = getRandomCollectibleItem();
             collectibles.add(collectible);
             cell.setCollectableItem(collectible);
+        }
+    }
+
+    public void addCollectibles(HashMap<Cell, Collectible> collectibls) {
+        for (Cell cell : collectibls.keySet()) {
+            Cell cell1 = getCell(cell.getX(), cell.getY());
+            cell1.setCollectableItem(collectibls.get(cell));
+            collectibles.add(collectibls.get(cell));
+        }
+    }
+
+    public void addFlags(ArrayList<Cell> cells) {
+        for (Cell cell : cells) {
+            Cell my = getCell(cell.getX(), cell.getY());
+            Flag flag = new Flag(my);
+            my.setFlag(flag);
+            flags.add(flag);
         }
     }
 

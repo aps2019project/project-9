@@ -17,7 +17,7 @@ public class BattleResult {
     private GameMode gameMode;
     private int numberOfFlags;
     private int level;
-    private transient Deck deck;
+    private Deck deck;
     private boolean isSinglePlayer;
     private String firstPlayer;
     private String secondPlayer;
