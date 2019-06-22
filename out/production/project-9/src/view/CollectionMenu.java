@@ -3,19 +3,21 @@ package view;
 import java.util.*;
 
 import controller.CollectionController;
+import data.DeckAddException;
 import javafx.collections.FXCollections;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import model.Account;
 import model.Deck;
-import model.JsonProcess;
+import data.JsonProcess;
 import model.cards.Card;
 import model.enumerations.CollectionErrorType;
 
@@ -87,7 +89,55 @@ public class CollectionMenu {
         root.getChildren().addAll(slideshowImageView);
     }
 
+    private ChoiceDialog<String> getSavedDecksNames() {
+        List<String> sample = JsonProcess.getSavedDecksNames();
+        return new ChoiceDialog<>(null, sample);
+    }
+
     private void setButtons(Group root, Stage stage, TableView tableView) {
+        //////////////////////deck export importing process//////////////////
+        //TODO export import buttons ->
+        Button exportDeck = new Button("Export Deck");
+        Button importDeck = new Button("Import Deck");
+        exportDeck.setOnMouseClicked(mouseEvent -> {
+            ChoiceDialog<String> dio = setDecksList();
+            dio.setTitle("Select Deck To Export");
+            dio.setHeaderText("Select Deck To Export");
+            dio.setContentText("Decks:");
+            Optional<String> result1 = dio.showAndWait();
+            result1.ifPresent(p -> {
+                try {
+                    JsonProcess.exportDeckFromAccount(p, account);
+                    //TODO
+                    System.out.println(p + " " + account.getUserName());
+                } catch (DeckAddException e) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText("A Deck With This Name Has Already Saved");
+                    alert.show();
+                }
+            });
+        });
+        importDeck.setOnMouseClicked(mouseEvent -> {
+            ChoiceDialog<String> dio = getSavedDecksNames();
+            dio.setTitle("Select Deck To Import");
+            dio.setHeaderText("Select Deck To Import");
+            dio.setContentText("Decks:");
+            Optional<String> result1 = dio.showAndWait();
+            result1.ifPresent(p -> {
+                JsonProcess.addSavedDeckToAccount(account, p);
+                //TODO
+                System.out.println(p + " " + account.getUserName());
+            });
+        });
+        //
+        importDeck.setLayoutX(200);
+        importDeck.setLayoutY(200);
+        exportDeck.setLayoutX(200);
+        exportDeck.setLayoutY(250);
+        //
+        root.getChildren().addAll(exportDeck, importDeck);
+        ////////////////////////////////////end/////////////////////////////
+
         int addX = 20;
         int addY = 43;
         int startX = 20;
@@ -100,7 +150,7 @@ public class CollectionMenu {
         setBtnOnMouseOverAction(deleteDeck);
         Button showAllDecks = setShowAllDecksButton(startX, startY, addX, addY, tableView);
         setBtnOnMouseOverAction(showAllDecks);
-        Button showDeck = setshowDeckButton(startX, startY, addX, addY, tableView);
+        Button showDeck = setShowDeckButton(startX, startY, addX, addY, tableView);
         setBtnOnMouseOverAction(showDeck);
         Button save = setSaveButton(startX, startY, addX, addY);
         setBtnOnMouseOverAction(save);
@@ -208,7 +258,7 @@ public class CollectionMenu {
         return save;
     }
 
-    private Button setshowDeckButton(int startX, int startY, int addX, int addY, TableView tableView) {
+    private Button setShowDeckButton(int startX, int startY, int addX, int addY, TableView tableView) {
         Button showDeck = new Button("Show Deck");
         showDeck.setScaleX(0.8);
         showDeck.setScaleY(0.8);
@@ -397,6 +447,7 @@ public class CollectionMenu {
         }
         return new ChoiceDialog<>(account.getMainDeck().getName(), c);
     }
+
 
     private void addAddButtonToTable(TableView table) {
         table.setTranslateX(500);

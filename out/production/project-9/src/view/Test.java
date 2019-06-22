@@ -3,6 +3,8 @@ package view;
 import controller.AccountController;
 import controller.CollectionController;
 import controller.MainMenuController;
+import data.DeckAddException;
+import data.JsonProcess;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import model.*;
@@ -47,5 +49,6 @@ public class Test extends Application {
         }*/
         /*GraphicalGraveYard graphicalGraveYard = new GraphicalGraveYard();
         graphicalGraveYard.start(new Account("m","m").getCollection());*/
+
     }
 }

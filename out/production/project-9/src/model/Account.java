@@ -1,8 +1,7 @@
 package model;
 
-import com.google.gson.annotations.Expose;
+import data.JsonProcess;
 import model.cards.Card;
-import model.items.Collectible;
 import model.items.Item;
 
 import java.util.ArrayList;
@@ -84,6 +83,10 @@ public class Account implements Comparable<Account> {
 
     public void createNewDeck(String name) {
         decks.add(new Deck(name));
+    }
+
+    public void addDeck(Deck deck){
+        decks.add(deck);
     }
 
     public ArrayList<Deck> getDecks() {

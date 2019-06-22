@@ -85,7 +85,7 @@ public class InGameMethodsAndSource {// a resource for graphical in game view
 
     }
 
-    public static void showAlertAtTheBegining(String title,String message){
+    public static void showAlertAtTheBeginning(String title, String message){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
         alert.setContentText(message);

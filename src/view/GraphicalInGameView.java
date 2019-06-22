@@ -2,9 +2,8 @@ package view;
 
 import controller.AccountController;
 import controller.InGameController;
+import data.JsonProcess;
 import javafx.animation.TranslateTransition;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point3D;
 import javafx.scene.*;
@@ -32,7 +31,6 @@ import model.cellaffects.HollyCellAffect;
 import model.cellaffects.PoisonCellAffect;
 import model.enumerations.InGameErrorType;
 import model.items.Collectible;
-import model.items.Item;
 import model.specialPower.ComboSpecialPower;
 
 import java.io.File;

@@ -12,7 +12,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Account;
-import model.JsonProcess;
+import data.JsonProcess;
 import model.enumerations.MainMenuErrorType;
 
 import java.io.File;

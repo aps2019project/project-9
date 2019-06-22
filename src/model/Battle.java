@@ -53,10 +53,6 @@ public class Battle {
         secondPlayer.getHero().setCell(playGround.getCell(2, 8));
         playGround.getCell(2, 0).setMinionOnIt(firstPlayer.getHero());
         playGround.getCell(2, 8).setMinionOnIt(secondPlayer.getHero());
-        /*firstPlayer.getHero().setCell(playGround.getCell(2, 4));
-        secondPlayer.getHero().setCell(playGround.getCell(2, 5));
-        playGround.getCell(2, 4).setMinionOnIt(firstPlayer.getHero());
-        playGround.getCell(2, 5).setMinionOnIt(secondPlayer.getHero());*/
         firstPlayer.getHero().setBattleID(firstPlayer.getName() + "_" + firstPlayer.getHero().getName()
                 + "_" + "1");
         secondPlayer.getHero().setBattleID(secondPlayer.getName() + "_" + secondPlayer.getHero().getName()
@@ -150,7 +146,7 @@ public class Battle {
             alert += "\nUsable Item " + firstItem.getName() + " from player " + firstPlayer.getName() + " casted.";
         if (secondPlayer.castUsableItem())
             alert +="\nUsable Item " + secondItem.getName() + " from player " + secondPlayer.getName() + " casted.";
-        InGameMethodsAndSource.showAlertAtTheBegining(title,alert);
+        InGameMethodsAndSource.showAlertAtTheBeginning(title,alert);
     }
 
     private void handleCanMoveCanAttack(Player player) {
