@@ -9,7 +9,9 @@ import model.cards.Spell;
 import model.cellaffects.CellAffect;
 import model.enumerations.GameMode;
 import model.enumerations.SpecialPowerActivationTime;
+import model.items.Item;
 import view.GraphicalInGameView;
+import view.InGameMethodsAndSource;
 import view.InGameView;
 
 import java.time.LocalDateTime;
@@ -43,8 +45,7 @@ public class Battle {
         secondPlayer.assignMana(2);
         firstPlayer.setMaxMana(2);
         secondPlayer.setMaxMana(2);
-        firstPlayer.castUsableItem();
-        secondPlayer.castUsableItem();
+        castUsableItems();
     }
 
     private void initializeHeroAttributes() {
@@ -138,6 +139,18 @@ public class Battle {
         if (this instanceof SinglePlayerBattle && whoseTurn == 2) {
             secondPlayer.doAiAction();
         }
+    }
+
+    private void castUsableItems() {
+        Item firstItem = firstPlayer.getUsableItem();
+        Item secondItem = secondPlayer.getUsableItem();
+        String title = "Cast Usable Item";
+        String alert = "";
+        if (firstPlayer.castUsableItem())
+            alert += "\nUsable Item " + firstItem.getName() + " from player " + firstPlayer.getName() + " casted.";
+        if (secondPlayer.castUsableItem())
+            alert +="\nUsable Item " + secondItem.getName() + " from player " + secondPlayer.getName() + " casted.";
+        InGameMethodsAndSource.showAlertAtTheBegining(title,alert);
     }
 
     private void handleCanMoveCanAttack(Player player) {

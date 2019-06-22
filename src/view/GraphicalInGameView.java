@@ -58,11 +58,11 @@ public class GraphicalInGameView {
     private static int time = 1000;
 
     public void showGame(Stage stage, Battle battle, Account account) throws IOException {
-        //TODO
-        /*loggedAccount = account;
+        //
+        loggedAccount = account;
         AccountMenu.closeMainStage();
         AccountMenu.stopMusic();
-        *///
+        //
         GraphicalInGameView.stage = stage;
         inGameController = new InGameController(battle);
         Group group = new Group();
@@ -924,5 +924,9 @@ public class GraphicalInGameView {
             newStage.setScene(scene);
             newStage.show();
         });
+    }
+
+    public static void addToBoard(String alert){
+        descLabel.setText(descLabel.getText() + "\n" + alert);
     }
 }

@@ -58,11 +58,11 @@ public class GraphicalInGameView {
     private static int time = 1000;
 
     public void showGame(Stage stage, Battle battle, Account account) throws IOException {
-        //TODO
-        /*loggedAccount = account;
+        //
+        loggedAccount = account;
         AccountMenu.closeMainStage();
         AccountMenu.stopMusic();
-        *///
+        //
         GraphicalInGameView.stage = stage;
         inGameController = new InGameController(battle);
         Group group = new Group();
@@ -886,7 +886,7 @@ public class GraphicalInGameView {
         sideMenu.setOnMouseExited(mouseEvent -> sideMenu.setFitHeight(sideMenu.getFitHeight() / 5));
         sideMenu.setOnMouseClicked(mouseEvent -> {
             Stage newStage = new Stage();
-            newStage.setTitle("IN GAME MENU");
+            newStage.setTitle("MENU");
             newStage.getIcons().add(new Image("src/res/icon.jpg"));
             Parent newParent = null;
             try {
@@ -924,5 +924,9 @@ public class GraphicalInGameView {
             newStage.setScene(scene);
             newStage.show();
         });
+    }
+
+    public static void addToBoard(String alert){
+        descLabel.setText(descLabel.getText() + "\n" + alert);
     }
 }

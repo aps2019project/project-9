@@ -9,6 +9,7 @@ import model.cellaffects.CellAffect;
 import model.enumerations.*;
 import model.items.*;
 import view.GraphicalInGameView;
+import view.InGameMethodsAndSource;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -132,12 +133,14 @@ public class Player {
         }
     }
 
-    public void castUsableItem() { // every turn should be called
+    public boolean castUsableItem() { // every turn should be called
         if (usableItem != null) {
             if (usableItem instanceof OnSpawnUsableItem || usableItem instanceof OnDeathUsableItem)
-                return;
+                return false;
             usableItem.castItem(this);
-        }
+            return true;
+        } else
+            return false;
     }
 
     public Battle getBattle() {

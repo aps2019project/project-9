@@ -104,9 +104,8 @@ public class Deck {
             }
             hero = DefaultCards.getHero(FIRST_LEVEL_HERO);
             hero.setCardID(uniqueID++);
-            //TODO debugging
-            //item = DefaultCards.getItem(FIRST_LEVEL_ITEM);
-            //item.setItemID(uniqueID++);
+            item = DefaultCards.getItem(FIRST_LEVEL_ITEM);
+            item.setItemID(uniqueID++);
         } else if (name.equals("second_level")) {
             for (MinionName minion : SECOND_LEVEL_MINIONS) {
                 Minion minion1 = DefaultCards.getMinion(minion);
