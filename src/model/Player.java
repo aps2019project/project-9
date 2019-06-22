@@ -54,7 +54,7 @@ public class Player {
         this.name = account.getUserName();
         minionsInPlayGround.add(hero);
         graveYard = new GraveYard(this);
-        hand = new Hand(deck,true);
+        hand = new Hand(deck, true);
     }
 
     public Player(int level, Battle battle) { // for computer AI
@@ -79,7 +79,7 @@ public class Player {
         this.battle = battle;
         minionsInPlayGround.add(hero);
         graveYard = new GraveYard(this);
-        hand = new Hand(deck,true);
+        hand = new Hand(deck, true);
     }
 
     public Player(Deck deck, Battle battle) {
@@ -93,6 +93,13 @@ public class Player {
         minionsInPlayGround.add(hero);
         graveYard = new GraveYard(this);
         name = "CustomOpponent";
+        hand = new Hand(deck, true);
+    }
+
+    public Player(Deck deck, Battle battle, String name) {
+        this(deck, battle);
+        this.name = name;
+        hand = new Hand(deck, false);
     }
 
     public void setDeck(Deck deck) {

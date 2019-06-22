@@ -97,7 +97,7 @@ public class InGameMethodsAndSource {// a resource for graphical in game view
             InGameController inGameController = GraphicalInGameView.getInGameController();
             for (InGameRequest request : inGameRequests) {
                 ////////start///////
-                System.out.println("before request : " );
+                System.out.println("before request : ");
                 for (Card card : battle.getCurrenPlayer().getHand().getCards()) {
                     System.out.print(card.getName() + " ");
                 }
@@ -137,10 +137,10 @@ public class InGameMethodsAndSource {// a resource for graphical in game view
                 battle = new SinglePlayerBattle(battleResult.getLevel()
                         , Account.findAccount(battleResult.getFirstPlayer()));
             }
-            return new MultiPlayerBattle(((SinglePlayerBattle) battle));
+            return new MultiPlayerBattle(((SinglePlayerBattle) battle), battleResult);
         } else {
-            return new MultiPlayerBattle(Account.findAccount(battleResult.getFirstPlayer())
-                    , (battleResult.getSecondPlayer()), mode, battleResult.getNumberOfFlags());
+            return null;
+            //TODO for multiPlayer battle not works
         }
     }
 

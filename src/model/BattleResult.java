@@ -25,8 +25,6 @@ public class BattleResult {
     private boolean isSinglePlayer;
     private String firstPlayer;
     private String secondPlayer;
-    private HashMap<Cell, Collectible> collectibles = new HashMap<>();
-    private ArrayList<Cell> flagCells = new ArrayList<>();
 
     public BattleResult(Player winner, int prize, String time, String looser
             , Battle battle) {
@@ -38,33 +36,13 @@ public class BattleResult {
         gameMode = battle.gameMode;
         numberOfFlags = battle.numberOfFlags;
         level = battle.level;
-        secondPlayerDeck = battle.secondPlayer.getDeck();
+        secondPlayerDeck = battle.secondPlayer.getHand().getDeck();
         isSinglePlayer = battle instanceof SinglePlayerBattle;
         this.firstPlayer = battle.getFirstPlayer().getName();
         this.secondPlayer = battle.getSecondPlayer().getName();
-        firstPlayerDeck = battle.getFirstPlayer().getDeck();
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 9; j++) {
-                if (battle.getPlayGround().getCell(i, j).hasCollectableItem()) {
-                    collectibles.put(battle.getPlayGround().getCell(i, j)
-                            , ((Collectible) battle.getPlayGround().getCell(i, j).getCollectableItem()));
-                }
-            }
-        }
-        if (gameMode == GameMode.FLAGS){
-            for (Flag flag : battle.getPlayGround().getFlags()) {
-                flagCells.add(flag.getCurrentCell());
-            }
-        }
+        firstPlayerDeck = battle.getFirstPlayer().getHand().getDeck();
     }
 
-    public ArrayList<Cell> getFlagCells() {
-        return flagCells;
-    }
-
-    public HashMap<Cell, Collectible> getCollectibles() {
-        return collectibles;
-    }
 
     public Deck getFirstPlayerDeck() {
         return firstPlayerDeck;

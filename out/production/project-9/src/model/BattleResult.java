@@ -1,10 +1,13 @@
 package model;
 
 
-
 import model.enumerations.GameMode;
+import model.items.Collectible;
+import model.items.Flag;
 import view.InGameRequest;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class BattleResult {
@@ -17,7 +20,8 @@ public class BattleResult {
     private GameMode gameMode;
     private int numberOfFlags;
     private int level;
-    private Deck deck;
+    private Deck secondPlayerDeck;
+    private Deck firstPlayerDeck;
     private boolean isSinglePlayer;
     private String firstPlayer;
     private String secondPlayer;
@@ -32,10 +36,20 @@ public class BattleResult {
         gameMode = battle.gameMode;
         numberOfFlags = battle.numberOfFlags;
         level = battle.level;
-        deck = battle.secondPlayer.getDeck();
+        secondPlayerDeck = battle.secondPlayer.getHand().getDeck();
         isSinglePlayer = battle instanceof SinglePlayerBattle;
         this.firstPlayer = battle.getFirstPlayer().getName();
         this.secondPlayer = battle.getSecondPlayer().getName();
+        firstPlayerDeck = battle.getFirstPlayer().getHand().getDeck();
+    }
+
+
+    public Deck getFirstPlayerDeck() {
+        return firstPlayerDeck;
+    }
+
+    public Deck getSecondPlayerDeck() {
+        return secondPlayerDeck;
     }
 
     public String getSecondPlayer() {
@@ -99,11 +113,11 @@ public class BattleResult {
     }
 
     public Deck getDeck() {
-        return deck;
+        return secondPlayerDeck;
     }
 
     public void setDeck(Deck deck) {
-        this.deck = deck;
+        this.secondPlayerDeck = deck;
     }
 
     public boolean isSinglePlayer() {
@@ -113,8 +127,6 @@ public class BattleResult {
     public void setSinglePlayer(boolean singlePlayer) {
         isSinglePlayer = singlePlayer;
     }
-
-
 
 
     public String getTime() {

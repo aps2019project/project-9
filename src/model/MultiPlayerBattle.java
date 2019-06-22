@@ -32,22 +32,14 @@ public class MultiPlayerBattle extends Battle {
         //TODO
         playGround = new PlayGround(gameMode, singlePlayerBattle.numberOfFlags
                 , false, false);
-        playGround.addCollectibles(battleResult.getCollectibles());
-        if (gameMode == GameMode.FLAGS) {
-            playGround.addFlags(battleResult.getFlagCells());
-        }
         whoseTurn = 1;
         turnsToWon = 6;
         battlePrize = singlePlayerBattle.battlePrize;
         level = singlePlayerBattle.level;
         firstPlayer = singlePlayerBattle.firstPlayer;
         secondPlayer = singlePlayerBattle.secondPlayer;
-        firstPlayer.setBattle(this);
-        secondPlayer.setBattle(this);
-        firstPlayer.setDeck(battleResult.getFirstPlayerDeck());
-        secondPlayer.setDeck(battleResult.getSecondPlayerDeck());
-        firstPlayer.setHand(new Hand(firstPlayer.getDeck(), false));
-        secondPlayer.setHand(new Hand(secondPlayer.getDeck(), false));
+        firstPlayer = new Player(battleResult.getFirstPlayerDeck().getCopy(), this, battleResult.getFirstPlayer());
+        secondPlayer = new Player(battleResult.getSecondPlayerDeck().getCopy(), this, battleResult.getSecondPlayer());
     }
 
 }
