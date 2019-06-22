@@ -99,10 +99,10 @@ public class CollectionMenu {
         //TODO export import buttons ( layouts Remained )->
         Button exportDeck = new Button("Export Deck");
         Button importDeck = new Button("Import Deck");
-        exportDeck.setOnMouseEntered(mouseEvent -> exportDeck.setLayoutX(exportDeck.getLayoutX() + 50));
-        exportDeck.setOnMouseExited(mouseEvent -> exportDeck.setLayoutX(exportDeck.getLayoutX() - 50));
-        importDeck.setOnMouseEntered(mouseEvent -> importDeck.setLayoutX(importDeck.getLayoutX() + 50));
-        importDeck.setOnMouseExited(mouseEvent -> importDeck.setLayoutX(importDeck.getLayoutX() - 50));
+        exportDeck.setOnMouseEntered(mouseEvent -> exportDeck.setLayoutX(exportDeck.getLayoutX() + 20));
+        exportDeck.setOnMouseExited(mouseEvent -> exportDeck.setLayoutX(exportDeck.getLayoutX() - 20));
+        importDeck.setOnMouseEntered(mouseEvent -> importDeck.setLayoutX(importDeck.getLayoutX() + 20));
+        importDeck.setOnMouseExited(mouseEvent -> importDeck.setLayoutX(importDeck.getLayoutX() - 20));
         exportDeck.setOnMouseClicked(mouseEvent -> {
             ChoiceDialog<String> dio = setDecksList();
             dio.setTitle("Select Deck To Export");

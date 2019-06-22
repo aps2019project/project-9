@@ -58,7 +58,7 @@ public class JsonProcess {
         return result;
     }
 
-    public static void exportDeckFromAccount(String deckName , Account account) throws DeckAddException {
+    public static void exportDeckFromAccount(String deckName, Account account) throws DeckAddException {
         Deck deck = account.findDeckByName(deckName);
         if (deck != null) {
             if (getSavedDecksNames().contains(deckName))
@@ -95,6 +95,33 @@ public class JsonProcess {
         ArrayList<String> result = new ArrayList<>();
         for (File file1 : files) {
             result.add(file1.getName().substring(0, file1.getName().indexOf(".")));
+        }
+        return result;
+    }
+
+    public static void saveCustomCard(Card card) {
+        File file = new File("src/data/customCards/" + card.getName() + ".json");
+        try {
+            FileWriter writer = new FileWriter(file);
+            gson.toJson(card, Card.class, writer);
+            writer.flush();
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static ArrayList<Card> getSavedCustomCards() {
+        File file = new File("src/data/customCards");
+        ArrayList<Card> result = new ArrayList<>();
+        for (File cardFile : file.listFiles()) {
+            try {
+                FileReader reader = new FileReader("src/data/customCards/" + cardFile.getName());
+                result.add(gson.fromJson(reader, Card.class));
+                reader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         return result;
     }

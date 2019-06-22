@@ -1,5 +1,6 @@
 package view;
 
+import data.JsonProcess;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Parent;
@@ -185,6 +186,7 @@ public class CustomCardMenu {
         loggedAccount.getCollection().addCard(card);
         Card copy = card.getCustomCopy();
         Shop.getInstance().addCard(copy);
+        JsonProcess.saveCustomCard(card);
     }
 
     private SpecialPower getSpecialPower(SpecialPowerActivationTime time) {
