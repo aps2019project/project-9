@@ -1,6 +1,5 @@
 package view;
 
-import controller.AccountController;
 import controller.MainMenuController;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -13,11 +12,13 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Account;
+import data.JsonProcess;
 import model.enumerations.MainMenuErrorType;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class MainMenu {
     private static double HEIGHT = 562;
@@ -47,6 +48,7 @@ public class MainMenu {
             setButtons(root, MainMenuController.getInstance(loggedAccount), stage);
             Scene scene = new Scene(root, WIDTH, HEIGHT);
             stage.setScene(scene);
+            stage.getIcons().add(new Image("file:src/res/icon.jpg"));
             stage.show();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -66,7 +68,7 @@ public class MainMenu {
             Font font = Font.loadFont(new FileInputStream(new File("src/res/Font/ALGER.TTF")), 13);
             Button collection = new Button("Collection");
             collection.setFont(font);
-            collection.setLayoutX(485);
+            collection.setLayoutX(480);
             collection.setLayoutY(200);
             collection.setScaleX(3);
             collection.setScaleY(2.5);
@@ -80,7 +82,7 @@ public class MainMenu {
             shop.setScaleX(3);
             shop.setScaleY(2.5);
             setActionsAndStyles(shop);
-            shop.setOnMouseClicked(event -> controller.goShopMenu(controller.getLoggedInAccount()));
+            shop.setOnMouseClicked(event -> controller.goShopMenu(controller.getLoggedInAccount(),stage));
 
             Button battle = new Button("battle");
             battle.setFont(font);
@@ -89,18 +91,22 @@ public class MainMenu {
             battle.setScaleX(3);
             battle.setScaleY(2.5);
             setActionsAndStyles(battle);
-            battle.setOnMouseClicked(event -> controller.goBattleMenu());
+            battle.setOnMouseClicked(event -> controller.goBattleMenu(stage));
 
-            Button logOut = new Button("Log Out");
+            Button logOut = new Button("Save And Log Out");
             logOut.setFont(font);
-            logOut.setLayoutX(485);
+            logOut.setLayoutX(465);
             logOut.setLayoutY(500);
             logOut.setScaleX(3);
             logOut.setScaleY(2.5);
             setActionsAndStyles(logOut);
-            logOut.setOnMouseClicked(event -> stage.close());
+            logOut.setOnMouseClicked(event -> {
+                //saving
+                JsonProcess.saveAccount(controller.getLoggedInAccount());
+                stage.close();
+            });
 
-            Button defaultCard = new Button("Default\n  Card");
+            Button defaultCard = new Button("Custom\n  Card");
             defaultCard.setFont(font);
             defaultCard.setLayoutX(50);
             defaultCard.setLayoutY(450);
@@ -111,14 +117,14 @@ public class MainMenu {
                     defaultCard.setStyle("-fx-background-color: rgba(0,0,0,0);-fx-text-fill: #063e07"));
             defaultCard.setOnMouseExited(mouseEvent ->
                     defaultCard.setStyle("-fx-background-color: rgba(0,0,0,0);-fx-text-fill: #ff1cd7"));
-            defaultCard.setOnMouseClicked(m -> GoToDefaultCardMenu());
+            defaultCard.setOnMouseClicked(m -> GoToCustomCardMenu(controller.getLoggedInAccount()));
 
             ImageView imageView = new ImageView(new Image("src\\res\\MainMenuImages\\1.png"));
             imageView.setScaleY(0.5);
             imageView.setScaleX(0.5);
             imageView.setLayoutX(-30);
             imageView.setLayoutY(320);
-            imageView.setOnMouseClicked(m -> GoToDefaultCardMenu());
+            imageView.setOnMouseClicked(m -> GoToCustomCardMenu(controller.getLoggedInAccount()));
 
             root.getChildren().addAll(imageView, collection, shop, battle, logOut, defaultCard);
         } catch (Exception e) {
@@ -126,8 +132,13 @@ public class MainMenu {
         }
     }
 
-    private void GoToDefaultCardMenu() {
-        //TODO
+    private void GoToCustomCardMenu(Account loggedAccount) {
+        CustomCardMenu customCardMenu = new CustomCardMenu(loggedAccount);
+        try {
+            customCardMenu.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void printError(MainMenuErrorType e) {

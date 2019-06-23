@@ -1,5 +1,6 @@
 package model;
 
+import data.JsonProcess;
 import model.cards.Card;
 import model.cards.Hero;
 import model.cards.Minion;
@@ -27,14 +28,14 @@ public class Shop {
         for (MinionName minionName : MinionName.values()) {
             if (minionName != MinionName.CUSTOM) {
                 Minion minion = DefaultCards.getMinion(minionName);
-                minion.setCardID(uniqueID++);
+                setCardID(minion);
                 allCards.add(minion);
             }
         }
         for (SpellName spellName : SpellName.values()) {
             if (spellName != SpellName.CUSTOM) {
                 Spell spell = DefaultCards.getSpell(spellName);
-                spell.setCardID(uniqueID++);
+                setCardID(spell);
                 allCards.add(spell);
             }
         }
@@ -51,10 +52,12 @@ public class Shop {
             if (value != HeroName.CUSTOM)
                 allCards.add(DefaultCards.getHero(value));
         }
+
+        allCards.addAll(JsonProcess.getSavedCustomCards());
     }
 
     public void addCard(Card card) {
-        card.setCardID(uniqueID++);
+        setCardID(card);
         allCards.add(card);
     }
 
@@ -86,7 +89,7 @@ public class Shop {
     }
 
     public void sell(Card currentCard, Account loggedInAccount) {
-        currentCard.setCardID(uniqueID++);
+        setCardID(currentCard);
         loggedInAccount.getCollection().removeCard(currentCard);
         loggedInAccount.addMoney(currentCard.getCost());
         loggedInAccount.deleteCardFromDecks(currentCard);
@@ -109,5 +112,22 @@ public class Shop {
 
     public String toString() {
         return Collection.showArraylistOfCardsAndItems(allCards, allItems);
+    }
+
+    private void setCardID(Card card){
+        int id = uniqueID + 1;
+        while (searchCardByID(id) != null){
+            id++;
+        }
+        card.setCardID(id);
+        uniqueID = id + 1;
+    }
+
+    private Card searchCardByID(int id) {
+        for (Card card : allCards) {
+            if (card.getCardID() == id)
+                return card;
+        }
+        return null;
     }
 }

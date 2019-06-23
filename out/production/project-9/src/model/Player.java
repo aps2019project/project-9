@@ -9,6 +9,8 @@ import model.cellaffects.CellAffect;
 import model.enumerations.*;
 import model.items.*;
 import view.GraphicalInGameView;
+import view.InGameMethodsAndSource;
+import view.InGameRequest;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -52,7 +54,7 @@ public class Player {
         this.name = account.getUserName();
         minionsInPlayGround.add(hero);
         graveYard = new GraveYard(this);
-        hand = new Hand(deck);
+        hand = new Hand(deck, true);
     }
 
     public Player(int level, Battle battle) { // for computer AI
@@ -77,7 +79,7 @@ public class Player {
         this.battle = battle;
         minionsInPlayGround.add(hero);
         graveYard = new GraveYard(this);
-        hand = new Hand(deck);
+        hand = new Hand(deck, true);
     }
 
     public Player(Deck deck, Battle battle) {
@@ -91,6 +93,21 @@ public class Player {
         minionsInPlayGround.add(hero);
         graveYard = new GraveYard(this);
         name = "CustomOpponent";
+        hand = new Hand(deck, true);
+    }
+
+    public Player(Deck deck, Battle battle, String name) {
+        this(deck, battle);
+        this.name = name;
+        hand = new Hand(deck, false);
+    }
+
+    public void setDeck(Deck deck) {
+        this.deck = deck;
+    }
+
+    public void setHand(Hand hand) {
+        this.hand = hand;
     }
 
     public static void enterNewCell(Cell target, Minion minion, Player player) { //not attack to cell entering new cell
@@ -131,12 +148,14 @@ public class Player {
         }
     }
 
-    public void castUsableItem() { // every turn should be called
+    public boolean castUsableItem() { // every turn should be called
         if (usableItem != null) {
             if (usableItem instanceof OnSpawnUsableItem || usableItem instanceof OnDeathUsableItem)
-                return;
+                return false;
             usableItem.castItem(this);
-        }
+            return true;
+        } else
+            return false;
     }
 
     public Battle getBattle() {
@@ -152,10 +171,14 @@ public class Player {
             reduceMana(card.getMP());
             currentMinion.setCanMove(false);
             currentMinion.setCanAttack(false);
+
             if (currentMinion.getSpecialPower() != null
                     && currentMinion.getSpecialPower().getSpecialPowerActivationTime() == SpecialPowerActivationTime.ON_SPAWN) {
-                currentMinion.getSpecialPower().castSpecialPower(cell);
+
+                currentMinion.castSpecialPower(cell);
             }
+
+
             if (usableItem != null && usableItem instanceof OnSpawnUsableItem) {
                 ((OnSpawnUsableItem) usableItem).doOnSpawnAction(this, currentMinion);
             }
@@ -220,13 +243,17 @@ public class Player {
 
     }
 
+    public void setBattle(Battle battle) {
+        this.battle = battle;
+    }
+
     public String getName() {
         return name;
     }
 
-    public void endTurn() {
+    public void endTurn(ArrayList<InGameRequest> inGameRequests) {
         hand.addCardFromDeck();
-        battle.nextTurn();
+        battle.nextTurn(inGameRequests);
     }
 
     public void reduceMana(int number) {
@@ -298,33 +325,40 @@ public class Player {
 
     private String action;
 
-    public void doAiAction() {
+    public void doAiAction(ArrayList<InGameRequest> inGameRequests) {
         action = "";
-        insertAiAction();
-        moveAiAction();
-        attackAiAction();
+        insertAiAction(inGameRequests);
+        moveAiAction(inGameRequests);
+        attackAiAction(inGameRequests);
         GraphicalInGameView.alertAiAction(action);
         //GraphicalInGameView.doAiAnimations(action);
-        endTurn();
+
+        inGameRequests.add(new InGameRequest("end turn"));
+
+        endTurn(inGameRequests);
     }
 
-    private void moveAiAction() {
+    private void moveAiAction(ArrayList<InGameRequest> inGameRequests) {
         for (Minion minion : getMinionsInPlayGround()) {
             try {
                 if (minion.isCanMove()) {
                     Cell target = targetAiMove(minion);
-                    //TODO
-                    Cell first = minion.getCell();
-
-                    move(minion, target);
-
-                    //GraphicalInGameView.moveTo(first,target);
-                    //GraphicalInGameView.alertAiAction(AiAction.MOVE,minion,target);
-                    action += "\nMinion : " + minion.getName() + "\nmoved to : " + target.getX() + " " + target.getY()
-                    + "\nfrom : " + first.getX() + " " + first.getY();
+                    if (target != null) {
+                        Cell first = minion.getCell();
+                        //TODO
+                        inGameRequests.add(new InGameRequest("select " + minion.getBattleID()));
+                        inGameRequests.add(new InGameRequest("move to " +
+                                target.getX() + " " + target.getY()));
+                        //
+                        move(minion, target);
+                        //GraphicalInGameView.moveTo(first,target);
+                        //GraphicalInGameView.alertAiAction(AiAction.MOVE,minion,target);
+                        action += "\nMinion : " + minion.getName() + "\nmoved to : " + target.getX() + " " + target.getY()
+                                + "\nfrom : " + first.getX() + " " + first.getY();
+                    }
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                //TODO check for debugging e.printStackTrace();
             }
         }
     }
@@ -335,7 +369,7 @@ public class Player {
         if (possibleCellsForMove.size() > 0) {
             PlayGround playGround = battle.getPlayGround();
             if (playGround.getManhatanDistance(target, minion.getCell()) <= 2)
-                throw new Exception("no need to move");
+                return null;
             int min = playGround.getManhatanDistance(target, possibleCellsForMove.get(0));
             Cell result = possibleCellsForMove.get(0);
             for (Cell cell : possibleCellsForMove) {
@@ -350,13 +384,17 @@ public class Player {
     }
 
 
-    private void insertAiAction() {
+    private void insertAiAction(ArrayList<InGameRequest> inGameRequests) {
         ArrayList<Card> cards = hand.getCards();
         ArrayList<Card> toInsert = new ArrayList<>();
         for (Card card : cards) {
             ArrayList<Cell> possibleCells = GraphicalInGameView.getPossibleCells(card);
             if (possibleCells.size() > 0) {
                 if (mana >= card.getMP()) {
+                    //TODO
+                    inGameRequests.add(new InGameRequest("insert " + card.getName()
+                            + " in " + possibleCells.get(0).getX() + " " + possibleCells.get(0).getY()));
+                    //
                     InGameController.finalThingsInInsertingCard(card, this, possibleCells.get(0));
                     //GraphicalInGameView.alertAiAction(AiAction.INSERT, card, possibleCells.get(0));
                     Cell cell = possibleCells.get(0);
@@ -367,7 +405,7 @@ public class Player {
         }
     }
 
-    private void attackAiAction() {
+    private void attackAiAction(ArrayList<InGameRequest> inGameRequests) {
         for (Minion minion : getMinionsInPlayGround()) {
             if (minion.isCanAttack()) {
                 ArrayList<Cell> possibleCellsForAttack = GraphicalInGameView.getPossibleCellsForAttack(minion);
@@ -378,6 +416,11 @@ public class Player {
                     } else {
                         target = possibleCellsForAttack.get(0);
                     }
+                    //TODO
+                    inGameRequests.add(new InGameRequest("select " + minion.getBattleID()));
+                    inGameRequests.add(new InGameRequest("attack "
+                            + target.getMinionOnIt().getBattleID()));
+                    //
                     minion.attack(target);
                     //GraphicalInGameView.alertAiAction(AiAction.ATTACK, minion, target);
                     action += "\n" + minion.getName() + " : attacked to the Cell:  "

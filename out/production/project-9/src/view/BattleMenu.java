@@ -90,27 +90,27 @@ public class BattleMenu {
         Button easy = (Button) parent.lookup("#easy");
         easy.setOnMouseClicked(mouseEvent -> {
             if (logInAccount.getMainDeck().isValid())
-                controller.startStoryModeGame(1);
+                controller.startStoryModeGame(1, stage);
             else {
-                printError(BattleMenuErrorType.YOUR_MAIN_DECK_NOT_VALID,stage);
+                printError(BattleMenuErrorType.YOUR_MAIN_DECK_NOT_VALID, stage);
             }
         });
 
         Button inter = (Button) parent.lookup("#intermediate");
         inter.setOnMouseClicked(mouseEvent -> {
             if (logInAccount.getMainDeck().isValid())
-                controller.startStoryModeGame(2);
+                controller.startStoryModeGame(2, stage);
             else {
-                printError(BattleMenuErrorType.YOUR_MAIN_DECK_NOT_VALID,stage);
+                printError(BattleMenuErrorType.YOUR_MAIN_DECK_NOT_VALID, stage);
             }
         });
 
-        Button hard = (Button) parent.lookup("#intermediate");
+        Button hard = (Button) parent.lookup("#hard");
         hard.setOnMouseClicked(mouseEvent -> {
             if (logInAccount.getMainDeck().isValid())
-                controller.startStoryModeGame(3);
+                controller.startStoryModeGame(3, stage);
             else {
-                printError(BattleMenuErrorType.YOUR_MAIN_DECK_NOT_VALID,stage);
+                printError(BattleMenuErrorType.YOUR_MAIN_DECK_NOT_VALID, stage);
             }
         });
 
@@ -140,24 +140,24 @@ public class BattleMenu {
             d.setHeaderText("Please Select the Game Type");
             d.setContentText("Types:");
             Optional<String> r = d.showAndWait();
-            r.ifPresent(l -> handleGameTypes(l,letter,stage));
+            r.ifPresent(l -> handleGameTypes(l, letter, stage));
         });
     }
 
-    private void handleGameTypes(String string, String deckName, Stage stage){
+    private void handleGameTypes(String string, String deckName, Stage stage) {
         switch (string) {
             case "Hero Killed":
                 if (logInAccount.findDeckByName(deckName).isValid())
-                    controller.startCustomGame(deckName, 1, 0);
+                    controller.startCustomGame(deckName, 1, 0, stage);
                 else {
-                    printError(BattleMenuErrorType.DECK_NOT_VALID,stage);
+                    printError(BattleMenuErrorType.DECK_NOT_VALID, stage);
                 }
                 break;
             case "One Flag":
                 if (logInAccount.findDeckByName(deckName).isValid())
-                    controller.startCustomGame(deckName, 2, 1);
+                    controller.startCustomGame(deckName, 2, 1, stage);
                 else {
-                    printError(BattleMenuErrorType.DECK_NOT_VALID,stage);
+                    printError(BattleMenuErrorType.DECK_NOT_VALID, stage);
                 }
                 break;
             case "multi Flags":
@@ -173,9 +173,9 @@ public class BattleMenu {
 
                 result1.ifPresent(p -> {
                     if (logInAccount.findDeckByName(deckName).isValid())
-                        controller.startCustomGame(deckName, 3, p);
+                        controller.startCustomGame(deckName, 3, p, stage);
                     else {
-                        printError(BattleMenuErrorType.DECK_NOT_VALID,stage);
+                        printError(BattleMenuErrorType.DECK_NOT_VALID, stage);
                     }
                 });
                 break;
@@ -200,7 +200,7 @@ public class BattleMenu {
     }
 
     private void printError(BattleMenuErrorType error, Stage stage) {
-        switch (error){
+        switch (error) {
             case YOUR_MAIN_DECK_NOT_VALID:
                 new Alert(Alert.AlertType.WARNING, "Your Main Deck is not valid");
                 storyMenuShow(stage);

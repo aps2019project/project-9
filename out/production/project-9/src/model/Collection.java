@@ -1,5 +1,6 @@
 package model;
 
+import com.google.gson.annotations.Expose;
 import model.cards.Card;
 import model.cards.Hero;
 import model.cards.Minion;
@@ -12,17 +13,11 @@ import model.items.Item;
 import java.util.ArrayList;
 
 public class Collection {
-    public ArrayList<Card> getCards() {
-        return cards;
-    }
-
-    public ArrayList<Item> getItems() {
-        return items;
-    }
-
+    @Expose
     private ArrayList<Card> cards;
+    @Expose
     private ArrayList<Item> items;
-    private Account ownerAccount;
+
     static int uniqueID = 1;
 
     public Collection() {
@@ -31,6 +26,13 @@ public class Collection {
         initializeCollections();
     }
 
+    public ArrayList<Card> getCards() {
+        return cards;
+    }
+
+    public ArrayList<Item> getItems() {
+        return items;
+    }
 
     public static String showArraylistOfCardsAndItems(ArrayList<Card> cards, ArrayList<Item> items) {
         // used in shop and collection toString()
@@ -73,15 +75,9 @@ public class Collection {
         return stringBuilder.toString();
     }
 
-    public Item getItem(String itemID) {
-        int mainItemId;
-        try {
-            mainItemId = Integer.parseInt(itemID);
-        } catch (NumberFormatException e) {
-            return null;
-        }
+    public Item getItem(int itemID) {
         for (Item key : items) {
-            if (key != null && key.getItemID() == (mainItemId)) {
+            if (key != null && key.getItemID() == (itemID)) {
                 return key;
             }
         }
@@ -99,29 +95,17 @@ public class Collection {
         return result;
     }
 
-    public Card searchCardByID(String cardID) {
-        int mainCardId;
-        try {
-            mainCardId = Integer.parseInt(cardID);
-        } catch (NumberFormatException e) {
-            return null;
-        }
+    public Card searchCardByID(int cardID) {
         for (Card card : cards) {
-            if (card.getCardID() == mainCardId)
+            if (card.getCardID() == cardID)
                 return card;
         }
         return null;
     }
 
-    public Item searchItemByID(String itemID) {
-        int mainItemId;
-        try {
-            mainItemId = Integer.parseInt(itemID);
-        } catch (NumberFormatException e) {
-            return null;
-        }
+    public Item searchItemByID(int itemID) {
         for (Item item : items) {
-            if (item.getItemID() == mainItemId)
+            if (item.getItemID() == itemID)
                 return item;
         }
         return null;
@@ -140,18 +124,33 @@ public class Collection {
     }
 
     public void addCard(Card card) {
-        card.setCardID(uniqueID++);
+        int id = uniqueID;
+        while (true) {
+            if (searchCardByID(id) != null)
+                id++;
+            else
+                break;
+        }
+        uniqueID = id + 1;
+        card.setCardID(id);
         cards.add(card);
     }
 
     public void addItem(Item item) {
-        item.setItemID(uniqueID++);
+        int id = uniqueID;
+        while (true) {
+            if (searchItemByID(id) != null)
+                id++;
+            else
+                break;
+        }
+        uniqueID = id + 1;
+        item.setItemID(id);
         items.add(item);
     }
 
 
     public void removeCard(Card card) {
-
         cards.remove(card);
     }
 
@@ -163,9 +162,6 @@ public class Collection {
         return showArraylistOfCardsAndItems(cards, items);
     }
 
-    public void setOwnerAccount(Account ownerAccount) {
-        this.ownerAccount = ownerAccount;
-    }
 
     private void initializeCollections() {
         // initializing by level one in index doc

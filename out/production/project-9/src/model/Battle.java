@@ -9,9 +9,14 @@ import model.cards.Spell;
 import model.cellaffects.CellAffect;
 import model.enumerations.GameMode;
 import model.enumerations.SpecialPowerActivationTime;
+import model.items.Item;
 import view.GraphicalInGameView;
+import view.InGameMethodsAndSource;
+import view.InGameRequest;
 import view.InGameView;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 
@@ -29,6 +34,12 @@ public class Battle {
     protected int battlePrize; // should be initialized at Constructor()
     protected int level; // for single player games ( in battle result )
     protected boolean checked = false;
+    protected ArrayList<InGameRequest> inGameRequests;
+
+
+    public void setInGameRequests(ArrayList<InGameRequest> inGameRequests) {
+        this.inGameRequests = inGameRequests;
+    }
 
     public void startBattle() {
         // ..........
@@ -41,8 +52,7 @@ public class Battle {
         secondPlayer.assignMana(2);
         firstPlayer.setMaxMana(2);
         secondPlayer.setMaxMana(2);
-        firstPlayer.castUsableItem();
-        secondPlayer.castUsableItem();
+        castUsableItems();
     }
 
     private void initializeHeroAttributes() {
@@ -50,10 +60,6 @@ public class Battle {
         secondPlayer.getHero().setCell(playGround.getCell(2, 8));
         playGround.getCell(2, 0).setMinionOnIt(firstPlayer.getHero());
         playGround.getCell(2, 8).setMinionOnIt(secondPlayer.getHero());
-        /*firstPlayer.getHero().setCell(playGround.getCell(2, 4));
-        secondPlayer.getHero().setCell(playGround.getCell(2, 5));
-        playGround.getCell(2, 4).setMinionOnIt(firstPlayer.getHero());
-        playGround.getCell(2, 5).setMinionOnIt(secondPlayer.getHero());*/
         firstPlayer.getHero().setBattleID(firstPlayer.getName() + "_" + firstPlayer.getHero().getName()
                 + "_" + "1");
         secondPlayer.getHero().setBattleID(secondPlayer.getName() + "_" + secondPlayer.getHero().getName()
@@ -66,9 +72,15 @@ public class Battle {
                 ((Spell) card).setOwningPlayer(player);
             } else if (card instanceof Minion) {
                 ((Minion) card).setPlayer(player);
+                if (((Minion) card).getSpecialPower() != null && ((Minion) card).getSpecialPower().getSpell() != null) {
+                    ((Minion) card).getSpecialPower().getSpell().setOwningPlayer(player);
+                }
             }
         }
         player.getDeck().getHero().setPlayer(player);
+        if (player.getDeck().getHero().getSpell() != null) {
+            player.getHero().getSpell().setOwningPlayer(player);
+        }
     }
 
     private void checkBuffs(Player player) {
@@ -107,7 +119,8 @@ public class Battle {
     }
 
 
-    public void nextTurn() {
+    public void nextTurn(ArrayList<InGameRequest> inGameRequests) {
+        // (arrayList) parameter is only for singlePlayer games
         if (gameMode == GameMode.ONE_FLAG) {
             if (playGround.getFlag().getOwningMinion() != null)
                 playGround.getFlag().nextTurn();
@@ -128,8 +141,20 @@ public class Battle {
         whoseTurn = (whoseTurn == 1) ? (2) : (1);
         turn++;
         if (this instanceof SinglePlayerBattle && whoseTurn == 2) {
-            secondPlayer.doAiAction();
+            secondPlayer.doAiAction(inGameRequests);
         }
+    }
+
+    private void castUsableItems() {
+        Item firstItem = firstPlayer.getUsableItem();
+        Item secondItem = secondPlayer.getUsableItem();
+        String title = "Cast Usable Item";
+        String alert = "";
+        if (firstPlayer.castUsableItem())
+            alert += "\nUsable Item " + firstItem.getName() + " from player " + firstPlayer.getName() + " casted.";
+        if (secondPlayer.castUsableItem())
+            alert +="\nUsable Item " + secondItem.getName() + " from player " + secondPlayer.getName() + " casted.";
+        InGameMethodsAndSource.showAlertAtTheBeginning(title,alert);
     }
 
     private void handleCanMoveCanAttack(Player player) {
@@ -179,7 +204,7 @@ public class Battle {
             try {
                 if (minion.getSpecialPower() != null &&
                         minion.getSpecialPower().getSpecialPowerActivationTime() == SpecialPowerActivationTime.PASSIVE) {
-                    minion.getSpecialPower().castSpecialPower(minion.getCell());
+                    minion.castSpecialPower(minion.getCell());
                 }
             } catch (ConcurrentModificationException e) {
 
@@ -205,12 +230,16 @@ public class Battle {
     }
 
     public void endBattle(Player winner) {
+        Player looser = (winner.equals(firstPlayer)) ? secondPlayer : firstPlayer;
+        LocalDateTime l = LocalDateTime.now();
+        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        String str = l.format(myFormatObj);
         checked = true;
-        BattleResult battleResult = new BattleResult(winner, battlePrize, this);
+        BattleResult battleResult = new BattleResult(winner, battlePrize, str, looser.getName(),this);
         if (Account.findAccount(firstPlayer.getName()) != null) {
             Account.findAccount(firstPlayer.getName()).addBattleResult(battleResult);
         }
-        battleResult = new BattleResult(winner, battlePrize, this);
+        battleResult = new BattleResult(winner, battlePrize, str, looser.getName(),this);
         if (Account.findAccount(secondPlayer.getName()) != null) {
             Account.findAccount(secondPlayer.getName()).addBattleResult(battleResult);
         }

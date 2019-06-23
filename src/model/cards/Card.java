@@ -111,7 +111,9 @@ public class Card {
                     ((Hero) this).attackRange, MP, ((Hero) this).getCoolDown(), cardID, name, desc, false);
         } else if (this instanceof Minion) {
             Minion current = ((Minion) this);
-            SpecialPower specialPower = current.specialPower.getCustomCopy();
+            SpecialPower specialPower = null;
+            if (current.specialPower != null)
+                specialPower = current.specialPower.getCustomCopy();
             return new Minion(name, cost, MP, current.HP, current.AP, current.attackType, current.attackRange,
                     specialPower, CardType.MINION, cardID, desc, MinionName.CUSTOM, false);
         }

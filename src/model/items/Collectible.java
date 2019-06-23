@@ -8,7 +8,7 @@ import model.enumerations.ItemTarget;
 import model.enumerations.MinionAttackType;
 
 public abstract class Collectible extends Item {
-    protected Player owningPlayer; // player that has it
+    protected transient Player owningPlayer; // player that has it
 
     public Collectible(int cost, String name, ItemName itemType,
                        String desc) {

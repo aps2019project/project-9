@@ -30,20 +30,20 @@ public class MainMenuController {
 
     public void goCollectionMenu(Account loggedInAccount) {
         CollectionController collectionController = new CollectionController(loggedInAccount);
-        collectionController.main(new Stage());
+        collectionController.main();
     }
 
-    public void goBattleMenu() {
+    public void goBattleMenu(Stage stage) {
         if (loggedInAccount.getMainDeck() == null || !loggedInAccount.getMainDeck().isValid()) {
             mainMenu.printError(MainMenuErrorType.SELECTED_DECK_INVALID);
         } else {
             BattleMenuController battleMenuController = new BattleMenuController(loggedInAccount);
-            battleMenuController.main(new Stage());
+            battleMenuController.main(stage);
         }
     }
 
-    public void goShopMenu(Account loggedInAccount) {
+    public void goShopMenu(Account loggedInAccount,Stage stage) {
         ShopController shopController = new ShopController(loggedInAccount);
-        shopController.start();
+        shopController.start(stage);
     }
 }

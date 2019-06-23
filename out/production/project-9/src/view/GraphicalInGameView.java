@@ -1,6 +1,8 @@
 package view;
 
+import controller.AccountController;
 import controller.InGameController;
+import data.JsonProcess;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -31,7 +33,6 @@ import model.cellaffects.HollyCellAffect;
 import model.cellaffects.PoisonCellAffect;
 import model.enumerations.InGameErrorType;
 import model.items.Collectible;
-import model.items.Item;
 import model.specialPower.ComboSpecialPower;
 
 import java.io.File;
@@ -47,14 +48,23 @@ public class GraphicalInGameView {
     private static TextArea descLabel;
     private static Parent parent;
     private static HashMap<String, String> pathes = new HashMap<>();
-    private static MediaPlayer insert;
-    private static MediaPlayer attack;
-    private static MediaPlayer move;
     private static Group group;
     private static boolean isCombo = false;
     private static ArrayList<Minion> comboCards = new ArrayList<>();
+    private static Stage stage;
+    private static Account loggedAccount;
+    private static MediaPlayer backGroundMusic;
+    private static int time = 1000;
+    private static boolean isReplay;
 
-    public void showGame(Stage stage, Battle battle) throws IOException {
+    public void showGame(Stage stage, Battle battle, Account account) throws IOException {
+        isReplay = false;
+        //
+        loggedAccount = account;
+        AccountMenu.closeMainStage();
+        AccountMenu.stopMusic();
+        //
+        GraphicalInGameView.stage = stage;
         inGameController = new InGameController(battle);
         Group group = new Group();
         GraphicalInGameView.group = group;
@@ -67,6 +77,8 @@ public class GraphicalInGameView {
         setCursor(scene);
         stage.getIcons().add(new Image("src\\res\\icon.jpg"));
         setBtns();
+        setSideMenu();
+        //
 
 
         //
@@ -74,8 +86,6 @@ public class GraphicalInGameView {
         setManas(battle.getSecondPlayer());
         updateHand();
         updatePlayGround(group);
-
-
         MediaView mediaView = getBackGroundMusic();
         group.getChildren().add(mediaView);
         stage.setTitle("Duelyst");
@@ -83,26 +93,83 @@ public class GraphicalInGameView {
         stage.show();
     }
 
-    public static void moveTo(Cell first, Cell second) {
-        Pane firstCell = getCellPane(first.getX(), first.getY());
-        ImageView imageView = new ImageView(new Image(pathes.get(second.getMinionOnIt().getName())));
-        removeImage(pathes.get(second.getMinionOnIt().getName()), firstCell);
-        removeImage(pathes.get(second.getMinionOnIt().getName()), getCellPane(second.getX(), second.getY()));
-        TranslateTransition transition = new TranslateTransition(Duration.millis(2000), imageView);
-        int x = first.getX();
-        int y = first.getY();
-        int u = second.getX() * 9 + second.getY();
-        int u1 = x * 9 + y;
+    public static void setIsReplay(boolean isReplay) {
+        GraphicalInGameView.isReplay = isReplay;
+    }
+
+    public void updateEveryThing() {//for replay
+        updatePlayGround(group);
+        //
+        if (aiMove != null && aiMove.length() > 0)
+            doAiAnimations(aiMove);
+        //
+        updateHand();
+        setManas(inGameController.getBattle().getFirstPlayer());
+        setManas(inGameController.getBattle().getSecondPlayer());
+        updateSpecialPower();
+    }
+
+    public static void attackTo(Minion minion, Cell target) {//animation view
+        ImageView imageView = new ImageView(new Image("file:src/res/inGameResource/attackGif.gif"));
         group.getChildren().add(imageView);
-        transition.setFromX(GraphicalViewTest.positions.get(u1)[0]);
-        transition.setFromY(GraphicalViewTest.positions.get(u1)[1]);
-        transition.setToX(GraphicalViewTest.positions.get(u)[0]);
-        transition.setToY(GraphicalViewTest.positions.get(u)[1]);
+        TranslateTransition transition = new TranslateTransition(Duration.millis(time), imageView);
+        Cell first = minion.getCell();
+        int fu = first.getX() * 9 + first.getY();
+        int su = target.getX() * 9 + target.getY();
+        transition.setToX(InGameMethodsAndSource.positions.get(su)[0]);
+        transition.setToY(InGameMethodsAndSource.positions.get(su)[1]);
+        transition.setFromX(InGameMethodsAndSource.positions.get(fu)[0]);
+        transition.setFromY(InGameMethodsAndSource.positions.get(fu)[1]);
         transition.play();
-        transition.setOnFinished(actionEvent -> {
-            group.getChildren().remove(imageView);
-            updatePlayGround(group);
-        });
+        transition.setOnFinished(actionEvent -> group.getChildren().remove(imageView));
+    }
+
+    public static InGameController getInGameController() {
+        return inGameController;
+    }
+
+    public static void spellCast(Cell target) {//animation view
+        ImageView imageView = new ImageView(new Image("file:src/res/inGameResource/spellAction.gif"));
+        group.getChildren().add(imageView);
+        TranslateTransition transition = new TranslateTransition(Duration.millis(time), imageView);
+        int u = target.getX() * 9 + target.getY();
+        int[] laout = InGameMethodsAndSource.positions.get(u);
+        int[] i = new int[]{laout[0], laout[1]};
+        i[0] -= 50;
+        i[1] -= 50;
+        transition.setFromY(i[1] - 100);
+        transition.setFromX(i[0]);
+        transition.setToX(i[0]);
+        transition.setToY(i[1]);
+        transition.play();
+        transition.setOnFinished(actionEvent -> group.getChildren().remove(imageView));
+    }
+
+
+    public static void moveTo(Cell first, Cell second) {//animation view
+        Pane firstCell = getCellPane(first.getX(), first.getY());
+        //ImageView imageView = new ImageView(new Image(pathes.get(second.getMinionOnIt().getName())));
+        //TODO sometimes null pointer
+        if (second.hasCardOnIt()) {
+            ImageView imageView = getImageView(second.getMinionOnIt());
+            removeImage(pathes.get(second.getMinionOnIt().getName()), firstCell);
+            removeImage(pathes.get(second.getMinionOnIt().getName()), getCellPane(second.getX(), second.getY()));
+            TranslateTransition transition = new TranslateTransition(Duration.millis(time), imageView);
+            int x = first.getX();
+            int y = first.getY();
+            int u = second.getX() * 9 + second.getY();
+            int u1 = x * 9 + y;
+            group.getChildren().add(imageView);
+            transition.setFromX(InGameMethodsAndSource.positions.get(u1)[0]);
+            transition.setFromY(InGameMethodsAndSource.positions.get(u1)[1]);
+            transition.setToX(InGameMethodsAndSource.positions.get(u)[0]);
+            transition.setToY(InGameMethodsAndSource.positions.get(u)[1]);
+            transition.play();
+            transition.setOnFinished(actionEvent -> {
+                group.getChildren().remove(imageView);
+                updatePlayGround(group);
+            });
+        }
     }
 
     public static void doAiAnimations(String alert) {
@@ -118,6 +185,8 @@ public class GraphicalInGameView {
                         inGameController.getBattle().getPlayGround().getCell(fx, fy));
             }
         }
+        //TODO
+        aiMove = "";
     }
 
     private static void removeImage(String path, Pane pane) {
@@ -154,7 +223,7 @@ public class GraphicalInGameView {
         });
     }
 
-    public static void finished(BattleResult battleResult) {//TODO
+    public static void finished(BattleResult battleResult) {
         String winner = battleResult.getWinner();
         int prize = battleResult.getPrize();
         Text winnerText = new Text(winner + " wins \nand gets " + prize + " prize");
@@ -170,8 +239,20 @@ public class GraphicalInGameView {
         group.getChildren().add(imageView);
         group.getChildren().add(winnerText);
         Stage stage = new Stage();
+        stage.getIcons().add(new Image("src/res/icon.jpg"));
         stage.setScene(scene);
         stage.show();
+        stage.setOnCloseRequest(windowEvent -> {
+            if (!isReplay) {
+                //save changes
+                if (loggedAccount != null)
+                    JsonProcess.saveAccount(loggedAccount);
+            }
+            AccountMenu.getInstance().accountMenuShow(new Stage(), new AccountController());
+            stage.close();
+            GraphicalInGameView.stage.close();
+            backGroundMusic.stop();
+        });
     }
 
     public static void alertAiAction(String action) {
@@ -249,22 +330,33 @@ public class GraphicalInGameView {
         }
     }
 
-    private static void setMediaViews(Group group) {
-        Media mediaInsert = new Media(new File("src/res/inGameResource/insert.m4a").toURI().toString());
-        MediaPlayer mediaPlayerInsert = new MediaPlayer(mediaInsert);
-        MediaView mediaViewInsert = new MediaView(mediaPlayerInsert);
-        Media mediaAttack = new Media(new File("src/res/inGameResource/attack.m4a").toURI().toString());
-        MediaPlayer mediaPlayerAttack = new MediaPlayer(mediaAttack);
-        MediaView mediaViewAttack = new MediaView(mediaPlayerAttack);
-        Media mediaInsertMove = new Media(new File("src/res/inGameResource/move.m4a").toURI().toString());
-        MediaPlayer mediaPlayerInsertMove = new MediaPlayer(mediaInsertMove);
-        MediaView mediaViewInsertMove = new MediaView(mediaPlayerInsertMove);
-        insert = mediaPlayerInsert;
-        attack = mediaPlayerAttack;
-        move = mediaPlayerInsertMove;
-        group.getChildren().add(mediaViewAttack);
-        group.getChildren().add(mediaViewInsert);
-        group.getChildren().add(mediaViewInsertMove);
+    private static void setMediaViews(MusicAct act) {
+        switch (act) {
+            case ATTACK:
+                Media mediaAttack = new Media(new File("src/res/inGameResource/attack.m4a").toURI().toString());
+                MediaPlayer mediaPlayerAttack = new MediaPlayer(mediaAttack);
+                MediaView mediaViewAttack = new MediaView(mediaPlayerAttack);
+                group.getChildren().add(mediaViewAttack);
+                mediaPlayerAttack.play();
+                mediaPlayerAttack.setOnEndOfMedia(() -> group.getChildren().remove(mediaViewAttack));
+                break;
+            case INSERT:
+                Media mediaInsert = new Media(new File("src/res/inGameResource/insert.m4a").toURI().toString());
+                MediaPlayer mediaPlayerInsert = new MediaPlayer(mediaInsert);
+                MediaView mediaViewInsert = new MediaView(mediaPlayerInsert);
+                group.getChildren().add(mediaViewInsert);
+                mediaPlayerInsert.play();
+                mediaPlayerInsert.setOnEndOfMedia(() -> group.getChildren().remove(mediaViewInsert));
+                break;
+            case MOVE:
+                Media mediaInsertMove = new Media(new File("src/res/inGameResource/move.m4a").toURI().toString());
+                MediaPlayer mediaPlayerInsertMove = new MediaPlayer(mediaInsertMove);
+                MediaView mediaViewInsertMove = new MediaView(mediaPlayerInsertMove);
+                group.getChildren().add(mediaViewInsertMove);
+                mediaPlayerInsertMove.play();
+                mediaPlayerInsertMove.setOnEndOfMedia(() -> group.getChildren().remove(mediaViewInsertMove));
+                break;
+        }
     }
 
     private static void setCellAffect(Pane pane) {
@@ -284,6 +376,7 @@ public class GraphicalInGameView {
     private static void setFlag(Pane pane) {
         pane.getChildren().add(new ImageView(new Image("file:src/res/inGameResource/flag.gif")));
     }
+
 
     private static void updatePlayGround(Group group) {
         for (int i = 0; i < 5; i++) {
@@ -309,11 +402,14 @@ public class GraphicalInGameView {
                     if (db.hasImage()) {
                         int x = (pane.getId().charAt(pane.getId().length() - 2)) - 48;
                         int y = pane.getId().charAt(pane.getId().length() - 1) - 48;
+
                         InGameRequest request = new InGameRequest(
                                 "insert " + db.getString() + " in " + x + " " + y);
+
                         inGameController.main(request);
-                        setMediaViews(group);
-                        insert.play();
+                        //TODO
+                        System.out.println(request.getCommand());
+                        setMediaViews(MusicAct.INSERT);
                         updateHand();
                         setManas(inGameController.getBattle().getCurrenPlayer());
                         updatePlayGround(group);
@@ -329,11 +425,10 @@ public class GraphicalInGameView {
                         InGameRequest request = new
                                 InGameRequest("move to " + cell.getX() + " " + cell.getY());
                         inGameController.main(request);
-                        //TODO
+
                         updatePlayGround(group);
                         if (inGameController.getBattle().getCurrenPlayer().getSelectedCard() == null) {
-                            setMediaViews(group);
-                            move.play();
+                            setMediaViews(MusicAct.MOVE);
                             moveTo(cellFirst, cell);
                         }
                     }
@@ -422,8 +517,7 @@ public class GraphicalInGameView {
                         }
                     }
                 } else if (isMarked(pane, true)) {
-                    setMediaViews(group);
-                    attack.play();
+                    setMediaViews(MusicAct.ATTACK);
                     InGameRequest request = new InGameRequest("attack " + minion.getBattleID());
                     inGameController.main(request);
                     updatePlayGround(group);
@@ -445,8 +539,7 @@ public class GraphicalInGameView {
         isCombo = false;
         deleteMarkCells(false);
         comboCards = new ArrayList<>();
-        setMediaViews(group);
-        attack.play();
+        setMediaViews(MusicAct.ATTACK);
     }
 
     private static void markPossibleComboCells(Player player) {
@@ -560,9 +653,6 @@ public class GraphicalInGameView {
         return ((Pane) parent.lookup("#cell" + x + y));
     }
 
-    private static void showCollectiblesInCells(ArrayList<Collectible> items) {
-
-    }
 
     public static ArrayList<Cell> getPossibleCells(Card card) {
         if (card instanceof Minion) {
@@ -695,10 +785,6 @@ public class GraphicalInGameView {
         return imageView;
     }
 
-    private static ImageView getImageView(Item item) {
-        return null;
-    }
-
     private static void setCellsAction() {
         //hand action - >
         for (int i = 0; i < 5; i++) {
@@ -757,7 +843,32 @@ public class GraphicalInGameView {
         pane.setOnMouseExited(mouseEvent -> {
             imageView.setImage(new Image("file:src/res/inGameResource/button_close.png"));
         });
-
+        pane.setOnMouseClicked(mouseEvent -> {
+            Stage newStage = new Stage();
+            newStage.getIcons().add(new Image("src/res/icon.jpg"));
+            Group group = new Group();
+            Scene scene = new Scene(group, 200, 150);
+            newStage.setTitle("Exit");
+            newStage.setScene(scene);
+            Button button = new Button("Exit Without Save");
+            Button button1 = new Button("Resume");
+            button.setLayoutX(10);
+            button1.setLayoutX(10);
+            button.setLayoutY(20);
+            button1.setLayoutY(70);
+            group.getChildren().add(button);
+            group.getChildren().add(button1);
+            newStage.show();
+            button.setOnMouseClicked(mouseEvent1 -> {
+                AccountMenu.getInstance().accountMenuShow(new Stage(), new AccountController());
+                stage.close();
+                newStage.close();
+                backGroundMusic.stop();
+            });
+            button1.setOnMouseClicked(mouseEvent1 -> {
+                newStage.close();
+            });
+        });
     }
 
     private static void setCursor(Scene scene) {
@@ -765,6 +876,7 @@ public class GraphicalInGameView {
     }
 
     static String aiMove;
+
     private static void setNextTurnButton() {
         Image image1 = new Image("src/res/inGameResource/nextTurn.png");
         Image image2 = new Image("file:src\\res\\inGameResource\\nextTurn2.png");
@@ -802,8 +914,59 @@ public class GraphicalInGameView {
     private MediaView getBackGroundMusic() {
         Media media = new Media(new File("src/res/inGameResource/music_playmode.m4a").toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
+        backGroundMusic = mediaPlayer;
         mediaPlayer.setAutoPlay(true);
         mediaPlayer.setOnEndOfMedia(() -> mediaPlayer.seek(Duration.ZERO));
         return new MediaView(mediaPlayer);
+    }
+
+    private static void setSideMenu() {
+        ImageView sideMenu = (ImageView) parent.lookup("#sideMenu");
+        sideMenu.setOnMouseEntered(mouseEvent -> sideMenu.setFitHeight(sideMenu.getFitHeight() * 5));
+        sideMenu.setOnMouseExited(mouseEvent -> sideMenu.setFitHeight(sideMenu.getFitHeight() / 5));
+        sideMenu.setOnMouseClicked(mouseEvent -> {
+            Stage newStage = new Stage();
+            newStage.setTitle("MENU");
+            newStage.getIcons().add(new Image("src/res/icon.jpg"));
+            Parent newParent = null;
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(new URL("file:src/res/FXML/inGameMenu.fxml"));
+                newParent = fxmlLoader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Group root = new Group(newParent);
+            Scene scene = new Scene(root);
+            Button graveYard = ((Button) newParent.lookup("#graveYard"));
+            ChoiceBox<String> setGameSpeed = ((ChoiceBox) newParent.lookup("#setGameSpeed"));
+            setGameSpeed.getItems().add(".25X");
+            setGameSpeed.getItems().add(".5X");
+            setGameSpeed.getItems().add("X");
+            setGameSpeed.getItems().add("2X");
+            setGameSpeed.getItems().add("4X");
+            setGameSpeed.setOnAction(actionEvent -> {
+                int selectedIndex = setGameSpeed.getSelectionModel().getSelectedIndex();
+                if (selectedIndex == 0)
+                    time = 4000;
+                else if (selectedIndex == 1)
+                    time = 2000;
+                else if (selectedIndex == 2)
+                    time = 1000;
+                else if (selectedIndex == 3)
+                    time = 500;
+                else
+                    time = 250;
+            });
+            (newParent.lookup("#resume")).setOnMouseClicked(mouseEvent1 -> newStage.close());
+            graveYard.setOnMouseClicked(mouseEvent12 -> {
+                //TODO graveYard
+            });
+            newStage.setScene(scene);
+            newStage.show();
+        });
+    }
+
+    public static void addToBoard(String alert) {
+        descLabel.setText(descLabel.getText() + "\n" + alert);
     }
 }

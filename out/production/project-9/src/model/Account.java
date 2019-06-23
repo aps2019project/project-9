@@ -1,21 +1,33 @@
 package model;
 
+import data.JsonProcess;
 import model.cards.Card;
-import model.items.Collectible;
 import model.items.Item;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class Account implements Comparable<Account> {
-    private Collection myCollection;
-    private int money = 15000;
-    private ArrayList<BattleResult> battleResults = new ArrayList<>();
-    private ArrayList<Deck> decks = new ArrayList<>();
-    private Deck mainDeck;
     private static ArrayList<Account> accounts = new ArrayList<>();
+
+    static {
+        setAccounts();
+    }
+
+    private Collection myCollection;
+
+    private int money = 15000;
+
+    private ArrayList<BattleResult> battleResults = new ArrayList<>();
+
+    private ArrayList<Deck> decks = new ArrayList<>();
+
+    private String mainDeck;
+
     private String userName;
+
     private String passWord;
+
     private int numberOfWins = 0;
 
     public Account(String userName, String passWord) {
@@ -23,11 +35,10 @@ public class Account implements Comparable<Account> {
         this.passWord = passWord;
         accounts.add(this);
         myCollection = new Collection();
-        myCollection.setOwnerAccount(this);
-
         //mainDeck = new Deck("debugging");
-        mainDeck = new Deck("first_level"); // initialized deck
-        decks.add(mainDeck);
+        mainDeck = "first_level"; // initialized deck
+        decks.add(new Deck("first_level"));
+        JsonProcess.saveAccount(this);
     }
 
     public static Account findAccount(String userName) {//if not valid return null
@@ -54,12 +65,12 @@ public class Account implements Comparable<Account> {
 
     public void deleteDeck(String deckName) {
         decks.remove(findDeckByName(deckName));
-        if (mainDeck.getName().equals(deckName))
+        if (mainDeck.equals(deckName))
             mainDeck = null;
     }
 
     public void selectMainDeck(Deck deck) {
-        mainDeck = deck;
+        mainDeck = deck.getName();
     }
 
     public void reduceMoney(int money) {
@@ -71,8 +82,11 @@ public class Account implements Comparable<Account> {
     }
 
     public void createNewDeck(String name) {
-
         decks.add(new Deck(name));
+    }
+
+    public void addDeck(Deck deck){
+        decks.add(deck);
     }
 
     public ArrayList<Deck> getDecks() {
@@ -80,7 +94,7 @@ public class Account implements Comparable<Account> {
     }
 
     public Deck getMainDeck() {
-        return mainDeck;
+        return findDeckByName(mainDeck);
     }
 
     public String getUserName() {
@@ -125,14 +139,28 @@ public class Account implements Comparable<Account> {
         numberOfWins++;
     }
 
-    public void deleteCardFromDecks(Card card){
+    public void deleteCardFromDecks(Card card) {
         for (Deck deck : decks) {
             deck.removeCard(card);
         }
     }
-    public void deleteCardFromDecks(Item item){
+
+    public void deleteCardFromDecks(Item item) {
         for (Deck deck : decks) {
             deck.removeItem(item);
         }
+    }
+
+    public ArrayList<BattleResult> getBattleResults() {
+        return battleResults;
+    }
+
+    public static void setAccounts() {
+        accounts = JsonProcess.getSavedAccounts();
+    }
+
+    @Override
+    public String toString() {
+        return userName;
     }
 }

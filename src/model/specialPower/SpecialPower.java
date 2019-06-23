@@ -11,7 +11,7 @@ import model.enumerations.SpellTargetType;
 public abstract class SpecialPower { // FARS_PAHLAVAN remaining
 
     protected SpecialPowerActivationTime specialPowerActivationTime;
-    protected Minion minion;
+    protected transient Minion minion;
     protected Spell spell = null;
     public SpecialPowerActivationTime getSpecialPowerActivationTime(){return specialPowerActivationTime;}
     public abstract void castSpecialPower(Cell cell);
@@ -83,5 +83,9 @@ public abstract class SpecialPower { // FARS_PAHLAVAN remaining
                 return playGround.getRandomPowerCell(minion.getPlayer());
         }
         return null;
+    }
+
+    public Minion getMinion() {
+        return minion;
     }
 }

@@ -558,7 +558,7 @@ public class DefaultCards {
             MinionName.TOORANE_JASOS, false));
     private static final String TOORANEE_GORZDAR = gson.toJson(new Minion("toorane_gorzdar", 450, 2,
             3, 10, MinionAttackType.MELEE, 0, null, CardType.MINION, 0,
-            "",
+            "no description",
             MinionName.TOORANEE_GORZDAR, false));
 
 

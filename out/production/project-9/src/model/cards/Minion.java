@@ -13,6 +13,7 @@ import model.items.OnAttackSpellUsable;
 import model.items.OnDeathCollectibleItem;
 import model.items.OnDeathUsableItem;
 import model.specialPower.*;
+import view.GraphicalInGameView;
 
 import java.util.ArrayList;
 
@@ -41,10 +42,11 @@ public class Minion extends Card {
     protected SpecialPower specialPower;
     @Expose
     protected boolean isFars;
-    protected Player player;
+
+    protected transient Player player;
     protected ArrayList<Item> activeItems;
     protected Item onAttackItem;
-    protected Cell cell;
+    protected transient Cell cell;
     protected boolean isHero;
     protected int reductionOfOthersAttack = 0;
     protected boolean hasHollyBuff;
@@ -111,6 +113,9 @@ public class Minion extends Card {
         // this minion attacking to the cell ( the minion on the cell )
         // receiveAttack() of opponent
         // if opponent has flag , get it ( in mode -> one flag )
+        //TODO big
+        GraphicalInGameView.attackTo(this, cell);
+        //
         if (onAttackItem != null) {
             ((OnAttackSpellUsable) onAttackItem).doOnAttack(cell);
         }
@@ -147,6 +152,7 @@ public class Minion extends Card {
                     if (cell.getMinionOnIt() != null)
                         cell.getMinionOnIt().dispelPositiveBuffs();
                 }
+                specialPower.setMinion(this);
                 specialPower.castSpecialPower(cell);
             }
             canAttack = false;
@@ -159,6 +165,7 @@ public class Minion extends Card {
         // player.minions in battle ground -> delete
         // ( the Cell field is the minion last cell ( before kill ) )
         if (specialPower != null && specialPower instanceof OnDeathSpecialPower) {
+            specialPower.setMinion(this);
             specialPower.castSpecialPower(cell);
         }
         if (player.getBattle().getGameMode() == GameMode.ONE_FLAG) {
@@ -359,7 +366,7 @@ public class Minion extends Card {
 
     public String toString() {
         return "Type : Minion \nName : " + getName() + "\nClass: " + attackType + "\nAP : " + AP +
-                "\nHP : " + HP + "\nMP : " + MP + "\nSpecial power : " + desc + "\ncost : " + getCost();
+                "\nHP : " + HP + "\nMP : " + MP + "\nSpecial power ( description ) : " + desc + "\ncost : " + getCost();
     }
 
     public int getAttackRange() {
@@ -436,5 +443,15 @@ public class Minion extends Card {
         this.continuousBuffs = continuousBuffs;
     }
 
+    public void castSpecialPower(Cell cell) {
+
+        if (specialPower != null) {
+            specialPower.setMinion(this);
+
+            specialPower.castSpecialPower(cell);
+
+
+        }
+    }
 
 }

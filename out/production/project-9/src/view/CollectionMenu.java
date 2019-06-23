@@ -3,17 +3,21 @@ package view;
 import java.util.*;
 
 import controller.CollectionController;
+import data.DeckAddException;
 import javafx.collections.FXCollections;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import model.Account;
 import model.Deck;
+import data.JsonProcess;
 import model.cards.Card;
 import model.enumerations.CollectionErrorType;
 
@@ -45,6 +49,8 @@ public class CollectionMenu {
             Scene scene = new Scene(root, 1003, 562);
             stage.setScene(scene);
             scene.getStylesheets().add("src/res/CSS/CollectionButtonStyle.css");
+            stage.getIcons().add(new Image("file:src/res/icon.jpg"));
+            stage.setTitle("Collection Menu");
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -83,24 +89,100 @@ public class CollectionMenu {
         root.getChildren().addAll(slideshowImageView);
     }
 
+    private ChoiceDialog<String> getSavedDecksNames() {
+        List<String> sample = JsonProcess.getSavedDecksNames();
+        return new ChoiceDialog<>(null, sample);
+    }
+
+    private void setExportImportBtns(Group root){
+        //////////////////////deck export importing process//////////////////
+        //TODO export import buttons ( layouts Remained )->
+        Button exportDeck = new Button("Export Deck");
+        Button importDeck = new Button("Import Deck");
+        exportDeck.setOnMouseEntered(mouseEvent -> exportDeck.setLayoutX(exportDeck.getLayoutX() + 20));
+        exportDeck.setOnMouseExited(mouseEvent -> exportDeck.setLayoutX(exportDeck.getLayoutX() - 20));
+        importDeck.setOnMouseEntered(mouseEvent -> importDeck.setLayoutX(importDeck.getLayoutX() + 20));
+        importDeck.setOnMouseExited(mouseEvent -> importDeck.setLayoutX(importDeck.getLayoutX() - 20));
+        exportDeck.setOnMouseClicked(mouseEvent -> {
+            ChoiceDialog<String> dio = setDecksList();
+            dio.setTitle("Select Deck To Export");
+            dio.setHeaderText("Select Deck To Export");
+            dio.setContentText("Decks:");
+            Optional<String> result1 = dio.showAndWait();
+            result1.ifPresent(p -> {
+                try {
+                    JsonProcess.exportDeckFromAccount(p, account);
+                    //TODO
+                    System.out.println(p + " " + account.getUserName());
+                } catch (DeckAddException e) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText("A Deck With This Name Has Already Saved");
+                    alert.show();
+                }
+            });
+        });
+        importDeck.setOnMouseClicked(mouseEvent -> {
+            ChoiceDialog<String> dio = getSavedDecksNames();
+            dio.setTitle("Select Deck To Import");
+            dio.setHeaderText("Select Deck To Import");
+            dio.setContentText("Decks:");
+            Optional<String> result1 = dio.showAndWait();
+            result1.ifPresent(p -> {
+                JsonProcess.addSavedDeckToAccount(account, p);
+                //TODO
+                System.out.println(p + " " + account.getUserName());
+            });
+        });
+        //
+        importDeck.setLayoutX(200);
+        importDeck.setLayoutY(200);
+        exportDeck.setLayoutX(200);
+        exportDeck.setLayoutY(250);
+        //
+        root.getChildren().addAll(exportDeck, importDeck);
+        ////////////////////////////////////end/////////////////////////////
+    }
+
     private void setButtons(Group root, Stage stage, TableView tableView) {
+        setExportImportBtns(root);
         int addX = 20;
         int addY = 43;
         int startX = 20;
         int startY = 170;
         Button selectDeck = setSelectButton(startX, startY);
+        setBtnOnMouseOverAction(selectDeck);
         Button createDeck = setCreateDeckButton(startX, startY, addX, addY);
+        setBtnOnMouseOverAction(createDeck);
         Button deleteDeck = setDeleteDeckButton(startX, startY, addX, addY);
+        setBtnOnMouseOverAction(deleteDeck);
         Button showAllDecks = setShowAllDecksButton(startX, startY, addX, addY, tableView);
-        Button showDeck = setshowDeckButton(startX, startY, addX, addY, tableView);
+        setBtnOnMouseOverAction(showAllDecks);
+        Button showDeck = setShowDeckButton(startX, startY, addX, addY, tableView);
+        setBtnOnMouseOverAction(showDeck);
         Button save = setSaveButton(startX, startY, addX, addY);
+        setBtnOnMouseOverAction(save);
         Button search = setSearchButton(startX, startY, addX, addY, tableView);
+        setBtnOnMouseOverAction(search);
         Button help = setHelpButton(startX, startY, addX, addY);
+        setBtnOnMouseOverAction(help);
         Button back = setBackButton(startX, startY, addX, addY, stage);
+        setBtnOnMouseOverAction(back);
         Button showCollection = setShowCollectionButton(tableView);
 
         root.getChildren().addAll(selectDeck, createDeck, deleteDeck, showAllDecks, showDeck, save, help, back,
                 showCollection, search);
+    }
+
+    private void setBtnOnMouseOverAction(Button button) {
+        double layoutX = button.getLayoutX();
+        button.setOnMouseEntered(mouseEvent -> {
+            button.setStyle("-fx-text-fill: blue");
+            button.setLayoutX(layoutX + 10);
+        });
+        button.setOnMouseExited(mouseEvent -> {
+            button.setStyle("-fx-text-fill: black");
+            button.setLayoutX(layoutX);
+        });
     }
 
     private Button setShowCollectionButton(TableView tableView) {
@@ -178,12 +260,12 @@ public class CollectionMenu {
         save.setLayoutY(startY + 5 * addY);
 
         save.setOnMouseClicked(m -> {
-            //TODO
+            JsonProcess.saveAccount(account);
         });
         return save;
     }
 
-    private Button setshowDeckButton(int startX, int startY, int addX, int addY, TableView tableView) {
+    private Button setShowDeckButton(int startX, int startY, int addX, int addY, TableView tableView) {
         Button showDeck = new Button("Show Deck");
         showDeck.setScaleX(0.8);
         showDeck.setScaleY(0.8);
@@ -265,7 +347,7 @@ public class CollectionMenu {
     }
 
     private void showCard(TableView tableView, String name) {
-        if (havebutton){
+        if (havebutton) {
             tableView.getColumns().remove(5);
         }
         havebutton = true;
@@ -275,7 +357,7 @@ public class CollectionMenu {
     }
 
     private void showCollectionTable(TableView tableView) {
-        if (havebutton){
+        if (havebutton) {
             tableView.getColumns().remove(5);
         }
         havebutton = true;
@@ -298,7 +380,7 @@ public class CollectionMenu {
 
             Optional<String> result = dialog.showAndWait();
             result.ifPresent(letter -> {
-                if (havebutton){
+                if (havebutton) {
                     tableView.getColumns().remove(5);
                 }
                 havebutton = true;
@@ -346,7 +428,7 @@ public class CollectionMenu {
     }
 
     private void showAllDecksTable(TableView tableView) {
-        if (havebutton){
+        if (havebutton) {
             tableView.getColumns().remove(5);
         }
         havebutton = true;
@@ -372,6 +454,7 @@ public class CollectionMenu {
         }
         return new ChoiceDialog<>(account.getMainDeck().getName(), c);
     }
+
 
     private void addAddButtonToTable(TableView table) {
         table.setTranslateX(500);
@@ -404,7 +487,7 @@ public class CollectionMenu {
 
                                 Optional<String> result = dialog.showAndWait();
                                 result.ifPresent(letter -> {
-                                    controller.add(letter, card.getName());
+                                    controller.add(letter, card.getCardID());
                                 });
                             });
                             setGraphic(btn);
@@ -441,8 +524,7 @@ public class CollectionMenu {
                                 Alert alert = new Alert(Alert.AlertType.WARNING, "Are You Sure?");
                                 alert.showAndWait();
                                 String deckName = searchTableForDeckName(getTableView().getItems());
-                                controller.remove(deckName, card.getName());
-
+                                controller.remove(deckName, card.getCardID());
                             });
                             setGraphic(btn);
                             setText(null);
