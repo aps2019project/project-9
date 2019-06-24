@@ -4,7 +4,6 @@ import javafx.stage.Stage;
 import model.Account;
 import model.Deck;
 import model.SinglePlayerBattle;
-import model.cards.Card;
 import view.BattleMenu;
 import view.GraphicalInGameView;
 
@@ -30,8 +29,6 @@ public class BattleMenuController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        /*InGameController inGameController = new InGameController(singlePlayerBattle);
-        inGameController.main();*/
     }
 
     public void startCustomGame(String deckName, int mode, int numberOfFlags,Stage stage) {
@@ -50,7 +47,5 @@ public class BattleMenuController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        /*InGameController inGameController = new InGameController(singlePlayerBattle);
-        inGameController.main();*/
     }
 }

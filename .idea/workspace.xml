@@ -2,16 +2,112 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="429eadbd-36e3-4fa5-93ef-05e24885aef0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/out/production/project-9/data/accountJsons/mohsen.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/project-9/data/customCards/testCustomCard.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/project-9/src/data/accountJsons/ali.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/project-9/src/data/accountJsons/mohsen.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/project-9/src/data/customCards/testCustomCard.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/data/accountJsons/ali.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/FXML/graveyard.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/project-9/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/data/accountJsons/ali.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/data/accountJsons/mohsen.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/data/accountJsons/ali.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/data/accountJsons/mohsen.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/FXML/BattleMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/FXML/BattleMenu.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/FXML/StoryCustom.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/FXML/StoryCustom.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/FXML/collection.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/FXML/collection.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/FXML/storyMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/FXML/storyMenu.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/Gear.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/BattleMenuImages/Gear.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/Untitled.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/BattleMenuImages/sword.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/battleMenu.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/BattleMenuImages/battleMenu.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/controller/BattleMenuController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/controller/BattleMenuController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/controller/CollectionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/controller/CollectionController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/controller/GraveYardController$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/controller/GraveYardController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/controller/GraveYardController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/data/JsonProcess.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/data/JsonProcess.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/data/accountJsons/m.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/easy.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/BattleMenuImages/easy.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/hard.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/BattleMenuImages/hard.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/model/enumerations/CollectionErrorType.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/model/enumerations/CollectionErrorType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/res/FXML/BattleMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/res/FXML/BattleMenu.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/res/FXML/StoryCustom.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/res/FXML/StoryCustom.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/res/FXML/collection.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/res/FXML/collection.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/res/FXML/storyMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/res/FXML/storyMenu.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/res/Gear.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/res/BattleMenuImages/Gear.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/res/Untitled.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/res/BattleMenuImages/sword.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/res/battleMenu.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/res/BattleMenuImages/battleMenu.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/res/easy.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/res/BattleMenuImages/easy.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/res/hard.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/res/BattleMenuImages/hard.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/res/swordm.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/BattleMenuImages/swordm.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/res/twoswords.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/BattleMenuImages/twoswords.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/controller/BattleMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/controller/BattleMenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/controller/CollectionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/controller/CollectionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/controller/GraveYardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/controller/GraveYardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/controller/InGameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/controller/InGameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/data/JsonProcess.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/data/JsonProcess.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/data/accountJsons/m.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/data/accountJsons/شمه.json" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/data/accountJsons/ali.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/model/enumerations/CollectionErrorType.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/model/enumerations/CollectionErrorType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/res/FXML/BattleMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/res/FXML/BattleMenu.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/res/FXML/StoryCustom.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/res/FXML/StoryCustom.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/res/FXML/collection.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/res/FXML/collection.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/res/FXML/storyMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/res/FXML/storyMenu.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/res/Gear.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/res/BattleMenuImages/Gear.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/res/Untitled.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/res/BattleMenuImages/sword.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/res/battleMenu.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/res/BattleMenuImages/battleMenu.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/res/easy.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/res/BattleMenuImages/easy.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/res/hard.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/res/BattleMenuImages/hard.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/res/swordm.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/res/BattleMenuImages/swordm.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/res/twoswords.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/res/BattleMenuImages/twoswords.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/view/BattleMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/view/BattleMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/view/BattleMenuRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/view/BattleMenuView.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/view/BattleMenuView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/view/CollectionMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/view/CollectionMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/view/CollectionRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/view/CollectionView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/view/GraveYardRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/view/GraveYardView.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/view/GraveYardView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/view/MainMenuRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/view/ShopMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/view/ShopMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/project-9/src/view/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/view/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/swordm.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/res/BattleMenuImages/swordm.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/twoswords.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/res/BattleMenuImages/twoswords.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/BattleMenu$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/BattleMenu$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/BattleMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/BattleMenu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/BattleMenuRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/BattleMenuView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/BattleMenuView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/CollectionMenu$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/CollectionMenu$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/CollectionMenu$2$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/CollectionMenu$2$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/CollectionMenu$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/CollectionMenu$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/CollectionMenu$3$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/CollectionMenu$3$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/CollectionMenu$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/CollectionMenu$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/CollectionMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/CollectionMenu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/CollectionRequest$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/CollectionRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/CollectionView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/GraveYardRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/GraveYardView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/GraveYardView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/MainMenuRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/ShopMenu$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/ShopMenu$1$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/ShopMenu$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/ShopMenu$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/ShopMenu$2$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/ShopMenu$2$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/ShopMenu$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/ShopMenu$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/ShopMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/ShopMenu.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/project-9/view/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/Test.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/accountJsons/ali.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/accountJsons/mohsen.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/BattleMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/BattleMenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/GraveYardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/GraveYardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/FXML/BattleMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/FXML/BattleMenu.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/FXML/StoryCustom.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/FXML/StoryCustom.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/FXML/storyMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/FXML/storyMenu.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/Gear.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/BattleMenuImages/Gear.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/Untitled.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/BattleMenuImages/sword.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/battleMenu.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/BattleMenuImages/battleMenu.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/easy.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/BattleMenuImages/easy.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/hard.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/BattleMenuImages/hard.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/swordm.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/BattleMenuImages/swordm.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/twoswords.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/BattleMenuImages/twoswords.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/GraphicalInGameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/GraphicalInGameView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/GraveYardRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/GraveYardView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/GraveYardView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/ShopMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/ShopMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Test.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -38,69 +134,57 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/view/InGameMethodsAndSource.java">
+        <entry file="file://$PROJECT_DIR$/src/view/Test.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="311">
-              <caret line="97" column="45" selection-start-line="97" selection-start-column="45" selection-end-line="97" selection-end-column="45" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/model/MultiPlayerBattle.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="433">
-              <caret line="41" column="31" selection-start-line="41" selection-start-column="31" selection-end-line="41" selection-end-column="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/model/SinglePlayerBattle.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="227">
-              <caret line="61" column="29" selection-start-line="61" selection-start-column="29" selection-end-line="61" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/model/BattleResult.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="23" column="33" selection-start-line="23" selection-start-column="33" selection-end-line="23" selection-end-column="33" />
+            <state relative-caret-position="306">
+              <caret line="21" column="65" lean-forward="true" selection-start-line="21" selection-start-column="65" selection-end-line="21" selection-end-column="65" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1300#1301#0" expanded="true" />
-                <element signature="e#1338#1339#0" expanded="true" />
-                <element signature="e#1379#1380#0" expanded="true" />
-                <element signature="e#1418#1419#0" expanded="true" />
-                <element signature="e#1190#1191#0" expanded="true" />
-                <element signature="e#1225#1226#0" expanded="true" />
-                <element signature="e#1284#1285#0" expanded="true" />
-                <element signature="e#1321#1322#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/view/GraveYardView.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="22" column="19" lean-forward="true" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="19" />
+              <folding>
+                <element signature="e#1439#1440#0" expanded="true" />
+                <element signature="e#1474#1475#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/controller/GraveYardController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="13" column="21" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#184#185#0" expanded="true" />
+                <element signature="e#232#233#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/data/JsonProcess.java">
+        <entry file="file://$PROJECT_DIR$/src/view/GraphicalInGameView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="115" column="51" lean-forward="true" selection-start-line="115" selection-start-column="51" selection-end-line="115" selection-end-column="51" />
+            <state relative-caret-position="386">
+              <caret line="963" column="92" lean-forward="true" selection-start-line="963" selection-start-column="92" selection-end-line="963" selection-end-column="92" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#3125#3126#0" expanded="true" />
+                <element signature="e#3180#3181#0" expanded="true" />
+                <element signature="e#28645#28646#0" expanded="true" />
+                <element signature="e#28707#28708#0" expanded="true" />
+                <element signature="e#42249#42250#0" expanded="true" />
+                <element signature="e#42318#42319#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/view/Test.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="21" column="55" lean-forward="true" selection-start-line="21" selection-start-column="55" selection-end-line="21" selection-end-column="55" />
             </state>
           </provider>
         </entry>
@@ -134,9 +218,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/data/CellAffectAdapter.java" />
-        <option value="$PROJECT_DIR$/src/data/ItemAdapter.java" />
-        <option value="$PROJECT_DIR$/src/data/SpecialPowerAdapter.java" />
         <option value="$PROJECT_DIR$/src/model/specialPower/SpecialPower.java" />
         <option value="$PROJECT_DIR$/src/data/Adapter.java" />
         <option value="$PROJECT_DIR$/src/model/AccountSave.java" />
@@ -172,7 +253,6 @@
         <option value="$PROJECT_DIR$/src/view/InGameView.java" />
         <option value="$PROJECT_DIR$/src/controller/InGameController.java" />
         <option value="$PROJECT_DIR$/src/model/Battle.java" />
-        <option value="$PROJECT_DIR$/src/view/GraphicalInGameView.java" />
         <option value="$PROJECT_DIR$/src/model/SinglePlayerBattle.java" />
         <option value="$PROJECT_DIR$/src/model/Cell.java" />
         <option value="$PROJECT_DIR$/src/model/PlayGround.java" />
@@ -184,13 +264,17 @@
         <option value="$PROJECT_DIR$/src/model/MultiPlayerBattle.java" />
         <option value="$PROJECT_DIR$/src/model/BattleResult.java" />
         <option value="$PROJECT_DIR$/src/data/JsonProcess.java" />
+        <option value="$PROJECT_DIR$/src/view/ShopMenu.java" />
+        <option value="$PROJECT_DIR$/src/view/GraveYardView.java" />
         <option value="$PROJECT_DIR$/src/view/Test.java" />
+        <option value="$PROJECT_DIR$/src/controller/GraveYardController.java" />
+        <option value="$PROJECT_DIR$/src/view/GraphicalInGameView.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="55" />
-    <option name="width" value="666" />
+    <option name="width" value="667" />
     <option name="height" value="775" />
   </component>
   <component name="ProjectView">
@@ -216,14 +300,7 @@
               <item name="project-9" type="b2602c69:ProjectViewProjectNode" />
               <item name="project-9" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="project-9" type="b2602c69:ProjectViewProjectNode" />
-              <item name="project-9" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-              <item name="accountJsons" type="462c0819:PsiDirectoryNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -238,7 +315,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1561354037608" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1561371913426" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Tamrin3/threadMill" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -360,6 +437,7 @@
       <workItem from="1560170068653" duration="26327000" />
       <workItem from="1560256148067" duration="16386000" />
       <workItem from="1560337594918" duration="18617000" />
+      <workItem from="1561372146015" duration="3843000" />
     </task>
     <task id="LOCAL-00001" summary="merge">
       <created>1556826863260</created>
@@ -491,7 +569,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="385235000" />
+    <option name="totallyTimeSpent" value="390424000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -503,10 +581,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="54" y="-8" width="1320" height="784" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22539683" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19597316" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -514,19 +592,19 @@
       <window_info id="UI Designer" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4984127" weight="0.32565284" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49761903" weight="0.27035332" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4984127" weight="0.3201133" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49761903" weight="0.26912183" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4984127" weight="0.58986175" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.3640553" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.36402267" />
       <window_info anchor="bottom" id="Duplicate detector" order="7" weight="0.32872504" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32411674" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32294616" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50158733" side_tool="true" weight="0.32565284" />
-      <window_info anchor="bottom" id="Messages" order="11" weight="0.32565284" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.3243626" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
-      <window_info anchor="bottom" id="Version Control" order="13" sideWeight="0.49920633" weight="0.32718894" />
+      <window_info anchor="bottom" id="Version Control" order="13" sideWeight="0.49920633" weight="0.32577905" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -595,92 +673,7 @@
     <option name="LAST_COMMIT_MESSAGE" value="some changes in graphic" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/view/GraveYardView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="9" column="72" selection-start-line="9" selection-start-column="72" selection-end-line="9" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/MainTest1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="31" lean-forward="true" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/InGameCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/enumerations/SpecialPowerActivationTime.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="10" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/ShopMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="122">
-          <caret line="111" column="14" selection-start-line="111" selection-start-column="14" selection-end-line="111" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/items/itemEnumerations/OnSpawnItemTarget.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/specialPower/PassiveSpecialPower.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="32" selection-start-line="32" selection-end-line="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/specialPower/OnSpawnSpecialPower.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
-          <caret line="55" column="22" lean-forward="true" selection-start-line="55" selection-start-column="22" selection-end-line="55" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/specialPower/SpecialPower.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="61" column="21" selection-start-line="61" selection-start-column="21" selection-end-line="61" selection-end-column="21" />
-          <folding>
-            <element signature="e#834#835#0" expanded="true" />
-            <element signature="e#870#871#0" expanded="true" />
-            <element signature="e#3515#3516#0" expanded="true" />
-            <element signature="e#3544#3545#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/Downloads/Compressed/jdk-12.0.1/lib/src.zip!/jdk.internal.vm.compiler/org/graalvm/compiler/hotspot/PluginFactory_HotSpotBackend.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="175" column="12" selection-start-line="175" selection-start-column="12" selection-end-line="175" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/data/DeckAddException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="53" selection-start-line="3" selection-start-column="53" selection-end-line="3" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://$USER_HOME$/Downloads/Compressed/jdk-12.0.1/lib/src.zip!/jdk.internal.vm.compiler/org/graalvm/compiler/hotspot/PluginFactory_HotSpotBackend.java" />
     <entry file="file://$PROJECT_DIR$/src/model/Collection.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -724,13 +717,6 @@
             <element signature="e#860#861#0" expanded="true" />
             <element signature="e#922#923#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/CollectionMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="100" column="54" lean-forward="true" selection-start-line="100" selection-start-column="54" selection-end-line="100" selection-end-column="54" />
         </state>
       </provider>
     </entry>
@@ -804,13 +790,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/Deck.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="74" column="39" selection-start-line="74" selection-start-column="39" selection-end-line="74" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/cards/Hero.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -822,13 +801,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="986">
           <caret line="82" column="27" selection-start-line="82" selection-start-column="27" selection-end-line="82" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/BattleMenuController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="26" column="39" selection-start-line="26" selection-start-column="39" selection-end-line="26" selection-end-column="39" />
         </state>
       </provider>
     </entry>
@@ -860,32 +832,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/InGameView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="12">
-          <caret line="200" column="16" selection-start-line="200" selection-start-column="16" selection-end-line="200" selection-end-column="16" />
-          <folding>
-            <element signature="e#609#610#0" expanded="true" />
-            <element signature="e#667#668#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/res/inGameResource/nextTurn.png">
       <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/GraphicalInGameView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="603">
-          <caret line="151" column="37" selection-start-line="151" selection-start-column="37" selection-end-line="151" selection-end-column="37" />
-          <folding>
-            <element signature="e#3125#3126#0" expanded="true" />
-            <element signature="e#3180#3181#0" expanded="true" />
-            <element signature="e#28707#28708#0" expanded="true" />
-            <element signature="e#42318#42319#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/model/items/Flag.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -895,13 +843,6 @@
             <element signature="e#856#857#0" expanded="true" />
             <element signature="e#890#891#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/AccountMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="314" selection-start-line="314" selection-end-line="314" />
         </state>
       </provider>
     </entry>
@@ -956,20 +897,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/InGameMethodsAndSource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="97" column="45" selection-start-line="97" selection-start-column="45" selection-end-line="97" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/MultiPlayerBattle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
-          <caret line="41" column="31" selection-start-line="41" selection-start-column="31" selection-end-line="41" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/Player.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="354">
@@ -1015,19 +942,160 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="21" column="55" lean-forward="true" selection-start-line="21" selection-start-column="55" selection-end-line="21" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/data/JsonProcess.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
           <caret line="115" column="51" lean-forward="true" selection-start-line="115" selection-start-column="51" selection-end-line="115" selection-end-column="51" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/DeckAddException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="53" selection-start-line="3" selection-start-column="53" selection-end-line="3" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/MusicAct.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/res/easy.png" />
+    <entry file="file://$PROJECT_DIR$/src/res/Gear.png" />
+    <entry file="file://$PROJECT_DIR$/src/view/BattleMenuView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/CollectionMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="124" column="18" selection-start-line="124" selection-start-column="18" selection-end-line="124" selection-end-column="18" />
+          <folding>
+            <element signature="method#getSavedDecksNames#0;class#CollectionMenu#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/MultiPlayerBattle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="318">
+          <caret line="31" column="10" selection-start-line="31" selection-start-column="10" selection-end-line="31" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Deck.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="73" column="10" selection-start-line="73" selection-start-column="10" selection-end-line="73" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/InGameView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="200" column="16" selection-start-line="200" selection-start-column="16" selection-end-line="200" selection-end-column="16" />
+          <folding>
+            <element signature="e#609#610#0" expanded="true" />
+            <element signature="e#667#668#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/BattleMenuController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="28" column="33" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/BattleMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="48" column="36" selection-start-line="48" selection-start-column="36" selection-end-line="48" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/ShopMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2550">
+          <caret line="184" column="8" lean-forward="true" selection-start-line="184" selection-start-column="8" selection-end-line="201" selection-end-column="83" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/GraveYardRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="21" column="35" lean-forward="true" selection-start-line="21" selection-start-column="35" selection-end-line="21" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/GraveYardView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="22" column="19" lean-forward="true" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="19" />
+          <folding>
+            <element signature="e#1439#1440#0" expanded="true" />
+            <element signature="e#1474#1475#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/AccountMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1972">
+          <caret line="156" column="38" selection-start-line="156" selection-start-column="38" selection-end-line="156" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/InGameMethodsAndSource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="884">
+          <caret line="104" column="22" lean-forward="true" selection-start-line="104" selection-start-column="22" selection-end-line="104" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="21" column="65" lean-forward="true" selection-start-line="21" selection-start-column="65" selection-end-line="21" selection-end-column="65" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/GraveYardController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="21" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#184#185#0" expanded="true" />
+            <element signature="e#232#233#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/GraphicalInGameView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="386">
+          <caret line="963" column="92" lean-forward="true" selection-start-line="963" selection-start-column="92" selection-end-line="963" selection-end-column="92" />
+          <folding>
+            <element signature="e#3125#3126#0" expanded="true" />
+            <element signature="e#3180#3181#0" expanded="true" />
+            <element signature="e#28645#28646#0" expanded="true" />
+            <element signature="e#28707#28708#0" expanded="true" />
+            <element signature="e#42249#42250#0" expanded="true" />
+            <element signature="e#42318#42319#0" expanded="true" />
           </folding>
         </state>
       </provider>

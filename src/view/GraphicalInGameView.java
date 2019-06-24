@@ -1,6 +1,7 @@
 package view;
 
 import controller.AccountController;
+import controller.GraveYardController;
 import controller.InGameController;
 import data.JsonProcess;
 import javafx.animation.TranslateTransition;
@@ -959,7 +960,9 @@ public class GraphicalInGameView {
             });
             (newParent.lookup("#resume")).setOnMouseClicked(mouseEvent1 -> newStage.close());
             graveYard.setOnMouseClicked(mouseEvent12 -> {
-                //TODO graveYard
+                //TODO pass a player to this
+                //GraveYardController graveYardController = new GraveYardController(//HERE);
+                //graveYardController.start();
             });
             newStage.setScene(scene);
             newStage.show();

@@ -115,14 +115,12 @@ public class JsonProcess {
         File file = new File("src/data/customCards");
         ArrayList<Card> result = new ArrayList<>();
         for (File cardFile : file.listFiles()) {
-            if (cardFile != null) {
-                try {
-                    FileReader reader = new FileReader("src/data/customCards/" + cardFile.getName());
-                    result.add(gson.fromJson(reader, Card.class));
-                    reader.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+            try {
+                FileReader reader = new FileReader("src/data/customCards/" + cardFile.getName());
+                result.add(gson.fromJson(reader, Card.class));
+                reader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
         return result;

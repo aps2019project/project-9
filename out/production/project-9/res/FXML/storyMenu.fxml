@@ -12,7 +12,7 @@
    <children>
       <ImageView fitHeight="562.0" fitWidth="1003.0" pickOnBounds="true">
          <image>
-            <Image url="@../battleMenu.jpg" />
+            <Image url="@../BattleMenuImages/battleMenu.jpg" />
          </image>
       </ImageView>
       <Button fx:id="back" layoutX="854.0" layoutY="476.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="134.0" style="-fx-background-color: transparent;" text="Back">
@@ -30,7 +30,7 @@
       </Button>
       <ImageView fitHeight="318.0" fitWidth="205.0" layoutX="136.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../easy.png" />
+            <Image url="@../BattleMenuImages/easy.png" />
          </image>
       </ImageView>
       <Button fx:id="easy" layoutX="138.0" layoutY="121.0" mnemonicParsing="false" prefHeight="318.0" prefWidth="194.0" style="-fx-background-color: transparent; -fx-shape: &quot;M 400 100 Q 350 100 300 150 L 300 350 Q 350 400 400 400 Q 450 400 500 350 L 500 150 Q 450 100 400 100&quot;;" text="Easy" textFill="#17943f" textOverrun="CLIP">
@@ -40,7 +40,7 @@
       </Button>
       <ImageView fitHeight="369.0" fitWidth="198.0" layoutX="403.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../swordm.png" />
+            <Image url="@../BattleMenuImages/swordm.png" />
          </image>
       </ImageView>
       <Button fx:id="intermediate" layoutX="402.0" layoutY="120.0" mnemonicParsing="false" prefHeight="318.0" prefWidth="198.0" style="-fx-shape: &quot;M 400 100 Q 350 100 300 150 L 300 350 Q 350 400 400 400 Q 450 400 500 350 L 500 150 Q 450 100 400 100&quot;; -fx-background-color: transparent;" text="Intermidate" textFill="#8c5c0a">
@@ -50,7 +50,7 @@
       </Button>
       <ImageView fitHeight="383.0" fitWidth="198.0" layoutX="686.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../hard.png" />
+            <Image url="@../BattleMenuImages/hard.png" />
          </image>
       </ImageView>
       <Button fx:id="hard" layoutX="682.0" layoutY="120.0" mnemonicParsing="false" prefHeight="318.0" prefWidth="205.0" style="-fx-shape: &quot;M 400 100 Q 350 100 300 150 L 300 350 Q 350 400 400 400 Q 450 400 500 350 L 500 150 Q 450 100 400 100&quot;; -fx-background-color: transparent;" text="Hard" textFill="#af1b1b">
