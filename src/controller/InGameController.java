@@ -153,7 +153,7 @@ public class InGameController {
                     break;
                 case ENTER_GRAVEYARD:
                     GraveYardController graveYardController = new GraveYardController(battle.getCurrenPlayer());
-                    graveYardController.main();
+                    graveYardController.start();
                     break;
                 case SHOW_MY_MINIONS:
                     inGameView.showMinions(battle.getCurrenPlayer());
