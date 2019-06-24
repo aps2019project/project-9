@@ -118,7 +118,7 @@ public class BattleMenu {
         back.setOnMouseClicked(mouseEvent -> singlePlayerPressed(stage));
     }
 
-    void customGamePressed(Stage stage) {
+    private void customGamePressed(Stage stage) {
         List<String> choices = new ArrayList<>();
         for (Deck deck : logInAccount.getDecks()) {
             choices.add(deck.getName());
@@ -194,9 +194,8 @@ public class BattleMenu {
         dialog.setContentText("User Name:");
         Optional<String> result = dialog.showAndWait();
 
-        result.ifPresent(letter -> {
-            new Alert(Alert.AlertType.WARNING, "sorry this feature isn't available now").showAndWait();
-        });
+        result.ifPresent(letter ->
+                new Alert(Alert.AlertType.WARNING, "sorry this feature isn't available now").showAndWait());
     }
 
     private void printError(BattleMenuErrorType error, Stage stage) {

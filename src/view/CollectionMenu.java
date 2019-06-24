@@ -23,8 +23,7 @@ import model.enumerations.CardType;
 import model.enumerations.CollectionErrorType;
 import model.items.Item;
 
-import static model.enumerations.CollectionErrorType.DECK_CREATED;
-import static model.enumerations.CollectionErrorType.REMOVED_SUCCESSFULLY;
+import static model.enumerations.CollectionErrorType.*;
 
 public class CollectionMenu {
 
@@ -39,9 +38,8 @@ public class CollectionMenu {
         this.controller = controller;
     }
 
-    public void start() {
+    public void start(Stage stage) {
         try {
-            Stage stage = new Stage();
             FXMLLoader loader = new FXMLLoader(new URL("file:src\\res\\FXML\\collection.fxml"));
             Parent parent = loader.load();
 
@@ -152,6 +150,8 @@ public class CollectionMenu {
         setBtnOnMouseOverAction(help);
         Button back = setBackButton(root, stage);
         setBtnOnMouseOverAction(back);
+        Button validateDeck = setValidateDeck(root);
+        setBtnOnMouseOverAction(validateDeck);
         Button showCollection = setShowCollectionButton(root, cardtable, itemtable);
     }
 
@@ -179,6 +179,21 @@ public class CollectionMenu {
                 "    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );");
         showCollection.setOnMouseClicked(m -> showCollectionTable(cardtable, itemtable));
         return showCollection;
+    }
+
+    private Button setValidateDeck(Parent root) {
+        Button validate = (Button) root.lookup("#validate");
+        validate.setOnMouseClicked(m ->{
+            ChoiceDialog<String> dio = setDecksList();
+            dio.setTitle("Select A Deck");
+            dio.setHeaderText("Select a deck to validate");
+            dio.setContentText("Decks:");
+            Optional<String> result1 = dio.showAndWait();
+
+            result1.ifPresent(p -> controller.selectDeck(p));
+        });
+
+        return validate;
     }
 
     private Button setBackButton(Parent root, Stage stage) {
@@ -282,8 +297,7 @@ public class CollectionMenu {
             dio.setHeaderText("Select your main deck");
             dio.setContentText("Decks:");
             Optional<String> result1 = dio.showAndWait();
-
-            result1.ifPresent(p -> controller.selectDeck(p));
+            result1.ifPresent(p -> controller.validateDeck(p));
         });
         return selectDeck;
     }
@@ -397,7 +411,7 @@ public class CollectionMenu {
     }
 
     public void printError(CollectionErrorType error) {
-        if (error == DECK_CREATED || error == REMOVED_SUCCESSFULLY)
+        if (error == DECK_CREATED || error == REMOVED_SUCCESSFULLY || error == DECK_IS_VALID)
             new Alert(Alert.AlertType.INFORMATION, error.getMessage()).showAndWait();
         else
             new Alert(Alert.AlertType.WARNING, error.getMessage()).showAndWait();

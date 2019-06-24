@@ -10,7 +10,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="562.0" prefWidth="1003.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fx:id="imageview" fitHeight="713.0" fitWidth="1368.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="back" layoutX="927.0" layoutY="512.0" mnemonicParsing="false" text="Back">
+      <Button fx:id="back" layoutX="917.0" layoutY="514.0" mnemonicParsing="false" text="Back">
          <textFill>
             <LinearGradient endX="1.0" endY="1.0">
                <stops>
@@ -20,19 +20,18 @@
             </LinearGradient>
          </textFill>
       </Button>
-      <Button fx:id="help" layoutX="279.0" layoutY="512.0" mnemonicParsing="false" text="Help" />
-      <Button fx:id="search" layoutX="253.0" layoutY="478.0" mnemonicParsing="false" text="Search" />
-      <Button fx:id="save" layoutX="233.0" layoutY="445.0" mnemonicParsing="false" text="Save" />
-      <Button fx:id="showdeck" layoutX="170.0" layoutY="365.0" mnemonicParsing="false" text="Show Deck" />
-      <Button fx:id="showalldecks" layoutX="144.0" layoutY="327.0" mnemonicParsing="false" text="Show All Decks" />
-      <Button fx:id="exportdeck" layoutX="118.0" layoutY="287.0" mnemonicParsing="false" text="Export Deck" />
-      <Button fx:id="importdeck" layoutX="92.0" layoutY="246.0" mnemonicParsing="false" text="Import Deck" />
-      <Button fx:id="deletedeck" layoutX="66.0" layoutY="207.0" mnemonicParsing="false" text="Delete Deck" />
-      <Button fx:id="createdeck" layoutX="40.0" layoutY="165.0" mnemonicParsing="false" text="Create Deck" />
-      <Button fx:id="selectdeck" layoutX="14.0" layoutY="123.0" mnemonicParsing="false" text="Select Deck" />
+      <Button fx:id="help" layoutX="260.0" layoutY="514.0" mnemonicParsing="false" text="Help" />
+      <Button fx:id="search" layoutX="234.0" layoutY="472.0" mnemonicParsing="false" text="Search" />
+      <Button fx:id="save" layoutX="208.0" layoutY="432.0" mnemonicParsing="false" text="Save" />
+      <Button fx:id="showdeck" layoutX="182.0" layoutY="393.0" mnemonicParsing="false" text="Show Deck" />
+      <Button fx:id="showalldecks" layoutX="156.0" layoutY="355.0" mnemonicParsing="false" text="Show All Decks" />
+      <Button fx:id="exportdeck" layoutX="130.0" layoutY="315.0" mnemonicParsing="false" text="Export Deck" />
+      <Button fx:id="importdeck" layoutX="104.0" layoutY="274.0" mnemonicParsing="false" text="Import Deck" />
+      <Button fx:id="deletedeck" layoutX="78.0" layoutY="235.0" mnemonicParsing="false" text="Delete Deck" />
+      <Button fx:id="createdeck" layoutX="52.0" layoutY="193.0" mnemonicParsing="false" text="Create Deck" />
+      <Button fx:id="selectdeck" layoutX="26.0" layoutY="151.0" mnemonicParsing="false" text="Select Deck" />
       <Button fx:id="showcollection" layoutX="25.0" layoutY="404.0" mnemonicParsing="false" prefHeight="108.0" prefWidth="134.0" text="Show Collection" />
       <TableView fx:id="cardtable" layoutX="534.0" layoutY="14.0" maxHeight="245.0" maxWidth="434.0" prefHeight="245.0" prefWidth="434.0" />
       <TableView fx:id="itemtable" layoutX="534.0" layoutY="272.0" maxHeight="165.0" maxWidth="434.0" prefHeight="165.0" prefWidth="434.0" />
-      <Button fx:id="validate" layoutX="207.0" layoutY="404.0" mnemonicParsing="false" text="Validate Deck" />
    </children>
 </AnchorPane>

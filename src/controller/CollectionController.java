@@ -11,15 +11,11 @@ import model.cards.Hero;
 import model.cards.Minion;
 import model.enumerations.CardType;
 import model.enumerations.CollectionErrorType;
-import model.enumerations.CollectionRequestType;
 import model.items.Item;
 import view.CollectionMenu;
-import view.CollectionRequest;
-import view.CollectionView;
 
 public class CollectionController {
     private Account loggedInAccount;
-    private CollectionView view = CollectionView.getInstance();
     private CollectionMenu collectionMenu;
 
     public CollectionController(Account loggedInAccount) {
@@ -28,44 +24,15 @@ public class CollectionController {
     }
 
     public void main() {
-        collectionMenu.start();
-
-        /*switch (request.getType()) {
-            case VALIDATE_DECK:
-                validateDeck(request.getDeckName());
-                break;
-            case SHOW_DECK:
-                showDeck(request.getDeckName());
-                break;
-            case SEARCH:
-                search(request.getCardOrItamName());
-                break;
-            case REMOVE:
-                remove(request.getDeckName(), request.getCardOrItamName());
-                break;
-            case SHOW:
-                view.showCollection(loggedInAccount.getCollection());
-                break;
-            case SAVE:
-                //TODO
-                break;
-            case ADD:
-                add(request.getDeckName(), request.getCardOrItamName());
-                break;
-        }*/
+        collectionMenu.start(new Stage());
     }
 
-    private void validateDeck(String deckName) {
+    public void validateDeck(String deckName) {
         Deck currentDeck = loggedInAccount.findDeckByName(deckName);
-        if (currentDeck == null) {
-            view.printError(CollectionErrorType.DECK_NAME_NOT_EXISTS);
+        if (currentDeck.isValid()) {
+            collectionMenu.printError(CollectionErrorType.DECK_IS_VALID);
         } else {
-            boolean isThisDeckValid = currentDeck.isValid();
-            if (isThisDeckValid) {
-                view.printError(CollectionErrorType.DECK_IS_VALID);
-            } else {
-                view.printError(CollectionErrorType.DECK_NOT_VALID);
-            }
+            collectionMenu.printError(CollectionErrorType.DECK_NOT_VALID);
         }
     }
 
