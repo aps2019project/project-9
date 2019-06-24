@@ -12,7 +12,7 @@ import java.io.IOException;
 public class BattleMenuController {
     private Account loggedInAccount;
 
-    public BattleMenuController(Account loggedInAccount) {
+    BattleMenuController(Account loggedInAccount) {
         this.loggedInAccount = loggedInAccount;
     }
 
@@ -21,29 +21,29 @@ public class BattleMenuController {
         battleMenu.start(stage);
     }
 
-    public void startStoryModeGame(int level,Stage stage) {
+    public void startStoryModeGame(int level, Stage stage) {
         SinglePlayerBattle singlePlayerBattle = new SinglePlayerBattle(level, loggedInAccount);
         singlePlayerBattle.startBattle();
         try {
-            new GraphicalInGameView().showGame(stage,singlePlayerBattle,loggedInAccount);
+            new GraphicalInGameView().showGame(stage, singlePlayerBattle, loggedInAccount);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void startCustomGame(String deckName, int mode, int numberOfFlags,Stage stage) {
+    public void startCustomGame(String deckName, int mode, int numberOfFlags, Stage stage) {
         Deck customOpponentDeck = loggedInAccount.findDeckByName(deckName);
-        startSinglePlayer(mode, customOpponentDeck, numberOfFlags,stage);
+        startSinglePlayer(mode, customOpponentDeck, numberOfFlags, stage);
     }
 
-    private void startSinglePlayer(int mode, Deck customOpponentDeck, int numberOfFlags,Stage stage) {
+    private void startSinglePlayer(int mode, Deck customOpponentDeck, int numberOfFlags, Stage stage) {
         if (mode != 3)
             numberOfFlags = 0;
         SinglePlayerBattle singlePlayerBattle = new SinglePlayerBattle(mode, customOpponentDeck, loggedInAccount
                 , numberOfFlags);
         singlePlayerBattle.startBattle();
         try {
-            new GraphicalInGameView().showGame(stage,singlePlayerBattle,loggedInAccount);
+            new GraphicalInGameView().showGame(stage, singlePlayerBattle, loggedInAccount);
         } catch (IOException e) {
             e.printStackTrace();
         }

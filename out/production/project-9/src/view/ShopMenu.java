@@ -13,6 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import model.Collection;
@@ -58,7 +59,7 @@ public class ShopMenu {
             setSearchButtonAndTextField(parent, cardTable, itemTable);
             setHelpButton(parent);
             setExitButton(parent, stage);
-
+            setMoney(parent);
             setShowShopButton(parent, cardTable, itemTable);
             setShowCollectionButton(parent, cardTable, itemTable, collection);
 
@@ -69,6 +70,11 @@ public class ShopMenu {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void setMoney(Parent root) {
+        Text textField = (Text) root.lookup("#money");
+        textField.setText(Integer.toString(controller.getLoggedInAccount().getMoney()));
     }
 
     private void setShowShopButton(Parent parent, TableView cardTable, TableView itemTable) {
@@ -99,9 +105,7 @@ public class ShopMenu {
 
     private void setExitButton(Parent parent, Stage stage) {
         Button back = (Button) parent.lookup("#back");
-        back.setOnMouseClicked(mouseEvent -> {
-            MainMenu.getInstance().start(stage,controller.getLoggedInAccount());
-        });
+        back.setOnMouseClicked(mouseEvent -> MainMenu.getInstance().start(stage, controller.getLoggedInAccount()));
     }
 
     private void setSearchButtonAndTextField(Parent parent, TableView cardTable, TableView itemTable) {
@@ -234,9 +238,8 @@ public class ShopMenu {
                             setGraphic(null);
                             setText(null);
                         } else {
-                            btn.setOnAction(event -> {
-                                controller.sell(getTableView().getItems().get(getIndex()).getName());
-                            });
+                            btn.setOnAction(event ->
+                                    controller.sell(getTableView().getItems().get(getIndex()).getName()));
                             setGraphic(btn);
                             setText(null);
                         }
@@ -265,9 +268,8 @@ public class ShopMenu {
                             setGraphic(null);
                             setText(null);
                         } else {
-                            btn.setOnAction(event -> {
-                                controller.buy(getTableView().getItems().get(getIndex()).getName());
-                            });
+                            btn.setOnAction(event ->
+                                    controller.buy(getTableView().getItems().get(getIndex()).getName()));
                             setGraphic(btn);
                             setText(null);
                         }

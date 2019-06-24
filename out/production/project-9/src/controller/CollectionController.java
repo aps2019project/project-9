@@ -18,7 +18,7 @@ public class CollectionController {
     private Account loggedInAccount;
     private CollectionMenu collectionMenu;
 
-    public CollectionController(Account loggedInAccount) {
+    CollectionController(Account loggedInAccount) {
         this.loggedInAccount = loggedInAccount;
         collectionMenu = new CollectionMenu(this);
     }
