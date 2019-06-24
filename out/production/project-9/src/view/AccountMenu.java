@@ -334,7 +334,7 @@ public class AccountMenu {
                 BattleResult battleResult = account.getBattleResults()
                         .get(listView.getSelectionModel().getSelectedIndex());
                 //
-                InGameMethodsAndSource.showReplay(battleResult);
+                //show replay
                 //
             });
             listView.setLayoutY(20);
