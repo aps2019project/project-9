@@ -2,17 +2,17 @@ package controller;
 
 import javafx.stage.Stage;
 import model.Player;
-import view.GraveYardView;
+import view.GraphicalGraveYard;
 
 public class GraveYardController {
-    private GraveYardView view;
+    private GraphicalGraveYard graveYard;
 
     public GraveYardController(Player player) {
-        view = new GraveYardView(player);
+        graveYard = new GraphicalGraveYard(player);
     }
 
     public void start() {
         Stage stage = new Stage();
-        view.start(stage);
+        graveYard.start(stage);
     }
 }

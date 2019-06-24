@@ -408,8 +408,6 @@ public class GraphicalInGameView {
                                 "insert " + db.getString() + " in " + x + " " + y);
 
                         inGameController.main(request);
-                        //TODO
-                        System.out.println(request.getCommand());
                         setMediaViews(MusicAct.INSERT);
                         updateHand();
                         setManas(inGameController.getBattle().getCurrenPlayer());
@@ -960,9 +958,9 @@ public class GraphicalInGameView {
             });
             (newParent.lookup("#resume")).setOnMouseClicked(mouseEvent1 -> newStage.close());
             graveYard.setOnMouseClicked(mouseEvent12 -> {
-                //TODO pass a player to this
-                //GraveYardController graveYardController = new GraveYardController(//HERE);
-                //graveYardController.start();
+                GraveYardController graveYardController =
+                        new GraveYardController(inGameController.getBattle().getCurrenPlayer());
+                graveYardController.start();
             });
             newStage.setScene(scene);
             newStage.show();

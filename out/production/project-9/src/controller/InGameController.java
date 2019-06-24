@@ -155,6 +155,9 @@ public class InGameController {
                     GraveYardController graveYardController = new GraveYardController(battle.getCurrenPlayer());
                     graveYardController.start();
                     break;
+                    /*GraveYardController graveYardController = new GraveYardController(battle.getCurrenPlayer());
+                    graveYardController.main();
+                    break;*/
                 case SHOW_MY_MINIONS:
                     inGameView.showMinions(battle.getCurrenPlayer());
                     break;
