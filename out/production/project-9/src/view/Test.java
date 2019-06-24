@@ -15,7 +15,6 @@ public class Test extends Application {
     @Override
     public void start(Stage primaryStage) {                 //all start must have try catch
         AccountMenu a = AccountMenu.getInstance();
-        CollectionMenu c = new CollectionMenu(new CollectionController(new Account("ali", "mamad")));
         try {
             //a.start(primaryStage,new AccountController());
             a.start(primaryStage, new AccountController());
