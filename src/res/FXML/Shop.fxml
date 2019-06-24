@@ -9,6 +9,7 @@
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="562.0" prefWidth="1003.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -114,5 +115,23 @@
             </LinearGradient>
          </textFill>
       </Button>
+      <ImageView fitHeight="65.0" fitWidth="180.0" layoutX="514.0" layoutY="482.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../ShopImages/button.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="money" fontSmoothingType="LCD" layoutX="526.0" layoutY="521.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100" textAlignment="CENTER" wrappingWidth="155.0">
+         <font>
+            <Font size="23.0" />
+         </font>
+         <fill>
+            <LinearGradient endX="0.473282435468135" endY="1.0" startX="0.5992366248414718" startY="0.5496183060507738">
+               <stops>
+                  <Stop color="#ea3434" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Text>
    </children>
 </AnchorPane>

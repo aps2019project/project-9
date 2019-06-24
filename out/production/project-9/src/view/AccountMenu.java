@@ -4,7 +4,6 @@ import controller.AccountController;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -13,7 +12,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -22,7 +20,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 import javafx.util.Pair;
 import model.Account;
@@ -35,14 +32,12 @@ import java.io.FileNotFoundException;
 import java.util.Optional;
 
 public class AccountMenu {
-    private static double height = 1003;
-    private static double width = 562;
     private AccountRequest accountRequest = new AccountRequest();
     private static AccountMenu instance = new AccountMenu();
     private static Stage stage;
     private static MediaPlayer mediaPlayer;
 
-    public static void stopMusic() {
+    static void stopMusic() {
         mediaPlayer.stop();
     }
 
@@ -50,7 +45,7 @@ public class AccountMenu {
         mediaPlayer.play();
     }
 
-    public static void closeMainStage() {
+    static void closeMainStage() {
         stage.close();
     }
 
@@ -64,7 +59,7 @@ public class AccountMenu {
 
     public void start(Stage stage, AccountController account) throws FileNotFoundException {
         stage.setTitle("Duelyst");
-        stage.getIcons().add(new Image("src/res/icon.png"));
+        stage.getIcons().add(new Image("src/res/icon.jpg"));
         ImageView imageView = new ImageView();
         imageView.setImage(new Image(new FileInputStream("src/res/AccountMenuImages/12.png")));
         imageView.setFitHeight(462);
@@ -82,9 +77,7 @@ public class AccountMenu {
         group.getChildren().add(text);
         Scene scene = new Scene(group, 420, 562);
         scene.setFill(Color.DEEPPINK);
-        scene.setOnMouseClicked(event -> {
-            accountMenuShow(stage, account);
-        });
+        scene.setOnMouseClicked(event -> accountMenuShow(stage, account));
         stage.setScene(scene);
         stage.show();
     }
@@ -112,7 +105,7 @@ public class AccountMenu {
             Button showLeaderBoard = setLeaderBoardButton();
             Button helpButton = setHelpButton();
             root.getChildren().addAll(imageView, text, loginButton, createAccountButton, showLeaderBoard, helpButton);
-            Scene scene = new Scene(root, height, width);
+            Scene scene = new Scene(root, 1003, 562);
             stage.setScene(scene);
             last.close();
             stage.show();
@@ -199,55 +192,54 @@ public class AccountMenu {
     }
 
     private Button setLoginButton(AccountController account) {
-        ImageView loginImageview = null;
         try {
-            loginImageview = new ImageView(new Image(
+            ImageView loginImageview = new ImageView(new Image(
                     new FileInputStream("src/res/AccountMenuImages/bow-arrow.png")));
-        } catch (FileNotFoundException e) {
+            loginImageview.setFitWidth(100);
+            loginImageview.setFitHeight(50);
+            Button button = new Button("Login", loginImageview);
+            button.setLayoutX(385);
+            button.setLayoutY(280);
+            setOnMouseAction(button);
+            button.setOnMouseClicked(event -> {
+                Dialog<Pair<String, String>> dialog = new Dialog<>();
+                dialog.setTitle("Login Dialog");
+                dialog.setHeaderText("Look, a Custom Login Dialog");
+                ButtonType loginButtonType = new ButtonType("Login", ButtonBar.ButtonData.OK_DONE);
+                dialog.getDialogPane().getButtonTypes().addAll(loginButtonType, ButtonType.CANCEL);
+                GridPane grid = getGridPane();
+                TextField username = new TextField();
+                username.setPromptText("Username ");
+                PasswordField password = new PasswordField();
+                password.setPromptText("Password ");
+                grid.add(new Label("Username : "), 0, 0);
+                grid.add(username, 1, 0);
+                grid.add(new Label("Password : "), 0, 1);
+                grid.add(password, 1, 1);
+                Node loginButton = dialog.getDialogPane().lookupButton(loginButtonType);
+                loginButton.setDisable(true);
+                username.textProperty().addListener((observable, oldValue, newValue) ->
+                        loginButton.setDisable(newValue.trim().isEmpty()));
+                dialog.getDialogPane().setContent(grid);
+                Platform.runLater(username::requestFocus);
+                dialog.setResultConverter(dialogButton -> {
+                    if (dialogButton == loginButtonType) {
+                        return new Pair<>(username.getText(), password.getText());
+                    }
+                    return null;
+                });
+                Optional<Pair<String, String>> result = dialog.showAndWait();
+                result.ifPresent(usernamePassword -> {
+                    accountRequest.setUserName(usernamePassword.getKey());
+                    accountRequest.setPassWord(usernamePassword.getValue());
+                    account.login(accountRequest);
+                });
+            });
+            return button;
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        loginImageview.setFitWidth(100);
-        loginImageview.setFitHeight(50);
-        Button button = new Button("Login", loginImageview);
-        button.setLayoutX(385);
-        button.setLayoutY(280);
-        setOnMouseAction(button);
-        button.setOnMouseClicked(event -> {
-            Dialog<Pair<String, String>> dialog = new Dialog<>();
-            dialog.setTitle("Login Dialog");
-            dialog.setHeaderText("Look, a Custom Login Dialog");
-            ButtonType loginButtonType = new ButtonType("Login", ButtonBar.ButtonData.OK_DONE);
-            dialog.getDialogPane().getButtonTypes().addAll(loginButtonType, ButtonType.CANCEL);
-            GridPane grid = getGridPane();
-            TextField username = new TextField();
-            username.setPromptText("Username ");
-            PasswordField password = new PasswordField();
-            password.setPromptText("Password ");
-            grid.add(new Label("Username : "), 0, 0);
-            grid.add(username, 1, 0);
-            grid.add(new Label("Password : "), 0, 1);
-            grid.add(password, 1, 1);
-            Node loginButton = dialog.getDialogPane().lookupButton(loginButtonType);
-            loginButton.setDisable(true);
-            username.textProperty().addListener((observable, oldValue, newValue) -> {
-                loginButton.setDisable(newValue.trim().isEmpty());
-            });
-            dialog.getDialogPane().setContent(grid);
-            Platform.runLater(username::requestFocus);
-            dialog.setResultConverter(dialogButton -> {
-                if (dialogButton == loginButtonType) {
-                    return new Pair<>(username.getText(), password.getText());
-                }
-                return null;
-            });
-            Optional<Pair<String, String>> result = dialog.showAndWait();
-            result.ifPresent(usernamePassword -> {
-                accountRequest.setUserName(usernamePassword.getKey());
-                accountRequest.setPassWord(usernamePassword.getValue());
-                account.login(accountRequest);
-            });
-        });
-        return button;
+        return null;
     }
 
     private GridPane getGridPane() {
