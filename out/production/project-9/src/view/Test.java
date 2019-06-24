@@ -1,6 +1,6 @@
 package view;
 
-import controller.AccountController;
+
 import controller.GraveYardController;
 import javafx.application.Application;
 import javafx.stage.Stage;

@@ -3,6 +3,7 @@ package view;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -11,19 +12,24 @@ import model.Player;
 import model.cards.Card;
 
 import java.net.URL;
-import java.util.ArrayList;
 
 public class GraveYardView {
-
     private Player player;
 
-    public void start() {
+    public GraveYardView(Player player) {
+        this.player = player;
+    }
+
+    public void start(Stage stage) {
         try {
-            Stage stage = new Stage();
             FXMLLoader loader = new FXMLLoader(new URL("file:src\\res\\FXML\\graveyard.fxml"));
             Parent root = loader.load();
             TableView tableView = (TableView) root.lookup("#tableview");
             setTableView(tableView);
+            Button back = (Button) root.lookup("#back");
+            back.setOnMouseClicked(m -> {
+                stage.close();
+            });
 
             stage.setScene(new Scene(root));
             stage.show();
@@ -41,26 +47,5 @@ public class GraveYardView {
         tableView.getColumns().addAll(column1, column5);
 
         tableView.getItems().addAll(player.getGraveYard().getCards());
-        tableView.getItems().addAll(new Card(1,1,null,1,"a","a"));
-    }
-
-    public GraveYardView(Player player) {
-        this.player = player;
-    }
-
-
-    public void showCards(ArrayList<Card> cards) {
-        for (Card card : cards) {
-            System.out.println(card.toString());
-        }
-    }
-
-    public void showCardInfo(Card card) {
-        System.out.printf("card name : %s\ndescription : %s", card.getName(), card.getDesc());
-    }
-
-    public void help(Player player) {
-        System.out.printf("<<-------GraphicalGraveYard for Player : %s--------->>\n", player.getName());
-        System.out.println("show info\nshow cards\nexit");
     }
 }

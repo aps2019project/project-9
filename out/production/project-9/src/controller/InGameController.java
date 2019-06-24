@@ -152,9 +152,9 @@ public class InGameController {
                     inGameView.showCardInfo(battle.getCurrenPlayer().getHand().getNext());
                     break;
                 case ENTER_GRAVEYARD:
-                    GraveYardController graveYardController = new GraveYardController(battle.getCurrenPlayer());
+                    /*GraveYardController graveYardController = new GraveYardController(battle.getCurrenPlayer());
                     graveYardController.main();
-                    break;
+                    break;*/
                 case SHOW_MY_MINIONS:
                     inGameView.showMinions(battle.getCurrenPlayer());
                     break;
