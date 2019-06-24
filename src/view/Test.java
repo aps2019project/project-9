@@ -1,6 +1,7 @@
 package view;
 
 
+import controller.AccountController;
 import controller.GraveYardController;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -17,12 +18,15 @@ public class Test extends Application {
     @Override
     public void start(Stage primaryStage) {                 //all start must have try catch
         AccountMenu a = AccountMenu.getInstance();
-        Player player = new Player(new Account("a","a"),new Battle());
-        GraveYardView g = new GraveYardView(player);
+        Account account = new Account("a","a");
+        Player player = new Player(account,new Battle());
+        GraphicalGraveYard g = new GraphicalGraveYard(player);
         GraveYardController gc = new GraveYardController(player);
         try {
+            a.start(primaryStage,new AccountController());
+            //g.start(primaryStage);
             //a.start(primaryStage,new AccountController());
-            gc.main();
+            //gc.start();
         } catch (Exception e) {
             e.printStackTrace();
         }

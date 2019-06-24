@@ -152,6 +152,9 @@ public class InGameController {
                     inGameView.showCardInfo(battle.getCurrenPlayer().getHand().getNext());
                     break;
                 case ENTER_GRAVEYARD:
+                    GraveYardController graveYardController = new GraveYardController(battle.getCurrenPlayer());
+                    graveYardController.start();
+                    break;
                     /*GraveYardController graveYardController = new GraveYardController(battle.getCurrenPlayer());
                     graveYardController.main();
                     break;*/

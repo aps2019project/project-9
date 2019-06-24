@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="562.0" prefWidth="1003.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -14,5 +17,18 @@
          </image>
       </ImageView>
       <TableView fx:id="tableview" layoutX="347.0" layoutY="23.0" prefHeight="213.0" prefWidth="379.0" />
+      <Button fx:id="back" layoutX="827.0" layoutY="473.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="161.0" style="-fx-background-color: transparent;" text="Back">
+         <font>
+            <Font size="34.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0" startX="0.6450382261785843" startY="0.14885494727214785">
+               <stops>
+                  <Stop color="#8315b2" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Button>
    </children>
 </AnchorPane>
