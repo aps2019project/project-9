@@ -1,25 +1,27 @@
 package view;
 
+import java.net.URL;
 import java.util.*;
 
 import controller.CollectionController;
 import data.DeckAddException;
 import javafx.collections.FXCollections;
-import javafx.event.EventHandler;
-import javafx.scene.Group;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import model.Account;
 import model.Deck;
 import data.JsonProcess;
 import model.cards.Card;
+import model.enumerations.CardType;
 import model.enumerations.CollectionErrorType;
+import model.items.Item;
 
 import static model.enumerations.CollectionErrorType.DECK_CREATED;
 import static model.enumerations.CollectionErrorType.REMOVED_SUCCESSFULLY;
@@ -40,13 +42,15 @@ public class CollectionMenu {
     public void start() {
         try {
             Stage stage = new Stage();
-            Group root = new Group();
-            TableView tableView = setTable();
-            runSlideShow(root);
-            setButtons(root, stage, tableView);
-            setColumns(tableView);
-            root.getChildren().add(tableView);
-            Scene scene = new Scene(root, 1003, 562);
+            FXMLLoader loader = new FXMLLoader(new URL("file:src\\res\\FXML\\collection.fxml"));
+            Parent parent = loader.load();
+
+            TableView cardtable = (TableView) parent.lookup("#cardtable");
+            TableView itemtable = (TableView) parent.lookup("#itemtable");
+            runSlideShow(parent);
+            setButtons(parent, stage, cardtable, itemtable);
+            setColumns(cardtable, itemtable);
+            Scene scene = new Scene(parent);
             stage.setScene(scene);
             scene.getStylesheets().add("src/res/CSS/CollectionButtonStyle.css");
             stage.getIcons().add(new Image("file:src/res/icon.jpg"));
@@ -57,14 +61,7 @@ public class CollectionMenu {
         }
     }
 
-    private TableView setTable() {
-        TableView tableView = new TableView();
-        tableView.setTranslateX(500);
-        tableView.setLayoutY(30);
-        return tableView;
-    }
-
-    private void runSlideShow(Group root) {
+    private void runSlideShow(Parent root) {
         //change this if you wanna add picture
         final int size = 4;
         long delay = 7000;
@@ -73,7 +70,8 @@ public class CollectionMenu {
         for (int i = 0; i < size; i++) {
             images.add(new Image("/src/res/collection-menu-images/" + i + ".jpg"));
         }
-        slideshowImageView = new ImageView(images.get(0));
+        slideshowImageView = (ImageView) root.lookup("#imageview");
+        //slideshowImageView = new ImageView(images.get(0));
         new Timer().schedule(new TimerTask() {
 
             @Override
@@ -84,9 +82,6 @@ public class CollectionMenu {
                 }
             }
         }, 0, delay);
-        slideshowImageView.setFitHeight(562);
-        slideshowImageView.setFitWidth(1003);
-        root.getChildren().addAll(slideshowImageView);
     }
 
     private ChoiceDialog<String> getSavedDecksNames() {
@@ -94,11 +89,11 @@ public class CollectionMenu {
         return new ChoiceDialog<>(null, sample);
     }
 
-    private void setExportImportBtns(Group root){
+    private void setExportImportBtns(Parent root) {
         //////////////////////deck export importing process//////////////////
         //TODO export import buttons ( layouts Remained )->
-        Button exportDeck = new Button("Export Deck");
-        Button importDeck = new Button("Import Deck");
+        Button exportDeck = (Button) root.lookup("#exportdeck");
+        Button importDeck = (Button) root.lookup("#importdeck");
         exportDeck.setOnMouseEntered(mouseEvent -> exportDeck.setLayoutX(exportDeck.getLayoutX() + 20));
         exportDeck.setOnMouseExited(mouseEvent -> exportDeck.setLayoutX(exportDeck.getLayoutX() - 20));
         importDeck.setOnMouseEntered(mouseEvent -> importDeck.setLayoutX(importDeck.getLayoutX() + 20));
@@ -133,44 +128,31 @@ public class CollectionMenu {
                 System.out.println(p + " " + account.getUserName());
             });
         });
-        //
-        importDeck.setLayoutX(200);
-        importDeck.setLayoutY(200);
-        exportDeck.setLayoutX(200);
-        exportDeck.setLayoutY(250);
-        //
-        root.getChildren().addAll(exportDeck, importDeck);
         ////////////////////////////////////end/////////////////////////////
     }
 
-    private void setButtons(Group root, Stage stage, TableView tableView) {
+    private void setButtons(Parent root, Stage stage, TableView cardtable, TableView itemtable) {
         setExportImportBtns(root);
-        int addX = 20;
-        int addY = 43;
-        int startX = 20;
-        int startY = 170;
-        Button selectDeck = setSelectButton(startX, startY);
-        setBtnOnMouseOverAction(selectDeck);
-        Button createDeck = setCreateDeckButton(startX, startY, addX, addY);
-        setBtnOnMouseOverAction(createDeck);
-        Button deleteDeck = setDeleteDeckButton(startX, startY, addX, addY);
-        setBtnOnMouseOverAction(deleteDeck);
-        Button showAllDecks = setShowAllDecksButton(startX, startY, addX, addY, tableView);
-        setBtnOnMouseOverAction(showAllDecks);
-        Button showDeck = setShowDeckButton(startX, startY, addX, addY, tableView);
-        setBtnOnMouseOverAction(showDeck);
-        Button save = setSaveButton(startX, startY, addX, addY);
-        setBtnOnMouseOverAction(save);
-        Button search = setSearchButton(startX, startY, addX, addY, tableView);
-        setBtnOnMouseOverAction(search);
-        Button help = setHelpButton(startX, startY, addX, addY);
-        setBtnOnMouseOverAction(help);
-        Button back = setBackButton(startX, startY, addX, addY, stage);
-        setBtnOnMouseOverAction(back);
-        Button showCollection = setShowCollectionButton(tableView);
 
-        root.getChildren().addAll(selectDeck, createDeck, deleteDeck, showAllDecks, showDeck, save, help, back,
-                showCollection, search);
+        Button selectDeck = setSelectButton(root);
+        setBtnOnMouseOverAction(selectDeck);
+        Button createDeck = setCreateDeckButton(root);
+        setBtnOnMouseOverAction(createDeck);
+        Button deleteDeck = setDeleteDeckButton(root);
+        setBtnOnMouseOverAction(deleteDeck);
+        Button showAllDecks = setShowAllDecksButton(root, cardtable, itemtable);
+        setBtnOnMouseOverAction(showAllDecks);
+        Button showDeck = setShowDeckButton(root, cardtable, itemtable);
+        setBtnOnMouseOverAction(showDeck);
+        Button save = setSaveButton(root);
+        setBtnOnMouseOverAction(save);
+        Button search = setSearchButton(root, cardtable, itemtable);
+        setBtnOnMouseOverAction(search);
+        Button help = setHelpButton(root);
+        setBtnOnMouseOverAction(help);
+        Button back = setBackButton(root, stage);
+        setBtnOnMouseOverAction(back);
+        Button showCollection = setShowCollectionButton(root, cardtable, itemtable);
     }
 
     private void setBtnOnMouseOverAction(Button button) {
@@ -185,8 +167,8 @@ public class CollectionMenu {
         });
     }
 
-    private Button setShowCollectionButton(TableView tableView) {
-        Button showCollection = new Button("show\nCollection");
+    private Button setShowCollectionButton(Parent root, TableView cardtable, TableView itemtable) {
+        Button showCollection = (Button) root.lookup("#showcollection");
         showCollection.setStyle("-fx-background-color: \n " +
                 "        linear-gradient(#f2f2f2, #d6d6d6),\n" +
                 "        linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%),\n" +
@@ -195,28 +177,18 @@ public class CollectionMenu {
                 "    -fx-background-insets: 0,1,2;\n" +
                 "    -fx-text-fill: black;\n" +
                 "    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );");
-        showCollection.setLayoutX(35);
-        showCollection.setLayoutY(480);
-        showCollection.setOnMouseClicked(m -> showCollectionTable(tableView));
+        showCollection.setOnMouseClicked(m -> showCollectionTable(cardtable, itemtable));
         return showCollection;
     }
 
-    private Button setBackButton(int startX, int startY, int addX, int addY, Stage stage) {
-        Button back = new Button("Exit");
-        back.setScaleX(0.8);
-        back.setScaleY(0.8);
-        back.setLayoutX(startX + 8 * addX);
-        back.setLayoutY(startY + 8 * addY);
+    private Button setBackButton(Parent root, Stage stage) {
+        Button back = (Button) root.lookup("#back");
         back.setOnMouseClicked(m -> stage.close());
         return back;
     }
 
-    private Button setHelpButton(int startX, int startY, int addX, int addY) {
-        Button help = new Button("help");
-        help.setScaleX(0.8);
-        help.setScaleY(0.8);
-        help.setLayoutX(startX + 7 * addX);
-        help.setLayoutY(startY + 7 * addY);
+    private Button setHelpButton(Parent root) {
+        Button help = (Button) root.lookup("#help");
 
         help.setOnMouseClicked(m -> {
             new Alert(Alert.AlertType.INFORMATION,
@@ -232,12 +204,8 @@ public class CollectionMenu {
         return help;
     }
 
-    private Button setSearchButton(int startX, int startY, int addX, int addY, TableView tableView) {
-        Button search = new Button("Search");
-        search.setScaleX(0.8);
-        search.setScaleY(0.8);
-        search.setLayoutX(startX + 6 * addX);
-        search.setLayoutY(startY + 6 * addY);
+    private Button setSearchButton(Parent root, TableView cardtable, TableView itemtable) {
+        Button search = (Button) root.lookup("#search");
         search.setOnMouseClicked(m -> {
             TextInputDialog dialog = new TextInputDialog("");
             dialog.setTitle("Search");
@@ -246,18 +214,14 @@ public class CollectionMenu {
 
             Optional<String> result = dialog.showAndWait();
             result.ifPresent(name -> {
-                showCard(tableView, name);
+                showCard(cardtable, itemtable, name);
             });
         });
         return search;
     }
 
-    private Button setSaveButton(int startX, int startY, int addX, int addY) {
-        Button save = new Button("Save");
-        save.setScaleX(0.8);
-        save.setScaleY(0.8);
-        save.setLayoutX(startX + 5 * addX);
-        save.setLayoutY(startY + 5 * addY);
+    private Button setSaveButton(Parent root) {
+        Button save = (Button) root.lookup("#save");
 
         save.setOnMouseClicked(m -> {
             JsonProcess.saveAccount(account);
@@ -265,39 +229,25 @@ public class CollectionMenu {
         return save;
     }
 
-    private Button setShowDeckButton(int startX, int startY, int addX, int addY, TableView tableView) {
-        Button showDeck = new Button("Show Deck");
-        showDeck.setScaleX(0.8);
-        showDeck.setScaleY(0.8);
-        showDeck.setLayoutX(startX + 4 * addX);
-        showDeck.setLayoutY(startY + 4 * addY);
+    private Button setShowDeckButton(Parent root, TableView cardtable, TableView itemtable) {
+        Button showDeck = (Button) root.lookup("#showdeck");
 
         showDeck.setOnMouseClicked(m -> {
-            showDeckTable(tableView);
+            showDeckTable(cardtable, itemtable);
         });
         return showDeck;
     }
 
-    private Button setShowAllDecksButton(int startX, int startY, int addX, int addY, TableView tableView) {
-        Button showAllDecks = new Button("Show All Decks");
-        showAllDecks.setScaleX(0.8);
-        showAllDecks.setScaleY(0.8);
-        showAllDecks.setLayoutX(startX + 3 * addX);
-        showAllDecks.setLayoutY(startY + 3 * addY);
-
+    private Button setShowAllDecksButton(Parent root, TableView cardtable, TableView itemtable) {
+        Button showAllDecks = (Button) root.lookup("#showalldecks");
         showAllDecks.setOnMouseClicked(m -> {
-            showAllDecksTable(tableView);
+            showAllDecksTable(cardtable, itemtable);
         });
         return showAllDecks;
     }
 
-    private Button setDeleteDeckButton(int startX, int startY, int addX, int addY) {
-        Button deleteDeck = new Button("Delete Deck");
-        deleteDeck.setScaleX(0.8);
-        deleteDeck.setScaleY(0.8);
-        deleteDeck.setLayoutX(startX + 2 * addX);
-        deleteDeck.setLayoutY(startY + 2 * addY);
-
+    private Button setDeleteDeckButton(Parent root) {
+        Button deleteDeck = (Button) root.lookup("#deletedeck");
         deleteDeck.setOnMouseClicked(mouseEvent -> {
             ChoiceDialog<String> dio = setDecksList();
             dio.setTitle("Delete deck");
@@ -309,12 +259,8 @@ public class CollectionMenu {
         return deleteDeck;
     }
 
-    private Button setCreateDeckButton(int startX, int startY, int addX, int addY) {
-        Button createDeck = new Button("Create Deck");
-        createDeck.setScaleX(0.8);
-        createDeck.setScaleY(0.8);
-        createDeck.setLayoutX(startX + addX);
-        createDeck.setLayoutY(startY + addY);
+    private Button setCreateDeckButton(Parent group) {
+        Button createDeck = (Button) group.lookup("#createdeck");
 
         createDeck.setOnMouseClicked(m -> {
             TextInputDialog dialog = new TextInputDialog();
@@ -328,12 +274,8 @@ public class CollectionMenu {
         return createDeck;
     }
 
-    private Button setSelectButton(int startX, int startY) {
-        Button selectDeck = new Button("Select Deck");
-        selectDeck.setScaleX(0.8);
-        selectDeck.setScaleY(0.8);
-        selectDeck.setLayoutX(startX);
-        selectDeck.setLayoutY(startY);
+    private Button setSelectButton(Parent parent) {
+        Button selectDeck = (Button) parent.lookup("#selectdeck");
         selectDeck.setOnMouseClicked(mouseEvent -> {
             ChoiceDialog<String> dio = setDecksList();
             dio.setTitle("Select main Deck");
@@ -346,28 +288,31 @@ public class CollectionMenu {
         return selectDeck;
     }
 
-    private void showCard(TableView tableView, String name) {
-        if (havebutton) {
-            tableView.getColumns().remove(5);
-        }
-        havebutton = true;
-        addAddButtonToTable(tableView);
-        tableView.getItems().clear();
-        controller.search(name, tableView);
+    private void showCard(TableView cardtable, TableView itemtable, String name) {
+        cleartableandaddaddbutton(cardtable, itemtable);
+        controller.search(name, cardtable, itemtable);
     }
 
-    private void showCollectionTable(TableView tableView) {
+    private void cleartableandaddaddbutton(TableView cardtable, TableView itemtable) {
         if (havebutton) {
-            tableView.getColumns().remove(5);
+            cardtable.getColumns().remove(5);
+            itemtable.getColumns().remove(3);
         }
         havebutton = true;
-        addAddButtonToTable(tableView);
-        tableView.getItems().clear();
-        tableView.getItems().addAll(FXCollections.observableArrayList(account.getCollection().getCards()));
-        tableView.getItems().addAll(FXCollections.observableArrayList(account.getCollection().getItems()));
+        addAddButtonToTable(cardtable);
+        addAddButtonToTable(itemtable);
+
+        cardtable.getItems().clear();
+        itemtable.getItems().clear();
     }
 
-    private void showDeckTable(TableView tableView) {
+    private void showCollectionTable(TableView cardtable, TableView itemtable) {
+        cleartableandaddaddbutton(cardtable, itemtable);
+        cardtable.getItems().addAll(FXCollections.observableArrayList(account.getCollection().getCards()));
+        itemtable.getItems().addAll(FXCollections.observableArrayList(account.getCollection().getItems()));
+    }
+
+    private void showDeckTable(TableView cardtable, TableView itemtable) {
         List<String> choices = new ArrayList<>();
         for (int i = 0; i < account.getDecks().size(); i++) {
             choices.add(account.getDecks().get(i).getName());
@@ -380,21 +325,15 @@ public class CollectionMenu {
 
             Optional<String> result = dialog.showAndWait();
             result.ifPresent(letter -> {
-                if (havebutton) {
-                    tableView.getColumns().remove(5);
-                }
-                havebutton = true;
-                addDeleteButtonToTable(tableView);
-                tableView.getItems().clear();
-                Deck temp = account.findDeckByName(letter);
-                showDeck(tableView, temp);
+                cleartablesandadddeletebutton(cardtable, itemtable);
+                showDeck(cardtable, itemtable, account.findDeckByName(letter));
             });
         } else {
             new Alert(Alert.AlertType.WARNING, "You Have no Deck!!!");
         }
     }
 
-    private void setColumns(TableView tableView) {
+    private void setColumns(TableView cardtable, TableView itemtable) {
         TableColumn<String, Card> column1 = new TableColumn<>("Name");
         column1.setCellValueFactory(new PropertyValueFactory<>("name"));
         column1.setMaxWidth(100);
@@ -405,39 +344,56 @@ public class CollectionMenu {
 
         TableColumn<String, Card> column3 = new TableColumn<>("price");
         column3.setCellValueFactory(new PropertyValueFactory<>("cost"));
-        column2.setMaxWidth(100);
+        column3.setMaxWidth(50);
 
         TableColumn<String, Card> column4 = new TableColumn<>("MP");
         column4.setCellValueFactory(new PropertyValueFactory<>("MP"));
-        column2.setMaxWidth(100);
+        column4.setMaxWidth(40);
 
         TableColumn<String, Card> column5 = new TableColumn<>("Description");
         column2.setMaxWidth(100);
         column5.setCellValueFactory(new PropertyValueFactory<>("desc"));
         column5.setMaxWidth(300);
 
-        tableView.getColumns().addAll(column1, column2, column3, column4, column5);
+        TableColumn<String, Item> price = new TableColumn<>("price");
+        price.setCellValueFactory(new PropertyValueFactory<>("cost"));
+        TableColumn<String, Item> desc = new TableColumn<>("Description");
+        desc.setCellValueFactory(new PropertyValueFactory<>("desc"));
+        TableColumn<String, Item> itemName = new TableColumn<>("Name");
+        itemName.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+        cardtable.getColumns().addAll(column1, column2, column3, column4, column5);
+
+        itemtable.getColumns().addAll(itemName, price, desc);
+
     }
 
-    private void showDeck(TableView tableView, Deck temp) {
-        tableView.getItems().addAll(FXCollections.observableArrayList(new Card(temp.getDeckCost(),
+    private void showDeck(TableView cardtable, TableView itemtable, Deck temp) {
+        cardtable.getItems().addAll(FXCollections.observableArrayList(new Card(temp.getDeckCost(),
+                temp.getAvarageMana(), null, 0, temp.getName(), "")));
+        itemtable.getItems().addAll(FXCollections.observableArrayList(new Card(temp.getDeckCost(),
                 temp.getAvarageMana(), null, 0, temp.getName(), "")));
 
-        tableView.getItems().addAll(FXCollections.observableArrayList(temp.getCards()));
-        tableView.getItems().addAll(FXCollections.observableArrayList(temp.getItem()));
+        cardtable.getItems().addAll(FXCollections.observableArrayList(temp.getCards()));
+        itemtable.getItems().addAll(FXCollections.observableArrayList(temp.getItem()));
     }
 
-    private void showAllDecksTable(TableView tableView) {
+    private void cleartablesandadddeletebutton(TableView cardtable, TableView itemtable) {
         if (havebutton) {
-            tableView.getColumns().remove(5);
+            cardtable.getColumns().remove(5);
+            itemtable.getColumns().remove(3);
         }
         havebutton = true;
-        addDeleteButtonToTable(tableView);
-        tableView.getItems().clear();
-        for (int i = 0; i < account.getDecks().size(); i++) {
-            Deck temp = account.getDecks().get(i);
-            showDeck(tableView, temp);
-        }
+        addDeleteButtonToTable(cardtable);
+        addDeleteButtonToTable(itemtable);
+        cardtable.getItems().clear();
+        itemtable.getItems().clear();
+    }
+
+    private void showAllDecksTable(TableView cardtable, TableView itemtable) {
+        cleartablesandadddeletebutton(cardtable, itemtable);
+        for (int i = 0; i < account.getDecks().size(); i++)
+            showDeck(cardtable, itemtable, account.getDecks().get(i));
     }
 
     public void printError(CollectionErrorType error) {
@@ -457,7 +413,6 @@ public class CollectionMenu {
 
 
     private void addAddButtonToTable(TableView table) {
-        table.setTranslateX(500);
         TableColumn actionCol = new TableColumn("Add");
         actionCol.setCellValueFactory(new PropertyValueFactory<>(""));
         Callback<TableColumn<Card, String>, TableCell<Card, String>> cellFactory = new Callback<>() {
@@ -503,7 +458,6 @@ public class CollectionMenu {
     }
 
     private void addDeleteButtonToTable(TableView table) {
-        table.setTranslateX(500);
         TableColumn actionCol = new TableColumn("Delete");
         actionCol.setCellValueFactory(new PropertyValueFactory<>(""));
         Callback<TableColumn<Card, String>, TableCell<Card, String>> cellFactory = new Callback<>() {

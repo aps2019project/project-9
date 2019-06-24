@@ -82,7 +82,7 @@ public class MainMenu {
             shop.setScaleX(3);
             shop.setScaleY(2.5);
             setActionsAndStyles(shop);
-            shop.setOnMouseClicked(event -> controller.goShopMenu(controller.getLoggedInAccount(),stage));
+            shop.setOnMouseClicked(event -> controller.goShopMenu(controller.getLoggedInAccount()));
 
             Button battle = new Button("battle");
             battle.setFont(font);

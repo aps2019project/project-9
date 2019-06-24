@@ -90,12 +90,12 @@ public class CollectionController {
         }
     }
 
-    public void search(String cardOrItemName, TableView tableView) { // card or item name
+    public void search(String cardOrItemName, TableView cardtable, TableView itemtable) { // card or item name
         if (loggedInAccount.getCollection().searchCardByName(cardOrItemName) != null) {
-            tableView.getItems().addAll(FXCollections.observableArrayList(
+            cardtable.getItems().addAll(FXCollections.observableArrayList(
                     loggedInAccount.getCollection().searchCardByName(cardOrItemName)));
         } else if (loggedInAccount.getCollection().searchItemByName(cardOrItemName) != null) {
-            tableView.getItems().addAll(FXCollections.observableArrayList(
+            itemtable.getItems().addAll(FXCollections.observableArrayList(
                     loggedInAccount.getCollection().searchItemByName(cardOrItemName)));
         } else
             collectionMenu.printError(CollectionErrorType.CARD_NOT_IN_COLLECTION);

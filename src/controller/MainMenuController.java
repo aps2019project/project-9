@@ -42,8 +42,8 @@ public class MainMenuController {
         }
     }
 
-    public void goShopMenu(Account loggedInAccount,Stage stage) {
+    public void goShopMenu(Account loggedInAccount) {
         ShopController shopController = new ShopController(loggedInAccount);
-        shopController.start(stage);
+        shopController.start();
     }
 }

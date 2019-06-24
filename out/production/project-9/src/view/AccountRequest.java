@@ -1,11 +1,9 @@
 package view;
 
 import model.enumerations.AccountErrorType;
-import model.enumerations.AccountRequestType;
 
 public class AccountRequest {
     private AccountErrorType errorType = null;
-    private String command;
     private String userName;
     private String passWord;
 
@@ -23,22 +21,6 @@ public class AccountRequest {
 
     public AccountErrorType getErrorType() {
         return errorType;
-    }
-
-    public void setCommand(String command) {
-        this.command = command;
-    }
-
-    public AccountRequestType getType() {
-        if(command == null){
-            return null;
-        }
-        else if (command.equals("create account")) {
-            return AccountRequestType.CREATE_ACCOUNT;
-        } else if (command.equals("login")) {
-            return AccountRequestType.LOGIN;
-        }
-        return null;
     }
 
     public String getUserName() {

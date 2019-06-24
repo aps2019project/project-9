@@ -40,7 +40,6 @@ public class MultiPlayerBattle extends Battle {
         secondPlayer = singlePlayerBattle.secondPlayer;
         firstPlayer = new Player(battleResult.getFirstPlayerDeck().getCopy(), this, battleResult.getFirstPlayer());
         secondPlayer = new Player(battleResult.getSecondPlayerDeck().getCopy(), this, battleResult.getSecondPlayer());
-
     }
 
 }

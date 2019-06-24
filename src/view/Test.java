@@ -2,14 +2,9 @@ package view;
 
 import controller.AccountController;
 import controller.CollectionController;
-import controller.MainMenuController;
-import data.DeckAddException;
-import data.JsonProcess;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import model.*;
-
-import java.io.IOException;
 
 public class Test extends Application {
 
@@ -20,8 +15,10 @@ public class Test extends Application {
     @Override
     public void start(Stage primaryStage) {                 //all start must have try catch
         AccountMenu a = AccountMenu.getInstance();
+        CollectionMenu c = new CollectionMenu(new CollectionController(new Account("ali", "mamad")));
         try {
-            a.start(primaryStage,new AccountController());
+            //a.start(primaryStage,new AccountController());
+            a.start(primaryStage, new AccountController());
             //s.start(primaryStage, new Collection());
             //a.start(primaryStage, accountController);
         } catch (Exception e) {

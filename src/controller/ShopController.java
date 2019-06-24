@@ -22,17 +22,13 @@ public class ShopController {
         this.loggedInAccount = loggedInAccount;
     }
 
-    public void start(Stage stage) {
+    public void start() {
         try {
+            Stage stage = new Stage();
             shopMenu.start(stage, loggedInAccount.getCollection(), this);
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    private void searchCollection(String itemOrCardName, TableView tableView) {
-        CollectionController collectionController = new CollectionController(loggedInAccount);
-        collectionController.search(itemOrCardName, tableView);
     }
 
     public void sell(String itemOrCardID) {
