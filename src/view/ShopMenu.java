@@ -109,7 +109,6 @@ public class ShopMenu {
         TextField searchTextField = (TextField) parent.lookup("#search");
 
         search.setOnMouseClicked(mouseEvent -> {
-            //TODO
             if (isShowShop) {
                 controller.searchShop(searchTextField.getText(), cardTable, itemTable);
             } else {

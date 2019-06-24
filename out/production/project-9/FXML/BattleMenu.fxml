@@ -12,12 +12,12 @@
    <children>
       <ImageView fitHeight="562.0" fitWidth="1003.0" pickOnBounds="true">
          <image>
-            <Image url="@../battleMenu.jpg" />
+            <Image url="@../BattleMenuImages/battleMenu.jpg" />
          </image>
       </ImageView>
       <ImageView fitHeight="318.0" fitWidth="201.0" layoutX="258.0" layoutY="124.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../twoswords.png" />
+            <Image url="@../BattleMenuImages/twoswords.png" />
          </image>
       </ImageView>
       <Button fx:id="multi" layoutX="257.0" layoutY="123.0" mnemonicParsing="false" prefHeight="309.0" prefWidth="199.0" style="-fx-background-color: transparent; -fx-shape: &quot;M 400 100 Q 350 100 300 150 L 300 350 Q 350 400 400 400 Q 450 400 500 350 L 500 150 Q 450 100 400 100&quot;;" text="Multi Player">
@@ -27,7 +27,7 @@
       </Button>
       <ImageView fitHeight="351.0" fitWidth="210.0" layoutX="545.0" layoutY="124.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Untitled.png" />
+            <Image url="@../BattleMenuImages/sword.png" />
          </image>
       </ImageView>
       <Button fx:id="single" layoutX="550.0" layoutY="124.0" mnemonicParsing="false" prefHeight="318.0" prefWidth="199.0" style="-fx-shape: &quot;M 400 100 Q 350 100 300 150 L 300 350 Q 350 400 400 400 Q 450 400 500 350 L 500 150 Q 450 100 400 100&quot;; -fx-background-color: transparent;" text="Single Player">

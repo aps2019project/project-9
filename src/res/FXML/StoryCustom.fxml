@@ -12,7 +12,7 @@
    <children>
       <ImageView fitHeight="562.0" fitWidth="1003.0" pickOnBounds="true">
          <image>
-            <Image url="@../battleMenu.jpg" />
+            <Image url="@../BattleMenuImages/battleMenu.jpg" />
          </image>
       </ImageView>
       <Button fx:id="back" layoutX="854.0" layoutY="476.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="134.0" style="-fx-background-color: transparent;" text="Back">
@@ -40,7 +40,7 @@
       </Button>
       <ImageView fitHeight="310.0" fitWidth="199.0" layoutX="549.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Gear.png" />
+            <Image url="@../BattleMenuImages/Gear.png" />
          </image>
       </ImageView>
       <Button fx:id="custom" layoutX="551.0" layoutY="126.0" mnemonicParsing="false" prefHeight="310.0" prefWidth="193.0" style="-fx-shape: &quot;M 400 100 Q 350 100 300 150 L 300 350 Q 350 400 400 400 Q 450 400 500 350 L 500 150 Q 450 100 400 100&quot;; -fx-background-color: transparent;" text="Custom Game">

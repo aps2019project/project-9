@@ -118,7 +118,7 @@ public class InGameController {
                 case END_GAME:
                     // after view.endGameOutput called
                     BattleMenuView view = new BattleMenuView();
-                    view.showSingleMultiPlayerMenu();
+                    view.showSingleMultiPlayerMenu();             //change this bro
                     isFinished = true;
                     break main;
                 case END_TURN:
