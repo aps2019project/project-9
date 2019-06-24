@@ -21,8 +21,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class MainMenu {
-    private static double HEIGHT = 562;
-    private static double WIDTH = 1003;
     private static final MainMenu MAINMENU = new MainMenu();
 
     private MainMenu() {
@@ -46,7 +44,7 @@ public class MainMenu {
             imageView.setFitHeight(562);
             Group root = new Group(imageView, text);
             setButtons(root, MainMenuController.getInstance(loggedAccount), stage);
-            Scene scene = new Scene(root, WIDTH, HEIGHT);
+            Scene scene = new Scene(root, 1003, 562);
             stage.setScene(scene);
             stage.getIcons().add(new Image("file:src/res/icon.jpg"));
             stage.show();
@@ -63,7 +61,7 @@ public class MainMenu {
                 button.setStyle("-fx-background-color: rgba(0,0,0,0);-fx-text-fill: #020d7f"));
     }
 
-    void setButtons(Group root, MainMenuController controller, Stage stage) {
+    private void setButtons(Group root, MainMenuController controller, Stage stage) {
         try {
             Font font = Font.loadFont(new FileInputStream(new File("src/res/Font/ALGER.TTF")), 13);
             Button collection = new Button("Collection");
@@ -117,7 +115,7 @@ public class MainMenu {
                     defaultCard.setStyle("-fx-background-color: rgba(0,0,0,0);-fx-text-fill: #063e07"));
             defaultCard.setOnMouseExited(mouseEvent ->
                     defaultCard.setStyle("-fx-background-color: rgba(0,0,0,0);-fx-text-fill: #ff1cd7"));
-            defaultCard.setOnMouseClicked(m -> GoToCustomCardMenu(controller.getLoggedInAccount()));
+            defaultCard.setOnMouseClicked(ma -> GoToCustomCardMenu(controller.getLoggedInAccount()));
 
             ImageView imageView = new ImageView(new Image("src\\res\\MainMenuImages\\1.png"));
             imageView.setScaleY(0.5);

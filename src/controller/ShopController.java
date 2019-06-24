@@ -18,7 +18,7 @@ public class ShopController {
         return loggedInAccount;
     }
 
-    public ShopController(Account loggedInAccount) {
+    ShopController(Account loggedInAccount) {
         this.loggedInAccount = loggedInAccount;
     }
 
