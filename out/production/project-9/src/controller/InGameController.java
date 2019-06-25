@@ -4,7 +4,6 @@ package controller;
 import model.Battle;
 import model.Cell;
 import model.Player;
-import model.SinglePlayerBattle;
 import model.cards.Card;
 import model.cards.Minion;
 import model.cards.Spell;
@@ -12,7 +11,6 @@ import model.enumerations.InGameErrorType;
 import model.enumerations.InGameRequestType;
 import model.items.Collectible;
 import model.items.Item;
-import view.BattleMenuView;
 import view.GraphicalInGameView;
 import view.InGameRequest;
 import view.InGameView;
@@ -116,10 +114,7 @@ public class InGameController {
                     move(battle.getCurrenPlayer(), request.getX(), request.getY());
                     break;
                 case END_GAME:
-                    // after view.endGameOutput called
-                    BattleMenuView view = new BattleMenuView();
-                    view.showSingleMultiPlayerMenu();             //change this bro
-                    isFinished = true;
+                    ////////////////////////////
                     break main;
                 case END_TURN:
                     battle.getCurrenPlayer().endTurn(inGameRequests);

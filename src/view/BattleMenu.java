@@ -8,6 +8,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceDialog;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import model.Account;
 import model.Deck;
@@ -43,8 +45,10 @@ public class BattleMenu {
 
     private void setButttomnsEventbattle(Parent parent, Stage stage) {
         Button multi = (Button) parent.lookup("#multi");
+        setActionForButtons(multi);
         multi.setOnMouseClicked(mouseEvent -> multiPlayerPressed());
         Button single = (Button) parent.lookup("#single");
+        setActionForButtons(single);
         single.setOnMouseClicked(mouseEvent -> singlePlayerPressed(stage));
         Button back = (Button) parent.lookup("#back");
         back.setOnMouseClicked(mouseEvent -> MainMenuController.getInstance(logInAccount).start(stage));
@@ -65,8 +69,10 @@ public class BattleMenu {
 
     private void setButttomnsEventsingle(Parent parent, Stage stage) {
         Button story = (Button) parent.lookup("#story");
+        setActionForButtons(story);
         story.setOnMouseClicked(mouseEvent -> storyMenuShow(stage));
         Button custom = (Button) parent.lookup("#custom");
+        setActionForButtons(custom);
         custom.setOnMouseClicked(mouseEvent -> customGamePressed(stage));
         Button back = (Button) parent.lookup("#back");
         back.setOnMouseClicked(mouseEvent -> start(stage));
@@ -95,7 +101,7 @@ public class BattleMenu {
                 printError(BattleMenuErrorType.YOUR_MAIN_DECK_NOT_VALID, stage);
             }
         });
-
+        setActionForButtons(easy);
         Button inter = (Button) parent.lookup("#intermediate");
         inter.setOnMouseClicked(mouseEvent -> {
             if (logInAccount.getMainDeck().isValid())
@@ -104,7 +110,7 @@ public class BattleMenu {
                 printError(BattleMenuErrorType.YOUR_MAIN_DECK_NOT_VALID, stage);
             }
         });
-
+        setActionForButtons(inter);
         Button hard = (Button) parent.lookup("#hard");
         hard.setOnMouseClicked(mouseEvent -> {
             if (logInAccount.getMainDeck().isValid())
@@ -113,7 +119,7 @@ public class BattleMenu {
                 printError(BattleMenuErrorType.YOUR_MAIN_DECK_NOT_VALID, stage);
             }
         });
-
+        setActionForButtons(hard);
         Button back = (Button) parent.lookup("#back");
         back.setOnMouseClicked(mouseEvent -> singlePlayerPressed(stage));
     }
@@ -210,5 +216,26 @@ public class BattleMenu {
                 break;
         }
 
+    }
+
+    private void setActionForButtons(Button button) {
+        String s = button.getStyle();
+        double x = button.getLayoutX();
+        double y = button.getLayoutY();
+        Paint p = button.getTextFill();
+        button.setOnMouseEntered(m -> {
+            button.setTextFill(Color.rgb(255,0,34));
+            button.setLayoutX(button.getLayoutX() - 20);
+            button.setLayoutY(button.getLayoutY() - 20);
+            button.setStyle("-fx-pref-height:350px;" +
+                    "-fx-pref-width: 250px;" +
+                    "-fx-background-color: transparent;");
+        });
+        button.setOnMouseExited(l -> {
+            button.setTextFill(p);
+            button.setLayoutX(x);
+            button.setLayoutY(y);
+            button.setStyle(s);
+        });
     }
 }

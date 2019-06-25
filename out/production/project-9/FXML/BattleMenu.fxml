@@ -20,20 +20,23 @@
             <Image url="@../BattleMenuImages/twoswords.png" />
          </image>
       </ImageView>
-      <Button fx:id="multi" layoutX="257.0" layoutY="123.0" mnemonicParsing="false" prefHeight="309.0" prefWidth="199.0" style="-fx-background-color: transparent; -fx-shape: &quot;M 400 100 Q 350 100 300 150 L 300 350 Q 350 400 400 400 Q 450 400 500 350 L 500 150 Q 450 100 400 100&quot;;" text="Multi Player">
-         <font>
-            <Font name="DS Stain" size="25.0" />
-         </font>
-      </Button>
       <ImageView fitHeight="351.0" fitWidth="210.0" layoutX="545.0" layoutY="124.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../BattleMenuImages/sword.png" />
          </image>
       </ImageView>
-      <Button fx:id="single" layoutX="550.0" layoutY="124.0" mnemonicParsing="false" prefHeight="318.0" prefWidth="199.0" style="-fx-shape: &quot;M 400 100 Q 350 100 300 150 L 300 350 Q 350 400 400 400 Q 450 400 500 350 L 500 150 Q 450 100 400 100&quot;; -fx-background-color: transparent;" text="Single Player">
+      <Button fx:id="multi" layoutX="257.0" layoutY="123.0" mnemonicParsing="false" prefHeight="318.0" prefWidth="199.0" style="-fx-background-color: transparent; -fx-shape: &quot;M 400 100 Q 350 100 300 150 L 300 350 Q 350 400 400 400 Q 450 400 500 350 L 500 150 Q 450 100 400 100&quot;;" text="Multi Player">
          <font>
-            <Font name="DS Stain" size="22.0" />
+            <Font name="DS Stain" size="25.0" />
          </font>
+         <textFill>
+            <LinearGradient endX="0.9274809305904476" endY="1.0" startX="0.9236641221374046" startY="0.09923654658193809">
+               <stops>
+                  <Stop color="#3310e5" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
       </Button>
       <Button fx:id="back" layoutX="854.0" layoutY="476.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="134.0" style="-fx-background-color: transparent;" text="Back">
          <font>
@@ -43,6 +46,19 @@
             <LinearGradient endX="0.9427480916030534" endY="1.0" startX="1.0">
                <stops>
                   <Stop color="#1e1ed2" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Button>
+      <Button fx:id="single" layoutX="542.0" layoutY="124.0" mnemonicParsing="false" prefHeight="318.0" prefWidth="218.0" style="-fx-shape: &quot;M 400 100 Q 350 100 300 150 L 300 350 Q 350 400 400 400 Q 450 400 500 350 L 500 150 Q 450 100 400 100&quot;; -fx-background-color: transparent;" text="Single Player">
+         <font>
+            <Font name="DS Stain" size="22.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="0.6679389749774496" endY="1.0" startX="0.6641221665244066" startY="0.5038167502133901">
+               <stops>
+                  <Stop color="#8d7ed9" />
                   <Stop color="WHITE" offset="1.0" />
                </stops>
             </LinearGradient>

@@ -12,7 +12,7 @@ import java.io.IOException;
 public class BattleMenuController {
     private Account loggedInAccount;
 
-    BattleMenuController(Account loggedInAccount) {
+    public BattleMenuController(Account loggedInAccount) {
         this.loggedInAccount = loggedInAccount;
     }
 

@@ -183,7 +183,7 @@ public class CollectionMenu {
 
     private Button setValidateDeck(Parent root) {
         Button validate = (Button) root.lookup("#validate");
-        validate.setOnMouseClicked(m ->{
+        validate.setOnMouseClicked(m -> {
             ChoiceDialog<String> dio = setDecksList();
             dio.setTitle("Select A Deck");
             dio.setHeaderText("Select a deck to validate");
@@ -489,10 +489,15 @@ public class CollectionMenu {
                         } else {
                             btn.setOnAction(event -> {
                                 Card card = getTableView().getItems().get(getIndex());
-                                Alert alert = new Alert(Alert.AlertType.WARNING, "Are You Sure?");
-                                alert.showAndWait();
-                                String deckName = searchTableForDeckName(getTableView().getItems());
-                                controller.remove(deckName, card.getCardID());
+                                if (card.getCardType() == null) {
+                                    new Alert(Alert.AlertType.WARNING
+                                            , "Please delete deck with delete deck button").showAndWait();
+                                } else {
+                                    Alert alert = new Alert(Alert.AlertType.WARNING, "Are You Sure?");
+                                    alert.showAndWait();
+                                    String deckName = searchTableForDeckName(getTableView().getItems());
+                                    controller.remove(deckName, card.getCardID());
+                                }
                             });
                             setGraphic(btn);
                             setText(null);

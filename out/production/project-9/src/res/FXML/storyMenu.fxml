@@ -33,30 +33,54 @@
             <Image url="@../BattleMenuImages/easy.png" />
          </image>
       </ImageView>
-      <Button fx:id="easy" layoutX="138.0" layoutY="121.0" mnemonicParsing="false" prefHeight="318.0" prefWidth="194.0" style="-fx-background-color: transparent; -fx-shape: &quot;M 400 100 Q 350 100 300 150 L 300 350 Q 350 400 400 400 Q 450 400 500 350 L 500 150 Q 450 100 400 100&quot;;" text="Easy" textFill="#17943f" textOverrun="CLIP">
+      <Button fx:id="easy" layoutX="138.0" layoutY="121.0" mnemonicParsing="false" prefHeight="318.0" prefWidth="194.0" style="-fx-background-color: transparent; -fx-shape: &quot;M 400 100 Q 350 100 300 150 L 300 350 Q 350 400 400 400 Q 450 400 500 350 L 500 150 Q 450 100 400 100&quot;;" text="Easy" textOverrun="CLIP">
          <font>
             <Font name="DS Stain" size="34.0" />
          </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0" startX="0.23282439472111122">
+               <stops>
+                  <Stop color="#007c27" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
       </Button>
       <ImageView fitHeight="369.0" fitWidth="198.0" layoutX="403.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../BattleMenuImages/swordm.png" />
          </image>
       </ImageView>
-      <Button fx:id="intermediate" layoutX="402.0" layoutY="120.0" mnemonicParsing="false" prefHeight="318.0" prefWidth="198.0" style="-fx-shape: &quot;M 400 100 Q 350 100 300 150 L 300 350 Q 350 400 400 400 Q 450 400 500 350 L 500 150 Q 450 100 400 100&quot;; -fx-background-color: transparent;" text="Intermidate" textFill="#8c5c0a">
+      <Button fx:id="intermediate" layoutX="402.0" layoutY="120.0" mnemonicParsing="false" prefHeight="318.0" prefWidth="198.0" style="-fx-shape: &quot;M 400 100 Q 350 100 300 150 L 300 350 Q 350 400 400 400 Q 450 400 500 350 L 500 150 Q 450 100 400 100&quot;; -fx-background-color: transparent;" text="Intermidate">
          <font>
             <Font name="DS Stain" size="24.0" />
          </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0" startX="0.8969465357656696">
+               <stops>
+                  <Stop color="#744b09" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
       </Button>
       <ImageView fitHeight="383.0" fitWidth="198.0" layoutX="686.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../BattleMenuImages/hard.png" />
          </image>
       </ImageView>
-      <Button fx:id="hard" layoutX="682.0" layoutY="120.0" mnemonicParsing="false" prefHeight="318.0" prefWidth="205.0" style="-fx-shape: &quot;M 400 100 Q 350 100 300 150 L 300 350 Q 350 400 400 400 Q 450 400 500 350 L 500 150 Q 450 100 400 100&quot;; -fx-background-color: transparent;" text="Hard" textFill="#af1b1b">
+      <Button fx:id="hard" layoutX="682.0" layoutY="120.0" mnemonicParsing="false" prefHeight="318.0" prefWidth="205.0" style="-fx-shape: &quot;M 400 100 Q 350 100 300 150 L 300 350 Q 350 400 400 400 Q 450 400 500 350 L 500 150 Q 450 100 400 100&quot;; -fx-background-color: transparent;" text="Hard">
          <font>
             <Font name="DS Stain" size="33.0" />
          </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0" startX="0.8854961104065406">
+               <stops>
+                  <Stop color="#a21919" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
       </Button>
    </children>
 </AnchorPane>
