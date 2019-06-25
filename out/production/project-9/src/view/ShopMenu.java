@@ -13,6 +13,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -85,6 +87,7 @@ public class ShopMenu {
             showShopTable(cardTable, itemTable);
             setMoney(parent);
         });
+        setActionsForButton(b, true);
     }
 
     private void setShowCollectionButton(TableView cardTable, TableView itemTable, Collection collection) {
@@ -94,6 +97,7 @@ public class ShopMenu {
             showCollectionTable(cardTable, itemTable, collection);
             setMoney(parent);
         });
+        setActionsForButton(showCollection,true);
     }
 
     private void setHelpButton() {
@@ -103,12 +107,14 @@ public class ShopMenu {
                 "search --> find card/item in shop/collection\n" +
                 "buy --> buy card/item\n" +
                 "sell --> buy card/item\n").showAndWait());
+        setActionsForButton(help,false);
 
     }
 
     private void setExitButton(Stage stage) {
         Button back = (Button) parent.lookup("#back");
         back.setOnMouseClicked(mouseEvent -> stage.close());
+        setActionsForButton(back,false);
     }
 
     private void setSearchButtonAndTextField(Parent parent, TableView cardTable, TableView itemTable) {
@@ -122,6 +128,7 @@ public class ShopMenu {
                 controller.searchCollection(searchTextField.getText(), cardTable, itemTable);
             }
         });
+        setActionsForButton(search,false);
     }
 
     private void showCollectionTable(TableView cardTable, TableView itemTable, Collection collection) {
@@ -294,5 +301,35 @@ public class ShopMenu {
             new Alert(Alert.AlertType.INFORMATION, error.getMessage()).showAndWait();
         } else
             new Alert(Alert.AlertType.WARNING, error.getMessage()).showAndWait();
+    }
+
+    private void setActionsForButton(Button button, boolean ifCollection) {
+        String s = button.getStyle();
+        double x = button.getLayoutX();
+        double y = button.getLayoutY();
+        Paint p = button.getTextFill();
+        Font f = button.getFont();
+        button.setOnMouseEntered(m -> {
+            button.setTextFill(Color.rgb(255, 0, 34));
+            if (!ifCollection) {
+                button.setLayoutY(button.getLayoutY() - 15);
+                button.setFont(new Font(34));
+            }
+            if (button.getText().equals("Back To Menu")){
+                button.setText("Back");
+            }
+            button.setStyle(
+                    "-fx-background-color: transparent;");
+        });
+        button.setOnMouseExited(l -> {
+            button.setFont(f);
+            button.setTextFill(p);
+            button.setLayoutX(x);
+            button.setLayoutY(y);
+            button.setStyle(s);
+            if (button.getText().equals("Back")){
+                button.setText("Back To Menu");
+            }
+        });
     }
 }
