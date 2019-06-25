@@ -37,6 +37,7 @@ public class ShopMenu {
     private boolean isShowShop = true;
     private static ShopMenu instance = new ShopMenu();
     private ShopController controller;
+    private Parent parent;
 
     private ShopMenu() {
     }
@@ -50,18 +51,18 @@ public class ShopMenu {
             this.controller = controller;
             FXMLLoader loader = new FXMLLoader(new URL("file:src\\res\\FXML\\Shop.fxml"));
             Parent parent = loader.load();
-
+            this.parent = parent;
             TableView cardTable = (TableView) parent.lookup("#cardTable");
             TableView itemTable = (TableView) parent.lookup("#itemTable");
             setCardTableColumns(cardTable);
             setitemTableColumns(itemTable);
 
             setSearchButtonAndTextField(parent, cardTable, itemTable);
-            setHelpButton(parent);
-            setExitButton(parent, stage);
+            setHelpButton();
+            setExitButton(stage);
             setMoney(parent);
-            setShowShopButton(parent, cardTable, itemTable);
-            setShowCollectionButton(parent, cardTable, itemTable, collection);
+            setShowShopButton(cardTable, itemTable);
+            setShowCollectionButton(cardTable, itemTable, collection);
 
             Scene scene = new Scene(parent, 1003, 562);
             stage.setScene(scene);
@@ -77,23 +78,25 @@ public class ShopMenu {
         textField.setText(Integer.toString(controller.getLoggedInAccount().getMoney()));
     }
 
-    private void setShowShopButton(Parent parent, TableView cardTable, TableView itemTable) {
+    private void setShowShopButton(TableView cardTable, TableView itemTable) {
         Button b = (Button) parent.lookup("#showShop");
         b.setOnMouseClicked(mouseEvent -> {
             isShowShop = true;
             showShopTable(cardTable, itemTable);
+            setMoney(parent);
         });
     }
 
-    private void setShowCollectionButton(Parent parent, TableView cardTable, TableView itemTable, Collection collection) {
+    private void setShowCollectionButton(TableView cardTable, TableView itemTable, Collection collection) {
         Button showCollection = (Button) parent.lookup("#showCollection");
         showCollection.setOnMouseClicked(mouseEvent -> {
             isShowShop = false;
             showCollectionTable(cardTable, itemTable, collection);
+            setMoney(parent);
         });
     }
 
-    private void setHelpButton(Parent parent) {
+    private void setHelpButton() {
         Button help = (Button) parent.lookup("#help");
         help.setOnMouseClicked(mouseEvent -> new Alert(Alert.AlertType.INFORMATION, "show Collection " +
                 "---> show your collection\n" +
@@ -103,9 +106,9 @@ public class ShopMenu {
 
     }
 
-    private void setExitButton(Parent parent, Stage stage) {
+    private void setExitButton(Stage stage) {
         Button back = (Button) parent.lookup("#back");
-        back.setOnMouseClicked(mouseEvent -> MainMenu.getInstance().start(stage, controller.getLoggedInAccount()));
+        back.setOnMouseClicked(mouseEvent -> stage.close());
     }
 
     private void setSearchButtonAndTextField(Parent parent, TableView cardTable, TableView itemTable) {
@@ -238,8 +241,10 @@ public class ShopMenu {
                             setGraphic(null);
                             setText(null);
                         } else {
-                            btn.setOnAction(event ->
-                                    controller.sell(getTableView().getItems().get(getIndex()).getName()));
+                            btn.setOnAction(event -> {
+                                controller.sell(getTableView().getItems().get(getIndex()).getCardID());
+                                setMoney(parent);
+                            });
                             setGraphic(btn);
                             setText(null);
                         }
@@ -268,8 +273,10 @@ public class ShopMenu {
                             setGraphic(null);
                             setText(null);
                         } else {
-                            btn.setOnAction(event ->
-                                    controller.buy(getTableView().getItems().get(getIndex()).getName()));
+                            btn.setOnAction(event -> {
+                                controller.buy(getTableView().getItems().get(getIndex()).getName());
+                                setMoney(parent);
+                            });
                             setGraphic(btn);
                             setText(null);
                         }

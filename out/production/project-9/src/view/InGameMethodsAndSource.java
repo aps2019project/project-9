@@ -86,7 +86,7 @@ public class InGameMethodsAndSource {// a resource for graphical in game view
     }
 
     public static void showReplay(BattleResult battleResult) {
-        Battle battle = getBattle(battleResult);
+        /*Battle battle = getBattle(battleResult);
         ArrayList<InGameRequest> inGameRequests = battleResult.getInGameRequests();
         GraphicalInGameView view = new GraphicalInGameView();
         //
@@ -108,15 +108,15 @@ public class InGameMethodsAndSource {// a resource for graphical in game view
                 //
                 view.updateEveryThing();
                 //////////end///////
-                /*try {
+                *//*try {
                     Thread.currentThread().sleep(2000);//TODO timing
                 } catch (InterruptedException e) {
                     e.printStackTrace();
-                }*/
+                }*//*
             }
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     private static Battle getBattle(BattleResult battleResult) {

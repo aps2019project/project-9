@@ -3,26 +3,35 @@
   <component name="ChangeListManager">
     <list default="true" id="429eadbd-36e3-4fa5-93ef-05e24885aef0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/FXML/Shop.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/FXML/Shop.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/controller/BattleMenuController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/controller/BattleMenuController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/controller/CollectionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/controller/CollectionController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/project-9/controller/ShopController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/controller/ShopController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/res/FXML/Shop.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/res/FXML/Shop.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/controller/BattleMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/controller/BattleMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/controller/CollectionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/controller/CollectionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/data/accountJsons/mohsen.json" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/data/accountJsons/mohsen.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/project-9/src/controller/ShopController.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/controller/ShopController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/res/FXML/Shop.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/res/FXML/Shop.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/view/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/view/MainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/data/accountJsons/mohsen.json" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/data/accountJsons/mohsen.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/view/AccountMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/view/AccountMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/view/InGameMethodsAndSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/view/InGameMethodsAndSource.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/project-9/src/view/ShopMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/view/ShopMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/view/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/view/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/AccountMenu$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/AccountMenu$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/MainMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/MainMenu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/view/Test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/view/Test2.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/AccountMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/AccountMenu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/InGameMethodsAndSource.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/InGameMethodsAndSource.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/project-9/view/ShopMenu$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/ShopMenu$1$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/project-9/view/ShopMenu$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/ShopMenu$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/project-9/view/ShopMenu$2$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/ShopMenu$2$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/project-9/view/ShopMenu$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/ShopMenu$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/project-9/view/ShopMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/ShopMenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/Test.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/Test.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/Test2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/ShopController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ShopController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/accountJsons/mohsen.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/accountJsons/mohsen.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/AccountMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/AccountMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/InGameMethodsAndSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/InGameMethodsAndSource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/ShopMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/ShopMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Test2.java" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -46,12 +55,30 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/view/Test.java">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/view/AccountMenu.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="7" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
+            <state relative-caret-position="-56">
+              <caret line="336" column="27" selection-start-line="336" selection-start-column="27" selection-end-line="336" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/view/InGameMethodsAndSource.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="45" column="46" selection-start-line="45" selection-start-column="46" selection-end-line="45" selection-end-column="46" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="17" column="32" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -85,8 +112,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/model/specialPower/SpecialPower.java" />
-        <option value="$PROJECT_DIR$/src/data/Adapter.java" />
         <option value="$PROJECT_DIR$/src/model/AccountSave.java" />
         <option value="$PROJECT_DIR$/src/model/DefaultCards.java" />
         <option value="$PROJECT_DIR$/src/view/MainTest1.java" />
@@ -118,7 +143,6 @@
         <option value="$PROJECT_DIR$/src/model/SinglePlayerBattle.java" />
         <option value="$PROJECT_DIR$/src/model/Cell.java" />
         <option value="$PROJECT_DIR$/src/model/PlayGround.java" />
-        <option value="$PROJECT_DIR$/src/view/InGameMethodsAndSource.java" />
         <option value="$PROJECT_DIR$/src/model/items/Collectible.java" />
         <option value="$PROJECT_DIR$/src/model/cards/Minion.java" />
         <option value="$PROJECT_DIR$/src/model/Player.java" />
@@ -129,19 +153,22 @@
         <option value="$PROJECT_DIR$/src/view/GraphicalInGameView.java" />
         <option value="$PROJECT_DIR$/src/controller/GraveYardController.java" />
         <option value="$PROJECT_DIR$/src/view/GraphicalGraveYard.java" />
-        <option value="$PROJECT_DIR$/src/view/AccountMenu.java" />
+        <option value="$PROJECT_DIR$/src/view/Test.java" />
         <option value="$PROJECT_DIR$/src/view/MainMenu.java" />
-        <option value="$PROJECT_DIR$/src/controller/ShopController.java" />
         <option value="$PROJECT_DIR$/src/controller/CollectionController.java" />
         <option value="$PROJECT_DIR$/src/controller/BattleMenuController.java" />
+        <option value="$PROJECT_DIR$/src/view/Main.java" />
+        <option value="$PROJECT_DIR$/src/Main.java" />
+        <option value="$PROJECT_DIR$/src/view/AccountMenu.java" />
+        <option value="$PROJECT_DIR$/src/view/InGameMethodsAndSource.java" />
         <option value="$PROJECT_DIR$/src/view/ShopMenu.java" />
-        <option value="$PROJECT_DIR$/src/view/Test.java" />
+        <option value="$PROJECT_DIR$/src/controller/ShopController.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="55" />
-    <option name="width" value="669" />
+    <option name="width" value="670" />
     <option name="height" value="775" />
   </component>
   <component name="ProjectView">
@@ -149,6 +176,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -171,8 +200,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -182,7 +209,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1561362529220" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1561389356579" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Tamrin3/threadMill" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -199,6 +226,7 @@
       <recent name="C:\Users\Mohsen\Desktop\AP Project\sample\project-9\src" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
       <recent name="data" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
@@ -221,13 +249,14 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Test">
-    <configuration name="MainTest1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="view.MainTest1" />
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="project-9" />
+      <option name="VM_PARAMETERS" value="--module-path ${PATH_TO_FX} --add-modules javafx.controls,javafx.graphics,javafx.fxml,javafx.media" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="view.*" />
+          <option name="PATTERN" value=".*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -235,13 +264,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="view.Test" />
+    <configuration name="MainTest1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="view.MainTest1" />
       <module name="project-9" />
-      <option name="VM_PARAMETERS" value="--module-path ${PATH_TO_FX} --add-modules javafx.controls,javafx.graphics,javafx.fxml,javafx.media" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="view.*" />
+          <option name="PATTERN" value=".*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -254,7 +282,7 @@
       <module name="project-9" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="view.*" />
+          <option name="PATTERN" value=".*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -263,13 +291,13 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.Test" />
+      <item itemvalue="Application.Main" />
       <item itemvalue="Application.MainTest1" />
       <item itemvalue="Application.Test2" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Test" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.Test2" />
         <item itemvalue="Application.MainTest1" />
       </list>
@@ -432,25 +460,11 @@
       <option name="project" value="LOCAL" />
       <updated>1559718578995</updated>
     </task>
-    <task id="LOCAL-00019" summary="making code better">
-      <created>1561380342359</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1561380342359</updated>
-    </task>
-    <task id="LOCAL-00020" summary="making code better 2">
-      <created>1561381796695</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1561381796695</updated>
-    </task>
-    <option name="localTasksCounter" value="21" />
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="391304000" />
+    <option name="totallyTimeSpent" value="390733000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -465,7 +479,7 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23221476" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23557048" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -473,8 +487,8 @@
       <window_info id="UI Designer" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4984127" weight="0.3243626" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49761903" weight="0.18838526" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4984127" weight="0.32411674" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49761903" weight="0.33640552" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4984127" weight="0.58986175" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -482,7 +496,7 @@
       <window_info anchor="bottom" id="Duplicate detector" order="7" weight="0.32872504" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32411674" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50158733" side_tool="true" weight="0.3243626" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50158733" side_tool="true" weight="0.32565284" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.32565284" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
       <window_info anchor="bottom" id="Version Control" order="13" sideWeight="0.49920633" weight="0.32718894" />
@@ -551,37 +565,13 @@
     <MESSAGE value="shop is complete :)" />
     <MESSAGE value="grave yard (View) is complete :)" />
     <MESSAGE value="some changes in graphic" />
-    <MESSAGE value="making code better" />
-    <MESSAGE value="making code better 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="making code better 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="some changes in graphic" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$USER_HOME$/Downloads/Compressed/jdk-12.0.1/lib/src.zip!/jdk.internal.vm.compiler/org/graalvm/compiler/hotspot/PluginFactory_HotSpotBackend.java" />
     <entry file="file://$PROJECT_DIR$/src/data/DeckAddException.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="53" selection-start-line="3" selection-start-column="53" selection-end-line="3" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/Collection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="16" column="34" lean-forward="true" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
-          <folding>
-            <element signature="e#4260#4261#0" expanded="true" />
-            <element signature="e#4294#4295#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/Test2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -774,53 +764,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/InGameMethodsAndSource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="97" column="45" selection-start-line="97" selection-start-column="45" selection-end-line="97" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/MultiPlayerBattle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
-          <caret line="41" column="31" selection-start-line="41" selection-start-column="31" selection-end-line="41" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/SinglePlayerBattle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="61" column="29" selection-start-line="61" selection-start-column="29" selection-end-line="61" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/BattleResult.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-714">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1300#1301#0" expanded="true" />
-            <element signature="e#1338#1339#0" expanded="true" />
-            <element signature="e#1379#1380#0" expanded="true" />
-            <element signature="e#1418#1419#0" expanded="true" />
-            <element signature="e#1190#1191#0" expanded="true" />
-            <element signature="e#1225#1226#0" expanded="true" />
-            <element signature="e#1284#1285#0" expanded="true" />
-            <element signature="e#1321#1322#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/view/GraveYardView.java" />
-    <entry file="file://$PROJECT_DIR$/src/controller/GraveYardController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/view/GraphicalGraveYard.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="219">
@@ -864,16 +808,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/res/icon.png">
       <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/AccountMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="234" column="32" selection-start-line="234" selection-start-column="32" selection-end-line="234" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/AccountController.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -929,19 +863,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/GraphicalInGameView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="60" column="16" selection-start-line="60" selection-start-column="16" selection-end-line="60" selection-end-column="16" />
-          <folding>
-            <element signature="e#3164#3165#0" expanded="true" />
-            <element signature="e#3219#3220#0" expanded="true" />
-            <element signature="e#4538#4539#0" expanded="true" />
-            <element signature="e#4577#4578#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/BattleMenuController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="493">
@@ -949,17 +870,103 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/ShopMenu.java">
+    <entry file="file://$PROJECT_DIR$/src/view/Test2.java" />
+    <entry file="file://$PROJECT_DIR$/src/view/InGameMethodsAndSource.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1309">
-          <caret line="109" lean-forward="true" selection-start-line="109" selection-end-line="109" />
+        <state relative-caret-position="238">
+          <caret line="45" column="46" selection-start-line="45" selection-start-column="46" selection-end-line="45" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/GraveYardController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding>
+            <element signature="e#226#227#0" expanded="true" />
+            <element signature="e#284#285#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="17" column="32" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/GraphicalInGameView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="960" column="57" selection-start-line="960" selection-start-column="57" selection-end-line="960" selection-end-column="57" />
+          <folding>
+            <element signature="e#3164#3165#0" expanded="true" />
+            <element signature="e#3219#3220#0" expanded="true" />
+            <element signature="e#4538#4539#0" expanded="true" />
+            <element signature="e#4577#4578#0" expanded="true" />
+            <element signature="e#28684#28685#0" expanded="true" />
+            <element signature="e#28746#28747#0" expanded="true" />
+            <element signature="e#42249#42250#0" expanded="true" />
+            <element signature="e#42318#42319#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/AccountMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-56">
+          <caret line="336" column="27" selection-start-line="336" selection-start-column="27" selection-end-line="336" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/MultiPlayerBattle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="433">
+          <caret line="41" column="31" selection-start-line="41" selection-start-column="31" selection-end-line="41" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/SinglePlayerBattle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="61" column="29" selection-start-line="61" selection-start-column="29" selection-end-line="61" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/BattleResult.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-714">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1300#1301#0" expanded="true" />
+            <element signature="e#1338#1339#0" expanded="true" />
+            <element signature="e#1379#1380#0" expanded="true" />
+            <element signature="e#1418#1419#0" expanded="true" />
+            <element signature="e#1190#1191#0" expanded="true" />
+            <element signature="e#1225#1226#0" expanded="true" />
+            <element signature="e#1284#1285#0" expanded="true" />
+            <element signature="e#1321#1322#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Collection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="88" column="18" lean-forward="true" selection-start-line="88" selection-start-column="18" selection-end-line="88" selection-end-column="18" />
+          <folding>
+            <element signature="e#4260#4261#0" expanded="true" />
+            <element signature="e#4294#4295#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/ShopController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="12" column="32" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
+        <state relative-caret-position="93">
+          <caret line="33" column="6" selection-start-line="33" selection-start-column="4" selection-end-line="50" selection-end-column="7" />
           <folding>
             <element signature="e#450#451#0" expanded="true" />
             <element signature="e#488#489#0" expanded="true" />
@@ -967,10 +974,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/Test.java">
+    <entry file="file://$PROJECT_DIR$/src/view/ShopMenu.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="7" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
+        <state relative-caret-position="181">
+          <caret line="245" column="44" lean-forward="true" selection-start-line="245" selection-start-column="44" selection-end-line="245" selection-end-column="44" />
         </state>
       </provider>
     </entry>
