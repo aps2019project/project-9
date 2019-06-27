@@ -169,8 +169,10 @@ public class Minion extends Card {
             specialPower.castSpecialPower(cell);
         }
         if (player.getBattle().getGameMode() == GameMode.ONE_FLAG) {
-            if (player.getBattle().getPlayGround().getFlag().getOwningMinion().equals(this)) {
-                player.missFlag(player.getBattle().getPlayGround().getFlag());
+            if (player.getBattle().getPlayGround().getFlag().getOwningMinion() != null) {
+                if (player.getBattle().getPlayGround().getFlag().getOwningMinion().equals(this)) {
+                    player.missFlag(player.getBattle().getPlayGround().getFlag());
+                }
             }
         } else if (player.getBattle().getGameMode() == GameMode.FLAGS) {
             if (getCell().getFlag() != null) {

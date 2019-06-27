@@ -19,7 +19,6 @@ import model.Account;
 import model.Deck;
 import data.JsonProcess;
 import model.cards.Card;
-import model.enumerations.CardType;
 import model.enumerations.CollectionErrorType;
 import model.items.Item;
 
@@ -31,7 +30,7 @@ public class CollectionMenu {
     private ImageView slideshowImageView;
     private Account account;
     private CollectionController controller;
-    private static boolean havebutton = false;
+    private static boolean haveButton = false;
 
     public CollectionMenu(CollectionController controller) {
         this.account = controller.getLoggedInAccount();
@@ -198,7 +197,10 @@ public class CollectionMenu {
 
     private Button setBackButton(Parent root, Stage stage) {
         Button back = (Button) root.lookup("#back");
-        back.setOnMouseClicked(m -> stage.close());
+        back.setOnMouseClicked(m -> {
+            haveButton = false;
+            stage.close();
+        });
         return back;
     }
 
@@ -308,11 +310,11 @@ public class CollectionMenu {
     }
 
     private void cleartableandaddaddbutton(TableView cardtable, TableView itemtable) {
-        if (havebutton) {
+        if (haveButton) {
             cardtable.getColumns().remove(5);
             itemtable.getColumns().remove(3);
         }
-        havebutton = true;
+        haveButton = true;
         addAddButtonToTable(cardtable);
         addAddButtonToTable(itemtable);
 
@@ -393,11 +395,11 @@ public class CollectionMenu {
     }
 
     private void cleartablesandadddeletebutton(TableView cardtable, TableView itemtable) {
-        if (havebutton) {
+        if (haveButton) {
             cardtable.getColumns().remove(5);
             itemtable.getColumns().remove(3);
         }
-        havebutton = true;
+        haveButton = true;
         addDeleteButtonToTable(cardtable);
         addDeleteButtonToTable(itemtable);
         cardtable.getItems().clear();
