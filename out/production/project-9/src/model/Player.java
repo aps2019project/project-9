@@ -345,7 +345,6 @@ public class Player {
                     Cell target = targetAiMove(minion);
                     if (target != null) {
                         Cell first = minion.getCell();
-                        //TODO
                         inGameRequests.add(new InGameRequest("select " + minion.getBattleID()));
                         inGameRequests.add(new InGameRequest("move to " +
                                 target.getX() + " " + target.getY()));
@@ -391,7 +390,7 @@ public class Player {
             ArrayList<Cell> possibleCells = GraphicalInGameView.getPossibleCells(card);
             if (possibleCells.size() > 0) {
                 if (mana >= card.getMP()) {
-                    //TODO
+
                     inGameRequests.add(new InGameRequest("insert " + card.getName()
                             + " in " + possibleCells.get(0).getX() + " " + possibleCells.get(0).getY()));
                     //
@@ -416,7 +415,7 @@ public class Player {
                     } else {
                         target = possibleCellsForAttack.get(0);
                     }
-                    //TODO
+
                     inGameRequests.add(new InGameRequest("select " + minion.getBattleID()));
                     inGameRequests.add(new InGameRequest("attack "
                             + target.getMinionOnIt().getBattleID()));

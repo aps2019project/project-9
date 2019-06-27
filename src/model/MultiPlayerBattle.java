@@ -29,7 +29,7 @@ public class MultiPlayerBattle extends Battle {
     public MultiPlayerBattle(SinglePlayerBattle singlePlayerBattle, BattleResult battleResult) {
         this.gameMode = singlePlayerBattle.gameMode;
         turn = 0;
-        //TODO
+        //TODO for show replay
         playGround = new PlayGround(gameMode, singlePlayerBattle.numberOfFlags
                 , false, false);
         whoseTurn = 1;

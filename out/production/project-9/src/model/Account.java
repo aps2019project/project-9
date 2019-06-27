@@ -85,7 +85,7 @@ public class Account implements Comparable<Account> {
         decks.add(new Deck(name));
     }
 
-    public void addDeck(Deck deck){
+    public void addDeck(Deck deck) {
         decks.add(deck);
     }
 
@@ -135,7 +135,8 @@ public class Account implements Comparable<Account> {
         battleResults.add(result);
     }
 
-    public void wins() {
+    public void wins(int prize) {
+        money += prize;
         numberOfWins++;
     }
 

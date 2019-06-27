@@ -153,8 +153,8 @@ public class Battle {
         if (firstPlayer.castUsableItem())
             alert += "\nUsable Item " + firstItem.getName() + " from player " + firstPlayer.getName() + " casted.";
         if (secondPlayer.castUsableItem())
-            alert +="\nUsable Item " + secondItem.getName() + " from player " + secondPlayer.getName() + " casted.";
-        InGameMethodsAndSource.showAlertAtTheBeginning(title,alert);
+            alert += "\nUsable Item " + secondItem.getName() + " from player " + secondPlayer.getName() + " casted.";
+        InGameMethodsAndSource.showAlertAtTheBeginning(title, alert);
     }
 
     private void handleCanMoveCanAttack(Player player) {
@@ -235,20 +235,21 @@ public class Battle {
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
         String str = l.format(myFormatObj);
         checked = true;
-        BattleResult battleResult = new BattleResult(winner, battlePrize, str, looser.getName(),this);
+        BattleResult battleResult = new BattleResult(winner, battlePrize, str, looser.getName(), this);
         if (Account.findAccount(firstPlayer.getName()) != null) {
             Account.findAccount(firstPlayer.getName()).addBattleResult(battleResult);
         }
-        battleResult = new BattleResult(winner, battlePrize, str, looser.getName(),this);
+        battleResult = new BattleResult(winner, battlePrize, str, looser.getName(), this);
         if (Account.findAccount(secondPlayer.getName()) != null) {
             Account.findAccount(secondPlayer.getName()).addBattleResult(battleResult);
         }
         InGameView view = InGameView.getInstance();
         view.endGameOutput(battleResult);
         if (firstPlayer.equals(winner)) {
-            Account.findAccount(firstPlayer.getName()).wins();
+            Account.findAccount(firstPlayer.getName()).wins(battlePrize);
+
         } else if (!(this instanceof SinglePlayerBattle)) {
-            Account.findAccount(secondPlayer.getName()).wins();
+            Account.findAccount(secondPlayer.getName()).wins(battlePrize);
         }
         GraphicalInGameView.finished(battleResult);
     }

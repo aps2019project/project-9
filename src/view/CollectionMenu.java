@@ -88,7 +88,7 @@ public class CollectionMenu {
 
     private void setExportImportBtns(Parent root) {
         //////////////////////deck export importing process//////////////////
-        //TODO export import buttons ( layouts Remained )->
+        //
         Button exportDeck = (Button) root.lookup("#exportdeck");
         Button importDeck = (Button) root.lookup("#importdeck");
         exportDeck.setOnMouseEntered(mouseEvent -> exportDeck.setLayoutX(exportDeck.getLayoutX() + 20));

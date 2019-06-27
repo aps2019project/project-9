@@ -264,7 +264,7 @@ public class AccountMenu {
             button.setOnMouseClicked(event -> showLeaderBoard());
             return button;
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            // TODO e.printStackTrace();
         }
         return null;
     }
