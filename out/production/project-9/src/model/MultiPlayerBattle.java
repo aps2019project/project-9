@@ -26,7 +26,7 @@ public class MultiPlayerBattle extends Battle {
         level = 0;
     }
 
-    public MultiPlayerBattle(SinglePlayerBattle singlePlayerBattle, BattleResult battleResult) {
+    /*public MultiPlayerBattle(SinglePlayerBattle singlePlayerBattle, BattleResult battleResult) {
         this.gameMode = singlePlayerBattle.gameMode;
         turn = 0;
         //TODO for show replay
@@ -40,6 +40,6 @@ public class MultiPlayerBattle extends Battle {
         secondPlayer = singlePlayerBattle.secondPlayer;
         firstPlayer = new Player(battleResult.getFirstPlayerDeck().getCopy(), this, battleResult.getFirstPlayer());
         secondPlayer = new Player(battleResult.getSecondPlayerDeck().getCopy(), this, battleResult.getSecondPlayer());
-    }
+    }*/
 
 }

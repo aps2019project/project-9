@@ -16,12 +16,9 @@ public class BattleResult {
     private String looser;
     private int prize;
     private String time;
-    private ArrayList<InGameRequest> inGameRequests;
     private GameMode gameMode;
     private int numberOfFlags;
     private int level;
-    private Deck secondPlayerDeck;
-    private Deck firstPlayerDeck;
     private boolean isSinglePlayer;
     private String firstPlayer;
     private String secondPlayer;
@@ -32,105 +29,42 @@ public class BattleResult {
         this.prize = prize;
         this.time = time;
         this.looser = looser;
-        this.inGameRequests = battle.inGameRequests;
         gameMode = battle.gameMode;
         numberOfFlags = battle.numberOfFlags;
         level = battle.level;
-        secondPlayerDeck = battle.secondPlayer.getHand().getDeck();
         isSinglePlayer = battle instanceof SinglePlayerBattle;
         this.firstPlayer = battle.getFirstPlayer().getName();
         this.secondPlayer = battle.getSecondPlayer().getName();
-        firstPlayerDeck = battle.getFirstPlayer().getHand().getDeck();
     }
 
 
-    public Deck getFirstPlayerDeck() {
-        return firstPlayerDeck;
-    }
-
-    public Deck getSecondPlayerDeck() {
-        return secondPlayerDeck;
-    }
 
     public String getSecondPlayer() {
         return secondPlayer;
-    }
-
-    public ArrayList<InGameRequest> getInGameRequests() {
-        return inGameRequests;
     }
 
     public String getFirstPlayer() {
         return firstPlayer;
     }
 
-    public void setWinner(String winner) {
-        this.winner = winner;
-    }
-
-    public String getLooser() {
-        return looser;
-    }
-
-    public void setLooser(String looser) {
-        this.looser = looser;
-    }
-
-    public void setPrize(int prize) {
-        this.prize = prize;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
-
-    public void setInGameRequests(ArrayList<InGameRequest> inGameRequests) {
-        this.inGameRequests = inGameRequests;
-    }
 
     public GameMode getGameMode() {
         return gameMode;
     }
 
-    public void setGameMode(GameMode gameMode) {
-        this.gameMode = gameMode;
-    }
 
     public int getNumberOfFlags() {
         return numberOfFlags;
-    }
-
-    public void setNumberOfFlags(int numberOfFlags) {
-        this.numberOfFlags = numberOfFlags;
     }
 
     public int getLevel() {
         return level;
     }
 
-    public void setLevel(int level) {
-        this.level = level;
-    }
 
-    public Deck getDeck() {
-        return secondPlayerDeck;
-    }
-
-    public void setDeck(Deck deck) {
-        this.secondPlayerDeck = deck;
-    }
 
     public boolean isSinglePlayer() {
         return isSinglePlayer;
-    }
-
-    public void setSinglePlayer(boolean singlePlayer) {
-        isSinglePlayer = singlePlayer;
-    }
-
-
-    public String getTime() {
-        return time;
     }
 
     public String getWinner() {

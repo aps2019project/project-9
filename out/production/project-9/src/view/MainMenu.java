@@ -34,7 +34,7 @@ public class MainMenu {
         try {
             Font mainMenuFont = Font.loadFont(
                     new FileInputStream(new File("src/res/Font/ALGER.TTF")), 55);
-            Text text = new Text(385, 100, "Main Menu");
+            Text text = new Text(385, 100, "client.Client Menu");
             text.setFont(mainMenuFont);
             text.setFill(Color.rgb(2, 14, 236));
             ImageView imageView = new ImageView();

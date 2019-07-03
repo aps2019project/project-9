@@ -29,6 +29,10 @@ public class JsonProcess {
 
     private static Gson gson = gsonBuilder.create();
 
+    public static Gson getGson() {
+        return gson;
+    }
+
     public static void saveAccount(Account account) {
         String userName = account.getUserName();
         File newFile = new File("src/data/accountJsons/" + userName + ".json");

@@ -207,7 +207,7 @@ public class BattleMenu {
     private void printError(BattleMenuErrorType error, Stage stage) {
         switch (error) {
             case YOUR_MAIN_DECK_NOT_VALID:
-                new Alert(Alert.AlertType.WARNING, "Your Main Deck is not valid");
+                new Alert(Alert.AlertType.WARNING, "Your client.Client Deck is not valid");
                 storyMenuShow(stage);
                 break;
             case DECK_NOT_VALID:

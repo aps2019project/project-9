@@ -119,7 +119,7 @@ public class InGameMethodsAndSource {// a resource for graphical in game view
         }*/
     }
 
-    private static Battle getBattle(BattleResult battleResult) {
+    /*private static Battle getBattle(BattleResult battleResult) {
         Battle battle;
         int mode;
         GameMode gameMode = battleResult.getGameMode();
@@ -142,7 +142,7 @@ public class InGameMethodsAndSource {// a resource for graphical in game view
             return null;
             //TODO for multiPlayer battle not works
         }
-    }
+    }*/
 
     public static void showAlertAtTheBeginning(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

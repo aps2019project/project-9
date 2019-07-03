@@ -1,6 +1,11 @@
 package view;
 
+import client.Client;
+import client.ClientRequest;
+import client.RequestType;
+import com.google.gson.reflect.TypeToken;
 import controller.AccountController;
+import data.JsonProcess;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -29,6 +34,7 @@ import model.enumerations.AccountErrorType;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Optional;
 
 public class AccountMenu {
@@ -68,8 +74,8 @@ public class AccountMenu {
         loading.setFitHeight(50);
         loading.setX(50);
         loading.setY(462);
-        Text text = new Text("Click Any Where To Enter The Game ...");
-        text.setFont(Font.loadFont("file:src/res/inGameResource/font1.ttf", 14));
+        Text text = new Text("Connected To Server , Click Any Where To Enter The Game ...");
+        text.setFont(Font.loadFont("file:src/res/inGameResource/font1.ttf", 12));
         text.setY(490);
         text.setX(110);
         Group group = new Group(imageView);
@@ -299,12 +305,35 @@ public class AccountMenu {
         return null;
     }
 
+    private ArrayList<Account> getAccounts() {
+        ClientRequest clientRequest = new ClientRequest(Client.getAuthToken(), RequestType.ACCOUNT_LIST);
+        Client.sendRequest(clientRequest);
+        String response = Client.getResponse();
+        ArrayList<Account> accounts = JsonProcess.getGson().fromJson(response
+                , new TypeToken<ArrayList<Account>>() {
+                }.getType());
+        return accounts;
+    }
+
+    private ArrayList<BattleResult> getBattleResults(Account account) {
+        ClientRequest clientRequest = new ClientRequest(Client.getAuthToken(), RequestType.BATTLE_RESULT_LIST);
+        AccountRequest request = new AccountRequest();
+        request.setUserName(account.getUserName());
+        clientRequest.setAccountRequest(request);
+        Client.sendRequest(clientRequest);
+        String response = Client.getResponse();
+        ArrayList<BattleResult> battleResults = JsonProcess.getGson().fromJson(response,
+                new TypeToken<ArrayList<BattleResult>>() {
+                }.getType());
+        return battleResults;
+    }
+
     private void showLeaderBoard() {
         Stage stage = new Stage();
         stage.getIcons().add(new Image("src/res/icon.jpg"));
         stage.setTitle("LeaderBoard");
         TableView<Account> table = new TableView<>();
-        final ObservableList<Account> data = FXCollections.observableArrayList(Account.getAccounts());
+        final ObservableList<Account> data = FXCollections.observableArrayList(getAccounts());
         table.setEditable(true);
 
         TableColumn firstNameCol = new TableColumn("User Name");
@@ -326,17 +355,17 @@ public class AccountMenu {
             Label label = new Label("Games Done :");
             root.getChildren().add(label);
             ListView<String> listView = new ListView<>();
-            for (BattleResult battleResult : account.getBattleResults()) {
+            for (BattleResult battleResult : getBattleResults(account)) {
                 listView.getItems().add(battleResult.toString());
             }
             //TODO for replay show
-            listView.setOnMouseClicked(mouseEvent1 -> {
+            /*listView.setOnMouseClicked(mouseEvent1 -> {
                 BattleResult battleResult = account.getBattleResults()
                         .get(listView.getSelectionModel().getSelectedIndex());
                 //
                 //show replay
                 //
-            });
+            });*/
             listView.setLayoutY(20);
             listView.setPrefSize(400, 180);
             root.getChildren().add(listView);
