@@ -3,6 +3,7 @@ package view;
 import client.Client;
 import client.ClientRequest;
 import client.RequestType;
+import client.ShortAccount;
 import com.google.gson.reflect.TypeToken;
 import controller.AccountController;
 import data.JsonProcess;
@@ -305,12 +306,12 @@ public class AccountMenu {
         return null;
     }
 
-    private ArrayList<Account> getAccounts() {
+    private ArrayList<ShortAccount> getAccounts() {
         ClientRequest clientRequest = new ClientRequest(Client.getAuthToken(), RequestType.ACCOUNT_LIST);
         Client.sendRequest(clientRequest);
         String response = Client.getResponse();
-        ArrayList<Account> accounts = JsonProcess.getGson().fromJson(response
-                , new TypeToken<ArrayList<Account>>() {
+        ArrayList<ShortAccount> accounts = JsonProcess.getGson().fromJson(response
+                , new TypeToken<ArrayList<ShortAccount>>() {
                 }.getType());
         return accounts;
     }
@@ -328,27 +329,37 @@ public class AccountMenu {
         return battleResults;
     }
 
+    private Account getAccount(ShortAccount account) {
+        String userName = account.getUserName();
+        ClientRequest clientRequest = new ClientRequest(Client.getAuthToken(), RequestType.FIND_ACCOUNT);
+        AccountRequest accountRequest = new AccountRequest();
+        accountRequest.setUserName(userName);
+        Client.sendRequest(clientRequest);
+        String response = Client.getResponse();
+        return JsonProcess.getGson().fromJson(response, Account.class);
+    }
+
     private void showLeaderBoard() {
         Stage stage = new Stage();
         stage.getIcons().add(new Image("src/res/icon.jpg"));
         stage.setTitle("LeaderBoard");
-        TableView<Account> table = new TableView<>();
-        final ObservableList<Account> data = FXCollections.observableArrayList(getAccounts());
+        TableView<ShortAccount> table = new TableView<>();
+        final ObservableList<ShortAccount> data = FXCollections.observableArrayList(getAccounts());
         table.setEditable(true);
 
         TableColumn firstNameCol = new TableColumn("User Name");
         firstNameCol.setMinWidth(100);
-        firstNameCol.setCellValueFactory(new PropertyValueFactory<Account, String>("userName"));
+        firstNameCol.setCellValueFactory(new PropertyValueFactory<ShortAccount, String>("userName"));
 
         TableColumn lastNameCol = new TableColumn("Wins");
         lastNameCol.setMinWidth(100);
-        lastNameCol.setCellValueFactory(new PropertyValueFactory<Account, Integer>("numberOfWins"));
+        lastNameCol.setCellValueFactory(new PropertyValueFactory<ShortAccount, Integer>("numberOfWins"));
 
         table.setItems(data);
         table.getColumns().addAll(firstNameCol, lastNameCol);
 
         table.setOnMouseClicked(mouseEvent -> {
-            Account account = table.getSelectionModel().getSelectedItem();
+            Account account = getAccount(table.getSelectionModel().getSelectedItem());
             Stage secondStage = new Stage();
             secondStage.setTitle(account.getUserName());
             Group root = new Group();

@@ -2,6 +2,7 @@ package server;
 
 import client.Client;
 import client.ClientRequest;
+import client.ShortAccount;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import data.JsonProcess;
@@ -77,8 +78,12 @@ public class ClientHandler extends Thread {
                             toJson(Account.findAccount(userName), Account.class));
                     break;
                 case ACCOUNT_LIST:
-                    String toSend = JsonProcess.getGson().toJson(Account.getAccounts()
-                            , new TypeToken<ArrayList<Account>>() {
+                    ArrayList<ShortAccount> userNames = new ArrayList<>();
+                    for (Account account1 : Account.getAccounts()) {
+                        userNames.add(new ShortAccount(account1));
+                    }
+                    String toSend = JsonProcess.getGson().toJson(userNames
+                            , new TypeToken<ArrayList<ShortAccount>>() {
                             }.getType());
                     outputStream.writeUTF(toSend);
                     break;
