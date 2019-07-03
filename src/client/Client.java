@@ -2,8 +2,10 @@ package client;
 
 import com.google.gson.Gson;
 import controller.AccountController;
+import data.JsonProcess;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import model.Account;
 import view.AccountMenu;
 import view.AccountRequest;
 
@@ -85,5 +87,10 @@ public class Client extends Application {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public static void saveAccount(Account account) {
+        //TODO
+        //it seems there's no need to tell server to save account , client can do it too.
     }
 }

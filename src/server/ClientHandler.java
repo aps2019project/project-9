@@ -39,8 +39,8 @@ public class ClientHandler extends Thread {
                 accountRequest();
             }
         } catch (IOException e) {
-            System.out.println("client disconnected or interrupted");
             e.printStackTrace();
+            System.out.println("client disconnected or interrupted , this exception is OK");
         }
     }
 

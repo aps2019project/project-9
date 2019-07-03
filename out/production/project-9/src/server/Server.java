@@ -14,9 +14,10 @@ public class Server {
             ServerSocket serverSocket = new ServerSocket(0);
             savePort(serverSocket.getLocalPort());
             Socket socket;
+            System.out.println("waiting for client to connected ...");
             while (true) {
                 socket = serverSocket.accept();
-                System.out.println("client connected");
+                System.out.println("new client connected");
                 ClientHandler handler = new ClientHandler(generateRandomKey(), socket);
                 onlineClients.add(handler);
                 handler.start();
