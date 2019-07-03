@@ -35,9 +35,7 @@ public class ClientHandler extends Thread {
     public void run() {
         try {
             outputStream.writeUTF(authToken);
-            while (true) {
-                accountRequest();
-            }
+            accountRequest();
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("client disconnected or interrupted , this exception is OK");
@@ -47,55 +45,67 @@ public class ClientHandler extends Thread {
     private Gson gson = new Gson();
 
     private void accountRequest() throws IOException {
-        String received = inputStream.readUTF();
-        ClientRequest request = gson.fromJson(received, ClientRequest.class);
-        if (request.getAuthKey().equals(authToken)) {
-            switch (request.getType()) {
-                case CREATE_ACCOUNT:
-                    Account account = new Account(request.getAccountRequest().getUserName(),
-                            request.getAccountRequest().getPassWord());
-                    Gson gson = JsonProcess.getGson();
-                    outputStream.writeUTF(gson.toJson(account, Account.class));
-                    //TODO
-                    System.out.println("account made");
-                    break;
-                case IS_USER_VALID:
-                    if (Account.isUserNameToken(request.getAccountRequest().getUserName()))
-                        outputStream.writeUTF("false");
-                    else
-                        outputStream.writeUTF("true");
-                    break;
-                case IS_PASS_VALID:
-                    if (Account.isPassWordValid(request.getAccountRequest().getUserName(),
-                            request.getAccountRequest().getPassWord()))
-                        outputStream.writeUTF("true");
-                    else
-                        outputStream.writeUTF("false");
-                    break;
-                case FIND_ACCOUNT:
-                    String userName = request.getAccountRequest().getUserName();
-                    outputStream.writeUTF(JsonProcess.getGson().
-                            toJson(Account.findAccount(userName), Account.class));
-                    break;
-                case ACCOUNT_LIST:
-                    ArrayList<ShortAccount> userNames = new ArrayList<>();
-                    for (Account account1 : Account.getAccounts()) {
-                        userNames.add(new ShortAccount(account1));
-                    }
-                    String toSend = JsonProcess.getGson().toJson(userNames
-                            , new TypeToken<ArrayList<ShortAccount>>() {
-                            }.getType());
-                    outputStream.writeUTF(toSend);
-                    break;
-                case BATTLE_RESULT_LIST:
-                    userName = request.getAccountRequest().getUserName();
-                    Account account1 = Account.findAccount(userName);
-                    toSend = JsonProcess.getGson().toJson(account1.getBattleResults(),
-                            new TypeToken<ArrayList<BattleResult>>() {
-                            }.getType());
-                    outputStream.writeUTF(toSend);
-                    break;
+        while (true) {
+            String received = inputStream.readUTF();
+            ClientRequest request = gson.fromJson(received, ClientRequest.class);
+            if (request.getAuthKey().equals(authToken)) {
+                switch (request.getType()) {
+                    case CREATE_ACCOUNT:
+                        Account account = new Account(request.getAccountRequest().getUserName(),
+                                request.getAccountRequest().getPassWord());
+                        Gson gson = JsonProcess.getGson();
+                        outputStream.writeUTF(gson.toJson(account, Account.class));
+                        //TODO
+                        System.out.println("account made");
+                        break;
+                    case IS_USER_VALID:
+                        if (Account.isUserNameToken(request.getAccountRequest().getUserName()))
+                            outputStream.writeUTF("false");
+                        else
+                            outputStream.writeUTF("true");
+                        break;
+                    case IS_PASS_VALID:
+                        if (Account.isPassWordValid(request.getAccountRequest().getUserName(),
+                                request.getAccountRequest().getPassWord()))
+                            outputStream.writeUTF("true");
+                        else
+                            outputStream.writeUTF("false");
+                        break;
+                    case FIND_ACCOUNT:
+                        String userName = request.getAccountRequest().getUserName();
+                        outputStream.writeUTF(JsonProcess.getGson().
+                                toJson(Account.findAccount(userName), Account.class));
+                        break;
+                    case ACCOUNT_LIST:
+                        ArrayList<ShortAccount> userNames = new ArrayList<>();
+                        for (Account account1 : Account.getAccounts()) {
+                            userNames.add(new ShortAccount(account1));
+                        }
+                        String toSend = JsonProcess.getGson().toJson(userNames
+                                , new TypeToken<ArrayList<ShortAccount>>() {
+                                }.getType());
+                        outputStream.writeUTF(toSend);
+                        break;
+                    case BATTLE_RESULT_LIST:
+                        userName = request.getAccountRequest().getUserName();
+                        Account account1 = Account.findAccount(userName);
+                        toSend = JsonProcess.getGson().toJson(account1.getBattleResults(),
+                                new TypeToken<ArrayList<BattleResult>>() {
+                                }.getType());
+                        outputStream.writeUTF(toSend);
+                        break;
+                    case NEXT:
+                        //TODO
+                        mainMenuRequest();
+                        return;
+                }
             }
+        }
+    }
+
+    private void mainMenuRequest() {
+        while (true){
+
         }
     }
 

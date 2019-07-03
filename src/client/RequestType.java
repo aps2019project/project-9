@@ -8,4 +8,5 @@ public enum RequestType {
     ACCOUNT_LIST,
     BATTLE_RESULT_LIST,
     SAVE_ACCOUNT,
+    NEXT,
 }
