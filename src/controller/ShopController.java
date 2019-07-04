@@ -3,7 +3,7 @@ package controller;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import server.Account;
-import model.Shop;
+import server.Shop;
 import model.cards.Card;
 import model.enumerations.ShopErrorType;
 import model.items.Item;

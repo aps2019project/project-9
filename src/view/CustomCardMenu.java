@@ -9,7 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import server.Account;
-import model.Shop;
+import server.Shop;
 import model.buffs.*;
 import model.cards.Card;
 import model.cards.Hero;
