@@ -102,9 +102,6 @@ public class ClientHandler extends Thread {
                                 }.getType());
                         outputStream.writeUTF(toSend);
                         break;
-                    case NEXT:
-                        //TODO
-                        break;
                     case LOGGED_IN:
                         GraphicalServer.userNamesLoggedIn.add(request.getLoggedInUserName());
                         this.userName = request.getLoggedInUserName();
@@ -119,16 +116,16 @@ public class ClientHandler extends Thread {
                         if (this.userName != null)
                             GraphicalServer.globalChat.add(this.userName + " : " + message);
                         break;
+                    case ONLINE_PLAYERS:
+                        outputStream.writeUTF(new Gson().toJson(GraphicalServer.userNamesLoggedIn,
+                                new TypeToken<ArrayList<String>>() {
+                                }.getType()));
+                        break;
                 }
             }
         }
     }
 
-    private void mainMenuRequest() {
-        while (true) {
-
-        }
-    }
 
     public String getAuthToken() {
         return authToken;

@@ -3,18 +3,24 @@ package server;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import model.cards.Card;
+import model.items.Item;
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class GraphicalServer extends Application {
@@ -33,6 +39,7 @@ public class GraphicalServer extends Application {
         Scene scene = new Scene(root, 400, 400);
         Label label = new Label("");
         Button button = new Button("OnLine Users");
+        Button shop = getShopBtn();
         button.setLayoutX(200);
         button.setLayoutY(50);
         setBtnAction(button);
@@ -47,7 +54,7 @@ public class GraphicalServer extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        root.getChildren().addAll(label, button);
+        root.getChildren().addAll(label, button, shop);
         primaryStage.setTitle("Server");
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -66,8 +73,53 @@ public class GraphicalServer extends Application {
         });
     }
 
-    private Button getShopBtn(){
-        return null;
+    private Button getShopBtn() {
+        Button button = new Button("Show Shop");
+        button.setLayoutX(150);
+        button.setLayoutY(200);
+        button.setOnMouseClicked(mouseEvent -> {
+            try {
+                Stage stage = new Stage();
+                FXMLLoader fxmlLoader = new FXMLLoader(new URL("file:src/res/FXML/serverShop.fxml"));
+                Parent parent = fxmlLoader.load();
+                Group group = new Group();
+                group.getChildren().addAll(parent);
+                Scene scene = new Scene(group);
+                Button refresh = ((Button) parent.lookup("#refresh"));
+                refresh.setOnMouseClicked(mouseEvent1 -> refreshShop(parent));
+                stage.setScene(scene);
+                stage.setTitle("Server Shop");
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        return button;
+    }
+
+    private void refreshShop(Parent parent) {
+        Shop shop = Shop.getInstance();
+        ListView<String> cards = ((ListView) parent.lookup("#cards"));
+        ListView<String> items = ((ListView) parent.lookup("#items"));
+        TextArea desc = ((TextArea) parent.lookup("#desc"));
+        cards.setOnMouseClicked(mouseEvent -> {
+            String card = cards.getSelectionModel().getSelectedItem();
+            Card card1 = shop.searchCardByName(card);
+            desc.setText(card1.getName() + "\n" + "cost : " + card1.getCost()
+                    + "\nnumbers remaining : " + shop.cardNumbers.get(card1));
+        });
+        items.setOnMouseClicked(mouseEvent -> {
+            String item = items.getSelectionModel().getSelectedItem();
+            Item card1 = shop.searchItemByName(item);
+            desc.setText(card1.getName() + "\n" + "cost : " + card1.getCost()
+                    + "\nnumbers remaining : " + shop.itemNumbers.get(card1));
+        });
+        for (Card card : shop.getCards()) {
+            cards.getItems().add(card.getName());
+        }
+        for (Item item : shop.getItems()) {
+            items.getItems().add(item.getName());
+        }
     }
 
     private Thread serverRefreshThread() {

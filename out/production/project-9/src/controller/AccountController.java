@@ -86,7 +86,7 @@ public class AccountController {
     }
 
     private void goNextMenu(Account loggedInAccount, Stage stage) {
-        Client.sendRequest(new ClientRequest(Client.getAuthToken(), RequestType.NEXT));
+        //Client.sendRequest(new ClientRequest(Client.getAuthToken(), RequestType.NEXT));
         MainMenuController mainMenuController = MainMenuController.getInstance(loggedInAccount);
         mainMenuController.start(stage);
     }
