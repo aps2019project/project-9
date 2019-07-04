@@ -2,6 +2,7 @@ package model.cards;
 
 
 import com.google.gson.annotations.Expose;
+import model.DefaultCards;
 import model.Player;
 import model.buffs.Buff;
 import model.cellaffects.CellAffect;
@@ -119,4 +120,24 @@ public class Card {
         }
         return null;
     } // get copy of custom card
+
+    public Card getNormalCopy() {
+        if (this instanceof Spell) {
+            return DefaultCards.getSpell(((Spell) this).getSpellName());
+        } else if (this instanceof Hero) {
+            return DefaultCards.getHero(((Hero) this).getHeroName());
+        } else {
+            return DefaultCards.getMinion(((Minion) this).getMinionName());
+        }
+    }
+
+    public boolean isCustom() {
+        if (this instanceof Spell && ((Spell) this).getSpellName() == SpellName.CUSTOM)
+            return true;
+        if (this instanceof Hero && ((Hero) this).getHeroName() == HeroName.CUSTOM)
+            return true;
+        if (this instanceof Minion && ((Minion) this).getMinionName() == MinionName.CUSTOM)
+            return true;
+        return false;
+    }
 }

@@ -66,6 +66,10 @@ public class GraphicalServer extends Application {
         });
     }
 
+    private Button getShopBtn(){
+        return null;
+    }
+
     private Thread serverRefreshThread() {
         return new Thread(() -> {
             while (!Thread.interrupted()) {

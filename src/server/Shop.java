@@ -4,6 +4,7 @@ import data.JsonProcess;
 import model.Collection;
 import model.DefaultCards;
 import model.cards.Card;
+import model.cards.Hero;
 import model.cards.Minion;
 import model.cards.Spell;
 import model.enumerations.*;
@@ -11,12 +12,15 @@ import model.items.Collectible;
 import model.items.Item;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Shop {
     private static final Shop SHOP = new Shop();
-
+    private static final int FIRST_CAPACITY = 3; // for cards and items
     private ArrayList<Card> allCards = new ArrayList<>();
     private ArrayList<Item> allItems = new ArrayList<>();
+    HashMap<Card, Integer> cardNumbers = new HashMap<>();
+    HashMap<Item, Integer> itemNumbers = new HashMap<>();
     private static int uniqueID = 1; // for shop
 
     public static Shop getInstance() {
@@ -30,6 +34,7 @@ public class Shop {
                 Minion minion = DefaultCards.getMinion(minionName);
                 setCardID(minion);
                 allCards.add(minion);
+                cardNumbers.put(minion, FIRST_CAPACITY);
             }
         }
         for (SpellName spellName : SpellName.values()) {
@@ -37,6 +42,7 @@ public class Shop {
                 Spell spell = DefaultCards.getSpell(spellName);
                 setCardID(spell);
                 allCards.add(spell);
+                cardNumbers.put(spell, FIRST_CAPACITY);
             }
         }
         for (ItemName itemName : ItemName.values()) {
@@ -45,23 +51,36 @@ public class Shop {
                 if (item != null) {
                     item.setItemID(uniqueID++);
                     allItems.add(item);
+                    itemNumbers.put(item, FIRST_CAPACITY);
                 }
             }
         }
         for (HeroName value : HeroName.values()) {
-            if (value != HeroName.CUSTOM)
-                allCards.add(DefaultCards.getHero(value));
+            if (value != HeroName.CUSTOM) {
+                Hero hero = DefaultCards.getHero(value);
+                allCards.add(hero);
+                cardNumbers.put(hero, FIRST_CAPACITY);
+            }
         }
 
-        allCards.addAll(JsonProcess.getSavedCustomCards());
+        ArrayList<Card> savedCards = JsonProcess.getSavedCustomCards();
+        for (Card savedCard : savedCards) {
+            allCards.add(savedCard);
+            cardNumbers.put(savedCard, FIRST_CAPACITY);
+        }
     }
 
     public void addCard(Card card) {
-        setCardID(card);
-        allCards.add(card);
+        if (searchCardByName(card.getName()) != null) {
+            Card card1 = searchCardByName(card.getName());
+            cardNumbers.put(card1, cardNumbers.get(card1) + 1);
+        } else {
+            setCardID(card);
+            allCards.add(card);
+        }
     }
 
-    // total_disarm , all_disam , all_poison , ghool_snake
+
     public Card searchCardByName(String cardName) {
         for (Card card : allCards) {
             if (card.getName().equals(cardName))
@@ -79,17 +98,37 @@ public class Shop {
     }
 
     public void buy(Card card, Account account) {
-        account.getCollection().addCard(card);
+        Card card1 = searchCardByName(card.getName());
+        if (cardNumbers.get(card1) != 0)
+            cardNumbers.put(card1, cardNumbers.get(card1) - 1);
+        else
+            return;
+        if (card.isCustom()) {
+            account.getCollection().addCard(card.getCustomCopy());
+        } else {
+            account.getCollection().addCard(card.getNormalCopy());
+        }
         account.reduceMoney(card.getCost());
     }
 
     public void buy(Item item, Account account) {
+        Item item1 = searchItemByName(item.getName());
+        if (itemNumbers.get(item1) != 0)
+            itemNumbers.put(item1, itemNumbers.get(item1) - 1);
+        else
+            return;
         account.getCollection().addItem(item);
         account.reduceMoney(item.getCost());
     }
 
     public void sell(Card currentCard, Account loggedInAccount) {
         setCardID(currentCard);
+        if (searchCardByName(currentCard.getName()) != null) {
+            Card card = searchCardByName(currentCard.getName());
+            cardNumbers.put(card, cardNumbers.get(card) + 1);
+        } else {
+            cardNumbers.put(currentCard, 1);
+        }
         loggedInAccount.getCollection().removeCard(currentCard);
         loggedInAccount.addMoney(currentCard.getCost());
         loggedInAccount.deleteCardFromDecks(currentCard);
@@ -114,9 +153,9 @@ public class Shop {
         return Collection.showArraylistOfCardsAndItems(allCards, allItems);
     }
 
-    private void setCardID(Card card){
+    private void setCardID(Card card) {
         int id = uniqueID + 1;
-        while (searchCardByID(id) != null){
+        while (searchCardByID(id) != null) {
             id++;
         }
         card.setCardID(id);
