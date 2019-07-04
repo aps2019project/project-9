@@ -5,6 +5,7 @@ import client.ShortAccount;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import data.JsonProcess;
+import javafx.application.Platform;
 import model.Account;
 import model.BattleResult;
 
@@ -38,9 +39,9 @@ public class ClientHandler extends Thread {
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("client disconnected or interrupted , this exception is OK");
-            Server.onlineClients.remove(this);
+            GraphicalServer.onlineClients.remove(this);
             if (userName != null) {
-                Server.userNamesLoggedIn.remove(userName);
+                GraphicalServer.userNamesLoggedIn.remove(userName);
             }
         }
     }
@@ -63,7 +64,6 @@ public class ClientHandler extends Thread {
                                 request.getAccountRequest().getPassWord());
                         Gson gson = JsonProcess.getGson();
                         outputStream.writeUTF(gson.toJson(account, Account.class));
-                        System.out.println("new account made");
                         break;
                     case IS_USER_VALID:
                         if (Account.isUserNameToken(request.getAccountRequest().getUserName()))
@@ -86,7 +86,7 @@ public class ClientHandler extends Thread {
                     case ACCOUNT_LIST:
                         ArrayList<ShortAccount> userNames = new ArrayList<>();
                         for (Account account1 : Account.getAccounts()) {
-                            if (Server.userNamesLoggedIn.contains(account1.getUserName()))
+                            if (GraphicalServer.userNamesLoggedIn.contains(account1.getUserName()))
                                 userNames.add(new ShortAccount(account1, "online"));
                             else
                                 userNames.add(new ShortAccount(account1, "offline"));
@@ -109,7 +109,7 @@ public class ClientHandler extends Thread {
                         mainMenuRequest();
                         return;
                     case LOGGED_IN:
-                        Server.userNamesLoggedIn.add(request.getLoggedInUserName());
+                        GraphicalServer.userNamesLoggedIn.add(request.getLoggedInUserName());
                         this.userName = request.getLoggedInUserName();
                         break;
                 }
