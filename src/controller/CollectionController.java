@@ -65,7 +65,7 @@ public class CollectionController {
         if (account.findDeckByName(newDeckName) != null) {
             collectionMenu.printError(CollectionErrorType.DECK_NAME_EXISTS);
         } else {
-            ClientRequest clientRequest = new ClientRequest(Client.getAuthToken(), RequestType.CREATE_ACCOUNT);
+            ClientRequest clientRequest = new ClientRequest(Client.getAuthToken(), RequestType.CREATE_NEW_DECK);
             clientRequest.setDeckName(newDeckName);
             Client.sendRequest(clientRequest);
             //loggedInAccount.createNewDeck(newDeckName);

@@ -99,6 +99,7 @@ public class Client extends Application {
         ClientRequest clientRequest = new ClientRequest(authToken, RequestType.FIND_ACCOUNT);
         AccountRequest request = new AccountRequest();
         request.setUserName(userName);
+        clientRequest.setAccountRequest(request);
         sendRequest(clientRequest);
         String response = getResponse();
         return JsonProcess.getGson().fromJson(response, Account.class);

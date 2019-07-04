@@ -2,34 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="429eadbd-36e3-4fa5-93ef-05e24885aef0" name="Default Changelist" comment="Merge branch 'master' of https://github.com/aps2019project/project-9&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;out/production/project-9/controller/ShopController.class&#10;#&#9;out/production/project-9/src/view/ShopMenu.java&#10;#&#9;out/production/project-9/src/view/Test.java&#10;#&#9;out/production/project-9/view/ShopMenu$1$1.class&#10;#&#9;out/production/project-9/view/ShopMenu$1.class&#10;#&#9;out/production/project-9/view/ShopMenu$2$1.class&#10;#&#9;out/production/project-9/view/ShopMenu$2.class&#10;#&#9;out/production/project-9/view/ShopMenu.class&#10;#&#9;out/production/project-9/view/Test.class">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/client/RequestType.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/client/RequestType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/server/ClientHandler$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/server/ClientHandler$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/server/ClientHandler$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/server/ClientHandler$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/server/ClientHandler$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/server/ClientHandler$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/server/ClientHandler$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/server/ClientHandler$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/server/ClientHandler$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/server/ClientHandler$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/server/ClientHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/server/ClientHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/server/config.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/server/config.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/client/RequestType.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/client/RequestType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/server/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/server/ClientHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/server/config.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/server/config.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/view/ShopMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/view/ShopMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/ShopMenu$1$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/ShopMenu$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/ShopMenu$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/ShopMenu$2$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/ShopMenu$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/ShopMenu$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/ShopMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/ShopMenu.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/ClientRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/ClientRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/RequestType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/RequestType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/CollectionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/CollectionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/ShopController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ShopController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/ClientHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/GraphicalServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/GraphicalServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/config.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/config.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/CollectionMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/CollectionMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/ShopMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/ShopMenu.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -54,11 +28,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/client/Client.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="501">
-              <caret line="103" column="71" lean-forward="true" selection-start-line="103" selection-start-column="71" selection-end-line="103" selection-end-column="71" />
+            <state relative-caret-position="202">
+              <caret line="101" column="49" lean-forward="true" selection-start-line="101" selection-start-column="49" selection-end-line="101" selection-end-column="49" />
             </state>
           </provider>
         </entry>
@@ -106,8 +80,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/client/RequestType.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="29" column="20" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
+            <state relative-caret-position="34">
+              <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/view/AccountMenu.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="137">
+              <caret line="333" column="79" selection-start-line="333" selection-start-column="79" selection-end-line="333" selection-end-column="79" />
             </state>
           </provider>
         </entry>
@@ -115,8 +98,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/server/ClientHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="238" column="62" lean-forward="true" selection-start-line="238" selection-start-column="62" selection-end-line="238" selection-end-column="62" />
+            <state relative-caret-position="112">
+              <caret line="86" column="27" selection-start-line="86" selection-start-column="27" selection-end-line="86" selection-end-column="27" />
               <folding>
                 <element signature="e#1666#1667#0" expanded="true" />
                 <element signature="e#13475#13476#0" expanded="true" />
@@ -161,8 +144,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/controller/CollectionController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1445">
-              <caret line="102" column="67" lean-forward="true" selection-start-line="102" selection-start-column="67" selection-end-line="102" selection-end-column="67" />
+            <state relative-caret-position="-954">
+              <caret line="42" column="50" selection-start-line="42" selection-start-column="50" selection-end-line="42" selection-end-column="50" />
               <folding>
                 <element signature="e#4825#4826#0" expanded="true" />
               </folding>
@@ -170,26 +153,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/view/CollectionMenu.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="348">
+            <state relative-caret-position="8432">
               <caret line="523" column="21" selection-start-line="523" selection-start-column="21" selection-end-line="523" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://$PATH_TO_FX$/javafx.controls.jar!/javafx/scene/control/TableView.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="443" column="22" selection-start-line="443" selection-start-column="22" selection-end-line="443" selection-end-column="22" />
-              <folding>
-                <element signature="e#22334#22335#0" expanded="true" />
-                <element signature="e#22380#22381#0" expanded="true" />
-                <element signature="e#22429#22430#0" expanded="true" />
-                <element signature="e#22484#22485#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -267,7 +235,6 @@
         <option value="$PROJECT_DIR$/src/server/Shop.java" />
         <option value="$PROJECT_DIR$/src/controller/AccountController.java" />
         <option value="$PROJECT_DIR$/src/server/GraphicalServer.java" />
-        <option value="$PROJECT_DIR$/src/client/Client.java" />
         <option value="$PROJECT_DIR$/src/controller/ShopController.java" />
         <option value="$PROJECT_DIR$/src/view/ShopMenu.java" />
         <option value="$PROJECT_DIR$/src/client/ClientRequest.java" />
@@ -275,6 +242,7 @@
         <option value="$PROJECT_DIR$/src/server/ClientHandler.java" />
         <option value="$PROJECT_DIR$/src/controller/CollectionController.java" />
         <option value="$PROJECT_DIR$/src/view/CollectionMenu.java" />
+        <option value="$PROJECT_DIR$/src/client/Client.java" />
       </list>
     </option>
   </component>
@@ -328,7 +296,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1562239754747" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1562240055055" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Tamrin3/ChatRoom" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -368,7 +336,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.GraphicalServer">
+  <component name="RunManager" selected="Application.Client">
     <configuration name="Client" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="client.Client" />
       <module name="project-9" />
@@ -425,8 +393,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.GraphicalServer" />
         <item itemvalue="Application.Client" />
+        <item itemvalue="Application.GraphicalServer" />
         <item itemvalue="Application.Server" />
         <item itemvalue="Application.ClientTest" />
       </list>
@@ -464,7 +432,7 @@
       <workItem from="1561377511629" duration="833000" />
       <workItem from="1561477625365" duration="6204000" />
       <workItem from="1561611202286" duration="3309000" />
-      <workItem from="1562154800814" duration="26297000" />
+      <workItem from="1562154800814" duration="26537000" />
     </task>
     <task id="LOCAL-00001" summary="merge">
       <created>1556826863260</created>
@@ -603,7 +571,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="429369000" />
+    <option name="totallyTimeSpent" value="429609000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -632,13 +600,13 @@
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="5" weight="0.3640553" />
       <window_info anchor="bottom" id="Duplicate detector" order="6" weight="0.32872504" />
-      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.4952381" weight="0.32258064" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49444443" weight="0.32258064" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5031746" side_tool="true" weight="0.33486944" />
       <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.4968254" weight="0.32411674" />
       <window_info anchor="bottom" id="Database Changes" order="11" />
       <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.49920633" weight="0.21658987" />
-      <window_info anchor="bottom" x="84" y="296" width="1260" height="175" id="Run" order="13" sideWeight="0.50476193" side_tool="true" weight="0.32872504" />
+      <window_info active="true" anchor="bottom" x="84" y="296" width="1260" height="175" id="Run" order="13" sideWeight="0.50555557" side_tool="true" visible="true" weight="0.32872504" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -988,13 +956,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/AccountMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="80" column="23" lean-forward="true" selection-start-line="80" selection-start-column="23" selection-end-line="80" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PATH_TO_FX$/javafx.controls.jar!/javafx/scene/control/Label.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -1142,13 +1103,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/Client.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="501">
-          <caret line="103" column="71" lean-forward="true" selection-start-line="103" selection-start-column="71" selection-end-line="103" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/ShopController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -1207,28 +1161,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/RequestType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="29" column="20" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/server/ClientHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="238" column="62" lean-forward="true" selection-start-line="238" selection-start-column="62" selection-end-line="238" selection-end-column="62" />
-          <folding>
-            <element signature="e#1666#1667#0" expanded="true" />
-            <element signature="e#13475#13476#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/CollectionController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1445">
-          <caret line="102" column="67" lean-forward="true" selection-start-line="102" selection-start-column="67" selection-end-line="102" selection-end-column="67" />
+        <state relative-caret-position="-954">
+          <caret line="42" column="50" selection-start-line="42" selection-start-column="50" selection-end-line="42" selection-end-column="50" />
           <folding>
             <element signature="e#4825#4826#0" expanded="true" />
           </folding>
@@ -1237,8 +1173,40 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view/CollectionMenu.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
+        <state relative-caret-position="8432">
           <caret line="523" column="21" selection-start-line="523" selection-start-column="21" selection-end-line="523" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/server/ClientHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="86" column="27" selection-start-line="86" selection-start-column="27" selection-end-line="86" selection-end-column="27" />
+          <folding>
+            <element signature="e#1666#1667#0" expanded="true" />
+            <element signature="e#13475#13476#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/AccountMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="333" column="79" selection-start-line="333" selection-start-column="79" selection-end-line="333" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/RequestType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/Client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="101" column="49" lean-forward="true" selection-start-line="101" selection-start-column="49" selection-end-line="101" selection-end-column="49" />
         </state>
       </provider>
     </entry>
