@@ -90,11 +90,6 @@ public class Client extends Application {
         }
     }
 
-    public static void saveAccount(Account account) {
-        //TODO
-        //it seems there's no need to tell server to save account , client can do it too.
-    }
-
     public static Account getAccount(String userName) {
         ClientRequest clientRequest = new ClientRequest(authToken, RequestType.FIND_ACCOUNT);
         AccountRequest request = new AccountRequest();
@@ -103,5 +98,10 @@ public class Client extends Application {
         sendRequest(clientRequest);
         String response = getResponse();
         return JsonProcess.getGson().fromJson(response, Account.class);
+    }
+
+    public static void saveAccount(){
+        ClientRequest clientRequest = new ClientRequest(authToken,RequestType.SAVE_ACCOUNT);
+        sendRequest(clientRequest);
     }
 }

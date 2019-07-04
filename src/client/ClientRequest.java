@@ -11,10 +11,19 @@ public class ClientRequest {
     private int cardOrItemID;
     private String cardOrItemName;
     private String deckName;
+    private String accountJson;
 
     public ClientRequest(String authKey, RequestType type) {
         this.authKey = authKey;
         this.type = type;
+    }
+
+    public String getAccountJson() {
+        return accountJson;
+    }
+
+    public void setAccountJson(String accountJson) {
+        this.accountJson = accountJson;
     }
 
     public String getDeckName() {

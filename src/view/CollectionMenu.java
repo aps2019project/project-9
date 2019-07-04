@@ -247,7 +247,7 @@ public class CollectionMenu {
         Button save = (Button) root.lookup("#save");
 
         save.setOnMouseClicked(m -> {
-            JsonProcess.saveAccount(Client.getAccount(account));
+            Client.saveAccount();
         });
         return save;
     }

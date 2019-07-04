@@ -28,5 +28,6 @@ public enum RequestType {
     CREATE_NEW_DECK,
     REMOVE_FROM_DECK,
     ADD_CARD_TO_DECK,
-    IMPORT_DECK
+    IMPORT_DECK,
+    GET_REMAINING_IN_SHOP
 }

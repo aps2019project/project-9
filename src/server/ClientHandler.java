@@ -234,6 +234,9 @@ public class ClientHandler extends Thread {
                             outputStream.writeUTF(String.
                                     valueOf(shop.cardNumbers.get(shop.searchCardByName(name))));
                         break;
+                    case SAVE_ACCOUNT:
+                        JsonProcess.saveAccount(Account.findAccount(this.userName));
+                        break;
                 }
 
             }
