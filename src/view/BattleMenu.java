@@ -33,7 +33,7 @@ public class BattleMenu {
         try {
             FXMLLoader loader = new FXMLLoader(new URL("file:src\\res\\FXML\\BattleMenu.fxml"));
             Parent parent = loader.load();
-            setButttomnsEventbattle(parent, stage);
+            setButttonsEventBattle(parent, stage);
             Scene scene = new Scene(parent, 1003, 562);
             stage.setScene(scene);
 
@@ -43,7 +43,7 @@ public class BattleMenu {
         }
     }
 
-    private void setButttomnsEventbattle(Parent parent, Stage stage) {
+    private void setButttonsEventBattle(Parent parent, Stage stage) {
         Button multi = (Button) parent.lookup("#multi");
         setActionForButtons(multi);
         multi.setOnMouseClicked(mouseEvent -> multiPlayerPressed());
@@ -190,12 +190,16 @@ public class BattleMenu {
 
     private void multiPlayerPressed() {
         List<String> choices = new ArrayList<>();
+
+
         for (Account account : Account.getAccounts()) {
             if (!account.getUserName().equals(logInAccount.getUserName()))
                 choices.add(account.getUserName());
         }
+
+
         ChoiceDialog<String> dialog = new ChoiceDialog<>("", choices);
-        dialog.setTitle("Choice Your Opponent");
+        dialog.setTitle("Choose Your Opponent");
         dialog.setHeaderText("Please Choice the opponent you wanna play with");
         dialog.setContentText("User Name:");
         Optional<String> result = dialog.showAndWait();

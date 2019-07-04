@@ -11,4 +11,5 @@ public enum RequestType {
     LOGGED_IN,
     GET_CHAT,
     SEND_MESSAGE,
+    ONLINE_PLAYERS,
 }
