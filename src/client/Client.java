@@ -2,10 +2,12 @@ package client;
 
 import com.google.gson.Gson;
 import controller.AccountController;
+import data.JsonProcess;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import server.Account;
 import view.AccountMenu;
+import view.AccountRequest;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -91,5 +93,14 @@ public class Client extends Application {
     public static void saveAccount(Account account) {
         //TODO
         //it seems there's no need to tell server to save account , client can do it too.
+    }
+
+    public static Account getAccount(String userName) {
+        ClientRequest clientRequest = new ClientRequest(authToken, RequestType.FIND_ACCOUNT);
+        AccountRequest request = new AccountRequest();
+        request.setUserName(userName);
+        sendRequest(clientRequest);
+        String response = getResponse();
+        return JsonProcess.getGson().fromJson(response, Account.class);
     }
 }

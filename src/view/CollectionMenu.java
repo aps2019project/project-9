@@ -3,6 +3,7 @@ package view;
 import java.net.URL;
 import java.util.*;
 
+import client.Client;
 import controller.CollectionController;
 import data.DeckAddException;
 import javafx.collections.FXCollections;
@@ -28,7 +29,7 @@ public class CollectionMenu {
 
     private int count = 0;
     private ImageView slideshowImageView;
-    private Account account;
+    private String account;
     private CollectionController controller;
     private static boolean haveButton = false;
 
@@ -103,9 +104,9 @@ public class CollectionMenu {
             Optional<String> result1 = dio.showAndWait();
             result1.ifPresent(p -> {
                 try {
-                    JsonProcess.exportDeckFromAccount(p, account);
+                    JsonProcess.exportDeckFromAccount(p, Client.getAccount(account));
                     //TODO
-                    System.out.println(p + " " + account.getUserName());
+                    System.out.println(p + " " + account);
                 } catch (DeckAddException e) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setContentText("A Deck With This Name Has Already Saved");
@@ -120,9 +121,9 @@ public class CollectionMenu {
             dio.setContentText("Decks:");
             Optional<String> result1 = dio.showAndWait();
             result1.ifPresent(p -> {
-                JsonProcess.addSavedDeckToAccount(account, p);
+                JsonProcess.addSavedDeckToAccount(Client.getAccount(account), p);
                 //TODO
-                System.out.println(p + " " + account.getUserName());
+                System.out.println(p + " " + account);
             });
         });
         ////////////////////////////////////end/////////////////////////////
@@ -241,7 +242,7 @@ public class CollectionMenu {
         Button save = (Button) root.lookup("#save");
 
         save.setOnMouseClicked(m -> {
-            JsonProcess.saveAccount(account);
+            JsonProcess.saveAccount(Client.getAccount(account));
         });
         return save;
     }
@@ -323,12 +324,14 @@ public class CollectionMenu {
     }
 
     private void showCollectionTable(TableView cardtable, TableView itemtable) {
+        Account account = Client.getAccount(this.account);
         cleartableandaddaddbutton(cardtable, itemtable);
         cardtable.getItems().addAll(FXCollections.observableArrayList(account.getCollection().getCards()));
         itemtable.getItems().addAll(FXCollections.observableArrayList(account.getCollection().getItems()));
     }
 
     private void showDeckTable(TableView cardtable, TableView itemtable) {
+        Account account = Client.getAccount(this.account);
         List<String> choices = new ArrayList<>();
         for (int i = 0; i < account.getDecks().size(); i++) {
             choices.add(account.getDecks().get(i).getName());
@@ -407,6 +410,7 @@ public class CollectionMenu {
     }
 
     private void showAllDecksTable(TableView cardtable, TableView itemtable) {
+        Account account = Client.getAccount(this.account);
         cleartablesandadddeletebutton(cardtable, itemtable);
         for (int i = 0; i < account.getDecks().size(); i++)
             showDeck(cardtable, itemtable, account.getDecks().get(i));
@@ -420,6 +424,7 @@ public class CollectionMenu {
     }
 
     private ChoiceDialog<String> setDecksList() {
+        Account account = Client.getAccount(this.account);
         List<String> c = new ArrayList<>();
         for (Deck key : account.getDecks()) {
             c.add(key.getName());
@@ -429,6 +434,7 @@ public class CollectionMenu {
 
 
     private void addAddButtonToTable(TableView table) {
+        Account account = Client.getAccount(this.account);
         TableColumn actionCol = new TableColumn("Add");
         actionCol.setCellValueFactory(new PropertyValueFactory<>(""));
         Callback<TableColumn<Card, String>, TableCell<Card, String>> cellFactory = new Callback<>() {
@@ -474,6 +480,7 @@ public class CollectionMenu {
     }
 
     private void addDeleteButtonToTable(TableView table) {
+        Account account = Client.getAccount(this.account);
         TableColumn actionCol = new TableColumn("Delete");
         actionCol.setCellValueFactory(new PropertyValueFactory<>(""));
         Callback<TableColumn<Card, String>, TableCell<Card, String>> cellFactory = new Callback<>() {
@@ -507,6 +514,7 @@ public class CollectionMenu {
                     }
 
                     private String searchTableForDeckName(List<Card> items) {
+
                         for (Card key : items) {
                             if (key != null && account.findDeckByName(key.getName()) != null) {
                                 return key.getName();

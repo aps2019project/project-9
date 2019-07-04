@@ -8,10 +8,37 @@ public class ClientRequest {
     private AccountRequest accountRequest;
     private String loggedInUserName;
     private String message;
+    private int cardOrItemID;
+    private String cardOrItemName;
+    private String deckName;
 
     public ClientRequest(String authKey, RequestType type) {
         this.authKey = authKey;
         this.type = type;
+    }
+
+    public String getDeckName() {
+        return deckName;
+    }
+
+    public void setDeckName(String deckName) {
+        this.deckName = deckName;
+    }
+
+    public void setCardOrItemName(String cardOrItemName) {
+        this.cardOrItemName = cardOrItemName;
+    }
+
+    public String getCardOrItemName() {
+        return cardOrItemName;
+    }
+
+    public void setCardOrItemID(int cardOrItemID) {
+        this.cardOrItemID = cardOrItemID;
+    }
+
+    public int getCardOrItemID() {
+        return cardOrItemID;
     }
 
     public void setAccountRequest(AccountRequest accountRequest) {

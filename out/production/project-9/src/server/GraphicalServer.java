@@ -102,6 +102,8 @@ public class GraphicalServer extends Application {
         ListView<String> cards = ((ListView) parent.lookup("#cards"));
         ListView<String> items = ((ListView) parent.lookup("#items"));
         TextArea desc = ((TextArea) parent.lookup("#desc"));
+        cards.getItems().clear();
+        items.getItems().clear();
         cards.setOnMouseClicked(mouseEvent -> {
             String card = cards.getSelectionModel().getSelectedItem();
             Card card1 = shop.searchCardByName(card);

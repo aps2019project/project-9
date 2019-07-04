@@ -5,7 +5,15 @@ import client.ShortAccount;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import data.JsonProcess;
+import javafx.scene.control.Alert;
 import model.BattleResult;
+import model.Deck;
+import model.cards.Card;
+import model.cards.Hero;
+import model.cards.Minion;
+import model.enumerations.CardType;
+import model.enumerations.CollectionErrorType;
+import model.items.Item;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -121,8 +129,148 @@ public class ClientHandler extends Thread {
                                 new TypeToken<ArrayList<String>>() {
                                 }.getType()));
                         break;
+                    case SHOP_CARDS:
+                        ArrayList<Card> cards = Shop.getInstance().getCards();
+                        outputStream.writeUTF(JsonProcess.getGson().toJson(cards,
+                                new TypeToken<ArrayList<Card>>() {
+                                }.getType()));
+                        break;
+                    case SHOP_ITEMS:
+                        ArrayList<Item> items = Shop.getInstance().getItems();
+                        outputStream.writeUTF(JsonProcess.getGson().toJson(items,
+                                new TypeToken<ArrayList<Item>>() {
+                                }.getType()));
+                        break;
+                    case SELL_CARD:
+                        String name = request.getCardOrItemName();
+                        Shop.getInstance().sell
+                                (Account.findAccount(this.userName).getCollection().searchCardByName(name).get(0)
+                                        , Account.findAccount(this.userName));
+                        break;
+                    case SELL_ITEM:
+                        name = request.getCardOrItemName();
+                        Shop.getInstance().sell
+                                (Account.findAccount(this.userName).getCollection().searchItemByName(name).get(0)
+                                        , Account.findAccount(this.userName));
+                        break;
+                    case IS_CARD_IN_SHOP:
+                        name = request.getCardOrItemName();
+                        String res = (Shop.getInstance().searchCardByName(name) != null) ? "true" : "false";
+                        outputStream.writeUTF(res);
+                        break;
+                    case BUY_CARD:
+                        name = request.getCardOrItemName();
+                        Shop.getInstance().buy(Shop.getInstance().searchCardByName(name),
+                                Account.findAccount(this.userName));
+                        break;
+                    case GET_CARD_OR_ITEM_MONEY:
+                        name = request.getCardOrItemName();
+                        Shop shop = Shop.getInstance();
+                        Card card = shop.searchCardByName(name);
+                        if (card != null) {
+                            outputStream.writeUTF(String.valueOf(card.getCost()));
+                        } else {
+                            outputStream.writeUTF(String.valueOf(shop.searchItemByName(name).getCost()));
+                        }
+                        break;
+                    case GET_ACCOUNT_MONEY:
+                        outputStream.writeUTF(String.valueOf(Account.findAccount(this.userName).getMoney()));
+                        break;
+                    case BUY_ITEM:
+                        name = request.getCardOrItemName();
+                        shop = Shop.getInstance();
+                        shop.buy(shop.searchItemByName(name), Account.findAccount(this.userName));
+                        break;
+                    case NOT_CARD_NOT_ITEM:
+                        name = request.getCardOrItemName();
+                        shop = Shop.getInstance();
+                        if (shop.searchCardByName(name) == null && shop.searchItemByName(name) == null)
+                            outputStream.writeUTF("true");
+                        else
+                            outputStream.writeUTF("false");
+                        break;
+                    case GET_CARD_FROM_SHOP:
+                        name = request.getCardOrItemName();
+                        Card card1 = Shop.getInstance().searchCardByName(name);
+                        outputStream.writeUTF(JsonProcess.getGson().toJson(card1, Card.class));
+                        break;
+                    case GET_ITEM_FROM_SHOP:
+                        name = request.getCardOrItemName();
+                        Item item = Shop.getInstance().searchItemByName(name);
+                        outputStream.writeUTF(JsonProcess.getGson().toJson(item, Item.class));
+                        break;
+                    case SELECT_MAIN_DECK:
+                        String deckName = request.getDeckName();
+                        Account account2 = Account.findAccount(this.userName);
+                        account2.selectMainDeck(account2.findDeckByName(deckName));
+                        break;
+                    case DELETE_DECK:
+                        deckName = request.getDeckName();
+                        account = Account.findAccount(this.userName);
+                        account.deleteDeck(deckName);
+                        break;
+                    case CREATE_NEW_DECK:
+                        deckName = request.getDeckName();
+                        account = Account.findAccount(this.userName);
+                        account.createNewDeck(deckName);
+                        break;
+                    case REMOVE_FROM_DECK:
+                        removeFromDeck(request.getDeckName(), request.getCardOrItemID());
+                        break;
+                    case ADD_CARD_TO_DECK:
+                        addToDeck(request.getDeckName(), request.getCardOrItemID());
+                        break;
                 }
+
             }
+        }
+    }
+
+    private void addToDeck(String deckName, int cardOrItemName) throws IOException {
+        Account loggedInAccount = Account.findAccount(this.userName);
+        Deck currentDeck = loggedInAccount.findDeckByName(deckName);
+        Card currentCard = loggedInAccount.getCollection().searchCardByID(cardOrItemName);
+        if (currentCard != null) { // it is card not item
+            if (currentCard.getCardType() == CardType.MINION) { // card is a hero or minion
+                Minion currentMinion = (Minion) currentCard;
+                if (currentMinion instanceof Hero && currentDeck.hasHero()) {
+                    outputStream.writeUTF("deck has a hero");
+                } else if (currentMinion instanceof Hero) { // minion is hero
+                    currentDeck.setHero((Hero) currentMinion);
+                } else { // it is not hero just minion
+                    if (currentDeck.canAddCard()) {
+                        currentDeck.addCard(currentCard);
+                        outputStream.writeUTF("added");
+                    } else
+                        outputStream.writeUTF("deck full");
+                }
+            } else { // card is spell
+                if (currentDeck.canAddCard()) {
+                    currentDeck.addCard(currentCard);
+                    outputStream.writeUTF("added");
+                } else
+                    outputStream.writeUTF("deck full");
+            }
+        } else { // it is item not card
+            Item currentItem = loggedInAccount.getCollection().getItem(cardOrItemName);
+            if (currentDeck.hasItem())
+                outputStream.writeUTF("deck already has an item");
+            else {
+                currentDeck.addItem(currentItem);
+                outputStream.writeUTF("added");
+            }
+        }
+    }
+
+    private void removeFromDeck(String deck, int id) {
+        Account loggedInAccount = Account.findAccount(this.userName);
+        Deck currentDeck = loggedInAccount.findDeckByName(deck);
+        if (currentDeck.getCardByID(String.valueOf(id)) != null) {
+            // card found should be deleted
+            currentDeck.removeCard(currentDeck.getCardByID(String.valueOf(id)));
+        } else {
+            // item found , should be deleted
+            currentDeck.removeItem(currentDeck.getItemByID(String.valueOf(id)));
         }
     }
 
