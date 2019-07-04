@@ -7,5 +7,6 @@ public enum RequestType {
     FIND_ACCOUNT,
     ACCOUNT_LIST,
     BATTLE_RESULT_LIST,
-    SAVE_ACCOUNT,
+    NEXT,
+    LOGGED_IN,
 }

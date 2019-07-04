@@ -1,6 +1,5 @@
 package server;
 
-import client.Client;
 import client.ClientRequest;
 import client.ShortAccount;
 import com.google.gson.Gson;
@@ -8,7 +7,6 @@ import com.google.gson.reflect.TypeToken;
 import data.JsonProcess;
 import model.Account;
 import model.BattleResult;
-import view.AccountRequest;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -20,6 +18,7 @@ public class ClientHandler extends Thread {
     private String authToken;
     private DataOutputStream outputStream;
     private DataInputStream inputStream;
+    private String userName;
 
     public ClientHandler(String key, Socket socket) {
         this.authToken = key;
@@ -39,7 +38,16 @@ public class ClientHandler extends Thread {
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("client disconnected or interrupted , this exception is OK");
+            Server.onlineClients.remove(this);
+            if (userName != null) {
+                Server.userNamesLoggedIn.remove(userName);
+            }
         }
+    }
+
+    @Override
+    public String toString() {
+        return authToken;
     }
 
     private Gson gson = new Gson();
@@ -55,8 +63,7 @@ public class ClientHandler extends Thread {
                                 request.getAccountRequest().getPassWord());
                         Gson gson = JsonProcess.getGson();
                         outputStream.writeUTF(gson.toJson(account, Account.class));
-                        //TODO
-                        System.out.println("account made");
+                        System.out.println("new account made");
                         break;
                     case IS_USER_VALID:
                         if (Account.isUserNameToken(request.getAccountRequest().getUserName()))
@@ -79,7 +86,10 @@ public class ClientHandler extends Thread {
                     case ACCOUNT_LIST:
                         ArrayList<ShortAccount> userNames = new ArrayList<>();
                         for (Account account1 : Account.getAccounts()) {
-                            userNames.add(new ShortAccount(account1));
+                            if (Server.userNamesLoggedIn.contains(account1.getUserName()))
+                                userNames.add(new ShortAccount(account1, "online"));
+                            else
+                                userNames.add(new ShortAccount(account1, "offline"));
                         }
                         String toSend = JsonProcess.getGson().toJson(userNames
                                 , new TypeToken<ArrayList<ShortAccount>>() {
@@ -98,13 +108,17 @@ public class ClientHandler extends Thread {
                         //TODO
                         mainMenuRequest();
                         return;
+                    case LOGGED_IN:
+                        Server.userNamesLoggedIn.add(request.getLoggedInUserName());
+                        this.userName = request.getLoggedInUserName();
+                        break;
                 }
             }
         }
     }
 
     private void mainMenuRequest() {
-        while (true){
+        while (true) {
 
         }
     }

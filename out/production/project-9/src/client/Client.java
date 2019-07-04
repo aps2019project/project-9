@@ -40,6 +40,7 @@ public class Client extends Application {
         } else {
             //TODO
             System.out.println("not connected");
+            System.out.println("there is no active server");
         }
     }
 

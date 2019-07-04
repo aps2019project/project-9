@@ -6,7 +6,7 @@ public class ClientRequest {
     private String authKey;
     private RequestType type;
     private AccountRequest accountRequest;
-    private String accountGson;
+    private String loggedInUserName;
 
     public ClientRequest(String authKey, RequestType type) {
         this.authKey = authKey;
@@ -29,11 +29,11 @@ public class ClientRequest {
         return authKey;
     }
 
-    public void setAccountGson(String accountGson) {
-        this.accountGson = accountGson;
+    public void setLoggedInUserName(String loggedInUserName) {
+        this.loggedInUserName = loggedInUserName;
     }
 
-    public String getAccountGson() {
-        return accountGson;
+    public String getLoggedInUserName() {
+        return loggedInUserName;
     }
 }

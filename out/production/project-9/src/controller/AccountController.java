@@ -35,15 +35,13 @@ public class AccountController {
                 Client.sendRequest(newRequest);
                 String json = Client.getResponse();
                 Account account = JsonProcess.getGson().fromJson(json, Account.class);
+                ClientRequest clientRequest1 = new ClientRequest(Client.getAuthToken(), RequestType.LOGGED_IN);
+                clientRequest1.setLoggedInUserName(account.getUserName());
+                Client.sendRequest(clientRequest1);
                 goNextMenu(account, stage);
                 //goNextMenu(Account.findAccount(request.getUserName()), stage);
             } else
                 accountMenu.printError(AccountErrorType.INVALID_PASSWORD);
-
-            /*if (Account.isPassWordValid(request.getUserName(), request.getPassWord())) {
-                goNextMenu(Account.findAccount(request.getUserName()), stage);
-            } else
-                accountMenu.printError(AccountErrorType.INVALID_PASSWORD);*/
 
         } else
             accountMenu.printError(AccountErrorType.INVALID_USERNAME);
@@ -52,13 +50,14 @@ public class AccountController {
     public void createAccount(AccountRequest request) {
         if (isUserNameValid(request)) {
             Stage stage = new Stage();
-            //TODO
             ClientRequest clientRequest = new ClientRequest(Client.getAuthToken(), RequestType.CREATE_ACCOUNT);
             clientRequest.setAccountRequest(request);
             Client.sendRequest(clientRequest);
             //Account newAccount = new Account(request.getUserName(), request.getPassWord());
             Account newAccount = JsonProcess.getGson().fromJson(Client.getResponse(), Account.class);
-
+            ClientRequest clientRequest1 = new ClientRequest(Client.getAuthToken(), RequestType.LOGGED_IN);
+            clientRequest1.setLoggedInUserName(newAccount.getUserName());
+            Client.sendRequest(clientRequest1);
             goNextMenu(newAccount, stage);
         } else {
             request.setErrorType(AccountErrorType.USERNAME_EXISTS);
@@ -87,6 +86,7 @@ public class AccountController {
     }
 
     private void goNextMenu(Account loggedInAccount, Stage stage) {
+        Client.sendRequest(new ClientRequest(Client.getAuthToken(), RequestType.NEXT));
         MainMenuController mainMenuController = MainMenuController.getInstance(loggedInAccount);
         mainMenuController.start(stage);
     }

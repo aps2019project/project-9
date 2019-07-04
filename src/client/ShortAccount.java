@@ -5,10 +5,12 @@ import model.Account;
 public class ShortAccount {
     String userName;
     int numberOfWins;
+    String isOnline;
 
-    public ShortAccount(Account account) {
+    public ShortAccount(Account account,String isOnline) {
         this.userName = account.getUserName();
         this.numberOfWins = account.getNumberOfWins();
+        this.isOnline = isOnline;
     }
 
     public String getUserName() {
@@ -17,5 +19,9 @@ public class ShortAccount {
 
     public int getNumberOfWins() {
         return numberOfWins;
+    }
+
+    public String getIsOnline() {
+        return isOnline;
     }
 }

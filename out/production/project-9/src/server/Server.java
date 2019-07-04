@@ -7,20 +7,23 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 public class Server {
-    private static ArrayList<ClientHandler> onlineClients = new ArrayList<>();
+    static ArrayList<ClientHandler> onlineClients = new ArrayList<>();
+    static ArrayList<String> userNamesLoggedIn = new ArrayList<>();
 
     public static void main(String[] args) {
         try {
             ServerSocket serverSocket = new ServerSocket(0);
             savePort(serverSocket.getLocalPort());
             Socket socket;
-            System.out.println("waiting for client to connected ...");
+            System.out.println("waiting for client ...");
             while (true) {
                 socket = serverSocket.accept();
                 System.out.println("new client connected");
                 ClientHandler handler = new ClientHandler(generateRandomKey(), socket);
                 onlineClients.add(handler);
                 handler.start();
+                System.out.println("Online clients AuthKeys : ");
+                System.out.println(onlineClients);
             }
         } catch (IOException e) {
             e.printStackTrace();

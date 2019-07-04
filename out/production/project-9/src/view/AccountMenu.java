@@ -76,7 +76,7 @@ public class AccountMenu {
         loading.setX(50);
         loading.setY(462);
         Text text = new Text("Connected To Server , Click Any Where To Enter The Game ...");
-        text.setFont(Font.loadFont("file:src/res/inGameResource/font1.ttf", 12));
+        text.setFont(Font.loadFont("file:src/res/inGameResource/font1.ttf", 10));
         text.setY(490);
         text.setX(110);
         Group group = new Group(imageView);
@@ -259,11 +259,11 @@ public class AccountMenu {
 
     private Button setLeaderBoardButton() {
         try {
-            ImageView loginImageview = new ImageView(
+            ImageView loginImageView = new ImageView(
                     new Image(new FileInputStream("src/res/AccountMenuImages/sharp-shuriken.png")));
-            loginImageview.setFitWidth(100);
-            loginImageview.setFitHeight(50);
-            Button button = new Button("show LeaderBoard", loginImageview);
+            loginImageView.setFitWidth(100);
+            loginImageView.setFitHeight(50);
+            Button button = new Button("show LeaderBoard", loginImageView);
             button.setLayoutX(385);
             button.setLayoutY(380);
             button.setStyle("-fx-background-color: #beaf92");
@@ -334,6 +334,7 @@ public class AccountMenu {
         ClientRequest clientRequest = new ClientRequest(Client.getAuthToken(), RequestType.FIND_ACCOUNT);
         AccountRequest accountRequest = new AccountRequest();
         accountRequest.setUserName(userName);
+        clientRequest.setAccountRequest(accountRequest);
         Client.sendRequest(clientRequest);
         String response = Client.getResponse();
         return JsonProcess.getGson().fromJson(response, Account.class);
@@ -355,8 +356,12 @@ public class AccountMenu {
         lastNameCol.setMinWidth(100);
         lastNameCol.setCellValueFactory(new PropertyValueFactory<ShortAccount, Integer>("numberOfWins"));
 
+        TableColumn isOnline = new TableColumn("Status");
+        isOnline.setMinWidth(50);
+        isOnline.setCellValueFactory(new PropertyValueFactory<ShortAccount, String>("isOnline"));
+
         table.setItems(data);
-        table.getColumns().addAll(firstNameCol, lastNameCol);
+        table.getColumns().addAll(firstNameCol, lastNameCol, isOnline);
 
         table.setOnMouseClicked(mouseEvent -> {
             Account account = getAccount(table.getSelectionModel().getSelectedItem());
