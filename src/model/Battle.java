@@ -10,6 +10,7 @@ import model.cellaffects.CellAffect;
 import model.enumerations.GameMode;
 import model.enumerations.SpecialPowerActivationTime;
 import model.items.Item;
+import server.Account;
 import view.GraphicalInGameView;
 import view.InGameMethodsAndSource;
 import view.InGameRequest;

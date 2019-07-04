@@ -8,8 +8,8 @@ import model.cards.Spell;
 import model.cellaffects.CellAffect;
 import model.enumerations.*;
 import model.items.*;
+import server.Account;
 import view.GraphicalInGameView;
-import view.InGameMethodsAndSource;
 import view.InGameRequest;
 
 import java.util.ArrayList;

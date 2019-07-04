@@ -5,8 +5,6 @@ import controller.GraveYardController;
 import controller.InGameController;
 import data.JsonProcess;
 import javafx.animation.TranslateTransition;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point3D;
 import javafx.scene.*;
@@ -35,6 +33,7 @@ import model.cellaffects.PoisonCellAffect;
 import model.enumerations.InGameErrorType;
 import model.items.Collectible;
 import model.specialPower.ComboSpecialPower;
+import server.Account;
 
 import java.io.File;
 import java.io.IOException;

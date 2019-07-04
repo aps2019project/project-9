@@ -5,8 +5,6 @@ import client.ShortAccount;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import data.JsonProcess;
-import javafx.application.Platform;
-import model.Account;
 import model.BattleResult;
 
 import java.io.DataInputStream;
@@ -106,8 +104,7 @@ public class ClientHandler extends Thread {
                         break;
                     case NEXT:
                         //TODO
-                        mainMenuRequest();
-                        return;
+                        break;
                     case LOGGED_IN:
                         GraphicalServer.userNamesLoggedIn.add(request.getLoggedInUserName());
                         this.userName = request.getLoggedInUserName();

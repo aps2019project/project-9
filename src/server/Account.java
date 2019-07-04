@@ -1,6 +1,9 @@
-package model;
+package server;
 
 import data.JsonProcess;
+import model.BattleResult;
+import model.Collection;
+import model.Deck;
 import model.cards.Card;
 import model.items.Item;
 

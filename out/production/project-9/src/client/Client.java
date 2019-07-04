@@ -2,12 +2,10 @@ package client;
 
 import com.google.gson.Gson;
 import controller.AccountController;
-import data.JsonProcess;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import model.Account;
+import server.Account;
 import view.AccountMenu;
-import view.AccountRequest;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;

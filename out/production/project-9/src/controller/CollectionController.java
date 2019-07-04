@@ -4,7 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
-import model.Account;
+import server.Account;
 import model.Deck;
 import model.cards.Card;
 import model.cards.Hero;

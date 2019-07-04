@@ -1,7 +1,7 @@
 package controller;
 
 import javafx.stage.Stage;
-import model.Account;
+import server.Account;
 import model.Deck;
 import model.SinglePlayerBattle;
 import view.BattleMenu;

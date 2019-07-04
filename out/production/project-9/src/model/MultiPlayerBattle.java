@@ -1,6 +1,7 @@
 package model;
 
 import model.enumerations.GameMode;
+import server.Account;
 
 public class MultiPlayerBattle extends Battle {
 

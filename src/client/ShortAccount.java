@@ -1,6 +1,6 @@
 package client;
 
-import model.Account;
+import server.Account;
 
 public class ShortAccount {
     String userName;

@@ -11,7 +11,7 @@ import javafx.scene.control.ChoiceDialog;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
-import model.Account;
+import server.Account;
 import model.Deck;
 import model.enumerations.BattleMenuErrorType;
 

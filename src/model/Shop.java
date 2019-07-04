@@ -2,15 +2,14 @@ package model;
 
 import data.JsonProcess;
 import model.cards.Card;
-import model.cards.Hero;
 import model.cards.Minion;
 import model.cards.Spell;
 import model.enumerations.*;
 import model.items.Collectible;
 import model.items.Item;
+import server.Account;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Shop {
     private static final Shop SHOP = new Shop();

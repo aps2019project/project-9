@@ -5,7 +5,7 @@ import client.ClientRequest;
 import client.RequestType;
 import data.JsonProcess;
 import javafx.stage.Stage;
-import model.Account;
+import server.Account;
 import model.enumerations.AccountErrorType;
 import view.AccountMenu;
 import view.AccountRequest;

@@ -28,7 +28,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.util.Pair;
-import model.Account;
+import server.Account;
 import model.BattleResult;
 import model.enumerations.AccountErrorType;
 
