@@ -35,6 +35,7 @@ public class ShopMenu {
     private static ShopMenu instance = new ShopMenu();
     private ShopController controller;
     private Parent parent;
+    private String account;
 
     private ShopMenu() {
     }
@@ -43,7 +44,8 @@ public class ShopMenu {
         return instance;
     }
 
-    public void start(Stage stage, Collection collection, ShopController controller) {
+    public void start(Stage stage, String userName, ShopController controller) {
+        this.account = userName;
         try {
             this.controller = controller;
             FXMLLoader loader = new FXMLLoader(new URL("file:src\\res\\FXML\\Shop.fxml"));
@@ -59,7 +61,7 @@ public class ShopMenu {
             setExitButton(stage);
             setMoney(parent);
             setShowShopButton(cardTable, itemTable);
-            setShowCollectionButton(cardTable, itemTable, collection);
+            setShowCollectionButton(cardTable, itemTable);
 
             Scene scene = new Scene(parent, 1003, 562);
             stage.setScene(scene);
@@ -85,11 +87,11 @@ public class ShopMenu {
         setActionsForButton(b, true);
     }
 
-    private void setShowCollectionButton(TableView cardTable, TableView itemTable, Collection collection) {
+    private void setShowCollectionButton(TableView cardTable, TableView itemTable) {
         Button showCollection = (Button) parent.lookup("#showCollection");
         showCollection.setOnMouseClicked(mouseEvent -> {
             isShowShop = false;
-            showCollectionTable(cardTable, itemTable, collection);
+            showCollectionTable(cardTable, itemTable, Client.getAccount(account).getCollection());
             setMoney(parent);
         });
         setActionsForButton(showCollection, true);

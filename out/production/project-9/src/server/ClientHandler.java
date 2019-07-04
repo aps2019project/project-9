@@ -220,6 +220,9 @@ public class ClientHandler extends Thread {
                     case ADD_CARD_TO_DECK:
                         addToDeck(request.getDeckName(), request.getCardOrItemID());
                         break;
+                    case IMPORT_DECK:
+                        deckName = request.getDeckName();
+                        JsonProcess.addSavedDeckToAccount(Account.findAccount(this.userName), deckName);
                 }
 
             }

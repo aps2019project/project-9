@@ -29,7 +29,7 @@ public class ShopController {
     public void start() {
         try {
             Stage stage = new Stage();
-            shopMenu.start(stage,Client.getAccount(loggedInAccount).getCollection(), this);
+            shopMenu.start(stage, loggedInAccount, this);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -70,8 +70,20 @@ public class ShopController {
         return Integer.parseInt(response);
     }
 
+    private int getRemaining(String name) {
+        ClientRequest clientRequest = new ClientRequest(Client.getAuthToken(), RequestType.GET_REMAINING_IN_SHOP);
+        clientRequest.setCardOrItemName(name);
+        Client.sendRequest(clientRequest);
+        String response = Client.getResponse();
+        return Integer.parseInt(response);
+    }
+
     public void buy(String itemOrCardName) {
         int cardMoney = getCardMoney(itemOrCardName);
+        if (getRemaining(itemOrCardName) == 0) {
+            shopMenu.printError(ShopErrorType.NOT_REMAINING);
+            return;
+        }
         if (isCard(itemOrCardName)) { // card not item
             if (getAccountMoney() < cardMoney)
                 shopMenu.printError(ShopErrorType.NOT_ENOUGH_MONEY);

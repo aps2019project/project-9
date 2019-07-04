@@ -29,7 +29,7 @@ public class ShopController {
     public void start() {
         try {
             Stage stage = new Stage();
-            shopMenu.start(stage,Client.getAccount(loggedInAccount).getCollection(), this);
+            shopMenu.start(stage, loggedInAccount, this);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -223,6 +223,17 @@ public class ClientHandler extends Thread {
                     case IMPORT_DECK:
                         deckName = request.getDeckName();
                         JsonProcess.addSavedDeckToAccount(Account.findAccount(this.userName), deckName);
+                        break;
+                    case GET_REMAINING_IN_SHOP:
+                        name = request.getCardOrItemName();
+                        shop = Shop.getInstance();
+                        Item item1 = shop.searchItemByName(name);
+                        if (item1 != null)
+                            outputStream.writeUTF(String.valueOf(shop.itemNumbers.get(item1)));
+                        else
+                            outputStream.writeUTF(String.
+                                    valueOf(shop.cardNumbers.get(shop.searchCardByName(name))));
+                        break;
                 }
 
             }

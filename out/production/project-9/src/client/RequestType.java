@@ -27,5 +27,6 @@ public enum RequestType {
     DELETE_DECK,
     CREATE_NEW_DECK,
     REMOVE_FROM_DECK,
-    ADD_CARD_TO_DECK
+    ADD_CARD_TO_DECK,
+    IMPORT_DECK
 }

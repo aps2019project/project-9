@@ -4,6 +4,8 @@ import java.net.URL;
 import java.util.*;
 
 import client.Client;
+import client.ClientRequest;
+import client.RequestType;
 import controller.CollectionController;
 import data.DeckAddException;
 import javafx.collections.FXCollections;
@@ -121,7 +123,10 @@ public class CollectionMenu {
             dio.setContentText("Decks:");
             Optional<String> result1 = dio.showAndWait();
             result1.ifPresent(p -> {
-                JsonProcess.addSavedDeckToAccount(Client.getAccount(account), p);
+                ClientRequest clientRequest = new ClientRequest(Client.getAuthToken(), RequestType.IMPORT_DECK);
+                clientRequest.setDeckName(p);
+                Client.sendRequest(clientRequest);
+                //JsonProcess.addSavedDeckToAccount(Client.getAccount(account), p);
                 //TODO
                 System.out.println(p + " " + account);
             });

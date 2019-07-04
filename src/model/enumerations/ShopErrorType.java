@@ -7,12 +7,15 @@ public enum ShopErrorType {
     NOT_ENOUGH_MONEY("You Don't Hava Enough Money :("),
     YOUR_COLLECTION_HAS_THREE_ITEMS("You have Three Items in your collection and can not have any more"),
     BOUGHT_SUCCESSFUL("Bought Successfully :)"),
+    NOT_REMAINING("This Card Is Finished in Shop"),
     SOLD_SUCCESSFUL("Sold successfully :)");
     private String message;
-    ShopErrorType(String message){
+
+    ShopErrorType(String message) {
         this.message = message;
     }
-    public String getMessage(){
+
+    public String getMessage() {
         return message;
     }
 }
