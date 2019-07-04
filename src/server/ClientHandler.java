@@ -35,7 +35,7 @@ public class ClientHandler extends Thread {
             outputStream.writeUTF(authToken);
             accountRequest();
         } catch (IOException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             System.out.println("client disconnected or interrupted , this exception is OK");
             GraphicalServer.onlineClients.remove(this);
             if (userName != null) {
@@ -108,6 +108,16 @@ public class ClientHandler extends Thread {
                     case LOGGED_IN:
                         GraphicalServer.userNamesLoggedIn.add(request.getLoggedInUserName());
                         this.userName = request.getLoggedInUserName();
+                        break;
+                    case GET_CHAT:
+                        outputStream.writeUTF(new Gson().toJson(GraphicalServer.globalChat,
+                                new TypeToken<ArrayList<String>>() {
+                                }.getType()));
+                        break;
+                    case SEND_MESSAGE:
+                        String message = request.getMessage();
+                        if (this.userName != null)
+                            GraphicalServer.globalChat.add(this.userName + " : " + message);
                         break;
                 }
             }

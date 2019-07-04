@@ -20,6 +20,7 @@ import java.util.ArrayList;
 public class GraphicalServer extends Application {
     static ArrayList<ClientHandler> onlineClients = new ArrayList<>();
     static ArrayList<String> userNamesLoggedIn = new ArrayList<>();
+    static ArrayList<String> globalChat = new ArrayList<>();
     private ServerSocket serverSocket;
 
     public static void main(String[] args) {

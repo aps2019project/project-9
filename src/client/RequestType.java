@@ -9,4 +9,6 @@ public enum RequestType {
     BATTLE_RESULT_LIST,
     NEXT,
     LOGGED_IN,
+    GET_CHAT,
+    SEND_MESSAGE,
 }

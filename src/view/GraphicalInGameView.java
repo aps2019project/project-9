@@ -1,10 +1,12 @@
 package view;
 
+import client.GlobalChat;
 import controller.AccountController;
 import controller.GraveYardController;
 import controller.InGameController;
 import data.JsonProcess;
 import javafx.animation.TranslateTransition;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point3D;
 import javafx.scene.*;
@@ -956,6 +958,7 @@ public class GraphicalInGameView {
                     time = 250;
             });
             (newParent.lookup("#resume")).setOnMouseClicked(mouseEvent1 -> newStage.close());
+            ((Button) newParent.lookup("#chat")).setOnMouseClicked(mouseEvent13 -> GlobalChat.showChat());
             graveYard.setOnMouseClicked(mouseEvent12 -> {
                 GraveYardController graveYardController =
                         new GraveYardController(inGameController.getBattle().getCurrenPlayer());

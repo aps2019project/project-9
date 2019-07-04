@@ -1,13 +1,14 @@
-package model;
+package server;
 
 import data.JsonProcess;
+import model.Collection;
+import model.DefaultCards;
 import model.cards.Card;
 import model.cards.Minion;
 import model.cards.Spell;
 import model.enumerations.*;
 import model.items.Collectible;
 import model.items.Item;
-import server.Account;
 
 import java.util.ArrayList;
 

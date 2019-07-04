@@ -20,7 +20,8 @@
             <Button fx:id="graveYard" layoutX="88.0" layoutY="44.0" mnemonicParsing="false" text="Grave Yard" />
             <ChoiceBox fx:id="setGameSpeed" layoutX="89.0" layoutY="101.0" prefHeight="25.0" prefWidth="74.0" />
             <Label layoutX="14.0" layoutY="106.0" text="Game Speed" />
-            <Button fx:id="resume" layoutX="96.0" layoutY="171.0" mnemonicParsing="false" text="Resume" />
+            <Button fx:id="resume" layoutX="97.0" layoutY="205.0" mnemonicParsing="false" text="Resume" />
+            <Button fx:id="chat" layoutX="87.0" layoutY="164.0" mnemonicParsing="false" text="Global Chat" />
          </children>
     </AnchorPane>
   </children>

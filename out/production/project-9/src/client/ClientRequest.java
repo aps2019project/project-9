@@ -7,6 +7,7 @@ public class ClientRequest {
     private RequestType type;
     private AccountRequest accountRequest;
     private String loggedInUserName;
+    private String message;
 
     public ClientRequest(String authKey, RequestType type) {
         this.authKey = authKey;
@@ -35,5 +36,13 @@ public class ClientRequest {
 
     public String getLoggedInUserName() {
         return loggedInUserName;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }
