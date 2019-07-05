@@ -4,6 +4,7 @@ import client.ClientRequest;
 import client.ShortAccount;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import data.DeckAddException;
 import data.JsonProcess;
 import javafx.scene.control.Alert;
 import model.BattleResult;
@@ -236,6 +237,15 @@ public class ClientHandler extends Thread {
                         break;
                     case SAVE_ACCOUNT:
                         JsonProcess.saveAccount(Account.findAccount(this.userName));
+                        break;
+                    case EXPORT_DECK:
+                        deckName = request.getDeckName();
+                        try {
+                            JsonProcess.exportDeckFromAccount(deckName, Account.findAccount(this.userName));
+                            outputStream.writeUTF("ok");
+                        } catch (DeckAddException e) {
+                            outputStream.writeUTF("error");
+                        }
                         break;
                 }
 

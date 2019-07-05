@@ -30,5 +30,6 @@ public enum RequestType {
     ADD_CARD_TO_DECK,
     IMPORT_DECK,
     GET_REMAINING_IN_SHOP,
-    SAVE_ACCOUNT
+    SAVE_ACCOUNT,
+    EXPORT_DECK,
 }
