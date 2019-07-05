@@ -1,5 +1,6 @@
 package view;
 
+import client.Client;
 import client.GlobalChat;
 import controller.AccountController;
 import controller.GraveYardController;
@@ -248,7 +249,7 @@ public class GraphicalInGameView {
             if (!isReplay) {
                 //save changes
                 if (loggedAccount != null)
-                    JsonProcess.saveAccount(loggedAccount);
+                    Client.saveAccount();
             }
             AccountMenu.getInstance().accountMenuShow(new Stage(), new AccountController());
             stage.close();

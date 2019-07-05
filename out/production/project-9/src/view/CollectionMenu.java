@@ -106,9 +106,12 @@ public class CollectionMenu {
             Optional<String> result1 = dio.showAndWait();
             result1.ifPresent(p -> {
                 try {
-                    JsonProcess.exportDeckFromAccount(p, Client.getAccount(account));
-                    //TODO
-                    System.out.println(p + " " + account);
+                    ClientRequest clientRequest = new ClientRequest(Client.getAuthToken(), RequestType.EXPORT_DECK);
+                    clientRequest.setDeckName(p);
+                    Client.sendRequest(clientRequest);
+                    String response = Client.getResponse();
+                    if (response.equals("error"))
+                        throw new DeckAddException();
                 } catch (DeckAddException e) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setContentText("A Deck With This Name Has Already Saved");
@@ -247,7 +250,7 @@ public class CollectionMenu {
         Button save = (Button) root.lookup("#save");
 
         save.setOnMouseClicked(m -> {
-            JsonProcess.saveAccount(Client.getAccount(account));
+            Client.saveAccount();
         });
         return save;
     }

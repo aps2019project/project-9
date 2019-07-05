@@ -100,8 +100,8 @@ public class Client extends Application {
         return JsonProcess.getGson().fromJson(response, Account.class);
     }
 
-    public static void saveAccount(){
-        ClientRequest clientRequest = new ClientRequest(authToken,RequestType.SAVE_ACCOUNT);
+    public static void saveAccount() {
+        ClientRequest clientRequest = new ClientRequest(authToken, RequestType.SAVE_ACCOUNT);
         sendRequest(clientRequest);
     }
 }

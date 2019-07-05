@@ -1,7 +1,7 @@
 package server;
 
+import data.JsonProcess;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
@@ -15,6 +15,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.cards.Card;
 import model.items.Item;
+import view.AccountMenu;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -39,10 +40,11 @@ public class GraphicalServer extends Application {
         Scene scene = new Scene(root, 400, 400);
         Label label = new Label("");
         Button button = new Button("OnLine Users");
+        Button allAccounts = getAllAccountsBtn();
         Button shop = getShopBtn();
         button.setLayoutX(200);
         button.setLayoutY(50);
-        setBtnAction(button);
+        setUserBtnAction(button);
         try {
             ServerSocket serverSocket = new ServerSocket(0);
             this.serverSocket = serverSocket;
@@ -54,13 +56,13 @@ public class GraphicalServer extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        root.getChildren().addAll(label, button, shop);
+        root.getChildren().addAll(label, button, shop, allAccounts);
         primaryStage.setTitle("Server");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
-    private void setBtnAction(Button button) {
+    private void setUserBtnAction(Button button) {
         button.setOnMouseClicked(mouseEvent -> {
             Stage stage = new Stage();
             Group root = new Group();
@@ -71,6 +73,55 @@ public class GraphicalServer extends Application {
             stage.setScene(scene);
             stage.show();
         });
+    }
+
+    private Button getAllAccountsBtn() {
+        Button button = new Button("Accounts");
+        button.setLayoutX(200);
+        button.setLayoutY(100);
+        button.setOnMouseClicked(mouseEvent -> {
+            Stage stage = new Stage();
+            Group root = new Group();
+            Scene scene = new Scene(root, 400, 400);
+            ListView<String> accounts = new ListView<>();
+            ArrayList<Account> allAccounts = JsonProcess.getSavedAccounts();
+            for (Account allAccount : allAccounts) {
+                accounts.getItems().add(allAccount.getUserName());
+            }
+            accounts.setOnMouseClicked(mouseEvent1 -> {
+                Account account = Account.findAccount(accounts.getSelectionModel().getSelectedItem());
+                try {
+                    showInformation(account);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+            root.getChildren().addAll(accounts);
+            stage.setScene(scene);
+            stage.show();
+        });
+        return button;
+    }
+
+    private void showInformation(Account account) throws IOException {
+        Stage stage = new Stage();
+        Group group = new Group();
+        Scene scene = new Scene(group);
+        FXMLLoader fxmlLoader = new FXMLLoader(new URL("file:src/res/FXML/accountInformation.fxml"));
+        Parent parent = fxmlLoader.load();
+        group.getChildren().add(parent);
+        ((Button) parent.lookup("#returnBtn")).setOnMouseClicked(mouseEvent -> stage.close());
+        ((Label) parent.lookup("#userName")).setText(account.getUserName());
+        String text = "";
+        text += "account user name : " + account.getUserName();
+        text += "\naccount pass word : " + account.getPassWord();
+        text += "\nnumber Of Wins : " + account.getNumberOfWins();
+        text += "\nmoney : " + account.getMoney();
+        text += "\nall decks : " + account.getDecks();
+        ((TextArea) parent.lookup("#desc")).setText(text);
+        stage.setTitle("Account Information");
+        stage.setScene(scene);
+        stage.show();
     }
 
     private Button getShopBtn() {

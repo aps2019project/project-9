@@ -53,6 +53,10 @@ public class Account implements Comparable<Account> {
         return temp;
     }
 
+    String getPassWord() {
+        return passWord;
+    }
+
     public static boolean isUserNameToken(String userName) {
         return (findAccount(userName) != null);
     }

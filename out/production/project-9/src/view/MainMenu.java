@@ -1,5 +1,6 @@
 package view;
 
+import client.Client;
 import controller.MainMenuController;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -100,7 +101,7 @@ public class MainMenu {
             setActionsAndStyles(logOut);
             logOut.setOnMouseClicked(event -> {
                 //saving
-                JsonProcess.saveAccount(controller.getLoggedInAccount());
+                Client.saveAccount();
                 stage.close();
             });
 
