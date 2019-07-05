@@ -66,6 +66,14 @@ public class Battle {
         this.playGround = playGround;
     }
 
+    public void setFirstPlayer(Player firstPlayer) {
+        this.firstPlayer = firstPlayer;
+    }
+
+    public void setSecondPlayer(Player secondPlayer) {
+        this.secondPlayer = secondPlayer;
+    }
+
     private void initializeHeroAttributes() {
         firstPlayer.getHero().setCell(playGround.getCell(2, 0));
         secondPlayer.getHero().setCell(playGround.getCell(2, 8));
@@ -75,6 +83,10 @@ public class Battle {
                 + "_" + "1");
         secondPlayer.getHero().setBattleID(secondPlayer.getName() + "_" + secondPlayer.getHero().getName()
                 + "_" + "1");
+        firstPlayer.getMinionsInPlayGround().clear();
+        firstPlayer.getMinionsInPlayGround().add(firstPlayer.getHero());
+        secondPlayer.getMinionsInPlayGround().clear();
+        secondPlayer.getMinionsInPlayGround().add(secondPlayer.getHero());
     }
 
     private void initializeOwningPlayerOfCards(Player player) {
@@ -165,7 +177,7 @@ public class Battle {
             alert += "\nUsable Item " + firstItem.getName() + " from player " + firstPlayer.getName() + " casted.";
         if (secondPlayer.castUsableItem())
             alert += "\nUsable Item " + secondItem.getName() + " from player " + secondPlayer.getName() + " casted.";
-        InGameMethodsAndSource.showAlertAtTheBeginning(title, alert);
+        //TODO for usable InGameMethodsAndSource.showAlertAtTheBeginning(title, alert);
     }
 
     private void handleCanMoveCanAttack(Player player) {

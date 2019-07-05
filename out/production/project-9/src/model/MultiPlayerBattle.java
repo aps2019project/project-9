@@ -5,11 +5,10 @@ import server.Account;
 
 public class MultiPlayerBattle extends Battle {
 
-    public MultiPlayerBattle(Account firstPlayer, String secondPlayerUserName, int mode, int flags) {
-        Account secondAccount = Account.findAccount(secondPlayerUserName);
-        if (mode == 1)
+    public MultiPlayerBattle(Account firstPlayer, Account secondAccount,GameMode mode, int flags) {
+        if (mode == GameMode.HERO_KILL)
             gameMode = GameMode.HERO_KILL;
-        else if (mode == 2)
+        else if (mode == GameMode.ONE_FLAG)
             gameMode = GameMode.ONE_FLAG;
         else {
             gameMode = GameMode.FLAGS;

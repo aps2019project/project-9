@@ -1,11 +1,15 @@
 package client;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import controller.AccountController;
 import data.JsonProcess;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
+import model.*;
+import model.enumerations.GameMode;
+import model.enumerations.ItemName;
 import server.Account;
 import view.AccountMenu;
 import view.AccountRequest;
@@ -17,6 +21,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class Client extends Application {
@@ -107,7 +113,7 @@ public class Client extends Application {
         sendRequest(clientRequest);
     }
 
-    public static Thread getWaitingThread(Stage previous, Stage stage) {
+    public static Thread getWaitingThread(Stage previous, Stage stage, String userName) {
         return new Thread(() -> {
             while (!Thread.interrupted()) {
                 try {
@@ -120,8 +126,11 @@ public class Client extends Application {
                         if (inputStream.available() > 0) {
                             if (inputStream.readUTF().equals("game start")) {
                                 previous.close();
-                                //TODO
-                                System.out.println("salam");
+                                MultiPlayerBattle battle = getBattleFromServer();
+                                //setFirstSecondPlayer(battle, userName);
+                                battle.startBattle();
+                                initilalizingBattle(battle);
+                                new GraphicalInGameView().showGame(stage, battle, userName);
                             }
                         }
                     } catch (IOException e) {
@@ -130,5 +139,54 @@ public class Client extends Application {
                 });
             }
         });
+    }
+
+    private static void initilalizingBattle(Battle battle) {
+        Player first = battle.getFirstPlayer();
+        Player second = battle.getSecondPlayer();
+        first.setDeck(first.getHand().getDeck());
+        second.setDeck(second.getHand().getDeck());
+        first.setHero(first.getDeck().getHero());
+        second.setHero(second.getDeck().getHero());
+    }
+
+    private static void setFirstSecondPlayer(Battle battle, String userName) {
+        Player first = battle.getFirstPlayer();
+        Player second = battle.getSecondPlayer();
+        if (!first.getName().equals(userName)) {
+            battle.setSecondPlayer(first);
+            battle.setFirstPlayer(second);
+        }
+    }
+
+    public static DataInputStream getInputStream() {
+        return inputStream;
+    }
+
+    private static MultiPlayerBattle getBattleFromServer() {
+        ClientRequest clientRequest = new ClientRequest(authToken, RequestType.BATTLE);
+        sendRequest(clientRequest);
+        MultiPlayerBattle battle = JsonProcess.getGson().fromJson(getResponse(), MultiPlayerBattle.class);
+        HashMap<ItemName, Cell> collectibles = getCollectibles();
+        ArrayList<Cell> flags = null;
+        if (battle.getGameMode() == GameMode.FLAGS)
+            flags = getFlags();
+        PlayGround playGround = new PlayGround(battle.getGameMode(), collectibles, flags);
+        battle.setPlayGround(playGround);
+        return battle;
+    }
+
+    private static HashMap<ItemName, Cell> getCollectibles() {
+        ClientRequest clientRequest = new ClientRequest(authToken, RequestType.COLLECTIBLES);
+        sendRequest(clientRequest);
+        return new Gson().fromJson(getResponse(), new TypeToken<HashMap<ItemName, Cell>>() {
+        }.getType());
+    }
+
+    private static ArrayList<Cell> getFlags() {
+        ClientRequest clientRequest = new ClientRequest(authToken, RequestType.FLAGS);
+        sendRequest(clientRequest);
+        return new Gson().fromJson(getResponse(), new TypeToken<ArrayList<Cell>>() {
+        }.getType());
     }
 }

@@ -21,7 +21,7 @@ public class Player {
     private int maxMana;
     private Deck deck;
     private Hand hand;
-    private Usable usableItem;
+    private Item usableItem;
     private ArrayList<Collectible> collectedItems = new ArrayList<>();
     private Hero hero;
     private transient Battle battle;
@@ -102,6 +102,10 @@ public class Player {
         hand = new Hand(deck, false);
     }
 
+    public void setHero(Hero hero) {
+        this.hero = hero;
+    }
+
     public void setDeck(Deck deck) {
         this.deck = deck;
     }
@@ -152,7 +156,7 @@ public class Player {
         if (usableItem != null) {
             if (usableItem instanceof OnSpawnUsableItem || usableItem instanceof OnDeathUsableItem)
                 return false;
-            usableItem.castItem(this);
+            ((Usable) usableItem).castItem(this);
             return true;
         } else
             return false;
@@ -545,7 +549,7 @@ public class Player {
     }
 
     public Usable getUsableItem() {
-        return usableItem;
+        return ((Usable) usableItem);
     }
 
     public void setOnAttackItemForAllPlayers(OnAttackSpellUsable item) {

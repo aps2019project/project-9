@@ -25,7 +25,7 @@ public class BattleMenuController {
         SinglePlayerBattle singlePlayerBattle = new SinglePlayerBattle(level, loggedInAccount);
         singlePlayerBattle.startBattle();
         try {
-            new GraphicalInGameView().showGame(stage, singlePlayerBattle);
+            new GraphicalInGameView().showGame(stage, singlePlayerBattle,loggedInAccount.getUserName());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -43,7 +43,7 @@ public class BattleMenuController {
                 , numberOfFlags);
         singlePlayerBattle.startBattle();
         try {
-            new GraphicalInGameView().showGame(stage, singlePlayerBattle);
+            new GraphicalInGameView().showGame(stage, singlePlayerBattle,loggedInAccount.getUserName());
         } catch (IOException e) {
             e.printStackTrace();
         }

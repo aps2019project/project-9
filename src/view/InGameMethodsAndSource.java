@@ -25,6 +25,7 @@ import model.*;
 import model.cards.Card;
 import model.cards.Minion;
 import model.enumerations.GameMode;
+import model.enumerations.InGameRequestType;
 import model.items.Item;
 
 import java.io.IOException;
@@ -149,6 +150,13 @@ public class InGameMethodsAndSource {// a resource for graphical in game view
         alert.setTitle(title);
         alert.setContentText(message);
         alert.show();
+    }
+
+    public static void handleRequest(InGameRequest request, InGameController controller, String userName) {
+        String opponent = controller.getBattle().getFirstPlayer().getName().equals(userName) ?
+                controller.getBattle().getSecondPlayer().getName() :
+                controller.getBattle().getFirstPlayer().getName();
+        controller.main(request, opponent);
     }
 
 }

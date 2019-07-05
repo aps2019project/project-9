@@ -2,11 +2,13 @@ package view;
 
 import client.Client;
 import client.GlobalChat;
+import com.google.gson.Gson;
 import controller.AccountController;
 import controller.GraveYardController;
 import controller.InGameController;
 import data.JsonProcess;
 import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point3D;
@@ -23,6 +25,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 import model.*;
 import model.Cell;
@@ -44,6 +47,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
+
+import static view.InGameMethodsAndSource.handleRequest;
 
 
 public class GraphicalInGameView {
@@ -82,8 +87,13 @@ public class GraphicalInGameView {
         setBtns();
         setSideMenu();
         //
-
-
+        //
+        if (battle instanceof MultiPlayerBattle) {
+            Thread thread = getThreadForMultiPlayer();
+            thread.setDaemon(true);
+            thread.start();
+            stage.setOnCloseRequest(windowEvent -> thread.interrupt());
+        }
         //
         setManas(battle.getFirstPlayer());
         setManas(battle.getSecondPlayer());
@@ -94,6 +104,61 @@ public class GraphicalInGameView {
         stage.setTitle("Duelyst");
         stage.setScene(scene);
         stage.show();
+    }
+
+    private Thread getThreadForMultiPlayer() {
+        multiPlayerActions();
+        return new Thread(() -> {
+            while (!Thread.interrupted()) {
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                Platform.runLater(() -> {
+                    try {
+                        setWhoseTurn();
+                        if (!isMyTurn() && Client.getInputStream().available() > 0) {
+                            String received = Client.getInputStream().readUTF();
+                            InGameRequest request = new Gson().fromJson(received, InGameRequest.class);
+                            handleRequest(request, inGameController, userName);
+                            //
+                            updatePlayGround(group);
+                            updateHand();
+                            setManas(inGameController.getBattle().getFirstPlayer());
+                            setManas(inGameController.getBattle().getSecondPlayer());
+                            updateSpecialPower();
+                            //
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
+            }
+        });
+    }
+
+
+    private void multiPlayerActions() {
+        String opponent = (inGameController.getBattle().getFirstPlayer().getName().equals(userName)) ?
+                inGameController.getBattle().getSecondPlayer().getName() :
+                inGameController.getBattle().getFirstPlayer().getName();
+        ((Label) parent.lookup("#opponent")).setText(opponent);
+        setWhoseTurn();
+        //
+    }
+
+    private void setWhoseTurn() {
+        Label label = ((Label) parent.lookup("#turnLabel"));
+        if (isMyTurn()) {
+            label.setText("It's Your Turn");
+        } else {
+            label.setText("It's not Your Turn");
+        }
+    }
+
+    private boolean isMyTurn() {
+        return (userName.equals(inGameController.getBattle().getCurrenPlayer().getName()));
     }
 
     public static void setIsReplay(boolean isReplay) {
@@ -898,7 +963,8 @@ public class GraphicalInGameView {
             inGameController.main(request, userName);
             updatePlayGround(group);
             //
-            doAiAnimations(aiMove);
+            if (inGameController.getBattle() instanceof SinglePlayerBattle)
+                doAiAnimations(aiMove);
             //
             updateHand();
             setManas(inGameController.getBattle().getFirstPlayer());

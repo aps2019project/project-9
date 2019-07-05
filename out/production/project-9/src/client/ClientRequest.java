@@ -1,6 +1,7 @@
 package client;
 
 import view.AccountRequest;
+import view.InGameRequest;
 
 public class ClientRequest {
     private String authKey;
@@ -15,10 +16,19 @@ public class ClientRequest {
     private String battleResultJson;
     private int prize;
     private GameRequest gameRequest;
+    private InGameRequest inGameRequest;
 
     public ClientRequest(String authKey, RequestType type) {
         this.authKey = authKey;
         this.type = type;
+    }
+
+    public InGameRequest getInGameRequest() {
+        return inGameRequest;
+    }
+
+    public void setInGameRequest(InGameRequest inGameRequest) {
+        this.inGameRequest = inGameRequest;
     }
 
     public void setGameRequest(GameRequest gameRequest) {

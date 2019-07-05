@@ -1,6 +1,9 @@
 package controller;
 
 
+import client.Client;
+import client.ClientRequest;
+import client.RequestType;
 import model.Battle;
 import model.Cell;
 import model.Player;
@@ -30,18 +33,16 @@ public class InGameController {
     public void main(InGameRequest request, String userName) {
         if (battle.getCurrenPlayer().getName().equals(userName)) {
             InGameRequestType type = request.getRequestType();
-            //
-            if (request.getType() == InGameRequestType.ATTACK) {
-                Card selectedCard = battle.getCurrenPlayer().getSelectedCard();
-                inGameRequests.add(new InGameRequest("select " + selectedCard.getBattleID()));
-            } else if (request.getType() == InGameRequestType.MOVE_TO) {
-                Card selectedCard = battle.getCurrenPlayer().getSelectedCard();
-                inGameRequests.add(new InGameRequest("select " + selectedCard.getBattleID()));
-            } else if (request.getType() == InGameRequestType.USE) {
-                Item item = battle.getCurrenPlayer().getSelectedCollectableItem();
-                inGameRequests.add(new InGameRequest("select item " + item.getItemID()));
-            }
-            inGameRequests.add(request);
+            // sending request to server
+
+            if (type == InGameRequestType.MOVE_TO || type == InGameRequestType.ATTACK)
+                request.setSelectedCard(battle.getCurrenPlayer().getSelectedCard().getBattleID());
+            if (type == InGameRequestType.USE)
+                request.setSelectedItem(battle.getCurrenPlayer().getSelectedCollectableItem().getName());
+
+            ClientRequest clientRequest = new ClientRequest(Client.getAuthToken(), RequestType.IN_GAME_REQUEST);
+            clientRequest.setInGameRequest(request);
+            Client.sendRequest(clientRequest);
             //
             switch (type) {
                 case SELECT_ITEM:
@@ -75,6 +76,19 @@ public class InGameController {
                     battle.getCurrenPlayer().endTurn(inGameRequests);
                     break;
             }
+            // not important
+            if (request.getType() == InGameRequestType.ATTACK) {
+                Card selectedCard = battle.getCurrenPlayer().getSelectedCard();
+                inGameRequests.add(new InGameRequest("select " + selectedCard.getBattleID()));
+            } else if (request.getType() == InGameRequestType.MOVE_TO) {
+                Card selectedCard = battle.getCurrenPlayer().getSelectedCard();
+                inGameRequests.add(new InGameRequest("select " + selectedCard.getBattleID()));
+            } else if (request.getType() == InGameRequestType.USE) {
+                Item item = battle.getCurrenPlayer().getSelectedCollectableItem();
+                inGameRequests.add(new InGameRequest("select item " + item.getItemID()));
+            }
+            inGameRequests.add(request);
+            //
         } else {
             GraphicalInGameView.showError(InGameErrorType.NOT_YOUR_TURN);
         }
@@ -186,7 +200,7 @@ public class InGameController {
         }
     }
 
-    private void selectCard(String battleID) {
+    public void selectCard(String battleID) {
         // from play ground
         Player player = battle.getCurrenPlayer();
         for (Minion minion : player.getMinionsInPlayGround()) {
@@ -299,7 +313,7 @@ public class InGameController {
         }
     }
 
-    private void selectItem(String itemID) {
+    public void selectItem(String itemID) {
         Player player = battle.getCurrenPlayer();
         int id;
         try {
@@ -350,7 +364,7 @@ public class InGameController {
         player.comboAttack(targetCell, friendlyMinions);
     }
 
-    private void useSpecialPower(int x, int y) { // not important where the cell is
+    public void useSpecialPower(int x, int y) { // not important where the cell is
         Cell targetCell = battle.getPlayGround().getCell(x, y);
         Player player = battle.getCurrenPlayer();
         if (player.getHero().getBuffs() == null && player.getHero().getCellAffect() == null) {

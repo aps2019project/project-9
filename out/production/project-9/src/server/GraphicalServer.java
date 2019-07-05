@@ -14,6 +14,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import model.MultiPlayerBattle;
 import model.cards.Card;
 import model.enumerations.GameMode;
 import model.items.Item;
@@ -31,6 +32,7 @@ public class GraphicalServer extends Application {
     static ArrayList<String> userNamesLoggedIn = new ArrayList<>();
     static ArrayList<String> globalChat = new ArrayList<>();
     static ArrayList<GameRequest> gameRequests = new ArrayList<>();
+    static MultiPlayerBattle multiPlayerBattle;
     private ServerSocket serverSocket;
 
     public static void main(String[] args) {
@@ -250,6 +252,11 @@ public class GraphicalServer extends Application {
                 if (onlineClient.getUserName().equals(secondPlayer))
                     onlineClient.outputStream.writeUTF("game start");
             }
+            gameRequests.clear();
+            MultiPlayerBattle battle = new MultiPlayerBattle(Account.findAccount(firstPlayer)
+                    , Account.findAccount(secondPlayer), gameMode, flags);
+            multiPlayerBattle = battle;
+            //TODO
         } catch (IOException e) {
             e.printStackTrace();
         }

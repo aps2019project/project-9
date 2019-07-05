@@ -20,6 +20,7 @@ import model.enumerations.ItemName;
 import model.items.Collectible;
 import model.items.Flag;
 import model.items.Item;
+import view.InGameRequest;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -285,10 +286,37 @@ public class ClientHandler extends Thread {
                     case FLAGS:
                         sendFlags();
                         break;
+                    case IN_GAME_REQUEST:
+                        InGameRequest inGameRequest = request.getInGameRequest();
+                        doGameRequest(inGameRequest);
+                        break;
                 }
 
             }
         }
+    }
+
+    private void doGameRequest(InGameRequest request) throws IOException {
+        ClientHandler opponent = getOpponent();
+
+        opponent.outputStream.writeUTF(new Gson().toJson(request, InGameRequest.class));
+    }
+
+    private ClientHandler getOpponent() {
+        if (GraphicalServer.multiPlayerBattle.getFirstPlayer().getName().equals(this.userName)) {
+            String name = GraphicalServer.multiPlayerBattle.getSecondPlayer().getName();
+            for (ClientHandler onlineClient : GraphicalServer.onlineClients) {
+                if (onlineClient.userName.equals(name))
+                    return onlineClient;
+            }
+        } else {
+            String name = GraphicalServer.multiPlayerBattle.getFirstPlayer().getName();
+            for (ClientHandler onlineClient : GraphicalServer.onlineClients) {
+                if (onlineClient.userName.equals(name))
+                    return onlineClient;
+            }
+        }
+        return null;
     }
 
     private void sendFlags() throws IOException {

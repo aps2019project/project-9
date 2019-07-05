@@ -29,7 +29,7 @@ public class Battle {
     protected int firstPlayerMana;
     protected int secondPlayerMana;
     protected int turn;
-    protected PlayGround playGround;
+    protected transient PlayGround playGround;
     protected GameMode gameMode;
     protected int whoseTurn;
     protected Player firstPlayer;
@@ -48,6 +48,8 @@ public class Battle {
 
     public void startBattle() {
         // ..........
+        firstPlayer.setBattle(this);
+        secondPlayer.setBattle(this);
         firstPlayerMana = 2;
         secondPlayerMana = 2;
         initializeOwningPlayerOfCards(firstPlayer);
@@ -60,6 +62,18 @@ public class Battle {
         castUsableItems();
     }
 
+    public void setPlayGround(PlayGround playGround) {
+        this.playGround = playGround;
+    }
+
+    public void setFirstPlayer(Player firstPlayer) {
+        this.firstPlayer = firstPlayer;
+    }
+
+    public void setSecondPlayer(Player secondPlayer) {
+        this.secondPlayer = secondPlayer;
+    }
+
     private void initializeHeroAttributes() {
         firstPlayer.getHero().setCell(playGround.getCell(2, 0));
         secondPlayer.getHero().setCell(playGround.getCell(2, 8));
@@ -69,6 +83,10 @@ public class Battle {
                 + "_" + "1");
         secondPlayer.getHero().setBattleID(secondPlayer.getName() + "_" + secondPlayer.getHero().getName()
                 + "_" + "1");
+        firstPlayer.getMinionsInPlayGround().clear();
+        firstPlayer.getMinionsInPlayGround().add(firstPlayer.getHero());
+        secondPlayer.getMinionsInPlayGround().clear();
+        secondPlayer.getMinionsInPlayGround().add(secondPlayer.getHero());
     }
 
     private void initializeOwningPlayerOfCards(Player player) {
@@ -159,7 +177,7 @@ public class Battle {
             alert += "\nUsable Item " + firstItem.getName() + " from player " + firstPlayer.getName() + " casted.";
         if (secondPlayer.castUsableItem())
             alert += "\nUsable Item " + secondItem.getName() + " from player " + secondPlayer.getName() + " casted.";
-        InGameMethodsAndSource.showAlertAtTheBeginning(title, alert);
+        //TODO for usable InGameMethodsAndSource.showAlertAtTheBeginning(title, alert);
     }
 
     private void handleCanMoveCanAttack(Player player) {
@@ -258,12 +276,12 @@ public class Battle {
         InGameView view = InGameView.getInstance();
         view.endGameOutput(battleResult);
         if (firstPlayer.equals(winner)) {
-            ClientRequest clientRequest = new ClientRequest(Client.getAuthToken(),RequestType.ACCOUNT_WINS);
+            ClientRequest clientRequest = new ClientRequest(Client.getAuthToken(), RequestType.ACCOUNT_WINS);
             clientRequest.setPrize(battlePrize);
             clientRequest.setLoggedInUserName(firstPlayer.getName());
             Client.sendRequest(clientRequest);
         } else if (!(this instanceof SinglePlayerBattle)) {
-            ClientRequest clientRequest = new ClientRequest(Client.getAuthToken(),RequestType.ACCOUNT_WINS);
+            ClientRequest clientRequest = new ClientRequest(Client.getAuthToken(), RequestType.ACCOUNT_WINS);
             clientRequest.setPrize(battlePrize);
             clientRequest.setLoggedInUserName(secondPlayer.getName());
             Client.sendRequest(clientRequest);

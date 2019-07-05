@@ -39,4 +39,5 @@ public enum RequestType {
     BATTLE,
     COLLECTIBLES,
     FLAGS,
+    IN_GAME_REQUEST,
 }
