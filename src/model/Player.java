@@ -24,7 +24,7 @@ public class Player {
     private Usable usableItem;
     private ArrayList<Collectible> collectedItems = new ArrayList<>();
     private Hero hero;
-    private Battle battle;
+    private transient Battle battle;
     private ArrayList<Flag> flagsAcheived = new ArrayList<>();
     private Flag modeTwoFlag;
     private String name;

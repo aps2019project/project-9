@@ -27,52 +27,56 @@ public class InGameController {
         battle.setInGameRequests(inGameRequests);
     }
 
-    public void main(InGameRequest request) {
-        InGameRequestType type = request.getRequestType();
-        //
-        if (request.getType() == InGameRequestType.ATTACK) {
-            Card selectedCard = battle.getCurrenPlayer().getSelectedCard();
-            inGameRequests.add(new InGameRequest("select " + selectedCard.getBattleID()));
-        } else if (request.getType() == InGameRequestType.MOVE_TO) {
-            Card selectedCard = battle.getCurrenPlayer().getSelectedCard();
-            inGameRequests.add(new InGameRequest("select " + selectedCard.getBattleID()));
-        } else if (request.getType() == InGameRequestType.USE) {
-            Item item = battle.getCurrenPlayer().getSelectedCollectableItem();
-            inGameRequests.add(new InGameRequest("select item " + item.getItemID()));
-        }
-        inGameRequests.add(request);
-        //
-        switch (type) {
-            case SELECT_ITEM:
-                selectItem(request.getCollectibleID());
-                break;
-            case SELECT_CARD:
-                selectCard(request.getCardID());
-                break;
-            case EXIT:
-            case USE_SPECIAL_POWER:
-                useSpecialPower(request.getX(), request.getY());
-                break;
-            case ENTER_GRAVEYARD:
-            case COMBO_ATTACK:
-                comboAttack(battle.getCurrenPlayer(), request.getComboCardIds(), request.getOpponentCardID());
-                break;
-            case END_GAME:
-            case MOVE_TO:
-                move(battle.getCurrenPlayer(), request.getX(), request.getY());
-                break;
-            case INSERT:
-                insert(request.getCardName(), request.getX(), request.getY());
-                break;
-            case ATTACK:
-                attack(battle.getCurrenPlayer(), request.getOpponentCardID());
-                break;
-            case USE:
-                use(battle.getCurrenPlayer(), request.getX(), request.getY()); // for collectible item
-                break;
-            case END_TURN:
-                battle.getCurrenPlayer().endTurn(inGameRequests);
-                break;
+    public void main(InGameRequest request, String userName) {
+        if (battle.getCurrenPlayer().getName().equals(userName)) {
+            InGameRequestType type = request.getRequestType();
+            //
+            if (request.getType() == InGameRequestType.ATTACK) {
+                Card selectedCard = battle.getCurrenPlayer().getSelectedCard();
+                inGameRequests.add(new InGameRequest("select " + selectedCard.getBattleID()));
+            } else if (request.getType() == InGameRequestType.MOVE_TO) {
+                Card selectedCard = battle.getCurrenPlayer().getSelectedCard();
+                inGameRequests.add(new InGameRequest("select " + selectedCard.getBattleID()));
+            } else if (request.getType() == InGameRequestType.USE) {
+                Item item = battle.getCurrenPlayer().getSelectedCollectableItem();
+                inGameRequests.add(new InGameRequest("select item " + item.getItemID()));
+            }
+            inGameRequests.add(request);
+            //
+            switch (type) {
+                case SELECT_ITEM:
+                    selectItem(request.getCollectibleID());
+                    break;
+                case SELECT_CARD:
+                    selectCard(request.getCardID());
+                    break;
+                case EXIT:
+                case USE_SPECIAL_POWER:
+                    useSpecialPower(request.getX(), request.getY());
+                    break;
+                case ENTER_GRAVEYARD:
+                case COMBO_ATTACK:
+                    comboAttack(battle.getCurrenPlayer(), request.getComboCardIds(), request.getOpponentCardID());
+                    break;
+                case END_GAME:
+                case MOVE_TO:
+                    move(battle.getCurrenPlayer(), request.getX(), request.getY());
+                    break;
+                case INSERT:
+                    insert(request.getCardName(), request.getX(), request.getY());
+                    break;
+                case ATTACK:
+                    attack(battle.getCurrenPlayer(), request.getOpponentCardID());
+                    break;
+                case USE:
+                    use(battle.getCurrenPlayer(), request.getX(), request.getY()); // for collectible item
+                    break;
+                case END_TURN:
+                    battle.getCurrenPlayer().endTurn(inGameRequests);
+                    break;
+            }
+        } else {
+            GraphicalInGameView.showError(InGameErrorType.NOT_YOUR_TURN);
         }
     }
 

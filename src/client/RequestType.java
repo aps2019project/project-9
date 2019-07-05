@@ -36,4 +36,5 @@ public enum RequestType {
     ACCOUNT_WINS,
     GAME_REQUEST,
     CANCELL_GAME_REQUEST,
+    BATTLE,
 }

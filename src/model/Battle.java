@@ -29,7 +29,7 @@ public class Battle {
     protected int firstPlayerMana;
     protected int secondPlayerMana;
     protected int turn;
-    protected PlayGround playGround;
+    protected transient PlayGround playGround;
     protected GameMode gameMode;
     protected int whoseTurn;
     protected Player firstPlayer;
@@ -48,6 +48,8 @@ public class Battle {
 
     public void startBattle() {
         // ..........
+        firstPlayer.setBattle(this);
+        secondPlayer.setBattle(this);
         firstPlayerMana = 2;
         secondPlayerMana = 2;
         initializeOwningPlayerOfCards(firstPlayer);
@@ -258,12 +260,12 @@ public class Battle {
         InGameView view = InGameView.getInstance();
         view.endGameOutput(battleResult);
         if (firstPlayer.equals(winner)) {
-            ClientRequest clientRequest = new ClientRequest(Client.getAuthToken(),RequestType.ACCOUNT_WINS);
+            ClientRequest clientRequest = new ClientRequest(Client.getAuthToken(), RequestType.ACCOUNT_WINS);
             clientRequest.setPrize(battlePrize);
             clientRequest.setLoggedInUserName(firstPlayer.getName());
             Client.sendRequest(clientRequest);
         } else if (!(this instanceof SinglePlayerBattle)) {
-            ClientRequest clientRequest = new ClientRequest(Client.getAuthToken(),RequestType.ACCOUNT_WINS);
+            ClientRequest clientRequest = new ClientRequest(Client.getAuthToken(), RequestType.ACCOUNT_WINS);
             clientRequest.setPrize(battlePrize);
             clientRequest.setLoggedInUserName(secondPlayer.getName());
             Client.sendRequest(clientRequest);

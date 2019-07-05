@@ -55,15 +55,14 @@ public class GraphicalInGameView {
     private static boolean isCombo = false;
     private static ArrayList<Minion> comboCards = new ArrayList<>();
     private static Stage stage;
-    private static Account loggedAccount;
+
     private static MediaPlayer backGroundMusic;
     private static int time = 1000;
     private static boolean isReplay;
 
-    public void showGame(Stage stage, Battle battle, Account account) throws IOException {
+    public void showGame(Stage stage, Battle battle) throws IOException {
         isReplay = false;
         //
-        loggedAccount = account;
         AccountMenu.closeMainStage();
         AccountMenu.stopMusic();
         //

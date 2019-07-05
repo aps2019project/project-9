@@ -4,10 +4,12 @@ import com.google.gson.Gson;
 import controller.AccountController;
 import data.JsonProcess;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.stage.Stage;
 import server.Account;
 import view.AccountMenu;
 import view.AccountRequest;
+import view.GraphicalInGameView;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -103,5 +105,30 @@ public class Client extends Application {
     public static void saveAccount() {
         ClientRequest clientRequest = new ClientRequest(authToken, RequestType.SAVE_ACCOUNT);
         sendRequest(clientRequest);
+    }
+
+    public static Thread getWaitingThread(Stage previous, Stage stage) {
+        return new Thread(() -> {
+            while (!Thread.interrupted()) {
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                Platform.runLater(() -> {
+                    try {
+                        if (inputStream.available() > 0) {
+                            if (inputStream.readUTF().equals("game start")) {
+                                previous.close();
+                                //TODO
+                                System.out.println("salam");
+                            }
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
+            }
+        });
     }
 }

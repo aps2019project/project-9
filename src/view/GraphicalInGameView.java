@@ -55,15 +55,15 @@ public class GraphicalInGameView {
     private static boolean isCombo = false;
     private static ArrayList<Minion> comboCards = new ArrayList<>();
     private static Stage stage;
-    private static Account loggedAccount;
+    private static String userName = "";
     private static MediaPlayer backGroundMusic;
     private static int time = 1000;
     private static boolean isReplay;
 
-    public void showGame(Stage stage, Battle battle, Account account) throws IOException {
+    public void showGame(Stage stage, Battle battle, String userName) throws IOException {
         isReplay = false;
         //
-        loggedAccount = account;
+        this.userName = userName;
         AccountMenu.closeMainStage();
         AccountMenu.stopMusic();
         //
@@ -300,7 +300,7 @@ public class GraphicalInGameView {
             inGameController.getBattle().getCurrenPlayer()
                     .setSelectedCollectableItem(((Collectible) selectedItem));
             InGameRequest request = new InGameRequest("use 1 1");
-            inGameController.main(request);
+            inGameController.main(request, userName);
             inGameController.getBattle().getCurrenPlayer()
                     .setSelectedCollectableItem(null);
             updateCollectibles();
@@ -322,7 +322,7 @@ public class GraphicalInGameView {
             ((Label) parent.lookup("#specialPowerLabel2")).setText("Is Ready");
             ((Pane) parent.lookup("#specialPowerPane")).setOnMouseClicked(mouseEvent -> {
                 InGameRequest request = new InGameRequest("use special power 1 1");
-                inGameController.main(request);
+                inGameController.main(request, userName);
                 updatePlayGround(group);
                 setManas(inGameController.getBattle().getCurrenPlayer());
                 updateSpecialPower();
@@ -410,7 +410,7 @@ public class GraphicalInGameView {
                         InGameRequest request = new InGameRequest(
                                 "insert " + db.getString() + " in " + x + " " + y);
 
-                        inGameController.main(request);
+                        inGameController.main(request, userName);
                         setMediaViews(MusicAct.INSERT);
                         updateHand();
                         setManas(inGameController.getBattle().getCurrenPlayer());
@@ -426,7 +426,7 @@ public class GraphicalInGameView {
                                 .getCurrenPlayer().getSelectedCard()).getCell();
                         InGameRequest request = new
                                 InGameRequest("move to " + cell.getX() + " " + cell.getY());
-                        inGameController.main(request);
+                        inGameController.main(request, userName);
 
                         updatePlayGround(group);
                         if (inGameController.getBattle().getCurrenPlayer().getSelectedCard() == null) {
@@ -521,7 +521,7 @@ public class GraphicalInGameView {
                 } else if (isMarked(pane, true)) {
                     setMediaViews(MusicAct.ATTACK);
                     InGameRequest request = new InGameRequest("attack " + minion.getBattleID());
-                    inGameController.main(request);
+                    inGameController.main(request, userName);
                     updatePlayGround(group);
                 } else if (isMarked(pane, false)) {
                     if (isCombo) {
@@ -537,7 +537,7 @@ public class GraphicalInGameView {
         for (Minion comboCard : comboCards) {
             request += " " + comboCard.getBattleID();
         }
-        inGameController.main(new InGameRequest(request));
+        inGameController.main(new InGameRequest(request), userName);
         isCombo = false;
         deleteMarkCells(false);
         comboCards = new ArrayList<>();
@@ -895,7 +895,7 @@ public class GraphicalInGameView {
         });
         pane.setOnMouseClicked(mouseEvent -> {
             InGameRequest request = new InGameRequest("end turn");
-            inGameController.main(request);
+            inGameController.main(request, userName);
             updatePlayGround(group);
             //
             doAiAnimations(aiMove);

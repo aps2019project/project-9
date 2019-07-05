@@ -14,7 +14,9 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import model.MultiPlayerBattle;
 import model.cards.Card;
+import model.enumerations.GameMode;
 import model.items.Item;
 import view.AccountMenu;
 
@@ -30,6 +32,7 @@ public class GraphicalServer extends Application {
     static ArrayList<String> userNamesLoggedIn = new ArrayList<>();
     static ArrayList<String> globalChat = new ArrayList<>();
     static ArrayList<GameRequest> gameRequests = new ArrayList<>();
+    static MultiPlayerBattle multiPlayerBattle;
     private ServerSocket serverSocket;
 
     public static void main(String[] args) {
@@ -47,6 +50,7 @@ public class GraphicalServer extends Application {
         button.setLayoutX(200);
         button.setLayoutY(50);
         setUserBtnAction(button);
+        showGameRequests(root);
         try {
             ServerSocket serverSocket = new ServerSocket(0);
             this.serverSocket = serverSocket;
@@ -62,6 +66,22 @@ public class GraphicalServer extends Application {
         primaryStage.setTitle("Server");
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+
+    private void showGameRequests(Group group) {
+        ListView listView = new ListView();
+        Button button = new Button("refresh game requests");
+        button.setLayoutX(10);
+        button.setLayoutY(160);
+        listView.setLayoutY(200);
+        Label label = new Label("game requests");
+        label.setLayoutX(10);
+        label.setLayoutY(180);
+        listView.setLayoutX(10);
+        group.getChildren().addAll(label, listView, button);
+        button.setOnMouseClicked(mouseEvent -> {
+            listView.getItems().addAll(gameRequests);
+        });
     }
 
     private void setUserBtnAction(Button button) {
@@ -129,7 +149,7 @@ public class GraphicalServer extends Application {
     private Button getShopBtn() {
         Button button = new Button("Show Shop");
         button.setLayoutX(150);
-        button.setLayoutY(200);
+        button.setLayoutY(150);
         button.setOnMouseClicked(mouseEvent -> {
             try {
                 Stage stage = new Stage();
@@ -220,7 +240,25 @@ public class GraphicalServer extends Application {
         }
     }
 
-    static void startGame(){
-
+    static void startGame() {
+        String firstPlayer = gameRequests.get(0).getUserRequested();
+        String secondPlayer = gameRequests.get(1).getUserRequested();
+        GameMode gameMode = gameRequests.get(0).getGameMode();
+        int flags = gameRequests.get(0).getNumberOfFlags();
+        try {
+            for (ClientHandler onlineClient : onlineClients) {
+                if (onlineClient.getUserName().equals(firstPlayer))
+                    onlineClient.outputStream.writeUTF("game start");
+                if (onlineClient.getUserName().equals(secondPlayer))
+                    onlineClient.outputStream.writeUTF("game start");
+            }
+            gameRequests.clear();
+            MultiPlayerBattle battle = new MultiPlayerBattle(Account.findAccount(firstPlayer)
+                    , Account.findAccount(secondPlayer), gameMode, flags);
+            multiPlayerBattle = battle;
+            //TODO
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

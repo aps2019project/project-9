@@ -1,20 +1,29 @@
 package view;
 
+import client.Client;
+import client.ClientRequest;
+import client.GameRequest;
+import client.RequestType;
 import controller.BattleMenuController;
 import controller.MainMenuController;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceDialog;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
+import model.enumerations.GameMode;
 import server.Account;
 import model.Deck;
 import model.enumerations.BattleMenuErrorType;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +55,7 @@ public class BattleMenu {
     private void setButttonsEventBattle(Parent parent, Stage stage) {
         Button multi = (Button) parent.lookup("#multi");
         setActionForButtons(multi);
-        multi.setOnMouseClicked(mouseEvent -> multiPlayerPressed());
+        multi.setOnMouseClicked(mouseEvent -> multiPlayerPressed(stage));
         Button single = (Button) parent.lookup("#single");
         setActionForButtons(single);
         single.setOnMouseClicked(mouseEvent -> singlePlayerPressed(stage));
@@ -188,25 +197,65 @@ public class BattleMenu {
         }
     }
 
-    private void multiPlayerPressed() {
-        List<String> choices = new ArrayList<>();
-
-
-        for (Account account : Account.getAccounts()) {
-            if (!account.getUserName().equals(logInAccount.getUserName()))
-                choices.add(account.getUserName());
+    private void multiPlayerPressed(Stage previous) {
+        try {
+            Stage stage = new Stage();
+            FXMLLoader fxmlLoader = new FXMLLoader(new URL("file:src/res/FXML/multiPlayerMenu.fxml"));
+            Parent parent = fxmlLoader.load();
+            Group root = new Group();
+            root.getChildren().add(parent);
+            Scene scene = new Scene(root);
+            ChoiceBox choiceBox = ((ChoiceBox) parent.lookup("#mode"));
+            choiceBox.getItems().addAll(GameMode.values());
+            Button next = (Button) parent.lookup("#next");
+            next.setOnMouseClicked(mouseEvent -> {
+                GameMode mode = ((GameMode) choiceBox.getSelectionModel().getSelectedItem());
+                int flag = 0;
+                if (mode == GameMode.FLAGS)
+                    flag = Integer.parseInt(((TextField) parent.lookup("#number")).getText());
+                GameRequest gameRequest = new GameRequest(logInAccount.getUserName(), mode, flag);
+                ClientRequest clientRequest = new ClientRequest(Client.getAuthToken(), RequestType.GAME_REQUEST);
+                clientRequest.setGameRequest(gameRequest);
+                Client.sendRequest(clientRequest);
+                stage.close();
+                waitForOpponent(previous);
+            });
+            stage.setScene(scene);
+            stage.setTitle("Game Mode Selection");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
-
-        ChoiceDialog<String> dialog = new ChoiceDialog<>("", choices);
-        dialog.setTitle("Choose Your Opponent");
-        dialog.setHeaderText("Please Choice the opponent you wanna play with");
-        dialog.setContentText("User Name:");
-        Optional<String> result = dialog.showAndWait();
-
-        result.ifPresent(letter ->
-                new Alert(Alert.AlertType.WARNING, "sorry this feature isn't available now").showAndWait());
     }
+
+    private void waitForOpponent(Stage previous) {
+        Stage stage = new Stage();
+        Group root = new Group();
+        Scene scene = new Scene(root, 300, 300);
+        ImageView imageView = new ImageView(new Image("file:src/res/AccountMenuImages/loading.gif"));
+        imageView.setLayoutX(20);
+        imageView.setLayoutY(50);
+        Label label = new Label("waiting for opponent ...");
+        label.setLayoutX(40);
+        label.setLayoutY(50);
+        Button cancel = new Button("cancel");
+        Thread waitingThread = Client.getWaitingThread(previous, stage);
+        waitingThread.setDaemon(true);
+        waitingThread.start();
+        cancel.setOnMouseClicked(mouseEvent -> {
+            Client.sendRequest(new ClientRequest(Client.getAuthToken(), RequestType.CANCELL_GAME_REQUEST));
+            stage.close();
+            waitingThread.interrupt();
+        });
+        stage.setOnCloseRequest(windowEvent -> {
+            waitingThread.interrupt();
+            Client.sendRequest(new ClientRequest(Client.getAuthToken(), RequestType.CANCELL_GAME_REQUEST));
+        });
+        root.getChildren().addAll(imageView, label, cancel);
+        stage.setScene(scene);
+        stage.show();
+    }
+
 
     private void printError(BattleMenuErrorType error, Stage stage) {
         switch (error) {
@@ -228,7 +277,7 @@ public class BattleMenu {
         double y = button.getLayoutY();
         Paint p = button.getTextFill();
         button.setOnMouseEntered(m -> {
-            button.setTextFill(Color.rgb(255,0,34));
+            button.setTextFill(Color.rgb(255, 0, 34));
             button.setLayoutX(button.getLayoutX() - 20);
             button.setLayoutY(button.getLayoutY() - 20);
             button.setStyle("-fx-pref-height:350px;" +

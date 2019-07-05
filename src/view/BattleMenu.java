@@ -6,14 +6,18 @@ import client.GameRequest;
 import client.RequestType;
 import controller.BattleMenuController;
 import controller.MainMenuController;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import model.enumerations.GameMode;
 import server.Account;
 import model.Deck;
@@ -51,7 +55,7 @@ public class BattleMenu {
     private void setButttonsEventBattle(Parent parent, Stage stage) {
         Button multi = (Button) parent.lookup("#multi");
         setActionForButtons(multi);
-        multi.setOnMouseClicked(mouseEvent -> multiPlayerPressed());
+        multi.setOnMouseClicked(mouseEvent -> multiPlayerPressed(stage));
         Button single = (Button) parent.lookup("#single");
         setActionForButtons(single);
         single.setOnMouseClicked(mouseEvent -> singlePlayerPressed(stage));
@@ -193,10 +197,10 @@ public class BattleMenu {
         }
     }
 
-    private void multiPlayerPressed() {
+    private void multiPlayerPressed(Stage previous) {
         try {
             Stage stage = new Stage();
-            FXMLLoader fxmlLoader = new FXMLLoader(new URL("file:src/res/FXML/GameView.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(new URL("file:src/res/FXML/multiPlayerMenu.fxml"));
             Parent parent = fxmlLoader.load();
             Group root = new Group();
             root.getChildren().add(parent);
@@ -206,13 +210,15 @@ public class BattleMenu {
             Button next = (Button) parent.lookup("#next");
             next.setOnMouseClicked(mouseEvent -> {
                 GameMode mode = ((GameMode) choiceBox.getSelectionModel().getSelectedItem());
-                int flag = Integer.parseInt(((TextField) parent.lookup("#number")).getText());
-                GameRequest gameRequest = new GameRequest(logInAccount.getUserName(),mode,flag);
+                int flag = 0;
+                if (mode == GameMode.FLAGS)
+                    flag = Integer.parseInt(((TextField) parent.lookup("#number")).getText());
+                GameRequest gameRequest = new GameRequest(logInAccount.getUserName(), mode, flag);
                 ClientRequest clientRequest = new ClientRequest(Client.getAuthToken(), RequestType.GAME_REQUEST);
                 clientRequest.setGameRequest(gameRequest);
                 Client.sendRequest(clientRequest);
-                //TODO open a window
-
+                stage.close();
+                waitForOpponent(previous);
             });
             stage.setScene(scene);
             stage.setTitle("Game Mode Selection");
@@ -221,6 +227,35 @@ public class BattleMenu {
             e.printStackTrace();
         }
     }
+
+    private void waitForOpponent(Stage previous) {
+        Stage stage = new Stage();
+        Group root = new Group();
+        Scene scene = new Scene(root, 300, 300);
+        ImageView imageView = new ImageView(new Image("file:src/res/AccountMenuImages/loading.gif"));
+        imageView.setLayoutX(20);
+        imageView.setLayoutY(50);
+        Label label = new Label("waiting for opponent ...");
+        label.setLayoutX(40);
+        label.setLayoutY(50);
+        Button cancel = new Button("cancel");
+        Thread waitingThread = Client.getWaitingThread(previous, stage);
+        waitingThread.setDaemon(true);
+        waitingThread.start();
+        cancel.setOnMouseClicked(mouseEvent -> {
+            Client.sendRequest(new ClientRequest(Client.getAuthToken(), RequestType.CANCELL_GAME_REQUEST));
+            stage.close();
+            waitingThread.interrupt();
+        });
+        stage.setOnCloseRequest(windowEvent -> {
+            waitingThread.interrupt();
+            Client.sendRequest(new ClientRequest(Client.getAuthToken(), RequestType.CANCELL_GAME_REQUEST));
+        });
+        root.getChildren().addAll(imageView, label, cancel);
+        stage.setScene(scene);
+        stage.show();
+    }
+
 
     private void printError(BattleMenuErrorType error, Stage stage) {
         switch (error) {

@@ -11,6 +11,7 @@ import data.JsonProcess;
 import javafx.scene.control.Alert;
 import model.BattleResult;
 import model.Deck;
+import model.MultiPlayerBattle;
 import model.cards.Card;
 import model.cards.Hero;
 import model.cards.Minion;
@@ -26,8 +27,8 @@ import java.util.ArrayList;
 
 public class ClientHandler extends Thread {
     private String authToken;
-    private DataOutputStream outputStream;
-    private DataInputStream inputStream;
+    DataOutputStream outputStream;
+    DataInputStream inputStream;
     private String userName;
 
     public ClientHandler(String key, Socket socket) {
@@ -58,6 +59,10 @@ public class ClientHandler extends Thread {
     @Override
     public String toString() {
         return authToken;
+    }
+
+    public String getUserName() {
+        return userName;
     }
 
     private Gson gson = new Gson();
@@ -266,6 +271,10 @@ public class ClientHandler extends Thread {
                     case CANCELL_GAME_REQUEST:
                         cancellRequest();
                         break;
+                    case BATTLE:
+                        outputStream.writeUTF(JsonProcess.getGson()
+                                .toJson(GraphicalServer.multiPlayerBattle, MultiPlayerBattle.class));
+                        break;
                 }
 
             }
@@ -280,14 +289,14 @@ public class ClientHandler extends Thread {
                     == GraphicalServer.gameRequests.get(1).getGameMode()
                     && GraphicalServer.gameRequests.get(0).getNumberOfFlags()
                     == GraphicalServer.gameRequests.get(1).getNumberOfFlags()) {
-                    GraphicalServer.startGame();
+                GraphicalServer.startGame();
             }
         }
     }
 
-    private void cancellRequest(){
+    private void cancellRequest() {
         for (GameRequest gameRequest : GraphicalServer.gameRequests) {
-            if (gameRequest.getUserRequested().equals(this.userName)){
+            if (gameRequest.getUserRequested().equals(this.userName)) {
                 GraphicalServer.gameRequests.remove(gameRequest);
                 break;
             }

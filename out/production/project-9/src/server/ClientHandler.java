@@ -1,6 +1,8 @@
 package server;
 
+import client.Client;
 import client.ClientRequest;
+import client.GameRequest;
 import client.ShortAccount;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -24,8 +26,8 @@ import java.util.ArrayList;
 
 public class ClientHandler extends Thread {
     private String authToken;
-    private DataOutputStream outputStream;
-    private DataInputStream inputStream;
+    DataOutputStream outputStream;
+    DataInputStream inputStream;
     private String userName;
 
     public ClientHandler(String key, Socket socket) {
@@ -56,6 +58,10 @@ public class ClientHandler extends Thread {
     @Override
     public String toString() {
         return authToken;
+    }
+
+    public String getUserName() {
+        return userName;
     }
 
     private Gson gson = new Gson();
@@ -258,8 +264,36 @@ public class ClientHandler extends Thread {
                         int prize = request.getPrize();
                         account.wins(prize);
                         break;
+                    case GAME_REQUEST:
+                        gameRequest(request);
+                        break;
+                    case CANCELL_GAME_REQUEST:
+                        cancellRequest();
+                        break;
                 }
 
+            }
+        }
+    }
+
+    private void gameRequest(ClientRequest request) {
+        GameRequest gameRequest = request.getGameRequest();
+        GraphicalServer.gameRequests.add(gameRequest);
+        if (GraphicalServer.gameRequests.size() == 2) {
+            if (GraphicalServer.gameRequests.get(0).getGameMode()
+                    == GraphicalServer.gameRequests.get(1).getGameMode()
+                    && GraphicalServer.gameRequests.get(0).getNumberOfFlags()
+                    == GraphicalServer.gameRequests.get(1).getNumberOfFlags()) {
+                GraphicalServer.startGame();
+            }
+        }
+    }
+
+    private void cancellRequest() {
+        for (GameRequest gameRequest : GraphicalServer.gameRequests) {
+            if (gameRequest.getUserRequested().equals(this.userName)) {
+                GraphicalServer.gameRequests.remove(gameRequest);
+                break;
             }
         }
     }

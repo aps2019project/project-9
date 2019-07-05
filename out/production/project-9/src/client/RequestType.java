@@ -34,4 +34,6 @@ public enum RequestType {
     EXPORT_DECK,
     ADD_BATTLE_RESULT,
     ACCOUNT_WINS,
+    GAME_REQUEST,
+    CANCELL_GAME_REQUEST,
 }
