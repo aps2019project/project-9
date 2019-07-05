@@ -1,6 +1,7 @@
 package client;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import controller.AccountController;
 import data.JsonProcess;
 import javafx.application.Application;
@@ -8,6 +9,8 @@ import javafx.application.Platform;
 import javafx.stage.Stage;
 import model.Cell;
 import model.MultiPlayerBattle;
+import model.PlayGround;
+import model.enumerations.GameMode;
 import model.enumerations.ItemName;
 import server.Account;
 import view.AccountMenu;
@@ -112,7 +115,7 @@ public class Client extends Application {
         sendRequest(clientRequest);
     }
 
-    public static Thread getWaitingThread(Stage previous, Stage stage) {
+    public static Thread getWaitingThread(Stage previous, Stage stage, String userName) {
         return new Thread(() -> {
             while (!Thread.interrupted()) {
                 try {
@@ -127,6 +130,8 @@ public class Client extends Application {
                                 previous.close();
                                 //TODO
                                 MultiPlayerBattle battle = getBattleFromServer();
+                                battle.startBattle();
+                                new GraphicalInGameView().showGame(stage, battle, userName);
                             }
                         }
                     } catch (IOException e) {
@@ -142,15 +147,25 @@ public class Client extends Application {
         sendRequest(clientRequest);
         MultiPlayerBattle battle = JsonProcess.getGson().fromJson(getResponse(), MultiPlayerBattle.class);
         HashMap<ItemName, Cell> collectibles = getCollectibles();
-        ArrayList<Cell> flags = getFlags();
+        ArrayList<Cell> flags = null;
+        if (battle.getGameMode() == GameMode.FLAGS)
+            flags = getFlags();
+        PlayGround playGround = new PlayGround(battle.getGameMode(), collectibles, flags);
+        battle.setPlayGround(playGround);
         return battle;
     }
 
     private static HashMap<ItemName, Cell> getCollectibles() {
-
+        ClientRequest clientRequest = new ClientRequest(authToken, RequestType.COLLECTIBLES);
+        sendRequest(clientRequest);
+        return new Gson().fromJson(getResponse(), new TypeToken<HashMap<ItemName, Cell>>() {
+        }.getType());
     }
 
     private static ArrayList<Cell> getFlags() {
-
+        ClientRequest clientRequest = new ClientRequest(authToken, RequestType.FLAGS);
+        sendRequest(clientRequest);
+        return new Gson().fromJson(getResponse(), new TypeToken<ArrayList<Cell>>() {
+        }.getType());
     }
 }

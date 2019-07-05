@@ -37,4 +37,6 @@ public enum RequestType {
     GAME_REQUEST,
     CANCELL_GAME_REQUEST,
     BATTLE,
+    COLLECTIBLES,
+    FLAGS,
 }

@@ -239,7 +239,7 @@ public class BattleMenu {
         label.setLayoutX(40);
         label.setLayoutY(50);
         Button cancel = new Button("cancel");
-        Thread waitingThread = Client.getWaitingThread(previous, stage);
+        Thread waitingThread = Client.getWaitingThread(previous, stage, logInAccount.getUserName());
         waitingThread.setDaemon(true);
         waitingThread.start();
         cancel.setOnMouseClicked(mouseEvent -> {

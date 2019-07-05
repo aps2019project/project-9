@@ -9,21 +9,25 @@ import com.google.gson.reflect.TypeToken;
 import data.DeckAddException;
 import data.JsonProcess;
 import javafx.scene.control.Alert;
-import model.BattleResult;
-import model.Deck;
-import model.MultiPlayerBattle;
+import model.*;
 import model.cards.Card;
 import model.cards.Hero;
 import model.cards.Minion;
 import model.enumerations.CardType;
 import model.enumerations.CollectionErrorType;
+import model.enumerations.GameMode;
+import model.enumerations.ItemName;
+import model.items.Collectible;
+import model.items.Flag;
 import model.items.Item;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ClientHandler extends Thread {
     private String authToken;
@@ -275,10 +279,41 @@ public class ClientHandler extends Thread {
                         outputStream.writeUTF(JsonProcess.getGson()
                                 .toJson(GraphicalServer.multiPlayerBattle, MultiPlayerBattle.class));
                         break;
+                    case COLLECTIBLES:
+                        sendCollectibles();
+                        break;
+                    case FLAGS:
+                        sendFlags();
+                        break;
                 }
 
             }
         }
+    }
+
+    private void sendFlags() throws IOException {
+        PlayGround playGround = GraphicalServer.multiPlayerBattle.getPlayGround();
+        ArrayList<Cell> result = new ArrayList<>();
+        for (Flag flag : playGround.getFlags()) {
+            result.add(flag.getCurrentCell());
+        }
+        outputStream.writeUTF(new Gson().toJson(result, new TypeToken<ArrayList<Cell>>() {
+        }.getType()));
+    }
+
+    private void sendCollectibles() throws IOException {
+        PlayGround playGround = GraphicalServer.multiPlayerBattle.getPlayGround();
+        HashMap<ItemName, Cell> result = new HashMap<>();
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (playGround.getCell(i, j).hasCollectableItem()) {
+                    result.put(playGround.getCell(i, j).getCollectableItem().getItemType()
+                            , playGround.getCell(i, j));
+                }
+            }
+        }
+        outputStream.writeUTF(new Gson().toJson(result, new TypeToken<HashMap<ItemName, Cell>>() {
+        }.getType()));
     }
 
     private void gameRequest(ClientRequest request) {

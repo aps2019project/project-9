@@ -62,6 +62,10 @@ public class Battle {
         castUsableItems();
     }
 
+    public void setPlayGround(PlayGround playGround) {
+        this.playGround = playGround;
+    }
+
     private void initializeHeroAttributes() {
         firstPlayer.getHero().setCell(playGround.getCell(2, 0));
         secondPlayer.getHero().setCell(playGround.getCell(2, 8));
