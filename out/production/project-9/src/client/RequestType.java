@@ -32,4 +32,6 @@ public enum RequestType {
     GET_REMAINING_IN_SHOP,
     SAVE_ACCOUNT,
     EXPORT_DECK,
+    ADD_BATTLE_RESULT,
+    ACCOUNT_WINS,
 }

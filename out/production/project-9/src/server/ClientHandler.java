@@ -247,6 +247,17 @@ public class ClientHandler extends Thread {
                             outputStream.writeUTF("error");
                         }
                         break;
+                    case ADD_BATTLE_RESULT:
+                        account = Account.findAccount(request.getLoggedInUserName());
+                        BattleResult battleResult = new Gson().
+                                fromJson(request.getBattleResultJson(), BattleResult.class);
+                        account.addBattleResult(battleResult);
+                        break;
+                    case ACCOUNT_WINS:
+                        account = Account.findAccount(request.getLoggedInUserName());
+                        int prize = request.getPrize();
+                        account.wins(prize);
+                        break;
                 }
 
             }

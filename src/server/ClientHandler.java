@@ -1,6 +1,8 @@
 package server;
 
+import client.Client;
 import client.ClientRequest;
+import client.GameRequest;
 import client.ShortAccount;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -258,8 +260,36 @@ public class ClientHandler extends Thread {
                         int prize = request.getPrize();
                         account.wins(prize);
                         break;
+                    case GAME_REQUEST:
+                        gameRequest(request);
+                        break;
+                    case CANCELL_GAME_REQUEST:
+                        cancellRequest();
+                        break;
                 }
 
+            }
+        }
+    }
+
+    private void gameRequest(ClientRequest request) {
+        GameRequest gameRequest = request.getGameRequest();
+        GraphicalServer.gameRequests.add(gameRequest);
+        if (GraphicalServer.gameRequests.size() == 2) {
+            if (GraphicalServer.gameRequests.get(0).getGameMode()
+                    == GraphicalServer.gameRequests.get(1).getGameMode()
+                    && GraphicalServer.gameRequests.get(0).getNumberOfFlags()
+                    == GraphicalServer.gameRequests.get(1).getNumberOfFlags()) {
+                    GraphicalServer.startGame();
+            }
+        }
+    }
+
+    private void cancellRequest(){
+        for (GameRequest gameRequest : GraphicalServer.gameRequests) {
+            if (gameRequest.getUserRequested().equals(this.userName)){
+                GraphicalServer.gameRequests.remove(gameRequest);
+                break;
             }
         }
     }

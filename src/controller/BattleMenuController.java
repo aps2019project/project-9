@@ -48,4 +48,8 @@ public class BattleMenuController {
             e.printStackTrace();
         }
     }
+
+    public void startMultiPlayerBattle(){
+
+    }
 }

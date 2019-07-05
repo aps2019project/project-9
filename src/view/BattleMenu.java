@@ -1,20 +1,25 @@
 package view;
 
+import client.Client;
+import client.ClientRequest;
+import client.GameRequest;
+import client.RequestType;
 import controller.BattleMenuController;
 import controller.MainMenuController;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceDialog;
+import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
+import model.enumerations.GameMode;
 import server.Account;
 import model.Deck;
 import model.enumerations.BattleMenuErrorType;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -189,23 +194,32 @@ public class BattleMenu {
     }
 
     private void multiPlayerPressed() {
-        List<String> choices = new ArrayList<>();
+        try {
+            Stage stage = new Stage();
+            FXMLLoader fxmlLoader = new FXMLLoader(new URL("file:src/res/FXML/GameView.fxml"));
+            Parent parent = fxmlLoader.load();
+            Group root = new Group();
+            root.getChildren().add(parent);
+            Scene scene = new Scene(root);
+            ChoiceBox choiceBox = ((ChoiceBox) parent.lookup("#mode"));
+            choiceBox.getItems().addAll(GameMode.values());
+            Button next = (Button) parent.lookup("#next");
+            next.setOnMouseClicked(mouseEvent -> {
+                GameMode mode = ((GameMode) choiceBox.getSelectionModel().getSelectedItem());
+                int flag = Integer.parseInt(((TextField) parent.lookup("#number")).getText());
+                GameRequest gameRequest = new GameRequest(logInAccount.getUserName(),mode,flag);
+                ClientRequest clientRequest = new ClientRequest(Client.getAuthToken(), RequestType.GAME_REQUEST);
+                clientRequest.setGameRequest(gameRequest);
+                Client.sendRequest(clientRequest);
+                //TODO open a window
 
-
-        for (Account account : Account.getAccounts()) {
-            if (!account.getUserName().equals(logInAccount.getUserName()))
-                choices.add(account.getUserName());
+            });
+            stage.setScene(scene);
+            stage.setTitle("Game Mode Selection");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
-
-        ChoiceDialog<String> dialog = new ChoiceDialog<>("", choices);
-        dialog.setTitle("Choose Your Opponent");
-        dialog.setHeaderText("Please Choice the opponent you wanna play with");
-        dialog.setContentText("User Name:");
-        Optional<String> result = dialog.showAndWait();
-
-        result.ifPresent(letter ->
-                new Alert(Alert.AlertType.WARNING, "sorry this feature isn't available now").showAndWait());
     }
 
     private void printError(BattleMenuErrorType error, Stage stage) {
@@ -228,7 +242,7 @@ public class BattleMenu {
         double y = button.getLayoutY();
         Paint p = button.getTextFill();
         button.setOnMouseEntered(m -> {
-            button.setTextFill(Color.rgb(255,0,34));
+            button.setTextFill(Color.rgb(255, 0, 34));
             button.setLayoutX(button.getLayoutX() - 20);
             button.setLayoutY(button.getLayoutY() - 20);
             button.setStyle("-fx-pref-height:350px;" +

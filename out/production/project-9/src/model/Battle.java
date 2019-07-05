@@ -1,5 +1,9 @@
 package model;
 
+import client.Client;
+import client.ClientRequest;
+import client.RequestType;
+import com.google.gson.Gson;
 import model.buffs.Buff;
 import model.buffs.StunBuff;
 import model.buffs.WeaknessBuff;
@@ -237,20 +241,32 @@ public class Battle {
         String str = l.format(myFormatObj);
         checked = true;
         BattleResult battleResult = new BattleResult(winner, battlePrize, str, looser.getName(), this);
-        if (Account.findAccount(firstPlayer.getName()) != null) {
-            Account.findAccount(firstPlayer.getName()).addBattleResult(battleResult);
+        if (Client.getAccount(firstPlayer.getName()) != null) {
+            ClientRequest clientRequest = new ClientRequest(Client.getAuthToken(), RequestType.ADD_BATTLE_RESULT);
+            clientRequest.setBattleResultJson(new Gson().toJson(battleResult, BattleResult.class));
+            clientRequest.setLoggedInUserName(firstPlayer.getName());
+            Client.sendRequest(clientRequest);
+            //Account.findAccount(firstPlayer.getName()).addBattleResult(battleResult);
         }
         battleResult = new BattleResult(winner, battlePrize, str, looser.getName(), this);
-        if (Account.findAccount(secondPlayer.getName()) != null) {
-            Account.findAccount(secondPlayer.getName()).addBattleResult(battleResult);
+        if (Client.getAccount(secondPlayer.getName()) != null) {
+            ClientRequest clientRequest = new ClientRequest(Client.getAuthToken(), RequestType.ADD_BATTLE_RESULT);
+            clientRequest.setBattleResultJson(new Gson().toJson(battleResult, BattleResult.class));
+            clientRequest.setLoggedInUserName(secondPlayer.getName());
+            Client.sendRequest(clientRequest);
         }
         InGameView view = InGameView.getInstance();
         view.endGameOutput(battleResult);
         if (firstPlayer.equals(winner)) {
-            Account.findAccount(firstPlayer.getName()).wins(battlePrize);
-
+            ClientRequest clientRequest = new ClientRequest(Client.getAuthToken(),RequestType.ACCOUNT_WINS);
+            clientRequest.setPrize(battlePrize);
+            clientRequest.setLoggedInUserName(firstPlayer.getName());
+            Client.sendRequest(clientRequest);
         } else if (!(this instanceof SinglePlayerBattle)) {
-            Account.findAccount(secondPlayer.getName()).wins(battlePrize);
+            ClientRequest clientRequest = new ClientRequest(Client.getAuthToken(),RequestType.ACCOUNT_WINS);
+            clientRequest.setPrize(battlePrize);
+            clientRequest.setLoggedInUserName(secondPlayer.getName());
+            Client.sendRequest(clientRequest);
         }
         GraphicalInGameView.finished(battleResult);
     }

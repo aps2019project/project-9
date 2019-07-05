@@ -14,10 +14,19 @@ public class ClientRequest {
     private String accountJson;
     private String battleResultJson;
     private int prize;
+    private GameRequest gameRequest;
 
     public ClientRequest(String authKey, RequestType type) {
         this.authKey = authKey;
         this.type = type;
+    }
+
+    public void setGameRequest(GameRequest gameRequest) {
+        this.gameRequest = gameRequest;
+    }
+
+    public GameRequest getGameRequest() {
+        return gameRequest;
     }
 
     public void setPrize(int prize) {

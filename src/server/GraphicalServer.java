@@ -1,5 +1,6 @@
 package server;
 
+import client.GameRequest;
 import data.JsonProcess;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -28,6 +29,7 @@ public class GraphicalServer extends Application {
     static ArrayList<ClientHandler> onlineClients = new ArrayList<>();
     static ArrayList<String> userNamesLoggedIn = new ArrayList<>();
     static ArrayList<String> globalChat = new ArrayList<>();
+    static ArrayList<GameRequest> gameRequests = new ArrayList<>();
     private ServerSocket serverSocket;
 
     public static void main(String[] args) {
@@ -216,5 +218,9 @@ public class GraphicalServer extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    static void startGame(){
+
     }
 }
