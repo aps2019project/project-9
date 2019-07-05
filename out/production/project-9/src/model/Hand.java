@@ -25,6 +25,15 @@ public class Hand {
     private Deck deck;
     private int numberOfCardFromDeck;
 
+    public void setCards() {
+        cards.clear();
+        int index = (deck.getCards().size() >= 5) ? (5) : deck.getCards().size();
+        for (int i = 0; i < index; i++) {
+            this.cards.add(deck.getCards().get(i));
+        }
+        numberOfCardFromDeck = 5;
+    }
+
     public Card getNext() {
         if (numberOfCardFromDeck < deck.getCards().size())
             return deck.getCards().get(numberOfCardFromDeck);

@@ -732,10 +732,6 @@ public class GraphicalInGameView {
             PlayGround playGround = inGameController.getBattle().getPlayGround();
             for (int i = 0; i < 5; i++) {
                 for (int j = 0; j < 9; j++) {
-                    //TODO
-                    System.out.println(card.getName());
-                    System.out.println(((Minion) card).getPlayer());
-                    //
                     if (((Minion) card).getPlayer().getCellsToInsertMinion().contains(playGround.getCell(i, j))
                             && !playGround.getCell(i, j).hasCardOnIt())
                         result.add(playGround.getCell(i, j));

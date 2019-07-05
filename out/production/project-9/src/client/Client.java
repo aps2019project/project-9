@@ -149,6 +149,8 @@ public class Client extends Application {
         second.setDeck(second.getHand().getDeck());
         first.setHero(first.getDeck().getHero());
         second.setHero(second.getDeck().getHero());
+        first.getHand().setCards();
+        second.getHand().setCards();
     }
 
     private static void setFirstSecondPlayer(Battle battle, String userName) {
