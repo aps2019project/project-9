@@ -394,11 +394,6 @@ public class Minion extends Card {
         System.out.println(player.getBattle());
         System.out.println(player.getBattle().getPlayGround());
         //*/
-        //TODO
-        System.out.println(player);
-        System.out.println(player.getBattle());
-        System.out.println(player.getBattle().getPlayGround());
-        //
         if (player.getBattle().getPlayGround().getManhatanDistance(this.cell, targetCell) > 2
                 || targetCell.hasCardOnIt()
                 || !player.getBattle().getPlayGround().canMoveThroughPath(this.cell, targetCell)) {

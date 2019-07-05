@@ -156,7 +156,7 @@ public class InGameMethodsAndSource {// a resource for graphical in game view
         String opponent = controller.getBattle().getFirstPlayer().getName().equals(userName) ?
                 controller.getBattle().getSecondPlayer().getName() :
                 controller.getBattle().getFirstPlayer().getName();
-        controller.main(request, opponent);
+        controller.main(request, opponent, false);
     }
 
 }

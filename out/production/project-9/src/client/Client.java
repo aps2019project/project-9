@@ -120,6 +120,7 @@ public class Client extends Application {
                     Thread.sleep(200);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    break;
                 }
                 Platform.runLater(() -> {
                     try {
@@ -128,8 +129,8 @@ public class Client extends Application {
                                 previous.close();
                                 MultiPlayerBattle battle = getBattleFromServer();
                                 //setFirstSecondPlayer(battle, userName);
-                                battle.startBattle();
                                 initilalizingBattle(battle);
+                                battle.startBattle();
                                 new GraphicalInGameView().showGame(stage, battle, userName);
                             }
                         }
@@ -188,5 +189,9 @@ public class Client extends Application {
         sendRequest(clientRequest);
         return new Gson().fromJson(getResponse(), new TypeToken<ArrayList<Cell>>() {
         }.getType());
+    }
+
+    public static boolean hasInput() throws IOException {
+        return inputStream.available() > 0;
     }
 }

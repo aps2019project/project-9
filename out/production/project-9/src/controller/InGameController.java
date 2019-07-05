@@ -30,19 +30,25 @@ public class InGameController {
         battle.setInGameRequests(inGameRequests);
     }
 
-    public void main(InGameRequest request, String userName) {
+    public void main(InGameRequest request, String userName, boolean shouldSend) {
         if (battle.getCurrenPlayer().getName().equals(userName)) {
             InGameRequestType type = request.getRequestType();
             // sending request to server
+            if (shouldSend) {
+                if (type == InGameRequestType.MOVE_TO || type == InGameRequestType.ATTACK)
+                    request.setSelectedCard(battle.getCurrenPlayer().getSelectedCard().getBattleID());
+                if (type == InGameRequestType.USE)
+                    request.setSelectedItem(battle.getCurrenPlayer().getSelectedCollectableItem().getItemID());
 
-            if (type == InGameRequestType.MOVE_TO || type == InGameRequestType.ATTACK)
-                request.setSelectedCard(battle.getCurrenPlayer().getSelectedCard().getBattleID());
-            if (type == InGameRequestType.USE)
-                request.setSelectedItem(battle.getCurrenPlayer().getSelectedCollectableItem().getName());
-
-            ClientRequest clientRequest = new ClientRequest(Client.getAuthToken(), RequestType.IN_GAME_REQUEST);
-            clientRequest.setInGameRequest(request);
-            Client.sendRequest(clientRequest);
+                ClientRequest clientRequest = new ClientRequest(Client.getAuthToken(), RequestType.IN_GAME_REQUEST);
+                clientRequest.setInGameRequest(request);
+                Client.sendRequest(clientRequest);
+            }
+            if (!shouldSend && (type == InGameRequestType.MOVE_TO || type == InGameRequestType.ATTACK)) {
+                selectCard(request.getSelectedCard());
+            }
+            if (!shouldSend && type == InGameRequestType.USE)
+                selectItem(String.valueOf(request.getSelectedItem()));
             //
             switch (type) {
                 case SELECT_ITEM:
@@ -77,7 +83,7 @@ public class InGameController {
                     break;
             }
             // not important
-            if (request.getType() == InGameRequestType.ATTACK) {
+            /*if (request.getType() == InGameRequestType.ATTACK) {
                 Card selectedCard = battle.getCurrenPlayer().getSelectedCard();
                 inGameRequests.add(new InGameRequest("select " + selectedCard.getBattleID()));
             } else if (request.getType() == InGameRequestType.MOVE_TO) {
@@ -87,7 +93,7 @@ public class InGameController {
                 Item item = battle.getCurrenPlayer().getSelectedCollectableItem();
                 inGameRequests.add(new InGameRequest("select item " + item.getItemID()));
             }
-            inGameRequests.add(request);
+            inGameRequests.add(request);*/
             //
         } else {
             GraphicalInGameView.showError(InGameErrorType.NOT_YOUR_TURN);

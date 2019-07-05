@@ -38,7 +38,7 @@ public class InGameRequest {
     private String command;
     private InGameRequestType requestType;
     private String selectedCard; // battle id
-    private String selectedItem; // item name
+    private int selectedItem; // item id
 
     public InGameRequest(String command) {
         this.command = command;
@@ -53,11 +53,11 @@ public class InGameRequest {
         return selectedCard;
     }
 
-    public void setSelectedItem(String selectedItem) {
+    public void setSelectedItem(int selectedItem) {
         this.selectedItem = selectedItem;
     }
 
-    public String getSelectedItem() {
+    public int getSelectedItem() {
         return selectedItem;
     }
 

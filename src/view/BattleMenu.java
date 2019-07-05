@@ -32,6 +32,7 @@ import java.util.Optional;
 public class BattleMenu {
     private Account logInAccount;
     private BattleMenuController controller;
+    public static Thread thread;
 
     public BattleMenu(Account logInAccount, BattleMenuController controller) {
         this.logInAccount = logInAccount;
@@ -240,6 +241,7 @@ public class BattleMenu {
         label.setLayoutY(50);
         Button cancel = new Button("cancel");
         Thread waitingThread = Client.getWaitingThread(previous, stage, logInAccount.getUserName());
+        thread = waitingThread;
         waitingThread.setDaemon(true);
         waitingThread.start();
         cancel.setOnMouseClicked(mouseEvent -> {

@@ -41,6 +41,7 @@ import model.items.Collectible;
 import model.specialPower.ComboSpecialPower;
 import server.Account;
 
+import java.io.DataInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -89,6 +90,7 @@ public class GraphicalInGameView {
         //
         //
         if (battle instanceof MultiPlayerBattle) {
+            BattleMenu.thread.interrupt();
             Thread thread = getThreadForMultiPlayer();
             thread.setDaemon(true);
             thread.start();
@@ -114,13 +116,15 @@ public class GraphicalInGameView {
                     Thread.sleep(500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    break;
                 }
                 Platform.runLater(() -> {
                     try {
-                        setWhoseTurn();
-                        if (!isMyTurn() && Client.getInputStream().available() > 0) {
-                            String received = Client.getInputStream().readUTF();
+                        if (!isMyTurn() && Client.hasInput()) {
+                            String received = Client.getResponse();
+
                             InGameRequest request = new Gson().fromJson(received, InGameRequest.class);
+                            //
                             handleRequest(request, inGameController, userName);
                             //
                             updatePlayGround(group);
@@ -365,7 +369,7 @@ public class GraphicalInGameView {
             inGameController.getBattle().getCurrenPlayer()
                     .setSelectedCollectableItem(((Collectible) selectedItem));
             InGameRequest request = new InGameRequest("use 1 1");
-            inGameController.main(request, userName);
+            inGameController.main(request, userName, true);
             inGameController.getBattle().getCurrenPlayer()
                     .setSelectedCollectableItem(null);
             updateCollectibles();
@@ -387,7 +391,7 @@ public class GraphicalInGameView {
             ((Label) parent.lookup("#specialPowerLabel2")).setText("Is Ready");
             ((Pane) parent.lookup("#specialPowerPane")).setOnMouseClicked(mouseEvent -> {
                 InGameRequest request = new InGameRequest("use special power 1 1");
-                inGameController.main(request, userName);
+                inGameController.main(request, userName, true);
                 updatePlayGround(group);
                 setManas(inGameController.getBattle().getCurrenPlayer());
                 updateSpecialPower();
@@ -475,7 +479,7 @@ public class GraphicalInGameView {
                         InGameRequest request = new InGameRequest(
                                 "insert " + db.getString() + " in " + x + " " + y);
 
-                        inGameController.main(request, userName);
+                        inGameController.main(request, userName, true);
                         setMediaViews(MusicAct.INSERT);
                         updateHand();
                         setManas(inGameController.getBattle().getCurrenPlayer());
@@ -491,7 +495,7 @@ public class GraphicalInGameView {
                                 .getCurrenPlayer().getSelectedCard()).getCell();
                         InGameRequest request = new
                                 InGameRequest("move to " + cell.getX() + " " + cell.getY());
-                        inGameController.main(request, userName);
+                        inGameController.main(request, userName, true);
 
                         updatePlayGround(group);
                         if (inGameController.getBattle().getCurrenPlayer().getSelectedCard() == null) {
@@ -586,7 +590,7 @@ public class GraphicalInGameView {
                 } else if (isMarked(pane, true)) {
                     setMediaViews(MusicAct.ATTACK);
                     InGameRequest request = new InGameRequest("attack " + minion.getBattleID());
-                    inGameController.main(request, userName);
+                    inGameController.main(request, userName, true);
                     updatePlayGround(group);
                 } else if (isMarked(pane, false)) {
                     if (isCombo) {
@@ -602,7 +606,7 @@ public class GraphicalInGameView {
         for (Minion comboCard : comboCards) {
             request += " " + comboCard.getBattleID();
         }
-        inGameController.main(new InGameRequest(request), userName);
+        inGameController.main(new InGameRequest(request), userName, true);
         isCombo = false;
         deleteMarkCells(false);
         comboCards = new ArrayList<>();
@@ -728,6 +732,10 @@ public class GraphicalInGameView {
             PlayGround playGround = inGameController.getBattle().getPlayGround();
             for (int i = 0; i < 5; i++) {
                 for (int j = 0; j < 9; j++) {
+                    //TODO
+                    System.out.println(card.getName());
+                    System.out.println(((Minion) card).getPlayer());
+                    //
                     if (((Minion) card).getPlayer().getCellsToInsertMinion().contains(playGround.getCell(i, j))
                             && !playGround.getCell(i, j).hasCardOnIt())
                         result.add(playGround.getCell(i, j));
@@ -960,7 +968,7 @@ public class GraphicalInGameView {
         });
         pane.setOnMouseClicked(mouseEvent -> {
             InGameRequest request = new InGameRequest("end turn");
-            inGameController.main(request, userName);
+            inGameController.main(request, userName, true);
             updatePlayGround(group);
             //
             if (inGameController.getBattle() instanceof SinglePlayerBattle)
