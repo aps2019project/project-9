@@ -117,7 +117,6 @@ public class GraphicalServer extends Application {
         text += "\naccount pass word : " + account.getPassWord();
         text += "\nnumber Of Wins : " + account.getNumberOfWins();
         text += "\nmoney : " + account.getMoney();
-        text += "\nmain deck : " + account.getMainDeck();
         text += "\nall decks : " + account.getDecks();
         ((TextArea) parent.lookup("#desc")).setText(text);
         stage.setTitle("Account Information");

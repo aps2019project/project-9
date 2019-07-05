@@ -3,40 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="429eadbd-36e3-4fa5-93ef-05e24885aef0" name="Default Changelist" comment="Merge branch 'master' of https://github.com/aps2019project/project-9&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;out/production/project-9/controller/ShopController.class&#10;#&#9;out/production/project-9/src/view/ShopMenu.java&#10;#&#9;out/production/project-9/src/view/Test.java&#10;#&#9;out/production/project-9/view/ShopMenu$1$1.class&#10;#&#9;out/production/project-9/view/ShopMenu$1.class&#10;#&#9;out/production/project-9/view/ShopMenu$2$1.class&#10;#&#9;out/production/project-9/view/ShopMenu$2.class&#10;#&#9;out/production/project-9/view/ShopMenu.class&#10;#&#9;out/production/project-9/view/Test.class">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/client/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/client/Client.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/client/ClientRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/client/ClientRequest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/client/RequestType.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/client/RequestType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/server/ClientHandler$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/server/ClientHandler$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/server/ClientHandler$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/server/ClientHandler$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/server/ClientHandler$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/server/ClientHandler$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/server/ClientHandler$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/server/ClientHandler$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/server/ClientHandler$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/server/ClientHandler$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/server/ClientHandler$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/server/ClientHandler$6.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/server/ClientHandler$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/server/ClientHandler$7.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/server/ClientHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/server/ClientHandler.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/project-9/server/GraphicalServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/server/GraphicalServer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/project-9/server/config.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/server/config.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/client/ClientRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/client/ClientRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/client/RequestType.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/client/RequestType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/server/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/server/ClientHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/project-9/src/server/GraphicalServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/server/GraphicalServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/project-9/src/server/config.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/server/config.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/view/CollectionMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/view/CollectionMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/project-9/src/view/GraphicalInGameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/view/GraphicalInGameView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/src/view/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/src/view/MainMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/CollectionMenu$2$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/CollectionMenu$2$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/CollectionMenu$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/CollectionMenu$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/CollectionMenu$3$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/CollectionMenu$3$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/CollectionMenu$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/CollectionMenu$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/CollectionMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/CollectionMenu.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/project-9/view/GraphicalInGameView$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/GraphicalInGameView$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/project-9/view/GraphicalInGameView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/GraphicalInGameView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project-9/view/MainMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project-9/view/MainMenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/GraphicalServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/GraphicalServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/config.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/config.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/AccountMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/AccountMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/GraphicalInGameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/GraphicalInGameView.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -70,11 +46,38 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/server/GraphicalServer.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/client/ShortAccount.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="473">
-              <caret line="121" column="56" lean-forward="true" selection-start-line="121" selection-start-column="56" selection-end-line="121" selection-end-column="56" />
+            <state relative-caret-position="323">
+              <caret line="24" column="8" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/model/Battle.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="343">
+              <caret line="246" column="41" lean-forward="true" selection-start-line="246" selection-start-column="41" selection-end-line="246" selection-end-column="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/view/GraphicalInGameView.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="154">
+              <caret line="243" column="34" lean-forward="true" selection-start-line="243" selection-start-column="34" selection-end-line="243" selection-end-column="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/view/AccountMenu.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="297">
+              <caret line="371" column="94" selection-start-line="371" selection-start-column="94" selection-end-line="371" selection-end-column="94" />
             </state>
           </provider>
         </entry>
@@ -192,15 +195,15 @@
         <option value="$PROJECT_DIR$/src/model/enumerations/ShopErrorType.java" />
         <option value="$PROJECT_DIR$/src/controller/ShopController.java" />
         <option value="$PROJECT_DIR$/src/client/ClientRequest.java" />
-        <option value="$PROJECT_DIR$/src/view/GraphicalInGameView.java" />
         <option value="$PROJECT_DIR$/src/view/MainMenu.java" />
         <option value="$PROJECT_DIR$/src/client/RequestType.java" />
         <option value="$PROJECT_DIR$/src/server/ClientHandler.java" />
         <option value="$PROJECT_DIR$/src/view/CollectionMenu.java" />
         <option value="$PROJECT_DIR$/src/client/Client.java" />
-        <option value="$PROJECT_DIR$/src/view/AccountMenu.java" />
         <option value="$PROJECT_DIR$/src/server/Account.java" />
         <option value="$PROJECT_DIR$/src/server/GraphicalServer.java" />
+        <option value="$PROJECT_DIR$/src/view/GraphicalInGameView.java" />
+        <option value="$PROJECT_DIR$/src/view/AccountMenu.java" />
       </list>
     </option>
   </component>
@@ -254,7 +257,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1562310882258" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1562311558458" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Tamrin3/ChatRoom" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -294,7 +297,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.GraphicalServer">
+  <component name="RunManager" selected="Application.Client">
     <configuration name="Client" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="client.Client" />
       <module name="project-9" />
@@ -329,8 +332,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.GraphicalServer" />
         <item itemvalue="Application.Client" />
+        <item itemvalue="Application.GraphicalServer" />
       </list>
     </recent_temporary>
   </component>
@@ -366,7 +369,7 @@
       <workItem from="1561377511629" duration="833000" />
       <workItem from="1561477625365" duration="6204000" />
       <workItem from="1561611202286" duration="3309000" />
-      <workItem from="1562154800814" duration="32545000" />
+      <workItem from="1562154800814" duration="33060000" />
     </task>
     <task id="LOCAL-00001" summary="merge">
       <created>1556826863260</created>
@@ -505,7 +508,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="435617000" />
+    <option name="totallyTimeSpent" value="436132000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -520,7 +523,7 @@
     <frame x="54" y="-8" width="1320" height="784" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24444444" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24444444" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -534,13 +537,13 @@
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="5" weight="0.3640553" />
       <window_info anchor="bottom" id="Duplicate detector" order="6" weight="0.32872504" />
-      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49285713" weight="0.32258064" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.4920635" weight="0.32258064" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5031746" side_tool="true" weight="0.33486944" />
       <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.4968254" weight="0.32411674" />
       <window_info anchor="bottom" id="Database Changes" order="11" />
       <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.49920633" weight="0.21658987" />
-      <window_info anchor="bottom" x="84" y="296" width="1260" height="175" id="Run" order="13" sideWeight="0.50714284" side_tool="true" weight="0.21658987" />
+      <window_info active="true" anchor="bottom" x="84" y="296" width="1260" height="175" id="Run" order="13" sideWeight="0.50793654" side_tool="true" visible="true" weight="0.21658987" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -781,17 +784,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/Battle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="246" column="41" lean-forward="true" selection-start-line="246" selection-start-column="41" selection-end-line="246" selection-end-column="41" />
-          <folding>
-            <element signature="e#1339#1340#0" expanded="true" />
-            <element signature="e#1391#1392#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/Player.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -853,17 +845,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/server/config.txt">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/ShortAccount.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="24" column="8" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="24" />
-          <folding>
-            <element signature="e#504#505#0" expanded="true" />
-            <element signature="e#535#536#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="jar://$PATH_TO_FX$/javafx.controls.jar!/javafx/scene/control/Label.class">
       <provider selected="true" editor-type-id="text-editor">
@@ -1081,31 +1062,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/Client.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="82" lean-forward="true" selection-start-line="82" selection-end-line="82" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/GraphicalInGameView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="73" column="8" lean-forward="true" selection-start-line="73" selection-start-column="8" selection-end-line="74" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/AccountController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="422">
           <caret line="88" column="10" selection-start-line="88" selection-start-column="10" selection-end-line="88" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/AccountMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="347" column="73" lean-forward="true" selection-start-line="347" selection-start-column="73" selection-end-line="347" selection-end-column="73" />
         </state>
       </provider>
     </entry>
@@ -1130,8 +1090,43 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/server/GraphicalServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="473">
-          <caret line="121" column="56" lean-forward="true" selection-start-line="121" selection-start-column="56" selection-end-line="121" selection-end-column="56" />
+        <state relative-caret-position="205">
+          <caret line="116" column="62" selection-start-line="116" selection-start-column="62" selection-end-line="116" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/Client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="82" lean-forward="true" selection-start-line="82" selection-end-line="82" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Battle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="343">
+          <caret line="246" column="41" lean-forward="true" selection-start-line="246" selection-start-column="41" selection-end-line="246" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/GraphicalInGameView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="243" column="34" lean-forward="true" selection-start-line="243" selection-start-column="34" selection-end-line="243" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/ShortAccount.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="24" column="8" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/AccountMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="371" column="94" selection-start-line="371" selection-start-column="94" selection-end-line="371" selection-end-column="94" />
         </state>
       </provider>
     </entry>

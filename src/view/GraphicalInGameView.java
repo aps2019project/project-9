@@ -248,8 +248,9 @@ public class GraphicalInGameView {
         stage.setOnCloseRequest(windowEvent -> {
             if (!isReplay) {
                 //save changes
-                if (loggedAccount != null)
-                    Client.saveAccount();
+                /*if (loggedAccount != null)
+                    Client.saveAccount();*/
+                Client.saveAccount();
             }
             AccountMenu.getInstance().accountMenuShow(new Stage(), new AccountController());
             stage.close();

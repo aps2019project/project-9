@@ -12,10 +12,28 @@ public class ClientRequest {
     private String cardOrItemName;
     private String deckName;
     private String accountJson;
+    private String battleResultJson;
+    private int prize;
 
     public ClientRequest(String authKey, RequestType type) {
         this.authKey = authKey;
         this.type = type;
+    }
+
+    public void setPrize(int prize) {
+        this.prize = prize;
+    }
+
+    public int getPrize() {
+        return prize;
+    }
+
+    public String getBattleResultJson() {
+        return battleResultJson;
+    }
+
+    public void setBattleResultJson(String battleResultJson) {
+        this.battleResultJson = battleResultJson;
     }
 
     public String getAccountJson() {

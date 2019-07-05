@@ -364,13 +364,23 @@ public class AccountMenu {
         table.getColumns().addAll(firstNameCol, lastNameCol, isOnline);
 
         table.setOnMouseClicked(mouseEvent -> {
-            Account account = getAccount(table.getSelectionModel().getSelectedItem());
+            ClientRequest clientRequest = new ClientRequest(Client.getAuthToken(), RequestType.FIND_ACCOUNT);
+            AccountRequest accountRequest = new AccountRequest();
+            accountRequest.setUserName(table.getSelectionModel().getSelectedItem().getUserName());
+            clientRequest.setAccountRequest(accountRequest);
+            Client.sendRequest(clientRequest);
+            Account account = JsonProcess.getGson().fromJson(Client.getResponse(), Account.class);
+            //TODO
+            System.out.println(account.getUserName());
+            System.out.println(account.getBattleResults());
             Stage secondStage = new Stage();
             secondStage.setTitle(account.getUserName());
             Group root = new Group();
             Label label = new Label("Games Done :");
             root.getChildren().add(label);
             ListView<String> listView = new ListView<>();
+            //TODO
+            System.out.println(getBattleResults(account));
             for (BattleResult battleResult : getBattleResults(account)) {
                 listView.getItems().add(battleResult.toString());
             }
