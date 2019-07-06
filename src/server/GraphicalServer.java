@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.MultiPlayerBattle;
@@ -41,21 +42,24 @@ public class GraphicalServer extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+        primaryStage.getIcons().add(new Image("file:src/res/icon.jpg"));
         Group root = new Group();
         Scene scene = new Scene(root, 400, 400);
         Label label = new Label("");
         Button button = new Button("OnLine Users");
         Button allAccounts = getAllAccountsBtn();
         Button shop = getShopBtn();
-        button.setLayoutX(200);
-        button.setLayoutY(50);
+        button.setLayoutX(10);
+        button.setLayoutY(30);
         setUserBtnAction(button);
         showGameRequests(root);
+        setOnLineClientsBtn(root);
         try {
             ServerSocket serverSocket = new ServerSocket(0);
             this.serverSocket = serverSocket;
             savePort(serverSocket.getLocalPort());
             label.setText("server is listening on port : " + serverSocket.getLocalPort());
+            label.setLayoutX(10);
             Thread thread = serverRefreshThread();
             thread.setDaemon(true);
             thread.start();
@@ -71,13 +75,15 @@ public class GraphicalServer extends Application {
     private void showGameRequests(Group group) {
         ListView listView = new ListView();
         Button button = new Button("refresh game requests");
-        button.setLayoutX(10);
-        button.setLayoutY(160);
-        listView.setLayoutY(200);
+        button.setLayoutX(200);
+        button.setLayoutY(220);
+        listView.setLayoutY(60);
         Label label = new Label("game requests");
-        label.setLayoutX(10);
-        label.setLayoutY(180);
-        listView.setLayoutX(10);
+        label.setLayoutX(200);
+        label.setLayoutY(30);
+        listView.setLayoutX(200);
+        listView.setPrefWidth(190);
+        listView.setPrefHeight(150);
         group.getChildren().addAll(label, listView, button);
         button.setOnMouseClicked(mouseEvent -> {
             listView.getItems().addAll(gameRequests);
@@ -97,10 +103,29 @@ public class GraphicalServer extends Application {
         });
     }
 
+    private void setOnLineClientsBtn(Group group) {
+        Button button = new Button("Online Clients");
+        button.setLayoutX(10);
+        button.setLayoutY(120);
+        button.setOnMouseClicked(mouseEvent -> {
+            Stage stage = new Stage();
+            Group root = new Group();
+            Scene scene = new Scene(root, 400, 400);
+            ListView<String> client = new ListView<>();
+            for (ClientHandler onlineClient : onlineClients) {
+                client.getItems().add(onlineClient.getAuthToken());
+            }
+            root.getChildren().addAll(client);
+            stage.setScene(scene);
+            stage.show();
+        });
+        group.getChildren().add(button);
+    }
+
     private Button getAllAccountsBtn() {
         Button button = new Button("Accounts");
-        button.setLayoutX(200);
-        button.setLayoutY(100);
+        button.setLayoutX(10);
+        button.setLayoutY(60);
         button.setOnMouseClicked(mouseEvent -> {
             Stage stage = new Stage();
             Group root = new Group();
@@ -148,8 +173,8 @@ public class GraphicalServer extends Application {
 
     private Button getShopBtn() {
         Button button = new Button("Show Shop");
-        button.setLayoutX(150);
-        button.setLayoutY(150);
+        button.setLayoutX(10);
+        button.setLayoutY(90);
         button.setOnMouseClicked(mouseEvent -> {
             try {
                 Stage stage = new Stage();

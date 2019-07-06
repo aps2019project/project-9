@@ -41,5 +41,4 @@ public enum RequestType {
     FLAGS,
     IN_GAME_REQUEST,
     MY_USERNAME,
-    END_BATTLE,
 }

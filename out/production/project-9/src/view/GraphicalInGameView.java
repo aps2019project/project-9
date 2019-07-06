@@ -90,6 +90,7 @@ public class GraphicalInGameView {
         //
         //
         if (battle instanceof MultiPlayerBattle) {
+            multiPlayerActions();
             BattleMenu.thread.interrupt();
             Thread thread = getThreadForMultiPlayer();
             thread.setDaemon(true);
@@ -109,7 +110,6 @@ public class GraphicalInGameView {
     }
 
     private Thread getThreadForMultiPlayer() {
-        multiPlayerActions();
         return new Thread(() -> {
             while (!Thread.interrupted()) {
                 try {
@@ -120,6 +120,7 @@ public class GraphicalInGameView {
                 }
                 Platform.runLater(() -> {
                     try {
+                        setWhoseTurn();
                         if (!isMyTurn() && Client.hasInput()) {
                             String received = Client.getResponse();
 
@@ -144,10 +145,14 @@ public class GraphicalInGameView {
 
 
     private void multiPlayerActions() {
-        String opponent = (inGameController.getBattle().getFirstPlayer().getName().equals(userName)) ?
-                inGameController.getBattle().getSecondPlayer().getName() :
-                inGameController.getBattle().getFirstPlayer().getName();
-        ((Label) parent.lookup("#opponent")).setText(opponent);
+        String userName = Client.getUserName();
+        if (inGameController.getBattle().getFirstPlayer().getName().equals(userName)) {
+            ((Label) parent.lookup("#second"))
+                    .setText(inGameController.getBattle().getSecondPlayer().getName());
+        } else {
+            ((Label) parent.lookup("#first"))
+                    .setText(inGameController.getBattle().getFirstPlayer().getName());
+        }
         setWhoseTurn();
         //
     }
@@ -521,6 +526,11 @@ public class GraphicalInGameView {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("No Special Power");
             alert.setContentText("Your Hero Doesn't Have Special Power :(");
+            alert.show();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText(errorType.getMessage());
             alert.show();
         }
     }

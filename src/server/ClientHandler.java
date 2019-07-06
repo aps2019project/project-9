@@ -293,9 +293,6 @@ public class ClientHandler extends Thread {
                     case MY_USERNAME:
                         outputStream.writeUTF(this.userName);
                         break;
-                    case END_BATTLE:
-
-                        break;
                 }
 
 

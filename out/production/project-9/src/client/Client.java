@@ -60,7 +60,7 @@ public class Client extends Application {
             authToken = inputStream.readUTF();
             return true;
         } catch (IOException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             return false;
         }
     }
@@ -119,7 +119,7 @@ public class Client extends Application {
                 try {
                     Thread.sleep(200);
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    //e.printStackTrace();
                     break;
                 }
                 Platform.runLater(() -> {
@@ -195,5 +195,11 @@ public class Client extends Application {
 
     public static boolean hasInput() throws IOException {
         return inputStream.available() > 0;
+    }
+
+    public static String getUserName(){
+        ClientRequest clientRequest = new ClientRequest(authToken,RequestType.MY_USERNAME);
+        sendRequest(clientRequest);
+        return getResponse();
     }
 }
