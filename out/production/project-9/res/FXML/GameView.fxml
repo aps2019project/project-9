@@ -250,7 +250,7 @@
                </image>
             </ImageView>
             <Label text="Label" />
-            <Label fx:id="turnLabel" layoutX="405.0" layoutY="98.0" text="Whose Turn It is" textFill="WHITE" />
+            <Label fx:id="turnLabel" layoutX="405.0" layoutY="98.0" textFill="WHITE" />
       </children>
     </AnchorPane>
   </children>

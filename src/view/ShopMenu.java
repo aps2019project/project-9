@@ -19,6 +19,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import model.CardOrItem;
 import model.Collection;
 import model.cards.Card;
 import model.enumerations.ShopErrorType;
@@ -272,10 +273,10 @@ public class ShopMenu {
     private void addBuyButtonToTable(TableView table) {
         TableColumn actionCol = new TableColumn("Buy");
         actionCol.setCellValueFactory(new PropertyValueFactory<>(""));
-        Callback<TableColumn<Card, String>, TableCell<Card, String>> cellFactory = new Callback<>() {
+        Callback<TableColumn<CardOrItem, String>, TableCell<CardOrItem, String>> cellFactory = new Callback<>() {
             @Override
-            public TableCell call(final TableColumn<Card, String> param) {
-                final TableCell<Card, String> cell = new TableCell<>() {
+            public TableCell call(final TableColumn<CardOrItem, String> param) {
+                final TableCell<CardOrItem, String> cell = new TableCell<>() {
                     final Button btn = new Button("Buy");
 
                     @Override

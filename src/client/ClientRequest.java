@@ -19,10 +19,19 @@ public class ClientRequest {
     private InGameRequest inGameRequest;
     private String winner;
     private String looser;
+    private String customCardJson;
 
     public ClientRequest(String authKey, RequestType type) {
         this.authKey = authKey;
         this.type = type;
+    }
+
+    public void setCustomCardJson(String customCardJson) {
+        this.customCardJson = customCardJson;
+    }
+
+    public String getCustomCardJson() {
+        return customCardJson;
     }
 
     public void setLooser(String looser) {

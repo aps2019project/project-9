@@ -29,6 +29,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class Server extends Application {
@@ -58,6 +59,7 @@ public class Server extends Application {
         setUserBtnAction(button);
         showGameRequests(root);
         setOnLineClientsBtn(root);
+        setCustomCardCreation(root);
         try {
             ServerSocket serverSocket = new ServerSocket(getPort());
             this.serverSocket = serverSocket;
@@ -149,11 +151,13 @@ public class Server extends Application {
             Scene scene = new Scene(root, 400, 400);
             ListView<String> accounts = new ListView<>();
             ArrayList<Account> allAccounts = JsonProcess.getSavedAccounts();
+            Collections.sort(allAccounts);
             for (Account allAccount : allAccounts) {
-                accounts.getItems().add(allAccount.getUserName());
+                accounts.getItems().add(allAccount.getUserName() + " -> wins : " + allAccount.getNumberOfWins()
+                        + " -> looses : " + allAccount.getNumberOfLoose());
             }
             accounts.setOnMouseClicked(mouseEvent1 -> {
-                Account account = Account.findAccount(accounts.getSelectionModel().getSelectedItem());
+                Account account = Account.findAccount(accounts.getSelectionModel().getSelectedItem().split(" ")[0]);
                 try {
                     showInformation(account);
                 } catch (IOException e) {
@@ -165,6 +169,20 @@ public class Server extends Application {
             stage.show();
         });
         return button;
+    }
+
+    private void setCustomCardCreation(Group group) {
+        Button button = new Button("Create Custom Card");
+        button.setLayoutX(10);
+        button.setLayoutY(150);
+        button.setOnMouseClicked(mouseEvent -> {
+            try {
+                new CustomCardMenu().start();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        group.getChildren().add(button);
     }
 
     private void showInformation(Account account) throws IOException {
@@ -232,13 +250,13 @@ public class Server extends Application {
             String card = cards.getSelectionModel().getSelectedItem();
             Card card1 = shop.searchCardByName(card);
             desc.setText(card1.getName() + "\n" + "cost : " + card1.getCost()
-                    + "\nnumbers remaining : " + shop.cardNumbers.get(card1));
+                    + "\nnumbers remaining : " + shop.cardNumbers.get(card1.getName()));
         });
         items.setOnMouseClicked(mouseEvent -> {
             String item = items.getSelectionModel().getSelectedItem();
             Item card1 = shop.searchItemByName(item);
             desc.setText(card1.getName() + "\n" + "cost : " + card1.getCost()
-                    + "\nnumbers remaining : " + shop.itemNumbers.get(card1));
+                    + "\nnumbers remaining : " + shop.itemNumbers.get(card1.getName()));
         });
         for (Card card : shop.getCards()) {
             cards.getItems().add(card.getName());

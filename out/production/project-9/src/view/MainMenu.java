@@ -132,12 +132,10 @@ public class MainMenu {
     }
 
     private void GoToCustomCardMenu(Account loggedAccount) {
-        CustomCardMenu customCardMenu = new CustomCardMenu(loggedAccount);
-        try {
-            customCardMenu.start();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setContentText("This Feature Moved To The Server");
+        alert.show();
     }
 
     public void printError(MainMenuErrorType e) {

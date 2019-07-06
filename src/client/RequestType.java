@@ -41,4 +41,6 @@ public enum RequestType {
     FLAGS,
     IN_GAME_REQUEST,
     MY_USERNAME,
+    LOOSE,
+    ADD_CUSTOM_CARD,
 }

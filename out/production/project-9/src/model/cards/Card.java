@@ -2,6 +2,7 @@ package model.cards;
 
 
 import com.google.gson.annotations.Expose;
+import model.CardOrItem;
 import model.DefaultCards;
 import model.Player;
 import model.buffs.Buff;
@@ -14,7 +15,7 @@ import model.specialPower.SpecialPower;
 
 import java.util.ArrayList;
 
-public class Card {
+public class Card extends CardOrItem {
 
     @Expose
     protected int cost;

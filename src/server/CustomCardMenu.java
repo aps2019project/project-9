@@ -1,5 +1,8 @@
-package view;
+package server;
 
+import client.Client;
+import client.ClientRequest;
+import client.RequestType;
 import data.JsonProcess;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
@@ -25,16 +28,12 @@ import java.util.ArrayList;
 public class CustomCardMenu {
 
     private static int uniqueID = 2000;
-    private Account loggedAccount;
     private Parent parent;
     private ArrayList<Buff> createdBuffs = new ArrayList<>();
     private Stage firstStage;
     private Stage secondStage;
     private Spell specialPower;
 
-    public CustomCardMenu(Account loggedAccount) {
-        this.loggedAccount = loggedAccount;
-    }
 
     public void start() throws IOException {
         Stage stage = new Stage();
@@ -101,7 +100,7 @@ public class CustomCardMenu {
 
     private void setSpecialBtn(Label label) {
         Button button = (Button) parent.lookup("#createSpecialPower");
-        ArrayList<Card> cards = loggedAccount.getCollection().getCards();
+        ArrayList<Card> cards = Shop.getInstance().getCards();
         ArrayList<Spell> spells = new ArrayList<>();
         for (Card card : cards) {
             if (card instanceof Spell)
@@ -145,7 +144,7 @@ public class CustomCardMenu {
                 String desc = ((TextArea) parent.lookup("#desc")).getText();
                 int MP = Integer.parseInt(((TextField) parent.lookup("#MP")).getText());
                 int cost = Integer.parseInt(((TextField) parent.lookup("#cost")).getText());
-                Card result =null;
+                Card result = null;
                 if (cardType.equals("Spell")) {
                     spellTargetType = ((SpellTargetType) ((ChoiceBox) parent.lookup("#target"))
                             .getSelectionModel().getSelectedItem());
@@ -183,8 +182,8 @@ public class CustomCardMenu {
     }
 
     private void saveCard(Card card) {
-        loggedAccount.getCollection().addCard(card);
         Card copy = card.getCustomCopy();
+
         Shop.getInstance().addCard(copy);
         JsonProcess.saveCustomCard(card);
     }

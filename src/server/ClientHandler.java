@@ -236,10 +236,10 @@ public class ClientHandler extends Thread {
                         shop = Shop.getInstance();
                         Item item1 = shop.searchItemByName(name);
                         if (item1 != null)
-                            outputStream.writeUTF(String.valueOf(shop.itemNumbers.get(item1)));
+                            outputStream.writeUTF(String.valueOf(shop.itemNumbers.get(name)));
                         else
                             outputStream.writeUTF(String.
-                                    valueOf(shop.cardNumbers.get(shop.searchCardByName(name))));
+                                    valueOf(shop.cardNumbers.get(name)));
                         break;
                     case SAVE_ACCOUNT:
                         JsonProcess.saveAccount(Account.findAccount(this.userName));
@@ -289,11 +289,23 @@ public class ClientHandler extends Thread {
                     case MY_USERNAME:
                         outputStream.writeUTF(this.userName);
                         break;
+                    case LOOSE:
+                        Account.findAccount(this.userName).loose();
+                        break;
+                    case ADD_CUSTOM_CARD:
+                        addCustomCard(request.getCustomCardJson());
+                        break;
                 }
 
 
             }
         }
+    }
+
+    private void addCustomCard(String json) {
+        Account.findAccount(this.userName).getCollection().addCard(JsonProcess.getGson().fromJson(json, Card.class));
+        Shop.getInstance().addCard(JsonProcess.getGson().fromJson(json, Card.class));
+        JsonProcess.saveCustomCard(JsonProcess.getGson().fromJson(json, Card.class));
     }
 
     private void doGameRequest(InGameRequest request) throws IOException {

@@ -294,6 +294,9 @@ public class Battle {
                 clientRequest.setLoggedInUserName(firstPlayer.getName());
                 clientRequest.setLooser(looser.getName());
                 Client.sendRequest(clientRequest);
+            } else {
+                ClientRequest clientRequest = new ClientRequest(Client.getAuthToken(), RequestType.LOOSE);
+                Client.sendRequest(clientRequest);
             }
         }
         GraphicalInGameView.finished(battleResult);
