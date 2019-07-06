@@ -15,14 +15,12 @@ import view.AccountMenu;
 import view.AccountRequest;
 import view.GraphicalInGameView;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
 
 public class Client extends Application {
@@ -67,9 +65,10 @@ public class Client extends Application {
 
     private static int getPort() {
         try {
-            FileReader reader = new FileReader("src/server/config.txt");
-            int port = reader.read();
-            reader.close();
+            File file = new File("src/server/config.txt");
+            Scanner scanner = new Scanner(file);
+            String str = scanner.next();
+            int port = Integer.parseInt(str.replaceAll("\\D+", ""));
             return port;
         } catch (IOException e) {
             e.printStackTrace();
@@ -197,8 +196,8 @@ public class Client extends Application {
         return inputStream.available() > 0;
     }
 
-    public static String getUserName(){
-        ClientRequest clientRequest = new ClientRequest(authToken,RequestType.MY_USERNAME);
+    public static String getUserName() {
+        ClientRequest clientRequest = new ClientRequest(authToken, RequestType.MY_USERNAME);
         sendRequest(clientRequest);
         return getResponse();
     }

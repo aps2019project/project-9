@@ -1,5 +1,6 @@
 package server;
 
+import client.Client;
 import client.GameRequest;
 import data.JsonProcess;
 import javafx.application.Application;
@@ -21,12 +22,12 @@ import model.enumerations.GameMode;
 import model.items.Item;
 import view.AccountMenu;
 
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class GraphicalServer extends Application {
     static ArrayList<ClientHandler> onlineClients = new ArrayList<>();
@@ -35,6 +36,7 @@ public class GraphicalServer extends Application {
     static ArrayList<GameRequest> gameRequests = new ArrayList<>();
     static MultiPlayerBattle multiPlayerBattle;
     private ServerSocket serverSocket;
+    private static final int DEFAULT_PORT = 8000;
 
     public static void main(String[] args) {
         launch(args);
@@ -55,9 +57,9 @@ public class GraphicalServer extends Application {
         showGameRequests(root);
         setOnLineClientsBtn(root);
         try {
-            ServerSocket serverSocket = new ServerSocket(0);
+            ServerSocket serverSocket = new ServerSocket(getPort());
             this.serverSocket = serverSocket;
-            savePort(serverSocket.getLocalPort());
+            //savePort(serverSocket.getLocalPort());
             label.setText("server is listening on port : " + serverSocket.getLocalPort());
             label.setLayoutX(10);
             Thread thread = serverRefreshThread();
@@ -70,6 +72,19 @@ public class GraphicalServer extends Application {
         primaryStage.setTitle("Server");
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+
+    private int getPort() {
+        try {
+            File file = new File("src/server/config.txt");
+            Scanner scanner = new Scanner(file);
+            String str = scanner.next();
+            int port = Integer.parseInt(str.replaceAll("\\D+",""));
+            return port;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return DEFAULT_PORT;
+        }
     }
 
     private void showGameRequests(Group group) {
