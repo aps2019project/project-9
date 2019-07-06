@@ -17,6 +17,7 @@ public class ClientRequest {
     private int prize;
     private GameRequest gameRequest;
     private InGameRequest inGameRequest;
+    private String winner;
 
     public ClientRequest(String authKey, RequestType type) {
         this.authKey = authKey;
@@ -29,6 +30,14 @@ public class ClientRequest {
 
     public void setInGameRequest(InGameRequest inGameRequest) {
         this.inGameRequest = inGameRequest;
+    }
+
+    public String getWinner() {
+        return winner;
+    }
+
+    public void setWinner(String winner) {
+        this.winner = winner;
     }
 
     public void setGameRequest(GameRequest gameRequest) {

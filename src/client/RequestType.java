@@ -40,4 +40,6 @@ public enum RequestType {
     COLLECTIBLES,
     FLAGS,
     IN_GAME_REQUEST,
+    MY_USERNAME,
+    END_BATTLE,
 }

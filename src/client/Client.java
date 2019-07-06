@@ -196,4 +196,10 @@ public class Client extends Application {
     public static boolean hasInput() throws IOException {
         return inputStream.available() > 0;
     }
+
+    public static String getUserName(){
+        ClientRequest clientRequest = new ClientRequest(authToken,RequestType.MY_USERNAME);
+        sendRequest(clientRequest);
+        return getResponse();
+    }
 }

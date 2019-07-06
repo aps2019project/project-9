@@ -290,7 +290,14 @@ public class ClientHandler extends Thread {
                         InGameRequest inGameRequest = request.getInGameRequest();
                         doGameRequest(inGameRequest);
                         break;
+                    case MY_USERNAME:
+                        outputStream.writeUTF(this.userName);
+                        break;
+                    case END_BATTLE:
+
+                        break;
                 }
+
 
             }
         }

@@ -522,6 +522,11 @@ public class GraphicalInGameView {
             alert.setTitle("No Special Power");
             alert.setContentText("Your Hero Doesn't Have Special Power :(");
             alert.show();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText(errorType.getMessage());
+            alert.show();
         }
     }
 
