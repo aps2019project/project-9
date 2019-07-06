@@ -1,6 +1,5 @@
 package server;
 
-import client.Client;
 import client.ClientRequest;
 import client.GameRequest;
 import client.ShortAccount;
@@ -8,16 +7,12 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import data.DeckAddException;
 import data.JsonProcess;
-import javafx.scene.control.Alert;
 import model.*;
 import model.cards.Card;
 import model.cards.Hero;
 import model.cards.Minion;
 import model.enumerations.CardType;
-import model.enumerations.CollectionErrorType;
-import model.enumerations.GameMode;
 import model.enumerations.ItemName;
-import model.items.Collectible;
 import model.items.Flag;
 import model.items.Item;
 import view.InGameRequest;
@@ -25,7 +20,6 @@ import view.InGameRequest;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -54,9 +48,9 @@ public class ClientHandler extends Thread {
         } catch (IOException e) {
             //e.printStackTrace();
             System.out.println("client disconnected or interrupted , this exception is OK");
-            GraphicalServer.onlineClients.remove(this);
+            Server.onlineClients.remove(this);
             if (userName != null) {
-                GraphicalServer.userNamesLoggedIn.remove(userName);
+                Server.userNamesLoggedIn.remove(userName);
             }
         }
     }
@@ -105,7 +99,7 @@ public class ClientHandler extends Thread {
                     case ACCOUNT_LIST:
                         ArrayList<ShortAccount> userNames = new ArrayList<>();
                         for (Account account1 : Account.getAccounts()) {
-                            if (GraphicalServer.userNamesLoggedIn.contains(account1.getUserName()))
+                            if (Server.userNamesLoggedIn.contains(account1.getUserName()))
                                 userNames.add(new ShortAccount(account1, "online"));
                             else
                                 userNames.add(new ShortAccount(account1, "offline"));
@@ -124,21 +118,21 @@ public class ClientHandler extends Thread {
                         outputStream.writeUTF(toSend);
                         break;
                     case LOGGED_IN:
-                        GraphicalServer.userNamesLoggedIn.add(request.getLoggedInUserName());
+                        Server.userNamesLoggedIn.add(request.getLoggedInUserName());
                         this.userName = request.getLoggedInUserName();
                         break;
                     case GET_CHAT:
-                        outputStream.writeUTF(new Gson().toJson(GraphicalServer.globalChat,
+                        outputStream.writeUTF(new Gson().toJson(Server.globalChat,
                                 new TypeToken<ArrayList<String>>() {
                                 }.getType()));
                         break;
                     case SEND_MESSAGE:
                         String message = request.getMessage();
                         if (this.userName != null)
-                            GraphicalServer.globalChat.add(this.userName + " : " + message);
+                            Server.globalChat.add(this.userName + " : " + message);
                         break;
                     case ONLINE_PLAYERS:
-                        outputStream.writeUTF(new Gson().toJson(GraphicalServer.userNamesLoggedIn,
+                        outputStream.writeUTF(new Gson().toJson(Server.userNamesLoggedIn,
                                 new TypeToken<ArrayList<String>>() {
                                 }.getType()));
                         break;
@@ -269,6 +263,8 @@ public class ClientHandler extends Thread {
                         account = Account.findAccount(request.getLoggedInUserName());
                         int prize = request.getPrize();
                         account.wins(prize);
+                        String looser = request.getLooser();
+                        Account.findAccount(looser).loose();
                         break;
                     case GAME_REQUEST:
                         gameRequest(request);
@@ -278,7 +274,7 @@ public class ClientHandler extends Thread {
                         break;
                     case BATTLE:
                         outputStream.writeUTF(JsonProcess.getGson()
-                                .toJson(GraphicalServer.multiPlayerBattle, MultiPlayerBattle.class));
+                                .toJson(Server.multiPlayerBattle, MultiPlayerBattle.class));
                         break;
                     case COLLECTIBLES:
                         sendCollectibles();
@@ -307,15 +303,15 @@ public class ClientHandler extends Thread {
     }
 
     private ClientHandler getOpponent() {
-        if (GraphicalServer.multiPlayerBattle.getFirstPlayer().getName().equals(this.userName)) {
-            String name = GraphicalServer.multiPlayerBattle.getSecondPlayer().getName();
-            for (ClientHandler onlineClient : GraphicalServer.onlineClients) {
+        if (Server.multiPlayerBattle.getFirstPlayer().getName().equals(this.userName)) {
+            String name = Server.multiPlayerBattle.getSecondPlayer().getName();
+            for (ClientHandler onlineClient : Server.onlineClients) {
                 if (onlineClient.userName.equals(name))
                     return onlineClient;
             }
         } else {
-            String name = GraphicalServer.multiPlayerBattle.getFirstPlayer().getName();
-            for (ClientHandler onlineClient : GraphicalServer.onlineClients) {
+            String name = Server.multiPlayerBattle.getFirstPlayer().getName();
+            for (ClientHandler onlineClient : Server.onlineClients) {
                 if (onlineClient.userName.equals(name))
                     return onlineClient;
             }
@@ -324,7 +320,7 @@ public class ClientHandler extends Thread {
     }
 
     private void sendFlags() throws IOException {
-        PlayGround playGround = GraphicalServer.multiPlayerBattle.getPlayGround();
+        PlayGround playGround = Server.multiPlayerBattle.getPlayGround();
         ArrayList<Cell> result = new ArrayList<>();
         for (Flag flag : playGround.getFlags()) {
             result.add(flag.getCurrentCell());
@@ -334,7 +330,7 @@ public class ClientHandler extends Thread {
     }
 
     private void sendCollectibles() throws IOException {
-        PlayGround playGround = GraphicalServer.multiPlayerBattle.getPlayGround();
+        PlayGround playGround = Server.multiPlayerBattle.getPlayGround();
         HashMap<ItemName, Cell> result = new HashMap<>();
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 9; j++) {
@@ -350,21 +346,21 @@ public class ClientHandler extends Thread {
 
     private void gameRequest(ClientRequest request) {
         GameRequest gameRequest = request.getGameRequest();
-        GraphicalServer.gameRequests.add(gameRequest);
-        if (GraphicalServer.gameRequests.size() == 2) {
-            if (GraphicalServer.gameRequests.get(0).getGameMode()
-                    == GraphicalServer.gameRequests.get(1).getGameMode()
-                    && GraphicalServer.gameRequests.get(0).getNumberOfFlags()
-                    == GraphicalServer.gameRequests.get(1).getNumberOfFlags()) {
-                GraphicalServer.startGame();
+        Server.gameRequests.add(gameRequest);
+        if (Server.gameRequests.size() == 2) {
+            if (Server.gameRequests.get(0).getGameMode()
+                    == Server.gameRequests.get(1).getGameMode()
+                    && Server.gameRequests.get(0).getNumberOfFlags()
+                    == Server.gameRequests.get(1).getNumberOfFlags()) {
+                Server.startGame();
             }
         }
     }
 
     private void cancellRequest() {
-        for (GameRequest gameRequest : GraphicalServer.gameRequests) {
+        for (GameRequest gameRequest : Server.gameRequests) {
             if (gameRequest.getUserRequested().equals(this.userName)) {
-                GraphicalServer.gameRequests.remove(gameRequest);
+                Server.gameRequests.remove(gameRequest);
                 break;
             }
         }

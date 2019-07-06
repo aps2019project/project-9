@@ -33,6 +33,8 @@ public class Account implements Comparable<Account> {
 
     private int numberOfWins = 0;
 
+    private int numberOfLoose = 0;
+
     public Account(String userName, String passWord) {
         this.userName = userName;
         this.passWord = passWord;
@@ -74,6 +76,14 @@ public class Account implements Comparable<Account> {
         decks.remove(findDeckByName(deckName));
         if (mainDeck.equals(deckName))
             mainDeck = null;
+    }
+
+    public void setNumberOfLoose(int numberOfLoose) {
+        this.numberOfLoose = numberOfLoose;
+    }
+
+    public int getNumberOfLoose() {
+        return numberOfLoose;
     }
 
     public void selectMainDeck(Deck deck) {
@@ -152,6 +162,12 @@ public class Account implements Comparable<Account> {
             deck.removeCard(card);
         }
     }
+
+    public void loose() {
+        numberOfLoose++;
+    }
+
+
 
     public void deleteCardFromDecks(Item item) {
         for (Deck deck : decks) {

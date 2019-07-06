@@ -273,6 +273,7 @@ public class Battle {
                 ClientRequest clientRequest = new ClientRequest(Client.getAuthToken(), RequestType.ACCOUNT_WINS);
                 clientRequest.setPrize(battlePrize);
                 clientRequest.setLoggedInUserName(userName);
+                clientRequest.setLooser(looser.getName());
                 Client.sendRequest(clientRequest);
             }
         } else {
@@ -291,6 +292,7 @@ public class Battle {
                 ClientRequest clientRequest = new ClientRequest(Client.getAuthToken(), RequestType.ACCOUNT_WINS);
                 clientRequest.setPrize(battlePrize);
                 clientRequest.setLoggedInUserName(firstPlayer.getName());
+                clientRequest.setLooser(looser.getName());
                 Client.sendRequest(clientRequest);
             }
         }

@@ -16,6 +16,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import model.BattleResult;
+import model.Deck;
 import model.MultiPlayerBattle;
 import model.cards.Card;
 import model.enumerations.GameMode;
@@ -29,7 +31,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class GraphicalServer extends Application {
+public class Server extends Application {
     static ArrayList<ClientHandler> onlineClients = new ArrayList<>();
     static ArrayList<String> userNamesLoggedIn = new ArrayList<>();
     static ArrayList<String> globalChat = new ArrayList<>();
@@ -59,7 +61,6 @@ public class GraphicalServer extends Application {
         try {
             ServerSocket serverSocket = new ServerSocket(getPort());
             this.serverSocket = serverSocket;
-            //savePort(serverSocket.getLocalPort());
             label.setText("server is listening on port : " + serverSocket.getLocalPort());
             label.setLayoutX(10);
             Thread thread = serverRefreshThread();
@@ -79,7 +80,7 @@ public class GraphicalServer extends Application {
             File file = new File("src/server/config.txt");
             Scanner scanner = new Scanner(file);
             String str = scanner.next();
-            int port = Integer.parseInt(str.replaceAll("\\D+",""));
+            int port = Integer.parseInt(str.replaceAll("\\D+", ""));
             return port;
         } catch (IOException e) {
             e.printStackTrace();
@@ -137,6 +138,7 @@ public class GraphicalServer extends Application {
         group.getChildren().add(button);
     }
 
+
     private Button getAllAccountsBtn() {
         Button button = new Button("Accounts");
         button.setLayoutX(10);
@@ -178,8 +180,17 @@ public class GraphicalServer extends Application {
         text += "account user name : " + account.getUserName();
         text += "\naccount pass word : " + account.getPassWord();
         text += "\nnumber Of Wins : " + account.getNumberOfWins();
+        text += "\nnumber Of Loose : " + account.getNumberOfLoose();
         text += "\nmoney : " + account.getMoney();
-        text += "\nall decks : " + account.getDecks();
+        text += "\nGames Done : ";
+        for (BattleResult battleResult : account.getBattleResults()) {
+            text += "\n" + battleResult.toString();
+        }
+        text += "\nmain deck : " + account.getMainDeck().getName();
+        text += "\nall decks : ";
+        for (Deck deck : account.getDecks()) {
+            text += "\n" + deck.getName();
+        }
         ((TextArea) parent.lookup("#desc")).setText(text);
         stage.setTitle("Account Information");
         stage.setScene(scene);

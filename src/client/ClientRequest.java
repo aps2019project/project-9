@@ -18,10 +18,19 @@ public class ClientRequest {
     private GameRequest gameRequest;
     private InGameRequest inGameRequest;
     private String winner;
+    private String looser;
 
     public ClientRequest(String authKey, RequestType type) {
         this.authKey = authKey;
         this.type = type;
+    }
+
+    public void setLooser(String looser) {
+        this.looser = looser;
+    }
+
+    public String getLooser() {
+        return looser;
     }
 
     public InGameRequest getInGameRequest() {

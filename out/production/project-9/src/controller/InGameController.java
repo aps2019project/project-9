@@ -31,58 +31,59 @@ public class InGameController {
     }
 
     public void main(InGameRequest request, String userName, boolean shouldSend) {
-        if (battle.getCurrenPlayer().getName().equals(userName)) {
-            InGameRequestType type = request.getRequestType();
-            // sending request to server
-            if (shouldSend) {
-                if (type == InGameRequestType.MOVE_TO || type == InGameRequestType.ATTACK)
-                    request.setSelectedCard(battle.getCurrenPlayer().getSelectedCard().getBattleID());
-                if (type == InGameRequestType.USE)
-                    request.setSelectedItem(battle.getCurrenPlayer().getSelectedCollectableItem().getItemID());
+        try {
+            if (battle.getCurrenPlayer().getName().equals(userName)) {
+                InGameRequestType type = request.getRequestType();
+                // sending request to server
+                if (shouldSend) {
+                    if (type == InGameRequestType.MOVE_TO || type == InGameRequestType.ATTACK)
+                        request.setSelectedCard(battle.getCurrenPlayer().getSelectedCard().getBattleID());
+                    if (type == InGameRequestType.USE)
+                        request.setSelectedItem(battle.getCurrenPlayer().getSelectedCollectableItem().getItemID());
 
-                ClientRequest clientRequest = new ClientRequest(Client.getAuthToken(), RequestType.IN_GAME_REQUEST);
-                clientRequest.setInGameRequest(request);
-                Client.sendRequest(clientRequest);
-            }
-            if (!shouldSend && (type == InGameRequestType.MOVE_TO || type == InGameRequestType.ATTACK)) {
-                selectCard(request.getSelectedCard());
-            }
-            if (!shouldSend && type == InGameRequestType.USE)
-                selectItem(String.valueOf(request.getSelectedItem()));
-            //
-            switch (type) {
-                case SELECT_ITEM:
-                    selectItem(request.getCollectibleID());
-                    break;
-                case SELECT_CARD:
-                    selectCard(request.getCardID());
-                    break;
-                case EXIT:
-                case USE_SPECIAL_POWER:
-                    useSpecialPower(request.getX(), request.getY());
-                    break;
-                case ENTER_GRAVEYARD:
-                case COMBO_ATTACK:
-                    comboAttack(battle.getCurrenPlayer(), request.getComboCardIds(), request.getOpponentCardID());
-                    break;
-                case END_GAME:
-                case MOVE_TO:
-                    move(battle.getCurrenPlayer(), request.getX(), request.getY());
-                    break;
-                case INSERT:
-                    insert(request.getCardName(), request.getX(), request.getY());
-                    break;
-                case ATTACK:
-                    attack(battle.getCurrenPlayer(), request.getOpponentCardID());
-                    break;
-                case USE:
-                    use(battle.getCurrenPlayer(), request.getX(), request.getY()); // for collectible item
-                    break;
-                case END_TURN:
-                    battle.getCurrenPlayer().endTurn(inGameRequests);
-                    break;
-            }
-            // not important
+                    ClientRequest clientRequest = new ClientRequest(Client.getAuthToken(), RequestType.IN_GAME_REQUEST);
+                    clientRequest.setInGameRequest(request);
+                    Client.sendRequest(clientRequest);
+                }
+                if (!shouldSend && (type == InGameRequestType.MOVE_TO || type == InGameRequestType.ATTACK)) {
+                    selectCard(request.getSelectedCard());
+                }
+                if (!shouldSend && type == InGameRequestType.USE)
+                    selectItem(String.valueOf(request.getSelectedItem()));
+                //
+                switch (type) {
+                    case SELECT_ITEM:
+                        selectItem(request.getCollectibleID());
+                        break;
+                    case SELECT_CARD:
+                        selectCard(request.getCardID());
+                        break;
+                    case EXIT:
+                    case USE_SPECIAL_POWER:
+                        useSpecialPower(request.getX(), request.getY());
+                        break;
+                    case ENTER_GRAVEYARD:
+                    case COMBO_ATTACK:
+                        comboAttack(battle.getCurrenPlayer(), request.getComboCardIds(), request.getOpponentCardID());
+                        break;
+                    case END_GAME:
+                    case MOVE_TO:
+                        move(battle.getCurrenPlayer(), request.getX(), request.getY());
+                        break;
+                    case INSERT:
+                        insert(request.getCardName(), request.getX(), request.getY());
+                        break;
+                    case ATTACK:
+                        attack(battle.getCurrenPlayer(), request.getOpponentCardID());
+                        break;
+                    case USE:
+                        use(battle.getCurrenPlayer(), request.getX(), request.getY()); // for collectible item
+                        break;
+                    case END_TURN:
+                        battle.getCurrenPlayer().endTurn(inGameRequests);
+                        break;
+                }
+                // not important
             /*if (request.getType() == InGameRequestType.ATTACK) {
                 Card selectedCard = battle.getCurrenPlayer().getSelectedCard();
                 inGameRequests.add(new InGameRequest("select " + selectedCard.getBattleID()));
@@ -94,9 +95,13 @@ public class InGameController {
                 inGameRequests.add(new InGameRequest("select item " + item.getItemID()));
             }
             inGameRequests.add(request);*/
-            //
-        } else {
-            GraphicalInGameView.showError(InGameErrorType.NOT_YOUR_TURN);
+                //
+            } else {
+                GraphicalInGameView.showError(InGameErrorType.NOT_YOUR_TURN);
+            }
+        } catch (Exception e) {
+            //TODO
+            e.printStackTrace();
         }
     }
 
