@@ -1,10 +1,8 @@
 package server;
 
-import client.Client;
 import client.GameRequest;
 import data.JsonProcess;
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Parent;
@@ -14,7 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import model.BattleResult;
 import model.Deck;
@@ -22,7 +20,6 @@ import model.MultiPlayerBattle;
 import model.cards.Card;
 import model.enumerations.GameMode;
 import model.items.Item;
-import view.AccountMenu;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -47,34 +44,44 @@ public class Server extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        primaryStage.getIcons().add(new Image("file:src/res/icon.jpg"));
-        Group root = new Group();
-        Scene scene = new Scene(root, 400, 400);
-        Label label = new Label("");
-        Button button = new Button("OnLine Users");
-        Button allAccounts = getAllAccountsBtn();
-        Button shop = getShopBtn();
-        button.setLayoutX(10);
-        button.setLayoutY(30);
-        setUserBtnAction(button);
-        showGameRequests(root);
-        setOnLineClientsBtn(root);
-        setCustomCardCreation(root);
         try {
+            Font font = Font.loadFont(new FileInputStream(new File("src/res/Font/aks.Ttf")), 18);
+            Font smallerFont = Font.loadFont(new FileInputStream(new File("src/res/Font/aks.Ttf")), 14);
+            primaryStage.getIcons().add(new Image("file:src/res/icon.jpg"));
+            Group root = new Group();
+            Scene scene = new Scene(root, 400, 400);
+            scene.getStylesheets().add("CSS/Server.css");
+            Label label = new Label("");
+            Button onLineUsers = new Button("OnLine Users");
+            setOnLineUserButton(onLineUsers, font);
+            Button allAccounts = getAllAccountsBtn(font);
+            Button shop = getShopBtn(font);
+            showGameRequests(root, smallerFont);
+            setOnLineClientsBtn(root, font);
+            setCustomCardCreation(root, smallerFont);
+
             ServerSocket serverSocket = new ServerSocket(getPort());
             this.serverSocket = serverSocket;
+            label.setFont(font);
             label.setText("server is listening on port : " + serverSocket.getLocalPort());
             label.setLayoutX(10);
             Thread thread = serverRefreshThread();
             thread.setDaemon(true);
             thread.start();
+            root.getChildren().addAll(label, onLineUsers, shop, allAccounts);
+            primaryStage.setTitle("Server");
+            primaryStage.setScene(scene);
+            primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        root.getChildren().addAll(label, button, shop, allAccounts);
-        primaryStage.setTitle("Server");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+    }
+
+    private void setOnLineUserButton(Button button, Font font) {
+        button.setFont(font);
+        button.setLayoutX(10);
+        button.setLayoutY(30);
+        setUserBtnAction(button);
     }
 
     private int getPort() {
@@ -82,21 +89,22 @@ public class Server extends Application {
             File file = new File("src/server/config.txt");
             Scanner scanner = new Scanner(file);
             String str = scanner.next();
-            int port = Integer.parseInt(str.replaceAll("\\D+", ""));
-            return port;
+            return Integer.parseInt(str.replaceAll("\\D+", "")); //int Port =
         } catch (IOException e) {
             e.printStackTrace();
             return DEFAULT_PORT;
         }
     }
 
-    private void showGameRequests(Group group) {
+    private void showGameRequests(Group group, Font font) {
         ListView listView = new ListView();
         Button button = new Button("refresh game requests");
+        button.setFont(font);
         button.setLayoutX(200);
         button.setLayoutY(220);
         listView.setLayoutY(60);
         Label label = new Label("game requests");
+        label.setFont(font);
         label.setLayoutX(200);
         label.setLayoutY(30);
         listView.setLayoutX(200);
@@ -121,40 +129,42 @@ public class Server extends Application {
         });
     }
 
-    private void setOnLineClientsBtn(Group group) {
+    private void setOnLineClientsBtn(Group group, Font font) {
         Button button = new Button("Online Clients");
+        button.setFont(font);
         button.setLayoutX(10);
-        button.setLayoutY(120);
+        button.setLayoutY(210);
         button.setOnMouseClicked(mouseEvent -> {
             Stage stage = new Stage();
             Group root = new Group();
             Scene scene = new Scene(root, 400, 400);
+            stage.setScene(scene);
             ListView<String> client = new ListView<>();
             for (ClientHandler onlineClient : onlineClients) {
                 client.getItems().add(onlineClient.getAuthToken());
             }
             root.getChildren().addAll(client);
-            stage.setScene(scene);
             stage.show();
         });
         group.getChildren().add(button);
     }
 
 
-    private Button getAllAccountsBtn() {
+    private Button getAllAccountsBtn(Font font) {
         Button button = new Button("Accounts");
+        button.setFont(font);
         button.setLayoutX(10);
-        button.setLayoutY(60);
+        button.setLayoutY(90);
         button.setOnMouseClicked(mouseEvent -> {
-            Stage stage = new Stage();
             Group root = new Group();
+            Stage stage = new Stage();
             Scene scene = new Scene(root, 400, 400);
             ListView<String> accounts = new ListView<>();
             ArrayList<Account> allAccounts = JsonProcess.getSavedAccounts();
             Collections.sort(allAccounts);
-            for (Account allAccount : allAccounts) {
-                accounts.getItems().add(allAccount.getUserName() + " -> wins : " + allAccount.getNumberOfWins()
-                        + " -> looses : " + allAccount.getNumberOfLoose());
+            for (Account account : allAccounts) {
+                accounts.getItems().add(account.getUserName() + " -> wins : " + account.getNumberOfWins()
+                        + " -> looses : " + account.getNumberOfLoose());
             }
             accounts.setOnMouseClicked(mouseEvent1 -> {
                 Account account = Account.findAccount(accounts.getSelectionModel().getSelectedItem().split(" ")[0]);
@@ -171,10 +181,11 @@ public class Server extends Application {
         return button;
     }
 
-    private void setCustomCardCreation(Group group) {
+    private void setCustomCardCreation(Group group, Font font) {
         Button button = new Button("Create Custom Card");
+        button.setFont(font);
         button.setLayoutX(10);
-        button.setLayoutY(150);
+        button.setLayoutY(270);
         button.setOnMouseClicked(mouseEvent -> {
             try {
                 new CustomCardMenu().start();
@@ -215,19 +226,20 @@ public class Server extends Application {
         stage.show();
     }
 
-    private Button getShopBtn() {
+    private Button getShopBtn(Font font) {
         Button button = new Button("Show Shop");
+        button.setFont(font);
         button.setLayoutX(10);
-        button.setLayoutY(90);
+        button.setLayoutY(150);
         button.setOnMouseClicked(mouseEvent -> {
             try {
                 Stage stage = new Stage();
                 FXMLLoader fxmlLoader = new FXMLLoader(new URL("file:src/res/FXML/serverShop.fxml"));
                 Parent parent = fxmlLoader.load();
-                Group group = new Group();
-                group.getChildren().addAll(parent);
-                Scene scene = new Scene(group);
+                Scene scene = new Scene(parent);
                 Button refresh = ((Button) parent.lookup("#refresh"));
+                refresh.getStylesheets().add("CSS/Server.css");
+                refresh.setFont(font);
                 refresh.setOnMouseClicked(mouseEvent1 -> refreshShop(parent));
                 stage.setScene(scene);
                 stage.setTitle("Server Shop");

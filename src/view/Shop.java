@@ -30,18 +30,18 @@ import java.util.ArrayList;
 
 import static model.enumerations.ShopErrorType.BOUGHT_SUCCESSFUL;
 
-public class ShopMenu {
+public class Shop {
 
     private boolean isShowShop = true;
-    private static ShopMenu instance = new ShopMenu();
+    private static Shop instance = new Shop();
     private ShopController controller;
     private Parent parent;
     private String account;
 
-    private ShopMenu() {
+    private Shop() {
     }
 
-    public static ShopMenu getInstance() {
+    public static Shop getInstance() {
         return instance;
     }
 
@@ -66,7 +66,7 @@ public class ShopMenu {
 
             Scene scene = new Scene(parent, 1003, 562);
             stage.setScene(scene);
-            scene.getStylesheets().add("src/res/CSS/shopTable.css");
+            scene.getStylesheets().add("CSS/shopButton.css");
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
