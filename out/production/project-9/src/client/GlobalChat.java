@@ -5,7 +5,6 @@ import client.ClientRequest;
 import client.RequestType;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.sun.webkit.ThemeClient;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -31,8 +30,7 @@ public class GlobalChat {
         Thread thread = getChatRefreshThread(chat);
         thread.setDaemon(true);
         thread.start();
-        //scene.setOnMouseExited(mouseEvent -> thread.interrupt());
-        stage.setOnCloseRequest(m -> thread.interrupt());
+        stage.setOnCloseRequest(windowEvent -> thread.interrupt());
         stage.setTitle("Global Chat");
         stage.setScene(scene);
         stage.show();
@@ -57,7 +55,7 @@ public class GlobalChat {
                 try {
                     Thread.sleep(200);
                 } catch (InterruptedException e) {
-                    //e.printStackTrace();
+                    break;
                 }
                 Platform.runLater(() -> {
                     ClientRequest clientRequest = new ClientRequest(Client.getAuthToken(), RequestType.GET_CHAT);

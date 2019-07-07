@@ -249,7 +249,6 @@
                   <Image url="@../inGameResource/sideMenu.png" />
                </image>
             </ImageView>
-            <Label text="Label" />
             <Label fx:id="turnLabel" layoutX="405.0" layoutY="98.0" textFill="WHITE" />
       </children>
     </AnchorPane>

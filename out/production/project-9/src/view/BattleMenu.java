@@ -1,9 +1,6 @@
 package view;
 
-import client.Client;
-import client.ClientRequest;
-import client.GameRequest;
-import client.RequestType;
+import client.*;
 import controller.BattleMenuController;
 import controller.MainMenuController;
 import javafx.event.EventHandler;
@@ -42,15 +39,27 @@ public class BattleMenu {
     public void start(Stage stage) {
         try {
             FXMLLoader loader = new FXMLLoader(new URL("file:src\\res\\FXML\\BattleMenu.fxml"));
+            Group root = new Group();
             Parent parent = loader.load();
             setButttonsEventBattle(parent, stage);
-            Scene scene = new Scene(parent, 1003, 562);
+            root.getChildren().add(parent);
+            Scene scene = new Scene(root, 1003, 562);
             stage.setScene(scene);
-
+            setGlobalChatBtn(root);
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void setGlobalChatBtn(Group group) {
+        Button button = new Button("Global Chat");
+        button.setLayoutX(20);
+        button.setLayoutY(20);
+        button.setOnMouseClicked(mouseEvent -> {
+            GlobalChat.showChat();
+        });
+        group.getChildren().add(button);
     }
 
     private void setButttonsEventBattle(Parent parent, Stage stage) {
@@ -229,17 +238,21 @@ public class BattleMenu {
         }
     }
 
-    private void waitForOpponent(Stage previous) {
+    public void waitForOpponent(Stage previous) {
         Stage stage = new Stage();
         Group root = new Group();
-        Scene scene = new Scene(root, 300, 300);
+        Scene scene = new Scene(root, 200, 200);
         ImageView imageView = new ImageView(new Image("file:src/res/AccountMenuImages/loading.gif"));
-        imageView.setLayoutX(20);
-        imageView.setLayoutY(50);
+        imageView.setFitHeight(60);
+        imageView.setFitWidth(60);
+        imageView.setLayoutX(10);
+        imageView.setLayoutY(10);
         Label label = new Label("waiting for opponent ...");
-        label.setLayoutX(40);
-        label.setLayoutY(50);
+        label.setLayoutX(10);
+        label.setLayoutY(60);
         Button cancel = new Button("cancel");
+        cancel.setLayoutX(10);
+        cancel.setLayoutY(90);
         Thread waitingThread = Client.getWaitingThread(previous, stage, logInAccount.getUserName());
         thread = waitingThread;
         waitingThread.setDaemon(true);
