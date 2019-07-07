@@ -37,10 +37,28 @@ public class InGameRequest {
     private ArrayList<String> comboCardIds; // for combo attack
     private String command;
     private InGameRequestType requestType;
+    private String selectedCard; // battle id
+    private int selectedItem; // item id
 
     public InGameRequest(String command) {
         this.command = command;
         requestType = this.getType();
+    }
+
+    public void setSelectedCard(String selectedCard) {
+        this.selectedCard = selectedCard;
+    }
+
+    public String getSelectedCard() {
+        return selectedCard;
+    }
+
+    public void setSelectedItem(int selectedItem) {
+        this.selectedItem = selectedItem;
+    }
+
+    public int getSelectedItem() {
+        return selectedItem;
     }
 
     public InGameRequestType getRequestType() {

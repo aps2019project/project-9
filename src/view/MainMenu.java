@@ -1,5 +1,6 @@
 package view;
 
+import client.Client;
 import controller.MainMenuController;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -11,7 +12,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import model.Account;
+import server.Account;
 import data.JsonProcess;
 import model.enumerations.MainMenuErrorType;
 
@@ -100,7 +101,7 @@ public class MainMenu {
             setActionsAndStyles(logOut);
             logOut.setOnMouseClicked(event -> {
                 //saving
-                JsonProcess.saveAccount(controller.getLoggedInAccount());
+                Client.saveAccount();
                 stage.close();
             });
 
@@ -131,12 +132,10 @@ public class MainMenu {
     }
 
     private void GoToCustomCardMenu(Account loggedAccount) {
-        CustomCardMenu customCardMenu = new CustomCardMenu(loggedAccount);
-        try {
-            customCardMenu.start();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setContentText("This Feature Moved To The Server");
+        alert.show();
     }
 
     public void printError(MainMenuErrorType e) {

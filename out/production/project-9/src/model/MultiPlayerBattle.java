@@ -1,14 +1,14 @@
 package model;
 
 import model.enumerations.GameMode;
+import server.Account;
 
 public class MultiPlayerBattle extends Battle {
 
-    public MultiPlayerBattle(Account firstPlayer, String secondPlayerUserName, int mode, int flags) {
-        Account secondAccount = Account.findAccount(secondPlayerUserName);
-        if (mode == 1)
+    public MultiPlayerBattle(Account firstPlayer, Account secondAccount,GameMode mode, int flags) {
+        if (mode == GameMode.HERO_KILL)
             gameMode = GameMode.HERO_KILL;
-        else if (mode == 2)
+        else if (mode == GameMode.ONE_FLAG)
             gameMode = GameMode.ONE_FLAG;
         else {
             gameMode = GameMode.FLAGS;
@@ -26,10 +26,10 @@ public class MultiPlayerBattle extends Battle {
         level = 0;
     }
 
-    public MultiPlayerBattle(SinglePlayerBattle singlePlayerBattle, BattleResult battleResult) {
+    /*public MultiPlayerBattle(SinglePlayerBattle singlePlayerBattle, BattleResult battleResult) {
         this.gameMode = singlePlayerBattle.gameMode;
         turn = 0;
-        //TODO
+
         playGround = new PlayGround(gameMode, singlePlayerBattle.numberOfFlags
                 , false, false);
         whoseTurn = 1;
@@ -40,6 +40,6 @@ public class MultiPlayerBattle extends Battle {
         secondPlayer = singlePlayerBattle.secondPlayer;
         firstPlayer = new Player(battleResult.getFirstPlayerDeck().getCopy(), this, battleResult.getFirstPlayer());
         secondPlayer = new Player(battleResult.getSecondPlayerDeck().getCopy(), this, battleResult.getSecondPlayer());
-    }
+    }*/
 
 }

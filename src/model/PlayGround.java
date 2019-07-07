@@ -53,6 +53,44 @@ public class PlayGround {
             assignCollectibleItem();
     }
 
+    public PlayGround(GameMode mode, HashMap<ItemName, Cell> collectibles, ArrayList<Cell> flags) {
+        if (mode == GameMode.HERO_KILL) {
+            for (int i = 0; i < 5; i++) {
+                for (int j = 0; j < 9; j++) {
+                    cells[i][j] = new Cell(i, j, this, null);
+                }
+            }
+        } else if (mode == GameMode.ONE_FLAG) {
+            for (int i = 0; i < 5; i++) {
+                for (int j = 0; j < 9; j++) {
+                    if (i == 2 && j == 4)
+                        cells[i][j] = new Cell(i, j, this, new Flag(cells[i][j]));
+                    else
+                        cells[i][j] = new Cell(i, j, this, null);
+                }
+            }
+            flag = cells[2][4].getFlag();
+        } else {
+            for (int i = 0; i < 5; i++) {
+                for (int j = 0; j < 9; j++) {
+                    cells[i][j] = new Cell(i, j, this, null);
+                }
+            }
+            for (Cell flag : flags) {
+                Cell cell = getCell(flag.getX(), flag.getY());
+                Flag flag1 = new Flag(cell);
+                cell.setFlag(flag1);
+                this.flags.add(flag1);
+            }
+        }
+        for (ItemName itemName : collectibles.keySet()) {
+            Collectible collectible = ((Collectible) DefaultCards.getItem(itemName));
+            Cell cell = getCell(collectibles.get(itemName).getX(), collectibles.get(itemName).getY());
+            cell.setCollectableItem(collectible);
+            this.collectibles.add(collectible);
+        }
+    }
+
     private void assignCollectibleItem() {
         int[] col = new int[]{3, 4, 5};
         int[] row = new int[]{0, 1, 2, 3, 4};

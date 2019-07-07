@@ -1,5 +1,9 @@
 package model;
 
+import client.Client;
+import client.ClientRequest;
+import client.RequestType;
+import com.google.gson.Gson;
 import model.buffs.Buff;
 import model.buffs.StunBuff;
 import model.buffs.WeaknessBuff;
@@ -10,6 +14,7 @@ import model.cellaffects.CellAffect;
 import model.enumerations.GameMode;
 import model.enumerations.SpecialPowerActivationTime;
 import model.items.Item;
+import server.Account;
 import view.GraphicalInGameView;
 import view.InGameMethodsAndSource;
 import view.InGameRequest;
@@ -24,7 +29,7 @@ public class Battle {
     protected int firstPlayerMana;
     protected int secondPlayerMana;
     protected int turn;
-    protected PlayGround playGround;
+    protected transient PlayGround playGround;
     protected GameMode gameMode;
     protected int whoseTurn;
     protected Player firstPlayer;
@@ -43,6 +48,8 @@ public class Battle {
 
     public void startBattle() {
         // ..........
+        firstPlayer.setBattle(this);
+        secondPlayer.setBattle(this);
         firstPlayerMana = 2;
         secondPlayerMana = 2;
         initializeOwningPlayerOfCards(firstPlayer);
@@ -55,6 +62,18 @@ public class Battle {
         castUsableItems();
     }
 
+    public void setPlayGround(PlayGround playGround) {
+        this.playGround = playGround;
+    }
+
+    public void setFirstPlayer(Player firstPlayer) {
+        this.firstPlayer = firstPlayer;
+    }
+
+    public void setSecondPlayer(Player secondPlayer) {
+        this.secondPlayer = secondPlayer;
+    }
+
     private void initializeHeroAttributes() {
         firstPlayer.getHero().setCell(playGround.getCell(2, 0));
         secondPlayer.getHero().setCell(playGround.getCell(2, 8));
@@ -64,6 +83,10 @@ public class Battle {
                 + "_" + "1");
         secondPlayer.getHero().setBattleID(secondPlayer.getName() + "_" + secondPlayer.getHero().getName()
                 + "_" + "1");
+        firstPlayer.getMinionsInPlayGround().clear();
+        firstPlayer.getMinionsInPlayGround().add(firstPlayer.getHero());
+        secondPlayer.getMinionsInPlayGround().clear();
+        secondPlayer.getMinionsInPlayGround().add(secondPlayer.getHero());
     }
 
     private void initializeOwningPlayerOfCards(Player player) {
@@ -153,8 +176,8 @@ public class Battle {
         if (firstPlayer.castUsableItem())
             alert += "\nUsable Item " + firstItem.getName() + " from player " + firstPlayer.getName() + " casted.";
         if (secondPlayer.castUsableItem())
-            alert +="\nUsable Item " + secondItem.getName() + " from player " + secondPlayer.getName() + " casted.";
-        InGameMethodsAndSource.showAlertAtTheBeginning(title,alert);
+            alert += "\nUsable Item " + secondItem.getName() + " from player " + secondPlayer.getName() + " casted.";
+        //TODO for usable InGameMethodsAndSource.showAlertAtTheBeginning(title, alert);
     }
 
     private void handleCanMoveCanAttack(Player player) {
@@ -229,26 +252,52 @@ public class Battle {
         }
     }
 
+    private void sendBattleResultClientRequest(String name, BattleResult battleResult) {
+        ClientRequest clientRequest = new ClientRequest(Client.getAuthToken(), RequestType.ADD_BATTLE_RESULT);
+        clientRequest.setBattleResultJson(new Gson().toJson(battleResult, BattleResult.class));
+        clientRequest.setLoggedInUserName(name);
+        Client.sendRequest(clientRequest);
+    }
+
     public void endBattle(Player winner) {
         Player looser = (winner.equals(firstPlayer)) ? secondPlayer : firstPlayer;
         LocalDateTime l = LocalDateTime.now();
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
         String str = l.format(myFormatObj);
         checked = true;
-        BattleResult battleResult = new BattleResult(winner, battlePrize, str, looser.getName(),this);
-        if (Account.findAccount(firstPlayer.getName()) != null) {
-            Account.findAccount(firstPlayer.getName()).addBattleResult(battleResult);
-        }
-        battleResult = new BattleResult(winner, battlePrize, str, looser.getName(),this);
-        if (Account.findAccount(secondPlayer.getName()) != null) {
-            Account.findAccount(secondPlayer.getName()).addBattleResult(battleResult);
-        }
-        InGameView view = InGameView.getInstance();
-        view.endGameOutput(battleResult);
-        if (firstPlayer.equals(winner)) {
-            Account.findAccount(firstPlayer.getName()).wins();
-        } else if (!(this instanceof SinglePlayerBattle)) {
-            Account.findAccount(secondPlayer.getName()).wins();
+        BattleResult battleResult = new BattleResult(winner, battlePrize, str, looser.getName(), this);
+        if (this instanceof MultiPlayerBattle) {
+            String userName = Client.getUserName();
+            sendBattleResultClientRequest(userName, battleResult);
+            if (userName.equals(winner.getName())) {
+                ClientRequest clientRequest = new ClientRequest(Client.getAuthToken(), RequestType.ACCOUNT_WINS);
+                clientRequest.setPrize(battlePrize);
+                clientRequest.setLoggedInUserName(userName);
+                clientRequest.setLooser(looser.getName());
+                Client.sendRequest(clientRequest);
+            }
+        } else {
+            //
+            if (Client.getAccount(firstPlayer.getName()) != null) {
+                sendBattleResultClientRequest(firstPlayer.getName(), battleResult);
+                //Account.findAccount(firstPlayer.getName()).addBattleResult(battleResult);
+            }
+            battleResult = new BattleResult(winner, battlePrize, str, looser.getName(), this);
+            if (Client.getAccount(secondPlayer.getName()) != null) {
+                sendBattleResultClientRequest(secondPlayer.getName(), battleResult);
+            }
+            InGameView view = InGameView.getInstance();
+            view.endGameOutput(battleResult);
+            if (firstPlayer.equals(winner)) {
+                ClientRequest clientRequest = new ClientRequest(Client.getAuthToken(), RequestType.ACCOUNT_WINS);
+                clientRequest.setPrize(battlePrize);
+                clientRequest.setLoggedInUserName(firstPlayer.getName());
+                clientRequest.setLooser(looser.getName());
+                Client.sendRequest(clientRequest);
+            } else {
+                ClientRequest clientRequest = new ClientRequest(Client.getAuthToken(), RequestType.LOOSE);
+                Client.sendRequest(clientRequest);
+            }
         }
         GraphicalInGameView.finished(battleResult);
     }

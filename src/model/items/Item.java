@@ -1,11 +1,12 @@
 package model.items;
 
 import com.google.gson.annotations.Expose;
+import model.CardOrItem;
 import model.enumerations.ItemName;
 
 import java.util.ArrayList;
 
-public class Item {
+public class Item extends CardOrItem {
     private static ArrayList<Item> items = new ArrayList<>();
     @Expose
     protected int cost;

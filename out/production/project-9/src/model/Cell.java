@@ -35,11 +35,13 @@ public class Cell {
     private int y;
     private transient Minion minionOnIt;
     private transient ArrayList<CellAffect> cellAffects = new ArrayList<>();
-
     private transient PlayGround playGround;
     private transient Item collectableItem;
-
     private transient Flag flag = null; // if it had flag this wouldn't be null
+
+    public void setPlayGround(PlayGround playGround) {
+        this.playGround = playGround;
+    }
 
     public Minion getMinionOnIt() {
         return minionOnIt;

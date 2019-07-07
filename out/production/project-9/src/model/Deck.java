@@ -71,7 +71,6 @@ public class Deck {
 
     public Deck(String name) {
         this.name = name;
-        //TODO for debug
         if (name.equals("debugging")) {
             hero = DefaultCards.getHero(HeroName.SIMORGH);
             cards.add(DefaultCards.getMinion(MinionName.FARS_KAMANDAR));

@@ -1,6 +1,12 @@
 package view;
 
+import client.Client;
+import client.ClientRequest;
+import client.RequestType;
+import client.ShortAccount;
+import com.google.gson.reflect.TypeToken;
 import controller.AccountController;
+import data.JsonProcess;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,13 +28,14 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.util.Pair;
-import model.Account;
+import server.Account;
 import model.BattleResult;
 import model.enumerations.AccountErrorType;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Optional;
 
 public class AccountMenu {
@@ -68,8 +75,8 @@ public class AccountMenu {
         loading.setFitHeight(50);
         loading.setX(50);
         loading.setY(462);
-        Text text = new Text("Click Any Where To Enter The Game ...");
-        text.setFont(Font.loadFont("file:src/res/inGameResource/font1.ttf", 14));
+        Text text = new Text("Connected To Server , Click Any Where To Enter The Game ...");
+        text.setFont(Font.loadFont("file:src/res/inGameResource/font1.ttf", 10));
         text.setY(490);
         text.setX(110);
         Group group = new Group(imageView);
@@ -252,11 +259,11 @@ public class AccountMenu {
 
     private Button setLeaderBoardButton() {
         try {
-            ImageView loginImageview = new ImageView(
+            ImageView loginImageView = new ImageView(
                     new Image(new FileInputStream("src/res/AccountMenuImages/sharp-shuriken.png")));
-            loginImageview.setFitWidth(100);
-            loginImageview.setFitHeight(50);
-            Button button = new Button("show LeaderBoard", loginImageview);
+            loginImageView.setFitWidth(100);
+            loginImageView.setFitHeight(50);
+            Button button = new Button("show LeaderBoard", loginImageView);
             button.setLayoutX(385);
             button.setLayoutY(380);
             button.setStyle("-fx-background-color: #beaf92");
@@ -264,7 +271,7 @@ public class AccountMenu {
             button.setOnMouseClicked(event -> showLeaderBoard());
             return button;
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            // TODO e.printStackTrace();
         }
         return null;
     }
@@ -299,44 +306,87 @@ public class AccountMenu {
         return null;
     }
 
+    private ArrayList<ShortAccount> getAccounts() {
+        ClientRequest clientRequest = new ClientRequest(Client.getAuthToken(), RequestType.ACCOUNT_LIST);
+        Client.sendRequest(clientRequest);
+        String response = Client.getResponse();
+        ArrayList<ShortAccount> accounts = JsonProcess.getGson().fromJson(response
+                , new TypeToken<ArrayList<ShortAccount>>() {
+                }.getType());
+        return accounts;
+    }
+
+    private ArrayList<BattleResult> getBattleResults(Account account) {
+        ClientRequest clientRequest = new ClientRequest(Client.getAuthToken(), RequestType.BATTLE_RESULT_LIST);
+        AccountRequest request = new AccountRequest();
+        request.setUserName(account.getUserName());
+        clientRequest.setAccountRequest(request);
+        Client.sendRequest(clientRequest);
+        String response = Client.getResponse();
+        ArrayList<BattleResult> battleResults = JsonProcess.getGson().fromJson(response,
+                new TypeToken<ArrayList<BattleResult>>() {
+                }.getType());
+        return battleResults;
+    }
+
+    private Account getAccount(ShortAccount account) {
+        String userName = account.getUserName();
+        ClientRequest clientRequest = new ClientRequest(Client.getAuthToken(), RequestType.FIND_ACCOUNT);
+        AccountRequest accountRequest = new AccountRequest();
+        accountRequest.setUserName(userName);
+        clientRequest.setAccountRequest(accountRequest);
+        Client.sendRequest(clientRequest);
+        String response = Client.getResponse();
+        return JsonProcess.getGson().fromJson(response, Account.class);
+    }
+
     private void showLeaderBoard() {
         Stage stage = new Stage();
         stage.getIcons().add(new Image("src/res/icon.jpg"));
         stage.setTitle("LeaderBoard");
-        TableView<Account> table = new TableView<>();
-        final ObservableList<Account> data = FXCollections.observableArrayList(Account.getAccounts());
+        TableView<ShortAccount> table = new TableView<>();
+        final ObservableList<ShortAccount> data = FXCollections.observableArrayList(getAccounts());
         table.setEditable(true);
 
         TableColumn firstNameCol = new TableColumn("User Name");
         firstNameCol.setMinWidth(100);
-        firstNameCol.setCellValueFactory(new PropertyValueFactory<Account, String>("userName"));
+        firstNameCol.setCellValueFactory(new PropertyValueFactory<ShortAccount, String>("userName"));
 
         TableColumn lastNameCol = new TableColumn("Wins");
         lastNameCol.setMinWidth(100);
-        lastNameCol.setCellValueFactory(new PropertyValueFactory<Account, Integer>("numberOfWins"));
+        lastNameCol.setCellValueFactory(new PropertyValueFactory<ShortAccount, Integer>("numberOfWins"));
+
+        TableColumn isOnline = new TableColumn("Status");
+        isOnline.setMinWidth(50);
+        isOnline.setCellValueFactory(new PropertyValueFactory<ShortAccount, String>("isOnline"));
 
         table.setItems(data);
-        table.getColumns().addAll(firstNameCol, lastNameCol);
+        table.getColumns().addAll(firstNameCol, lastNameCol, isOnline);
 
         table.setOnMouseClicked(mouseEvent -> {
-            Account account = table.getSelectionModel().getSelectedItem();
+            ClientRequest clientRequest = new ClientRequest(Client.getAuthToken(), RequestType.FIND_ACCOUNT);
+            AccountRequest accountRequest = new AccountRequest();
+            accountRequest.setUserName(table.getSelectionModel().getSelectedItem().getUserName());
+            clientRequest.setAccountRequest(accountRequest);
+            Client.sendRequest(clientRequest);
+            Account account = JsonProcess.getGson().fromJson(Client.getResponse(), Account.class);
             Stage secondStage = new Stage();
             secondStage.setTitle(account.getUserName());
             Group root = new Group();
             Label label = new Label("Games Done :");
             root.getChildren().add(label);
             ListView<String> listView = new ListView<>();
-            for (BattleResult battleResult : account.getBattleResults()) {
+            for (BattleResult battleResult : getBattleResults(account)) {
                 listView.getItems().add(battleResult.toString());
             }
             //TODO for replay show
-            listView.setOnMouseClicked(mouseEvent1 -> {
+            /*listView.setOnMouseClicked(mouseEvent1 -> {
                 BattleResult battleResult = account.getBattleResults()
                         .get(listView.getSelectionModel().getSelectedIndex());
                 //
                 //show replay
                 //
-            });
+            });*/
             listView.setLayoutY(20);
             listView.setPrefSize(400, 180);
             root.getChildren().add(listView);

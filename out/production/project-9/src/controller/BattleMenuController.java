@@ -1,7 +1,7 @@
 package controller;
 
 import javafx.stage.Stage;
-import model.Account;
+import server.Account;
 import model.Deck;
 import model.SinglePlayerBattle;
 import view.BattleMenu;
@@ -25,7 +25,7 @@ public class BattleMenuController {
         SinglePlayerBattle singlePlayerBattle = new SinglePlayerBattle(level, loggedInAccount);
         singlePlayerBattle.startBattle();
         try {
-            new GraphicalInGameView().showGame(stage, singlePlayerBattle, loggedInAccount);
+            new GraphicalInGameView().showGame(stage, singlePlayerBattle,loggedInAccount.getUserName());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -43,9 +43,13 @@ public class BattleMenuController {
                 , numberOfFlags);
         singlePlayerBattle.startBattle();
         try {
-            new GraphicalInGameView().showGame(stage, singlePlayerBattle, loggedInAccount);
+            new GraphicalInGameView().showGame(stage, singlePlayerBattle,loggedInAccount.getUserName());
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void startMultiPlayerBattle(){
+
     }
 }

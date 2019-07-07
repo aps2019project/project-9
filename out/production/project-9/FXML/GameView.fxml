@@ -172,7 +172,7 @@
                         <Image url="@../inGameResource/speech_portrait_rook.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="113.0" layoutY="1.0" text="YOUR OPPONENT">
+                  <Label fx:id="second" layoutX="113.0" layoutY="1.0" text="YOU">
                      <font>
                         <Font name="System Bold Italic" size="18.0" />
                      </font>
@@ -195,7 +195,7 @@
                         <Image url="@../inGameResource/speech_portrait_lyonarthird.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="82.0" layoutY="4.0" text="YOU">
+                  <Label fx:id="first" layoutX="82.0" layoutY="4.0" text="YOU">
                      <font>
                         <Font name="System Bold Italic" size="18.0" />
                      </font>
@@ -249,6 +249,8 @@
                   <Image url="@../inGameResource/sideMenu.png" />
                </image>
             </ImageView>
+            <Label text="Label" />
+            <Label fx:id="turnLabel" layoutX="405.0" layoutY="98.0" textFill="WHITE" />
       </children>
     </AnchorPane>
   </children>

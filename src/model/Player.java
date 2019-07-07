@@ -8,8 +8,8 @@ import model.cards.Spell;
 import model.cellaffects.CellAffect;
 import model.enumerations.*;
 import model.items.*;
+import server.Account;
 import view.GraphicalInGameView;
-import view.InGameMethodsAndSource;
 import view.InGameRequest;
 
 import java.util.ArrayList;
@@ -21,10 +21,10 @@ public class Player {
     private int maxMana;
     private Deck deck;
     private Hand hand;
-    private Usable usableItem;
+    private Item usableItem;
     private ArrayList<Collectible> collectedItems = new ArrayList<>();
     private Hero hero;
-    private Battle battle;
+    private transient Battle battle;
     private ArrayList<Flag> flagsAcheived = new ArrayList<>();
     private Flag modeTwoFlag;
     private String name;
@@ -102,6 +102,10 @@ public class Player {
         hand = new Hand(deck, false);
     }
 
+    public void setHero(Hero hero) {
+        this.hero = hero;
+    }
+
     public void setDeck(Deck deck) {
         this.deck = deck;
     }
@@ -152,7 +156,7 @@ public class Player {
         if (usableItem != null) {
             if (usableItem instanceof OnSpawnUsableItem || usableItem instanceof OnDeathUsableItem)
                 return false;
-            usableItem.castItem(this);
+            ((Usable) usableItem).castItem(this);
             return true;
         } else
             return false;
@@ -345,7 +349,6 @@ public class Player {
                     Cell target = targetAiMove(minion);
                     if (target != null) {
                         Cell first = minion.getCell();
-                        //TODO
                         inGameRequests.add(new InGameRequest("select " + minion.getBattleID()));
                         inGameRequests.add(new InGameRequest("move to " +
                                 target.getX() + " " + target.getY()));
@@ -391,7 +394,7 @@ public class Player {
             ArrayList<Cell> possibleCells = GraphicalInGameView.getPossibleCells(card);
             if (possibleCells.size() > 0) {
                 if (mana >= card.getMP()) {
-                    //TODO
+
                     inGameRequests.add(new InGameRequest("insert " + card.getName()
                             + " in " + possibleCells.get(0).getX() + " " + possibleCells.get(0).getY()));
                     //
@@ -416,7 +419,7 @@ public class Player {
                     } else {
                         target = possibleCellsForAttack.get(0);
                     }
-                    //TODO
+
                     inGameRequests.add(new InGameRequest("select " + minion.getBattleID()));
                     inGameRequests.add(new InGameRequest("attack "
                             + target.getMinionOnIt().getBattleID()));
@@ -546,7 +549,7 @@ public class Player {
     }
 
     public Usable getUsableItem() {
-        return usableItem;
+        return ((Usable) usableItem);
     }
 
     public void setOnAttackItemForAllPlayers(OnAttackSpellUsable item) {

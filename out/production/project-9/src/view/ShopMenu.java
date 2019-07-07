@@ -1,36 +1,32 @@
 package view;
 
+import client.Client;
+import client.ClientRequest;
+import client.RequestType;
+import com.google.gson.reflect.TypeToken;
 import controller.ShopController;
+import data.JsonProcess;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import model.CardOrItem;
 import model.Collection;
-import model.Deck;
-import model.Shop;
 import model.cards.Card;
 import model.enumerations.ShopErrorType;
 import model.items.Item;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 import static model.enumerations.ShopErrorType.BOUGHT_SUCCESSFUL;
 
@@ -40,6 +36,7 @@ public class ShopMenu {
     private static ShopMenu instance = new ShopMenu();
     private ShopController controller;
     private Parent parent;
+    private String account;
 
     private ShopMenu() {
     }
@@ -48,7 +45,8 @@ public class ShopMenu {
         return instance;
     }
 
-    public void start(Stage stage, Collection collection, ShopController controller) {
+    public void start(Stage stage, String userName, ShopController controller) {
+        this.account = userName;
         try {
             this.controller = controller;
             FXMLLoader loader = new FXMLLoader(new URL("file:src\\res\\FXML\\Shop.fxml"));
@@ -57,14 +55,14 @@ public class ShopMenu {
             TableView cardTable = (TableView) parent.lookup("#cardTable");
             TableView itemTable = (TableView) parent.lookup("#itemTable");
             setCardTableColumns(cardTable);
-            setitemTableColumns(itemTable);
+            setItemTableColumns(itemTable);
 
             setSearchButtonAndTextField(parent, cardTable, itemTable);
             setHelpButton();
             setExitButton(stage);
             setMoney(parent);
             setShowShopButton(cardTable, itemTable);
-            setShowCollectionButton(cardTable, itemTable, collection);
+            setShowCollectionButton(cardTable, itemTable);
 
             Scene scene = new Scene(parent, 1003, 562);
             stage.setScene(scene);
@@ -77,7 +75,7 @@ public class ShopMenu {
 
     private void setMoney(Parent root) {
         Text textField = (Text) root.lookup("#money");
-        textField.setText(Integer.toString(controller.getLoggedInAccount().getMoney()));
+        textField.setText(Integer.toString(Client.getAccount(controller.getLoggedInAccount()).getMoney()));
     }
 
     private void setShowShopButton(TableView cardTable, TableView itemTable) {
@@ -90,14 +88,14 @@ public class ShopMenu {
         setActionsForButton(b, true);
     }
 
-    private void setShowCollectionButton(TableView cardTable, TableView itemTable, Collection collection) {
+    private void setShowCollectionButton(TableView cardTable, TableView itemTable) {
         Button showCollection = (Button) parent.lookup("#showCollection");
         showCollection.setOnMouseClicked(mouseEvent -> {
             isShowShop = false;
-            showCollectionTable(cardTable, itemTable, collection);
+            showCollectionTable(cardTable, itemTable, Client.getAccount(account).getCollection());
             setMoney(parent);
         });
-        setActionsForButton(showCollection,true);
+        setActionsForButton(showCollection, true);
     }
 
     private void setHelpButton() {
@@ -107,14 +105,14 @@ public class ShopMenu {
                 "search --> find card/item in shop/collection\n" +
                 "buy --> buy card/item\n" +
                 "sell --> buy card/item\n").showAndWait());
-        setActionsForButton(help,false);
+        setActionsForButton(help, false);
 
     }
 
     private void setExitButton(Stage stage) {
         Button back = (Button) parent.lookup("#back");
         back.setOnMouseClicked(mouseEvent -> stage.close());
-        setActionsForButton(back,false);
+        setActionsForButton(back, false);
     }
 
     private void setSearchButtonAndTextField(Parent parent, TableView cardTable, TableView itemTable) {
@@ -128,7 +126,7 @@ public class ShopMenu {
                 controller.searchCollection(searchTextField.getText(), cardTable, itemTable);
             }
         });
-        setActionsForButton(search,false);
+        setActionsForButton(search, false);
     }
 
     private void showCollectionTable(TableView cardTable, TableView itemTable, Collection collection) {
@@ -189,9 +187,17 @@ public class ShopMenu {
 
     private void showShopTable(TableView cardTable, TableView itemTable) {
         addBuyButton(cardTable, itemTable);
-        ObservableList<Item> item = FXCollections.observableArrayList(Shop.getInstance().getItems());
-        ObservableList<Card> cards = FXCollections.observableArrayList(Shop.getInstance().getCards());
-        cardTable.setItems(cards);
+        Client.sendRequest(new ClientRequest(Client.getAuthToken(), RequestType.SHOP_CARDS));
+        String cardJson = Client.getResponse();
+        Client.sendRequest(new ClientRequest(Client.getAuthToken(), RequestType.SHOP_ITEMS));
+        String itemJson = Client.getResponse();
+        ArrayList<Card> cards = JsonProcess.getGson().fromJson(cardJson, new TypeToken<ArrayList<Card>>() {
+        }.getType());
+        ArrayList<Item> items = JsonProcess.getGson().fromJson(itemJson, new TypeToken<ArrayList<Item>>() {
+        }.getType());
+        ObservableList<Item> item = FXCollections.observableArrayList(items);
+        ObservableList<Card> card = FXCollections.observableArrayList(cards);
+        cardTable.setItems(card);
         itemTable.setItems(item);
     }
 
@@ -217,7 +223,7 @@ public class ShopMenu {
         addBuyButtonToTable(tableView);
     }
 
-    private void setitemTableColumns(TableView tableView) {
+    private void setItemTableColumns(TableView tableView) {
         TableColumn<String, Card> column1 = new TableColumn<>("Name");
         column1.setCellValueFactory(new PropertyValueFactory<>("name"));
 
@@ -267,10 +273,10 @@ public class ShopMenu {
     private void addBuyButtonToTable(TableView table) {
         TableColumn actionCol = new TableColumn("Buy");
         actionCol.setCellValueFactory(new PropertyValueFactory<>(""));
-        Callback<TableColumn<Card, String>, TableCell<Card, String>> cellFactory = new Callback<>() {
+        Callback<TableColumn<CardOrItem, String>, TableCell<CardOrItem, String>> cellFactory = new Callback<>() {
             @Override
-            public TableCell call(final TableColumn<Card, String> param) {
-                final TableCell<Card, String> cell = new TableCell<>() {
+            public TableCell call(final TableColumn<CardOrItem, String> param) {
+                final TableCell<CardOrItem, String> cell = new TableCell<>() {
                     final Button btn = new Button("Buy");
 
                     @Override
@@ -315,7 +321,7 @@ public class ShopMenu {
                 button.setLayoutY(button.getLayoutY() - 15);
                 button.setFont(new Font(34));
             }
-            if (button.getText().equals("Back To Menu")){
+            if (button.getText().equals("Back To Menu")) {
                 button.setText("Back");
             }
             button.setStyle(
@@ -327,7 +333,7 @@ public class ShopMenu {
             button.setLayoutX(x);
             button.setLayoutY(y);
             button.setStyle(s);
-            if (button.getText().equals("Back")){
+            if (button.getText().equals("Back")) {
                 button.setText("Back To Menu");
             }
         });

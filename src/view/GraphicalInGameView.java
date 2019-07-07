@@ -1,11 +1,14 @@
 package view;
 
+import client.Client;
+import client.GlobalChat;
+import com.google.gson.Gson;
 import controller.AccountController;
 import controller.GraveYardController;
 import controller.InGameController;
 import data.JsonProcess;
 import javafx.animation.TranslateTransition;
-import javafx.event.ActionEvent;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point3D;
@@ -22,6 +25,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 import model.*;
 import model.Cell;
@@ -35,13 +39,17 @@ import model.cellaffects.PoisonCellAffect;
 import model.enumerations.InGameErrorType;
 import model.items.Collectible;
 import model.specialPower.ComboSpecialPower;
+import server.Account;
 
+import java.io.DataInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
+
+import static view.InGameMethodsAndSource.handleRequest;
 
 
 public class GraphicalInGameView {
@@ -53,15 +61,15 @@ public class GraphicalInGameView {
     private static boolean isCombo = false;
     private static ArrayList<Minion> comboCards = new ArrayList<>();
     private static Stage stage;
-    private static Account loggedAccount;
+    private static String userName = "";
     private static MediaPlayer backGroundMusic;
     private static int time = 1000;
     private static boolean isReplay;
 
-    public void showGame(Stage stage, Battle battle, Account account) throws IOException {
+    public void showGame(Stage stage, Battle battle, String userName) throws IOException {
         isReplay = false;
         //
-        loggedAccount = account;
+        this.userName = userName;
         AccountMenu.closeMainStage();
         AccountMenu.stopMusic();
         //
@@ -80,8 +88,15 @@ public class GraphicalInGameView {
         setBtns();
         setSideMenu();
         //
-
-
+        //
+        if (battle instanceof MultiPlayerBattle) {
+            multiPlayerActions();
+            BattleMenu.thread.interrupt();
+            Thread thread = getThreadForMultiPlayer();
+            thread.setDaemon(true);
+            thread.start();
+            stage.setOnCloseRequest(windowEvent -> thread.interrupt());
+        }
         //
         setManas(battle.getFirstPlayer());
         setManas(battle.getSecondPlayer());
@@ -92,6 +107,67 @@ public class GraphicalInGameView {
         stage.setTitle("Duelyst");
         stage.setScene(scene);
         stage.show();
+    }
+
+    private Thread getThreadForMultiPlayer() {
+        return new Thread(() -> {
+            while (!Thread.interrupted()) {
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                    break;
+                }
+                Platform.runLater(() -> {
+                    try {
+                        setWhoseTurn();
+                        if (!isMyTurn() && Client.hasInput()) {
+                            String received = Client.getResponse();
+
+                            InGameRequest request = new Gson().fromJson(received, InGameRequest.class);
+                            //
+                            handleRequest(request, inGameController, userName);
+                            //
+                            updatePlayGround(group);
+                            updateHand();
+                            setManas(inGameController.getBattle().getFirstPlayer());
+                            setManas(inGameController.getBattle().getSecondPlayer());
+                            updateSpecialPower();
+                            //
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
+            }
+        });
+    }
+
+
+    private void multiPlayerActions() {
+        String userName = Client.getUserName();
+        if (inGameController.getBattle().getFirstPlayer().getName().equals(userName)) {
+            ((Label) parent.lookup("#second"))
+                    .setText(inGameController.getBattle().getSecondPlayer().getName());
+        } else {
+            ((Label) parent.lookup("#first"))
+                    .setText(inGameController.getBattle().getFirstPlayer().getName());
+        }
+        setWhoseTurn();
+        //
+    }
+
+    private void setWhoseTurn() {
+        Label label = ((Label) parent.lookup("#turnLabel"));
+        if (isMyTurn()) {
+            label.setText("It's Your Turn");
+        } else {
+            label.setText("It's not Your Turn");
+        }
+    }
+
+    private boolean isMyTurn() {
+        return (userName.equals(inGameController.getBattle().getCurrenPlayer().getName()));
     }
 
     public static void setIsReplay(boolean isReplay) {
@@ -246,8 +322,9 @@ public class GraphicalInGameView {
         stage.setOnCloseRequest(windowEvent -> {
             if (!isReplay) {
                 //save changes
-                if (loggedAccount != null)
-                    JsonProcess.saveAccount(loggedAccount);
+                /*if (loggedAccount != null)
+                    Client.saveAccount();*/
+                Client.saveAccount();
             }
             AccountMenu.getInstance().accountMenuShow(new Stage(), new AccountController());
             stage.close();
@@ -297,7 +374,7 @@ public class GraphicalInGameView {
             inGameController.getBattle().getCurrenPlayer()
                     .setSelectedCollectableItem(((Collectible) selectedItem));
             InGameRequest request = new InGameRequest("use 1 1");
-            inGameController.main(request);
+            inGameController.main(request, userName, true);
             inGameController.getBattle().getCurrenPlayer()
                     .setSelectedCollectableItem(null);
             updateCollectibles();
@@ -319,7 +396,7 @@ public class GraphicalInGameView {
             ((Label) parent.lookup("#specialPowerLabel2")).setText("Is Ready");
             ((Pane) parent.lookup("#specialPowerPane")).setOnMouseClicked(mouseEvent -> {
                 InGameRequest request = new InGameRequest("use special power 1 1");
-                inGameController.main(request);
+                inGameController.main(request, userName, true);
                 updatePlayGround(group);
                 setManas(inGameController.getBattle().getCurrenPlayer());
                 updateSpecialPower();
@@ -407,7 +484,7 @@ public class GraphicalInGameView {
                         InGameRequest request = new InGameRequest(
                                 "insert " + db.getString() + " in " + x + " " + y);
 
-                        inGameController.main(request);
+                        inGameController.main(request, userName, true);
                         setMediaViews(MusicAct.INSERT);
                         updateHand();
                         setManas(inGameController.getBattle().getCurrenPlayer());
@@ -423,7 +500,7 @@ public class GraphicalInGameView {
                                 .getCurrenPlayer().getSelectedCard()).getCell();
                         InGameRequest request = new
                                 InGameRequest("move to " + cell.getX() + " " + cell.getY());
-                        inGameController.main(request);
+                        inGameController.main(request, userName, true);
 
                         updatePlayGround(group);
                         if (inGameController.getBattle().getCurrenPlayer().getSelectedCard() == null) {
@@ -449,6 +526,11 @@ public class GraphicalInGameView {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("No Special Power");
             alert.setContentText("Your Hero Doesn't Have Special Power :(");
+            alert.show();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText(errorType.getMessage());
             alert.show();
         }
     }
@@ -518,7 +600,7 @@ public class GraphicalInGameView {
                 } else if (isMarked(pane, true)) {
                     setMediaViews(MusicAct.ATTACK);
                     InGameRequest request = new InGameRequest("attack " + minion.getBattleID());
-                    inGameController.main(request);
+                    inGameController.main(request, userName, true);
                     updatePlayGround(group);
                 } else if (isMarked(pane, false)) {
                     if (isCombo) {
@@ -534,7 +616,7 @@ public class GraphicalInGameView {
         for (Minion comboCard : comboCards) {
             request += " " + comboCard.getBattleID();
         }
-        inGameController.main(new InGameRequest(request));
+        inGameController.main(new InGameRequest(request), userName, true);
         isCombo = false;
         deleteMarkCells(false);
         comboCards = new ArrayList<>();
@@ -892,10 +974,11 @@ public class GraphicalInGameView {
         });
         pane.setOnMouseClicked(mouseEvent -> {
             InGameRequest request = new InGameRequest("end turn");
-            inGameController.main(request);
+            inGameController.main(request, userName, true);
             updatePlayGround(group);
             //
-            doAiAnimations(aiMove);
+            if (inGameController.getBattle() instanceof SinglePlayerBattle)
+                doAiAnimations(aiMove);
             //
             updateHand();
             setManas(inGameController.getBattle().getFirstPlayer());
@@ -957,6 +1040,7 @@ public class GraphicalInGameView {
                     time = 250;
             });
             (newParent.lookup("#resume")).setOnMouseClicked(mouseEvent1 -> newStage.close());
+            ((Button) newParent.lookup("#chat")).setOnMouseClicked(mouseEvent13 -> GlobalChat.showChat());
             graveYard.setOnMouseClicked(mouseEvent12 -> {
                 GraveYardController graveYardController =
                         new GraveYardController(inGameController.getBattle().getCurrenPlayer());

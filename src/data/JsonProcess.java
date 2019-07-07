@@ -2,8 +2,7 @@ package data;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import data.*;
-import model.Account;
+import server.Account;
 import model.Deck;
 import model.buffs.Buff;
 import model.cards.Card;
@@ -28,6 +27,10 @@ public class JsonProcess {
     }
 
     private static Gson gson = gsonBuilder.create();
+
+    public static Gson getGson() {
+        return gson;
+    }
 
     public static void saveAccount(Account account) {
         String userName = account.getUserName();

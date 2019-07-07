@@ -15,7 +15,8 @@ public enum InGameErrorType {
     INVALID_COLLECTIBLE_ID("Invalid ID"),
     HERO_NOT_HAVE_SPELL("Your Hero does not have Special Power"),
     HERO_COOL_DOWN("Your Hero is in Cool Down"),
-    GAME_STARTED("Game Started : ");
+    GAME_STARTED("Game Started : "),
+    NOT_YOUR_TURN("it's not your turn");
     private String message;
     public String getMessage() {
         return message;
