@@ -92,8 +92,7 @@ public class InGameController {
                 GraphicalInGameView.showError(InGameErrorType.NOT_YOUR_TURN);
             }
         } catch (Exception e) {
-            //TODO
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
 
