@@ -1,9 +1,6 @@
 package view;
 
-import client.Client;
-import client.ClientRequest;
-import client.GameRequest;
-import client.RequestType;
+import client.*;
 import controller.BattleMenuController;
 import controller.MainMenuController;
 import javafx.event.EventHandler;
@@ -42,15 +39,27 @@ public class BattleMenu {
     public void start(Stage stage) {
         try {
             FXMLLoader loader = new FXMLLoader(new URL("file:src\\res\\FXML\\BattleMenu.fxml"));
+            Group root = new Group();
             Parent parent = loader.load();
             setButttonsEventBattle(parent, stage);
-            Scene scene = new Scene(parent, 1003, 562);
+            root.getChildren().add(parent);
+            Scene scene = new Scene(root, 1003, 562);
             stage.setScene(scene);
-
+            setGlobalChatBtn(root);
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void setGlobalChatBtn(Group group) {
+        Button button = new Button("Global Chat");
+        button.setLayoutX(20);
+        button.setLayoutY(20);
+        button.setOnMouseClicked(mouseEvent -> {
+            GlobalChat.showChat();
+        });
+        group.getChildren().add(button);
     }
 
     private void setButttonsEventBattle(Parent parent, Stage stage) {

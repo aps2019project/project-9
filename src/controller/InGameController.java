@@ -86,19 +86,6 @@ public class InGameController {
                         battle.getCurrenPlayer().endTurn(inGameRequests);
                         break;
                 }
-                // not important
-            /*if (request.getType() == InGameRequestType.ATTACK) {
-                Card selectedCard = battle.getCurrenPlayer().getSelectedCard();
-                inGameRequests.add(new InGameRequest("select " + selectedCard.getBattleID()));
-            } else if (request.getType() == InGameRequestType.MOVE_TO) {
-                Card selectedCard = battle.getCurrenPlayer().getSelectedCard();
-                inGameRequests.add(new InGameRequest("select " + selectedCard.getBattleID()));
-            } else if (request.getType() == InGameRequestType.USE) {
-                Item item = battle.getCurrenPlayer().getSelectedCollectableItem();
-                inGameRequests.add(new InGameRequest("select item " + item.getItemID()));
-            }
-            inGameRequests.add(request);*/
-                //
             } else {
                 GraphicalInGameView.showError(InGameErrorType.NOT_YOUR_TURN);
             }

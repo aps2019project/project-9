@@ -55,7 +55,6 @@ public class GlobalChat {
                 try {
                     Thread.sleep(200);
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
                     break;
                 }
                 Platform.runLater(() -> {
