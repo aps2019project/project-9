@@ -9,6 +9,7 @@ import controller.InGameController;
 import data.JsonProcess;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point3D;
@@ -64,6 +65,7 @@ public class GraphicalInGameView {
     private static String userName = "";
     private static MediaPlayer backGroundMusic;
     private static int time = 1000;
+    private static int waitingTime = 15000;
     private static boolean isReplay;
 
     public void showGame(Stage stage, Battle battle, String userName) throws IOException {
@@ -199,6 +201,40 @@ public class GraphicalInGameView {
         transition.setFromY(InGameMethodsAndSource.positions.get(fu)[1]);
         transition.play();
         transition.setOnFinished(actionEvent -> group.getChildren().remove(imageView));
+    }
+
+    //for next turn timing
+    static TranslateTransition currentTransition;
+    static ImageView currentImageView;
+
+    //
+    public static void removeTransitionForTiming() {
+        if (currentTransition != null)
+            currentTransition.stop();
+        group.getChildren().remove(currentImageView);
+    }
+
+    public static void nextTurnTimer() {
+        ImageView imageView = new ImageView(new Image("file:src/res/inGameResource/running.gif"));
+        currentImageView = imageView;
+        group.getChildren().add(imageView);
+        TranslateTransition transition = new TranslateTransition(Duration.millis(waitingTime), imageView);
+        currentTransition = transition;
+        transition.setFromX(417);
+        transition.setFromY(500);
+        transition.setToX(185);
+        transition.setToY(500);
+        transition.play();
+        transition.setOnFinished(actionEvent -> {
+            if (inGameController.getBattle().getCurrenPlayer().getName().equals(userName)) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Turn Finished");
+                alert.setContentText("Your Time Finished , Now it's your opponents turn :)");
+                alert.show();
+                group.getChildren().remove(imageView);
+                nextTurnClicked();
+            }
+        });
     }
 
     public static InGameController getInGameController() {
@@ -355,6 +391,8 @@ public class GraphicalInGameView {
             ((Label) parent.lookup("#specialPowerLabel2")).setTextFill(Color.WHITE);
         });
         updateSpecialPower();
+        //TODO waiting time
+        nextTurnTimer();
     }
 
     private static void updateCollectibles() {
@@ -973,7 +1011,8 @@ public class GraphicalInGameView {
             label.setTextFill(Color.web("#2884dd"));
         });
         pane.setOnMouseClicked(mouseEvent -> {
-            InGameRequest request = new InGameRequest("end turn");
+            nextTurnClicked();
+            /*InGameRequest request = new InGameRequest("end turn");
             inGameController.main(request, userName, true);
             updatePlayGround(group);
             //
@@ -983,9 +1022,24 @@ public class GraphicalInGameView {
             updateHand();
             setManas(inGameController.getBattle().getFirstPlayer());
             setManas(inGameController.getBattle().getSecondPlayer());
-            updateSpecialPower();
+            updateSpecialPower();*/
         });
     }
+
+    private static void nextTurnClicked() {
+        InGameRequest request = new InGameRequest("end turn");
+        inGameController.main(request, userName, true);
+        updatePlayGround(group);
+        //
+        if (inGameController.getBattle() instanceof SinglePlayerBattle)
+            doAiAnimations(aiMove);
+        //
+        updateHand();
+        setManas(inGameController.getBattle().getFirstPlayer());
+        setManas(inGameController.getBattle().getSecondPlayer());
+        updateSpecialPower();
+    }
+
 
     private static void setImageRotateForPlayGround(ImageView imageView) {
         imageView.setRotate(-67.4);

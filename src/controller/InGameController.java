@@ -83,6 +83,8 @@ public class InGameController {
                         use(battle.getCurrenPlayer(), request.getX(), request.getY()); // for collectible item
                         break;
                     case END_TURN:
+                        GraphicalInGameView.removeTransitionForTiming();
+                        GraphicalInGameView.nextTurnTimer();
                         battle.getCurrenPlayer().endTurn(inGameRequests);
                         break;
                 }
