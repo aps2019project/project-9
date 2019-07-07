@@ -43,4 +43,5 @@ public enum RequestType {
     MY_USERNAME,
     LOOSE,
     ADD_CUSTOM_CARD,
+    LOGOUT
 }

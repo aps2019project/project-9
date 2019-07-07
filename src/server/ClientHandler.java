@@ -295,6 +295,9 @@ public class ClientHandler extends Thread {
                     case ADD_CUSTOM_CARD:
                         addCustomCard(request.getCustomCardJson());
                         break;
+                    case LOGOUT:
+                        Server.userNamesLoggedIn.remove(this.userName);
+                        break;
                 }
 
 

@@ -1,6 +1,8 @@
 package view;
 
 import client.Client;
+import client.ClientRequest;
+import client.RequestType;
 import controller.MainMenuController;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -101,6 +103,8 @@ public class MainMenu {
             setActionsAndStyles(logOut);
             logOut.setOnMouseClicked(event -> {
                 //saving
+                ClientRequest clientRequest = new ClientRequest(Client.getAuthToken(), RequestType.LOGOUT);
+                Client.sendRequest(clientRequest);
                 Client.saveAccount();
                 stage.close();
             });

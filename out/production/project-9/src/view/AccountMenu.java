@@ -91,6 +91,10 @@ public class AccountMenu {
 
     public void accountMenuShow(Stage last, AccountController account) {
         try {
+            //
+            ClientRequest clientRequest = new ClientRequest(Client.getAuthToken(), RequestType.LOGOUT);
+            Client.sendRequest(clientRequest);
+            //
             Stage stage = new Stage();
             stage.getIcons().add(new Image("file:src/res/icon.jpg"));
             AccountMenu.stage = stage;
