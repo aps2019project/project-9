@@ -70,8 +70,6 @@ public class AccountController {
         clientRequest.setAccountRequest(request);
         Client.sendRequest(clientRequest);
         String response = Client.getResponse();
-        //TODO
-        System.out.println(response);
         if (response.equals("true"))
             return true;
         else {

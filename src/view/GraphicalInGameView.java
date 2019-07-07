@@ -65,7 +65,7 @@ public class GraphicalInGameView {
     private static String userName = "";
     private static MediaPlayer backGroundMusic;
     private static int time = 1000;
-    private static int waitingTime = 15000;
+    private static int waitingTime = 20000;
     private static boolean isReplay;
 
     public void showGame(Stage stage, Battle battle, String userName) throws IOException {
