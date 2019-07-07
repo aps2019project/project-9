@@ -238,17 +238,21 @@ public class BattleMenu {
         }
     }
 
-    private void waitForOpponent(Stage previous) {
+    public void waitForOpponent(Stage previous) {
         Stage stage = new Stage();
         Group root = new Group();
-        Scene scene = new Scene(root, 300, 300);
+        Scene scene = new Scene(root, 200, 200);
         ImageView imageView = new ImageView(new Image("file:src/res/AccountMenuImages/loading.gif"));
-        imageView.setLayoutX(20);
-        imageView.setLayoutY(50);
+        imageView.setFitHeight(60);
+        imageView.setFitWidth(60);
+        imageView.setLayoutX(10);
+        imageView.setLayoutY(10);
         Label label = new Label("waiting for opponent ...");
-        label.setLayoutX(40);
-        label.setLayoutY(50);
+        label.setLayoutX(10);
+        label.setLayoutY(60);
         Button cancel = new Button("cancel");
+        cancel.setLayoutX(10);
+        cancel.setLayoutY(90);
         Thread waitingThread = Client.getWaitingThread(previous, stage, logInAccount.getUserName());
         thread = waitingThread;
         waitingThread.setDaemon(true);
