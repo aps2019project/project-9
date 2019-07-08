@@ -13,6 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import model.enumerations.GameMode;
@@ -20,6 +21,9 @@ import server.Account;
 import model.Deck;
 import model.enumerations.BattleMenuErrorType;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -228,7 +232,11 @@ public class BattleMenu {
                 clientRequest.setGameRequest(gameRequest);
                 Client.sendRequest(clientRequest);
                 stage.close();
-                waitForOpponent(previous);
+                try {
+                    waitForOpponent(previous);
+                } catch (FileNotFoundException e){
+                    e.printStackTrace();
+                }
             });
             stage.setScene(scene);
             stage.setTitle("Game Mode Selection");
@@ -238,21 +246,25 @@ public class BattleMenu {
         }
     }
 
-    public void waitForOpponent(Stage previous) {
+    public void waitForOpponent(Stage previous) throws FileNotFoundException {
         Stage stage = new Stage();
         Group root = new Group();
         Scene scene = new Scene(root, 200, 200);
         ImageView imageView = new ImageView(new Image("file:src/res/AccountMenuImages/loading.gif"));
         imageView.setFitHeight(60);
         imageView.setFitWidth(60);
-        imageView.setLayoutX(10);
-        imageView.setLayoutY(10);
+        imageView.setLayoutX(70);
+        imageView.setLayoutY(30);
         Label label = new Label("waiting for opponent ...");
-        label.setLayoutX(10);
-        label.setLayoutY(60);
+        Font font = Font.loadFont(new FileInputStream(new File("src/res/Font/aks.Ttf")), 12);
+        label.setLayoutX(35);
+        label.setLayoutY(100);
+        label.setFont(font);
         Button cancel = new Button("cancel");
-        cancel.setLayoutX(10);
-        cancel.setLayoutY(90);
+        cancel.setLayoutX(140);
+        cancel.setLayoutY(160);
+        cancel.getStylesheets().add("CSS/Waiting.css");
+        cancel.setFont(font);
         Thread waitingThread = Client.getWaitingThread(previous, stage, logInAccount.getUserName());
         thread = waitingThread;
         waitingThread.setDaemon(true);

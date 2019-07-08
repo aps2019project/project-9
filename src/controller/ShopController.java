@@ -10,12 +10,12 @@ import server.Account;
 import model.cards.Card;
 import model.enumerations.ShopErrorType;
 import model.items.Item;
-import view.ShopMenu;
+import view.Shop;
 
 public class ShopController {
     private String loggedInAccount;
     //private Shop shop = Shop.getInstance();
-    private ShopMenu shopMenu = ShopMenu.getInstance();
+    private Shop shop = Shop.getInstance();
 
     public String getLoggedInAccount() {
         return loggedInAccount;
@@ -29,7 +29,7 @@ public class ShopController {
     public void start() {
         try {
             Stage stage = new Stage();
-            shopMenu.start(stage, loggedInAccount, this);
+            shop.start(stage, loggedInAccount, this);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -43,7 +43,7 @@ public class ShopController {
             clientRequest.setCardOrItemName(currentCard.getName());
             Client.sendRequest(clientRequest);
             //Shop.getInstance().sell(currentCard, loggedInAccount);
-            shopMenu.printError(ShopErrorType.SOLD_SUCCESSFUL);
+            shop.printError(ShopErrorType.SOLD_SUCCESSFUL);
         } else {// it is item not card
             Item currentItem = Client.getAccount(loggedInAccount).getCollection().searchItemByID(id);
             ClientRequest clientRequest = new ClientRequest(Client.getAuthToken(), RequestType.SELL_ITEM);
@@ -51,7 +51,7 @@ public class ShopController {
             clientRequest.setCardOrItemName(currentItem.getName());
             Client.sendRequest(clientRequest);
             //Shop.getInstance().sell(currentItem, loggedInAccount);
-            shopMenu.printError(ShopErrorType.SOLD_SUCCESSFUL);
+            shop.printError(ShopErrorType.SOLD_SUCCESSFUL);
         }
     }
 
@@ -81,30 +81,30 @@ public class ShopController {
     public void buy(String itemOrCardName) {
         int cardMoney = getCardMoney(itemOrCardName);
         if (getRemaining(itemOrCardName) == 0) {
-            shopMenu.printError(ShopErrorType.NOT_REMAINING);
+            shop.printError(ShopErrorType.NOT_REMAINING);
             return;
         }
         if (isCard(itemOrCardName)) { // card not item
             if (getAccountMoney() < cardMoney)
-                shopMenu.printError(ShopErrorType.NOT_ENOUGH_MONEY);
+                shop.printError(ShopErrorType.NOT_ENOUGH_MONEY);
             else {
                 ClientRequest clientRequest = new ClientRequest(Client.getAuthToken(), RequestType.BUY_CARD);
                 clientRequest.setCardOrItemName(itemOrCardName);
                 Client.sendRequest(clientRequest);
                 //shop.buy(currentCard, loggedInAccount);
-                shopMenu.printError(ShopErrorType.BOUGHT_SUCCESSFUL);
+                shop.printError(ShopErrorType.BOUGHT_SUCCESSFUL);
             }
         } else {// item not card
             if (getAccountMoney() < cardMoney)
-                shopMenu.printError(ShopErrorType.NOT_ENOUGH_MONEY);
+                shop.printError(ShopErrorType.NOT_ENOUGH_MONEY);
             else if (Client.getAccount(loggedInAccount).getCollection().getNumberOfItems() == 3) {
-                shopMenu.printError(ShopErrorType.YOUR_COLLECTION_HAS_THREE_ITEMS);
+                shop.printError(ShopErrorType.YOUR_COLLECTION_HAS_THREE_ITEMS);
             } else {
                 ClientRequest clientRequest = new ClientRequest(Client.getAuthToken(), RequestType.BUY_ITEM);
                 clientRequest.setCardOrItemName(itemOrCardName);
                 Client.sendRequest(clientRequest);
                 //shop.buy(currentItem, loggedInAccount);
-                shopMenu.printError(ShopErrorType.BOUGHT_SUCCESSFUL);
+                shop.printError(ShopErrorType.BOUGHT_SUCCESSFUL);
             }
         }
     }
@@ -119,12 +119,12 @@ public class ShopController {
 
     public void searchShop(String itemOrCardName, TableView cardTable, TableView itemTable) {
         if (notCardNotItem(itemOrCardName))
-            shopMenu.printError(ShopErrorType.CARD_OR_ITEM_NOT_IN_SHOP);
+            shop.printError(ShopErrorType.CARD_OR_ITEM_NOT_IN_SHOP);
         else {
             if (isCard(itemOrCardName)) { // card
-                shopMenu.showCardBuy(cardTable, itemTable, getCard(itemOrCardName));
+                shop.showCardBuy(cardTable, itemTable, getCard(itemOrCardName));
             } else { // item
-                shopMenu.showItemBuy(cardTable, itemTable, getItem(itemOrCardName));
+                shop.showItemBuy(cardTable, itemTable, getItem(itemOrCardName));
             }
         }
     }
@@ -155,12 +155,12 @@ public class ShopController {
 
     public void searchCollection(String itemOrCardName, TableView cardTable, TableView itemTable) {
         if (notCardNotItem(itemOrCardName))
-            shopMenu.printError(ShopErrorType.CARD_OR_ITEM_NOT_IN_SHOP);
+            shop.printError(ShopErrorType.CARD_OR_ITEM_NOT_IN_SHOP);
         else {
             if (isCard(itemOrCardName)) { // card
-                shopMenu.showCardSell(cardTable, itemTable, getCard(itemOrCardName));
+                shop.showCardSell(cardTable, itemTable, getCard(itemOrCardName));
             } else { // item
-                shopMenu.showItemSell(cardTable, itemTable, getItem(itemOrCardName));
+                shop.showItemSell(cardTable, itemTable, getItem(itemOrCardName));
             }
         }
     }
