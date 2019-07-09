@@ -109,6 +109,9 @@ public class GraphicalInGameView {
         stage.setTitle("Duelyst");
         stage.setScene(scene);
         stage.show();
+        stage.setOnCloseRequest(windowEvent -> {
+            removeTransitionForTiming();
+        });
     }
 
     private Thread getThreadForMultiPlayer() {
@@ -206,6 +209,7 @@ public class GraphicalInGameView {
     //for next turn timing
     static TranslateTransition currentTransition;
     static ImageView currentImageView;
+    static boolean flag = false;
 
     //
     public static void removeTransitionForTiming() {
@@ -227,10 +231,7 @@ public class GraphicalInGameView {
         transition.play();
         transition.setOnFinished(actionEvent -> {
             if (inGameController.getBattle().getCurrenPlayer().getName().equals(userName)) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Turn Finished");
-                alert.setContentText("Your Time Finished , Now it's your opponents turn :)");
-                alert.show();
+                descLabel.setText("Next Turn");
                 group.getChildren().remove(imageView);
                 nextTurnClicked();
             }

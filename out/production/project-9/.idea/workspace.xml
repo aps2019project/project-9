@@ -148,7 +148,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1562561699900" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1562564139213" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Tamrin3/ChatRoom" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -188,7 +188,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.GraphicalServer">
+  <component name="RunManager" selected="Application.Server">
     <configuration name="Client" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="client.Client" />
       <module name="project-9" />
@@ -218,12 +218,12 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.Server" />
       <item itemvalue="Application.Client" />
-      <item itemvalue="Application.GraphicalServer" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.GraphicalServer" />
+        <item itemvalue="Application.Server" />
         <item itemvalue="Application.Client" />
       </list>
     </recent_temporary>
@@ -260,7 +260,7 @@
       <workItem from="1561377511629" duration="833000" />
       <workItem from="1561477625365" duration="6204000" />
       <workItem from="1561611202286" duration="3309000" />
-      <workItem from="1562154800814" duration="75017000" />
+      <workItem from="1562154800814" duration="76331000" />
     </task>
     <task id="LOCAL-00001" summary="merge">
       <created>1556826863260</created>
@@ -399,7 +399,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="478089000" />
+    <option name="totallyTimeSpent" value="479403000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -427,13 +427,13 @@
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="5" sideWeight="0.4984127" weight="0.3640553" />
       <window_info anchor="bottom" id="Duplicate detector" order="6" weight="0.32872504" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" sideWeight="0.48253968" visible="true" weight="0.32258064" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.48253968" weight="0.32258064" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5126984" side_tool="true" weight="0.32258064" />
-      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.48174602" weight="0.32411674" />
+      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.48095238" weight="0.32411674" />
       <window_info anchor="bottom" id="Database Changes" order="11" />
       <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.49920633" weight="0.21658987" />
-      <window_info anchor="bottom" x="84" y="296" width="1260" height="175" id="Run" order="13" sideWeight="0.518254" side_tool="true" weight="0.32411674" />
+      <window_info anchor="bottom" x="84" y="296" width="1260" height="175" id="Run" order="13" sideWeight="0.5190476" side_tool="true" weight="0.32411674" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -871,17 +871,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/Client.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="54" column="65" selection-start-line="54" selection-start-column="65" selection-end-line="54" selection-end-column="65" />
-          <folding>
-            <element signature="e#4639#4640#0" expanded="true" />
-            <element signature="e#4673#4674#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PATH_TO_FX$/javafx.graphics.jar!/javafx/scene/Node.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -890,13 +879,6 @@
             <element signature="e#45739#45740#0" expanded="true" />
             <element signature="e#45787#45788#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/server/Server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="116" column="50" lean-forward="true" selection-start-line="116" selection-start-column="50" selection-end-line="116" selection-end-column="50" />
         </state>
       </provider>
     </entry>
@@ -984,6 +966,20 @@
             <element signature="e#16439#16440#0" expanded="true" />
             <element signature="e#16468#16469#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/Client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="337">
+          <caret line="60" column="34" lean-forward="true" selection-start-line="60" selection-start-column="34" selection-end-line="60" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/server/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="52" column="57" lean-forward="true" selection-start-line="52" selection-start-column="57" selection-end-line="52" selection-end-column="57" />
         </state>
       </provider>
     </entry>
