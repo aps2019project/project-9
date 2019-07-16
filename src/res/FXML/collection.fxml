@@ -20,9 +20,9 @@
             </LinearGradient>
          </textFill>
       </Button>
-      <Button fx:id="help" layoutX="279.0" layoutY="512.0" mnemonicParsing="false" text="Help" />
-      <Button fx:id="search" layoutX="253.0" layoutY="478.0" mnemonicParsing="false" text="Search" />
-      <Button fx:id="save" layoutX="233.0" layoutY="445.0" mnemonicParsing="false" text="Save" />
+      <Button fx:id="help" layoutX="291.0" layoutY="525.0" mnemonicParsing="false" text="Help" />
+      <Button fx:id="search" layoutX="259.0" layoutY="486.0" mnemonicParsing="false" text="Search" />
+      <Button fx:id="save" layoutX="239.0" layoutY="445.0" mnemonicParsing="false" text="Save" />
       <Button fx:id="showdeck" layoutX="170.0" layoutY="365.0" mnemonicParsing="false" text="Show Deck" />
       <Button fx:id="showalldecks" layoutX="144.0" layoutY="327.0" mnemonicParsing="false" text="Show All Decks" />
       <Button fx:id="exportdeck" layoutX="118.0" layoutY="287.0" mnemonicParsing="false" text="Export Deck" />

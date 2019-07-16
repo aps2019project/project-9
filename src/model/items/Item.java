@@ -39,6 +39,11 @@ public class Item extends CardOrItem {
         return name;
     }
 
+    @Override
+    public int getCardID() {
+        return itemID;
+    }
+
     public int getItemID() {
         return itemID;
     }

@@ -241,10 +241,10 @@ public class Shop {
     private void addSellButtonToTable(TableView table) {
         TableColumn actionCol = new TableColumn("Sell");
         actionCol.setCellValueFactory(new PropertyValueFactory<>(""));
-        Callback<TableColumn<Card, String>, TableCell<Card, String>> cellFactory = new Callback<>() {
+        Callback<TableColumn<CardOrItem, String>, TableCell<CardOrItem, String>> cellFactory = new Callback<>() {
             @Override
-            public TableCell call(final TableColumn<Card, String> param) {
-                final TableCell<Card, String> cell = new TableCell<>() {
+            public TableCell call(final TableColumn<CardOrItem, String> param) {
+                final TableCell<CardOrItem, String> cell = new TableCell<>() {
                     final Button btn = new Button("Sell");
 
                     @Override
@@ -255,6 +255,7 @@ public class Shop {
                             setText(null);
                         } else {
                             btn.setOnAction(event -> {
+                                System.out.println(getTableView().getItems().get(getIndex()).getCardID());
                                 controller.sell(getTableView().getItems().get(getIndex()).getCardID());
                                 setMoney(parent);
                             });
@@ -323,6 +324,7 @@ public class Shop {
             }
             if (button.getText().equals("Back To Menu")) {
                 button.setText("Back");
+                button.setLayoutX(x + 15);
             }
             button.setStyle(
                     "-fx-background-color: transparent;");

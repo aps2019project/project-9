@@ -52,7 +52,7 @@ public class Client extends Application {
 
     private static boolean connectToServer() {
         try {
-            Socket socket = new Socket(InetAddress.getLocalHost(), getPort());
+            Socket socket = new Socket("localhost", getPort());
             outputStream = new DataOutputStream(socket.getOutputStream());
             inputStream = new DataInputStream(socket.getInputStream());
             authToken = inputStream.readUTF();

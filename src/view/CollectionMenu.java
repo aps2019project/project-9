@@ -94,10 +94,8 @@ public class CollectionMenu {
         //
         Button exportDeck = (Button) root.lookup("#exportdeck");
         Button importDeck = (Button) root.lookup("#importdeck");
-        exportDeck.setOnMouseEntered(mouseEvent -> exportDeck.setLayoutX(exportDeck.getLayoutX() + 20));
-        exportDeck.setOnMouseExited(mouseEvent -> exportDeck.setLayoutX(exportDeck.getLayoutX() - 20));
-        importDeck.setOnMouseEntered(mouseEvent -> importDeck.setLayoutX(importDeck.getLayoutX() + 20));
-        importDeck.setOnMouseExited(mouseEvent -> importDeck.setLayoutX(importDeck.getLayoutX() - 20));
+        setBtnOnMouseOverAction(exportDeck);
+        setBtnOnMouseOverAction(importDeck);
         exportDeck.setOnMouseClicked(mouseEvent -> {
             ChoiceDialog<String> dio = setDecksList();
             dio.setTitle("Select Deck To Export");
