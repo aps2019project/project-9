@@ -18,6 +18,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import model.CardOrItem;
 import server.Account;
 import model.Deck;
 import data.JsonProcess;
@@ -457,7 +458,7 @@ public class CollectionMenu {
                             setText(null);
                         } else {
                             btn.setOnAction(event -> {
-                                Card card = getTableView().getItems().get(getIndex());
+                                CardOrItem card = getTableView().getItems().get(getIndex());
                                 List<String> c = new ArrayList<>();
                                 for (Deck key : account.getDecks()) {
                                     c.add(key.getName());
